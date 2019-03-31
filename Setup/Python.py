@@ -23,15 +23,13 @@ def SetupPythonLibrary(system_info, program_options):
     # Inform user
     Utility.LogStatement("Building Python library")
 
-    # Store script dir
-    scriptdir = os.path.dirname(os.path.abspath(__file__))
-
     # Zip file
     new_zip_file = "PythonLib.zip"
     new_zip_location = "../../../../../Data/"
 
     # Check lib directory
     if not os.path.exists(system_info.python3_libdir):
+        Utility.ErrorStatement("Python source library directory does not exist")
         return False
 
     # Change to lib directory
@@ -48,17 +46,18 @@ def SetupPythonLibrary(system_info, program_options):
 
     # Check zip file
     if not os.path.exists(new_zip_file) and not os.path.isfile(new_zip_file):
+        Utility.ErrorStatement("Python library was not created")
         return False
 
     # Moving python library
-    Utility.LogStatement("Copying Python library")
+    Utility.LogStatement("Copying Python library to " + os.path.abspath(new_zip_location))
     try:
         shutil.copyfile(new_zip_file, os.path.join(new_zip_location, new_zip_file))
     except shutil.Error:
         pass
 
     # Change to script directory
-    Utility.LogStatement("Changing directory to " + scriptdir)
-    os.chdir(scriptdir)
+    Utility.LogStatement("Changing directory to " + system_info.root_path)
+    os.chdir(system_info.root_path)
     return True
 ###########################################################################

@@ -38,7 +38,7 @@ def GetSystemInformation(program_options, root_path):
         detect_bsd = True
     info = SystemInformation()
     info.root_path = root_path
-    info.premake_bin = os.path.join(root_path, "Project/premake5")
+    info.premake_bin = os.path.join(root_path, "Project/Programs/Premake5/orig/bin/release/premake5")
     info.make_bin = detect_make_bin
     info.zip_bin = detect_zip_bin
     info.python3_libdir = os.path.join(root_path, "Project/Libs/Python3/orig/Lib")
