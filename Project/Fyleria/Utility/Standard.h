@@ -1,0 +1,101 @@
+// Fyleria Engine
+// Copyright © 2016 Go Go Gecko Productions
+
+#ifndef _GECKO_UTILITY_STANDARD_H_
+#define _GECKO_UTILITY_STANDARD_H_
+
+// Standard includes
+#include <iostream>
+#include <iomanip>
+#include <algorithm>
+#include <string>
+#include <sstream>
+#include <utility>
+#include <vector>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
+#include <list>
+#include <memory>
+#include <fstream>
+#include <limits>
+#include <random>
+#include <iterator>
+#include <locale>
+#include <codecvt>
+#include <mutex>
+#include <chrono>
+
+// Standard defines
+#define STDCout std::cout
+#define STDEndl std::endl
+#define STDHash std::hash
+#define STDPair std::pair
+#define STDVector std::vector
+#define STDMap std::map
+#define STDUnorderedMap std::unordered_map
+#define STDSet std::set
+#define STDUnorderedSet std::unordered_set
+#define STDList std::list
+#define STDSharedPtr std::shared_ptr
+#define STDUniquePtr std::unique_ptr
+#define STDMakeSharedPtr std::make_shared
+#define STDMakeUniquePtr std::make_unique
+#define STDMakePair std::make_pair
+#define STDDistance std::distance
+#define STDMoveData std::move
+#define STDCopyData std::copy
+#define STDFillData std::fill
+#define STDFindData std::find
+#define STDCountData std::count
+#define STDRemoveData std::remove
+#define STDClampData std::clamp
+#define STDSortData std::sort
+#define STDUniqueData std::unique
+#define STDShuffleData std::shuffle
+#define STDLess std::less
+#define STDMin std::min
+#define STDMax std::max
+#define STDWStringConvert std::wstring_convert
+#define STDUTF8AndUTF16Conversion std::codecvt_utf8_utf16
+#define STDSetIntersection std::set_intersection
+#define STDInserter std::inserter
+#define STDBackInserter std::back_inserter
+#define STDToString std::to_string
+#define STDStringToInt std::stoi
+#define STDStringToLong std::stol
+#define STDStringToUnsignedLong std::stoul
+#define STDStringToUnsignedLongLong std::stoull
+#define STDReferenceWrapper std::reference_wrapper
+#define STDNumericLimits std::numeric_limits
+#define STDFmod std::fmod
+#define STDRound std::round
+#define STDGenerateCanonical std::generate_canonical
+#define STDUniformIntDistribution std::uniform_int_distribution
+#define STDUniformRealDistribution std::uniform_real_distribution
+#define STDIOSFlagInputOperations std::ios::in
+#define STDIOSFlagOutputOperations std::ios::out
+#define STDIOSFlagBinaryMode std::ios::binary
+#define STDIOSFlagInitialPosAtEnd std::ios::ate
+#define STDIOSFlagAppendToEnd std::ios::app
+#define STDIOSFlagTruncate std::ios::trunc
+#define STDBindFunc std::bind
+#define STDPlaceholder1 std::placeholders::_1
+#define STDPlaceholder2 std::placeholders::_2
+#define STDPlaceholder3 std::placeholders::_3
+#define STDMutex std::mutex
+#define STDLockGuard std::lock_guard
+#define STDException std::exception
+#define STDLogicErrorException std::logic_error
+#define STDRuntimeErrorException std::runtime_error
+#define STDInvalidArgumentException std::invalid_argument
+#define STDTimePoint std::chrono::time_point<std::chrono::steady_clock>
+#define STDGetCurrentTimePoint std::chrono::steady_clock::now
+#define STDGetTimePointDuration std::chrono::duration_cast<std::chrono::seconds>
+#define STDSetFill std::setfill
+#define STDSetWidth std::setw
+#define STDEnableSharedFromThis std::enable_shared_from_this
+#define STDGetSharedThis shared_from_this
+
+#endif

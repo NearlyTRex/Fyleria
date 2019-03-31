@@ -1,0 +1,378 @@
+// Fyleria Engine
+// Copyright © 2016 Go Go Gecko Productions
+
+#include "Battle/BattleEvents.h"
+
+namespace Gecko
+{
+
+void HandleBattleStarted(const IndexedString& sCharacterID)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Clear active changes
+    character.GetStatChangeData().ClearActiveChanges();
+
+    // Reset prolonged stat changes
+    character.GetStatChangeData().SetProlongedStatChanges({});
+
+    // Reset skill tracking
+    character.GetSkillUseData().SetSkillUseTrackingMap({});
+
+    // Reset attack/defend counters
+    character.GetBasicData().SetAttackCounter(0);
+    character.GetBasicData().SetDefendCounter(0);
+}
+
+void HandleBattleEnded(const IndexedString& sCharacterID)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Clear active changes
+    character.GetStatChangeData().ClearActiveChanges();
+
+    // Reset prolonged stat changes
+    character.GetStatChangeData().SetProlongedStatChanges({});
+
+    // Reset attack/defend counters
+    character.GetBasicData().SetAttackCounter(0);
+    character.GetBasicData().SetDefendCounter(0);
+}
+
+void HandleBattleTally(const IndexedString& sCharacterID)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Regenerate character data on the tally screen
+    // The calling code should capture the state before and after this
+    // then see the difference as something to display to the player
+    // We DO
+    // - Update skill rankings because they could have used skills
+    // - Update available changes because skills could have changed
+    // - Update available actions because skills could have changed
+    // We DO NOT
+    // - Update equipment ratings, because equipment does not change
+    // - Update available AP, because you only refill AP when resting
+    character.RegenerateCharacterData(
+        true, /* bUpdateSkillRankings */
+        false, /* bUpdateEquipmentRatings */
+        true, /* bUpdateAvailableChanges */
+        true, /* bUpdateAvailableActions */
+        false /* bUpdateAvailableAP */
+    );
+}
+
+void HandleBattleFullyCompleted(const IndexedString& sCharacterID)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Update character data across non-active segments
+    const IndexedStringList vSegments = {IndexedString("Base"), IndexedString("Passive")};
+    for(const IndexedString& sSegment : vSegments)
+    {
+        // Get appropriate segments
+        CharacterProgressData& progressData = character.GetProgressSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+
+        // Finish battle
+        battleData.FinishBattle(progressData);
+    }
+
+    // Reset skill tracking
+    character.GetSkillUseData().SetSkillUseTrackingMap({});
+}
+
+void HandleBattleRoundAdvanced(const IndexedString& sCharacterID)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Update character data across non-active segments
+    const IndexedStringList vSegments = {IndexedString("Base"), IndexedString("Passive")};
+    for(const IndexedString& sSegment : vSegments)
+    {
+        // Get appropriate segments
+        CharacterProgressData& progressData = character.GetProgressSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+
+        // Advance round
+        battleData.AdvanceRound(progressData);
+    }
+
+    // Remove expired prolonged stat changes
+    character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges();
+}
+
+void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Skip invalid damage
+    if(iAmount <= 0)
+    {
+        return;
+    }
+
+    // Update character data across non-active segments
+    const IndexedStringList vSegments = {IndexedString("Base"), IndexedString("Passive")};
+    for(const IndexedString& sSegment : vSegments)
+    {
+        // Get appropriate segments
+        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+
+        // Update damage given
+        battleData.ApplyGivenDamage(iAmount);
+    }
+
+    // Update attack counter
+    character.GetBasicData().SetAttackCounter(character.GetBasicData().GetAttackCounter() + 1);
+
+    // Remove expired prolonged stat changes
+    character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges();
+}
+
+void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Skip invalid damage
+    if(iAmount <= 0)
+    {
+        return;
+    }
+
+    // Update character data across non-active segments
+    const IndexedStringList vSegments = {IndexedString("Base"), IndexedString("Passive")};
+    for(const IndexedString& sSegment : vSegments)
+    {
+        // Get appropriate segments
+        CharacterProgressData& progressData = character.GetProgressSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+
+        // Update damage taken
+        progressData.ApplyTakenDamage(iAmount);
+        battleData.ApplyTakenDamage(iAmount);
+
+        // Apply new status
+        battleData.ApplyNewStatus(progressData);
+    }
+
+    // Update defend counter
+    character.GetBasicData().SetDefendCounter(character.GetBasicData().GetDefendCounter() + 1);
+
+    // Remove expired prolonged stat changes
+    character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges();
+}
+
+void HandleBattleChoosingTargets(const IndexedString& sCharacterID, const IndexedStringArray& vDestTargets)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Update character data across non-active segments
+    const IndexedStringList vSegments = {IndexedString("Base"), IndexedString("Passive")};
+    for(const IndexedString& sSegment : vSegments)
+    {
+        // Get appropriate segments
+        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+
+        // Update most recent attack targets
+        battleData.SetMostRecentAttackTargets(vDestTargets);
+
+        // Update attack targets this round
+        IndexedStringList vTargetsThisRound = battleData.GetAttackTargetsThisRound();
+        vTargetsThisRound.insert(vTargetsThisRound.end(), vDestTargets.begin(), vDestTargets.end());
+        battleData.SetAttackTargetsThisRound(vTargetsThisRound);
+    }
+}
+
+void HandleBattleBecomingTarget(const IndexedString& sCharacterID, const IndexedString& sSourceTarget)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Update character data across non-active segments
+    const IndexedStringList vSegments = {IndexedString("Base"), IndexedString("Passive")};
+    for(const IndexedString& sSegment : vSegments)
+    {
+        // Get appropriate segments
+        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+
+        // Update most recent defend target
+        battleData.SetMostRecentDefendTarget(sSourceTarget);
+
+        // Update defend targets this round
+        battleData.GetDefendTargetsThisRound().push_back(sSourceTarget);
+    }
+}
+
+void HandleBattleActionAttackSetup(const IndexedString& sCharacterID, const CharacterAction& action)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Update character data across non-active segments
+    const IndexedStringList vSegments = {IndexedString("Base"), IndexedString("Passive")};
+    for(const IndexedString& sSegment : vSegments)
+    {
+        // Get appropriate segments
+        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+
+        // Set targets for this action
+        battleData.SetAttackTargetsThisAction(battleData.GetMostRecentAttackTargets());
+        battleData.SetDefendTargetThisAction(IndexedString(""));
+    }
+
+    // Apply active changes
+    character.ApplyActiveChanges(action);
+}
+
+void HandleBattleActionDefendSetup(const IndexedString& sCharacterID, const CharacterAction& action)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Update character data across non-active segments
+    const IndexedStringList vSegments = {IndexedString("Base"), IndexedString("Passive")};
+    for(const IndexedString& sSegment : vSegments)
+    {
+        // Get appropriate segments
+        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+
+        // Set targets for this action
+        battleData.SetAttackTargetsThisAction({});
+        battleData.SetDefendTargetThisAction(battleData.GetMostRecentDefendTarget());
+    }
+
+    // Apply active changes
+    character.ApplyActiveChanges(action);
+}
+
+void HandleBattleActionApplied(const IndexedString& sCharacterID, const CharacterAction& action)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Store previous action types
+    character.GetBasicData().SetPreviousActionTypes(action.GetAllActionTypes());
+}
+
+void HandleBattleActionFinished(const IndexedString& sCharacterID, const CharacterAction& action)
+{
+    // Check character first
+    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    {
+        return;
+    }
+
+    // Get character
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+
+    // Update character data across non-active segments
+    const IndexedStringList vSegments = {IndexedString("Base"), IndexedString("Passive")};
+    for(const IndexedString& sSegment : vSegments)
+    {
+        // Get appropriate segments
+        CharacterProgressData& progressData = character.GetProgressSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+
+        // Apply costs
+        progressData.ApplyActionCost(action);
+
+        // If this was a skill action, we should track it
+        if(!action.GetSkillTreeIndex().empty())
+        {
+            character.GetSkillUseData().AddSkillUse(GetSkillType(action.GetSkillTreeIndex()), 1);
+        }
+
+        // Apply new status
+        battleData.ApplyNewStatus(progressData);
+
+        // Clear action targets
+        battleData.SetAttackTargetsThisAction({});
+        battleData.SetDefendTargetThisAction(IndexedString(""));
+    }
+
+    // Clear active changes
+    character.ClearActiveChanges();
+}
+
+};
