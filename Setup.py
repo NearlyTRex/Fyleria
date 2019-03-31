@@ -13,11 +13,6 @@ from Setup import Project
 from Setup import Utility
 
 ###########################################################################
-# Paths
-sys.path.append("Project/Libs/EasyProcess/orig")
-sys.path.append("Project/Libs/Patool/orig")
-sys.path.append("Project/Libs/Pyunpack/orig")
-###########################################################################
 ## Main
 def main():
 
