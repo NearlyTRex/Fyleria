@@ -21,6 +21,7 @@ def GetSystemInformation(program_options, root_path):
     detect_bsd = False
     detect_make_bin = "make"
     detect_zip_bin = "zip"
+    detect_unzip_bin = "unzip"
     if 'cygwin' in current_system:
         detect_cygwin = True
     elif 'darwin' in current_system:
@@ -41,6 +42,7 @@ def GetSystemInformation(program_options, root_path):
     info.premake_bin = os.path.join(root_path, "Project/Programs/Premake5/orig/bin/release/premake5")
     info.make_bin = detect_make_bin
     info.zip_bin = detect_zip_bin
+    info.unzip_bin = detect_unzip_bin
     info.python3_libdir = os.path.join(root_path, "Project/Libs/Python3/orig/Lib")
     detect_64bits = sys.maxsize > 2**32
     info.is_32bits = not detect_64bits

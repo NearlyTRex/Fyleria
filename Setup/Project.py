@@ -51,7 +51,7 @@ def SetupProject(project_name, project_base_dir, system_info, program_options):
     # Extract library archive
     if os.path.isfile(archive_file) and os.path.exists(projectdir) and not os.path.exists(archive_newdir):
         Utility.LogStatement("Extracting " + archive_file + " to " + projectdir)
-        Utility.RunLiveSubprocess(subprocess_args = ["unzip", archive_file, "-d", projectdir], verbose_output = True)
+        Utility.RunLiveSubprocess(subprocess_args = [system_info.unzip_bin, archive_file, "-d", projectdir], verbose_output = True)
 
     # Move extracted archive
     if os.path.exists(archive_olddir) and not os.path.exists(archive_newdir):
