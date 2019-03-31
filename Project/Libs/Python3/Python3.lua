@@ -2,12 +2,14 @@
 libPython3_extradir = "Libs/Python3/extra/"
 libPython3_origdir = "Libs/Python3/orig/"
 libPython3_srcdir = libPython3_origdir
-libPython3_incdir = libPython3_origdir .. "Include/"
+libPython3_incdir_pub = libPython3_origdir .. "Include/"
+libPython3_incdir_priv = libPython3_origdir .. "Include/internal"
 
 -- Includes
 libPython3_includedirs = {
     libPython3_origdir,
-    libPython3_incdir,
+    libPython3_incdir_pub,
+    libPython3_incdir_priv,
     libPython3_extradir
 }
 
@@ -15,6 +17,7 @@ libPython3_includedirs = {
 libPython3_defines = {
     "Py_NO_ENABLE_SHARED",
     "Py_BUILD_CORE",
+    "_PYTHONFRAMEWORK=\"\"",
     "PYTHONPATH=\"\"",
     "PREFIX=\"\"",
     "EXEC_PREFIX=\"\"",
@@ -109,7 +112,6 @@ libPython3_sources = {
     libPython3_srcdir .. "Modules/unicodedata.c",
     libPython3_srcdir .. "Modules/xxmodule.c",
     libPython3_srcdir .. "Modules/xxsubtype.c",
-    libPython3_srcdir .. "Modules/zipimport.c",
     libPython3_srcdir .. "Modules/zlibmodule.c",
     libPython3_srcdir .. "Objects/abstract.c",
     libPython3_srcdir .. "Objects/accu.c",
@@ -151,17 +153,12 @@ libPython3_sources = {
     libPython3_srcdir .. "Objects/unicodeobject.c",
     libPython3_srcdir .. "Objects/weakrefobject.c",
     libPython3_srcdir .. "Parser/acceler.c",
-    libPython3_srcdir .. "Parser/bitset.c",
-    libPython3_srcdir .. "Parser/firstsets.c",
-    libPython3_srcdir .. "Parser/grammar.c",
     libPython3_srcdir .. "Parser/grammar1.c",
     libPython3_srcdir .. "Parser/listnode.c",
-    libPython3_srcdir .. "Parser/metagrammar.c",
     libPython3_srcdir .. "Parser/myreadline.c",
     libPython3_srcdir .. "Parser/node.c",
     libPython3_srcdir .. "Parser/parser.c",
     libPython3_srcdir .. "Parser/parsetok.c",
-    libPython3_srcdir .. "Parser/printgrammar.c",
     libPython3_srcdir .. "Parser/tokenizer.c",
     libPython3_srcdir .. "Python/Python-ast.c",
     libPython3_srcdir .. "Python/_warnings.c",
@@ -202,7 +199,6 @@ libPython3_sources = {
     libPython3_srcdir .. "Python/pystrtod.c",
     libPython3_srcdir .. "Python/pythonrun.c",
     libPython3_srcdir .. "Python/pytime.c",
-    libPython3_srcdir .. "Python/random.c",
     libPython3_srcdir .. "Python/structmember.c",
     libPython3_srcdir .. "Python/symtable.c",
     libPython3_srcdir .. "Python/sysmodule.c",
@@ -210,13 +206,9 @@ libPython3_sources = {
     libPython3_srcdir .. "Python/traceback.c",
     libPython3_extradir .. "config.c"
 }
-if os.host() == "windows" or _OPTIONS["with-mingw32"] or _OPTIONS["with-mingw64"] then
+if os.host() == "windows" then
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/_io/winconsoleio.c")
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/_winapi.c")
-    table.insert(libPython3_sources, libPython3_extradir .. "windows-getpathp.c")
-    table.insert(libPython3_sources, libPython3_extradir .. "windows-invalid_parameter_handler.c")
-    table.insert(libPython3_sources, libPython3_extradir .. "windows-iomodule.c")
-    table.insert(libPython3_sources, libPython3_extradir .. "windows-posixmodule.c")
 else
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/getpath.c")
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/_io/_iomodule.c")

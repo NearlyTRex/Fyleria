@@ -3,7 +3,7 @@
 
 // Include the correct pyconfig.h
 #if defined(_MSC_VER) || defined(__MINGW32__) || defined(__MINGW64__)
-    #include "pyconfig-windows.h"
+    #include "../orig/PC/pyconfig.h"
 #elif defined(__linux__) && defined(__i386__)
     #include "pyconfig-linux_x86_32.h"
 #elif defined(__linux__) && defined(__x86_64__)

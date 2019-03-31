@@ -3,7 +3,7 @@
 
 // Include the correct errmap.h
 #if defined(_MSC_VER) || defined(__MINGW32__) || defined(__MINGW64__)
-#include "errmap-windows.h"
+#include "../orig/PC/errmap.h"
 #endif
 
 #endif
