@@ -7,7 +7,7 @@
 // Internal includes
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
+#include "Utility/Enum.h"
 
 namespace Gecko
 {
@@ -127,14 +127,14 @@ BETTER_ENUM(SkillAffinityType, Int,
     Wind
 );
 
-MAKE_ENUM_GETSTRINGLIST_DECL(SkillTreeType);
-MAKE_ENUM_GETSTRINGLIST_DECL(SkillWeaponBaseType);
-MAKE_ENUM_GETSTRINGLIST_DECL(SkillWeaponType);
-MAKE_ENUM_GETSTRINGLIST_DECL(SkillAlchemyType);
-MAKE_ENUM_GETSTRINGLIST_DECL(SkillBreakdownType);
-MAKE_ENUM_GETSTRINGLIST_DECL(SkillCombatType);
-MAKE_ENUM_GETSTRINGLIST_DECL(SkillCraftingType);
-MAKE_ENUM_GETSTRINGLIST_DECL(SkillAffinityType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(SkillTreeType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(SkillWeaponBaseType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(SkillWeaponType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(SkillAlchemyType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(SkillBreakdownType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(SkillCombatType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(SkillCraftingType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(SkillAffinityType);
 
 MAKE_ENUM_CONVERTERS_DECL(SkillTreeType);
 MAKE_ENUM_CONVERTERS_DECL(SkillWeaponBaseType);

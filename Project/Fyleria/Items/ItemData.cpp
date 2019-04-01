@@ -2,8 +2,7 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Items/ItemData.h"
-#include "Character/CharacterActionBattleItem.h"
-#include "Character/CharacterActionFieldItem.h"
+#include "CharacterAction/CharacterAction.h"
 #include "Character/CharacterManager.h"
 
 namespace Gecko
@@ -84,10 +83,10 @@ Bool ItemData::DoesMeetActionRequirements(const IndexedString& sCharacterID, con
     return false;
 }
 
-CharacterActionSharedPtrList ItemData::CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray ItemData::CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
 {
     // Check character
-    CharacterActionSharedPtrList vNewActions;
+    CharacterActionArray vNewActions;
     if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
@@ -99,27 +98,13 @@ CharacterActionSharedPtrList ItemData::CreateBaseActions(const IndexedString& sC
     // Create actions
     for(auto& sType : GetRunTypes())
     {
-        CharacterActionSharedPtr pNewAction;
-        const CharacterActionRunType eRunType = StringToCharacterActionRunType(sType);
-        switch(eRunType)
-        {
-            case CharacterActionRunType::Battle:
-                pNewAction = STDMakeSharedPtr<CharacterActionBattleItem>();
-                break;
-            case CharacterActionRunType::Field:
-                pNewAction = STDMakeSharedPtr<CharacterActionFieldItem>();
-                break;
-            default:
-                break;
-        }
-        if(pNewAction)
-        {
-            pNewAction->SetWeaponSet(sWeaponSet);
-            pNewAction->SetItemTreeIndex(GetItemTreeIndex());
-            pNewAction->SetSourceTargetType(character.GetCharacterTargetType());
-            pNewAction->SetSourceCharacterID(sCharacterID);
-            vNewActions.push_back(pNewAction);
-        }
+        CharacterAction newAction;
+        newAction.SetRunType(sType);
+        newAction.SetWeaponSet(sWeaponSet);
+        newAction.SetItemTreeIndex(GetItemTreeIndex());
+        newAction.SetSourceTargetType(character.GetCharacterTargetType());
+        newAction.SetSourceCharacterID(sCharacterID);
+        vNewActions.push_back(newAction);
     }
     return vNewActions;
 }
@@ -154,7 +139,7 @@ void to_json(Json& jsonData, const ItemData& obj)
 void from_json(const Json& jsonData, ItemData& obj)
 {
     // Run types
-    obj.SetRunTypes(GET_JSON_DATA_OR_DEFAULT(RunTypes, IndexedStringList, IndexedStringList()));
+    obj.SetRunTypes(GET_JSON_DATA_OR_DEFAULT(RunTypes, IndexedStringArray, IndexedStringArray()));
 
     // Data class
     obj.SetDataClass(GET_JSON_DATA_OR_DEFAULT(DataClass, IndexedString, IndexedString("")));
@@ -172,10 +157,10 @@ void from_json(const Json& jsonData, ItemData& obj)
     obj.SetItemTreeIndex(GET_JSON_DATA_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex()));
 
     // Action types
-    obj.SetActionTypes(GET_JSON_DATA_OR_DEFAULT(ActionTypes, IndexedStringList, IndexedStringList()));
+    obj.SetActionTypes(GET_JSON_DATA_OR_DEFAULT(ActionTypes, IndexedStringArray, IndexedStringArray()));
 
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeList, StatChangeList()));
+    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
 }
 
 };

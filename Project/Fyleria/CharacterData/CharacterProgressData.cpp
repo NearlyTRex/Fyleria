@@ -1,7 +1,7 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterProgressData.h"
+#include "CharacterData/CharacterProgressData.h"
 #include "Character/CharacterTypes.h"
 #include "Skills/SkillTree.h"
 
@@ -261,7 +261,7 @@ void CharacterProgressData::ApplyActionCost(const CharacterActionSharedPtr& pAct
     }
 }
 
-void CharacterProgressData::UpdateAvailableAP(const TreeIndexList& vIndices)
+void CharacterProgressData::UpdateAvailableAP(const TreeIndexArray& vIndices)
 {
     // Action point count type
     struct ActionPointCountEntry

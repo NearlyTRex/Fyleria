@@ -4,7 +4,7 @@
 #ifndef _GECKO_ITEM_TREE_H_
 #define _GECKO_ITEM_TREE_H_
 
-#include "Character/CharacterAction.h"
+#include "CharacterAction/CharacterAction.h"
 #include "Items/ItemDataArmor.h"
 #include "Items/ItemDataIngredient.h"
 #include "Items/ItemDataPotion.h"
@@ -40,11 +40,11 @@ const ItemDataWeapon& RetrieveItemDataWeapon(const TreeIndex& index);
 IndexedString RetrieveItemType(const TreeIndex& index);
 
 // Get item lists
-TreeIndexList GetAllArmorItems();
-TreeIndexList GetAllIngredientItems();
-TreeIndexList GetAllPotionItems();
-TreeIndexList GetAllWeaponItems();
-TreeIndexList GetAllEquippedItems(const IndexedString& sCharID);
+TreeIndexArray GetAllArmorItems();
+TreeIndexArray GetAllIngredientItems();
+TreeIndexArray GetAllPotionItems();
+TreeIndexArray GetAllWeaponItems();
+TreeIndexArray GetAllEquippedItems(const IndexedString& sCharID);
 
 // Resolve leaf into index
 TreeIndex ResolveItemLeafIntoIndex(const IndexedString& sLeaf);
@@ -56,7 +56,7 @@ Bool IsItemActionable(const TreeIndex& index);
 Bool GenerateItemCharacterActions(const TreeIndex& index,
     const IndexedString& sCharacterID,
     const IndexedString& sWeaponSet,
-    CharacterActionSharedPtrList& vActions);
+    CharacterActionArray& vActions);
 
 // Check "better" quality
 Bool IsArmorBetter(const TreeIndex& index1, const TreeIndex& index2);
@@ -67,13 +67,13 @@ Bool IsItemWeapon(const TreeIndex& index);
 Bool IsItemShield(const TreeIndex& index);
 
 // Get action types
-IndexedStringList GetActionTypes(const TreeIndex& index);
+IndexedStringArray GetActionTypes(const TreeIndex& index);
 
 // Get stat changes
-void FillItemStatChangeLists(const TreeIndexList& vItemDataList,
-    TreeIndexList& vPassives,
-    TreeIndexList& vActives,
-    TreeIndexList& vActionables);
+void FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
+    TreeIndexArray& vPassives,
+    TreeIndexArray& vActives,
+    TreeIndexArray& vActionables);
 
 };
 

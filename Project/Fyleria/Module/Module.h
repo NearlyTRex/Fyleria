@@ -4,7 +4,7 @@
 #ifndef _GECKO_MODULE_H_
 #define _GECKO_MODULE_H_
 
-#include "Utility/TypesSimple.h"
+#include "Utility/Types.h"
 
 namespace Gecko
 {

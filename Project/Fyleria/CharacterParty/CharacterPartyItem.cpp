@@ -1,7 +1,7 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterPartyItem.h"
+#include "CharacterParty/CharacterPartyItem.h"
 #include "Character/CharacterTypes.h"
 #include "Items/ItemTypes.h"
 #include "Items/ItemTree.h"
@@ -120,7 +120,7 @@ void from_json(const Json& jsonData, CharacterPartyItem& obj)
     obj.SetEquipCount(GET_JSON_DATA_OR_DEFAULT(EquipCount, UByte, 0));
 
     // Applicable equipment slots
-    obj.SetApplicableEquipmentSlots(GET_JSON_DATA_OR_DEFAULT(ApplicableEquipmentSlots, IndexedStringList, IndexedStringList()));
+    obj.SetApplicableEquipmentSlots(GET_JSON_DATA_OR_DEFAULT(ApplicableEquipmentSlots, IndexedStringArray, IndexedStringArray()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyItem, CharacterPartyItem);

@@ -25,18 +25,16 @@ public:
     virtual String ToJsonString(Int iIndent = -1) const;
 
     // Serialization from/to CBOR/MsgPack
-    virtual void FromCBOR(const FixedUnsigned8List& vCBOR);
-    virtual void FromMsgPack(const FixedUnsigned8List& vMsgPack);
-    virtual FixedUnsigned8List ToCBOR() const;
-    virtual FixedUnsigned8List ToMsgPack() const;
+    virtual void FromCBOR(const FixedUnsigned8Array& vCBOR);
+    virtual void FromMsgPack(const FixedUnsigned8Array& vMsgPack);
+    virtual FixedUnsigned8Array ToCBOR() const;
+    virtual FixedUnsigned8Array ToMsgPack() const;
 
     // Serialization from/to file
     virtual Bool FromFile(const IndexedString& sFilename);
-    virtual Bool FromFilePath(const FilesystemPath& sFilenamePath);
     virtual Bool FromCBORFile(const IndexedString& sFilename);
     virtual Bool FromMsgPackFile(const IndexedString& sFilename);
     virtual Bool ToFile(const IndexedString& sFilename) const;
-    virtual Bool ToFilePath(const FilesystemPath& sFilenamePath) const;
     virtual Bool ToCBORFile(const IndexedString& sFilename) const;
     virtual Bool ToMsgPackFile(const IndexedString& sFilename) const;
 

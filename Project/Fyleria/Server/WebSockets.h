@@ -10,8 +10,8 @@
 #include <websocketpp/server.hpp>
 
 // Internal includes
-#include <Utility/TypesSimple.h>
-#include <Utility/TypesEnum.h>
+#include <Utility/Types.h>
+#include <Utility/Enum.h>
 #include <Utility/IndexedString.h>
 #include <Utility/Singleton.h>
 

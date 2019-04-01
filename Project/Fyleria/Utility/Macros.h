@@ -89,10 +89,10 @@ String Get##name() const                                                        
 typedef type* type##Ptr;                                                            \
 typedef STDSharedPtr<type> type##SharedPtr;                                         \
 typedef STDReferenceWrapper<type> type##Ref;                                        \
-typedef STDVector<type> type##List;                                                 \
-typedef STDVector<type##Ptr> type##PtrList;                                         \
-typedef STDVector<type##Ref> type##RefList;                                         \
-typedef STDVector<type##SharedPtr> type##SharedPtrList
+typedef STDVector<type> type##Array;                                                \
+typedef STDVector<type##Ptr> type##PtrArray;                                        \
+typedef STDVector<type##Ref> type##RefArray;                                        \
+typedef STDVector<type##SharedPtr> type##SharedPtrArray
 
 //=====================================================================================
 
@@ -140,13 +140,13 @@ STDVector<type> Get##name##ListFromJsonString(const String& jsonString)         
 
 //=====================================================================================
 
-#define MAKE_ENUM_GETSTRINGLIST_DECL(type)                                          \
-StringList Get##type##Names();
+#define MAKE_ENUM_GETSTRINGARRAY_DECL(type)                                          \
+StringArray Get##type##Names();
 
-#define MAKE_ENUM_GETSTRINGLIST_IMPL(type)                                          \
-StringList Get##type##Names()                                                       \
+#define MAKE_ENUM_GETSTRINGARRAY_IMPL(type)                                          \
+StringArray Get##type##Names()                                                       \
 {                                                                                   \
-    StringList vTypeNames;                                                          \
+    StringArray vTypeNames;                                                          \
     for (const char* name : type::_names())                                         \
     {                                                                               \
         vTypeNames.push_back(name);                                                 \

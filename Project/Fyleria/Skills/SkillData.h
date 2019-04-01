@@ -4,12 +4,12 @@
 #ifndef _GECKO_SKILLDATA_H_
 #define _GECKO_SKILLDATA_H_
 
-#include "Character/CharacterAction.h"
+#include "CharacterAction/CharacterAction.h"
 #include "Stats/StatChange.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Enum.h"
+#include "Utility/Json.h"
 
 namespace Gecko
 {
@@ -36,21 +36,21 @@ public:
 
     // Get intersecting attack requirements
     Bool GetIntersectingRequirementTypes(
-        const IndexedStringList& vPrimaryActionTypes,
-        const IndexedStringList& vSecondaryActionTypes,
-        IndexedStringList& vPrimaryAttackIntersections,
-        IndexedStringList& vPrimaryDefendIntersections,
-        IndexedStringList& vSecondaryAttackIntersections,
-        IndexedStringList& vSecondaryDefendIntersections) const;
+        const IndexedStringArray& vPrimaryActionTypes,
+        const IndexedStringArray& vSecondaryActionTypes,
+        IndexedStringArray& vPrimaryAttackIntersections,
+        IndexedStringArray& vPrimaryDefendIntersections,
+        IndexedStringArray& vSecondaryAttackIntersections,
+        IndexedStringArray& vSecondaryDefendIntersections) const;
 
     // Does meet action requirements
     Bool DoesMeetActionRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
 
     // Create base character action
-    CharacterActionSharedPtrList CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
 
     // Run types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, IndexedStringArray);
 
     // Data class
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(DataClass, IndexedString);
@@ -75,7 +75,7 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

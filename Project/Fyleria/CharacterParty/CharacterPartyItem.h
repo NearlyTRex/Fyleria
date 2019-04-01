@@ -7,7 +7,7 @@
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Tree.h"
-#include "Utility/TypesEnum.h"
+#include "Utility/Enum.h"
 
 namespace Gecko
 {
@@ -46,7 +46,7 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(EquipCount, UByte);
 
     // Applicable equipment slots
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(ApplicableEquipmentSlots, IndexedStringList);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(ApplicableEquipmentSlots, IndexedStringArray);
 };
 
 // Typedef

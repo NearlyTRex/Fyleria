@@ -34,11 +34,11 @@ public:
     Bool GetHandInfoByWeaponSet(const IndexedString& sWeaponSet,
         TreeIndex& primaryItemIndex,
         TreeIndex& secondaryItemIndex,
-        IndexedStringList& vPrimaryActionTypes,
-        IndexedStringList& vSecondaryActionTypes) const;
+        IndexedStringArray& vPrimaryActionTypes,
+        IndexedStringArray& vSecondaryActionTypes) const;
 
     // Equipped items
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EquippedItems, CharacterProgressItemList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EquippedItems, CharacterProgressItemArray);
 
     // Comparisons
     Bool operator==(const CharacterItemData& other) const;

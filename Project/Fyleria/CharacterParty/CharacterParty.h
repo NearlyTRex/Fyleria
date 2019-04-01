@@ -5,7 +5,7 @@
 #define _GECKO_CHARACTER_PARTY_H_
 
 #include "Character/Character.h"
-#include "Character/CharacterPartyItem.h"
+#include "CharacterParty/CharacterPartyItem.h"
 
 namespace Gecko
 {
@@ -53,13 +53,13 @@ public:
     const IndexedString& GetMember(UInt uIndex) const;
 
     // Get character IDs
-    Bool GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringList& vCharacterIDs) const;
+    Bool GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringArray& vCharacterIDs) const;
 
     // Check member status
     UInt GetStatusMemberCount(const IndexedString& sStatus) const;
 
     // Add random items
-    Bool AddRandomItems(const IndexedStringList& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd);
+    Bool AddRandomItems(const IndexedStringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd);
 
     // Add item
     Bool AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount);
@@ -111,17 +111,17 @@ public:
     // Party type
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyType, IndexedString);
 
-    // List of members
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Members, IndexedStringList);
+    // Array of members
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Members, IndexedStringArray);
 
-    // List of items
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Items, CharacterPartyItemList);
+    // Array of items
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Items, CharacterPartyItemArray);
 
-    // Lists of available target types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AvailableTargetTypes, IndexedStringList);
+    // Arrays of available target types
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AvailableTargetTypes, IndexedStringArray);
 
-    // List of taken target types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(TakenTargetTypes, IndexedStringList);
+    // Array of taken target types
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(TakenTargetTypes, IndexedStringArray);
 
 private:
 

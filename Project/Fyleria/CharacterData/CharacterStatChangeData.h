@@ -5,6 +5,7 @@
 #define _GECKO_CHARACTER_STAT_CHANGE_DATA_H_
 
 #include "Character/CharacterTypes.h"
+#include "Stats/ProlongedStatChange.h"
 
 namespace Gecko
 {
@@ -21,9 +22,9 @@ public:
     ~CharacterStatChangeData();
 
     // Get tree actives/passives
-    const TreeIndexList& GetPassiveChanges(const IndexedString& sTreeIndexType) const;
-    const TreeIndexList& GetActiveChanges(const IndexedString& sTreeIndexType) const;
-    const TreeIndexList& GetActionableChanges(const IndexedString& sTreeIndexType) const;
+    const TreeIndexArray& GetPassiveChanges(const IndexedString& sTreeIndexType) const;
+    const TreeIndexArray& GetActiveChanges(const IndexedString& sTreeIndexType) const;
+    const TreeIndexArray& GetActionableChanges(const IndexedString& sTreeIndexType) const;
 
     // Add/remove prolonged stat changes
     void AddProlongedStatChange(const IndexedString& sKey, const ProlongedStatChange& change);
@@ -34,7 +35,7 @@ public:
     const ProlongedStatChange& GetProlongedStatChange(const IndexedString& sKey) const;
 
     // Get stat change entry lists from prolonged entries
-    StatChangeEntryList GetProlongedStatChangeEntries() const;
+    StatChangeEntryArray GetProlongedStatChangeEntries() const;
 
     // Determine if prolonged stat change exists
     Bool DoesProlongedStatChangeExist(const IndexedString& sKey) const;
@@ -45,13 +46,17 @@ public:
     // Remove all expired prolonged stat changes
     void RemoveAllExpiredProlongedStatChanges();
 
-    // List of passive/active/actionable data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PassiveSkillDataList, TreeIndexList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActiveSkillDataList, TreeIndexList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionableSkillDataList, TreeIndexList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PassiveItemDataList, TreeIndexList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActiveItemDataList, TreeIndexList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionableItemDataList, TreeIndexList);
+    // Passive data
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PassiveSkillDataArray, TreeIndexArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PassiveItemDataArray, TreeIndexArray);
+
+    // Active data
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActiveSkillDataArray, TreeIndexArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActiveItemDataArray, TreeIndexArray);
+
+    // Actionable data
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionableSkillDataArray, TreeIndexArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionableItemDataArray, TreeIndexArray);
 
     // Prolonged stat changes
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ProlongedStatChanges, ProlongedStatChangeMapType);
@@ -63,7 +68,7 @@ public:
 private:
 
     // Empty change list
-    static const TreeIndexList s_vEmptyChanges;
+    static const TreeIndexArray s_vEmptyChanges;
 
 };
 

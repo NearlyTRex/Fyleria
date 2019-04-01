@@ -26,7 +26,7 @@ void to_json(Json& jsonData, const SkillDataBreakdown& obj)
 void from_json(const Json& jsonData, SkillDataBreakdown& obj)
 {
     // Recipes
-    obj.SetRecipes(GET_JSON_DATA_OR_DEFAULT(Recipes, RecipeList, RecipeList()));
+    obj.SetRecipes(GET_JSON_DATA_OR_DEFAULT(Recipes, RecipeArray, RecipeArray()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(SkillDataBreakdown, SkillDataBreakdown);

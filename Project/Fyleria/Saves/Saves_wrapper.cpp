@@ -5,7 +5,7 @@
 #include "Saves/SaveManager.h"
 #include "Saves/SaveTypes.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesPython.h"
+#include "Utility/Python.h"
 
 namespace Gecko
 {
@@ -26,11 +26,11 @@ PYBIND11_EMBEDDED_MODULE(GeckoSaves, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Party, Gecko::Save)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Characters, Gecko::Save)
     ;
-    PyBindVector<Gecko::SaveList>(m, "SaveList");
+    PyBindVector<Gecko::SaveArray>(m, "SaveArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSaveToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSaveListToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSaveArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetSaveFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSaveListFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSaveArrayFromJsonString, Gecko);
 
     // SaveManager.h
     PyBindClass<Gecko::SaveManager>(m, "SaveManager")

@@ -181,7 +181,7 @@ Bool CharacterBattleData::CanRegenerateFromStat(const IndexedString& sRegenStat)
     return false;
 }
 
-void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet, const CharacterProgressItemList& vEquippedItems, const CharacterProgressData& progressData)
+void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet, const CharacterProgressItemArray& vEquippedItems, const CharacterProgressData& progressData)
 {
     // Get weapon set
     const CharacterWeaponSetType eWeaponSetType = StringToCharacterWeaponSetType(sWeaponSet);
@@ -594,7 +594,7 @@ Bool CharacterBattleData::GetStringStatValue(const IndexedString& sStat, Indexed
     return false;
 }
 
-Bool CharacterBattleData::GetStringListStatValue(const IndexedString& sStat, IndexedStringList& vValues) const
+Bool CharacterBattleData::GetStringArrayStatValue(const IndexedString& sStat, IndexedStringArray& vValues) const
 {
     const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
     switch(eBattleType)
@@ -793,7 +793,7 @@ Bool CharacterBattleData::SetStringStatValue(const IndexedString& sStat, const I
     return false;
 }
 
-Bool CharacterBattleData::SetStringListStatValue(const IndexedString& sStat, const IndexedStringList& vValues)
+Bool CharacterBattleData::SetStringArrayStatValue(const IndexedString& sStat, const IndexedStringArray& vValues)
 {
     const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
     switch(eBattleType)
@@ -827,13 +827,13 @@ static STDUnorderedSet<String> s_tUByteStatNames = {};
 static STDUnorderedSet<String> s_tIntStatNames = {};
 static STDUnorderedSet<String> s_tFloatStatNames = {};
 static STDUnorderedSet<String> s_tIndexedStringStatNames = {};
-static STDUnorderedSet<String> s_tIndexedStringListStatNames = {};
+static STDUnorderedSet<String> s_tIndexedStringArrayStatNames = {};
 STDUnorderedSet<String>& CharacterBattleData::GetBoolStatNames() { return s_tBoolStatNames; }
 STDUnorderedSet<String>& CharacterBattleData::GetUByteStatNames() { return s_tUByteStatNames; }
 STDUnorderedSet<String>& CharacterBattleData::GetIntStatNames() { return s_tIntStatNames; }
 STDUnorderedSet<String>& CharacterBattleData::GetFloatStatNames() { return s_tFloatStatNames; }
 STDUnorderedSet<String>& CharacterBattleData::GetIndexedStringStatNames() { return s_tIndexedStringStatNames; }
-STDUnorderedSet<String>& CharacterBattleData::GetIndexedStringListStatNames() { return s_tIndexedStringListStatNames; }
+STDUnorderedSet<String>& CharacterBattleData::GetIndexedStringArrayStatNames() { return s_tIndexedStringArrayStatNames; }
 
 static Bool s_bCharacterBattleData_StatNamesInitialized = false;
 void CharacterBattleData::InitAllStatNames()

@@ -9,7 +9,7 @@
 namespace Gecko
 {
 
-Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8List& vBytes)
+Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8Array& vBytes)
 {
     // Check file existence
     FilesystemPath path(sFilename.Get());
@@ -39,7 +39,7 @@ Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8List& vBytes)
     return true;
 }
 
-Bool WriteBinaryFile(const IndexedString& sFilename, const FixedUnsigned8List& vBytes)
+Bool WriteBinaryFile(const IndexedString& sFilename, const FixedUnsigned8Array& vBytes)
 {
     // Open binary file
     FilesystemPath path(sFilename.Get());
@@ -62,7 +62,7 @@ Bool WriteBinaryFile(const IndexedString& sFilename, const FixedUnsigned8List& v
     return true;
 }
 
-Bool IsCBOR(const FixedUnsigned8List& vBytes)
+Bool IsCBOR(const FixedUnsigned8Array& vBytes)
 {
     if(vBytes.size() < s_ksvBinaryMarkerCBR.size())
     {
@@ -79,7 +79,7 @@ Bool IsCBOR(const FixedUnsigned8List& vBytes)
     return true;
 }
 
-Bool IsMsgPack(const FixedUnsigned8List& vBytes)
+Bool IsMsgPack(const FixedUnsigned8Array& vBytes)
 {
     if(vBytes.size() < s_ksvBinaryMarkerMSG.size())
     {
@@ -96,7 +96,7 @@ Bool IsMsgPack(const FixedUnsigned8List& vBytes)
     return true;
 }
 
-Bool RemoveCBORHeader(FixedUnsigned8List& vBytes)
+Bool RemoveCBORHeader(FixedUnsigned8Array& vBytes)
 {
     if(vBytes.size() < s_ksvBinaryMarkerCBR.size())
     {
@@ -106,7 +106,7 @@ Bool RemoveCBORHeader(FixedUnsigned8List& vBytes)
     return true;
 }
 
-Bool RemoveMsgPackHeader(FixedUnsigned8List& vBytes)
+Bool RemoveMsgPackHeader(FixedUnsigned8Array& vBytes)
 {
     if(vBytes.size() < s_ksvBinaryMarkerMSG.size())
     {
@@ -162,7 +162,7 @@ Bool ReadJsonFile(const IndexedString& sFilename, String& jsonString)
 
 Bool ReadCBORFile(const IndexedString& sFilename, Json& jsonData)
 {
-    FixedUnsigned8List vBytes;
+    FixedUnsigned8Array vBytes;
     if(!ReadBinaryFile(sFilename, vBytes))
     {
         return false;
@@ -184,7 +184,7 @@ Bool ReadCBORFile(const IndexedString& sFilename, Json& jsonData)
 
 Bool ReadMsgPackFile(const IndexedString& sFilename, Json& jsonData)
 {
-    FixedUnsigned8List vBytes;
+    FixedUnsigned8Array vBytes;
     if(!ReadBinaryFile(sFilename, vBytes))
     {
         return false;
@@ -245,16 +245,16 @@ Bool WriteJsonFile(const IndexedString& sFilename, const String& jsonString)
 
 Bool WriteCBORFile(const IndexedString& sFilename, const Json& jsonData)
 {
-    FixedUnsigned8List vFileBytes = s_ksvBinaryMarkerCBR;
-    FixedUnsigned8List vJsonBytes = JsonToCBOR(jsonData);
+    FixedUnsigned8Array vFileBytes = s_ksvBinaryMarkerCBR;
+    FixedUnsigned8Array vJsonBytes = JsonToCBOR(jsonData);
     vFileBytes.insert(vFileBytes.end(), vJsonBytes.begin(), vJsonBytes.end());
     return WriteBinaryFile(sFilename, vFileBytes);
 }
 
 Bool WriteMsgPackFile(const IndexedString& sFilename, const Json& jsonData)
 {
-    FixedUnsigned8List vFileBytes = s_ksvBinaryMarkerMSG;
-    FixedUnsigned8List vJsonBytes = JsonToMsgPack(jsonData);
+    FixedUnsigned8Array vFileBytes = s_ksvBinaryMarkerMSG;
+    FixedUnsigned8Array vJsonBytes = JsonToMsgPack(jsonData);
     vFileBytes.insert(vFileBytes.end(), vJsonBytes.begin(), vJsonBytes.end());
     return WriteBinaryFile(sFilename, vFileBytes);
 }

@@ -2,8 +2,7 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Skills/SkillData.h"
-#include "Character/CharacterActionBattleSkill.h"
-#include "Character/CharacterActionFieldSkill.h"
+#include "CharacterAction/CharacterAction.h"
 #include "Character/CharacterManager.h"
 
 namespace Gecko
@@ -98,34 +97,34 @@ Bool SkillData::DoesHaveOnlyDefendRequirements() const
 }
 
 Bool SkillData::GetIntersectingRequirementTypes(
-    const IndexedStringList& vPrimaryActionTypes,
-    const IndexedStringList& vSecondaryActionTypes,
-    IndexedStringList& vPrimaryAttackIntersections,
-    IndexedStringList& vPrimaryDefendIntersections,
-    IndexedStringList& vSecondaryAttackIntersections,
-    IndexedStringList& vSecondaryDefendIntersections) const
+    const IndexedStringArray& vPrimaryActionTypes,
+    const IndexedStringArray& vSecondaryActionTypes,
+    IndexedStringArray& vPrimaryAttackIntersections,
+    IndexedStringArray& vPrimaryDefendIntersections,
+    IndexedStringArray& vSecondaryAttackIntersections,
+    IndexedStringArray& vSecondaryDefendIntersections) const
 {
     // Get intersections
     for(const StatChange& change : GetStatChanges())
     {
         if(change.DoesHaveAttackRequirements() && !vPrimaryActionTypes.empty())
         {
-            IndexedStringList vIntersect = change.GetIntersectingAttackRequirements(vPrimaryActionTypes);
+            IndexedStringArray vIntersect = change.GetIntersectingAttackRequirements(vPrimaryActionTypes);
             vPrimaryAttackIntersections.insert(vPrimaryAttackIntersections.end(), vIntersect.begin(), vIntersect.end());
         }
         if(change.DoesHaveAttackRequirements() && !vSecondaryActionTypes.empty())
         {
-            IndexedStringList vIntersect = change.GetIntersectingAttackRequirements(vSecondaryActionTypes);
+            IndexedStringArray vIntersect = change.GetIntersectingAttackRequirements(vSecondaryActionTypes);
             vSecondaryAttackIntersections.insert(vSecondaryAttackIntersections.end(), vIntersect.begin(), vIntersect.end());
         }
         if(change.DoesHaveDefendRequirements() && !vPrimaryActionTypes.empty())
         {
-            IndexedStringList vIntersect = change.GetIntersectingDefendRequirements(vPrimaryActionTypes);
+            IndexedStringArray vIntersect = change.GetIntersectingDefendRequirements(vPrimaryActionTypes);
             vPrimaryDefendIntersections.insert(vPrimaryDefendIntersections.end(), vIntersect.begin(), vIntersect.end());
         }
         if(change.DoesHaveDefendRequirements() && !vSecondaryActionTypes.empty())
         {
-            IndexedStringList vIntersect = change.GetIntersectingDefendRequirements(vSecondaryActionTypes);
+            IndexedStringArray vIntersect = change.GetIntersectingDefendRequirements(vSecondaryActionTypes);
             vSecondaryDefendIntersections.insert(vSecondaryDefendIntersections.end(), vIntersect.begin(), vIntersect.end());
         }
     }
@@ -159,8 +158,8 @@ Bool SkillData::DoesMeetActionRequirements(const IndexedString& sCharacterID, co
     // Get action types
     TreeIndex primaryItemIndex;
     TreeIndex secondaryItemIndex;
-    IndexedStringList vPrimaryActionTypes;
-    IndexedStringList vSecondaryActionTypes;
+    IndexedStringArray vPrimaryActionTypes;
+    IndexedStringArray vSecondaryActionTypes;
     if(!character.GetHandInfoByWeaponSet(sWeaponSet,
         primaryItemIndex,
         secondaryItemIndex,
@@ -189,10 +188,10 @@ Bool SkillData::DoesMeetActionRequirements(const IndexedString& sCharacterID, co
     return false;
 }
 
-CharacterActionSharedPtrList SkillData::CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray SkillData::CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
 {
     // Check character
-    CharacterActionSharedPtrList vNewActions;
+    CharacterActionArray vNewActions;
     if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
@@ -204,29 +203,15 @@ CharacterActionSharedPtrList SkillData::CreateBaseActions(const IndexedString& s
     // Create actions
     for(auto& sType : GetRunTypes())
     {
-        CharacterActionSharedPtr pNewAction;
-        const CharacterActionRunType eRunType = StringToCharacterActionRunType(sType);
-        switch(eRunType)
-        {
-            case CharacterActionRunType::Battle:
-                pNewAction = STDMakeSharedPtr<CharacterActionBattleSkill>();
-                break;
-            case CharacterActionRunType::Field:
-                pNewAction = STDMakeSharedPtr<CharacterActionFieldSkill>();
-                break;
-            default:
-                break;
-        }
-        if(pNewAction)
-        {
-            pNewAction->SetCostAP(GetSkillCostAP());
-            pNewAction->SetCostHP(GetSkillCostHP());
-            pNewAction->SetWeaponSet(sWeaponSet);
-            pNewAction->SetSkillTreeIndex(GetSkillTreeIndex());
-            pNewAction->SetSourceTargetType(character.GetCharacterTargetType());
-            pNewAction->SetSourceCharacterID(sCharacterID);
-            vNewActions.push_back(pNewAction);
-        }
+        CharacterAction newAction;
+        newAction.SetRunType(sType);
+        newAction.SetCostAP(GetSkillCostAP());
+        newAction.SetCostHP(GetSkillCostHP());
+        newAction.SetWeaponSet(sWeaponSet);
+        newAction.SetSkillTreeIndex(GetSkillTreeIndex());
+        newAction.SetSourceTargetType(character.GetCharacterTargetType());
+        newAction.SetSourceCharacterID(sCharacterID);
+        vNewActions.push_back(newAction);
     }
     return vNewActions;
 }
@@ -265,7 +250,7 @@ void to_json(Json& jsonData, const SkillData& obj)
 void from_json(const Json& jsonData, SkillData& obj)
 {
     // Run types
-    obj.SetRunTypes(GET_JSON_DATA_OR_DEFAULT(RunTypes, IndexedStringList, IndexedStringList()));
+    obj.SetRunTypes(GET_JSON_DATA_OR_DEFAULT(RunTypes, IndexedStringArray, IndexedStringArray()));
 
     // Data class
     obj.SetDataClass(GET_JSON_DATA_OR_DEFAULT(DataClass, IndexedString, IndexedString("")));
@@ -290,7 +275,7 @@ void from_json(const Json& jsonData, SkillData& obj)
     obj.SetSkillTreeIndex(GET_JSON_DATA_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex()));
 
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeList, StatChangeList()));
+    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
 }
 
 };

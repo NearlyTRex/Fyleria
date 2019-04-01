@@ -14,8 +14,8 @@ class CharacterSkillData
 public:
 
     // Types
-    typedef UByte (Character::*CharacterSkillFunction_Get)() const;
-    typedef void (Character::*CharacterSkillFunction_Set)(UByte);
+    typedef UByte (CharacterSkillData::*CharacterSkillFunction_Get)() const;
+    typedef void (CharacterSkillData::*CharacterSkillFunction_Set)(UByte);
 
     // Constructors
     CharacterSkillData();
@@ -202,10 +202,10 @@ private:
         }
 
         // Accessors
-        UByte GetCurrent(const Character& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetCurrent)(); }
-        UByte GetRank(const Character& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetRank)(); }
-        void SetCurrent(Character& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetCurrent)(uValue); }
-        void SetRank(Character& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetRank)(uValue); }
+        UByte GetCurrent(const CharacterSkillData& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetCurrent)(); }
+        UByte GetRank(const CharacterSkillData& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetRank)(); }
+        void SetCurrent(CharacterSkillData& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetCurrent)(uValue); }
+        void SetRank(CharacterSkillData& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetRank)(uValue); }
 
         // Pointers
         CharacterSkillFunction_Get fnGetCurrent;

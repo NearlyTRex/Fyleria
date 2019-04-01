@@ -4,11 +4,11 @@
 #ifndef _GECKO_CHARACTER_BATTLE_DATA_H_
 #define _GECKO_CHARACTER_BATTLE_DATA_H_
 
-#include "Character/CharacterProgressData.h"
+#include "CharacterData/CharacterProgressData.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Enum.h"
+#include "Utility/Json.h"
 
 namespace Gecko
 {
@@ -42,7 +42,7 @@ public:
     Bool CanRegenerateFromStat(const IndexedString& sRegenStat) const;
 
     // Update equipment ratings
-    void UpdateEquipmentRatings(const IndexedString& sWeaponSet, const CharacterProgressItemList& vEquippedItems, const CharacterProgressData& progressData);
+    void UpdateEquipmentRatings(const IndexedString& sWeaponSet, const CharacterProgressItemArray& vEquippedItems, const CharacterProgressData& progressData);
 
     // Resolve target placeholders
     IndexedStringArray ResolveTargetPlaceholder(const IndexedString& sSelfTargetType, const IndexedString& sPlaceholderTargetType) const;
@@ -72,12 +72,12 @@ public:
     Bool GetIntStatValue(const IndexedString& sStat, Int& iValue) const;
     Bool GetFloatStatValue(const IndexedString& sStat, Float& fValue) const;
     Bool GetStringStatValue(const IndexedString& sStat, IndexedString& sValue) const;
-    Bool GetStringListStatValue(const IndexedString& sStat, IndexedStringList& vValues) const;
+    Bool GetStringArrayStatValue(const IndexedString& sStat, IndexedStringArray& vValues) const;
     Bool SetBoolStatValue(const IndexedString& sStat, const Bool& bValue);
     Bool SetIntStatValue(const IndexedString& sStat, const Int& iValue);
     Bool SetFloatStatValue(const IndexedString& sStat, const Float& fValue);
     Bool SetStringStatValue(const IndexedString& sStat, const IndexedString& sValue);
-    Bool SetStringListStatValue(const IndexedString& sStat, const IndexedStringList& vValues);
+    Bool SetStringArrayStatValue(const IndexedString& sStat, const IndexedStringArray& vValues);
 
     // Stat names
     static STDUnorderedSet<String>& GetBoolStatNames();
@@ -85,17 +85,17 @@ public:
     static STDUnorderedSet<String>& GetIntStatNames();
     static STDUnorderedSet<String>& GetFloatStatNames();
     static STDUnorderedSet<String>& GetIndexedStringStatNames();
-    static STDUnorderedSet<String>& GetIndexedStringListStatNames();
+    static STDUnorderedSet<String>& GetIndexedStringArrayStatNames();
     static void InitAllStatNames();
 
     // -- Target Characters --
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(AttackTargetsThisAction, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(AttackTargetsThisRound, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(AttackTargetsLastRound, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(AttackTargetsThisAction, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(AttackTargetsThisRound, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(AttackTargetsLastRound, IndexedStringArray);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(DefendTargetThisAction, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(DefendTargetsThisRound, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(DefendTargetsLastRound, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(MostRecentAttackTargets, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(DefendTargetsThisRound, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(DefendTargetsLastRound, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(MostRecentAttackTargets, IndexedStringArray);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(MostRecentDefendTarget, IndexedString);
 
     // -- Target Amounts --

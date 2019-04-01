@@ -1,13 +1,9 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterAction.h"
-#include "Character/CharacterActionBattleSkill.h"
-#include "Character/CharacterActionBattleItem.h"
-#include "Character/CharacterActionFieldSkill.h"
-#include "Character/CharacterActionFieldItem.h"
+#include "CharacterAction/CharacterAction.h"
 #include "Character/CharacterManager.h"
-#include "Character/CharacterPartyManager.h"
+#include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Constants.h"
 
 namespace Gecko
@@ -138,26 +134,6 @@ Bool CharacterAction::PrepareCharacterIDs()
         entry.SetDestinationCharacterID(vDestCharIDs.front());
     }
     return true;
-}
-
-Bool CharacterAction::Setup()
-{
-    return false;
-}
-
-Bool CharacterAction::Finish()
-{
-    return false;
-}
-
-Bool CharacterAction::GenerateResult()
-{
-    return false;
-}
-
-Bool CharacterAction::ApplyResult()
-{
-    return false;
 }
 
 void to_json(Json& jsonData, const CharacterAction& obj)

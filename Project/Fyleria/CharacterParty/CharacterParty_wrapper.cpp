@@ -1,11 +1,11 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterParty.h"
-#include "Character/CharacterPartyItem.h"
-#include "Character/CharacterPartyManager.h"
+#include "CharacterParty/CharacterParty.h"
+#include "CharacterParty/CharacterPartyItem.h"
+#include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesPython.h"
+#include "Utility/Python.h"
 
 namespace Gecko
 {
@@ -14,8 +14,8 @@ CharacterPartyManager* GetCharacterPartyManager() { return CharacterPartyManager
 
 };
 
-PYBIND11_MAKE_OPAQUE(Gecko::CharacterPartyItemList);
-PYBIND11_MAKE_OPAQUE(Gecko::CharacterPartyList);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterPartyItemArray);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterPartyArray);
 
 PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
 {
@@ -36,11 +36,11 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(EquipCount, Gecko::CharacterPartyItem)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ApplicableEquipmentSlots, Gecko::CharacterPartyItem)
     ;
-    PyBindVector<Gecko::CharacterPartyItemList>(m, "CharacterPartyItemList");
+    PyBindVector<Gecko::CharacterPartyItemArray>(m, "CharacterPartyItemArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyItemToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyItemListToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyItemArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyItemFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyItemListFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyItemArrayFromJsonString, Gecko);
 
     // CHaracterParty.h
     PyBindClass<Gecko::CharacterParty>(m, "CharacterParty")
@@ -90,11 +90,11 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(AvailableTargetTypes, Gecko::CharacterParty)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(TakenTargetTypes, Gecko::CharacterParty)
     ;
-    PyBindVector<Gecko::CharacterPartyList>(m, "CharacterPartyList");
+    PyBindVector<Gecko::CharacterPartyArray>(m, "CharacterPartyArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyListToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyListFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyArrayFromJsonString, Gecko);
 
     // CharacterPartyManager.h
     PyBindClass<Gecko::CharacterPartyManager>(m, "CharacterPartyManager")

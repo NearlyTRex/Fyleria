@@ -19,10 +19,10 @@ SkillDataCombat::SkillDataCombat(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
-CharacterActionSharedPtrList SkillDataCombat::CreateCombatActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
 {
     // Check character
-    CharacterActionSharedPtrList vNewActions;
+    CharacterActionArray vNewActions;
     if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
@@ -34,8 +34,8 @@ CharacterActionSharedPtrList SkillDataCombat::CreateCombatActions(const IndexedS
     // Get equipped item information
     TreeIndex primaryItemIndex;
     TreeIndex secondaryItemIndex;
-    IndexedStringList vPrimaryActionTypes;
-    IndexedStringList vSecondaryActionTypes;
+    IndexedStringArray vPrimaryActionTypes;
+    IndexedStringArray vSecondaryActionTypes;
     if(!character.GetHandInfoByWeaponSet(sWeaponSet,
         primaryItemIndex,
         secondaryItemIndex,
@@ -56,19 +56,13 @@ CharacterActionSharedPtrList SkillDataCombat::CreateCombatActions(const IndexedS
     }
 
     // Setup new actions
-    for(auto& pNewAction : CreateBaseActions(sCharacterID, sWeaponSet))
+    for(auto& newAction : CreateBaseActions(sCharacterID, sWeaponSet))
     {
-        // Skip invalid base actions
-        if(!pNewAction)
-        {
-            continue;
-        }
-
         // For twin attack, we need to make sure to mark that the actual
         // destination targets are identical
         if(GetDataClass() == IndexedString("TwinAttack"))
         {
-            pNewAction->SetAreDestinationTargetsIdentical(true);
+            newAction.SetAreDestinationTargetsIdentical(true);
         }
 
         // Ambidextrous - Twin Attack
@@ -81,13 +75,13 @@ CharacterActionSharedPtrList SkillDataCombat::CreateCombatActions(const IndexedS
             CharacterActionEntry newEntryPrimary;
             newEntryPrimary.SetActionTypes({sPrimaryItemActionType});
             newEntryPrimary.SetHandType(IndexedString("Primary"));
-            pNewAction->GetActionEntries().push_back(newEntryPrimary);
+            newAction.GetActionEntries().push_back(newEntryPrimary);
 
             // Create secondary entry
             CharacterActionEntry newEntrySecondary;
             newEntrySecondary.SetActionTypes({sSecondaryItemActionType});
             newEntrySecondary.SetHandType(IndexedString("Secondary"));
-            pNewAction->GetActionEntries().push_back(newEntrySecondary);
+            newAction.GetActionEntries().push_back(newEntrySecondary);
         }
 
         // Focused - Focused Strike
@@ -103,7 +97,7 @@ CharacterActionSharedPtrList SkillDataCombat::CreateCombatActions(const IndexedS
             IndexedString sHandTypeToUse = (bUsePrimary) ? IndexedString("Primary") : IndexedString("Secondary");
             newEntry.SetActionTypes({sActionTypeToUse});
             newEntry.SetHandType(sHandTypeToUse);
-            pNewAction->GetActionEntries().push_back(newEntry);
+            newAction.GetActionEntries().push_back(newEntry);
         }
 
         // Stalwart - Shield Punch
@@ -120,11 +114,11 @@ CharacterActionSharedPtrList SkillDataCombat::CreateCombatActions(const IndexedS
             newEntry.SetActionTypes({sActionTypeToUse});
             newEntry.SetHandType(sHandTypeToUse);
             newEntry.SetIsHandTypeShield(true);
-            pNewAction->GetActionEntries().push_back(newEntry);
+            newAction.GetActionEntries().push_back(newEntry);
         }
 
         // Add new action
-        if(!pNewAction->GetActionEntries().empty())
+        if(!newAction.GetActionEntries().empty())
         {
             vNewActions.push_back(pNewAction);
         }

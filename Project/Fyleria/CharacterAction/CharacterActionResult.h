@@ -7,8 +7,8 @@
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Tree.h"
-#include "Utility/TypesEnum.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Enum.h"
+#include "Utility/Json.h"
 #include "Utility/Serializable.h"
 
 namespace Gecko
@@ -36,9 +36,9 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(NumAttacksOnTarget, UByte);
 
     // Per attack lists of critical hit info and damage
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalCausedList, BoolList);
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalBlockedList, BoolList);
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackTargetDamageList, FloatList);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalCausedList, BoolArray);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalBlockedList, BoolArray);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackTargetDamageList, FloatArray);
 
     // Comparisons
     Bool operator==(const CharacterActionResult& other) const;

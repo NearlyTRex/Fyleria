@@ -18,7 +18,7 @@ CharacterItemData::~CharacterItemData()
 
 UInt CharacterItemData::GetEquippedItemTypeCount(const TreeIndex& index) const
 {
-    TreeIndexList vEquippedItemIndices;
+    TreeIndexArray vEquippedItemIndices;
     for(auto&& progressItem : GetEquippedItems())
     {
         vEquippedItemIndices.push_back(progressItem.GetTreeIndex());
@@ -174,8 +174,8 @@ Bool CharacterItemData::RemoveEquippedItem(const TreeIndex& index, const Indexed
 Bool CharacterItemData::GetHandInfoByWeaponSet(const IndexedString& sWeaponSet,
     TreeIndex& primaryItemIndex,
     TreeIndex& secondaryItemIndex,
-    IndexedStringList& vPrimaryActionTypes,
-    IndexedStringList& vSecondaryActionTypes) const
+    IndexedStringArray& vPrimaryActionTypes,
+    IndexedStringArray& vSecondaryActionTypes) const
 {
     // Get weapon set
     const CharacterWeaponSetType eWeaponSetType = StringToCharacterWeaponSetType(sWeaponSet);

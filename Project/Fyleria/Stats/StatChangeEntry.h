@@ -6,8 +6,8 @@
 
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Enum.h"
+#include "Utility/Json.h"
 
 namespace Gecko
 {
@@ -32,10 +32,10 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(DeltaInt, Int);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(DeltaBool, Bool);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaString, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaFloatList, FloatList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaIntList, IntList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaBoolList, BoolList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaStringList, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaFloatArray, FloatArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaIntArray, IntArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaBoolArray, BoolArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaStringArray, IndexedStringArray);
 
     // Full amount is from the destination character
     MAKE_RAW_BASIC_TYPE_ACCESSORS(FullPercent, Float);
@@ -43,10 +43,10 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(FullInt, Int);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(FullBool, Bool);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullString, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullFloatList, FloatList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullIntList, IntList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullBoolList, BoolList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullStringList, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullFloatArray, FloatArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullIntArray, IntArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullBoolArray, BoolArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullStringArray, IndexedStringArray);
 
     // Operation type (Add, Multiply, etc)
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(OperationType, IndexedString);
@@ -57,7 +57,7 @@ public:
 
     // Character IDs for applying
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceCharacterID, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationCharacterIDs, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationCharacterIDs, IndexedStringArray);
 };
 
 // Typedefs

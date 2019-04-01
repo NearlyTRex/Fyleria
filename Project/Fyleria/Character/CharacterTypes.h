@@ -7,7 +7,7 @@
 // Internal includes
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
+#include "Utility/Enum.h"
 
 namespace Gecko
 {
@@ -372,29 +372,29 @@ BETTER_ENUM(CharacterActionRunType, Int,
 IndexedString ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const IndexedString& sCharacterEquipmentType);
 IndexedString ConvertCharacterTargetTypeToCharacterPartyType(const IndexedString& sCharacterTargetType);
 IndexedString ConvertItemTypeToCharacterActionType(const IndexedString& sItemType);
-IndexedStringList ConvertItemTypeToCharacterEquipTypes(const IndexedString& sItemType);
+IndexedStringArray ConvertItemTypeToCharacterEquipTypes(const IndexedString& sItemType);
 IndexedString ConvertSkillWeaponBaseTypeToCharacterActionType(const IndexedString& sSkillWeaponBaseType);
 IndexedString ConvertSkillWeaponTypeToCharacterActionType(const IndexedString& sSkillWeaponType);
 
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterTreeIndexType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterSegmentType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterProgressStatType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterBattleStatType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterStatusType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterBaseRaceType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterTransformedRaceType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterPowerSetType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterWeaponSetType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterGenderType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterHairType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterEyeType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterHandednessType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterHandType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterEquipmentType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterTargetType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterPartyType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterActionType);
-MAKE_ENUM_GETSTRINGLIST_DECL(CharacterActionRunType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterTreeIndexType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterSegmentType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterProgressStatType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterStatusType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBaseRaceType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterTransformedRaceType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterPowerSetType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterWeaponSetType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterGenderType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterHairType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterEyeType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterHandednessType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterHandType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterEquipmentType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterTargetType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterPartyType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterActionType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterActionRunType);
 
 MAKE_ENUM_CONVERTERS_DECL(CharacterTreeIndexType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterSegmentType);

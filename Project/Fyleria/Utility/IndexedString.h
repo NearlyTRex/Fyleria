@@ -75,7 +75,7 @@ struct IndexedStringHasher
 {
     SizeType operator()(const IndexedString& obj) const noexcept
     {
-        return GeckoHash<Int>()(obj.GetIndex());
+        return STDHash<Int>()(obj.GetIndex());
     }
 };
 

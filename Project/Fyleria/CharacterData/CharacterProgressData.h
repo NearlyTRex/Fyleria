@@ -4,7 +4,7 @@
 #ifndef _GECKO_CHARACTER_PROGRESS_DATA_H_
 #define _GECKO_CHARACTER_PROGRESS_DATA_H_
 
-#include "Character/CharacterAction.h"
+#include "CharacterAction/CharacterAction.h"
 #include "Character/CharacterProgressItem.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
@@ -36,7 +36,7 @@ public:
     void ApplyActionCost(const CharacterActionSharedPtr& pAction);
 
     // Update available AP
-    void UpdateAvailableAP(const TreeIndexList& vIndices);
+    void UpdateAvailableAP(const TreeIndexArray& vIndices);
 
     // Stat values
     Bool GetIntStatValue(const IndexedString& sStat, Int& iValue) const;

@@ -4,11 +4,11 @@
 #ifndef _GECKO_CHARACTER_ACTION_H_
 #define _GECKO_CHARACTER_ACTION_H_
 
-#include "Character/CharacterActionEntry.h"
+#include "CharacterAction/CharacterActionEntry.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Enum.h"
+#include "Utility/Json.h"
 #include "Utility/PolymorphicBase.h"
 
 namespace Gecko
@@ -54,10 +54,10 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(WeaponSet, IndexedString);
 
     // Action entries
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionEntries, CharacterActionEntryList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionEntries, CharacterActionEntryArray);
 
     // Previous action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PreviousActionTypes, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PreviousActionTypes, IndexedStringArray);
 
     // Skill
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);

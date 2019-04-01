@@ -1,7 +1,7 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterParty.h"
+#include "CharacterParty/CharacterParty.h"
 #include "Character/CharacterProgressData.h"
 #include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
@@ -20,16 +20,16 @@ CharacterParty::CharacterParty()
     // Party type
     SetPartyType(IndexedString("None"));
 
-    // List of members
+    // Array of members
     SetMembers({});
 
-    // List of items
+    // Array of items
     SetItems({});
 
-    // Lists of available target types
+    // Arrays of available target types
     SetAvailableTargetTypes({});
 
-    // List of taken target types
+    // Array of taken target types
     SetTakenTargetTypes({});
 
     // Play time
@@ -51,21 +51,21 @@ Bool CharacterParty::IsPartyFull() const
 
 Bool CharacterParty::IsMemberPresent(const IndexedString& sCharacterID) const
 {
-    const IndexedStringList& vMembers = GetMembers();
+    const IndexedStringArray& vMembers = GetMembers();
     auto iLocation = STDFindData(vMembers.begin(), vMembers.end(), sCharacterID);
     return (iLocation != vMembers.end());
 }
 
 Bool CharacterParty::IsTargetTypeAvailable(const IndexedString& sCharacterTargetType) const
 {
-    const IndexedStringList& vTargetTypes = GetAvailableTargetTypes();
+    const IndexedStringArray& vTargetTypes = GetAvailableTargetTypes();
     auto iLocation = STDFindData(vTargetTypes.begin(), vTargetTypes.end(), sCharacterTargetType);
     return (iLocation != vTargetTypes.end());
 }
 
 Bool CharacterParty::IsTargetTypeTaken(const IndexedString& sCharacterTargetType) const
 {
-    const IndexedStringList& vTargetTypes = GetTakenTargetTypes();
+    const IndexedStringArray& vTargetTypes = GetTakenTargetTypes();
     auto iLocation = STDFindData(vTargetTypes.begin(), vTargetTypes.end(), sCharacterTargetType);
     return (iLocation != vTargetTypes.end());
 }
@@ -228,7 +228,7 @@ const IndexedString& CharacterParty::GetMember(UInt uIndex) const
     return GetMembers()[uIndex];
 }
 
-Bool CharacterParty::GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringList& vCharacterIDs) const
+Bool CharacterParty::GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringArray& vCharacterIDs) const
 {
     // Check if requesting for all allies/enemies
     CharacterPartyType ePartyType = StringToCharacterPartyType(GetPartyType());
@@ -278,13 +278,13 @@ UInt CharacterParty::GetStatusMemberCount(const IndexedString& sStatus) const
     return uCount;
 }
 
-Bool CharacterParty::AddRandomItems(const IndexedStringList& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd)
+Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd)
 {
     // Get lists of all items
-    TreeIndexList vAllArmors = GetAllArmorItems();
-    TreeIndexList vAllIngredients = GetAllIngredientItems();
-    TreeIndexList vAllPotions = GetAllPotionItems();
-    TreeIndexList vAllWeapons = GetAllWeaponItems();
+    TreeIndexArray vAllArmors = GetAllArmorItems();
+    TreeIndexArray vAllIngredients = GetAllIngredientItems();
+    TreeIndexArray vAllPotions = GetAllPotionItems();
+    TreeIndexArray vAllWeapons = GetAllWeaponItems();
 
     // Shuffle item lists
     STDVectorShuffle<TreeIndex>(vAllArmors);
@@ -294,7 +294,7 @@ Bool CharacterParty::AddRandomItems(const IndexedStringList& vTreeTypes, Int iNu
 
     // Take a look at each tree type
     Bool bAtLeastOneAdded = false;
-    TreeIndexList vAddedRandomTreeIndices;
+    TreeIndexArray vAddedRandomTreeIndices;
     for(const IndexedString& sTreeType : vTreeTypes)
     {
         // Only do a certain amount of random pulls
@@ -365,7 +365,7 @@ Bool CharacterParty::AddItemByIndex(const TreeIndex& index, UInt uAmount)
     else
     {
         IndexedString sItemType = RetrieveItemType(index);
-        IndexedStringList vEquipTypes = ConvertItemTypeToCharacterEquipTypes(sItemType);
+        IndexedStringArray vEquipTypes = ConvertItemTypeToCharacterEquipTypes(sItemType);
         CharacterPartyItem newItem;
         newItem.SetTreeIndex(index);
         newItem.SetAmount(uAmount);
@@ -672,16 +672,16 @@ void to_json(Json& jsonData, const CharacterParty& obj)
     // Party type
     SET_JSON_DATA_IF_NOT_DEFAULT(PartyType, IndexedString("None"));
 
-    // List of members
+    // Array of members
     SET_JSON_DATA_IF_NOT_EMPTY(Members);
 
-    // List of items
+    // Array of items
     SET_JSON_DATA_IF_NOT_EMPTY(Items);
 
-    // Lists of available target types
+    // Arrays of available target types
     SET_JSON_DATA_IF_NOT_EMPTY(AvailableTargetTypes);
 
-    // List of taken target types
+    // Array of taken target types
     SET_JSON_DATA_IF_NOT_EMPTY(TakenTargetTypes);
 
     // Play time
@@ -696,17 +696,17 @@ void from_json(const Json& jsonData, CharacterParty& obj)
     // Party type
     obj.SetPartyType(GET_JSON_DATA_OR_DEFAULT(PartyType, IndexedString, IndexedString("None")));
 
-    // List of members
-    obj.SetMembers(GET_JSON_DATA_OR_DEFAULT(Members, IndexedStringList, IndexedStringList()));
+    // Array of members
+    obj.SetMembers(GET_JSON_DATA_OR_DEFAULT(Members, IndexedStringArray, IndexedStringArray()));
 
-    // List of items
-    obj.SetItems(GET_JSON_DATA_OR_DEFAULT(Items, CharacterPartyItemList, CharacterPartyItemList()));
+    // Array of items
+    obj.SetItems(GET_JSON_DATA_OR_DEFAULT(Items, CharacterPartyItemArray, CharacterPartyItemArray()));
 
-    // Lists of available target types
-    obj.SetAvailableTargetTypes(GET_JSON_DATA_OR_DEFAULT(AvailableTargetTypes, IndexedStringList, IndexedStringList()));
+    // Arrays of available target types
+    obj.SetAvailableTargetTypes(GET_JSON_DATA_OR_DEFAULT(AvailableTargetTypes, IndexedStringArray, IndexedStringArray()));
 
-    // List of taken target types
-    obj.SetTakenTargetTypes(GET_JSON_DATA_OR_DEFAULT(TakenTargetTypes, IndexedStringList, IndexedStringList()));
+    // Array of taken target types
+    obj.SetTakenTargetTypes(GET_JSON_DATA_OR_DEFAULT(TakenTargetTypes, IndexedStringArray, IndexedStringArray()));
 
     // Play time
     obj.SetPlayTime(GET_JSON_DATA_OR_DEFAULT(PlayTime, ULongLong, 0));

@@ -26,7 +26,7 @@ void to_json(Json& jsonData, const ItemDataIngredient& obj)
 void from_json(const Json& jsonData, ItemDataIngredient& obj)
 {
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeList, StatChangeList()));
+    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataIngredient, ItemDataIngredient);

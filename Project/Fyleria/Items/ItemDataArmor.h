@@ -26,7 +26,7 @@ public:
     }
 
     // Create armor action
-    CharacterActionSharedPtrList CreateArmorActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateArmorActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
 
     // Stat percents
     MAKE_RAW_BASIC_TYPE_ACCESSORS(BluntDefendPercent, Float);
@@ -35,7 +35,7 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(MagicDefendPercent, Float);
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

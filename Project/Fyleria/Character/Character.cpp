@@ -3,7 +3,7 @@
 
 #include "Character/Character.h"
 #include "Character/CharacterManager.h"
-#include "Character/CharacterPartyManager.h"
+#include "CharacterParty/CharacterPartyManager.h"
 #include "Character/CharacterTypes.h"
 #include "Config/ConfigManager.h"
 #include "Battle/BattleManager.h"
@@ -132,10 +132,10 @@ Bool Character::GetStringStatValue(const IndexedString& sSegment, const IndexedS
     return battleData.GetStringStatValue(sStat, sValue);
 }
 
-Bool Character::GetStringListStatValue(const IndexedString& sSegment, const IndexedString& sStat, IndexedStringList& vValues) const
+Bool Character::GetStringArrayStatValue(const IndexedString& sSegment, const IndexedString& sStat, IndexedStringArray& vValues) const
 {
     const CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.GetStringListStatValue(sStat, vValues);
+    return battleData.GetStringArrayStatValue(sStat, vValues);
 }
 
 Bool Character::SetBoolStatValue(const IndexedString& sSegment, const IndexedString& sStat, const Bool& bValue)
@@ -163,10 +163,10 @@ Bool Character::SetStringStatValue(const IndexedString& sSegment, const IndexedS
     return battleData.SetStringStatValue(sStat, sValue);
 }
 
-Bool Character::SetStringListStatValue(const IndexedString& sSegment, const IndexedString& sStat, const IndexedStringList& vValues)
+Bool Character::SetStringArrayStatValue(const IndexedString& sSegment, const IndexedString& sStat, const IndexedStringArray& vValues)
 {
     CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.SetStringListStatValue(sStat, vValues);
+    return battleData.SetStringArrayStatValue(sStat, vValues);
 }
 
 Bool Character::operator==(const Character& other) const
@@ -195,24 +195,24 @@ void Character::UpdateAvailableChanges(const IndexedString& sSegment)
     const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
 
     // Fill skill indices
-    TreeIndexList vSkillPassives;
-    TreeIndexList vSkillActives;
-    TreeIndexList vSkillActionables;
-    FillSkillStatChangeLists(sCharacterID, vSkillPassives, vSkillActives, vSkillActionables, true);
+    TreeIndexArray vSkillPassives;
+    TreeIndexArray vSkillActives;
+    TreeIndexArray vSkillActionables;
+    FillSkillStatChangeArrays(sCharacterID, vSkillPassives, vSkillActives, vSkillActionables, true);
 
     // Fill item indices
-    TreeIndexList vItemPassives;
-    TreeIndexList vItemActives;
-    TreeIndexList vItemActionables;
-    FillItemStatChangeLists(GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
+    TreeIndexArray vItemPassives;
+    TreeIndexArray vItemActives;
+    TreeIndexArray vItemActionables;
+    FillItemStatChangeArrays(GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
 
     // Add to stored changes
-    SetPassiveSkillDataList(vSkillPassives);
-    SetActiveSkillDataList(vSkillActives);
-    SetActionableSkillDataList(vSkillActionables);
-    SetPassiveItemDataList(vItemPassives);
-    SetActiveItemDataList(vItemActives);
-    SetActionableItemDataList(vItemActionables);
+    SetPassiveSkillDataArray(vSkillPassives);
+    SetPassiveItemDataArray(vItemPassives);
+    SetActiveSkillDataArray(vSkillActives);
+    SetActiveItemDataArray(vItemActives);
+    SetActionableSkillDataArray(vSkillActionables);
+    SetActionableItemDataArray(vItemActionables);
 }
 
 void Character::UpdateAvailableActions(const IndexedString& sSegment)
@@ -275,7 +275,7 @@ void Character::UpdateAvailableAP(const IndexedString& sSegment)
     CharacterProgressData& progressData = GetProgressSegment(sSegment);
 
     // Get weapon skills
-    TreeIndexList vWeaponSkills = GetWeaponSkills(sCharacterID, true);
+    TreeIndexArray vWeaponSkills = GetWeaponSkills(sCharacterID, true);
     if(vWeaponSkills.empty())
     {
         return;

@@ -26,7 +26,7 @@ public:
     }
 
     // Create weapon action
-    CharacterActionSharedPtrList CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
 
     // Stat percents
     MAKE_RAW_BASIC_TYPE_ACCESSORS(BluntAttackPercent, Float);
@@ -34,7 +34,7 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(SlashAttackPercent, Float);
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

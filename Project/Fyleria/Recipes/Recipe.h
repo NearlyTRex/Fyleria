@@ -6,8 +6,8 @@
 
 #include "Recipes/RecipeEntry.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Enum.h"
+#include "Utility/Json.h"
 
 namespace Gecko
 {
@@ -25,10 +25,10 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ChanceToSucceed, Float);
 
     // Ingredients
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Ingredients, RecipeEntryList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Ingredients, RecipeEntryArray);
 
     // Results
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Results, RecipeEntryList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Results, RecipeEntryArray);
 };
 
 // Typedefs

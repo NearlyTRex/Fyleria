@@ -4,10 +4,10 @@
 #ifndef _GECKO_CHARACTER_ACTION_ENTRY_H_
 #define _GECKO_CHARACTER_ACTION_ENTRY_H_
 
-#include "Character/CharacterActionResult.h"
+#include "CharacterAction/CharacterActionResult.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Json.h"
 #include "Utility/Serializable.h"
 
 namespace Gecko
@@ -26,7 +26,7 @@ public:
     Bool DoesMatchActionType(const IndexedString& sType) const;
 
     // Action types
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(ActionTypes, IndexedStringList);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(ActionTypes, IndexedStringArray);
 
     // Hand
     MAKE_JSON_BASIC_TYPE_ACCESSORS(HandType, IndexedString);

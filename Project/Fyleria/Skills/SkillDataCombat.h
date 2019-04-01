@@ -25,7 +25,7 @@ public:
     }
 
     // Create combat action
-    CharacterActionSharedPtrList CreateCombatActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateCombatActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
 };
 
 // Typedef

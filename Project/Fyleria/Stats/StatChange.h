@@ -4,12 +4,12 @@
 #ifndef _GECKO_STAT_CHANGE_H_
 #define _GECKO_STAT_CHANGE_H_
 
-#include "Character/CharacterAction.h"
+#include "CharacterAction/CharacterAction.h"
 #include "Stats/StatChangeEntry.h"
 #include "Utility/Macros.h"
 #include "Utility/Tree.h"
-#include "Utility/TypesEnum.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Enum.h"
+#include "Utility/Json.h"
 #include "Utility/Serializable.h"
 
 namespace Gecko
@@ -42,20 +42,20 @@ public:
 
     // Determine if change meets specific requirements
     Bool DoesMeetItemEquippedRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
-    Bool DoesMeetItemUsedRequirements(const IndexedStringList& vActionItemTypes) const;
-    Bool DoesMeetAttackRequirements(const IndexedStringList& vActionTypes) const;
-    Bool DoesMeetAttackRequirements(const IndexedStringList& vActionTypes, const IndexedStringList& vPreviousActionTypes) const;
-    Bool DoesMeetDefendRequirements(const IndexedStringList& vActionTypes) const;
-    Bool DoesMeetDefendRequirements(const IndexedStringList& vActionTypes, const IndexedStringList& vPreviousActionTypes) const;
+    Bool DoesMeetItemUsedRequirements(const IndexedStringArray& vActionItemTypes) const;
+    Bool DoesMeetAttackRequirements(const IndexedStringArray& vActionTypes) const;
+    Bool DoesMeetAttackRequirements(const IndexedStringArray& vActionTypes, const IndexedStringArray& vPreviousActionTypes) const;
+    Bool DoesMeetDefendRequirements(const IndexedStringArray& vActionTypes) const;
+    Bool DoesMeetDefendRequirements(const IndexedStringArray& vActionTypes, const IndexedStringArray& vPreviousActionTypes) const;
     Bool DoesMeetActiveRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
     Bool DoesMeetActiveRequirements(const IndexedString& sCharacterID, const IndexedString& sCharacterTargetType, const IndexedString& sWeaponSet, const CharacterAction& action) const;
 
     // Get intersecting requirements
-    IndexedStringList GetIntersectingAttackRequirements(const IndexedStringList& vActionTypes) const;
-    IndexedStringList GetIntersectingDefendRequirements(const IndexedStringList& vActionTypes) const;
+    IndexedStringArray GetIntersectingAttackRequirements(const IndexedStringArray& vActionTypes) const;
+    IndexedStringArray GetIntersectingDefendRequirements(const IndexedStringArray& vActionTypes) const;
 
     // Get resolved characters
-    Bool GetResolvedCharacterLists(IndexedStringList& vSourceCharIDs, IndexedStringList& vDestCharIDs) const;
+    Bool GetResolvedCharacterLists(IndexedStringArray& vSourceCharIDs, IndexedStringArray& vDestCharIDs) const;
 
     // Resolve target placeholders
     void ResolveTargetPlaceholders(const IndexedString& sCharacterID, const IndexedString& sSegment);
@@ -79,18 +79,18 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(DefendAmount, UByte);
 
     // Required items or attack types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesOR, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesAND, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesOR, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesAND, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesOR, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesAND, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesOR, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesAND, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesOR, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesAND, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesOR, IndexedStringList);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesAND, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesOR, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesAND, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesOR, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesAND, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesOR, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesAND, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesOR, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesAND, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesOR, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesAND, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesOR, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesAND, IndexedStringArray);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredEquippedWeaponCount, UByte);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredEquippedShieldCount, UByte);
 
@@ -102,7 +102,7 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationTargetType, IndexedString);
 
     // Stat change list
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChangeEntries, StatChangeEntryList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChangeEntries, StatChangeEntryArray);
 
     // Comparisons
     Bool operator==(const StatChange& other) const;
@@ -122,38 +122,10 @@ void to_json(Json& jsonData, const StatChange& obj);
 void from_json(const Json& jsonData, StatChange& obj);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(StatChange, StatChange);
 
-// JSON class for prolonged stat changes
-class ProlongedStatChange : public SerializableToJson
-{
-public:
-    // Constructors
-    ProlongedStatChange();
-    ProlongedStatChange(const Json& jsonData);
-
-    // Relevant stat change
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(StatChangeEntry, StatChangeEntry);
-
-    // Valid round
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Round, Int);
-
-    // Valid attack
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Attack, Int);
-
-    // Valid defend
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Defend, Int);
-};
-
-// Typedefs
-MAKE_TYPE_TYPEDEFS(ProlongedStatChange);
-
-// JSON Converters
-MAKE_JSON_BASIC_TYPE_CONVERTERS_DECL(ProlongedStatChange);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(ProlongedStatChange, ProlongedStatChange);
-
 // Get stat changes from the given tree nodes
-const StatChangeList& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& index);
-const StatChangeList& GetStatChangesFromSkillTreeIndex(const TreeIndex& index);
-const StatChangeList& GetStatChangesFromItemTreeIndex(const TreeIndex& index);
+const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& index);
+const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& index);
+const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& index);
 
 };
 

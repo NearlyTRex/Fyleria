@@ -26,10 +26,10 @@ public:
     }
 
     // Create potion action
-    CharacterActionSharedPtrList CreatePotionActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreatePotionActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

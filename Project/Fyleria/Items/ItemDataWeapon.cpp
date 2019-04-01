@@ -24,9 +24,9 @@ ItemDataWeapon::ItemDataWeapon(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
-CharacterActionSharedPtrList ItemDataWeapon::CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray ItemDataWeapon::CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
 {
-    CharacterActionSharedPtrList vNewActions;
+    CharacterActionArray vNewActions;
     return vNewActions;
 }
 
@@ -42,7 +42,7 @@ void from_json(const Json& jsonData, ItemDataWeapon& obj)
     obj.SetSlashAttackPercent(GET_JSON_DATA_OR_DEFAULT(SlashAttackPercent, Float, 0));
 
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeList, StatChangeList()));
+    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataWeapon, ItemDataWeapon);

@@ -5,7 +5,7 @@
 #define _GECKO_UTILITY_JSON_H_
 
 // External includes
-#include <json.hpp>
+#include <nlohmann/json.hpp>
 
 // Internal includes
 #include "Utility/Types.h"
@@ -16,8 +16,6 @@
 #define JsonToMsgPack nlohmann::json::to_msgpack
 #define JsonFromCBOR nlohmann::json::from_cbor
 #define JsonFromMsgPack nlohmann::json::from_msgpack
-#define JsonObject nlohmann::json::object
-#define JsonArray nlohmann::json::array
 
 namespace Gecko
 {

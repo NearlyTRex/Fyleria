@@ -26,7 +26,7 @@ public:
     }
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

@@ -36,11 +36,11 @@ public:
     UByte GetSaveCapacity() const;
 
     // Get list of all available save slots
-    UByteList GetAllAvailableSaveSlots() const;
+    UByteArray GetAllAvailableSaveSlots() const;
 
     // Get list of all descriptions from save slots
     // Unused slots are also included
-    StringList GetAllSaveDescriptions() const;
+    StringArray GetAllSaveDescriptions() const;
 
     // Is save capacity reached
     Bool IsSaveCapacityReached() const;
@@ -50,7 +50,7 @@ public:
     const Save& GetSave(UByte uSlot) const;
 
     // Get all saves
-    SaveList GetAllSaves() const;
+    SaveArray GetAllSaves() const;
 
     // Pull save from memory
     // Creates a new save from the manager data in memory and loads it in the specified save slot

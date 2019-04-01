@@ -2,7 +2,7 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Battle/Battle.h"
-#include "Character/CharacterPartyManager.h"
+#include "CharacterParty/CharacterPartyManager.h"
 
 namespace Gecko
 {
@@ -76,9 +76,9 @@ Bool Battle::IsBattleLost() const
     return (GetIsBattleManuallyLost() || IsBattleOver(GetAllyPartyName()));
 }
 
-void Battle::AddAction(const CharacterActionSharedPtr& pAction)
+void Battle::AddAction(const CharacterAction& action)
 {
-    GetActions().push_back(pAction);
+    GetActions().push_back(action);
     SetActionCount(GetActionCount() + 1);
 }
 
@@ -95,34 +95,18 @@ void Battle::FinishedAddingActions()
 
 void Battle::RunCurrentActionSetup()
 {
-    if(GetCurrentAction())
-    {
-        GetCurrentAction()->Setup();
-    }
 }
 
 void Battle::RunCurrentActionFinish()
 {
-    if(GetCurrentAction())
-    {
-        GetCurrentAction()->Finish();
-    }
 }
 
 void Battle::RunCurrentActionGenerateResult()
 {
-    if(GetCurrentAction())
-    {
-        GetCurrentAction()->GenerateResult();
-    }
 }
 
 void Battle::RunCurrentActionApplyResult()
 {
-    if(GetCurrentAction())
-    {
-        GetCurrentAction()->ApplyResult();
-    }
 }
 
 void Battle::FinishedWithCurrentAction()
@@ -130,24 +114,24 @@ void Battle::FinishedWithCurrentAction()
     SetCurrentActionIndex(GetCurrentActionIndex() + 1);
 }
 
-CharacterActionSharedPtr& Battle::GetAction(Int iIndex)
+CharacterAction& Battle::GetAction(Int iIndex)
 {
     ASSERT_ERROR(iIndex >= 0 && iIndex < GetActionCount());
     return GetActions()[iIndex];
 }
 
-const CharacterActionSharedPtr& Battle::GetAction(Int iIndex) const
+const CharacterAction& Battle::GetAction(Int iIndex) const
 {
     ASSERT_ERROR(iIndex >= 0 && iIndex < GetActionCount());
     return GetActions()[iIndex];
 }
 
-CharacterActionSharedPtr& Battle::GetCurrentAction()
+CharacterAction& Battle::GetCurrentAction()
 {
     return GetAction(GetCurrentActionIndex());
 }
 
-const CharacterActionSharedPtr& Battle::GetCurrentAction() const
+const CharacterAction& Battle::GetCurrentAction() const
 {
     return GetAction(GetCurrentActionIndex());
 }
@@ -155,15 +139,6 @@ const CharacterActionSharedPtr& Battle::GetCurrentAction() const
 Bool Battle::AreAllActionsFinished() const
 {
     return (GetCurrentActionIndex() >= GetActionCount());
-}
-
-CharacterActionSharedPtrList Battle::GetRemainingActions() const
-{
-    if(GetCurrentActionIndex() < GetActionCount())
-    {
-        return CharacterActionSharedPtrList(GetActions().begin() + GetCurrentActionIndex(), GetActions().end());
-    }
-    return CharacterActionSharedPtrList();
 }
 
 void to_json(Json& jsonData, const Battle& obj)
@@ -179,7 +154,7 @@ void to_json(Json& jsonData, const Battle& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(CurrentRoundIndex, 0);
 
     // Actions
-    SET_JSON_DATA_FROM_PTR_ARRAY_IF_NOT_EMPTY(Actions);
+    SET_JSON_DATA_IF_NOT_EMPTY(Actions);
     SET_JSON_DATA_IF_NOT_DEFAULT(ActionCount, 0);
 
     // Party names
@@ -200,7 +175,7 @@ void from_json(const Json& jsonData, Battle& obj)
     obj.SetCurrentRoundIndex(GET_JSON_DATA_OR_DEFAULT(CurrentRoundIndex, Int, 0));
 
     // Actions
-    obj.SetActions(GET_JSON_DATA_OR_DEFAULT(Actions, CharacterActionSharedPtrList, CharacterActionSharedPtrList()));
+    obj.SetActions(GET_JSON_DATA_OR_DEFAULT(Actions, CharacterActionArray, CharacterActionArray()));
     obj.SetActionCount(GET_JSON_DATA_OR_DEFAULT(ActionCount, Int, 0));
 
     // Party names

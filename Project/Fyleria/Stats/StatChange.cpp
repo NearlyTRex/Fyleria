@@ -3,7 +3,7 @@
 
 #include "Stats/StatChange.h"
 #include "Character/CharacterManager.h"
-#include "Character/CharacterPartyManager.h"
+#include "CharacterParty/CharacterPartyManager.h"
 #include "Items/ItemTree.h"
 #include "Items/ItemTypes.h"
 #include "Skills/SkillTypes.h"
@@ -165,7 +165,7 @@ Bool StatChange::DoesMeetItemEquippedRequirements(const IndexedString& sCharacte
     }
 
     // Get equipped item types
-    IndexedStringList vEquippedItemTypes;
+    IndexedStringArray vEquippedItemTypes;
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
     for(auto&& progressItem : character.GetEquippedItems())
     {
@@ -179,8 +179,8 @@ Bool StatChange::DoesMeetItemEquippedRequirements(const IndexedString& sCharacte
     // Get some info regarding this change
     const UInt uChangeRequiredWeaponCount = GetRequiredEquippedWeaponCount();
     const UInt uChangeRequiredShieldCount = GetRequiredEquippedShieldCount();
-    const IndexedStringList vChangeRequiredItemEquippedTypesOR = GetRequiredItemEquippedTypesOR();
-    const IndexedStringList vChangeRequiredItemEquippedTypesAND = GetRequiredItemEquippedTypesAND();
+    const IndexedStringArray vChangeRequiredItemEquippedTypesOR = GetRequiredItemEquippedTypesOR();
+    const IndexedStringArray vChangeRequiredItemEquippedTypesAND = GetRequiredItemEquippedTypesAND();
 
     // Change requires certain amounts of weapon or shields
     if(uChangeRequiredWeaponCount > 0)
@@ -204,7 +204,7 @@ Bool StatChange::DoesMeetItemEquippedRequirements(const IndexedString& sCharacte
     return false;
 }
 
-Bool StatChange::DoesMeetItemUsedRequirements(const IndexedStringList& vActionItemTypes) const
+Bool StatChange::DoesMeetItemUsedRequirements(const IndexedStringArray& vActionItemTypes) const
 {
     // Check action item types
     if(vActionItemTypes.empty())
@@ -213,8 +213,8 @@ Bool StatChange::DoesMeetItemUsedRequirements(const IndexedStringList& vActionIt
     }
 
     // Get some info regarding this change
-    const IndexedStringList vChangeRequiredItemsUsedOR = GetRequiredItemUsedTypesOR();
-    const IndexedStringList vChangeRequiredItemsUsedAND = GetRequiredItemUsedTypesAND();
+    const IndexedStringArray vChangeRequiredItemsUsedOR = GetRequiredItemUsedTypesOR();
+    const IndexedStringArray vChangeRequiredItemsUsedAND = GetRequiredItemUsedTypesAND();
 
     // The item type being used by the action matches the change requirement
     if(!vChangeRequiredItemsUsedOR.empty() && !vActionItemTypes.front().empty())
@@ -228,11 +228,11 @@ Bool StatChange::DoesMeetItemUsedRequirements(const IndexedStringList& vActionIt
     return false;
 }
 
-Bool StatChange::DoesMeetAttackRequirements(const IndexedStringList& vActionTypes) const
+Bool StatChange::DoesMeetAttackRequirements(const IndexedStringArray& vActionTypes) const
 {
     // Get some info regarding this change
-    const IndexedStringList vChangeRequiredAttackTypesOR = GetRequiredAttackTypesOR();
-    const IndexedStringList vChangeRequiredAttackTypesAND = GetRequiredAttackTypesAND();
+    const IndexedStringArray vChangeRequiredAttackTypesOR = GetRequiredAttackTypesOR();
+    const IndexedStringArray vChangeRequiredAttackTypesAND = GetRequiredAttackTypesAND();
 
     // Our character is sending action, and the action's types match the required attack types
     if(!vActionTypes.empty() && !vChangeRequiredAttackTypesOR.empty())
@@ -246,7 +246,7 @@ Bool StatChange::DoesMeetAttackRequirements(const IndexedStringList& vActionType
     return false;
 }
 
-Bool StatChange::DoesMeetAttackRequirements(const IndexedStringList& vActionTypes, const IndexedStringList& vPreviousActionTypes) const
+Bool StatChange::DoesMeetAttackRequirements(const IndexedStringArray& vActionTypes, const IndexedStringArray& vPreviousActionTypes) const
 {
     // Check non-previous action types
     if(!DoesMeetAttackRequirements(vActionTypes))
@@ -255,8 +255,8 @@ Bool StatChange::DoesMeetAttackRequirements(const IndexedStringList& vActionType
     }
 
     // Get some info regarding this change
-    const IndexedStringList vChangeRequiredPreviousAttackTypesOR = GetRequiredPreviousAttackTypesOR();
-    const IndexedStringList vChangeRequiredPreviousAttackTypesAND = GetRequiredPreviousAttackTypesAND();
+    const IndexedStringArray vChangeRequiredPreviousAttackTypesOR = GetRequiredPreviousAttackTypesOR();
+    const IndexedStringArray vChangeRequiredPreviousAttackTypesAND = GetRequiredPreviousAttackTypesAND();
 
     // Our character is sending action, and the action's previous types match the required previous attack types
     if(!vPreviousActionTypes.empty() && !vChangeRequiredPreviousAttackTypesOR.empty())
@@ -270,11 +270,11 @@ Bool StatChange::DoesMeetAttackRequirements(const IndexedStringList& vActionType
     return false;
 }
 
-Bool StatChange::DoesMeetDefendRequirements(const IndexedStringList& vActionTypes) const
+Bool StatChange::DoesMeetDefendRequirements(const IndexedStringArray& vActionTypes) const
 {
     // Get some info regarding this change
-    const IndexedStringList vChangeRequiredDefendTypesOR = GetRequiredDefendTypesOR();
-    const IndexedStringList vChangeRequiredDefendTypesAND = GetRequiredDefendTypesAND();
+    const IndexedStringArray vChangeRequiredDefendTypesOR = GetRequiredDefendTypesOR();
+    const IndexedStringArray vChangeRequiredDefendTypesAND = GetRequiredDefendTypesAND();
 
     // Our character is receiving action, and the action's types match the required defend types
     if(!vActionTypes.empty() && !vChangeRequiredDefendTypesOR.empty())
@@ -288,7 +288,7 @@ Bool StatChange::DoesMeetDefendRequirements(const IndexedStringList& vActionType
     return false;
 }
 
-Bool StatChange::DoesMeetDefendRequirements(const IndexedStringList& vActionTypes, const IndexedStringList& vPreviousActionTypes) const
+Bool StatChange::DoesMeetDefendRequirements(const IndexedStringArray& vActionTypes, const IndexedStringArray& vPreviousActionTypes) const
 {
     // Check non-previous action types
     if(!DoesMeetDefendRequirements(vActionTypes))
@@ -297,8 +297,8 @@ Bool StatChange::DoesMeetDefendRequirements(const IndexedStringList& vActionType
     }
 
     // Get some info regarding this change
-    const IndexedStringList vChangeRequiredPreviousDefendTypesOR = GetRequiredPreviousDefendTypesOR();
-    const IndexedStringList vChangeRequiredPreviousDefendTypesAND = GetRequiredPreviousDefendTypesAND();
+    const IndexedStringArray vChangeRequiredPreviousDefendTypesOR = GetRequiredPreviousDefendTypesOR();
+    const IndexedStringArray vChangeRequiredPreviousDefendTypesAND = GetRequiredPreviousDefendTypesAND();
 
     // Our character is receiving action, and the action's previous types match the required previous defend types
     if(!vPreviousActionTypes.empty() && !vChangeRequiredPreviousDefendTypesOR.empty())
@@ -355,11 +355,11 @@ Bool StatChange::DoesMeetActiveRequirements(const IndexedString& sCharacterID, c
     return false;
 }
 
-IndexedStringList StatChange::GetIntersectingAttackRequirements(const IndexedStringList& vActionTypes) const
+IndexedStringArray StatChange::GetIntersectingAttackRequirements(const IndexedStringArray& vActionTypes) const
 {
     // Get some info regarding this change
-    const IndexedStringList vChangeRequiredAttackTypesOR = GetRequiredAttackTypesOR();
-    const IndexedStringList vChangeRequiredAttackTypesAND = GetRequiredAttackTypesAND();
+    const IndexedStringArray vChangeRequiredAttackTypesOR = GetRequiredAttackTypesOR();
+    const IndexedStringArray vChangeRequiredAttackTypesAND = GetRequiredAttackTypesAND();
 
     // Get the intersection of attack types
     if(!vActionTypes.empty() && !vChangeRequiredAttackTypesOR.empty())
@@ -370,14 +370,14 @@ IndexedStringList StatChange::GetIntersectingAttackRequirements(const IndexedStr
     {
         return STDVectorFindIntersect<IndexedString>(vActionTypes, vChangeRequiredAttackTypesAND);
     }
-    return IndexedStringList();
+    return IndexedStringArray();
 }
 
-IndexedStringList StatChange::GetIntersectingDefendRequirements(const IndexedStringList& vActionTypes) const
+IndexedStringArray StatChange::GetIntersectingDefendRequirements(const IndexedStringArray& vActionTypes) const
 {
     // Get some info regarding this change
-    const IndexedStringList vChangeRequiredDefendTypesOR = GetRequiredDefendTypesOR();
-    const IndexedStringList vChangeRequiredDefendTypesAND = GetRequiredDefendTypesAND();
+    const IndexedStringArray vChangeRequiredDefendTypesOR = GetRequiredDefendTypesOR();
+    const IndexedStringArray vChangeRequiredDefendTypesAND = GetRequiredDefendTypesAND();
 
     // Get the intersection of defend types
     if(!vActionTypes.empty() && !vChangeRequiredDefendTypesOR.empty())
@@ -388,10 +388,10 @@ IndexedStringList StatChange::GetIntersectingDefendRequirements(const IndexedStr
     {
         return STDVectorFindIntersect<IndexedString>(vActionTypes, vChangeRequiredDefendTypesAND);
     }
-    return IndexedStringList();
+    return IndexedStringArray();
 }
 
-Bool StatChange::GetResolvedCharacterLists(IndexedStringList& vSourceCharIDs, IndexedStringList& vDestCharIDs) const
+Bool StatChange::GetResolvedCharacterLists(IndexedStringArray& vSourceCharIDs, IndexedStringArray& vDestCharIDs) const
 {
     IndexedString sSourceTargetType = GetSourceTargetType();
     IndexedString sDestTargetType = GetDestinationTargetType();
@@ -420,8 +420,8 @@ void StatChange::ResolveTargetPlaceholders(const IndexedString& sCharacterID, co
 
     // Get resolved target types
     IndexedString sSelfTargetType = character.GetBasicData().GetCharacterTargetType();
-    IndexedStringList vSourceTargetTypes = pBattleData->ResolveTargetPlaceholder(sSelfTargetType, GetSourceTargetType());
-    IndexedStringList vDestTargetTypes = pBattleData->ResolveTargetPlaceholder(sSelfTargetType, GetDestinationTargetType());
+    IndexedStringArray vSourceTargetTypes = pBattleData->ResolveTargetPlaceholder(sSelfTargetType, GetSourceTargetType());
+    IndexedStringArray vDestTargetTypes = pBattleData->ResolveTargetPlaceholder(sSelfTargetType, GetDestinationTargetType());
 
     // Save resolved target types
     if(!vSourceTargetTypes.empty())
@@ -512,18 +512,18 @@ void from_json(const Json& jsonData, StatChange& obj)
     obj.SetDefendAmount(GET_JSON_DATA_OR_DEFAULT(DefendAmount, Int, 0));
 
     // Required items or attack types
-    obj.SetRequiredItemEquippedTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredItemEquippedTypesOR, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredItemEquippedTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredItemEquippedTypesAND, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredItemUsedTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredItemUsedTypesOR, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredItemUsedTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredItemUsedTypesAND, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredAttackTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredAttackTypesOR, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredAttackTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredAttackTypesAND, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredDefendTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredDefendTypesOR, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredDefendTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredDefendTypesAND, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredPreviousAttackTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousAttackTypesOR, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredPreviousAttackTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousAttackTypesAND, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredPreviousDefendTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousDefendTypesOR, IndexedStringList, IndexedStringList()));
-    obj.SetRequiredPreviousDefendTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousDefendTypesAND, IndexedStringList, IndexedStringList()));
+    obj.SetRequiredItemEquippedTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredItemEquippedTypesOR, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredItemEquippedTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredItemEquippedTypesAND, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredItemUsedTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredItemUsedTypesOR, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredItemUsedTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredItemUsedTypesAND, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredAttackTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredAttackTypesOR, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredAttackTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredAttackTypesAND, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredDefendTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredDefendTypesOR, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredDefendTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredDefendTypesAND, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredPreviousAttackTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousAttackTypesOR, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredPreviousAttackTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousAttackTypesAND, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredPreviousDefendTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousDefendTypesOR, IndexedStringArray, IndexedStringArray()));
+    obj.SetRequiredPreviousDefendTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousDefendTypesAND, IndexedStringArray, IndexedStringArray()));
     obj.SetRequiredEquippedWeaponCount(GET_JSON_DATA_OR_DEFAULT(RequiredEquippedWeaponCount, Int, 0));
     obj.SetRequiredEquippedShieldCount(GET_JSON_DATA_OR_DEFAULT(RequiredEquippedShieldCount, Int, 0));
 
@@ -535,26 +535,13 @@ void from_json(const Json& jsonData, StatChange& obj)
     obj.SetDestinationTargetType(GET_JSON_DATA_OR_DEFAULT(DestinationTargetType, IndexedString, IndexedString("None")));
 
     // Stat change entry list
-    obj.SetStatChangeEntries(GET_JSON_DATA_OR_DEFAULT(StatChangeEntries, StatChangeEntryList, StatChangeEntryList()));
+    obj.SetStatChangeEntries(GET_JSON_DATA_OR_DEFAULT(StatChangeEntries, StatChangeEntryArray, StatChangeEntryArray()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChange, StatChange);
 
-ProlongedStatChange::ProlongedStatChange()
-    : SerializableToJson()
-{
-}
-
-ProlongedStatChange::ProlongedStatChange(const Json& jsonData)
-    : SerializableToJson(jsonData)
-{
-}
-
-MAKE_JSON_BASIC_TYPE_CONVERTERS_IMPL(ProlongedStatChange);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ProlongedStatChange, ProlongedStatChange);
-
-static const StatChangeList s_vEmptyChanges;
-const StatChangeList& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& index)
+static const StatChangeArray s_vEmptyChanges;
+const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& index)
 {
     const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
     switch(eTreeIndexType)
@@ -569,7 +556,7 @@ const StatChangeList& GetStatChangesFromTreeIndex(const IndexedString& sTreeInde
     return s_vEmptyChanges;
 }
 
-const StatChangeList& GetStatChangesFromSkillTreeIndex(const TreeIndex& index)
+const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& index)
 {
     const SkillTreeType eSkillTreeType = (IsValidSkillTreeType(index.GetTree())) ? StringToSkillTreeType(index.GetTree()) : +SkillTreeType::None;
     switch(eSkillTreeType)
@@ -592,7 +579,7 @@ const StatChangeList& GetStatChangesFromSkillTreeIndex(const TreeIndex& index)
     return s_vEmptyChanges;
 }
 
-const StatChangeList& GetStatChangesFromItemTreeIndex(const TreeIndex& index)
+const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& index)
 {
     const ItemTreeType eItemTreeType = (IsValidItemTreeType(index.GetTree())) ? StringToItemTreeType(index.GetTree()) : +ItemTreeType::None;
     switch(eItemTreeType)

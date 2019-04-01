@@ -19,10 +19,10 @@ StatChangeEntry::StatChangeEntry()
     SetDeltaInt(0);
     SetDeltaBool(false);
     SetDeltaString(IndexedString(""));
-    SetDeltaFloatList({});
-    SetDeltaIntList({});
-    SetDeltaBoolList({});
-    SetDeltaStringList({});
+    SetDeltaFloatArray({});
+    SetDeltaIntArray({});
+    SetDeltaBoolArray({});
+    SetDeltaStringArray({});
 
     // Full amount is from the destination character
     SetFullPercent(0);
@@ -30,10 +30,10 @@ StatChangeEntry::StatChangeEntry()
     SetFullInt(0);
     SetFullBool(false);
     SetFullString(IndexedString(""));
-    SetFullFloatList({});
-    SetFullIntList({});
-    SetFullBoolList({});
-    SetFullStringList({});
+    SetFullFloatArray({});
+    SetFullIntArray({});
+    SetFullBoolArray({});
+    SetFullStringArray({});
 
     // Operation type (Add, Multiply, etc)
     SetOperationType(IndexedString("None"));
@@ -61,10 +61,10 @@ void to_json(Json& jsonData, const StatChangeEntry& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(DeltaInt, 0);
     SET_JSON_DATA_IF_NOT_DEFAULT(DeltaBool, false);
     SET_JSON_DATA_IF_NOT_DEFAULT(DeltaString, IndexedString(""));
-    SET_JSON_DATA_IF_NOT_EMPTY(DeltaFloatList);
-    SET_JSON_DATA_IF_NOT_EMPTY(DeltaIntList);
-    SET_JSON_DATA_IF_NOT_EMPTY(DeltaBoolList);
-    SET_JSON_DATA_IF_NOT_EMPTY(DeltaStringList);
+    SET_JSON_DATA_IF_NOT_EMPTY(DeltaFloatArray);
+    SET_JSON_DATA_IF_NOT_EMPTY(DeltaIntArray);
+    SET_JSON_DATA_IF_NOT_EMPTY(DeltaBoolArray);
+    SET_JSON_DATA_IF_NOT_EMPTY(DeltaStringArray);
 
     // Full amount is from the destination character
     SET_JSON_DATA_IF_NOT_DEFAULT(FullPercent, 0);
@@ -72,10 +72,10 @@ void to_json(Json& jsonData, const StatChangeEntry& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(FullInt, 0);
     SET_JSON_DATA_IF_NOT_DEFAULT(FullBool, false);
     SET_JSON_DATA_IF_NOT_DEFAULT(FullString, IndexedString(""));
-    SET_JSON_DATA_IF_NOT_EMPTY(FullFloatList);
-    SET_JSON_DATA_IF_NOT_EMPTY(FullIntList);
-    SET_JSON_DATA_IF_NOT_EMPTY(FullBoolList);
-    SET_JSON_DATA_IF_NOT_EMPTY(FullStringList);
+    SET_JSON_DATA_IF_NOT_EMPTY(FullFloatArray);
+    SET_JSON_DATA_IF_NOT_EMPTY(FullIntArray);
+    SET_JSON_DATA_IF_NOT_EMPTY(FullBoolArray);
+    SET_JSON_DATA_IF_NOT_EMPTY(FullStringArray);
 
     // Operation type (Add, Multiply, etc)
     SET_JSON_DATA_IF_NOT_DEFAULT(OperationType, IndexedString("None"));
@@ -102,10 +102,10 @@ void from_json(const Json& jsonData, StatChangeEntry& obj)
     obj.SetDeltaInt(GET_JSON_DATA_OR_DEFAULT(DeltaInt, Int, 0));
     obj.SetDeltaBool(GET_JSON_DATA_OR_DEFAULT(DeltaBool, Bool, false));
     obj.SetDeltaString(GET_JSON_DATA_OR_DEFAULT(DeltaString, IndexedString, IndexedString("")));
-    obj.SetDeltaFloatList(GET_JSON_DATA_OR_DEFAULT(DeltaFloatList, FloatList, FloatList()));
-    obj.SetDeltaIntList(GET_JSON_DATA_OR_DEFAULT(DeltaIntList, IntList, IntList()));
-    obj.SetDeltaBoolList(GET_JSON_DATA_OR_DEFAULT(DeltaBoolList, BoolList, BoolList()));
-    obj.SetDeltaStringList(GET_JSON_DATA_OR_DEFAULT(DeltaStringList, IndexedStringList, IndexedStringList()));
+    obj.SetDeltaFloatArray(GET_JSON_DATA_OR_DEFAULT(DeltaFloatArray, FloatArray, FloatArray()));
+    obj.SetDeltaIntArray(GET_JSON_DATA_OR_DEFAULT(DeltaIntArray, IntArray, IntArray()));
+    obj.SetDeltaBoolArray(GET_JSON_DATA_OR_DEFAULT(DeltaBoolArray, BoolArray, BoolArray()));
+    obj.SetDeltaStringArray(GET_JSON_DATA_OR_DEFAULT(DeltaStringArray, IndexedStringArray, IndexedStringArray()));
 
     // Full amount is from the destination character
     obj.SetFullPercent(GET_JSON_DATA_OR_DEFAULT(FullPercent, Float, 0));
@@ -113,10 +113,10 @@ void from_json(const Json& jsonData, StatChangeEntry& obj)
     obj.SetFullInt(GET_JSON_DATA_OR_DEFAULT(FullInt, Int, 0));
     obj.SetFullBool(GET_JSON_DATA_OR_DEFAULT(FullBool, Bool, false));
     obj.SetFullString(GET_JSON_DATA_OR_DEFAULT(FullString, IndexedString, IndexedString("")));
-    obj.SetFullFloatList(GET_JSON_DATA_OR_DEFAULT(FullFloatList, FloatList, FloatList()));
-    obj.SetFullIntList(GET_JSON_DATA_OR_DEFAULT(FullIntList, IntList, IntList()));
-    obj.SetFullBoolList(GET_JSON_DATA_OR_DEFAULT(FullBoolList, BoolList, BoolList()));
-    obj.SetFullStringList(GET_JSON_DATA_OR_DEFAULT(FullStringList, IndexedStringList, IndexedStringList()));
+    obj.SetFullFloatArray(GET_JSON_DATA_OR_DEFAULT(FullFloatArray, FloatArray, FloatArray()));
+    obj.SetFullIntArray(GET_JSON_DATA_OR_DEFAULT(FullIntArray, IntArray, IntArray()));
+    obj.SetFullBoolArray(GET_JSON_DATA_OR_DEFAULT(FullBoolArray, BoolArray, BoolArray()));
+    obj.SetFullStringArray(GET_JSON_DATA_OR_DEFAULT(FullStringArray, IndexedStringArray, IndexedStringArray()));
 
     // Operation type (Add, Multiply, etc)
     obj.SetOperationType(GET_JSON_DATA_OR_DEFAULT(OperationType, IndexedString, IndexedString("None")));
@@ -127,7 +127,7 @@ void from_json(const Json& jsonData, StatChangeEntry& obj)
 
     // Character IDs for applying
     obj.SetSourceCharacterID(GET_JSON_DATA_OR_DEFAULT(SourceCharacterID, IndexedString, IndexedString("")));
-    obj.SetDestinationCharacterIDs(GET_JSON_DATA_OR_DEFAULT(DestinationCharacterIDs, IndexedStringList, IndexedStringList()));
+    obj.SetDestinationCharacterIDs(GET_JSON_DATA_OR_DEFAULT(DestinationCharacterIDs, IndexedStringArray, IndexedStringArray()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChangeEntry, StatChangeEntry);

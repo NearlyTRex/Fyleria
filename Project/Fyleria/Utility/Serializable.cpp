@@ -36,22 +36,22 @@ String SerializableToJson::ToJsonString(Int iIndent /*= -1*/) const
     return m_Data.dump(iIndent);
 }
 
-void SerializableToJson::FromCBOR(const FixedUnsigned8List& vCBOR)
+void SerializableToJson::FromCBOR(const FixedUnsigned8Array& vCBOR)
 {
     m_Data = JsonFromCBOR(vCBOR);
 }
 
-void SerializableToJson::FromMsgPack(const FixedUnsigned8List& vMsgPack)
+void SerializableToJson::FromMsgPack(const FixedUnsigned8Array& vMsgPack)
 {
     m_Data = JsonFromMsgPack(vMsgPack);
 }
 
-FixedUnsigned8List SerializableToJson::ToCBOR() const
+FixedUnsigned8Array SerializableToJson::ToCBOR() const
 {
     return JsonToCBOR(m_Data);
 }
 
-FixedUnsigned8List SerializableToJson::ToMsgPack() const
+FixedUnsigned8Array SerializableToJson::ToMsgPack() const
 {
     return JsonToMsgPack(m_Data);
 }
@@ -59,11 +59,6 @@ FixedUnsigned8List SerializableToJson::ToMsgPack() const
 Bool SerializableToJson::FromFile(const IndexedString& sFilename)
 {
     return ReadJsonFile(sFilename, m_Data);
-}
-
-Bool SerializableToJson::FromFilePath(const FilesystemPath& sFilenamePath)
-{
-    return ReadJsonFile(IndexedString(GetNativeFileLocation(sFilenamePath)), m_Data);
 }
 
 Bool SerializableToJson::FromCBORFile(const IndexedString& sFilename)
@@ -79,11 +74,6 @@ Bool SerializableToJson::FromMsgPackFile(const IndexedString& sFilename)
 Bool SerializableToJson::ToFile(const IndexedString& sFilename) const
 {
     return WriteJsonFile(sFilename, m_Data);
-}
-
-Bool SerializableToJson::ToFilePath(const FilesystemPath& sFilenamePath) const
-{
-    return WriteJsonFile(IndexedString(GetNativeFileLocation(sFilenamePath)), m_Data);
 }
 
 Bool SerializableToJson::ToCBORFile(const IndexedString& sFilename) const

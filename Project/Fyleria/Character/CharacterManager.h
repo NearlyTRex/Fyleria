@@ -46,13 +46,55 @@ public:
     const Character& GetCharacter(const IndexedString& sCharacterID) const;
 
     // Apply a stat change
-    void ApplyStatChange(const IndexedString& sSegment, const StatChange& change, Bool& bAllChangesApplied, Bool& bAtLeastOneChange, Bool bApplyAllEntries = false);
+    void ApplyStatChange(
+        const IndexedString& sSegment,
+        const StatChange& change,
+        Bool& bAllChangesApplied,
+        Bool& bAtLeastOneChange,
+        Bool bApplyAllEntries = false);
+
+    // Apply a stat change entry
     Bool ApplyStatChangeEntry(const IndexedString& sSegment, const StatChangeEntry& entry);
-    Bool ApplyStatChangeEntryOperation(const IndexedString& sSegment, const IndexedString& sCharacterID, const IndexedString& sOperation, const IndexedString& sStat, Float fValue);
-    Bool ApplyStatChangeEntryOperation(const IndexedString& sSegment, const IndexedString& sCharacterID, const IndexedString& sOperation, const IndexedString& sStat, Int iValue);
-    Bool ApplyStatChangeEntryOperation(const IndexedString& sSegment, const IndexedString& sCharacterID, const IndexedString& sOperation, const IndexedString& sStat, Bool bValue);
-    Bool ApplyStatChangeEntryOperation(const IndexedString& sSegment, const IndexedString& sCharacterID, const IndexedString& sOperation, const IndexedString& sStat, const IndexedString& sValue);
-    Bool ApplyStatChangeEntryOperation(const IndexedString& sSegment, const IndexedString& sCharacterID, const IndexedString& sOperation, const IndexedString& sStat, const IndexedStringList& sValue);
+
+    // Apply a stat change entry float operation
+    Bool ApplyStatChangeEntryOperation(
+        const IndexedString& sSegment,
+        const IndexedString& sCharacterID,
+        const IndexedString& sOperation,
+        const IndexedString& sStat,
+        Float fValue);
+
+    // Apply a stat change entry int operation
+    Bool ApplyStatChangeEntryOperation(
+        const IndexedString& sSegment,
+        const IndexedString& sCharacterID,
+        const IndexedString& sOperation,
+        const IndexedString& sStat,
+        Int iValue);
+
+    // Apply a stat change entry bool operation
+    Bool ApplyStatChangeEntryOperation(
+        const IndexedString& sSegment,
+        const IndexedString& sCharacterID,
+        const IndexedString& sOperation,
+        const IndexedString& sStat,
+        Bool bValue);
+
+    // Apply a stat change entry string operation
+    Bool ApplyStatChangeEntryOperation(
+        const IndexedString& sSegment,
+        const IndexedString& sCharacterID,
+        const IndexedString& sOperation,
+        const IndexedString& sStat,
+        const IndexedString& sValue);
+
+    // Apply a stat change entry string array operation
+    Bool ApplyStatChangeEntryOperation(
+        const IndexedString& sSegment,
+        const IndexedString& sCharacterID,
+        const IndexedString& sOperation,
+        const IndexedString& sStat,
+        const IndexedStringArray& sValue);
 
     // Determine if stat change entry uses a delta from source to destination characters
     Bool DoesStatChangeEntryUseDelta(const StatChangeEntry& changeEntry) const;
@@ -62,19 +104,27 @@ public:
     Bool IsStatInt(const IndexedString& sStat) const;
     Bool IsStatBool(const IndexedString& sStat) const;
     Bool IsStatString(const IndexedString& sStat) const;
-    Bool IsStatStringList(const IndexedString& sStat) const;
+    Bool IsStatStringArray(const IndexedString& sStat) const;
 
-    // Get values from stat change entry
-    Bool GetSourceStatChangeEntryValues(const IndexedString& sSegment, const IndexedString& sCharacterID, const IndexedString& sStat, const StatChangeEntry& changeEntry,
-        FloatList& vFloatValues,
-        IntList& vIntValues,
-        BoolList& vBoolValues,
-        IndexedStringList& vStringValues) const;
-    Bool GetDestStatChangeEntryValues(const IndexedString& sSegment, const IndexedString& sCharacterID, const IndexedString& sStat, const StatChangeEntry& changeEntry,
-        FloatList& vFloatValues,
-        IntList& vIntValues,
-        BoolList& vBoolValues,
-        IndexedStringList& vStringValues) const;
+    // Get delta changed values from stat change entry
+    Bool GetDeltaStatChangeEntryValues(
+        const IndexedString& sSegment,
+        const IndexedString& sCharacterID,
+        const StatChangeEntry& changeEntry,
+        FloatArray& vFloatValues,
+        IntArray& vIntValues,
+        BoolArray& vBoolValues,
+        IndexedStringArray& vStringValues) const;
+
+    // Get fully changed values from stat change entry
+    Bool GetFullStatChangeEntryValues(
+        const IndexedString& sSegment,
+        const IndexedString& sCharacterID,
+        const StatChangeEntry& changeEntry,
+        FloatArray& vFloatValues,
+        IntArray& vIntValues,
+        BoolArray& vBoolValues,
+        IndexedStringArray& vStringValues) const;
 
 private:
 

@@ -26,7 +26,7 @@ public:
     }
 
     // Recipes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Recipes, RecipeList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Recipes, RecipeArray);
 };
 
 // Typedef

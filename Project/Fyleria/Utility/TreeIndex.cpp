@@ -1,8 +1,8 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Utility/Tree.h"
-#include "Utility/TypesJson.h"
+#include "Utility/TreeIndex.h"
+#include "Utility/Json.h"
 #include "Utility/Macros.h"
 
 namespace Gecko

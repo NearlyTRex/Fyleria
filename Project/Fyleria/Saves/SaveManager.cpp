@@ -55,10 +55,10 @@ UByte SaveManager::GetSaveCapacity() const
     return s_kuMaxSaveSlot;
 }
 
-UByteList SaveManager::GetAllAvailableSaveSlots() const
+UByteArray SaveManager::GetAllAvailableSaveSlots() const
 {
     // Get a list of all slots that are not used
-    UByteList vSlots;
+    UByteArray vSlots;
     for(Int i = 0; i < GetSaveCapacity(); i++)
     {
         if(!DoesSaveExist(i))
@@ -69,10 +69,10 @@ UByteList SaveManager::GetAllAvailableSaveSlots() const
     return vSlots;
 }
 
-StringList SaveManager::GetAllSaveDescriptions() const
+StringArray SaveManager::GetAllSaveDescriptions() const
 {
     // Get all save descriptions
-    StringList vDescriptions;
+    StringArray vDescriptions;
     for(Int i = 0; i < GetSaveCapacity(); i++)
     {
         vDescriptions.push_back(DoesSaveExist(i) ? GetSave(i).GetDescription() : "");
@@ -102,9 +102,9 @@ const Save& SaveManager::GetSave(UByte uSlot) const
     return iSearch->second;
 }
 
-SaveList SaveManager::GetAllSaves() const
+SaveArray SaveManager::GetAllSaves() const
 {
-    SaveList vSaves;
+    SaveArray vSaves;
     for(Int i = 0; i < GetSaveCapacity(); i++)
     {
         vSaves.push_back(GetSave(i));
@@ -115,7 +115,7 @@ SaveList SaveManager::GetAllSaves() const
 void SaveManager::PullSaveFromMemory(UByte uSlot, const IndexedString& sPartyID)
 {
     // Get party and attached characters
-    CharacterList vCharacters;
+    CharacterArray vCharacters;
     CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
     for(const IndexedString& sMemberID : party.GetMembers())
     {

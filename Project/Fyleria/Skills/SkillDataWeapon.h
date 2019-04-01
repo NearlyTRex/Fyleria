@@ -25,7 +25,7 @@ public:
     }
 
     // Create weapon actions
-    CharacterActionSharedPtrList CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
 
     // Weapon base type
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(WeaponBaseType, IndexedString);

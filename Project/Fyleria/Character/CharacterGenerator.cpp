@@ -3,7 +3,7 @@
 
 #include "Character/CharacterGenerator.h"
 #include "Character/CharacterTypes.h"
-#include "Utility/TypesFantasyName.h"
+#include "Utility/FantasyName.h"
 
 namespace Gecko
 {

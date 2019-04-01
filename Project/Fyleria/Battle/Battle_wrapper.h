@@ -4,6 +4,6 @@
 #ifndef _GECKO_BATTLE_WRAPPER_H_
 #define _GECKO_BATTLE_WRAPPER_H_
 
-#include "Utility/TypesPython.h"
+#include "Utility/Python.h"
 
 #endif

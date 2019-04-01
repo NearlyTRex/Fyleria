@@ -4,7 +4,7 @@
 #include "Config/Config.h"
 #include "Config/ConfigManager.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesPython.h"
+#include "Utility/Python.h"
 
 namespace Gecko
 {
@@ -305,11 +305,11 @@ PYBIND11_EMBEDDED_MODULE(GeckoConfig, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(DefaultOffensivePowerEffectsBonusValue, Gecko::Config)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(DefaultOffensivePowerEffectsBonusPercent, Gecko::Config)
     ;
-    PyBindVector<Gecko::ConfigList>(m, "ConfigList");
+    PyBindVector<Gecko::ConfigArray>(m, "ConfigArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertConfigToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertConfigListToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertConfigArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetConfigFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetConfigListFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetConfigArrayFromJsonString, Gecko);
 
     // ConfigManager.h
     PyBindClass<Gecko::ConfigManager>(m, "ConfigManager")

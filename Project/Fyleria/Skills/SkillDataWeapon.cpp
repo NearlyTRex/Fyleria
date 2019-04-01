@@ -24,10 +24,10 @@ SkillDataWeapon::SkillDataWeapon(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
-CharacterActionSharedPtrList SkillDataWeapon::CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
 {
     // Skip base actions
-    CharacterActionSharedPtrList vNewActions;
+    CharacterActionArray vNewActions;
     if(IsBaseWeaponSkill(GetSkillTreeIndex()))
     {
         return vNewActions;
@@ -45,8 +45,8 @@ CharacterActionSharedPtrList SkillDataWeapon::CreateWeaponActions(const IndexedS
     // Get equipped item information
     TreeIndex primaryItemIndex;
     TreeIndex secondaryItemIndex;
-    IndexedStringList vPrimaryActionTypes;
-    IndexedStringList vSecondaryActionTypes;
+    IndexedStringArray vPrimaryActionTypes;
+    IndexedStringArray vSecondaryActionTypes;
     if(!character.GetHandInfoByWeaponSet(sWeaponSet,
        primaryItemIndex,
        secondaryItemIndex,
@@ -57,10 +57,10 @@ CharacterActionSharedPtrList SkillDataWeapon::CreateWeaponActions(const IndexedS
     }
 
     // Get intersecting requirements
-    IndexedStringList vPrimaryAttackIntersections;
-    IndexedStringList vPrimaryDefendIntersections;
-    IndexedStringList vSecondaryAttackIntersections;
-    IndexedStringList vSecondaryDefendIntersections;
+    IndexedStringArray vPrimaryAttackIntersections;
+    IndexedStringArray vPrimaryDefendIntersections;
+    IndexedStringArray vSecondaryAttackIntersections;
+    IndexedStringArray vSecondaryDefendIntersections;
     if(!GetIntersectingRequirementTypes(
         vPrimaryActionTypes,
         vSecondaryActionTypes,
@@ -85,7 +85,7 @@ CharacterActionSharedPtrList SkillDataWeapon::CreateWeaponActions(const IndexedS
     // Create a list of action combinations
     struct ActionCombination
     {
-        IndexedStringList vActionTypes;
+        IndexedStringArray vActionTypes;
         IndexedString sHandType;
     };
     STDVector<ActionCombination> vCombinations;
@@ -120,22 +120,16 @@ CharacterActionSharedPtrList SkillDataWeapon::CreateWeaponActions(const IndexedS
     }
 
     // Setup new actions
-    for(auto& pNewAction : CreateBaseActions(sCharacterID, sWeaponSet))
+    for(auto& newAction : CreateBaseActions(sCharacterID, sWeaponSet))
     {
-        // Skip invalid base actions
-        if(!pNewAction)
-        {
-            continue;
-        }
-
         // Create new actions out of each combination
         for(const ActionCombination& combination : vCombinations)
         {
             CharacterActionEntry newEntry;
             newEntry.SetActionTypes(combination.vActionTypes);
             newEntry.SetHandType(combination.sHandType);
-            pNewAction->GetActionEntries().push_back(newEntry);
-            vNewActions.push_back(pNewAction);
+            newAction.GetActionEntries().push_back(newEntry);
+            vNewActions.push_back(newAction);
         }
     }
     return vNewActions;

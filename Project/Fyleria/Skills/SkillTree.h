@@ -4,7 +4,7 @@
 #ifndef _GECKO_SKILL_TREE_H_
 #define _GECKO_SKILL_TREE_H_
 
-#include "Character/CharacterAction.h"
+#include "CharacterAction/CharacterAction.h"
 #include "Skills/SkillDataAffinity.h"
 #include "Skills/SkillDataAlchemy.h"
 #include "Skills/SkillDataBreakdown.h"
@@ -46,18 +46,18 @@ const SkillDataCrafting& RetrieveSkillDataCrafting(const TreeIndex& index);
 const SkillDataWeapon& RetrieveSkillDataWeapon(const TreeIndex& index);
 
 // Get skill lists
-TreeIndexList GetAllAffinitySkills();
-TreeIndexList GetAllAlchemySkills();
-TreeIndexList GetAllBreakdownSkills();
-TreeIndexList GetAllCombatSkills();
-TreeIndexList GetAllCraftingSkills();
-TreeIndexList GetAllWeaponSkills();
-TreeIndexList GetAffinitySkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-TreeIndexList GetAlchemySkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-TreeIndexList GetBreakdownSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-TreeIndexList GetCombatSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-TreeIndexList GetCraftingSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-TreeIndexList GetWeaponSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
+TreeIndexArray GetAllAffinitySkills();
+TreeIndexArray GetAllAlchemySkills();
+TreeIndexArray GetAllBreakdownSkills();
+TreeIndexArray GetAllCombatSkills();
+TreeIndexArray GetAllCraftingSkills();
+TreeIndexArray GetAllWeaponSkills();
+TreeIndexArray GetAffinitySkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
+TreeIndexArray GetAlchemySkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
+TreeIndexArray GetBreakdownSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
+TreeIndexArray GetCombatSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
+TreeIndexArray GetCraftingSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
+TreeIndexArray GetWeaponSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
 
 // Get skill type
 IndexedString GetSkillType(const TreeIndex& index);
@@ -72,13 +72,13 @@ Bool IsSkillActionable(const TreeIndex& index);
 Bool GenerateSkillCharacterActions(const TreeIndex& index,
     const IndexedString& sCharacterID,
     const IndexedString& sWeaponSet,
-    CharacterActionSharedPtrList& vActions);
+    CharacterActionArray& vActions);
 
 // Get stat changes
-void FillSkillStatChangeLists(const IndexedString& sCharID,
-    TreeIndexList& vPassives,
-    TreeIndexList& vActives,
-    TreeIndexList& vActionables,
+void FillSkillStatChangeArrays(const IndexedString& sCharID,
+    TreeIndexArray& vPassives,
+    TreeIndexArray& vActives,
+    TreeIndexArray& vActionables,
     Bool bUniqueOnly = false);
 
 };

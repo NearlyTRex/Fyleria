@@ -1,7 +1,7 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterPartyManager.h"
+#include "CharacterParty/CharacterPartyManager.h"
 #include "Character/CharacterTypes.h"
 #include "Utility/Constants.h"
 
@@ -47,7 +47,7 @@ void CharacterPartyManager::CreateParty(const IndexedString& sPartyID, const Ind
     // Create a new party
     ASSERT_ERROR(!DoesPartyExist(sPartyID), "Party '%s' was already registered", sPartyID.c_str());
     ASSERT_ERROR(IsValidCharacterPartyType(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
-    IndexedStringList vAvailableTargetTypes;
+    IndexedStringArray vAvailableTargetTypes;
     for(UInt i = 1; i <= s_kuMaxTeamCharacterAmount; i++)
     {
         vAvailableTargetTypes.push_back(sPartyType + IndexedString(STDToString(i)));

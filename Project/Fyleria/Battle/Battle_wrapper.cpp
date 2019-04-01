@@ -2,9 +2,10 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Battle/Battle.h"
+#include "Battle/BattleEvents.h"
 #include "Battle/BattleManager.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesPython.h"
+#include "Utility/Python.h"
 
 namespace Gecko
 {
@@ -37,7 +38,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoBattle, m)
         WRAPPING_ADD_METHOD_OVERLOADED(GetCurrentAction, Gecko::Battle, )
         WRAPPING_ADD_METHOD_OVERLOADED_CONST(GetCurrentAction, Gecko::Battle, )
         WRAPPING_ADD_METHOD_SIMPLE(AreAllActionsFinished, Gecko::Battle)
-        WRAPPING_ADD_METHOD_SIMPLE(GetRemainingActions, Gecko::Battle)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IsBattleStarted, Gecko::Battle)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IsBattleFinished, Gecko::Battle)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IsBattleManuallyWon, Gecko::Battle)
@@ -49,11 +49,26 @@ PYBIND11_EMBEDDED_MODULE(GeckoBattle, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(EnemyPartyName, Gecko::Battle)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(AllyPartyName, Gecko::Battle)
     ;
-    PyBindVector<Gecko::BattleList>(m, "BattleList");
+    PyBindVector<Gecko::BattleArray>(m, "BattleArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertBattleToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertBattleListToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertBattleArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetBattleFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetBattleListFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetBattleArrayFromJsonString, Gecko);
+
+    // BattleEvents.h
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleStarted, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleEnded, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleTally, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleFullyCompleted, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleRoundAdvanced, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleGivingDamage, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleTakingDamage, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleChoosingTargets, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleBecomingTarget, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleActionAttackSetup, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleActionDefendSetup, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleActionApplied, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleActionFinished, Gecko);
 
     // BattleManager.h
     PyBindClass<Gecko::BattleManager>(m, "BattleManager")

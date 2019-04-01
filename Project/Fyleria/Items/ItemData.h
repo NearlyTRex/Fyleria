@@ -7,8 +7,8 @@
 #include "Stats/StatChange.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Enum.h"
+#include "Utility/Json.h"
 
 namespace Gecko
 {
@@ -28,10 +28,10 @@ public:
     Bool DoesMeetActionRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
 
     // Create base character action
-    CharacterActionSharedPtrList CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
 
     // Run types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, IndexedStringArray);
 
     // Data class
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(DataClass, IndexedString);
@@ -46,13 +46,13 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemType, IndexedString);
 
     // Action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionTypes, IndexedStringList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionTypes, IndexedStringArray);
 
     // Item index
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

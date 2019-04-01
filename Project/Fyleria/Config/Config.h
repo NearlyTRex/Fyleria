@@ -5,7 +5,7 @@
 #define _GECKO_CONFIG_H_
 
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
+#include "Utility/Enum.h"
 #include "Utility/Serializable.h"
 
 namespace Gecko

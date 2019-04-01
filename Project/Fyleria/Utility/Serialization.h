@@ -14,22 +14,22 @@ namespace Gecko
 {
 
 // Read a binary file into a string
-Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8List& vBytes);
+Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8Array& vBytes);
 
 // Write a string to a binary file
-Bool WriteBinaryFile(const IndexedString& sFilename, const FixedUnsigned8List& vBytes);
+Bool WriteBinaryFile(const IndexedString& sFilename, const FixedUnsigned8Array& vBytes);
 
 // Determine if bytes represent a CBOR file
-Bool IsCBOR(const FixedUnsigned8List& vBytes);
+Bool IsCBOR(const FixedUnsigned8Array& vBytes);
 
 // Determine if bytes represent a MsgPack file
-Bool IsMsgPack(const FixedUnsigned8List& vBytes);
+Bool IsMsgPack(const FixedUnsigned8Array& vBytes);
 
 // Remove CBOR header
-Bool RemoveCBORHeader(FixedUnsigned8List& vBytes);
+Bool RemoveCBORHeader(FixedUnsigned8Array& vBytes);
 
 // Remove MsgPack header
-Bool RemoveMsgPackHeader(FixedUnsigned8List& vBytes);
+Bool RemoveMsgPackHeader(FixedUnsigned8Array& vBytes);
 
 // Read serialized file
 Bool ReadSerializedFile(const IndexedString& sFilename, const IndexedString& sType, Json& jsonData);

@@ -7,7 +7,7 @@
 // Internal includes
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
+#include "Utility/Enum.h"
 
 namespace Gecko
 {
@@ -54,8 +54,8 @@ BETTER_ENUM(ItemType, Int,
     ArmorShieldSlash
 );
 
-MAKE_ENUM_GETSTRINGLIST_DECL(ItemTreeType);
-MAKE_ENUM_GETSTRINGLIST_DECL(ItemType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(ItemTreeType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(ItemType);
 
 MAKE_ENUM_CONVERTERS_DECL(ItemTreeType);
 MAKE_ENUM_CONVERTERS_DECL(ItemType);

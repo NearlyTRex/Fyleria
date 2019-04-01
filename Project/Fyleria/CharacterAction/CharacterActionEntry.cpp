@@ -1,7 +1,7 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterActionEntry.h"
+#include "CharacterAction/CharacterActionEntry.h"
 
 namespace Gecko
 {

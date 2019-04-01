@@ -1,8 +1,8 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#ifndef _GECKO_CHARACTER_H_
-#define _GECKO_CHARACTER_H_
+#ifndef _GECKO_BATTLE_EVENTS_H_
+#define _GECKO_BATTLE_EVENTS_H_
 
 #include "Utility/Types.h"
 #include "Utility/IndexedString.h"
@@ -33,3 +33,5 @@ void HandleBattleActionApplied(const IndexedString& sCharacterID, const Characte
 void HandleBattleActionFinished(const IndexedString& sCharacterID, const CharacterAction& action);
 
 };
+
+#endif

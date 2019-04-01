@@ -41,10 +41,10 @@ void from_json(const Json& jsonData, Recipe& obj)
     obj.SetChanceToSucceed(GET_JSON_DATA_OR_DEFAULT(ChanceToSucceed, Float, 0));
 
     // Ingredients
-    obj.SetIngredients(GET_JSON_DATA_OR_DEFAULT(Ingredients, RecipeEntryList, RecipeEntryList()));
+    obj.SetIngredients(GET_JSON_DATA_OR_DEFAULT(Ingredients, RecipeEntryArray, RecipeEntryArray()));
 
     // Results
-    obj.SetResults(GET_JSON_DATA_OR_DEFAULT(Results, RecipeEntryList, RecipeEntryList()));
+    obj.SetResults(GET_JSON_DATA_OR_DEFAULT(Results, RecipeEntryArray, RecipeEntryArray()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Recipe, Recipe);

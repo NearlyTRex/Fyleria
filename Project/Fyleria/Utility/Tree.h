@@ -7,55 +7,12 @@
 #include "Utility/IndexedString.h"
 #include "Utility/Assert.h"
 #include "Utility/Logging.h"
-#include "Utility/Serializable.h"
-#include "Utility/Serialization.h"
 #include "Utility/Singleton.h"
 #include "Utility/Filesystem.h"
+#include "Utility/TreeIndex.h"
 
 namespace Gecko
 {
-
-class TreeIndex : public SerializableToJson
-{
-public:
-
-    // Constructors
-    TreeIndex();
-    TreeIndex(const IndexedString& sTree, const IndexedString& sBranch, const IndexedString& sLeaf);
-    explicit TreeIndex(const Json& jsonData);
-    explicit TreeIndex(const String& jsonString);
-
-    // Tree/branch/leaf name
-    const IndexedString& GetTree() const;
-    const IndexedString& GetBranch() const;
-    const IndexedString& GetLeaf() const;
-    void SetTree(const IndexedString& sName);
-    void SetBranch(const IndexedString& sName);
-    void SetLeaf(const IndexedString& sName);
-
-    // Composite types
-    IndexedString GetTreeBranchType() const;
-    IndexedString GetTreeBranchLeafType() const;
-    IndexedStringList GetTypes() const;
-
-    // Compatibility
-    Bool empty() const;
-
-    // Comparisons
-    Bool operator==(const TreeIndex& other) const;
-    Bool operator!=(const TreeIndex& other) const;
-
-private:
-
-    // Branch/leaf name
-    IndexedString m_sTreeName;
-    IndexedString m_sBranchName;
-    IndexedString m_sLeafName;
-};
-typedef STDVector<TreeIndex> TreeIndexList;
-void to_json(Json& jsonData, const TreeIndex& obj);
-void from_json(const Json& jsonData, TreeIndex& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(TreeIndex, TreeIndex);
 
 template <class T>
 class Tree : public Singleton<Tree<T>>
@@ -87,8 +44,7 @@ public:
         LOG_FORMAT_STATEMENT("Loading JSON file '%s' into branch %s\n", sBranchFile.c_str(), sBranchName.c_str());
 
         // Check that the file exists first
-        FilesystemPath branchPath(sBranchFile.c_str());
-        if(!DoesFileExist(branchPath))
+        if(!DoesFileExist(sBranchFile.c_str()))
         {
             ERROR_FORMAT_STATEMENT("JSON file '%s' does not exist!\n", sBranchFile.c_str());
             return;
@@ -145,10 +101,10 @@ public:
     }
 
     // Get all leaves
-    TreeIndexList GetAllLeaves(const IndexedString& sBranchName)
+    TreeIndexArray GetAllLeaves(const IndexedString& sBranchName)
     {
         // Check branch
-        TreeIndexList vLeaves;
+        TreeIndexArray vLeaves;
         if(sBranchName.empty())
         {
             return vLeaves;
@@ -172,17 +128,17 @@ public:
     }
 
     // Get all unique leaves under the given number
-    TreeIndexList GetLeavesUnderNumber(const IndexedString& sBranchName, const IndexedString& sLeafBase, Int iLeafNumber, Bool bUniqueOnly)
+    TreeIndexArray GetLeavesUnderNumber(const IndexedString& sBranchName, const IndexedString& sLeafBase, Int iLeafNumber, Bool bUniqueOnly)
     {
         // Check branch
-        TreeIndexList vLeaves;
+        TreeIndexArray vLeaves;
         if(sBranchName.empty())
         {
             return vLeaves;
         }
 
         // Look at each of the leaves at or below the given number
-        StringList vCheckedClasses;
+        StringArray vCheckedClasses;
         for(Int i = iLeafNumber; i >= 0; i--)
         {
             // Ignore invalid leaves

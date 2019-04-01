@@ -6,17 +6,21 @@
 namespace Gecko
 {
 
-const TreeIndexList CharacterStatChangeData::s_vEmptyChanges = {};
+const TreeIndexArray CharacterStatChangeData::s_vEmptyChanges = {};
 
 CharacterStatChangeData::CharacterStatChangeData()
 {
-    // List of passive/active/actionable data
-    GetPassiveSkillDataList().clear();
-    GetActiveSkillDataList().clear();
-    GetActionableSkillDataList().clear();
-    GetPassiveItemDataList().clear();
-    GetActiveItemDataList().clear();
-    GetActionableItemDataList().clear();
+    // Passive data
+    GetPassiveSkillDataArray().clear();
+    GetPassiveItemDataArray().clear();
+
+    // Active data
+    GetActiveSkillDataArray().clear();
+    GetActiveItemDataArray().clear();
+
+    // Actionable data
+    GetActionableSkillDataArray().clear();
+    GetActionableItemDataArray().clear();
 
     // Prolonged stat changes
     SetProlongedStatChanges({});
@@ -26,45 +30,45 @@ CharacterStatChangeData::~CharacterStatChangeData()
 {
 }
 
-const TreeIndexList& CharacterStatChangeData::GetPassiveChanges(const IndexedString& sTreeIndexType) const
+const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const IndexedString& sTreeIndexType) const
 {
     const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
     switch(eTreeIndexType)
     {
         case CharacterTreeIndexType::Skill:
-            return GetPassiveSkillDataList();
+            return GetPassiveSkillDataArray();
         case CharacterTreeIndexType::Item:
-            return GetPassiveItemDataList();
+            return GetPassiveItemDataArray();
         default:
             break;
     }
     return s_vEmptyChanges;
 }
 
-const TreeIndexList& CharacterStatChangeData::GetActiveChanges(const IndexedString& sTreeIndexType) const
+const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const IndexedString& sTreeIndexType) const
 {
     const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
     switch(eTreeIndexType)
     {
         case CharacterTreeIndexType::Skill:
-            return GetActiveSkillDataList();
+            return GetActiveSkillDataArray();
         case CharacterTreeIndexType::Item:
-            return GetActiveItemDataList();
+            return GetActiveItemDataArray();
         default:
             break;
     }
     return s_vEmptyChanges;
 }
 
-const TreeIndexList& CharacterStatChangeData::GetActionableChanges(const IndexedString& sTreeIndexType) const
+const TreeIndexArray& CharacterStatChangeData::GetActionableChanges(const IndexedString& sTreeIndexType) const
 {
     const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
     switch(eTreeIndexType)
     {
         case CharacterTreeIndexType::Skill:
-            return GetActionableSkillDataList();
+            return GetActionableSkillDataArray();
         case CharacterTreeIndexType::Item:
-            return GetActionableItemDataList();
+            return GetActionableItemDataArray();
         default:
             break;
     }
@@ -91,10 +95,10 @@ const ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const
     return (GetProlongedStatChanges().at(sKey));
 }
 
-StatChangeEntryList CharacterStatChangeData::GetProlongedStatChangeEntries() const
+StatChangeEntryArray CharacterStatChangeData::GetProlongedStatChangeEntries() const
 {
     // Find all prolonged stat change entries that match current conditions
-    StatChangeEntryList vEntries;
+    StatChangeEntryArray vEntries;
     for(auto it = GetProlongedStatChanges().begin(); it != GetProlongedStatChanges().end(); it++)
     {
         // Ignore expired entries
@@ -135,7 +139,7 @@ Bool CharacterStatChangeData::HasProlongedStatChangeExpired(const IndexedString&
 
 void CharacterStatChangeData::RemoveAllExpiredProlongedStatChanges()
 {
-    IndexedStringList vKeys;
+    IndexedStringArray vKeys;
     for(auto it = GetProlongedStatChanges().begin(); it != GetProlongedStatChanges().end(); it++)
     {
         if(HasProlongedStatChangeExpired(IndexedString(it->first)))
@@ -162,24 +166,32 @@ Bool CharacterStatChangeData::operator!=(const CharacterStatChangeData& other) c
 
 void to_json(Json& jsonData, const CharacterStatChangeData& obj)
 {
-    // List of passive/active/actionable data
-    SET_JSON_DATA_IF_NOT_EMPTY(PassiveSkillDataList);
-    SET_JSON_DATA_IF_NOT_EMPTY(ActiveSkillDataList);
-    SET_JSON_DATA_IF_NOT_EMPTY(ActionableSkillDataList);
-    SET_JSON_DATA_IF_NOT_EMPTY(PassiveItemDataList);
-    SET_JSON_DATA_IF_NOT_EMPTY(ActiveItemDataList);
-    SET_JSON_DATA_IF_NOT_EMPTY(ActionableItemDataList);
+    // Passive data
+    SET_JSON_DATA_IF_NOT_EMPTY(PassiveSkillDataArray);
+    SET_JSON_DATA_IF_NOT_EMPTY(PassiveItemDataArray);
+
+    // Active data
+    SET_JSON_DATA_IF_NOT_EMPTY(ActiveSkillDataArray);
+    SET_JSON_DATA_IF_NOT_EMPTY(ActiveItemDataArray);
+
+    // Actionable data
+    SET_JSON_DATA_IF_NOT_EMPTY(ActionableSkillDataArray);
+    SET_JSON_DATA_IF_NOT_EMPTY(ActionableItemDataArray);
 }
 
 void from_json(const Json& jsonData, CharacterStatChangeData& obj)
 {
-    // List of passive/active/actionable data
-    obj.SetPassiveSkillDataList(GET_JSON_DATA_OR_DEFAULT(PassiveSkillDataList, TreeIndexList, TreeIndexList()));
-    obj.SetActiveSkillDataList(GET_JSON_DATA_OR_DEFAULT(ActiveSkillDataList, TreeIndexList, TreeIndexList()));
-    obj.SetActionableSkillDataList(GET_JSON_DATA_OR_DEFAULT(ActionableSkillDataList, TreeIndexList, TreeIndexList()));
-    obj.SetPassiveItemDataList(GET_JSON_DATA_OR_DEFAULT(PassiveItemDataList, TreeIndexList, TreeIndexList()));
-    obj.SetActiveItemDataList(GET_JSON_DATA_OR_DEFAULT(ActiveItemDataList, TreeIndexList, TreeIndexList()));
-    obj.SetActionableItemDataList(GET_JSON_DATA_OR_DEFAULT(ActionableItemDataList, TreeIndexList, TreeIndexList()));
+    // Passive data
+    obj.SetPassiveSkillDataArray(GET_JSON_DATA_OR_DEFAULT(PassiveSkillDataArray, TreeIndexArray, TreeIndexArray()));
+    obj.SetPassiveItemDataArray(GET_JSON_DATA_OR_DEFAULT(PassiveItemDataArray, TreeIndexArray, TreeIndexArray()));
+
+    // Active data
+    obj.SetActiveSkillDataArray(GET_JSON_DATA_OR_DEFAULT(ActiveSkillDataArray, TreeIndexArray, TreeIndexArray()));
+    obj.SetActiveItemDataArray(GET_JSON_DATA_OR_DEFAULT(ActiveItemDataArray, TreeIndexArray, TreeIndexArray()));
+
+    // Actionable data
+    obj.SetActionableSkillDataArray(GET_JSON_DATA_OR_DEFAULT(ActionableSkillDataArray, TreeIndexArray, TreeIndexArray()));
+    obj.SetActionableItemDataArray(GET_JSON_DATA_OR_DEFAULT(ActionableItemDataArray, TreeIndexArray, TreeIndexArray()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterStatChangeData, CharacterStatChangeData);

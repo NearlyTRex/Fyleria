@@ -48,12 +48,12 @@ public:
     Bool GetIntStatValue(const IndexedString& sSegment, const IndexedString& sStat, Int& iValue) const;
     Bool GetFloatStatValue(const IndexedString& sSegment, const IndexedString& sStat, Float& fValue) const;
     Bool GetStringStatValue(const IndexedString& sSegment, const IndexedString& sStat, IndexedString& sValue) const;
-    Bool GetStringListStatValue(const IndexedString& sSegment, const IndexedString& sStat, IndexedStringList& vValues) const;
+    Bool GetStringArrayStatValue(const IndexedString& sSegment, const IndexedString& sStat, IndexedStringArray& vValues) const;
     Bool SetBoolStatValue(const IndexedString& sSegment, const IndexedString& sStat, const Bool& bValue);
     Bool SetIntStatValue(const IndexedString& sSegment, const IndexedString& sStat, const Int& iValue);
     Bool SetFloatStatValue(const IndexedString& sSegment, const IndexedString& sStat, const Float& fValue);
     Bool SetStringStatValue(const IndexedString& sSegment, const IndexedString& sStat, const IndexedString& sValue);
-    Bool SetStringListStatValue(const IndexedString& sSegment, const IndexedString& sStat, const IndexedStringList& vValues);
+    Bool SetStringArrayStatValue(const IndexedString& sSegment, const IndexedString& sStat, const IndexedStringArray& vValues);
 
     // Progress data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ProgressDataBase, CharacterProgressData);

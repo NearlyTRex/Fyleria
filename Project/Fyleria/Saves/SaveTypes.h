@@ -7,6 +7,6 @@
 // Internal includes
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
+#include "Utility/Enum.h"
 
 #endif

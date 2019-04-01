@@ -3,7 +3,7 @@
 
 #include "Module/Module.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesPython.h"
+#include "Utility/Python.h"
 
 PYBIND11_EMBEDDED_MODULE(GeckoModule, m)
 {

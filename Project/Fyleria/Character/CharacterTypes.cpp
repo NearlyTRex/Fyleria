@@ -84,9 +84,9 @@ IndexedString ConvertItemTypeToCharacterActionType(const IndexedString& sItemTyp
     }
 }
 
-IndexedStringList ConvertItemTypeToCharacterEquipTypes(const IndexedString& sItemType)
+IndexedStringArray ConvertItemTypeToCharacterEquipTypes(const IndexedString& sItemType)
 {
-    IndexedStringList vEquipTypes;
+    IndexedStringArray vEquipTypes;
     if(!sItemType.IsValid())
     {
         return vEquipTypes;
@@ -219,25 +219,25 @@ IndexedString ConvertSkillWeaponTypeToCharacterActionType(const IndexedString& s
     }
 }
 
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterTreeIndexType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterSegmentType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterProgressStatType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterBattleStatType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterStatusType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterBaseRaceType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterTransformedRaceType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterPowerSetType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterWeaponSetType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterGenderType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterHairType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterEyeType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterHandednessType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterHandType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterEquipmentType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterTargetType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterPartyType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterActionType);
-MAKE_ENUM_GETSTRINGLIST_IMPL(CharacterActionRunType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTreeIndexType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterSegmentType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterProgressStatType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterStatusType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBaseRaceType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTransformedRaceType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterPowerSetType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterWeaponSetType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterGenderType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterHairType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterEyeType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterHandednessType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterHandType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterEquipmentType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTargetType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterPartyType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterActionType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterActionRunType);
 
 MAKE_ENUM_CONVERTERS_IMPL(CharacterTreeIndexType);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterSegmentType);

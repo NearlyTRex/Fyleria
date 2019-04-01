@@ -216,9 +216,9 @@ IndexedString RetrieveItemType(const TreeIndex& index)
     vFinal.insert(vFinal.end(), vLeaves.begin(), vLeaves.end());                \
 }
 
-TreeIndexList GetAllArmorItems()
+TreeIndexArray GetAllArmorItems()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ITEM_LEAVES(Armor, Chest);
     ADD_ITEM_LEAVES(Armor, Feet);
     ADD_ITEM_LEAVES(Armor, Finger);
@@ -230,9 +230,9 @@ TreeIndexList GetAllArmorItems()
     return vFinal;
 }
 
-TreeIndexList GetAllIngredientItems()
+TreeIndexArray GetAllIngredientItems()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ITEM_LEAVES(Ingredient, Bar);
     ADD_ITEM_LEAVES(Ingredient, Cloth);
     ADD_ITEM_LEAVES(Ingredient, Crystal);
@@ -247,9 +247,9 @@ TreeIndexList GetAllIngredientItems()
     return vFinal;
 }
 
-TreeIndexList GetAllPotionItems()
+TreeIndexArray GetAllPotionItems()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ITEM_LEAVES(Potion, Energy);
     ADD_ITEM_LEAVES(Potion, Heal);
     ADD_ITEM_LEAVES(Potion, Magic);
@@ -257,9 +257,9 @@ TreeIndexList GetAllPotionItems()
     return vFinal;
 }
 
-TreeIndexList GetAllWeaponItems()
+TreeIndexArray GetAllWeaponItems()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ITEM_LEAVES(Weapon, Blunt);
     ADD_ITEM_LEAVES(Weapon, Mage);
     ADD_ITEM_LEAVES(Weapon, Pierce);
@@ -267,9 +267,9 @@ TreeIndexList GetAllWeaponItems()
     return vFinal;
 }
 
-TreeIndexList GetAllEquippedItems(const IndexedString& sCharID)
+TreeIndexArray GetAllEquippedItems(const IndexedString& sCharID)
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharID))
     {
         return vFinal;
@@ -328,14 +328,14 @@ Bool IsItemActionable(const TreeIndex& index)
 Bool GenerateItemCharacterActions(const TreeIndex& index,
     const IndexedString& sCharacterID,
     const IndexedString& sWeaponSet,
-    CharacterActionSharedPtrList& vActions)
+    CharacterActionArray& vActions)
 {
     if(DoesItemDataArmorExist(index))
     {
         const ItemDataArmor& itemData = RetrieveItemDataArmor(index);
         if(itemData.IsActionable() && itemData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
         {
-            CharacterActionSharedPtrList vNewActions = itemData.CreateArmorActions(sCharacterID, sWeaponSet);
+            CharacterActionArray vNewActions = itemData.CreateArmorActions(sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
             return true;
         }
@@ -345,7 +345,7 @@ Bool GenerateItemCharacterActions(const TreeIndex& index,
         const ItemDataPotion& itemData = RetrieveItemDataPotion(index);
         if(itemData.IsActionable() && itemData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
         {
-            CharacterActionSharedPtrList vNewActions = itemData.CreatePotionActions(sCharacterID, sWeaponSet);
+            CharacterActionArray vNewActions = itemData.CreatePotionActions(sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
             return true;
         }
@@ -355,7 +355,7 @@ Bool GenerateItemCharacterActions(const TreeIndex& index,
         const ItemDataWeapon& itemData = RetrieveItemDataWeapon(index);
         if(itemData.IsActionable() && itemData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
         {
-            CharacterActionSharedPtrList vNewActions = itemData.CreateWeaponActions(sCharacterID, sWeaponSet);
+            CharacterActionArray vNewActions = itemData.CreateWeaponActions(sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
             return true;
         }
@@ -413,9 +413,9 @@ Bool IsItemShield(const TreeIndex& index)
     return false;
 }
 
-IndexedStringList GetActionTypes(const TreeIndex& index)
+IndexedStringArray GetActionTypes(const TreeIndex& index)
 {
-    IndexedStringList vActionTypes;
+    IndexedStringArray vActionTypes;
     if(DoesItemDataArmorExist(index))
     {
         const ItemDataArmor& item = RetrieveItemDataArmor(index);
@@ -434,16 +434,16 @@ IndexedStringList GetActionTypes(const TreeIndex& index)
     return vActionTypes;
 }
 
-void FillItemStatChangeLists(const TreeIndexList& vItemDataList,
-    TreeIndexList& vPassives,
-    TreeIndexList& vActives,
-    TreeIndexList& vActionables)
+void FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
+    TreeIndexArray& vPassives,
+    TreeIndexArray& vActives,
+    TreeIndexArray& vActionables)
 {
     // Use a set to make sure that we do not include duplicates
     STDUnorderedSet<IndexedString, IndexedStringHasher> tAlreadyUsed;
 
     // Split them into separate lists
-    for(const TreeIndex& index : vItemDataList)
+    for(const TreeIndex& index : vItemDataArray)
     {
         IndexedString sIndexKey = index.GetTreeBranchLeafType();
         Bool bIsActionable = IsItemActionable(index);

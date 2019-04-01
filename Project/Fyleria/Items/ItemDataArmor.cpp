@@ -25,9 +25,9 @@ ItemDataArmor::ItemDataArmor(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
-CharacterActionSharedPtrList ItemDataArmor::CreateArmorActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray ItemDataArmor::CreateArmorActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
 {
-    CharacterActionSharedPtrList vNewActions;
+    CharacterActionArray vNewActions;
     return vNewActions;
 }
 
@@ -44,7 +44,7 @@ void from_json(const Json& jsonData, ItemDataArmor& obj)
     obj.SetMagicDefendPercent(GET_JSON_DATA_OR_DEFAULT(MagicDefendPercent, Float, 0));
 
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeList, StatChangeList()));
+    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataArmor, ItemDataArmor);

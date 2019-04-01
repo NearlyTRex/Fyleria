@@ -4,11 +4,11 @@
 #ifndef _GECKO_CHARACTER_GENERATOR_H_
 #define _GECKO_CHARACTER_GENERATOR_H_
 
-#include "Character/CharacterProgressData.h"
-#include "Character/CharacterBattleData.h"
+#include "CharacterData/CharacterProgressData.h"
+#include "CharacterData/CharacterBattleData.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesJson.h"
+#include "Utility/Json.h"
 #include "Utility/Serializable.h"
 
 namespace Gecko

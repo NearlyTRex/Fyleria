@@ -4,7 +4,7 @@
 #ifndef _GECKO_CHARACTER_PARTY_MANAGER_H_
 #define _GECKO_CHARACTER_PARTY_MANAGER_H_
 
-#include "Character/CharacterParty.h"
+#include "CharacterParty/CharacterParty.h"
 #include "Utility/Singleton.h"
 
 namespace Gecko

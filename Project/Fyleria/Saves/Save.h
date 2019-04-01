@@ -5,9 +5,9 @@
 #define _GECKO_SAVE_H_
 
 #include "Character/CharacterManager.h"
-#include "Character/CharacterPartyManager.h"
+#include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
+#include "Utility/Enum.h"
 #include "Utility/Serializable.h"
 
 namespace Gecko
@@ -35,7 +35,7 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(Party, CharacterParty);
 
     // Characters
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Characters, CharacterList);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(Characters, CharacterArray);
 
 };
 

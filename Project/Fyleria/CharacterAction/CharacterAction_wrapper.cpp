@@ -1,18 +1,14 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterAction.h"
-#include "Character/CharacterActionBattleItem.h"
-#include "Character/CharacterActionBattleSkill.h"
-#include "Character/CharacterActionFieldItem.h"
-#include "Character/CharacterActionFieldSkill.h"
-#include "Character/CharacterActionResult.h"
+#include "CharacterAction/CharacterAction.h"
+#include "CharacterAction/CharacterActionResult.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesPython.h"
+#include "Utility/Python.h"
 
-PYBIND11_MAKE_OPAQUE(Gecko::CharacterActionResultList);
-PYBIND11_MAKE_OPAQUE(Gecko::CharacterActionEntryList);
-PYBIND11_MAKE_OPAQUE(Gecko::CharacterActionList);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterActionResultArray);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterActionEntryArray);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterActionArray);
 
 PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
 {
@@ -23,15 +19,15 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(HasTargetDefendedSuccessfully, Gecko::CharacterActionResult)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(HaveMultipleAttacksSucceeded, Gecko::CharacterActionResult)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(NumAttacksOnTarget, Gecko::CharacterActionResult)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IndividualAttackIsCriticalCausedList, Gecko::CharacterActionResult)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IndividualAttackIsCriticalBlockedList, Gecko::CharacterActionResult)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IndividualAttackTargetDamageList, Gecko::CharacterActionResult)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IndividualAttackIsCriticalCausedArray, Gecko::CharacterActionResult)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IndividualAttackIsCriticalBlockedArray, Gecko::CharacterActionResult)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IndividualAttackTargetDamageArray, Gecko::CharacterActionResult)
     ;
-    PyBindVector<Gecko::CharacterActionResultList>(m, "CharacterActionResultList");
+    PyBindVector<Gecko::CharacterActionResultArray>(m, "CharacterActionResultArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionResultToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionResultListToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionResultArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionResultFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionResultListFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionResultArrayFromJsonString, Gecko);
 
     // CharacterActionEntry.h
     PyBindClass<Gecko::CharacterActionEntry>(m, "CharacterActionEntry")
@@ -43,11 +39,11 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(DestinationCharacterID, Gecko::CharacterActionEntry)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Result, Gecko::CharacterActionEntry)
     ;
-    PyBindVector<Gecko::CharacterActionEntryList>(m, "CharacterActionEntryList");
+    PyBindVector<Gecko::CharacterActionEntryArray>(m, "CharacterActionEntryArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionEntryToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionEntryListToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionEntryArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionEntryFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionEntryListFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionEntryArrayFromJsonString, Gecko);
 
     // CharacterAction.h
     PyBindClass<Gecko::CharacterAction, STDSharedPtr<Gecko::CharacterAction>>(m, "CharacterAction")
@@ -74,26 +70,9 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(SourceTargetType, Gecko::CharacterAction)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(SourceCharacterID, Gecko::CharacterAction)
     ;
-    PyBindVector<Gecko::CharacterActionList>(m, "CharacterActionList");
-    PyBindVector<Gecko::CharacterActionSharedPtrList>(m, "CharacterActionSharedPtrList");
+    PyBindVector<Gecko::CharacterActionArray>(m, "CharacterActionArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionListToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionListFromJsonString, Gecko);
-
-    PyBindClass<Gecko::CharacterActionBattleItem, Gecko::CharacterAction, STDSharedPtr<Gecko::CharacterActionBattleItem>>(m, "CharacterActionBattleItem")
-        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-    ;
-
-    PyBindClass<Gecko::CharacterActionBattleSkill, Gecko::CharacterAction, STDSharedPtr<Gecko::CharacterActionBattleSkill>>(m, "CharacterActionBattleSkill")
-        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-    ;
-
-    PyBindClass<Gecko::CharacterActionFieldItem, Gecko::CharacterActionBattleItem, STDSharedPtr<Gecko::CharacterActionFieldItem>>(m, "CharacterActionFieldItem")
-        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-    ;
-
-    PyBindClass<Gecko::CharacterActionFieldSkill, Gecko::CharacterActionBattleSkill, STDSharedPtr<Gecko::CharacterActionFieldSkill>>(m, "CharacterActionFieldSkill")
-        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-    ;
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionArrayFromJsonString, Gecko);
 }

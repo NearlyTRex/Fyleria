@@ -4,11 +4,11 @@
 #include "Skills/SkillTree.h"
 #include "Config/ConfigManager.h"
 #include "Character/CharacterManager.h"
-#include "Character/CharacterPartyManager.h"
+#include "CharacterParty/CharacterPartyManager.h"
 #include "Stats/StatChange.h"
 #include "Utility/Constants.h"
-#include "Utility/TypesFantasyName.h"
-#include "Utility/TypesJson.h"
+#include "Utility/FantasyName.h"
+#include "Utility/Json.h"
 
 namespace Gecko
 {
@@ -268,9 +268,9 @@ const SkillDataWeapon& RetrieveSkillDataWeapon(const TreeIndex& index)
     vFinal.insert(vFinal.end(), vLeaves.begin(), vLeaves.end());                                                            \
 }
 
-TreeIndexList GetAllAffinitySkills()
+TreeIndexArray GetAllAffinitySkills()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ALL_SKILL_LEAVES(Affinity, Holy);
     ADD_ALL_SKILL_LEAVES(Affinity, Fire);
     ADD_ALL_SKILL_LEAVES(Affinity, Ice);
@@ -286,9 +286,9 @@ TreeIndexList GetAllAffinitySkills()
     return vFinal;
 }
 
-TreeIndexList GetAllAlchemySkills()
+TreeIndexArray GetAllAlchemySkills()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ALL_SKILL_LEAVES(Alchemy, Alchemist);
     ADD_ALL_SKILL_LEAVES(Alchemy, Chemist);
     ADD_ALL_SKILL_LEAVES(Alchemy, Energist);
@@ -296,9 +296,9 @@ TreeIndexList GetAllAlchemySkills()
     return vFinal;
 }
 
-TreeIndexList GetAllBreakdownSkills()
+TreeIndexArray GetAllBreakdownSkills()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ALL_SKILL_LEAVES(Breakdown, Bowbane);
     ADD_ALL_SKILL_LEAVES(Breakdown, Goldbane);
     ADD_ALL_SKILL_LEAVES(Breakdown, Hammerbane);
@@ -312,9 +312,9 @@ TreeIndexList GetAllBreakdownSkills()
     return vFinal;
 }
 
-TreeIndexList GetAllCombatSkills()
+TreeIndexArray GetAllCombatSkills()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ALL_SKILL_LEAVES(Combat, Ambidextrous);
     ADD_ALL_SKILL_LEAVES(Combat, Avatar);
     ADD_ALL_SKILL_LEAVES(Combat, Barbarian);
@@ -326,9 +326,9 @@ TreeIndexList GetAllCombatSkills()
     return vFinal;
 }
 
-TreeIndexList GetAllCraftingSkills()
+TreeIndexArray GetAllCraftingSkills()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ALL_SKILL_LEAVES(Crafting, Bowsmith);
     ADD_ALL_SKILL_LEAVES(Crafting, Goldsmith);
     ADD_ALL_SKILL_LEAVES(Crafting, Hammersmith);
@@ -342,9 +342,9 @@ TreeIndexList GetAllCraftingSkills()
     return vFinal;
 }
 
-TreeIndexList GetAllWeaponSkills()
+TreeIndexArray GetAllWeaponSkills()
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     ADD_ALL_SKILL_LEAVES(Weapon, Bash);
     ADD_ALL_SKILL_LEAVES(Weapon, Block);
     ADD_ALL_SKILL_LEAVES(Weapon, Break);
@@ -372,9 +372,9 @@ TreeIndexList GetAllWeaponSkills()
     return vFinal;
 }
 
-TreeIndexList GetAffinitySkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray GetAffinitySkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     if(sCharID.IsValid())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
@@ -394,9 +394,9 @@ TreeIndexList GetAffinitySkills(const IndexedString& sCharID, Bool bUniqueOnly /
     return vFinal;
 }
 
-TreeIndexList GetAlchemySkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray GetAlchemySkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     if(sCharID.IsValid())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
@@ -408,9 +408,9 @@ TreeIndexList GetAlchemySkills(const IndexedString& sCharID, Bool bUniqueOnly /*
     return vFinal;
 }
 
-TreeIndexList GetBreakdownSkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray GetBreakdownSkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     if(sCharID.IsValid())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
@@ -428,9 +428,9 @@ TreeIndexList GetBreakdownSkills(const IndexedString& sCharID, Bool bUniqueOnly 
     return vFinal;
 }
 
-TreeIndexList GetCombatSkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray GetCombatSkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     if(sCharID.IsValid())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
@@ -446,9 +446,9 @@ TreeIndexList GetCombatSkills(const IndexedString& sCharID, Bool bUniqueOnly /*=
     return vFinal;
 }
 
-TreeIndexList GetCraftingSkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray GetCraftingSkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     if(sCharID.IsValid())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
@@ -466,9 +466,9 @@ TreeIndexList GetCraftingSkills(const IndexedString& sCharID, Bool bUniqueOnly /
     return vFinal;
 }
 
-TreeIndexList GetWeaponSkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray GetWeaponSkills(const IndexedString& sCharID, Bool bUniqueOnly /*= false*/)
 {
-    TreeIndexList vFinal;
+    TreeIndexArray vFinal;
     if(sCharID.IsValid())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
@@ -560,14 +560,14 @@ Bool IsSkillActionable(const TreeIndex& index)
 Bool GenerateSkillCharacterActions(const TreeIndex& index,
     const IndexedString& sCharacterID,
     const IndexedString& sWeaponSet,
-    CharacterActionSharedPtrList& vActions)
+    CharacterActionArray& vActions)
 {
     if(DoesSkillDataCombatExist(index))
     {
         const SkillDataCombat& skillData = RetrieveSkillDataCombat(index);
         if(skillData.IsActionable() && skillData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
         {
-            CharacterActionSharedPtrList vNewActions = skillData.CreateCombatActions(sCharacterID, sWeaponSet);
+            CharacterActionArray vNewActions = skillData.CreateCombatActions(sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
             return true;
         }
@@ -577,7 +577,7 @@ Bool GenerateSkillCharacterActions(const TreeIndex& index,
         const SkillDataWeapon& skillData = RetrieveSkillDataWeapon(index);
         if(skillData.IsActionable() && skillData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
         {
-            CharacterActionSharedPtrList vNewActions = skillData.CreateWeaponActions(sCharacterID, sWeaponSet);
+            CharacterActionArray vNewActions = skillData.CreateWeaponActions(sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
             return true;
         }
@@ -585,32 +585,32 @@ Bool GenerateSkillCharacterActions(const TreeIndex& index,
     return false;
 }
 
-void FillSkillStatChangeLists(const IndexedString& sCharID,
-    TreeIndexList& vPassives,
-    TreeIndexList& vActives,
-    TreeIndexList& vActionables,
+void FillSkillStatChangeArrays(const IndexedString& sCharID,
+    TreeIndexArray& vPassives,
+    TreeIndexArray& vActives,
+    TreeIndexArray& vActionables,
     Bool bUniqueOnly /*= false*/)
 {
     // Get all skill datas
-    TreeIndexList vSkillDataList;
-    TreeIndexList vSkillDataAffinityList = GetAffinitySkills(sCharID, bUniqueOnly);
-    TreeIndexList vSkillDataAlchemyList = GetAlchemySkills(sCharID, bUniqueOnly);
-    TreeIndexList vSkillDataBreakdownList = GetBreakdownSkills(sCharID, bUniqueOnly);
-    TreeIndexList vSkillDataCombatList = GetCombatSkills(sCharID, bUniqueOnly);
-    TreeIndexList vSkillDataCraftingList = GetCraftingSkills(sCharID, bUniqueOnly);
-    TreeIndexList vSkillDataWeaponList = GetWeaponSkills(sCharID, bUniqueOnly);
-    vSkillDataList.insert(vSkillDataList.end(), vSkillDataAffinityList.begin(), vSkillDataAffinityList.end());
-    vSkillDataList.insert(vSkillDataList.end(), vSkillDataAlchemyList.begin(), vSkillDataAlchemyList.end());
-    vSkillDataList.insert(vSkillDataList.end(), vSkillDataBreakdownList.begin(), vSkillDataBreakdownList.end());
-    vSkillDataList.insert(vSkillDataList.end(), vSkillDataCombatList.begin(), vSkillDataCombatList.end());
-    vSkillDataList.insert(vSkillDataList.end(), vSkillDataCraftingList.begin(), vSkillDataCraftingList.end());
-    vSkillDataList.insert(vSkillDataList.end(), vSkillDataWeaponList.begin(), vSkillDataWeaponList.end());
+    TreeIndexArray vSkillDataArray;
+    TreeIndexArray vSkillDataAffinityArray = GetAffinitySkills(sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataAlchemyArray = GetAlchemySkills(sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataBreakdownArray = GetBreakdownSkills(sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataCombatArray = GetCombatSkills(sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataCraftingArray = GetCraftingSkills(sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataWeaponArray = GetWeaponSkills(sCharID, bUniqueOnly);
+    vSkillDataArray.insert(vSkillDataArray.end(), vSkillDataAffinityArray.begin(), vSkillDataAffinityArray.end());
+    vSkillDataArray.insert(vSkillDataArray.end(), vSkillDataAlchemyArray.begin(), vSkillDataAlchemyArray.end());
+    vSkillDataArray.insert(vSkillDataArray.end(), vSkillDataBreakdownArray.begin(), vSkillDataBreakdownArray.end());
+    vSkillDataArray.insert(vSkillDataArray.end(), vSkillDataCombatArray.begin(), vSkillDataCombatArray.end());
+    vSkillDataArray.insert(vSkillDataArray.end(), vSkillDataCraftingArray.begin(), vSkillDataCraftingArray.end());
+    vSkillDataArray.insert(vSkillDataArray.end(), vSkillDataWeaponArray.begin(), vSkillDataWeaponArray.end());
 
     // Use a set to make sure that we do not include duplicates
     STDUnorderedSet<IndexedString, IndexedStringHasher> tAlreadyUsed;
 
     // Split them into separate lists
-    for(const TreeIndex& index : vSkillDataList)
+    for(const TreeIndex& index : vSkillDataArray)
     {
         IndexedString sIndexKey = index.GetTreeBranchLeafType();
         Bool bIsActionable = IsSkillActionable(index);

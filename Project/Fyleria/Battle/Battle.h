@@ -4,9 +4,9 @@
 #ifndef _GECKO_BATTLE_H_
 #define _GECKO_BATTLE_H_
 
-#include "Character/CharacterAction.h"
+#include "CharacterAction/CharacterAction.h"
 #include "Utility/Macros.h"
-#include "Utility/TypesEnum.h"
+#include "Utility/Enum.h"
 
 namespace Gecko
 {
@@ -32,7 +32,7 @@ public:
     Bool IsBattleLost() const;
 
     // Adding and processing actions that are chosen by the player
-    void AddAction(const CharacterActionSharedPtr& pAction);
+    void AddAction(const CharacterAction& action);
     void ClearAllActions();
     void FinishedAddingActions();
 
@@ -44,16 +44,13 @@ public:
     void FinishedWithCurrentAction();
 
     // Get action
-    CharacterActionSharedPtr& GetAction(Int iIndex);
-    const CharacterActionSharedPtr& GetAction(Int iIndex) const;
-    CharacterActionSharedPtr& GetCurrentAction();
-    const CharacterActionSharedPtr& GetCurrentAction() const;
+    CharacterAction& GetAction(Int iIndex);
+    const CharacterAction& GetAction(Int iIndex) const;
+    CharacterAction& GetCurrentAction();
+    const CharacterAction& GetCurrentAction() const;
 
     // Are all actions finished
     Bool AreAllActionsFinished() const;
-
-    // Get remaining actions
-    CharacterActionSharedPtrList GetRemainingActions() const;
 
     // Battle status
     MAKE_RAW_BASIC_TYPE_ACCESSORS(IsBattleStarted, Bool);
@@ -66,7 +63,7 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(CurrentRoundIndex, Int);
 
     // Actions
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Actions, CharacterActionSharedPtrList);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Actions, CharacterActionArray);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ActionCount, Int);
 
     // Party names
