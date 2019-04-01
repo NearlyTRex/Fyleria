@@ -42,6 +42,7 @@ __pycache__
 *.rar
 
 # Folders
+Bin/*
 Project/Build_*
 Project/Libs/Assert/orig
 Project/Libs/BackwardCPP/orig
