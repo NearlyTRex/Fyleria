@@ -1,8 +1,8 @@
 -- Configuration
 libModernCPPJson_extradir = "Libs/ModernCPPJson/extra/"
 libModernCPPJson_origdir = "Libs/ModernCPPJson/orig/"
-libModernCPPJson_srcdir = libModernCPPJson_origdir .. "src/"
-libModernCPPJson_incdir = libModernCPPJson_origdir .. "src/"
+libModernCPPJson_srcdir = libModernCPPJson_origdir .. "single_include/"
+libModernCPPJson_incdir = libModernCPPJson_origdir .. "single_include/"
 
 -- Includes
 libModernCPPJson_includedirs = {
