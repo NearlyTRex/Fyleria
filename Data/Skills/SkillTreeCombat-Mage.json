@@ -18,9 +18,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullInt": 1,
                         "OperationType": "Add"
@@ -40,9 +42,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicDefense",
                         "DestinationStatType": "MagicDefense",
                         "FullPercent": 1.05,
                         "OperationType": "Set"
@@ -87,9 +91,11 @@
                     "SpellFlesh",
                     "SpellWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.05,
                         "OperationType": "Add"
@@ -123,9 +129,11 @@
                     "SpellFlesh",
                     "SpellWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.05,
                         "OperationType": "Add"
@@ -145,9 +153,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullInt": 2,
                         "OperationType": "Add"
@@ -167,9 +177,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicDefense",
                         "DestinationStatType": "MagicDefense",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -214,9 +226,11 @@
                     "SpellFlesh",
                     "SpellWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.1,
                         "OperationType": "Add"
@@ -250,9 +264,11 @@
                     "SpellFlesh",
                     "SpellWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.1,
                         "OperationType": "Add"
@@ -272,9 +288,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullInt": 3,
                         "OperationType": "Add"
@@ -294,9 +312,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicDefense",
                         "DestinationStatType": "MagicDefense",
                         "FullPercent": 1.15,
                         "OperationType": "Set"
@@ -341,9 +361,11 @@
                     "SpellFlesh",
                     "SpellWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.15,
                         "OperationType": "Add"
@@ -377,9 +399,11 @@
                     "SpellFlesh",
                     "SpellWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.15,
                         "OperationType": "Add"
@@ -399,9 +423,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullInt": 4,
                         "OperationType": "Add"
@@ -421,9 +447,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicDefense",
                         "DestinationStatType": "MagicDefense",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -468,9 +496,11 @@
                     "SpellFlesh",
                     "SpellWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.2,
                         "OperationType": "Add"
@@ -504,9 +534,11 @@
                     "SpellFlesh",
                     "SpellWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.2,
                         "OperationType": "Add"
@@ -526,9 +558,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullInt": 5,
                         "OperationType": "Add"
@@ -548,9 +582,11 @@
                 "RequiredItemEquippedTypesAND": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicDefense",
                         "DestinationStatType": "MagicDefense",
                         "FullPercent": 1.25,
                         "OperationType": "Set"
@@ -595,9 +631,11 @@
                     "SpellFlesh",
                     "SpellWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.25,
                         "OperationType": "Add"

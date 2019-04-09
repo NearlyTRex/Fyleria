@@ -11,9 +11,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionEnergy"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsCurrent",
                         "DestinationStatType": "EnergyPointsCurrent",
                         "FullPercent": 0.10,
                         "OperationType": "Add"
@@ -34,9 +36,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionEnergy"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsCurrent",
                         "DestinationStatType": "EnergyPointsCurrent",
                         "FullPercent": 0.20,
                         "OperationType": "Add"
@@ -57,9 +61,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionEnergy"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsCurrent",
                         "DestinationStatType": "EnergyPointsCurrent",
                         "FullPercent": 0.30,
                         "OperationType": "Add"
@@ -80,9 +86,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionEnergy"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsCurrent",
                         "DestinationStatType": "EnergyPointsCurrent",
                         "FullPercent": 0.40,
                         "OperationType": "Add"
@@ -103,9 +111,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionEnergy"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsCurrent",
                         "DestinationStatType": "EnergyPointsCurrent",
                         "FullPercent": 0.50,
                         "OperationType": "Add"

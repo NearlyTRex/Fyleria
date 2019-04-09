@@ -12,14 +12,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsMax",
                         "FullPercent": 1.10,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "MagicRegen",
                         "DestinationStatType": "MagicRegen",
                         "FullInt": 1,
                         "OperationType": "Add"
@@ -41,14 +44,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsMax",
                         "FullPercent": 1.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "MagicRegen",
                         "DestinationStatType": "MagicRegen",
                         "FullInt": 2,
                         "OperationType": "Add"
@@ -70,14 +76,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsMax",
                         "FullPercent": 1.30,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "MagicRegen",
                         "DestinationStatType": "MagicRegen",
                         "FullInt": 3,
                         "OperationType": "Add"
@@ -99,14 +108,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsMax",
                         "FullPercent": 1.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "MagicRegen",
                         "DestinationStatType": "MagicRegen",
                         "FullInt": 2,
                         "OperationType": "Add"
@@ -128,14 +140,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsMax",
                         "FullPercent": 1.30,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "MagicRegen",
                         "DestinationStatType": "MagicRegen",
                         "FullInt": 3,
                         "OperationType": "Add"
@@ -157,14 +172,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsMax",
                         "FullPercent": 1.40,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "MagicRegen",
                         "DestinationStatType": "MagicRegen",
                         "FullInt": 4,
                         "OperationType": "Add"
@@ -186,14 +204,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsMax",
                         "FullPercent": 1.10,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "EnergyRegen",
                         "DestinationStatType": "EnergyRegen",
                         "FullInt": 1,
                         "OperationType": "Add"
@@ -215,14 +236,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsMax",
                         "FullPercent": 1.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "EnergyRegen",
                         "DestinationStatType": "EnergyRegen",
                         "FullInt": 2,
                         "OperationType": "Add"
@@ -244,14 +268,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsMax",
                         "FullPercent": 1.30,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "EnergyRegen",
                         "DestinationStatType": "EnergyRegen",
                         "FullInt": 3,
                         "OperationType": "Add"
@@ -273,14 +300,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsMax",
                         "FullPercent": 1.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "EnergyRegen",
                         "DestinationStatType": "EnergyRegen",
                         "FullInt": 2,
                         "OperationType": "Add"
@@ -302,14 +332,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsMax",
                         "FullPercent": 1.30,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "EnergyRegen",
                         "DestinationStatType": "EnergyRegen",
                         "FullInt": 3,
                         "OperationType": "Add"
@@ -331,14 +364,17 @@
                 "RequiredItemEquippedTypesOR": [
                     "WeaponMage"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsMax",
                         "FullPercent": 1.40,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "EnergyRegen",
                         "DestinationStatType": "EnergyRegen",
                         "FullInt": 4,
                         "OperationType": "Add"

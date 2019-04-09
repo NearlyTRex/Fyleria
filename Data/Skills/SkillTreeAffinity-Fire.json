@@ -18,9 +18,11 @@
                 "RequiredAttackTypesAND": [
                     "SpellFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
                         "FullInt": -1,
                         "OperationType": "Set"
@@ -40,9 +42,11 @@
                 "RequiredAttackTypesAND": [
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
                         "FullInt": -1,
                         "OperationType": "Set"
@@ -63,9 +67,11 @@
                     "SpellFire",
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
                         "FullInt": -1,
                         "OperationType": "Set"
@@ -82,9 +88,11 @@
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "RubyValueDelta",
                         "DestinationStatType": "RubyValueDelta",
                         "FullInt": 1,
                         "OperationType": "Set"
@@ -105,9 +113,11 @@
                     "SpellFire",
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullPercent": 0.05,
                         "OperationType": "Set"
@@ -127,9 +137,11 @@
                 "RequiredAttackTypesAND": [
                     "SpellFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
                         "FullInt": -2,
                         "OperationType": "Set"
@@ -149,9 +161,11 @@
                 "RequiredAttackTypesAND": [
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
                         "FullInt": -2,
                         "OperationType": "Set"
@@ -172,9 +186,11 @@
                     "SpellFire",
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
                         "FullInt": -2,
                         "OperationType": "Set"
@@ -191,9 +207,11 @@
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "RubyValueDelta",
                         "DestinationStatType": "RubyValueDelta",
                         "FullInt": 2,
                         "OperationType": "Set"
@@ -214,9 +232,11 @@
                     "SpellFire",
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullPercent": 0.1,
                         "OperationType": "Set"
@@ -236,9 +256,11 @@
                 "RequiredAttackTypesAND": [
                     "SpellFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
                         "FullInt": -3,
                         "OperationType": "Set"
@@ -258,9 +280,11 @@
                 "RequiredAttackTypesAND": [
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
                         "FullInt": -3,
                         "OperationType": "Set"
@@ -281,9 +305,11 @@
                     "SpellFire",
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
                         "FullInt": -3,
                         "OperationType": "Set"
@@ -300,9 +326,11 @@
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "RubyValueDelta",
                         "DestinationStatType": "RubyValueDelta",
                         "FullInt": 3,
                         "OperationType": "Set"
@@ -323,9 +351,11 @@
                     "SpellFire",
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullPercent": 0.15,
                         "OperationType": "Set"
@@ -345,9 +375,11 @@
                 "RequiredAttackTypesAND": [
                     "SpellFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
                         "FullInt": -4,
                         "OperationType": "Set"
@@ -367,9 +399,11 @@
                 "RequiredAttackTypesAND": [
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
                         "FullInt": -4,
                         "OperationType": "Set"
@@ -390,9 +424,11 @@
                     "SpellFire",
                     "PowerFire"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
                         "FullInt": -4,
                         "OperationType": "Set"
@@ -409,9 +445,11 @@
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "RubyValueDelta",
                         "DestinationStatType": "RubyValueDelta",
                         "FullInt": 4,
                         "OperationType": "Set"

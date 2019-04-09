@@ -11,8 +11,8 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ]
+                    "WeaponBlock"
+                ]
             }
         ]
     },
@@ -28,16 +28,19 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.05,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.25,
                         "OperationType": "Set"
@@ -58,16 +61,19 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.05,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.25,
                         "OperationType": "Set"
@@ -88,16 +94,19 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullPercent": 0.10,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.25,
                         "OperationType": "Set"
@@ -118,16 +127,19 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.10,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.5,
                         "OperationType": "Set"
@@ -148,13 +160,15 @@
         "StatChanges": [
             {
                 "RequiredDefendTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
                 "DefendAmount": 1,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
                         "Defend": 0,
+                        "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
                         "FullPercent": 1.05,
                         "OperationType": "Set"
@@ -175,21 +189,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.10,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.5,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -210,21 +228,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.10,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.5,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -245,21 +267,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.15,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.5,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -280,21 +306,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.15,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -315,13 +345,15 @@
         "StatChanges": [
             {
                 "RequiredDefendTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
                 "DefendAmount": 1,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
                         "Defend": 0,
+                        "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
                         "FullPercent": 1.10,
                         "OperationType": "Set"
@@ -342,21 +374,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.15,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -377,21 +413,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.15,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -412,21 +452,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -447,21 +491,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 3,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -482,19 +530,22 @@
         "StatChanges": [
             {
                 "RequiredDefendTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
                 "DefendAmount": 2,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
                         "Defend": 0,
+                        "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
                         "FullPercent": 1.10,
                         "OperationType": "Set"
                     },
                     {
                         "Defend": 1,
+                        "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
                         "FullPercent": 1.05,
                         "OperationType": "Set"
@@ -515,21 +566,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 3,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.3,
                         "OperationType": "Set"
@@ -550,21 +605,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 3,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.3,
                         "OperationType": "Set"
@@ -585,21 +644,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 3,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.3,
                         "OperationType": "Set"
@@ -620,21 +683,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 3.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "BluntAttack",
                         "DestinationStatType": "BluntAttack",
                         "FullPercent": 1.3,
                         "OperationType": "Set"
@@ -653,19 +720,22 @@
         "StatChanges": [
             {
                 "RequiredDefendTypesOR": [
-                        "WeaponBlock"
-                    ],
+                    "WeaponBlock"
+                ],
                 "DefendAmount": 2,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
                         "Defend": 0,
+                        "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
                         "FullPercent": 1.15,
                         "OperationType": "Set"
                     },
                     {
                         "Defend": 1,
+                        "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
                         "FullPercent": 1.05,
                         "OperationType": "Set"

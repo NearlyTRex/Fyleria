@@ -9,14 +9,17 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
                         "FullFloat": 0.5,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
                         "FullFloat": 0.5,
                         "OperationType": "Set"
@@ -35,19 +38,23 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
                         "FullPercent": 1.05,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceDefense",
                         "DestinationStatType": "PierceDefense",
                         "FullPercent": 1.05,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "SlashDefense",
                         "DestinationStatType": "SlashDefense",
                         "FullPercent": 1.05,
                         "OperationType": "Set"
@@ -66,9 +73,11 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 1.05,
                         "OperationType": "Set"
@@ -101,14 +110,17 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
                         "FullFloat": 0.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
                         "FullFloat": 0.5,
                         "OperationType": "Set"
@@ -127,9 +139,11 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToBlockCriticalHit",
                         "DestinationStatType": "ChanceToBlockCriticalHit",
                         "FullFloat": 0.05,
                         "OperationType": "Add"
@@ -148,9 +162,11 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 0.5,
                         "OperationType": "Add"
@@ -183,14 +199,17 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
                         "FullFloat": 0.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
                         "FullFloat": 0.75,
                         "OperationType": "Set"
@@ -209,19 +228,23 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceDefense",
                         "DestinationStatType": "PierceDefense",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "SlashDefense",
                         "DestinationStatType": "SlashDefense",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -240,9 +263,11 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -275,14 +300,17 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
                         "FullFloat": 1.0,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
                         "FullFloat": 0.75,
                         "OperationType": "Set"
@@ -301,9 +329,11 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToBlockCriticalHit",
                         "DestinationStatType": "ChanceToBlockCriticalHit",
                         "FullFloat": 0.1,
                         "OperationType": "Add"
@@ -322,9 +352,11 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 1,
                         "OperationType": "Add"
@@ -357,14 +389,17 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
                         "FullFloat": 1.0,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
                         "FullFloat": 1.0,
                         "OperationType": "Set"
@@ -383,19 +418,23 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
                         "FullPercent": 1.15,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceDefense",
                         "DestinationStatType": "PierceDefense",
                         "FullPercent": 1.15,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "SlashDefense",
                         "DestinationStatType": "SlashDefense",
                         "FullPercent": 1.15,
                         "OperationType": "Set"
@@ -414,9 +453,11 @@
             {
                 "RequiredEquippedWeaponCount": 2,
                 "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 1.15,
                         "OperationType": "Set"

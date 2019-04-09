@@ -15,9 +15,11 @@
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "FullInt": 1,
                         "OperationType": "Add"
@@ -34,9 +36,11 @@
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "FullFloat": 0.05,
                         "OperationType": "Add"
@@ -81,9 +85,11 @@
                     "PowerFlesh",
                     "PowerWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.05,
                         "OperationType": "Add"
@@ -114,9 +120,11 @@
                     "PowerFlesh",
                     "PowerWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.05,
                         "OperationType": "Add"
@@ -133,9 +141,11 @@
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "FullInt": 2,
                         "OperationType": "Add"
@@ -152,9 +162,11 @@
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "FullFloat": 0.1,
                         "OperationType": "Add"
@@ -199,9 +211,11 @@
                     "PowerFlesh",
                     "PowerWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.1,
                         "OperationType": "Add"
@@ -232,9 +246,11 @@
                     "PowerFlesh",
                     "PowerWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.1,
                         "OperationType": "Add"
@@ -251,9 +267,11 @@
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "FullInt": 3,
                         "OperationType": "Add"
@@ -270,9 +288,11 @@
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "FullFloat": 0.15,
                         "OperationType": "Add"
@@ -317,9 +337,11 @@
                     "PowerFlesh",
                     "PowerWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.15,
                         "OperationType": "Add"
@@ -350,9 +372,11 @@
                     "PowerFlesh",
                     "PowerWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.15,
                         "OperationType": "Add"
@@ -369,9 +393,11 @@
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "FullInt": 4,
                         "OperationType": "Add"
@@ -388,9 +414,11 @@
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "FullFloat": 0.2,
                         "OperationType": "Add"
@@ -435,9 +463,11 @@
                     "PowerFlesh",
                     "PowerWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.2,
                         "OperationType": "Add"
@@ -468,9 +498,11 @@
                     "PowerFlesh",
                     "PowerWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.2,
                         "OperationType": "Add"
@@ -487,9 +519,11 @@
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "FullInt": 5,
                         "OperationType": "Add"
@@ -506,9 +540,11 @@
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "FullFloat": 0.25,
                         "OperationType": "Add"
@@ -553,9 +589,11 @@
                     "PowerFlesh",
                     "PowerWind"
                 ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "FullFloat": 0.25,
                         "OperationType": "Add"

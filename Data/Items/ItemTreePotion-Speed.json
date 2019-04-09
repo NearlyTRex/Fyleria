@@ -11,9 +11,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionSpeed"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -34,9 +36,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionSpeed"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 1.4,
                         "OperationType": "Set"
@@ -57,9 +61,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionSpeed"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 1.6,
                         "OperationType": "Set"
@@ -80,9 +86,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionSpeed"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 1.8,
                         "OperationType": "Set"
@@ -103,9 +111,11 @@
                 "RequiredItemUsedTypesOR": [
                     "PotionSpeed"
                 ],
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 2.0,
                         "OperationType": "Set"

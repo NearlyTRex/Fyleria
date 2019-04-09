@@ -11,8 +11,8 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ]
+                    "WeaponDrill"
+                ]
             }
         ]
     },
@@ -28,16 +28,19 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.15,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2,
                         "OperationType": "Set"
@@ -58,16 +61,19 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.15,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2,
                         "OperationType": "Set"
@@ -88,16 +94,19 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.25,
                         "OperationType": "Set"
@@ -118,16 +127,19 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.25,
                         "OperationType": "Set"
@@ -146,12 +158,14 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
                 "ChanceToApply": 0.5,
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 0.9,
                         "OperationType": "Set"
@@ -172,21 +186,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -207,21 +225,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.20,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -242,21 +264,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -277,21 +303,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.5,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.1,
                         "OperationType": "Set"
@@ -310,12 +340,14 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
                 "ChanceToApply": 0.5,
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 0.8,
                         "OperationType": "Set"
@@ -336,21 +368,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.5,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -371,21 +407,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.25,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.5,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -406,21 +446,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.30,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.5,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -441,21 +485,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.30,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.2,
                         "OperationType": "Set"
@@ -474,12 +522,14 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
                 "ChanceToApply": 0.5,
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 0.7,
                         "OperationType": "Set"
@@ -500,21 +550,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.30,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.3,
                         "OperationType": "Set"
@@ -535,21 +589,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.30,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.3,
                         "OperationType": "Set"
@@ -570,21 +628,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.35,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 2.75,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.3,
                         "OperationType": "Set"
@@ -605,21 +667,25 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
+                "SourceTargetType": "Self",
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "ChanceToCauseCriticalHit",
                         "DestinationStatType": "ChanceToCauseCriticalHit",
                         "FullFloat": 0.35,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "FullFloat": 3,
                         "OperationType": "Set"
                     },
                     {
+                        "SourceStatType": "PierceAttack",
                         "DestinationStatType": "PierceAttack",
                         "FullPercent": 1.3,
                         "OperationType": "Set"
@@ -638,12 +704,14 @@
         "StatChanges": [
             {
                 "RequiredAttackTypesOR": [
-                        "WeaponDrill"
-                    ],
+                    "WeaponDrill"
+                ],
                 "ChanceToApply": 0.5,
-                "DestinationTargetType": "AttackTargetsThisAction",
+                "SourceTargetType": "ActionTargetsThisAction",
+                "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
+                        "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
                         "FullPercent": 0.6,
                         "OperationType": "Set"
