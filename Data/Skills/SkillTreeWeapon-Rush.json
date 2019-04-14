@@ -166,7 +166,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "BluntAttack",
-                        "DeltaPercent": 0.1,
+                        "FullPercent": 0.1,
                         "OperationType": "Add"
                     }
                 ]
@@ -347,7 +347,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "BluntAttack",
-                        "DeltaPercent": 0.2,
+                        "FullPercent": 0.2,
                         "OperationType": "Add"
                     }
                 ]
@@ -528,7 +528,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "BluntAttack",
-                        "DeltaPercent": 0.3,
+                        "FullPercent": 0.3,
                         "OperationType": "Add"
                     }
                 ]
@@ -709,7 +709,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "BluntAttack",
-                        "DeltaPercent": 0.4,
+                        "FullPercent": 0.4,
                         "OperationType": "Add"
                     }
                 ]

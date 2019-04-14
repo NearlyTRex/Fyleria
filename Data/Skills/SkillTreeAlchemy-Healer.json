@@ -65,7 +65,7 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "DeltaPercent": 0.05,
+                        "FullPercent": 1.05,
                         "OperationType": "Set"
                     }
                 ]
@@ -162,7 +162,7 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "DeltaPercent": 0.10,
+                        "FullPercent": 1.10,
                         "OperationType": "Set"
                     }
                 ]
@@ -259,7 +259,7 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "DeltaPercent": 0.15,
+                        "FullPercent": 1.15,
                         "OperationType": "Set"
                     }
                 ]
@@ -356,7 +356,7 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "DeltaPercent": 0.20,
+                        "FullPercent": 1.20,
                         "OperationType": "Set"
                     }
                 ]
@@ -453,7 +453,7 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "DeltaPercent": 0.25,
+                        "FullPercent": 1.25,
                         "OperationType": "Set"
                     }
                 ]

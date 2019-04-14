@@ -175,7 +175,7 @@
                     {
                         "SourceStatType": "DamageTakenThisRound",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "DeltaPercent": 1,
+                        "FullPercent": 1,
                         "OperationType": "Add"
                     }
                 ]
@@ -373,7 +373,7 @@
                     {
                         "SourceStatType": "DamageTakenThisRound",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "DeltaPercent": 1,
+                        "FullPercent": 1,
                         "OperationType": "Add"
                     }
                 ]
