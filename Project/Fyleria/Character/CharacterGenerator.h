@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_GENERATOR_H_
 #define _GECKO_CHARACTER_GENERATOR_H_
 
+#include "CharacterData/CharacterBasicData.h"
 #include "CharacterData/CharacterProgressData.h"
 #include "CharacterData/CharacterBattleData.h"
 #include "Utility/IndexedString.h"
@@ -22,12 +23,9 @@ public:
     CharacterGenerator();
     CharacterGenerator(const Json& jsonData);
 
-    // Create empty data
-    static STDSharedPtr<CharacterProgressData> CreateEmptyProgressData();
-    static STDSharedPtr<CharacterBattleData> CreateEmptyBattleData();
-
     // Generate character data
-    STDSharedPtr<CharacterProgressData> GenerateProgressData() const;
+    CharacterBasicData GenerateBasicData(const IndexedString& sCharacterID) const;
+    CharacterProgressData GenerateProgressData() const;
     IndexedString GenerateFirstName() const;
     IndexedString GenerateLastName() const;
     Int GenerateAge() const;

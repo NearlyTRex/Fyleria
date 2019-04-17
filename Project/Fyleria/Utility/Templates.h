@@ -13,7 +13,7 @@ namespace Gecko
 
 // Clip value between two ends
 template <typename T>
-T Clip(const T& n, const T& lower, const T& upper)
+T ClipValue(const T& n, const T& lower, const T& upper)
 {
     return STDMax(lower, STDMin(n, upper));
 }
@@ -78,7 +78,7 @@ Bool DoesChanceSucceed(T varChance)
 
 // Random int value
 template <typename T>
-T RandomIntValue(T varMin, T varMax)
+T GetRandomIntValue(T varMin, T varMax)
 {
     RandomDevice device;
     RandomGenerator gen(device());
@@ -88,7 +88,7 @@ T RandomIntValue(T varMin, T varMax)
 
 // Random real value
 template <typename T>
-T RandomRealValue(T varMin, T varMax)
+T GetRandomRealValue(T varMin, T varMax)
 {
     RandomDevice device;
     RandomGenerator gen(device());
@@ -98,23 +98,23 @@ T RandomRealValue(T varMin, T varMax)
 
 // Random vector value
 template <typename T>
-T RandomVectorValue(const STDVector<T>& varValues)
+T GetRandomVectorValue(const STDVector<T>& varValues)
 {
     if(varValues.empty())
     {
         return T();
     }
 
-    Int iRandomIndex = RandomIntValue<Int>(0, varValues.size() - 1);
+    Int iRandomIndex = GetRandomIntValue<Int>(0, varValues.size() - 1);
     return varValues[iRandomIndex];
 }
 
 // Random enum value
 template <typename T>
-String RandomEnumValue()
+String GetRandomEnumValue()
 {
     ASSERT_FATAL(T::_names().size() >= 2);
-    Int iIndex = RandomIntValue<Int>(1, T::_names().size() - 1);
+    Int iIndex = GetRandomIntValue<Int>(1, T::_names().size() - 1);
     ASSERT_FATAL(iIndex >= 0 && iIndex < static_cast<Int>(T::_names().size()));
     return T::_names()[iIndex];
 }

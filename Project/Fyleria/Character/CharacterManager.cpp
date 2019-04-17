@@ -16,13 +16,14 @@ CharacterManager::CharacterManager()
 {
 }
 
-void CharacterManager::LoadCharacter(const IndexedString& sCharacterID, const Character& character)
+void CharacterManager::LoadCharacter(const Character& character)
 {
     // Load a character
-    ASSERT_ERROR(!character.GetCharacterID().empty(), "Invalid character ID '%s'", character.GetCharacterID().c_str());
-    ASSERT_ERROR(IsValidCharacterTargetType(character.GetCharacterTargetType()), "Character target type '%s' was not valid", character.GetCharacterTargetType().c_str());
-    m_tCharacters[character.GetCharacterID()] = character;
-    m_tCharacters[character.GetCharacterID()].SetCharacterID(sCharacterID);
+    const IndexedString& sCharacterID = character.GetBasicData().GetCharacterID();
+    const IndexedString& sCharacterTargetType = character.GetBasicData().GetCharacterTargetType();
+    ASSERT_ERROR(!sCharacterID.empty(), "Invalid character ID '%s'", sCharacterID.c_str());
+    ASSERT_ERROR(IsValidCharacterTargetType(sCharacterTargetType), "Character target type '%s' was not valid", sCharacterTargetType.c_str());
+    m_tCharacters[sCharacterID] = character;
 }
 
 void CharacterManager::LoadCharacterFromFile(const IndexedString& sCharacterID, const IndexedString& sFilename, const IndexedString& sType)
@@ -47,9 +48,7 @@ void CharacterManager::CreateCharacter(const IndexedString& sCharacterID)
     // Create a new character
     ASSERT_ERROR(!DoesCharacterExist(sCharacterID), "Character with ID '%s' was already registered", sCharacterID.c_str());
     Character newCharacter;
-    newCharacter.SetCharacterID(sCharacterID);
-    newCharacter.SetProgressDataBase(CharacterGenerator::CreateEmptyProgressData());
-    newCharacter.SetBattleDataBase(CharacterGenerator::CreateEmptyBattleData());
+    newCharacter.GetBasicData().SetCharacterID(sCharacterID);
     m_tCharacters.insert({sCharacterID, newCharacter});
 }
 
@@ -85,16 +84,7 @@ void CharacterManager::GenerateCharacter(const IndexedString& sCharacterID, cons
     // Create a new character
     CreateCharacter(sCharacterID);
     Character& newCharacter = GetCharacter(sCharacterID);
-    newCharacter.SetFirstName(generator.GenerateFirstName());
-    newCharacter.SetLastName(generator.GenerateLastName());
-    newCharacter.SetAge(generator.GenerateAge());
-    newCharacter.SetGender(generator.GenerateGender());
-    newCharacter.SetHair(generator.GenerateHair());
-    newCharacter.SetEyes(generator.GenerateEyes());
-    newCharacter.SetHandedness(generator.GenerateHandedness());
-    newCharacter.SetBaseRace(generator.GenerateBaseRace());
-    newCharacter.SetTransformedRace(generator.GenerateTransformedRace());
-    newCharacter.SetPowerSet(generator.GeneratePowerSet());
+    newCharacter.SetBasicData(generator.GenerateBasicData(sCharacterID));
     newCharacter.SetProgressDataBase(generator.GenerateProgressData());
 
     // Display the new character
@@ -178,18 +168,6 @@ void CharacterManager::ApplyStatChange(
     bAtLeastOneChange = false;
     for(const StatChangeEntry& entry : change.GetStatChangeEntries())
     {
-        // Check stat change targets
-        Bool bDoesUseDelta = DoesStatChangeEntryUseDelta(entry);
-        ASSERT_WARNING(bDoesUseDelta || !change.GetDestinationTargetType().empty(),
-            "Stat change (tree = '%s', type = '%s', skill = '%s') is missing a valid source/dest target set",
-            treeIndex.GetTree().c_str(),
-            treeIndex.GetBranch().c_str(),
-            treeIndex.GetLeaf().c_str());
-        if(!bDoesUseDelta && change.GetDestinationTargetType().empty())
-        {
-            continue;
-        }
-
         // Check operation type
         IndexedString sOperation = entry.GetOperationType();
         ASSERT_WARNING(!sOperation.empty(),
@@ -219,7 +197,6 @@ void CharacterManager::ApplyStatChange(
             continue;
         }
 
-        // Save character IDs to
         // Make copy of stat change entry and save character data
         StatChangeEntry localEntry(entry);
         localEntry.SetSourceCharacterID(sSourceCharID);
@@ -264,19 +241,27 @@ void CharacterManager::ApplyStatChange(
 Bool CharacterManager::ApplyStatChangeEntry(const IndexedString& sSegment, const StatChangeEntry& entry)
 {
     // Source values
-    FloatArray vSourceFloatValues;
-    IntArray vSourceIntValues;
     BoolArray vSourceBoolValues;
+    IntArray vSourceIntValues;
+    FloatArray vSourceFloatValues;
     IndexedStringArray vSourceStringValues;
 
-    // Get delta values
+    // Get source values
     Bool bDoesUseDelta = DoesStatChangeEntryUseDelta(entry);
     if(bDoesUseDelta)
     {
         if(!GetDeltaStatChangeEntryValues(sSegment, entry.GetSourceCharacterID(), entry,
-            vSourceFloatValues, vSourceIntValues, vSourceBoolValues, vSourceStringValues))
+            vSourceBoolValues, vSourceIntValues, vSourceFloatValues, vSourceStringValues))
         {
             return false;
+        }
+    }
+    else
+    {
+        if(!GetFullStatChangeEntryValues(sSegment, entry.GetSourceCharacterID(), entry,
+            vSourceBoolValues, vSourceIntValues, vSourceFloatValues, vSourceStringValues))
+        {
+            continue;
         }
     }
 
@@ -287,16 +272,6 @@ Bool CharacterManager::ApplyStatChangeEntry(const IndexedString& sSegment, const
     IndexedString sOperation = entry.GetOperationType();
     for(const IndexedString& sDestCharID : entry.GetDestinationCharacterIDs())
     {
-        // Get full values
-        if (!bDoesUseDelta)
-        {
-            if(!GetFullStatChangeEntryValues(sSegment, sDestCharID, entry,
-                vSourceFloatValues, vSourceIntValues, vSourceBoolValues, vSourceStringValues))
-            {
-                continue;
-            }
-        }
-
         // Float value in a Float stat
         if(vSourceFloatValues.size() == 1 && IsStatFloat(sDestStatType))
         {
@@ -369,69 +344,21 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     const IndexedString& sCharacterID,
     const IndexedString& sOperation,
     const IndexedString& sStat,
-    Float fValue)
+    Bool bValue)
 {
     // Get character
     Character& character = GetCharacter(sCharacterID);
-
-    // Get existing value
-    Float fStatValue = 0;
-    if(!character.GetFloatStatValue(sSegment, sStat, fStatValue))
-    {
-        return false;
-    }
 
     // Apply new value
     const OperationType eOperationType = StringToOperationType(sOperation);
     switch(eOperationType)
     {
-        case OperationType::Add:
-            LOG_FORMAT_STATEMENT("-- Adding %f to %s's current value of %f in character '%s'\n",
-                fValue,
-                sStat.c_str(),
-                fStatValue,
-                sCharacterID.c_str());
-            return character.SetFloatStatValue(sSegment, sStat, fStatValue + fValue);
-        case OperationType::Subtract:
-            LOG_FORMAT_STATEMENT("-- Subtracting %f from %s's current value of %f in character '%s'\n",
-                fValue,
-                sStat.c_str(),
-                fStatValue,
-                sCharacterID.c_str());
-            return character.SetFloatStatValue(sSegment, sStat, fStatValue - fValue);
-        case OperationType::Multiply:
-            LOG_FORMAT_STATEMENT("-- Multiplying %f against %s's current value of %f in character '%s'\n",
-                fValue,
-                sStat.c_str(),
-                fStatValue,
-                sCharacterID.c_str());
-            return character.SetFloatStatValue(sSegment, sStat, fStatValue * fValue);
-        case OperationType::Divide:
-            if(fValue != 0)
-            {
-                LOG_FORMAT_STATEMENT("-- Dividing %s's current value of %f by %f in character '%s'\n",
-                    sStat.c_str(),
-                    fStatValue,
-                    fValue,
-                    sCharacterID.c_str());
-                return character.SetFloatStatValue(sSegment, sStat, fStatValue / fValue);
-            }
-        case OperationType::Modulus:
-            if(fValue != 0)
-            {
-                LOG_FORMAT_STATEMENT("-- Modulusing %s's current value of %f by %f in character '%s'\n",
-                    sStat.c_str(),
-                    fStatValue,
-                    fValue,
-                    sCharacterID.c_str());
-                return character.SetFloatStatValue(sSegment, sStat, STDFmod(fStatValue, fValue));
-            }
         case OperationType::Set:
-            LOG_FORMAT_STATEMENT("-- Setting %f to %s in character '%s'\n",
-                fValue,
+            LOG_FORMAT_STATEMENT("-- Setting %d to %s stat in character '%s'\n",
+                bValue,
                 sStat.c_str(),
                 sCharacterID.c_str());
-            return character.SetFloatStatValue(sSegment, sStat, fValue);
+            return character.SetBoolStatValue(sSegment, sStat, bValue);
         default:
             break;
     }
@@ -517,21 +444,69 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     const IndexedString& sCharacterID,
     const IndexedString& sOperation,
     const IndexedString& sStat,
-    Bool bValue)
+    Float fValue)
 {
     // Get character
     Character& character = GetCharacter(sCharacterID);
+
+    // Get existing value
+    Float fStatValue = 0;
+    if(!character.GetFloatStatValue(sSegment, sStat, fStatValue))
+    {
+        return false;
+    }
 
     // Apply new value
     const OperationType eOperationType = StringToOperationType(sOperation);
     switch(eOperationType)
     {
+        case OperationType::Add:
+            LOG_FORMAT_STATEMENT("-- Adding %f to %s's current value of %f in character '%s'\n",
+                fValue,
+                sStat.c_str(),
+                fStatValue,
+                sCharacterID.c_str());
+            return character.SetFloatStatValue(sSegment, sStat, fStatValue + fValue);
+        case OperationType::Subtract:
+            LOG_FORMAT_STATEMENT("-- Subtracting %f from %s's current value of %f in character '%s'\n",
+                fValue,
+                sStat.c_str(),
+                fStatValue,
+                sCharacterID.c_str());
+            return character.SetFloatStatValue(sSegment, sStat, fStatValue - fValue);
+        case OperationType::Multiply:
+            LOG_FORMAT_STATEMENT("-- Multiplying %f against %s's current value of %f in character '%s'\n",
+                fValue,
+                sStat.c_str(),
+                fStatValue,
+                sCharacterID.c_str());
+            return character.SetFloatStatValue(sSegment, sStat, fStatValue * fValue);
+        case OperationType::Divide:
+            if(fValue != 0)
+            {
+                LOG_FORMAT_STATEMENT("-- Dividing %s's current value of %f by %f in character '%s'\n",
+                    sStat.c_str(),
+                    fStatValue,
+                    fValue,
+                    sCharacterID.c_str());
+                return character.SetFloatStatValue(sSegment, sStat, fStatValue / fValue);
+            }
+        case OperationType::Modulus:
+            if(fValue != 0)
+            {
+                LOG_FORMAT_STATEMENT("-- Modulusing %s's current value of %f by %f in character '%s'\n",
+                    sStat.c_str(),
+                    fStatValue,
+                    fValue,
+                    sCharacterID.c_str());
+                return character.SetFloatStatValue(sSegment, sStat, STDFmod(fStatValue, fValue));
+            }
         case OperationType::Set:
-            LOG_FORMAT_STATEMENT("-- Setting %d to %s stat in character '%s'\n",
-                bValue,
+            LOG_FORMAT_STATEMENT("-- Setting %f to %s in character '%s'\n",
+                fValue,
                 sStat.c_str(),
                 sCharacterID.c_str());
-            return character.SetBoolStatValue(sSegment, sStat, bValue);
+            return character.SetFloatStatValue(sSegment, sStat, fValue);
         default:
             break;
     }
@@ -615,79 +590,22 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
 
 Bool CharacterManager::DoesStatChangeEntryUseDelta(const StatChangeEntry& changeEntry) const
 {
-    // Delta values need a percent or an integer amount
-    return (changeEntry.GetDeltaPercent() != 0 ||
-            changeEntry.GetDeltaInt() != 0 ||
-            changeEntry.GetDeltaFloat() != 0 ||
-            changeEntry.GetDeltaBool() != 0 ||
-            !changeEntry.GetDeltaString().empty() ||
-            !changeEntry.GetDeltaFloatArray().empty() ||
-            !changeEntry.GetDeltaIntArray().empty() ||
-            !changeEntry.GetDeltaBoolArray().empty() ||
-            !changeEntry.GetDeltaStringArray().empty());
-}
-
-Bool CharacterManager::IsStatFloat(const IndexedString& sStat) const
-{
-    const STDUnorderedSet<String>& tBattle_Floats = CharacterBattleData::GetFloatStatNames();
-    return (
-        tBattle_Floats.find(sStat.Get()) != tBattle_Floats.end()
-    );
-}
-
-Bool CharacterManager::IsStatInt(const IndexedString& sStat) const
-{
-    const STDUnorderedSet<String>& tBattle_UBytes = CharacterBattleData::GetUByteStatNames();
-    const STDUnorderedSet<String>& tBattle_Ints = CharacterBattleData::GetIntStatNames();
-    const STDUnorderedSet<String>& tProgress_UBytes = CharacterProgressData::GetUByteStatNames();
-    const STDUnorderedSet<String>& tProgress_UShorts = CharacterProgressData::GetUShortStatNames();
-    const STDUnorderedSet<String>& tProgress_Shorts = CharacterProgressData::GetShortStatNames();
-    return (
-        tBattle_UBytes.find(sStat.Get()) != tBattle_UBytes.end() ||
-        tBattle_Ints.find(sStat.Get()) != tBattle_Ints.end() ||
-        tProgress_UBytes.find(sStat.Get()) != tProgress_UBytes.end() ||
-        tProgress_UShorts.find(sStat.Get()) != tProgress_UShorts.end() ||
-        tProgress_Shorts.find(sStat.Get()) != tProgress_Shorts.end()
-    );
-}
-
-Bool CharacterManager::IsStatBool(const IndexedString& sStat) const
-{
-    const STDUnorderedSet<String>& tBattle_Bools = CharacterBattleData::GetBoolStatNames();
-    return (
-        tBattle_Bools.find(sStat.Get()) != tBattle_Bools.end()
-    );
-}
-
-Bool CharacterManager::IsStatString(const IndexedString& sStat) const
-{
-    const STDUnorderedSet<String>& tBattle_IndexedStrings = CharacterBattleData::GetIndexedStringStatNames();
-    return (
-        tBattle_IndexedStrings.find(sStat.Get()) != tBattle_IndexedStrings.end()
-    );
-}
-
-Bool CharacterManager::IsStatStringArray(const IndexedString& sStat) const
-{
-    const STDUnorderedSet<String>& tBattle_IndexedStringArrays = CharacterBattleData::GetIndexedStringArrayStatNames();
-    return (
-        tBattle_IndexedStringArrays.find(sStat.Get()) != tBattle_IndexedStringArrays.end()
-    );
+    return (changeEntry.GetDeltaInt() != 0 || changeEntry.GetDeltaFloat() != 0);
 }
 
 Bool CharacterManager::GetDeltaStatChangeEntryValues(
     const IndexedString& sSegment,
     const IndexedString& sCharacterID,
     const StatChangeEntry& changeEntry,
-    FloatArray& vFloatValues,
-    IntArray& vIntValues,
     BoolArray& vBoolValues,
+    IntArray& vIntValues,
+    FloatArray& vFloatValues,
     IndexedStringArray& vStringValues) const
 {
     // Clear values
-    vFloatValues.clear();
-    vIntValues.clear();
     vBoolValues.clear();
+    vIntValues.clear();
+    vFloatValues.clear();
     vStringValues.clear();
 
     // Get character
@@ -698,33 +616,19 @@ Bool CharacterManager::GetDeltaStatChangeEntryValues(
 
     // Get source value
     Bool bSuccess = false;
-    if(changeEntry.GetDeltaPercent() != 0)
+    if(changeEntry.GetDeltaInt() != 0)
     {
-        Float fStatValue = 0;
         Int iStatValue = 0;
-        if(character.GetFloatStatValue(sSegment, sSourceStatType, fStatValue))
+        if(character.GetIntStatValue(sSegment, sSourceStatType, iStatValue))
         {
-            Float fNewValue = fStatValue + (changeEntry.GetDeltaPercent() * fStatValue);
-            LOG_FORMAT_STATEMENT("-- Getting %s value of %f from character '%s' and multiplying by delta percent of %f to get float value %f\n",
-                sSourceStatType.c_str(),
-                fStatValue,
-                sCharacterID.c_str(),
-                changeEntry.GetDeltaPercent(),
-                fNewValue);
-            vFloatValues.push_back(fNewValue);
-            bSuccess = true;
-        }
-        else if(character.GetIntStatValue(sSegment, sSourceStatType, iStatValue))
-        {
-            fStatValue = static_cast<Float>(iStatValue);
-            Float fNewValue = fStatValue + (changeEntry.GetDeltaPercent() * fStatValue);
-            LOG_FORMAT_STATEMENT("-- Getting %s value of %i from character '%s' and multiplying by delta percent of %f to get float value %f\n",
+            Int iNewValue = iStatValue + changeEntry.GetDeltaInt();
+            LOG_FORMAT_STATEMENT("-- Getting %s value of %i from character '%s' and adding delta int of %i to get int value %i\n",
                 sSourceStatType.c_str(),
                 iStatValue,
                 sCharacterID.c_str(),
-                changeEntry.GetDeltaPercent(),
-                fNewValue);
-            vFloatValues.push_back(fNewValue);
+                changeEntry.GetDeltaInt(),
+                iNewValue);
+            vIntValues.push_back(iNewValue);
             bSuccess = true;
         }
     }
@@ -744,22 +648,6 @@ Bool CharacterManager::GetDeltaStatChangeEntryValues(
             bSuccess = true;
         }
     }
-    else if(changeEntry.GetDeltaInt() != 0)
-    {
-        Int iStatValue = 0;
-        if(character.GetIntStatValue(sSegment, sSourceStatType, iStatValue))
-        {
-            Int iNewValue = iStatValue + changeEntry.GetDeltaInt();
-            LOG_FORMAT_STATEMENT("-- Getting %s value of %i from character '%s' and adding delta int of %i to get int value %i\n",
-                sSourceStatType.c_str(),
-                iStatValue,
-                sCharacterID.c_str(),
-                changeEntry.GetDeltaInt(),
-                iNewValue);
-            vIntValues.push_back(iNewValue);
-            bSuccess = true;
-        }
-    }
     return bSuccess;
 }
 
@@ -767,15 +655,15 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
     const IndexedString& sSegment,
     const IndexedString& sCharacterID,
     const StatChangeEntry& changeEntry,
-    FloatArray& vFloatValues,
-    IntArray& vIntValues,
     BoolArray& vBoolValues,
+    IntArray& vIntValues,
+    FloatArray& vFloatValues,
     IndexedStringArray& vStringValues) const
 {
     // Clear values
-    vFloatValues.clear();
-    vIntValues.clear();
     vBoolValues.clear();
+    vIntValues.clear();
+    vFloatValues.clear();
     vStringValues.clear();
 
     // Get character
@@ -790,19 +678,7 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
     {
         Float fStatValue = 0;
         Int iStatValue = 0;
-        if(character.GetFloatStatValue(sSegment, sDestStatType, fStatValue))
-        {
-            Float fNewValue = changeEntry.GetFullPercent() * fStatValue;
-            LOG_FORMAT_STATEMENT("-- Getting %s value of %f from character '%s' and multiplying by full percent of %f to get float value %f\n",
-                sDestStatType.c_str(),
-                fStatValue,
-                sCharacterID.c_str(),
-                changeEntry.GetFullPercent(),
-                fNewValue);
-            vFloatValues.push_back(fNewValue);
-            bSuccess = true;
-        }
-        else if(character.GetIntStatValue(sSegment, sDestStatType, iStatValue))
+        if(character.GetIntStatValue(sSegment, sDestStatType, iStatValue))
         {
             fStatValue = static_cast<Float>(iStatValue);
             Float fNewValue = changeEntry.GetFullPercent() * fStatValue;
@@ -815,19 +691,31 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
             vFloatValues.push_back(fNewValue);
             bSuccess = true;
         }
-    }
-    else if(changeEntry.GetFullFloat() != 0)
-    {
-        Float fNewValue = changeEntry.GetFullFloat();
-        LOG_FORMAT_STATEMENT("-- Using full float value of %f directly\n", fNewValue);
-        vFloatValues.push_back(fNewValue);
-        bSuccess = true;
+        else if(character.GetFloatStatValue(sSegment, sDestStatType, fStatValue))
+        {
+            Float fNewValue = changeEntry.GetFullPercent() * fStatValue;
+            LOG_FORMAT_STATEMENT("-- Getting %s value of %f from character '%s' and multiplying by full percent of %f to get float value %f\n",
+                sDestStatType.c_str(),
+                fStatValue,
+                sCharacterID.c_str(),
+                changeEntry.GetFullPercent(),
+                fNewValue);
+            vFloatValues.push_back(fNewValue);
+            bSuccess = true;
+        }
     }
     else if(changeEntry.GetFullInt() != 0)
     {
         Int iNewValue = changeEntry.GetFullInt();
         LOG_FORMAT_STATEMENT("-- Using full int value of %i directly\n", iNewValue);
         vIntValues.push_back(iNewValue);
+        bSuccess = true;
+    }
+    else if(changeEntry.GetFullFloat() != 0)
+    {
+        Float fNewValue = changeEntry.GetFullFloat();
+        LOG_FORMAT_STATEMENT("-- Using full float value of %f directly\n", fNewValue);
+        vFloatValues.push_back(fNewValue);
         bSuccess = true;
     }
     else if(!changeEntry.GetFullString().empty())

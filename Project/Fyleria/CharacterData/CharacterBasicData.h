@@ -5,51 +5,47 @@
 #define _GECKO_CHARACTER_BASIC_DATA_H_
 
 #include "Character/CharacterTypes.h"
+#include "Stats/StatTypeHolder.h"
 
 namespace Gecko
 {
 
-class CharacterBasicData
+// Character basic data
+class CharacterBasicData : public StatTypeHolder
 {
 public:
 
     // Constructors
     CharacterBasicData();
-    ~CharacterBasicData();
+    CharacterBasicData(const Json& jsonData);
+
+    // Clear all data
+    void Clear();
+
+    // Stat names
+    static void InitAllStatNames();
 
     // Character ID
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterID, IndexedString);
 
-    // Character target type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterTargetType, IndexedString);
+    // IndexedString stats
+    MAKE_STAT_TYPE_ACCESSORS(FirstName, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(LastName, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(Gender, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(Hair, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(Eyes, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(Handedness, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(BaseRace, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(TransformedRace, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(PowerSet, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(CurrentWeaponSet, IndexedString);
 
-    // Basic character data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FirstName, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(LastName, IndexedString);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(Age, Short);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Gender, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Hair, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Eyes, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Handedness, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(BaseRace, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(TransformedRace, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PowerSet, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentWeaponSet, IndexedString);
-
-    // Attack/defend counters
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(AttackCounter, Int);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(DefendCounter, Int);
-
-    // Previous action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PreviousActionTypes, IndexedStringArray);
-
+    // Int stats
+    MAKE_STAT_TYPE_ACCESSORS(Age, Int);
 
     // Comparisons
     Bool operator==(const CharacterBasicData& other) const;
     Bool operator!=(const CharacterBasicData& other) const;
-
-private:
-
 };
 
 // Typedef

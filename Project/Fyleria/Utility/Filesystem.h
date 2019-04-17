@@ -37,8 +37,8 @@ void RemoveFile(const String& sPath);
 // Get file size in bytes
 SizeType GetFileSize(const String& sPath);
 
-// Concatenation of paths with dividers
-String operator/(const String& path1, const String& path2);
+// Join paths together
+String JoinPaths(const String& sPath1, const String& sPath2);
 
 };
 

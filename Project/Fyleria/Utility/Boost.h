@@ -5,13 +5,22 @@
 #define _GECKO_UTILITY_BOOST_H_
 
 // External includes
+#include <boost/any.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/format.hpp>
 #include <boost/filesystem.hpp>
 
-// External defines
+// External function defines
+#define BoostAnyCast boost::any_cast
 #define BoostLexicalCast boost::lexical_cast
 #define BoostFormatString boost::format
+
+// External type defines
+#define BoostAny boost::any
 #define BoostFilesystemPath boost::filesystem::path
+
+// External exception defines
+#define BoostBadAnyCast boost::bad_any_cast
+#define BoostBadLexicalCast boost::bad_lexical_cast
 
 #endif

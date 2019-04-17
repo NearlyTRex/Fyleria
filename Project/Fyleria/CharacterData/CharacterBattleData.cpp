@@ -26,74 +26,12 @@ CharacterBattleData::CharacterBattleData(const Json& jsonData)
 
 void CharacterBattleData::Clear()
 {
-    // Get current configuration
-    const Config& config = ConfigManager::GetInstance()->GetCurrentConfig();
-
-    // -- Target Characters --
-    SetAttackTargetsThisAction({});
-    SetAttackTargetsThisRound({});
-    SetAttackTargetsLastRound({});
-    SetDefendTargetThisAction({});
-    SetDefendTargetsThisRound({});
-    SetDefendTargetsLastRound({});
-    SetMostRecentAttackTargets({});
-    SetMostRecentDefendTarget({});
-
-    // -- Target Amounts --
-    SetAllowedTargetAmount(config.GetDefaultAllowedTargetAmount());
-
-    // -- Status --
-    SetIsDead(config.GetDefaultIsDead());
-    SetIsUnconscious(config.GetDefaultIsUnconscious());
-
-    // -- Equipment Ratings --
-    SetEquippedWeaponLeftBluntRating(config.GetDefaultEquippedWeaponLeftBluntRating());
-    SetEquippedWeaponLeftPierceRating(config.GetDefaultEquippedWeaponLeftPierceRating());
-    SetEquippedWeaponLeftSlashRating(config.GetDefaultEquippedWeaponLeftSlashRating());
-    SetEquippedWeaponRightBluntRating(config.GetDefaultEquippedWeaponRightBluntRating());
-    SetEquippedWeaponRightPierceRating(config.GetDefaultEquippedWeaponRightPierceRating());
-    SetEquippedWeaponRightSlashRating(config.GetDefaultEquippedWeaponRightSlashRating());
-    SetEquippedShieldLeftBluntRating(config.GetDefaultEquippedShieldLeftBluntRating());
-    SetEquippedShieldLeftPierceRating(config.GetDefaultEquippedShieldLeftPierceRating());
-    SetEquippedShieldLeftSlashRating(config.GetDefaultEquippedShieldLeftSlashRating());
-    SetEquippedShieldLeftMagicRating(config.GetDefaultEquippedShieldLeftMagicRating());
-    SetEquippedShieldRightBluntRating(config.GetDefaultEquippedShieldRightBluntRating());
-    SetEquippedShieldRightPierceRating(config.GetDefaultEquippedShieldRightPierceRating());
-    SetEquippedShieldRightSlashRating(config.GetDefaultEquippedShieldRightSlashRating());
-    SetEquippedShieldRightMagicRating(config.GetDefaultEquippedShieldRightMagicRating());
-    SetEquippedArmorBluntRating(config.GetDefaultEquippedArmorBluntRating());
-    SetEquippedArmorPierceRating(config.GetDefaultEquippedArmorPierceRating());
-    SetEquippedArmorSlashRating(config.GetDefaultEquippedArmorSlashRating());
-    SetEquippedArmorMagicRating(config.GetDefaultEquippedArmorMagicRating());
-
-    // -- Critical Hits --
-    SetChanceToCauseCriticalHit(config.GetDefaultChanceToCauseCriticalHit());
-    SetChanceToBlockCriticalHit(config.GetDefaultChanceToBlockCriticalHit());
-    SetCriticalHitMultiplier(config.GetDefaultCriticalHitMultiplier());
-
-    // -- Multiple Attacks --
-    SetChanceToApplyMultipleAttacks(config.GetDefaultChanceToApplyMultipleAttacks());
-    SetAttacksMultiplier(config.GetDefaultAttacksMultiplier());
-
-    // -- Damage Counters --
-    SetDamageTakenThisRound(config.GetDefaultDamageTakenThisRound());
-    SetDamageTakenThisBattle(config.GetDefaultDamageTakenThisBattle());
-    SetDamageGivenThisRound(config.GetDefaultDamageGivenThisRound());
-    SetDamageGivenThisBattle(config.GetDefaultDamageGivenThisBattle());
-
-    // -- Damage Bonus --
-    SetWeaponPrimaryDamageBonusValue(config.GetDefaultWeaponPrimaryDamageBonusValue());
-    SetWeaponPrimaryDamageBonusPercent(config.GetDefaultWeaponPrimaryDamageBonusPercent());
-    SetWeaponSecondaryDamageBonusValue(config.GetDefaultWeaponSecondaryDamageBonusValue());
-    SetWeaponSecondaryDamageBonusPercent(config.GetDefaultWeaponSecondaryDamageBonusPercent());
-    SetGeneralDamageBonusValue(config.GetDefaultGeneralDamageBonusValue());
-    SetGeneralDamageBonusPercent(config.GetDefaultGeneralDamageBonusPercent());
-
-    // -- Effects Bonus --
-    SetDefensivePowerEffectsBonusValue(config.GetDefaultDefensivePowerEffectsBonusValue());
-    SetDefensivePowerEffectsBonusPercent(config.GetDefaultDefensivePowerEffectsBonusPercent());
-    SetOffensivePowerEffectsBonusValue(config.GetDefaultOffensivePowerEffectsBonusValue());
-    SetOffensivePowerEffectsBonusPercent(config.GetDefaultOffensivePowerEffectsBonusPercent());
+    // Clear stat values
+    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedString);
+    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedStringArray);
+    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Bool);
+    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Int);
+    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Float);
 }
 
 void CharacterBattleData::ApplyNewStatus(const CharacterProgressData& progressData)
@@ -133,10 +71,10 @@ void CharacterBattleData::AdvanceRound(CharacterProgressData& progressData)
     SetDamageTakenThisRound(0);
 
     // Move this round's targets to last round
-    SetAttackTargetsLastRound(GetAttackTargetsThisRound());
-    SetDefendTargetsLastRound(GetDefendTargetsThisRound());
-    SetAttackTargetsThisRound({});
-    SetDefendTargetsThisRound({});
+    SetActionTargetsLastRound(GetActionTargetsThisRound());
+    SetActionSourcesLastRound(GetActionSourcesThisRound());
+    SetActionTargetsThisRound({});
+    SetActionSourcesThisRound({});
 }
 
 void CharacterBattleData::FinishBattle(CharacterProgressData& progressData)
@@ -181,7 +119,9 @@ Bool CharacterBattleData::CanRegenerateFromStat(const IndexedString& sRegenStat)
     return false;
 }
 
-void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet, const CharacterProgressItemArray& vEquippedItems, const CharacterProgressData& progressData)
+void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet,
+    const CharacterProgressItemArray& vEquippedItems,
+    const CharacterProgressData& progressData)
 {
     // Get weapon set
     const CharacterWeaponSetType eWeaponSetType = StringToCharacterWeaponSetType(sWeaponSet);
@@ -289,7 +229,8 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet
     SetEquippedArmorMagicRating(fArmor_MagicDefendPercent * progressData.GetMagicDefense());
 }
 
-IndexedStringArray CharacterBattleData::ResolveTargetPlaceholder(const IndexedString& sSelfTargetType, const IndexedString& sPlaceholderTargetType) const
+IndexedStringArray CharacterBattleData::ResolveTargetPlaceholder(const IndexedString& sSelfTargetType,
+    const IndexedString& sPlaceholderTargetType) const
 {
     IndexedStringArray vTargets;
     const CharacterTargetType eTargetType = StringToCharacterTargetType(sPlaceholderTargetType);
@@ -298,29 +239,29 @@ IndexedStringArray CharacterBattleData::ResolveTargetPlaceholder(const IndexedSt
         case CharacterTargetType::Self:
             vTargets.push_back(sSelfTargetType);
             break;
-        case CharacterTargetType::AttackTargetsThisAction:
-            vTargets = GetAttackTargetsThisAction();
+        case CharacterTargetType::ActionTargetsThisAction:
+            vTargets = GetActionTargetsThisAction();
             break;
-        case CharacterTargetType::DefendTargetThisAction:
-            vTargets.push_back(GetDefendTargetThisAction());
+        case CharacterTargetType::ActionSourceThisAction:
+            vTargets.push_back(GetActionSourceThisAction());
             break;
-        case CharacterTargetType::AttackTargetsThisRound:
-            vTargets = GetAttackTargetsThisRound();
+        case CharacterTargetType::ActionTargetsThisRound:
+            vTargets = GetActionTargetsThisRound();
             break;
-        case CharacterTargetType::DefendTargetsThisRound:
-            vTargets = GetDefendTargetsThisRound();
+        case CharacterTargetType::ActionSourcesThisRound:
+            vTargets = GetActionSourcesThisRound();
             break;
-        case CharacterTargetType::AttackTargetsLastRound:
-            vTargets = GetAttackTargetsLastRound();
+        case CharacterTargetType::ActionTargetsLastRound:
+            vTargets = GetActionTargetsLastRound();
             break;
-        case CharacterTargetType::DefendTargetsLastRound:
-            vTargets = GetDefendTargetsLastRound();
+        case CharacterTargetType::ActionSourcesLastRound:
+            vTargets = GetActionSourcesLastRound();
             break;
-        case CharacterTargetType::MostRecentAttackTargets:
-            vTargets = GetMostRecentAttackTargets();
+        case CharacterTargetType::MostRecentActionTargets:
+            vTargets = GetMostRecentActionTargets();
             break;
-        case CharacterTargetType::MostRecentDefendTarget:
-            vTargets.push_back(GetMostRecentDefendTarget());
+        case CharacterTargetType::MostRecentActionSource:
+            vTargets.push_back(GetMostRecentActionSource());
             break;
         default:
             break;
@@ -424,417 +365,6 @@ Bool CharacterBattleData::GetSecondaryShieldRatings(const IndexedString& sHanded
     return false;
 }
 
-Bool CharacterBattleData::GetBoolStatValue(const IndexedString& sStat, Bool& bValue) const
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::IsDead:
-            bValue = GetIsDead();
-            return true;
-        case CharacterBattleStatType::IsUnconscious:
-            bValue = GetIsUnconscious();
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-Bool CharacterBattleData::GetIntStatValue(const IndexedString& sStat, Int& iValue) const
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::AllowedTargetAmount:
-            iValue = GetAllowedTargetAmount();
-            return true;
-        case CharacterBattleStatType::DamageTakenThisRound:
-            iValue = GetDamageTakenThisRound();
-            return true;
-        case CharacterBattleStatType::DamageTakenThisBattle:
-            iValue = GetDamageTakenThisBattle();
-            return true;
-        case CharacterBattleStatType::DamageGivenThisRound:
-            iValue = GetDamageGivenThisRound();
-            return true;
-        case CharacterBattleStatType::DamageGivenThisBattle:
-            iValue = GetDamageGivenThisBattle();
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-Bool CharacterBattleData::GetFloatStatValue(const IndexedString& sStat, Float& fValue) const
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::EquippedWeaponLeftBluntRating:
-            fValue = GetEquippedWeaponLeftBluntRating();
-            return true;
-        case CharacterBattleStatType::EquippedWeaponLeftPierceRating:
-            fValue = GetEquippedWeaponLeftPierceRating();
-            return true;
-        case CharacterBattleStatType::EquippedWeaponLeftSlashRating:
-            fValue = GetEquippedWeaponLeftSlashRating();
-            return true;
-        case CharacterBattleStatType::EquippedWeaponRightBluntRating:
-            fValue = GetEquippedWeaponRightBluntRating();
-            return true;
-        case CharacterBattleStatType::EquippedWeaponRightPierceRating:
-            fValue = GetEquippedWeaponRightPierceRating();
-            return true;
-        case CharacterBattleStatType::EquippedWeaponRightSlashRating:
-            fValue = GetEquippedWeaponRightSlashRating();
-            return true;
-        case CharacterBattleStatType::EquippedShieldLeftBluntRating:
-            fValue = GetEquippedShieldLeftBluntRating();
-            return true;
-        case CharacterBattleStatType::EquippedShieldLeftPierceRating:
-            fValue = GetEquippedShieldLeftPierceRating();
-            return true;
-        case CharacterBattleStatType::EquippedShieldLeftSlashRating:
-            fValue = GetEquippedShieldLeftSlashRating();
-            return true;
-        case CharacterBattleStatType::EquippedShieldLeftMagicRating:
-            fValue = GetEquippedShieldLeftMagicRating();
-            return true;
-        case CharacterBattleStatType::EquippedShieldRightBluntRating:
-            fValue = GetEquippedShieldRightBluntRating();
-            return true;
-        case CharacterBattleStatType::EquippedShieldRightPierceRating:
-            fValue = GetEquippedShieldRightPierceRating();
-            return true;
-        case CharacterBattleStatType::EquippedShieldRightSlashRating:
-            fValue = GetEquippedShieldRightSlashRating();
-            return true;
-        case CharacterBattleStatType::EquippedShieldRightMagicRating:
-            fValue = GetEquippedShieldRightMagicRating();
-            return true;
-        case CharacterBattleStatType::EquippedArmorBluntRating:
-            fValue = GetEquippedArmorBluntRating();
-            return true;
-        case CharacterBattleStatType::EquippedArmorPierceRating:
-            fValue = GetEquippedArmorPierceRating();
-            return true;
-        case CharacterBattleStatType::EquippedArmorSlashRating:
-            fValue = GetEquippedArmorSlashRating();
-            return true;
-        case CharacterBattleStatType::EquippedArmorMagicRating:
-            fValue = GetEquippedArmorMagicRating();
-            return true;
-        case CharacterBattleStatType::ChanceToCauseCriticalHit:
-            fValue = GetChanceToCauseCriticalHit();
-            return true;
-        case CharacterBattleStatType::ChanceToBlockCriticalHit:
-            fValue = GetChanceToBlockCriticalHit();
-            return true;
-        case CharacterBattleStatType::CriticalHitMultiplier:
-            fValue = GetCriticalHitMultiplier();
-            return true;
-        case CharacterBattleStatType::ChanceToApplyMultipleAttacks:
-            fValue = GetChanceToApplyMultipleAttacks();
-            return true;
-        case CharacterBattleStatType::AttacksMultiplier:
-            fValue = GetAttacksMultiplier();
-            return true;
-        case CharacterBattleStatType::WeaponPrimaryDamageBonusValue:
-            fValue = GetWeaponPrimaryDamageBonusValue();
-            return true;
-        case CharacterBattleStatType::WeaponPrimaryDamageBonusPercent:
-            fValue = GetWeaponPrimaryDamageBonusPercent();
-            return true;
-        case CharacterBattleStatType::WeaponSecondaryDamageBonusValue:
-            fValue = GetWeaponSecondaryDamageBonusValue();
-            return true;
-        case CharacterBattleStatType::WeaponSecondaryDamageBonusPercent:
-            fValue = GetWeaponSecondaryDamageBonusPercent();
-            return true;
-        case CharacterBattleStatType::GeneralDamageBonusValue:
-            fValue = GetGeneralDamageBonusValue();
-            return true;
-        case CharacterBattleStatType::GeneralDamageBonusPercent:
-            fValue = GetGeneralDamageBonusPercent();
-            return true;
-        case CharacterBattleStatType::DefensivePowerEffectsBonusValue:
-            fValue = GetDefensivePowerEffectsBonusValue();
-            return true;
-        case CharacterBattleStatType::DefensivePowerEffectsBonusPercent:
-            fValue = GetDefensivePowerEffectsBonusPercent();
-            return true;
-        case CharacterBattleStatType::OffensivePowerEffectsBonusValue:
-            fValue = GetOffensivePowerEffectsBonusValue();
-            return true;
-        case CharacterBattleStatType::OffensivePowerEffectsBonusPercent:
-            fValue = GetOffensivePowerEffectsBonusPercent();
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-Bool CharacterBattleData::GetStringStatValue(const IndexedString& sStat, IndexedString& sValue) const
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::DefendTargetThisAction:
-            sValue = GetDefendTargetThisAction();
-            return true;
-        case CharacterBattleStatType::MostRecentDefendTarget:
-            sValue = GetMostRecentDefendTarget();
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-Bool CharacterBattleData::GetStringArrayStatValue(const IndexedString& sStat, IndexedStringArray& vValues) const
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::AttackTargetsThisAction:
-            vValues = GetAttackTargetsThisAction();
-            return true;
-        case CharacterBattleStatType::AttackTargetsThisRound:
-            vValues = GetAttackTargetsThisRound();
-            return true;
-        case CharacterBattleStatType::DefendTargetsThisRound:
-            vValues = GetDefendTargetsThisRound();
-            return true;
-        case CharacterBattleStatType::AttackTargetsLastRound:
-            vValues = GetAttackTargetsLastRound();
-            return true;
-        case CharacterBattleStatType::DefendTargetsLastRound:
-            vValues = GetDefendTargetsLastRound();
-            return true;
-        case CharacterBattleStatType::MostRecentAttackTargets:
-            vValues = GetMostRecentAttackTargets();
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-Bool CharacterBattleData::SetBoolStatValue(const IndexedString& sStat, const Bool& bValue)
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::IsDead:
-            SetIsDead(bValue);
-            return true;
-        case CharacterBattleStatType::IsUnconscious:
-            SetIsUnconscious(bValue);
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-Bool CharacterBattleData::SetIntStatValue(const IndexedString& sStat, const Int& iValue)
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::AllowedTargetAmount:
-            SetAllowedTargetAmount(iValue);
-            return true;
-        case CharacterBattleStatType::DamageTakenThisRound:
-            SetDamageTakenThisRound(iValue);
-            return true;
-        case CharacterBattleStatType::DamageTakenThisBattle:
-            SetDamageTakenThisBattle(iValue);
-            return true;
-        case CharacterBattleStatType::DamageGivenThisRound:
-            SetDamageGivenThisRound(iValue);
-            return true;
-        case CharacterBattleStatType::DamageGivenThisBattle:
-            SetDamageGivenThisBattle(iValue);
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-Bool CharacterBattleData::SetFloatStatValue(const IndexedString& sStat, const Float& fValue)
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::EquippedWeaponLeftBluntRating:
-            SetEquippedWeaponLeftBluntRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedWeaponLeftPierceRating:
-            SetEquippedWeaponLeftPierceRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedWeaponLeftSlashRating:
-            SetEquippedWeaponLeftSlashRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedWeaponRightBluntRating:
-            SetEquippedWeaponRightBluntRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedWeaponRightPierceRating:
-            SetEquippedWeaponRightPierceRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedWeaponRightSlashRating:
-            SetEquippedWeaponRightSlashRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedShieldLeftBluntRating:
-            SetEquippedShieldLeftBluntRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedShieldLeftPierceRating:
-            SetEquippedShieldLeftPierceRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedShieldLeftSlashRating:
-            SetEquippedShieldLeftSlashRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedShieldLeftMagicRating:
-            SetEquippedShieldLeftMagicRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedShieldRightBluntRating:
-            SetEquippedShieldRightBluntRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedShieldRightPierceRating:
-            SetEquippedShieldRightPierceRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedShieldRightSlashRating:
-            SetEquippedShieldRightSlashRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedShieldRightMagicRating:
-            SetEquippedShieldRightMagicRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedArmorBluntRating:
-            SetEquippedArmorBluntRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedArmorPierceRating:
-            SetEquippedArmorPierceRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedArmorSlashRating:
-            SetEquippedArmorSlashRating(fValue);
-            return true;
-        case CharacterBattleStatType::EquippedArmorMagicRating:
-            SetEquippedArmorMagicRating(fValue);
-            return true;
-        case CharacterBattleStatType::ChanceToCauseCriticalHit:
-            SetChanceToCauseCriticalHit(fValue);
-            return true;
-        case CharacterBattleStatType::ChanceToBlockCriticalHit:
-            SetChanceToBlockCriticalHit(fValue);
-            return true;
-        case CharacterBattleStatType::CriticalHitMultiplier:
-            SetCriticalHitMultiplier(fValue);
-            return true;
-        case CharacterBattleStatType::ChanceToApplyMultipleAttacks:
-            SetChanceToApplyMultipleAttacks(fValue);
-            return true;
-        case CharacterBattleStatType::AttacksMultiplier:
-            SetAttacksMultiplier(fValue);
-            return true;
-        case CharacterBattleStatType::WeaponPrimaryDamageBonusValue:
-            SetWeaponPrimaryDamageBonusValue(fValue);
-            return true;
-        case CharacterBattleStatType::WeaponPrimaryDamageBonusPercent:
-            SetWeaponPrimaryDamageBonusPercent(fValue);
-            return true;
-        case CharacterBattleStatType::WeaponSecondaryDamageBonusValue:
-            SetWeaponSecondaryDamageBonusValue(fValue);
-            return true;
-        case CharacterBattleStatType::WeaponSecondaryDamageBonusPercent:
-            SetWeaponSecondaryDamageBonusPercent(fValue);
-            return true;
-        case CharacterBattleStatType::GeneralDamageBonusValue:
-            SetGeneralDamageBonusValue(fValue);
-            return true;
-        case CharacterBattleStatType::GeneralDamageBonusPercent:
-            SetGeneralDamageBonusPercent(fValue);
-            return true;
-        case CharacterBattleStatType::DefensivePowerEffectsBonusValue:
-            SetDefensivePowerEffectsBonusValue(fValue);
-            return true;
-        case CharacterBattleStatType::DefensivePowerEffectsBonusPercent:
-            SetDefensivePowerEffectsBonusPercent(fValue);
-            return true;
-        case CharacterBattleStatType::OffensivePowerEffectsBonusValue:
-            SetOffensivePowerEffectsBonusValue(fValue);
-            return true;
-        case CharacterBattleStatType::OffensivePowerEffectsBonusPercent:
-            SetOffensivePowerEffectsBonusPercent(fValue);
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-Bool CharacterBattleData::SetStringStatValue(const IndexedString& sStat, const IndexedString& sValue)
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::DefendTargetThisAction:
-            SetDefendTargetThisAction(sValue);
-            return true;
-        case CharacterBattleStatType::MostRecentDefendTarget:
-            SetMostRecentDefendTarget(sValue);
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-Bool CharacterBattleData::SetStringArrayStatValue(const IndexedString& sStat, const IndexedStringArray& vValues)
-{
-    const CharacterBattleStatType eBattleType = (IsValidCharacterBattleStatType(sStat)) ? StringToCharacterBattleStatType(sStat) : +CharacterBattleStatType::None;
-    switch(eBattleType)
-    {
-        case CharacterBattleStatType::AttackTargetsThisAction:
-            SetAttackTargetsThisAction(vValues);
-            return true;
-        case CharacterBattleStatType::AttackTargetsThisRound:
-            SetAttackTargetsThisRound(vValues);
-            return true;
-        case CharacterBattleStatType::DefendTargetsThisRound:
-            SetDefendTargetsThisRound(vValues);
-            return true;
-        case CharacterBattleStatType::AttackTargetsLastRound:
-            SetAttackTargetsLastRound(vValues);
-            return true;
-        case CharacterBattleStatType::DefendTargetsLastRound:
-            SetDefendTargetsLastRound(vValues);
-            return true;
-        case CharacterBattleStatType::MostRecentAttackTargets:
-            SetMostRecentAttackTargets(vValues);
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-static STDUnorderedSet<String> s_tBoolStatNames = {};
-static STDUnorderedSet<String> s_tUByteStatNames = {};
-static STDUnorderedSet<String> s_tIntStatNames = {};
-static STDUnorderedSet<String> s_tFloatStatNames = {};
-static STDUnorderedSet<String> s_tIndexedStringStatNames = {};
-static STDUnorderedSet<String> s_tIndexedStringArrayStatNames = {};
-STDUnorderedSet<String>& CharacterBattleData::GetBoolStatNames() { return s_tBoolStatNames; }
-STDUnorderedSet<String>& CharacterBattleData::GetUByteStatNames() { return s_tUByteStatNames; }
-STDUnorderedSet<String>& CharacterBattleData::GetIntStatNames() { return s_tIntStatNames; }
-STDUnorderedSet<String>& CharacterBattleData::GetFloatStatNames() { return s_tFloatStatNames; }
-STDUnorderedSet<String>& CharacterBattleData::GetIndexedStringStatNames() { return s_tIndexedStringStatNames; }
-STDUnorderedSet<String>& CharacterBattleData::GetIndexedStringArrayStatNames() { return s_tIndexedStringArrayStatNames; }
-
 static Bool s_bCharacterBattleData_StatNamesInitialized = false;
 void CharacterBattleData::InitAllStatNames()
 {
@@ -844,71 +374,12 @@ void CharacterBattleData::InitAllStatNames()
         return;
     }
 
-    // -- Target Characters --
-    InitAttackTargetsThisAction();
-    InitAttackTargetsThisRound();
-    InitAttackTargetsLastRound();
-    InitDefendTargetThisAction();
-    InitDefendTargetsThisRound();
-    InitDefendTargetsLastRound();
-    InitMostRecentAttackTargets();
-    InitMostRecentDefendTarget();
-
-    // -- Target Amounts --
-    InitAllowedTargetAmount();
-
-    // -- Status --
-    InitIsDead();
-    InitIsUnconscious();
-
-    // -- Equipment Ratings --
-    InitEquippedWeaponLeftBluntRating();
-    InitEquippedWeaponLeftPierceRating();
-    InitEquippedWeaponLeftSlashRating();
-    InitEquippedWeaponRightBluntRating();
-    InitEquippedWeaponRightPierceRating();
-    InitEquippedWeaponRightSlashRating();
-    InitEquippedShieldLeftBluntRating();
-    InitEquippedShieldLeftPierceRating();
-    InitEquippedShieldLeftSlashRating();
-    InitEquippedShieldLeftMagicRating();
-    InitEquippedShieldRightBluntRating();
-    InitEquippedShieldRightPierceRating();
-    InitEquippedShieldRightSlashRating();
-    InitEquippedShieldRightMagicRating();
-    InitEquippedArmorBluntRating();
-    InitEquippedArmorPierceRating();
-    InitEquippedArmorSlashRating();
-    InitEquippedArmorMagicRating();
-
-    // -- Critical Hits --
-    InitChanceToCauseCriticalHit();
-    InitChanceToBlockCriticalHit();
-    InitCriticalHitMultiplier();
-
-    // -- Multiple Attacks --
-    InitChanceToApplyMultipleAttacks();
-    InitAttacksMultiplier();
-
-    // -- Damage Counters --
-    InitDamageTakenThisRound();
-    InitDamageTakenThisBattle();
-    InitDamageGivenThisRound();
-    InitDamageGivenThisBattle();
-
-    // -- Damage Bonus --
-    InitWeaponPrimaryDamageBonusValue();
-    InitWeaponPrimaryDamageBonusPercent();
-    InitWeaponSecondaryDamageBonusValue();
-    InitWeaponSecondaryDamageBonusPercent();
-    InitGeneralDamageBonusValue();
-    InitGeneralDamageBonusPercent();
-
-    // -- Effects Bonus --
-    InitDefensivePowerEffectsBonusValue();
-    InitDefensivePowerEffectsBonusPercent();
-    InitOffensivePowerEffectsBonusValue();
-    InitOffensivePowerEffectsBonusPercent();
+    // Initialize stats
+    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedString);
+    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedStringArray);
+    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, Bool);
+    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, Int);
+    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, Float);
 
     // Finished
     s_bCharacterBattleData_StatNamesInitialized = true;
@@ -926,106 +397,22 @@ Bool CharacterBattleData::operator!=(const CharacterBattleData& other) const
 
 void to_json(Json& jsonData, const CharacterBattleData& obj)
 {
-    // Get current configuration
-    const Config& config = ConfigManager::GetInstance()->GetCurrentConfig();
-
-    // -- Target Amounts --
-    SET_JSON_DATA_IF_NOT_DEFAULT(AllowedTargetAmount, config.GetDefaultAllowedTargetAmount());
-
-    // -- Equipment Ratings --
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedWeaponLeftBluntRating, config.GetDefaultEquippedWeaponLeftBluntRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedWeaponLeftPierceRating, config.GetDefaultEquippedWeaponLeftPierceRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedWeaponLeftSlashRating, config.GetDefaultEquippedWeaponLeftSlashRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedWeaponRightBluntRating, config.GetDefaultEquippedWeaponRightBluntRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedWeaponRightPierceRating, config.GetDefaultEquippedWeaponRightPierceRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedWeaponRightSlashRating, config.GetDefaultEquippedWeaponRightSlashRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedShieldLeftBluntRating, config.GetDefaultEquippedShieldLeftBluntRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedShieldLeftPierceRating, config.GetDefaultEquippedShieldLeftPierceRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedShieldLeftSlashRating, config.GetDefaultEquippedShieldLeftSlashRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedShieldLeftMagicRating, config.GetDefaultEquippedShieldLeftMagicRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedShieldRightBluntRating, config.GetDefaultEquippedShieldRightBluntRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedShieldRightPierceRating, config.GetDefaultEquippedShieldRightPierceRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedShieldRightSlashRating, config.GetDefaultEquippedShieldRightSlashRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedShieldRightMagicRating, config.GetDefaultEquippedShieldRightMagicRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedArmorBluntRating, config.GetDefaultEquippedArmorBluntRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedArmorPierceRating, config.GetDefaultEquippedArmorPierceRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedArmorSlashRating, config.GetDefaultEquippedArmorSlashRating());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EquippedArmorMagicRating, config.GetDefaultEquippedArmorMagicRating());
-
-    // -- Critical Hits --
-    SET_JSON_DATA_IF_NOT_DEFAULT(ChanceToCauseCriticalHit, config.GetDefaultChanceToCauseCriticalHit());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ChanceToBlockCriticalHit, config.GetDefaultChanceToBlockCriticalHit());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CriticalHitMultiplier, config.GetDefaultCriticalHitMultiplier());
-
-    // -- Multiple Attacks --
-    SET_JSON_DATA_IF_NOT_DEFAULT(ChanceToApplyMultipleAttacks, config.GetDefaultChanceToApplyMultipleAttacks());
-    SET_JSON_DATA_IF_NOT_DEFAULT(AttacksMultiplier, config.GetDefaultAttacksMultiplier());
-
-    // -- Damage Bonus --
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponPrimaryDamageBonusValue, config.GetDefaultWeaponPrimaryDamageBonusValue());
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponPrimaryDamageBonusPercent, config.GetDefaultWeaponPrimaryDamageBonusPercent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponSecondaryDamageBonusValue, config.GetDefaultWeaponSecondaryDamageBonusValue());
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponSecondaryDamageBonusPercent, config.GetDefaultWeaponSecondaryDamageBonusPercent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(GeneralDamageBonusValue, config.GetDefaultGeneralDamageBonusValue());
-    SET_JSON_DATA_IF_NOT_DEFAULT(GeneralDamageBonusPercent, config.GetDefaultGeneralDamageBonusPercent());
-
-    // -- Effects Bonus --
-    SET_JSON_DATA_IF_NOT_DEFAULT(DefensivePowerEffectsBonusValue, config.GetDefaultDefensivePowerEffectsBonusValue());
-    SET_JSON_DATA_IF_NOT_DEFAULT(DefensivePowerEffectsBonusPercent, config.GetDefaultDefensivePowerEffectsBonusPercent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(OffensivePowerEffectsBonusValue, config.GetDefaultOffensivePowerEffectsBonusValue());
-    SET_JSON_DATA_IF_NOT_DEFAULT(OffensivePowerEffectsBonusPercent, config.GetDefaultOffensivePowerEffectsBonusPercent());
+    // Stat values
+    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedString);
+    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedStringArray);
+    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, Bool);
+    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, Int);
+    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, Float);
 }
 
 void from_json(const Json& jsonData, CharacterBattleData& obj)
 {
-    // Get current configuration
-    const Config& config = ConfigManager::GetInstance()->GetCurrentConfig();
-
-    // -- Target Amounts --
-    obj.SetAllowedTargetAmount(GET_JSON_DATA_OR_DEFAULT(AllowedTargetAmount, Int, config.GetDefaultAllowedTargetAmount()));
-
-    // -- Equipment Ratings --
-    obj.SetEquippedWeaponLeftBluntRating(GET_JSON_DATA_OR_DEFAULT(EquippedWeaponLeftBluntRating, Float, config.GetDefaultEquippedWeaponLeftBluntRating()));
-    obj.SetEquippedWeaponLeftPierceRating(GET_JSON_DATA_OR_DEFAULT(EquippedWeaponLeftPierceRating, Float, config.GetDefaultEquippedWeaponLeftPierceRating()));
-    obj.SetEquippedWeaponLeftSlashRating(GET_JSON_DATA_OR_DEFAULT(EquippedWeaponLeftSlashRating, Float, config.GetDefaultEquippedWeaponLeftSlashRating()));
-    obj.SetEquippedWeaponRightBluntRating(GET_JSON_DATA_OR_DEFAULT(EquippedWeaponRightBluntRating, Float, config.GetDefaultEquippedWeaponRightBluntRating()));
-    obj.SetEquippedWeaponRightPierceRating(GET_JSON_DATA_OR_DEFAULT(EquippedWeaponRightPierceRating, Float, config.GetDefaultEquippedWeaponRightPierceRating()));
-    obj.SetEquippedWeaponRightSlashRating(GET_JSON_DATA_OR_DEFAULT(EquippedWeaponRightSlashRating, Float, config.GetDefaultEquippedWeaponRightSlashRating()));
-    obj.SetEquippedShieldLeftBluntRating(GET_JSON_DATA_OR_DEFAULT(EquippedShieldLeftBluntRating, Float, config.GetDefaultEquippedShieldLeftBluntRating()));
-    obj.SetEquippedShieldLeftPierceRating(GET_JSON_DATA_OR_DEFAULT(EquippedShieldLeftPierceRating, Float, config.GetDefaultEquippedShieldLeftPierceRating()));
-    obj.SetEquippedShieldLeftSlashRating(GET_JSON_DATA_OR_DEFAULT(EquippedShieldLeftSlashRating, Float, config.GetDefaultEquippedShieldLeftSlashRating()));
-    obj.SetEquippedShieldLeftMagicRating(GET_JSON_DATA_OR_DEFAULT(EquippedShieldLeftMagicRating, Float, config.GetDefaultEquippedShieldLeftMagicRating()));
-    obj.SetEquippedShieldRightBluntRating(GET_JSON_DATA_OR_DEFAULT(EquippedShieldRightBluntRating, Float, config.GetDefaultEquippedShieldRightBluntRating()));
-    obj.SetEquippedShieldRightPierceRating(GET_JSON_DATA_OR_DEFAULT(EquippedShieldRightPierceRating, Float, config.GetDefaultEquippedShieldRightPierceRating()));
-    obj.SetEquippedShieldRightSlashRating(GET_JSON_DATA_OR_DEFAULT(EquippedShieldRightSlashRating, Float, config.GetDefaultEquippedShieldRightSlashRating()));
-    obj.SetEquippedShieldRightMagicRating(GET_JSON_DATA_OR_DEFAULT(EquippedShieldRightMagicRating, Float, config.GetDefaultEquippedShieldRightMagicRating()));
-    obj.SetEquippedArmorBluntRating(GET_JSON_DATA_OR_DEFAULT(EquippedArmorBluntRating, Float, config.GetDefaultEquippedArmorBluntRating()));
-    obj.SetEquippedArmorPierceRating(GET_JSON_DATA_OR_DEFAULT(EquippedArmorPierceRating, Float, config.GetDefaultEquippedArmorPierceRating()));
-    obj.SetEquippedArmorSlashRating(GET_JSON_DATA_OR_DEFAULT(EquippedArmorSlashRating, Float, config.GetDefaultEquippedArmorSlashRating()));
-    obj.SetEquippedArmorMagicRating(GET_JSON_DATA_OR_DEFAULT(EquippedArmorMagicRating, Float, config.GetDefaultEquippedArmorMagicRating()));
-
-    // -- Critical Hits --
-    obj.SetChanceToCauseCriticalHit(GET_JSON_DATA_OR_DEFAULT(ChanceToCauseCriticalHit, Float, config.GetDefaultChanceToCauseCriticalHit()));
-    obj.SetChanceToBlockCriticalHit(GET_JSON_DATA_OR_DEFAULT(ChanceToBlockCriticalHit, Float, config.GetDefaultChanceToBlockCriticalHit()));
-    obj.SetCriticalHitMultiplier(GET_JSON_DATA_OR_DEFAULT(CriticalHitMultiplier, Float, config.GetDefaultCriticalHitMultiplier()));
-
-    // -- Multiple Attacks --
-    obj.SetChanceToApplyMultipleAttacks(GET_JSON_DATA_OR_DEFAULT(ChanceToApplyMultipleAttacks, Float, config.GetDefaultChanceToApplyMultipleAttacks()));
-    obj.SetAttacksMultiplier(GET_JSON_DATA_OR_DEFAULT(AttacksMultiplier, Float, config.GetDefaultAttacksMultiplier()));
-
-    // -- Damage Bonus --
-    obj.SetWeaponPrimaryDamageBonusValue(GET_JSON_DATA_OR_DEFAULT(WeaponPrimaryDamageBonusValue, Float, config.GetDefaultWeaponPrimaryDamageBonusValue()));
-    obj.SetWeaponPrimaryDamageBonusPercent(GET_JSON_DATA_OR_DEFAULT(WeaponPrimaryDamageBonusPercent, Float, config.GetDefaultWeaponPrimaryDamageBonusPercent()));
-    obj.SetWeaponSecondaryDamageBonusValue(GET_JSON_DATA_OR_DEFAULT(WeaponSecondaryDamageBonusValue, Float, config.GetDefaultWeaponSecondaryDamageBonusValue()));
-    obj.SetWeaponSecondaryDamageBonusPercent(GET_JSON_DATA_OR_DEFAULT(WeaponSecondaryDamageBonusPercent, Float, config.GetDefaultWeaponSecondaryDamageBonusPercent()));
-    obj.SetGeneralDamageBonusValue(GET_JSON_DATA_OR_DEFAULT(GeneralDamageBonusValue, Float, config.GetDefaultGeneralDamageBonusValue()));
-    obj.SetGeneralDamageBonusPercent(GET_JSON_DATA_OR_DEFAULT(GeneralDamageBonusPercent, Float, config.GetDefaultGeneralDamageBonusPercent()));
-
-    // -- Effects Bonus --
-    obj.SetDefensivePowerEffectsBonusValue(GET_JSON_DATA_OR_DEFAULT(DefensivePowerEffectsBonusValue, Float, config.GetDefaultDefensivePowerEffectsBonusValue()));
-    obj.SetDefensivePowerEffectsBonusPercent(GET_JSON_DATA_OR_DEFAULT(DefensivePowerEffectsBonusPercent, Float, config.GetDefaultDefensivePowerEffectsBonusPercent()));
-    obj.SetOffensivePowerEffectsBonusValue(GET_JSON_DATA_OR_DEFAULT(OffensivePowerEffectsBonusValue, Float, config.GetDefaultOffensivePowerEffectsBonusValue()));
-    obj.SetOffensivePowerEffectsBonusPercent(GET_JSON_DATA_OR_DEFAULT(OffensivePowerEffectsBonusPercent, Float, config.GetDefaultOffensivePowerEffectsBonusPercent()));
+    // Stat values
+    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, IndexedString);
+    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, IndexedStringArray);
+    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Bool);
+    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Int);
+    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Float);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterBattleData, CharacterBattleData);

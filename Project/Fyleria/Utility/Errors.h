@@ -86,21 +86,27 @@ protected:
 class LogicError : public GeneralError
 {
 public:
-    LogicError(const String& message, const String& file = __FILE__, Int line = __LINE__) : GeneralError(message, LOGIC_ERROR, file, line) {}
+    LogicError(const String& message, const String& file = __FILE__, Int line = __LINE__)
+        : GeneralError(message, ErrorCode::LogicError, file, line)
+    {}
 };
 
 // Runtime error
 class RuntimeError : public GeneralError
 {
 public:
-    RuntimeError(const String& message, const String& file = __FILE__, Int line = __LINE__) : GeneralError(message, RUNTIME_ERROR, file, line) {}
+    RuntimeError(const String& message, const String& file = __FILE__, Int line = __LINE__)
+        : GeneralError(message, ErrorCode::RuntimeError, file, line)
+    {}
 };
 
 // Module error
 class ModuleError : public GeneralError
 {
 public:
-    ModuleError(const String& message, const String& file = __FILE__, Int line = __LINE__) : GeneralError(message, MODULE_ERROR, file, line) {}
+    ModuleError(const String& message, const String& file = __FILE__, Int line = __LINE__)
+        : GeneralError(message, ErrorCode::ModuleError, file, line)
+    {}
 };
 
 };

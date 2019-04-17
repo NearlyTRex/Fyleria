@@ -391,7 +391,7 @@ IndexedStringArray StatChange::GetIntersectingDefendRequirements(const IndexedSt
     return IndexedStringArray();
 }
 
-Bool StatChange::GetResolvedCharacterLists(IndexedStringArray& vSourceCharIDs, IndexedStringArray& vDestCharIDs) const
+Bool StatChange::GetResolvedCharacterArrays(IndexedStringArray& vSourceCharIDs, IndexedStringArray& vDestCharIDs) const
 {
     IndexedString sSourceTargetType = GetSourceTargetType();
     IndexedString sDestTargetType = GetDestinationTargetType();

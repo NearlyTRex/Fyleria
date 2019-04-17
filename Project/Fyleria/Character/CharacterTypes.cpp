@@ -219,6 +219,69 @@ IndexedString ConvertSkillWeaponTypeToCharacterActionType(const IndexedString& s
     }
 }
 
+IndexedString ConvertSkillWeaponTypeToCharacterProgressStatType(const IndexedString& sSkillWeaponType)
+{
+    if(!sSkillWeaponType.IsValid())
+    {
+        return IndexedString("None");
+    }
+
+    const SkillWeaponType eSkillWeaponType = (IsValidSkillWeaponType(sSkillWeaponType)) ? StringToSkillWeaponType(sSkillWeaponType) : +SkillWeaponType::None;
+    switch(eSkillWeaponType)
+    {
+        case SkillWeaponType::Slash:
+            return IndexedString("SlashPoints");
+        case SkillWeaponType::Sever:
+            return IndexedString("SeverPoints");
+        case SkillWeaponType::Slice:
+            return IndexedString("SlicePoints");
+        case SkillWeaponType::Slit:
+            return IndexedString("SlitPoints");
+        case SkillWeaponType::Cleave:
+            return IndexedString("CleavePoints");
+        case SkillWeaponType::Decapitate:
+            return IndexedString("DecapitatePoints");
+        case SkillWeaponType::Parry:
+            return IndexedString("ParryPoints");
+        case SkillWeaponType::Riposte:
+            return IndexedString("RipostePoints");
+        case SkillWeaponType::Bash:
+            return IndexedString("BashPoints");
+        case SkillWeaponType::Smash:
+            return IndexedString("SmashPoints");
+        case SkillWeaponType::Impact:
+            return IndexedString("ImpactPoints");
+        case SkillWeaponType::Crush:
+            return IndexedString("CrushPoints");
+        case SkillWeaponType::Break:
+            return IndexedString("BreakPoints");
+        case SkillWeaponType::Crack:
+            return IndexedString("CrackPoints");
+        case SkillWeaponType::Block:
+            return IndexedString("BlockPoints");
+        case SkillWeaponType::Rush:
+            return IndexedString("RushPoints");
+        case SkillWeaponType::Pierce:
+            return IndexedString("PiercePoints");
+        case SkillWeaponType::Drill:
+            return IndexedString("DrillPoints");
+        case SkillWeaponType::Shoot:
+            return IndexedString("ShootPoints");
+        case SkillWeaponType::Impale:
+            return IndexedString("ImpalePoints");
+        case SkillWeaponType::StealthStrike:
+            return IndexedString("StealthStrikePoints");
+        case SkillWeaponType::CriticalShot:
+            return IndexedString("CriticalShotPoints");
+        case SkillWeaponType::Dodge:
+            return IndexedString("DodgePoints");
+        case SkillWeaponType::Counter:
+            return IndexedString("CounterPoints");
+        default:
+            return IndexedString("None");
+    }
+}
+
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTreeIndexType);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterSegmentType);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterProgressStatType);

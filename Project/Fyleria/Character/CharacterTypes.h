@@ -25,22 +25,26 @@ BETTER_ENUM(CharacterSegmentType, Int,
     Active
 );
 
-BETTER_ENUM(CharacterProgressStatType, Int,
+BETTER_ENUM(CharacterBasicStatType_IndexedString, Int,
     None,
-
-    // -- Basics --
     FirstName,
     LastName,
-    Age,
     Gender,
     Hair,
     Eyes,
     Handedness,
     BaseRace,
     TransformedRace,
-    PowerSet,
+    PowerSet
+);
 
-    // -- Meters --
+BETTER_ENUM(CharacterBasicStatType_Int, Int,
+    None,
+    Age
+);
+
+BETTER_ENUM(CharacterProgressStatType_Int, Int,
+    None,
     HealthPointsCurrent,
     MagicPointsCurrent,
     EnergyPointsCurrent,
@@ -54,8 +58,6 @@ BETTER_ENUM(CharacterProgressStatType, Int,
     MagicCostDelta,
     EnergyCostDelta,
     Speed,
-
-    // -- Gemstones --
     AmberValueDelta,
     RubyValueDelta,
     DiamondValueDelta,
@@ -68,8 +70,6 @@ BETTER_ENUM(CharacterProgressStatType, Int,
     GarnetValueDelta,
     IvoryValueDelta,
     OpalValueDelta,
-
-    // -- Attack and Defense Scoring --
     BluntAttack,
     BluntDefense,
     PierceAttack,
@@ -80,8 +80,6 @@ BETTER_ENUM(CharacterProgressStatType, Int,
     MagicDefense,
     EnergyAttack,
     EnergyDefense,
-
-    // -- Action Points --
     SlashPoints,
     SeverPoints,
     SlicePoints,
@@ -108,27 +106,39 @@ BETTER_ENUM(CharacterProgressStatType, Int,
     CounterPoints
 );
 
-BETTER_ENUM(CharacterBattleStatType, Int,
+BETTER_ENUM(CharacterBattleStatType_IndexedString, Int,
     None,
+    ActionSourceThisAction,
+    MostRecentActionSource
+);
 
-    // -- Target Characters --
-    AttackTargetsThisAction,
-    DefendTargetThisAction,
-    AttackTargetsThisRound,
-    DefendTargetsThisRound,
-    AttackTargetsLastRound,
-    DefendTargetsLastRound,
-    MostRecentAttackTargets,
-    MostRecentDefendTarget,
+BETTER_ENUM(CharacterBattleStatType_IndexedStringArray, Int,
+    None,
+    ActionTargetsThisAction,
+    ActionTargetsThisRound,
+    ActionSourcesThisRound,
+    ActionTargetsLastRound,
+    ActionSourcesLastRound,
+    MostRecentActionTargets
+);
 
-    // -- Target Amounts --
-    AllowedTargetAmount,
-
-    // -- Status --
+BETTER_ENUM(CharacterBattleStatType_Bool, Int,
+    None,
     IsDead,
-    IsUnconscious,
+    IsUnconscious
+);
 
-    // -- Equipment Ratings --
+BETTER_ENUM(CharacterBattleStatType_Int, Int,
+    None,
+    AllowedTargetAmount,
+    DamageTakenThisRound,
+    DamageTakenThisBattle,
+    DamageGivenThisRound,
+    DamageGivenThisBattle
+);
+
+BETTER_ENUM(CharacterBattleStatType_Float, Int,
+    None,
     EquippedWeaponLeftBluntRating,
     EquippedWeaponLeftPierceRating,
     EquippedWeaponLeftSlashRating,
@@ -147,31 +157,17 @@ BETTER_ENUM(CharacterBattleStatType, Int,
     EquippedArmorPierceRating,
     EquippedArmorSlashRating,
     EquippedArmorMagicRating,
-
-    // -- Critical Hits --
     ChanceToCauseCriticalHit,
     ChanceToBlockCriticalHit,
     CriticalHitMultiplier,
-
-    // -- Multiple Attacks --
     ChanceToApplyMultipleAttacks,
     AttacksMultiplier,
-
-    // -- Damage Counters --
-    DamageTakenThisRound,
-    DamageTakenThisBattle,
-    DamageGivenThisRound,
-    DamageGivenThisBattle,
-
-    // -- Damage Bonus --
     WeaponPrimaryDamageBonusValue,
     WeaponPrimaryDamageBonusPercent,
     WeaponSecondaryDamageBonusValue,
     WeaponSecondaryDamageBonusPercent,
     GeneralDamageBonusPercent,
     GeneralDamageBonusValue,
-
-    // -- Effects Bonus --
     DefensivePowerEffectsBonusValue,
     DefensivePowerEffectsBonusPercent,
     OffensivePowerEffectsBonusValue,
@@ -274,14 +270,14 @@ BETTER_ENUM(CharacterEquipmentType, Int,
 BETTER_ENUM(CharacterTargetType, Int,
     None,
     Self,
-    AttackTargetsThisAction,
-    DefendTargetThisAction,
-    AttackTargetsThisRound,
-    DefendTargetsThisRound,
-    AttackTargetsLastRound,
-    DefendTargetsLastRound,
-    MostRecentAttackTargets,
-    MostRecentDefendTarget,
+    ActionTargetsThisAction,
+    ActionSourceThisAction,
+    ActionTargetsThisRound,
+    ActionSourcesThisRound,
+    ActionTargetsLastRound,
+    ActionSourcesLastRound,
+    MostRecentActionTargets,
+    MostRecentActionSource,
     AllEnemies,
     AllAllies,
     Enemy1,
@@ -375,6 +371,7 @@ IndexedString ConvertItemTypeToCharacterActionType(const IndexedString& sItemTyp
 IndexedStringArray ConvertItemTypeToCharacterEquipTypes(const IndexedString& sItemType);
 IndexedString ConvertSkillWeaponBaseTypeToCharacterActionType(const IndexedString& sSkillWeaponBaseType);
 IndexedString ConvertSkillWeaponTypeToCharacterActionType(const IndexedString& sSkillWeaponType);
+IndexedString ConvertSkillWeaponTypeToCharacterProgressStatType(const IndexedString& sSkillWeaponType);
 
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterTreeIndexType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterSegmentType);

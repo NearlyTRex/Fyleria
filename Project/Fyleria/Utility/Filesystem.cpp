@@ -50,7 +50,7 @@ SizeType GetFileSize(const String& sPath)
     return 0;
 }
 
-String operator/(const String& path1, const String& path2)
+String JoinPaths(const String& sPath1, const String& sPath2)
 {
     return String();
 }

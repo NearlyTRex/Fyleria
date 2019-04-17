@@ -26,18 +26,11 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(Attack, Short);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(Defend, Short);
 
-    // Delta amount is from the source character
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(DeltaPercent, Float);
+    // Delta amounts
     MAKE_RAW_BASIC_TYPE_ACCESSORS(DeltaFloat, Float);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(DeltaInt, Int);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(DeltaBool, Bool);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaString, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaFloatArray, FloatArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaIntArray, IntArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaBoolArray, BoolArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DeltaStringArray, IndexedStringArray);
 
-    // Full amount is from the destination character
+    // Full amounts
     MAKE_RAW_BASIC_TYPE_ACCESSORS(FullPercent, Float);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(FullFloat, Float);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(FullInt, Int);

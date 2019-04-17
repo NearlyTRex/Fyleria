@@ -5,16 +5,13 @@
 #define _GECKO_CHARACTER_BATTLE_DATA_H_
 
 #include "CharacterData/CharacterProgressData.h"
-#include "Utility/IndexedString.h"
-#include "Utility/Macros.h"
-#include "Utility/Enum.h"
-#include "Utility/Json.h"
+#include "Stats/StatTypeHolder.h"
 
 namespace Gecko
 {
 
-// Segmented POD class for character battle-only data
-class CharacterBattleData
+// Character battle data
+class CharacterBattleData : public StatTypeHolder
 {
 public:
 
@@ -42,10 +39,13 @@ public:
     Bool CanRegenerateFromStat(const IndexedString& sRegenStat) const;
 
     // Update equipment ratings
-    void UpdateEquipmentRatings(const IndexedString& sWeaponSet, const CharacterProgressItemArray& vEquippedItems, const CharacterProgressData& progressData);
+    void UpdateEquipmentRatings(const IndexedString& sWeaponSet,
+        const CharacterProgressItemArray& vEquippedItems,
+        const CharacterProgressData& progressData);
 
     // Resolve target placeholders
-    IndexedStringArray ResolveTargetPlaceholder(const IndexedString& sSelfTargetType, const IndexedString& sPlaceholderTargetType) const;
+    IndexedStringArray ResolveTargetPlaceholder(const IndexedString& sSelfTargetType,
+        const IndexedString& sPlaceholderTargetType) const;
 
     // Weapon ratings based on handedness
     Bool GetPrimaryWeaponRatings(const IndexedString& sHandedness,
@@ -67,92 +67,66 @@ public:
         Float& fSecondaryPierce,
         Float& fSecondarySlash) const;
 
-    // Stat values
-    Bool GetBoolStatValue(const IndexedString& sStat, Bool& bValue) const;
-    Bool GetIntStatValue(const IndexedString& sStat, Int& iValue) const;
-    Bool GetFloatStatValue(const IndexedString& sStat, Float& fValue) const;
-    Bool GetStringStatValue(const IndexedString& sStat, IndexedString& sValue) const;
-    Bool GetStringArrayStatValue(const IndexedString& sStat, IndexedStringArray& vValues) const;
-    Bool SetBoolStatValue(const IndexedString& sStat, const Bool& bValue);
-    Bool SetIntStatValue(const IndexedString& sStat, const Int& iValue);
-    Bool SetFloatStatValue(const IndexedString& sStat, const Float& fValue);
-    Bool SetStringStatValue(const IndexedString& sStat, const IndexedString& sValue);
-    Bool SetStringArrayStatValue(const IndexedString& sStat, const IndexedStringArray& vValues);
-
     // Stat names
-    static STDUnorderedSet<String>& GetBoolStatNames();
-    static STDUnorderedSet<String>& GetUByteStatNames();
-    static STDUnorderedSet<String>& GetIntStatNames();
-    static STDUnorderedSet<String>& GetFloatStatNames();
-    static STDUnorderedSet<String>& GetIndexedStringStatNames();
-    static STDUnorderedSet<String>& GetIndexedStringArrayStatNames();
     static void InitAllStatNames();
 
-    // -- Target Characters --
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(AttackTargetsThisAction, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(AttackTargetsThisRound, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(AttackTargetsLastRound, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(DefendTargetThisAction, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(DefendTargetsThisRound, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(DefendTargetsLastRound, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(MostRecentAttackTargets, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(MostRecentDefendTarget, IndexedString);
+    // IndexedString stats
+    MAKE_STAT_TYPE_ACCESSORS(ActionSourceThisAction, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(MostRecentActionSource, IndexedString);
 
-    // -- Target Amounts --
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(AllowedTargetAmount, UByte);
+    // IndexedStringArray stats
+    MAKE_STAT_TYPE_ACCESSORS(ActionTargetsThisAction, IndexedStringArray);
+    MAKE_STAT_TYPE_ACCESSORS(ActionTargetsThisRound, IndexedStringArray);
+    MAKE_STAT_TYPE_ACCESSORS(ActionTargetsLastRound, IndexedStringArray);
+    MAKE_STAT_TYPE_ACCESSORS(ActionSourcesThisRound, IndexedStringArray);
+    MAKE_STAT_TYPE_ACCESSORS(ActionSourcesLastRound, IndexedStringArray);
+    MAKE_STAT_TYPE_ACCESSORS(MostRecentActionTargets, IndexedStringArray);
 
-    // -- Status --
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(IsDead, Bool);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(IsUnconscious, Bool);
+    // Bool stats
+    MAKE_STAT_TYPE_ACCESSORS(IsDead, Bool);
+    MAKE_STAT_TYPE_ACCESSORS(IsUnconscious, Bool);
 
-    // -- Equipment Ratings --
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedWeaponLeftBluntRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedWeaponLeftPierceRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedWeaponLeftSlashRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedWeaponRightBluntRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedWeaponRightPierceRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedWeaponRightSlashRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedShieldLeftBluntRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedShieldLeftPierceRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedShieldLeftSlashRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedShieldLeftMagicRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedShieldRightBluntRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedShieldRightPierceRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedShieldRightSlashRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedShieldRightMagicRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedArmorBluntRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedArmorPierceRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedArmorSlashRating, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(EquippedArmorMagicRating, Float);
+    // Int stats
+    MAKE_STAT_TYPE_ACCESSORS(AllowedTargetAmount, Int);
+    MAKE_STAT_TYPE_ACCESSORS(DamageTakenThisRound, Int);
+    MAKE_STAT_TYPE_ACCESSORS(DamageTakenThisBattle, Int);
+    MAKE_STAT_TYPE_ACCESSORS(DamageGivenThisRound, Int);
+    MAKE_STAT_TYPE_ACCESSORS(DamageGivenThisBattle, Int);
 
-    // -- Critical Hits --
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(ChanceToCauseCriticalHit, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(ChanceToBlockCriticalHit, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(CriticalHitMultiplier, Float);
-
-    // -- Multiple Attacks --
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(ChanceToApplyMultipleAttacks, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(AttacksMultiplier, Float);
-
-    // -- Damage Counters --
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(DamageTakenThisRound, Int);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(DamageTakenThisBattle, Int);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(DamageGivenThisRound, Int);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(DamageGivenThisBattle, Int);
-
-    // -- Damage Bonus --
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(WeaponPrimaryDamageBonusValue, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(WeaponPrimaryDamageBonusPercent, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(WeaponSecondaryDamageBonusValue, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(WeaponSecondaryDamageBonusPercent, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(GeneralDamageBonusValue, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(GeneralDamageBonusPercent, Float);
-
-    // -- Effects Bonus --
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(DefensivePowerEffectsBonusValue, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(DefensivePowerEffectsBonusPercent, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(OffensivePowerEffectsBonusValue, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(OffensivePowerEffectsBonusPercent, Float);
+    // Float stats
+    MAKE_STAT_TYPE_ACCESSORS(EquippedWeaponLeftBluntRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedWeaponLeftPierceRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedWeaponLeftSlashRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedWeaponRightBluntRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedWeaponRightPierceRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedWeaponRightSlashRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedShieldLeftBluntRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedShieldLeftPierceRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedShieldLeftSlashRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedShieldLeftMagicRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedShieldRightBluntRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedShieldRightPierceRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedShieldRightSlashRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedShieldRightMagicRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedArmorBluntRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedArmorPierceRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedArmorSlashRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(EquippedArmorMagicRating, Float);
+    MAKE_STAT_TYPE_ACCESSORS(ChanceToCauseCriticalHit, Float);
+    MAKE_STAT_TYPE_ACCESSORS(ChanceToBlockCriticalHit, Float);
+    MAKE_STAT_TYPE_ACCESSORS(CriticalHitMultiplier, Float);
+    MAKE_STAT_TYPE_ACCESSORS(ChanceToApplyMultipleAttacks, Float);
+    MAKE_STAT_TYPE_ACCESSORS(AttacksMultiplier, Float);
+    MAKE_STAT_TYPE_ACCESSORS(WeaponPrimaryDamageBonusValue, Float);
+    MAKE_STAT_TYPE_ACCESSORS(WeaponPrimaryDamageBonusPercent, Float);
+    MAKE_STAT_TYPE_ACCESSORS(WeaponSecondaryDamageBonusValue, Float);
+    MAKE_STAT_TYPE_ACCESSORS(WeaponSecondaryDamageBonusPercent, Float);
+    MAKE_STAT_TYPE_ACCESSORS(GeneralDamageBonusValue, Float);
+    MAKE_STAT_TYPE_ACCESSORS(GeneralDamageBonusPercent, Float);
+    MAKE_STAT_TYPE_ACCESSORS(DefensivePowerEffectsBonusValue, Float);
+    MAKE_STAT_TYPE_ACCESSORS(DefensivePowerEffectsBonusPercent, Float);
+    MAKE_STAT_TYPE_ACCESSORS(OffensivePowerEffectsBonusValue, Float);
+    MAKE_STAT_TYPE_ACCESSORS(OffensivePowerEffectsBonusPercent, Float);
 
     // Comparisons
     Bool operator==(const CharacterBattleData& other) const;

@@ -13,18 +13,11 @@ StatChangeEntry::StatChangeEntry()
     SetAttack(0);
     SetDefend(0);
 
-    // Delta amount is from the source character
-    SetDeltaPercent(0);
+    // Delta amounts
     SetDeltaFloat(0);
     SetDeltaInt(0);
-    SetDeltaBool(false);
-    SetDeltaString(IndexedString(""));
-    SetDeltaFloatArray({});
-    SetDeltaIntArray({});
-    SetDeltaBoolArray({});
-    SetDeltaStringArray({});
 
-    // Full amount is from the destination character
+    // Full amounts
     SetFullPercent(0);
     SetFullFloat(0);
     SetFullInt(0);
@@ -55,18 +48,11 @@ void to_json(Json& jsonData, const StatChangeEntry& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(Attack, 0);
     SET_JSON_DATA_IF_NOT_DEFAULT(Defend, 0);
 
-    // Delta amount is from the source character
-    SET_JSON_DATA_IF_NOT_DEFAULT(DeltaPercent, 0);
+    // Delta amounts
     SET_JSON_DATA_IF_NOT_DEFAULT(DeltaFloat, 0);
     SET_JSON_DATA_IF_NOT_DEFAULT(DeltaInt, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(DeltaBool, false);
-    SET_JSON_DATA_IF_NOT_DEFAULT(DeltaString, IndexedString(""));
-    SET_JSON_DATA_IF_NOT_EMPTY(DeltaFloatArray);
-    SET_JSON_DATA_IF_NOT_EMPTY(DeltaIntArray);
-    SET_JSON_DATA_IF_NOT_EMPTY(DeltaBoolArray);
-    SET_JSON_DATA_IF_NOT_EMPTY(DeltaStringArray);
 
-    // Full amount is from the destination character
+    // Full amounts
     SET_JSON_DATA_IF_NOT_DEFAULT(FullPercent, 0);
     SET_JSON_DATA_IF_NOT_DEFAULT(FullFloat, 0);
     SET_JSON_DATA_IF_NOT_DEFAULT(FullInt, 0);
@@ -96,18 +82,11 @@ void from_json(const Json& jsonData, StatChangeEntry& obj)
     obj.SetAttack(GET_JSON_DATA_OR_DEFAULT(Attack, Int, 0));
     obj.SetDefend(GET_JSON_DATA_OR_DEFAULT(Defend, Int, 0));
 
-    // Delta amount is from the source character
-    obj.SetDeltaPercent(GET_JSON_DATA_OR_DEFAULT(DeltaPercent, Float, 0));
+    // Delta amounts
     obj.SetDeltaFloat(GET_JSON_DATA_OR_DEFAULT(DeltaFloat, Float, 0));
     obj.SetDeltaInt(GET_JSON_DATA_OR_DEFAULT(DeltaInt, Int, 0));
-    obj.SetDeltaBool(GET_JSON_DATA_OR_DEFAULT(DeltaBool, Bool, false));
-    obj.SetDeltaString(GET_JSON_DATA_OR_DEFAULT(DeltaString, IndexedString, IndexedString("")));
-    obj.SetDeltaFloatArray(GET_JSON_DATA_OR_DEFAULT(DeltaFloatArray, FloatArray, FloatArray()));
-    obj.SetDeltaIntArray(GET_JSON_DATA_OR_DEFAULT(DeltaIntArray, IntArray, IntArray()));
-    obj.SetDeltaBoolArray(GET_JSON_DATA_OR_DEFAULT(DeltaBoolArray, BoolArray, BoolArray()));
-    obj.SetDeltaStringArray(GET_JSON_DATA_OR_DEFAULT(DeltaStringArray, IndexedStringArray, IndexedStringArray()));
 
-    // Full amount is from the destination character
+    // Full amounts
     obj.SetFullPercent(GET_JSON_DATA_OR_DEFAULT(FullPercent, Float, 0));
     obj.SetFullFloat(GET_JSON_DATA_OR_DEFAULT(FullFloat, Float, 0));
     obj.SetFullInt(GET_JSON_DATA_OR_DEFAULT(FullInt, Int, 0));

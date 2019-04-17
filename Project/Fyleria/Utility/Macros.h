@@ -14,10 +14,9 @@
 #define MAKE_CURRENT_CONFIG_SHORTCUT_STRING(name)                                   \
 String Get##name() const                                                            \
 {                                                                                   \
-    FilesystemPath basePath = GetUserConfigFolder();                                \
-    FilesystemPath funcPath = GetCurrentConfig().Get##name();                       \
-    FilesystemPath fullPath = basePath / funcPath;                                  \
-    return GetNativeFileLocation(fullPath);                                         \
+    String sBasePath = GetUserConfigFolder();                                       \
+    String sFuncPath = GetCurrentConfig().Get##name();                              \
+    return JoinPaths(sBasePath, sFuncPath);                                         \
 }
 
 //=====================================================================================
@@ -112,9 +111,9 @@ void from_json(const Json& jsonData, type& obj)                                 
 
 #define MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(name, type)                          \
 String Convert##name##ToJsonString(const type& obj);                                \
-String Convert##name##ListToJsonString(const STDVector<type>& vObjs);               \
+String Convert##name##ArrayToJsonString(const STDVector<type>& vObjs);              \
 type Get##name##FromJsonString(const String& jsonString);                           \
-STDVector<type> Get##name##ListFromJsonString(const String& jsonString);
+STDVector<type> Get##name##ArrayFromJsonString(const String& jsonString);
 
 #define MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(name, type)                          \
 String Convert##name##ToJsonString(const type& obj)                                 \
@@ -122,7 +121,7 @@ String Convert##name##ToJsonString(const type& obj)                             
     Json jsonData = obj;                                                            \
     return jsonData.dump();                                                         \
 }                                                                                   \
-String Convert##name##ListToJsonString(const STDVector<type>& vObjs)                \
+String Convert##name##ArrayToJsonString(const STDVector<type>& vObjs)               \
 {                                                                                   \
     Json jsonData = vObjs;                                                          \
     return jsonData.dump();                                                         \
@@ -132,7 +131,7 @@ type Get##name##FromJsonString(const String& jsonString)                        
     Json jsonData = JsonParse(jsonString);                                          \
     return jsonData.get<type>();                                                    \
 }                                                                                   \
-STDVector<type> Get##name##ListFromJsonString(const String& jsonString)             \
+STDVector<type> Get##name##ArrayFromJsonString(const String& jsonString)            \
 {                                                                                   \
     Json jsonData = JsonParse(jsonString);                                          \
     return jsonData.get<STDVector<type>>();                                         \
@@ -140,13 +139,13 @@ STDVector<type> Get##name##ListFromJsonString(const String& jsonString)         
 
 //=====================================================================================
 
-#define MAKE_ENUM_GETSTRINGARRAY_DECL(type)                                          \
+#define MAKE_ENUM_GETSTRINGARRAY_DECL(type)                                         \
 StringArray Get##type##Names();
 
-#define MAKE_ENUM_GETSTRINGARRAY_IMPL(type)                                          \
-StringArray Get##type##Names()                                                       \
+#define MAKE_ENUM_GETSTRINGARRAY_IMPL(type)                                         \
+StringArray Get##type##Names()                                                      \
 {                                                                                   \
-    StringArray vTypeNames;                                                          \
+    StringArray vTypeNames;                                                         \
     for (const char* name : type::_names())                                         \
     {                                                                               \
         vTypeNames.push_back(name);                                                 \
@@ -173,27 +172,12 @@ Bool IsValid##type(const IndexedString& sType)                                  
 //=====================================================================================
 
 #define MAKE_RAW_BASIC_TYPE_ACCESSORS(name, type)                                   \
-type m_var##name;                                                                   \
+type m_var##name = type();                                                          \
 type Get##name() const { return m_var##name; }                                      \
 void Set##name(type varValue) { m_var##name = varValue; }
 
 #define MAKE_RAW_OBJECT_TYPE_ACCESSORS(name, type)                                  \
 type m_var##name;                                                                   \
-const type& Get##name() const { return m_var##name; }                               \
-type& Get##name() { return m_var##name; }                                           \
-void Set##name(const type& varValue) { m_var##name = varValue; }
-
-//=====================================================================================
-
-#define MAKE_RAW_BASIC_TYPE_ACCESSORS_WITH_STATIC(name, type)                       \
-type m_var##name;                                                                   \
-static void Init##name() { Get##type##StatNames().insert(#name); }                  \
-type Get##name() const { return m_var##name; }                                      \
-void Set##name(type varValue) { m_var##name = varValue; }
-
-#define MAKE_RAW_OBJECT_TYPE_ACCESSORS_WITH_STATIC(name, type)                      \
-type m_var##name;                                                                   \
-static void Init##name() { Get##type##StatNames().insert(#name); }                  \
 const type& Get##name() const { return m_var##name; }                               \
 type& Get##name() { return m_var##name; }                                           \
 void Set##name(const type& varValue) { m_var##name = varValue; }
@@ -211,6 +195,88 @@ type Get##name() const                                                          
     return type();                                                                  \
 }                                                                                   \
 void Set##name(const type& varValue) { m_Data[#name] = varValue; }
+
+//=====================================================================================
+
+#define MAKE_STAT_TYPE_ACCESSORS(name, type)                                        \
+static void Init##name()                                                            \
+{                                                                                   \
+    GetStats().try_emplace(#name, StatType(type()));                                \
+    Get##type##StatNames().insert(#name);                                           \
+}                                                                                   \
+type Get##name() const                                                              \
+{                                                                                   \
+    type var##name = type();                                                        \
+    GetStatValue<type>(GetStats(), IndexedString(#name), var##name);                \
+    return var##name;                                                               \
+}                                                                                   \
+void Set##name(const type& var##name)                                               \
+{                                                                                   \
+    SetStatValue<type>(GetStats(), IndexedString(#name), var##name);                \
+}
+
+#define INITIALIZE_STAT_TYPE_VALUES(base, type)                                     \
+{                                                                                   \
+    for (auto& eType : base##_##type::_values())                                    \
+    {                                                                               \
+        Get##type##StatNames().insert(eType._to_string());                          \
+    }                                                                               \
+}
+
+#define RESET_STAT_TYPE_VALUES(base, type)                                          \
+{                                                                                   \
+    for (auto& eType : base##_##type::_values())                                    \
+    {                                                                               \
+        SetStatValue(GetStats(), IndexedString(eType._to_string()), type());        \
+    }                                                                               \
+}
+
+#define SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(base, type)                           \
+{                                                                                   \
+    for (auto& eType : base##_##type::_values())                                    \
+    {                                                                               \
+        type varStatValue = type();                                                 \
+        IndexedString varStatName = IndexedString(eType._to_string());              \
+        if (obj.GetStatValue(obj.GetStats(), varStatName, varStatValue))            \
+        {                                                                           \
+            jsonData[eType._to_string()] = varStatValue;                            \
+        }                                                                           \
+    }                                                                               \
+}
+
+#define SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(base, type)                           \
+{                                                                                   \
+    for (auto& eType : base##_##type::_values())                                    \
+    {                                                                               \
+        type varStatValue = jsonData[eType._to_string()];                           \
+        IndexedString varStatName = IndexedString(eType._to_string());              \
+        obj.SetStatValue(obj.GetStats(), varStatName, varStatValue);                \
+    }                                                                               \
+}
+
+//=====================================================================================
+
+#define MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(type)                                                                   \
+Bool Get##type##StatValue(const IndexedString& sSegment, const IndexedString& sStat, type& varValue) const          \
+{                                                                                                                   \
+    const CharacterBasicData& basicData = GetBasicData();                                                           \
+    const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                   \
+    const CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                         \
+    return (                                                                                                        \
+        basicData.Get##type##StatValue(sStat, varValue) ||                                                          \
+        progressData.Get##type##StatValue(sStat, varValue) ||                                                       \
+        battleData.Get##type##StatValue(sStat, varValue);                                                           \
+}                                                                                                                   \
+Bool Set##type##StatValue(const IndexedString& sSegment, const IndexedString& sStat, const type& varValue)          \
+{                                                                                                                   \
+    CharacterBasicData& basicData = GetBasicData();                                                                 \
+    CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                         \
+    CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                               \
+    return (                                                                                                        \
+        basicData.Set##type##StatValue(sStat, varValue) ||                                                          \
+        progressData.Set##type##StatValue(sStat, varValue) ||                                                       \
+        battleData.Set##type##StatValue(sStat, varValue);                                                           \
+}
 
 //=====================================================================================
 

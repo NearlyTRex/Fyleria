@@ -17,13 +17,57 @@ public:
     typedef UByte (CharacterSkillData::*CharacterSkillFunction_Get)() const;
     typedef void (CharacterSkillData::*CharacterSkillFunction_Set)(UByte);
 
+    // Character skill functions
+    struct CharacterSkillFunctionNode
+    {
+        // Constructor
+        CharacterSkillFunctionNode()
+            : fnGetCurrent(nullptr)
+            , fnGetRank(nullptr)
+            , fnSetCurrent(nullptr)
+            , fnSetRank(nullptr)
+        {}
+
+        // Check if pointers are valid
+        Bool IsValid() const
+        {
+            return (
+                fnGetCurrent != nullptr &&
+                fnGetRank != nullptr &&
+                fnSetCurrent != nullptr &&
+                fnSetRank != nullptr
+            );
+        }
+
+        // Accessors
+        UByte GetCurrent(const CharacterSkillData& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetCurrent)(); }
+        UByte GetRank(const CharacterSkillData& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetRank)(); }
+        void SetCurrent(CharacterSkillData& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetCurrent)(uValue); }
+        void SetRank(CharacterSkillData& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetRank)(uValue); }
+
+        // Pointers
+        CharacterSkillFunction_Get fnGetCurrent;
+        CharacterSkillFunction_Get fnGetRank;
+        CharacterSkillFunction_Set fnSetCurrent;
+        CharacterSkillFunction_Set fnSetRank;
+    };
+
     // Constructors
     CharacterSkillData();
     ~CharacterSkillData();
 
+    // Clear skill data
+    void Clear();
+
     // Set all skill data to a specific value
     void SetAllSkillCurrentValues(UByte uValue);
     void SetAllSkillRankingValues(UByte uValue);
+
+    // Update skill rankings
+    Bool UpdateSkillRanking(const IndexedString& sSkillType);
+
+    // Get skill ranking/current functions
+    CharacterSkillFunctionNode GetSkillFunctions(const IndexedString& sSkillType) const;
 
     // Combat Skills
     MAKE_RAW_BASIC_TYPE_ACCESSORS(BarbarianCurrent, UByte);
@@ -176,46 +220,6 @@ public:
     // Comparisons
     Bool operator==(const CharacterSkillData& other) const;
     Bool operator!=(const CharacterSkillData& other) const;
-
-private:
-
-    // Character skill functions
-    struct CharacterSkillFunctionNode
-    {
-        // Constructor
-        CharacterSkillFunctionNode()
-            : fnGetCurrent(nullptr)
-            , fnGetRank(nullptr)
-            , fnSetCurrent(nullptr)
-            , fnSetRank(nullptr)
-        {}
-
-        // Check if pointers are valid
-        Bool IsValid() const
-        {
-            return (
-                fnGetCurrent != nullptr &&
-                fnGetRank != nullptr &&
-                fnSetCurrent != nullptr &&
-                fnSetRank != nullptr
-            );
-        }
-
-        // Accessors
-        UByte GetCurrent(const CharacterSkillData& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetCurrent)(); }
-        UByte GetRank(const CharacterSkillData& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetRank)(); }
-        void SetCurrent(CharacterSkillData& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetCurrent)(uValue); }
-        void SetRank(CharacterSkillData& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetRank)(uValue); }
-
-        // Pointers
-        CharacterSkillFunction_Get fnGetCurrent;
-        CharacterSkillFunction_Get fnGetRank;
-        CharacterSkillFunction_Set fnSetCurrent;
-        CharacterSkillFunction_Set fnSetRank;
-    };
-
-    // Get skill ranking/current functions
-    CharacterSkillFunctionNode GetSkillFunctions(const IndexedString& sSkillType) const;
 };
 
 // Typedef

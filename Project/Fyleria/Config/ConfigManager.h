@@ -32,10 +32,6 @@ public:
     String GetPythonLib() const;
     WString GetPythonLibW() const;
 
-    // Character generator file locations
-    MAKE_CURRENT_CONFIG_SHORTCUT_STRING(CharacterGeneratorRandomFile);
-    MAKE_CURRENT_CONFIG_SHORTCUT_STRING(CharacterGeneratorStaticFile);
-
     // Item file locations
     MAKE_CURRENT_CONFIG_SHORTCUT_STRING(ItemArmorChestFile);
     MAKE_CURRENT_CONFIG_SHORTCUT_STRING(ItemArmorFeetFile);
@@ -139,24 +135,11 @@ public:
     const String& GetCurrentConfigName() const;
     void SetCurrentConfigName(const String& sName);
 
-    // Portable config data
-    String GetUserConfigFile() const;
-    String GetUserConfigFolder() const;
-    String GetUserDataFolder() const;
-    String GetUserCacheFolder() const;
-    String GetUserConfigFolderLocation(const String& sLocation) const;
-    String GetUserDataFolderLocation(const String& sLocation) const;
-    String GetUserCacheFolderLocation(const String& sLocation) const;
-    FilesystemPath GetUserConfigFilePath() const;
-    FilesystemPath GetUserConfigFolderPath() const;
-    FilesystemPath GetUserDataFolderPath() const;
-    FilesystemPath GetUserCacheFolderPath() const;
-
-    // Override for config data
-    void SetUserConfigFileOverride(const String& sOverride);
-    void SetUserConfigFolderOverride(const String& sOverride);
-    void SetUserDataFolderOverride(const String& sOverride);
-    void SetUserCacheFolderOverride(const String& sOverride);
+    // Config data
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserConfigFile, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserConfigFolder, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserDataFolder, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserCacheFolder, String);
 
     // Platforms
     Bool IsPosix() const;
@@ -177,12 +160,6 @@ private:
 
     // Current config name
     String m_sCurrentConfigName;
-
-    // Overrides
-    String m_sConfigFileOverride;
-    String m_sConfigFolderOverride;
-    String m_sDataFolderOverride;
-    String m_sCacheFolderOverride;
 };
 
 };

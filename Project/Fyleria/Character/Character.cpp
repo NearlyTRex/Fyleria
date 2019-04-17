@@ -18,10 +18,6 @@ Character::Character()
 {
 }
 
-Character::~Character()
-{
-}
-
 void Character::RegenerateCharacterData(
     Bool bUpdateSkillRankings /*= true*/,
     Bool bUpdateEquipmentRatings /*= true*/,
@@ -55,7 +51,7 @@ void Character::RegenerateCharacterData(
 #endif
 }
 
-CharacterProgressData& Character::GetProgressSegment(const IndexedString& sSegment)
+const CharacterProgressData& Character::GetProgressDataSegment(const IndexedString& sSegment) const
 {
     CharacterSegmentType eSegmentType = StringToCharacterSegmentType(sSegment);
     switch(eSegmentType)
@@ -68,20 +64,12 @@ CharacterProgressData& Character::GetProgressSegment(const IndexedString& sSegme
     return s_EmptyCharacterProgressData;
 }
 
-const CharacterProgressData& Character::GetProgressSegment(const IndexedString& sSegment) const
+CharacterProgressData& Character::GetProgressDataSegment(const IndexedString& sSegment)
 {
-    CharacterSegmentType eSegmentType = StringToCharacterSegmentType(sSegment);
-    switch(eSegmentType)
-    {
-        case CharacterSegmentType::Base: return GetProgressDataBase();
-        case CharacterSegmentType::Passive: return GetProgressDataPassives();
-        case CharacterSegmentType::Active: return GetProgressDataActives();
-        default: throw LogicError("Invalid character segment type: " + sSegment.Get());
-    }
-    return s_EmptyCharacterProgressData;
+    return const_cast<CharacterProgressData&>(static_cast<const Character&>(*this).GetProgressDataSegment());
 }
 
-CharacterBattleData& Character::GetBattleSegment(const IndexedString& sSegment)
+const CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& sSegment) const
 {
     CharacterSegmentType eSegmentType = StringToCharacterSegmentType(sSegment);
     switch(eSegmentType)
@@ -94,79 +82,9 @@ CharacterBattleData& Character::GetBattleSegment(const IndexedString& sSegment)
     return s_EmptyCharacterBattleData;
 }
 
-const CharacterBattleData& Character::GetBattleSegment(const IndexedString& sSegment) const
+CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& sSegment)
 {
-    CharacterSegmentType eSegmentType = StringToCharacterSegmentType(sSegment);
-    switch(eSegmentType)
-    {
-        case CharacterSegmentType::Base: return GetBattleDataBase();
-        case CharacterSegmentType::Passive: return GetBattleDataPassives();
-        case CharacterSegmentType::Active: return GetBattleDataActives();
-        default: throw LogicError("Invalid character segment type: " + sSegment.Get());
-    }
-    return s_EmptyCharacterBattleData;
-}
-
-Bool Character::GetBoolStatValue(const IndexedString& sSegment, const IndexedString& sStat, Bool& bValue) const
-{
-    const CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.GetBoolStatValue(sStat, bValue);
-}
-
-Bool Character::GetIntStatValue(const IndexedString& sSegment, const IndexedString& sStat, Int& iValue) const
-{
-    const CharacterProgressData& progressData = GetProgressSegment(sSegment);
-    const CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return (progressData.GetIntStatValue(sStat, iValue) || battleData.GetIntStatValue(sStat, iValue));
-}
-
-Bool Character::GetFloatStatValue(const IndexedString& sSegment, const IndexedString& sStat, Float& fValue) const
-{
-    const CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.GetFloatStatValue(sStat, fValue);
-}
-
-Bool Character::GetStringStatValue(const IndexedString& sSegment, const IndexedString& sStat, IndexedString& sValue) const
-{
-    const CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.GetStringStatValue(sStat, sValue);
-}
-
-Bool Character::GetStringArrayStatValue(const IndexedString& sSegment, const IndexedString& sStat, IndexedStringArray& vValues) const
-{
-    const CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.GetStringArrayStatValue(sStat, vValues);
-}
-
-Bool Character::SetBoolStatValue(const IndexedString& sSegment, const IndexedString& sStat, const Bool& bValue)
-{
-    CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.SetBoolStatValue(sStat, bValue);
-}
-
-Bool Character::SetIntStatValue(const IndexedString& sSegment, const IndexedString& sStat, const Int& iValue)
-{
-    CharacterProgressData& progressData = GetProgressSegment(sSegment);
-    CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return (progressData.SetIntStatValue(sStat, iValue) || battleData.SetIntStatValue(sStat, iValue));
-}
-
-Bool Character::SetFloatStatValue(const IndexedString& sSegment, const IndexedString& sStat, const Float& fValue)
-{
-    CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.SetFloatStatValue(sStat, fValue);
-}
-
-Bool Character::SetStringStatValue(const IndexedString& sSegment, const IndexedString& sStat, const IndexedString& sValue)
-{
-    CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.SetStringStatValue(sStat, sValue);
-}
-
-Bool Character::SetStringArrayStatValue(const IndexedString& sSegment, const IndexedString& sStat, const IndexedStringArray& vValues)
-{
-    CharacterBattleData& battleData = GetBattleSegment(sSegment);
-    return battleData.SetStringArrayStatValue(sStat, vValues);
+    return const_cast<CharacterBattleData&>(static_cast<const Character&>(*this).GetBattleDataSegment());
 }
 
 Bool Character::operator==(const Character& other) const
@@ -182,11 +100,11 @@ Bool Character::operator!=(const Character& other) const
 void Character::UpdateEquipmentRatings(const IndexedString& sSegment)
 {
     // Get character data
-    const CharacterProgressData& progressData = GetProgressSegment(sSegment);
-    CharacterBattleData& battleData = GetBattleSegment(sSegment);
+    const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
+    CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
 
     // Update ratings
-    battleData.UpdateEquipmentRatings(GetCurrentWeaponSet(), GetEquippedItems(), *progressData);
+    battleData.UpdateEquipmentRatings(GetBasicData().GetCurrentWeaponSet(), GetItemData().GetEquippedItems(), progressData);
 }
 
 void Character::UpdateAvailableChanges(const IndexedString& sSegment)
@@ -207,12 +125,12 @@ void Character::UpdateAvailableChanges(const IndexedString& sSegment)
     FillItemStatChangeArrays(GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
 
     // Add to stored changes
-    SetPassiveSkillDataArray(vSkillPassives);
-    SetPassiveItemDataArray(vItemPassives);
-    SetActiveSkillDataArray(vSkillActives);
-    SetActiveItemDataArray(vItemActives);
-    SetActionableSkillDataArray(vSkillActionables);
-    SetActionableItemDataArray(vItemActionables);
+    GetStatChangeData().SetPassiveSkillDataArray(vSkillPassives);
+    GetStatChangeData().SetPassiveItemDataArray(vItemPassives);
+    GetStatChangeData().SetActiveSkillDataArray(vSkillActives);
+    GetStatChangeData().SetActiveItemDataArray(vItemActives);
+    GetStatChangeData().SetActionableSkillDataArray(vSkillActionables);
+    GetStatChangeData().SetActionableItemDataArray(vItemActionables);
 }
 
 void Character::UpdateAvailableActions(const IndexedString& sSegment)
@@ -221,7 +139,7 @@ void Character::UpdateAvailableActions(const IndexedString& sSegment)
     const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
 
     // Clear stored actions
-    CharacterActionArray& vAvailableActions = GetAvailableActions();
+    CharacterActionArray& vAvailableActions = GetActionData().GetAvailableActions();
     vAvailableActions.clear();
 
     // Look at each type of tree index
@@ -237,7 +155,7 @@ void Character::UpdateAvailableActions(const IndexedString& sSegment)
         Bool bIsSkillAction = sIndexTreeType == IndexedString("Skill");
 
         // Look at each active change index of that type
-        for(const TreeIndex& index : GetActionableChanges(sIndexTreeType))
+        for(const TreeIndex& index : GetStatChangeData().GetActionableChanges(sIndexTreeType))
         {
             // Look at each weapon set
             for(const IndexedString& sWeaponSet : CharacterWeaponSetType::_names())
@@ -272,7 +190,7 @@ void Character::UpdateAvailableAP(const IndexedString& sSegment)
     const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
 
     // Get character data
-    CharacterProgressData& progressData = GetProgressSegment(sSegment);
+    CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
 
     // Get weapon skills
     TreeIndexArray vWeaponSkills = GetWeaponSkills(sCharacterID, true);
@@ -287,7 +205,7 @@ void Character::UpdateAvailableAP(const IndexedString& sSegment)
 
 void Character::UpdateSkillRankings(const IndexedString& sSegment)
 {
-    const SkillUseTrackingMapType& tSkillTracking = GetSkillUseTrackingMap();
+    auto& tSkillTracking = GetSkillUseData().GetSkillUseTrackingMap();
     for(auto it = tSkillTracking.begin(); it != tSkillTracking.end(); it++)
     {
         const IndexedString& sSkillType = it->first;
@@ -297,23 +215,7 @@ void Character::UpdateSkillRankings(const IndexedString& sSegment)
             continue;
         }
 
-        Character::CharacterSkillFunctionNode node = GetSkillFunctions(sSkillType);
-        if(node.IsValid())
-        {
-            UByte uRank = node.GetRank(*this);
-            if(uRank >= s_kuMaxSkillRank)
-            {
-                continue;
-            }
-
-            UByte uCurrent = node.GetCurrent(*this);
-            node.SetCurrent(*this, uCurrent + 1);
-            if(static_cast<UInt>(uCurrent + 1) >= s_kuSkillRankUpgradeAmount)
-            {
-                node.SetCurrent(*this, 0);
-                node.SetRank(*this, uRank + 1);
-            }
-        }
+        GetSkillData().UpdateSkillRanking(sSkillType);
     }
 }
 
@@ -330,14 +232,14 @@ void Character::ApplyPassiveChanges()
     const CharacterProgressData& progressData = GetProgressDataBase();
     const CharacterBattleData& battleData = GetBattleDataBase();
 
-    // Copy passive data into active to start with
+    // Copy base data into passive to start with
     SetProgressDataPassives(progressData);
     SetBattleDataPassives(battleData);
 
     // Apply passives
     for(const IndexedString& sTreeIndexType : CharacterTreeIndexType::_names())
     {
-        for(const TreeIndex& index : GetPassiveChanges(sTreeIndexType))
+        for(const TreeIndex& index : GetStatChangeData().GetPassiveChanges(sTreeIndexType))
         {
             for(StatChange change : GetStatChangesFromTreeIndex(sTreeIndexType, index))
             {
@@ -353,10 +255,16 @@ void Character::ApplyPassiveChanges()
     }
 }
 
-void Character::ApplyActiveChanges(const CharacterActionSharedPtr& pAction)
+void Character::ApplyActiveChanges(const CharacterAction& action)
 {
     // Get character ID
     const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
+
+    // Get character target type
+    const IndexedString& sCharacterTargetType = GetBasicData().GetCharacterTargetType();
+
+    // Get character weapon set
+    const IndexedString& sCurrentWeaponSet = GetBasicData().GetCurrentWeaponSet();
 
     // Data sources should come from passive but apply to active
     const IndexedString sSourceSegment("Passive");
@@ -373,12 +281,12 @@ void Character::ApplyActiveChanges(const CharacterActionSharedPtr& pAction)
     // Apply actives
     for(const IndexedString& sTreeIndexType : CharacterTreeIndexType::_names())
     {
-        for(const TreeIndex& index : GetActiveChanges(sTreeIndexType))
+        for(const TreeIndex& index : GetStatChangeData().GetActiveChanges(sTreeIndexType))
         {
             for(const StatChange& change : GetStatChangesFromTreeIndex(sTreeIndexType, index))
             {
                 // Ignore active changes that do not meet requirements
-                if(!DoesChangeMeetActiveRequirements(change, pAction))
+                if(!change.DoesMeetActiveRequirements(sCharacterID, sCharacterTargetType, sCurrentWeaponSet, action))
                 {
                     continue;
                 }
@@ -398,7 +306,7 @@ void Character::ApplyActiveChanges(const CharacterActionSharedPtr& pAction)
     }
 
     // Apply prolonged stat changes
-    for(const StatChangeEntry& entry : GetProlongedStatChangeEntries())
+    for(const StatChangeEntry& entry : GetStatChangeData().GetProlongedStatChangeEntries())
     {
         CharacterManager::GetInstance()->ApplyStatChangeEntry(sDestSegment, entry);
     }
@@ -442,30 +350,30 @@ void to_json(Json& jsonData, const Character& obj)
 void from_json(const Json& jsonData, Character& obj)
 {
     // Segmented progress data
-    obj.SetProgressDataBase(GET_JSON_DATA_OR_DEFAULT(ProgressDataBase, CharacterProgressData));
-    obj.SetProgressDataPassives(GET_JSON_DATA_OR_DEFAULT(ProgressDataPassives, CharacterProgressData));
+    obj.SetProgressDataBase(GET_JSON_DATA_OR_DEFAULT(ProgressDataBase, CharacterProgressData, CharacterProgressData()));
+    obj.SetProgressDataPassives(GET_JSON_DATA_OR_DEFAULT(ProgressDataPassives, CharacterProgressData, CharacterProgressData()));
 
     // Segmented battle data
-    obj.SetBattleDataBase(GET_JSON_DATA_OR_DEFAULT(BattleDataBase, CharacterBattleData));
-    obj.SetBattleDataPassives(GET_JSON_DATA_OR_DEFAULT(BattleDataPassives, CharacterBattleData));
+    obj.SetBattleDataBase(GET_JSON_DATA_OR_DEFAULT(BattleDataBase, CharacterBattleData, CharacterBattleData()));
+    obj.SetBattleDataPassives(GET_JSON_DATA_OR_DEFAULT(BattleDataPassives, CharacterBattleData, CharacterBattleData()));
 
     // Basic data
-    obj.SetBasicData(GET_JSON_DATA_OR_DEFAULT(BasicData, CharacterBasicData));
+    obj.SetBasicData(GET_JSON_DATA_OR_DEFAULT(BasicData, CharacterBasicData, CharacterBasicData()));
 
     // Action data
-    obj.SetActionData(GET_JSON_DATA_OR_DEFAULT(ActionData, CharacterActionData));
+    obj.SetActionData(GET_JSON_DATA_OR_DEFAULT(ActionData, CharacterActionData, CharacterActionData()));
 
     // Item data
-    obj.SetItemData(GET_JSON_DATA_OR_DEFAULT(ItemData, CharacterItemData));
+    obj.SetItemData(GET_JSON_DATA_OR_DEFAULT(ItemData, CharacterItemData, CharacterItemData()));
 
     // Skill data
-    obj.SetSkillData(GET_JSON_DATA_OR_DEFAULT(SkillData, CharacterSkillData));
+    obj.SetSkillData(GET_JSON_DATA_OR_DEFAULT(SkillData, CharacterSkillData, CharacterSkillData()));
 
     // Skill use data
-    obj.SetSkillUseData(GET_JSON_DATA_OR_DEFAULT(SkillUseData, CharacterSkillUseData));
+    obj.SetSkillUseData(GET_JSON_DATA_OR_DEFAULT(SkillUseData, CharacterSkillUseData, CharacterSkillUseData()));
 
     // Stat change data
-    obj.SetStatChangeData(GET_JSON_DATA_OR_DEFAULT(StatChangeData, CharacterStatChangeData));
+    obj.SetStatChangeData(GET_JSON_DATA_OR_DEFAULT(StatChangeData, CharacterStatChangeData, CharacterStatChangeData()));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Character, Character);

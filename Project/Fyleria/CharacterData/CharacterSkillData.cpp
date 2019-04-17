@@ -8,160 +8,16 @@ namespace Gecko
 
 CharacterSkillData::CharacterSkillData()
 {
-    // Get current configuration
-    const Config& config = ConfigManager::GetInstance()->GetCurrentConfig();
-
-    // Combat Skills
-    SetBarbarianCurrent(config.GetDefaultBarbarianCurrent());
-    SetBarbarianRank(config.GetDefaultBarbarianRank());
-    SetMageCurrent(config.GetDefaultMageCurrent());
-    SetMageRank(config.GetDefaultMageRank());
-    SetRogueCurrent(config.GetDefaultRogueCurrent());
-    SetRogueRank(config.GetDefaultRogueRank());
-    SetBlademasterCurrent(config.GetDefaultBlademasterCurrent());
-    SetBlademasterRank(config.GetDefaultBlademasterRank());
-    SetAvatarCurrent(config.GetDefaultAvatarCurrent());
-    SetAvatarRank(config.GetDefaultAvatarRank());
-    SetAmbidextrousCurrent(config.GetDefaultAmbidextrousCurrent());
-    SetAmbidextrousRank(config.GetDefaultAmbidextrousRank());
-    SetFocusedCurrent(config.GetDefaultFocusedCurrent());
-    SetFocusedRank(config.GetDefaultFocusedRank());
-    SetStalwartCurrent(config.GetDefaultStalwartCurrent());
-    SetStalwartRank(config.GetDefaultStalwartRank());
-
-    // Weapon Skills
-    SetSlashCurrent(config.GetDefaultSlashCurrent());
-    SetSlashRank(config.GetDefaultSlashRank());
-    SetSeverCurrent(config.GetDefaultSeverCurrent());
-    SetSeverRank(config.GetDefaultSeverRank());
-    SetSliceCurrent(config.GetDefaultSliceCurrent());
-    SetSliceRank(config.GetDefaultSliceRank());
-    SetSlitCurrent(config.GetDefaultSlitCurrent());
-    SetSlitRank(config.GetDefaultSlitRank());
-    SetCleaveCurrent(config.GetDefaultCleaveCurrent());
-    SetCleaveRank(config.GetDefaultCleaveRank());
-    SetDecapitateCurrent(config.GetDefaultDecapitateCurrent());
-    SetDecapitateRank(config.GetDefaultDecapitateRank());
-    SetParryCurrent(config.GetDefaultParryCurrent());
-    SetParryRank(config.GetDefaultParryRank());
-    SetRiposteCurrent(config.GetDefaultRiposteCurrent());
-    SetRiposteRank(config.GetDefaultRiposteRank());
-    SetBashCurrent(config.GetDefaultBashCurrent());
-    SetBashRank(config.GetDefaultBashRank());
-    SetSmashCurrent(config.GetDefaultSmashCurrent());
-    SetSmashRank(config.GetDefaultSmashRank());
-    SetCrushCurrent(config.GetDefaultCrushCurrent());
-    SetCrushRank(config.GetDefaultCrushRank());
-    SetImpactCurrent(config.GetDefaultImpactCurrent());
-    SetImpactRank(config.GetDefaultImpactRank());
-    SetBreakCurrent(config.GetDefaultBreakCurrent());
-    SetBreakRank(config.GetDefaultBreakRank());
-    SetCrackCurrent(config.GetDefaultCrackCurrent());
-    SetCrackRank(config.GetDefaultCrackRank());
-    SetBlockCurrent(config.GetDefaultBlockCurrent());
-    SetBlockRank(config.GetDefaultBlockRank());
-    SetRushCurrent(config.GetDefaultRushCurrent());
-    SetRushRank(config.GetDefaultRushRank());
-    SetPierceCurrent(config.GetDefaultPierceCurrent());
-    SetPierceRank(config.GetDefaultPierceRank());
-    SetDrillCurrent(config.GetDefaultDrillCurrent());
-    SetDrillRank(config.GetDefaultDrillRank());
-    SetShootCurrent(config.GetDefaultShootCurrent());
-    SetShootRank(config.GetDefaultShootRank());
-    SetImpaleCurrent(config.GetDefaultImpaleCurrent());
-    SetImpaleRank(config.GetDefaultImpaleRank());
-    SetStealthStrikeCurrent(config.GetDefaultStealthStrikeCurrent());
-    SetStealthStrikeRank(config.GetDefaultStealthStrikeRank());
-    SetCriticalShotCurrent(config.GetDefaultCriticalShotCurrent());
-    SetCriticalShotRank(config.GetDefaultCriticalShotRank());
-    SetDodgeCurrent(config.GetDefaultDodgeCurrent());
-    SetDodgeRank(config.GetDefaultDodgeRank());
-    SetCounterCurrent(config.GetDefaultCounterCurrent());
-    SetCounterRank(config.GetDefaultCounterRank());
-
-    // Alchemy Skills
-    SetHealerCurrent(config.GetDefaultHealerCurrent());
-    SetHealerRank(config.GetDefaultHealerRank());
-    SetAlchemistCurrent(config.GetDefaultAlchemistCurrent());
-    SetAlchemistRank(config.GetDefaultAlchemistRank());
-    SetEnergistCurrent(config.GetDefaultEnergistCurrent());
-    SetEnergistRank(config.GetDefaultEnergistRank());
-    SetChemistCurrent(config.GetDefaultChemistCurrent());
-    SetChemistRank(config.GetDefaultChemistRank());
-
-    // Crafting Skills
-    SetHammersmithCurrent(config.GetDefaultHammersmithCurrent());
-    SetHammersmithRank(config.GetDefaultHammersmithRank());
-    SetSpellsmithCurrent(config.GetDefaultSpellsmithCurrent());
-    SetSpellsmithRank(config.GetDefaultSpellsmithRank());
-    SetBowsmithCurrent(config.GetDefaultBowsmithCurrent());
-    SetBowsmithRank(config.GetDefaultBowsmithRank());
-    SetSwordsmithCurrent(config.GetDefaultSwordsmithCurrent());
-    SetSwordsmithRank(config.GetDefaultSwordsmithRank());
-    SetWeaverCurrent(config.GetDefaultWeaverCurrent());
-    SetWeaverRank(config.GetDefaultWeaverRank());
-    SetTannerCurrent(config.GetDefaultTannerCurrent());
-    SetTannerRank(config.GetDefaultTannerRank());
-    SetScalesmithCurrent(config.GetDefaultScalesmithCurrent());
-    SetScalesmithRank(config.GetDefaultScalesmithRank());
-    SetPlatesmithCurrent(config.GetDefaultPlatesmithCurrent());
-    SetPlatesmithRank(config.GetDefaultPlatesmithRank());
-    SetGoldsmithCurrent(config.GetDefaultGoldsmithCurrent());
-    SetGoldsmithRank(config.GetDefaultGoldsmithRank());
-    SetShieldsmithCurrent(config.GetDefaultShieldsmithCurrent());
-    SetShieldsmithRank(config.GetDefaultShieldsmithRank());
-
-    // Breakdown Skills
-    SetHammerbaneCurrent(config.GetDefaultHammerbaneCurrent());
-    SetHammerbaneRank(config.GetDefaultHammerbaneRank());
-    SetSpellbaneCurrent(config.GetDefaultSpellbaneCurrent());
-    SetSpellbaneRank(config.GetDefaultSpellbaneRank());
-    SetBowbaneCurrent(config.GetDefaultBowbaneCurrent());
-    SetBowbaneRank(config.GetDefaultBowbaneRank());
-    SetSwordbaneCurrent(config.GetDefaultSwordbaneCurrent());
-    SetSwordbaneRank(config.GetDefaultSwordbaneRank());
-    SetThreadbareCurrent(config.GetDefaultThreadbareCurrent());
-    SetThreadbareRank(config.GetDefaultThreadbareRank());
-    SetStudRemoverCurrent(config.GetDefaultStudRemoverCurrent());
-    SetStudRemoverRank(config.GetDefaultStudRemoverRank());
-    SetScalebaneCurrent(config.GetDefaultScalebaneCurrent());
-    SetScalebaneRank(config.GetDefaultScalebaneRank());
-    SetPlatebaneCurrent(config.GetDefaultPlatebaneCurrent());
-    SetPlatebaneRank(config.GetDefaultPlatebaneRank());
-    SetGoldbaneCurrent(config.GetDefaultGoldbaneCurrent());
-    SetGoldbaneRank(config.GetDefaultGoldbaneRank());
-    SetShieldbaneCurrent(config.GetDefaultShieldbaneCurrent());
-    SetShieldbaneRank(config.GetDefaultShieldbaneRank());
-
-    // Affinity Skills
-    SetHolyCurrent(config.GetDefaultHolyCurrent());
-    SetHolyRank(config.GetDefaultHolyRank());
-    SetFireCurrent(config.GetDefaultFireCurrent());
-    SetFireRank(config.GetDefaultFireRank());
-    SetIceCurrent(config.GetDefaultIceCurrent());
-    SetIceRank(config.GetDefaultIceRank());
-    SetShockCurrent(config.GetDefaultShockCurrent());
-    SetShockRank(config.GetDefaultShockRank());
-    SetDarkCurrent(config.GetDefaultDarkCurrent());
-    SetDarkRank(config.GetDefaultDarkRank());
-    SetLightCurrent(config.GetDefaultLightCurrent());
-    SetLightRank(config.GetDefaultLightRank());
-    SetForceCurrent(config.GetDefaultForceCurrent());
-    SetForceRank(config.GetDefaultForceRank());
-    SetMindCurrent(config.GetDefaultMindCurrent());
-    SetMindRank(config.GetDefaultMindRank());
-    SetEarthCurrent(config.GetDefaultEarthCurrent());
-    SetEarthRank(config.GetDefaultEarthRank());
-    SetBloodCurrent(config.GetDefaultBloodCurrent());
-    SetBloodRank(config.GetDefaultBloodRank());
-    SetFleshCurrent(config.GetDefaultFleshCurrent());
-    SetFleshRank(config.GetDefaultFleshRank());
-    SetWindCurrent(config.GetDefaultWindCurrent());
-    SetWindRank(config.GetDefaultWindRank());
 }
 
 CharacterSkillData::~CharacterSkillData()
 {
+}
+
+void CharacterSkillData::Clear()
+{
+    SetAllSkillCurrentValues(0);
+    SetAllSkillRankingValues(0);
 }
 
 #define CHARACTER_SET_SKILL_VALUE(type, method, value)                      \
@@ -193,17 +49,41 @@ void CharacterSkillData::SetAllSkillRankingValues(UByte uValue)
     CHARACTER_SET_SKILL_VALUE(SkillAffinityType, SetRank, uValue);
 }
 
-#define RETURN_SKILL_FUNCTION_NODE(name)                    \
-{                                                           \
-    CharacterSkillFunctionNode node;                        \
-    node.fnGetCurrent = &Character::Get##name##Current;     \
-    node.fnGetRank = &Character::Get##name##Rank;           \
-    node.fnSetCurrent = &Character::Set##name##Current;     \
-    node.fnSetRank = &Character::Set##name##Rank;           \
-    return node;                                            \
+Bool UpdateSkillRanking(const IndexedString& sSkillType)
+{
+    CharacterSkillFunctionNode node = GetSkillFunctions(sSkillType);
+    if(!node.IsValid())
+    {
+        return false;
+    }
+
+    UByte uRank = node.GetRank(*this);
+    if(uRank >= s_kuMaxSkillRank)
+    {
+        return false;
+    }
+
+    UByte uCurrent = node.GetCurrent(*this);
+    node.SetCurrent(*this, uCurrent + 1);
+    if(static_cast<UInt>(uCurrent + 1) >= s_kuSkillRankUpgradeAmount)
+    {
+        node.SetCurrent(*this, 0);
+        node.SetRank(*this, uRank + 1);
+    }
+    return true;
 }
 
-Character::CharacterSkillFunctionNode Character::GetSkillFunctions(const IndexedString& sSkillType) const
+#define RETURN_SKILL_FUNCTION_NODE(name)                             \
+{                                                                    \
+    CharacterSkillFunctionNode node;                                 \
+    node.fnGetCurrent = &CharacterSkillData::Get##name##Current;     \
+    node.fnGetRank = &CharacterSkillData::Get##name##Rank;           \
+    node.fnSetCurrent = &CharacterSkillData::Set##name##Current;     \
+    node.fnSetRank = &CharacterSkillData::Set##name##Rank;           \
+    return node;                                                     \
+}
+
+CharacterSkillData::CharacterSkillFunctionNode CharacterSkillData::GetSkillFunctions(const IndexedString& sSkillType) const
 {
     SkillWeaponType eSkillWeaponType = IsValidSkillWeaponType(sSkillType) ? StringToSkillWeaponType(sSkillType) : +SkillWeaponType::None;
     switch(eSkillWeaponType)
@@ -329,156 +209,153 @@ Bool CharacterSkillData::operator!=(const CharacterSkillData& other) const
 
 void to_json(Json& jsonData, const CharacterSkillData& obj)
 {
-    // Get current configuration
-    const Config& config = ConfigManager::GetInstance()->GetCurrentConfig();
-    
     // Combat Skills
-    SET_JSON_DATA_IF_NOT_DEFAULT(BarbarianCurrent, config.GetDefaultBarbarianCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BarbarianRank, config.GetDefaultBarbarianRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(MageCurrent, config.GetDefaultMageCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(MageRank, config.GetDefaultMageRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(RogueCurrent, config.GetDefaultRogueCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(RogueRank, config.GetDefaultRogueRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BlademasterCurrent, config.GetDefaultBlademasterCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BlademasterRank, config.GetDefaultBlademasterRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(AvatarCurrent, config.GetDefaultAvatarCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(AvatarRank, config.GetDefaultAvatarRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(AmbidextrousCurrent, config.GetDefaultAmbidextrousCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(AmbidextrousRank, config.GetDefaultAmbidextrousRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(FocusedCurrent, config.GetDefaultFocusedCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(FocusedRank, config.GetDefaultFocusedRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(StalwartCurrent, config.GetDefaultStalwartCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(StalwartRank, config.GetDefaultStalwartRank());
+    SET_JSON_DATA_IF_NOT_DEFAULT(BarbarianCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BarbarianRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(MageCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(MageRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(RogueCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(RogueRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BlademasterCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BlademasterRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(AvatarCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(AvatarRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(AmbidextrousCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(AmbidextrousRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(FocusedCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(FocusedRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(StalwartCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(StalwartRank, 0);
 
     // Weapon Skills
-    SET_JSON_DATA_IF_NOT_DEFAULT(SlashCurrent, config.GetDefaultSlashCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SlashRank, config.GetDefaultSlashRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SeverCurrent, config.GetDefaultSeverCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SeverRank, config.GetDefaultSeverRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SliceCurrent, config.GetDefaultSliceCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SliceRank, config.GetDefaultSliceRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SlitCurrent, config.GetDefaultSlitCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SlitRank, config.GetDefaultSlitRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CleaveCurrent, config.GetDefaultCleaveCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CleaveRank, config.GetDefaultCleaveRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(DecapitateCurrent, config.GetDefaultDecapitateCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(DecapitateRank, config.GetDefaultDecapitateRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ParryCurrent, config.GetDefaultParryCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ParryRank, config.GetDefaultParryRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(RiposteCurrent, config.GetDefaultRiposteCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(RiposteRank, config.GetDefaultRiposteRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BashCurrent, config.GetDefaultBashCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BashRank, config.GetDefaultBashRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SmashCurrent, config.GetDefaultSmashCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SmashRank, config.GetDefaultSmashRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CrushCurrent, config.GetDefaultCrushCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CrushRank, config.GetDefaultCrushRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ImpactCurrent, config.GetDefaultImpactCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ImpactRank, config.GetDefaultImpactRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BreakCurrent, config.GetDefaultBreakCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BreakRank, config.GetDefaultBreakRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CrackCurrent, config.GetDefaultCrackCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CrackRank, config.GetDefaultCrackRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BlockCurrent, config.GetDefaultBlockCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BlockRank, config.GetDefaultBlockRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(RushCurrent, config.GetDefaultRushCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(RushRank, config.GetDefaultRushRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(PierceCurrent, config.GetDefaultPierceCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(PierceRank, config.GetDefaultPierceRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(DrillCurrent, config.GetDefaultDrillCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(DrillRank, config.GetDefaultDrillRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ShootCurrent, config.GetDefaultShootCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ShootRank, config.GetDefaultShootRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ImpaleCurrent, config.GetDefaultImpaleCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ImpaleRank, config.GetDefaultImpaleRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(StealthStrikeCurrent, config.GetDefaultStealthStrikeCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(StealthStrikeRank, config.GetDefaultStealthStrikeRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CriticalShotCurrent, config.GetDefaultCriticalShotCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CriticalShotRank, config.GetDefaultCriticalShotRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(DodgeCurrent, config.GetDefaultDodgeCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(DodgeRank, config.GetDefaultDodgeRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CounterCurrent, config.GetDefaultCounterCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(CounterRank, config.GetDefaultCounterRank());
+    SET_JSON_DATA_IF_NOT_DEFAULT(SlashCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SlashRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SeverCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SeverRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SliceCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SliceRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SlitCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SlitRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CleaveCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CleaveRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(DecapitateCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(DecapitateRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ParryCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ParryRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(RiposteCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(RiposteRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BashCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BashRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SmashCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SmashRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CrushCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CrushRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ImpactCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ImpactRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BreakCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BreakRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CrackCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CrackRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BlockCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BlockRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(RushCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(RushRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(PierceCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(PierceRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(DrillCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(DrillRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ShootCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ShootRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ImpaleCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ImpaleRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(StealthStrikeCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(StealthStrikeRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CriticalShotCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CriticalShotRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(DodgeCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(DodgeRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CounterCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(CounterRank, 0);
 
     // Alchemy Skills
-    SET_JSON_DATA_IF_NOT_DEFAULT(HealerCurrent, config.GetDefaultHealerCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(HealerRank, config.GetDefaultHealerRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(AlchemistCurrent, config.GetDefaultAlchemistCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(AlchemistRank, config.GetDefaultAlchemistRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EnergistCurrent, config.GetDefaultEnergistCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EnergistRank, config.GetDefaultEnergistRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ChemistCurrent, config.GetDefaultChemistCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ChemistRank, config.GetDefaultChemistRank());
+    SET_JSON_DATA_IF_NOT_DEFAULT(HealerCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(HealerRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(AlchemistCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(AlchemistRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(EnergistCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(EnergistRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ChemistCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ChemistRank, 0);
 
     // Crafting Skills
-    SET_JSON_DATA_IF_NOT_DEFAULT(HammersmithCurrent, config.GetDefaultHammersmithCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(HammersmithRank, config.GetDefaultHammersmithRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SpellsmithCurrent, config.GetDefaultSpellsmithCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SpellsmithRank, config.GetDefaultSpellsmithRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BowsmithCurrent, config.GetDefaultBowsmithCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BowsmithRank, config.GetDefaultBowsmithRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SwordsmithCurrent, config.GetDefaultSwordsmithCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SwordsmithRank, config.GetDefaultSwordsmithRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaverCurrent, config.GetDefaultWeaverCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaverRank, config.GetDefaultWeaverRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(TannerCurrent, config.GetDefaultTannerCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(TannerRank, config.GetDefaultTannerRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ScalesmithCurrent, config.GetDefaultScalesmithCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ScalesmithRank, config.GetDefaultScalesmithRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(PlatesmithCurrent, config.GetDefaultPlatesmithCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(PlatesmithRank, config.GetDefaultPlatesmithRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(GoldsmithCurrent, config.GetDefaultGoldsmithCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(GoldsmithRank, config.GetDefaultGoldsmithRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ShieldsmithCurrent, config.GetDefaultShieldsmithCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ShieldsmithRank, config.GetDefaultShieldsmithRank());
+    SET_JSON_DATA_IF_NOT_DEFAULT(HammersmithCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(HammersmithRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SpellsmithCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SpellsmithRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BowsmithCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BowsmithRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SwordsmithCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SwordsmithRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(WeaverCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(WeaverRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(TannerCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(TannerRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ScalesmithCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ScalesmithRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(PlatesmithCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(PlatesmithRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(GoldsmithCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(GoldsmithRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ShieldsmithCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ShieldsmithRank, 0);
 
     // Breakdown Skills
-    SET_JSON_DATA_IF_NOT_DEFAULT(HammerbaneCurrent, config.GetDefaultHammerbaneCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(HammerbaneRank, config.GetDefaultHammerbaneRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SpellbaneCurrent, config.GetDefaultSpellbaneCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SpellbaneRank, config.GetDefaultSpellbaneRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BowbaneCurrent, config.GetDefaultBowbaneCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BowbaneRank, config.GetDefaultBowbaneRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SwordbaneCurrent, config.GetDefaultSwordbaneCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(SwordbaneRank, config.GetDefaultSwordbaneRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ThreadbareCurrent, config.GetDefaultThreadbareCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ThreadbareRank, config.GetDefaultThreadbareRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(StudRemoverCurrent, config.GetDefaultStudRemoverCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(StudRemoverRank, config.GetDefaultStudRemoverRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ScalebaneCurrent, config.GetDefaultScalebaneCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ScalebaneRank, config.GetDefaultScalebaneRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(PlatebaneCurrent, config.GetDefaultPlatebaneCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(PlatebaneRank, config.GetDefaultPlatebaneRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(GoldbaneCurrent, config.GetDefaultGoldbaneCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(GoldbaneRank, config.GetDefaultGoldbaneRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ShieldbaneCurrent, config.GetDefaultShieldbaneCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ShieldbaneRank, config.GetDefaultShieldbaneRank());
+    SET_JSON_DATA_IF_NOT_DEFAULT(HammerbaneCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(HammerbaneRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SpellbaneCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SpellbaneRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BowbaneCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BowbaneRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SwordbaneCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SwordbaneRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ThreadbareCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ThreadbareRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(StudRemoverCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(StudRemoverRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ScalebaneCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ScalebaneRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(PlatebaneCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(PlatebaneRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(GoldbaneCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(GoldbaneRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ShieldbaneCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ShieldbaneRank, 0);
 
     // Affinity Skills
-    SET_JSON_DATA_IF_NOT_DEFAULT(HolyCurrent, config.GetDefaultHolyCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(HolyRank, config.GetDefaultHolyRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(FireCurrent, config.GetDefaultFireCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(FireRank, config.GetDefaultFireRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(IceCurrent, config.GetDefaultIceCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(IceRank, config.GetDefaultIceRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ShockCurrent, config.GetDefaultShockCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ShockRank, config.GetDefaultShockRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(DarkCurrent, config.GetDefaultDarkCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(DarkRank, config.GetDefaultDarkRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(LightCurrent, config.GetDefaultLightCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(LightRank, config.GetDefaultLightRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ForceCurrent, config.GetDefaultForceCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ForceRank, config.GetDefaultForceRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(MindCurrent, config.GetDefaultMindCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(MindRank, config.GetDefaultMindRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EarthCurrent, config.GetDefaultEarthCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(EarthRank, config.GetDefaultEarthRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BloodCurrent, config.GetDefaultBloodCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BloodRank, config.GetDefaultBloodRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(FleshCurrent, config.GetDefaultFleshCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(FleshRank, config.GetDefaultFleshRank());
-    SET_JSON_DATA_IF_NOT_DEFAULT(WindCurrent, config.GetDefaultWindCurrent());
-    SET_JSON_DATA_IF_NOT_DEFAULT(WindRank, config.GetDefaultWindRank());
+    SET_JSON_DATA_IF_NOT_DEFAULT(HolyCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(HolyRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(FireCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(FireRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(IceCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(IceRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ShockCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ShockRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(DarkCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(DarkRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(LightCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(LightRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ForceCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(ForceRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(MindCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(MindRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(EarthCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(EarthRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BloodCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(BloodRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(FleshCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(FleshRank, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(WindCurrent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(WindRank, 0);
 }
 
 void from_json(const Json& jsonData, CharacterSkillData& obj)
@@ -487,152 +364,152 @@ void from_json(const Json& jsonData, CharacterSkillData& obj)
     const Config& config = ConfigManager::GetInstance()->GetCurrentConfig();
 
     // Combat Skills
-    obj.SetBarbarianCurrent(GET_JSON_DATA_OR_DEFAULT(BarbarianCurrent, Int, config.GetDefaultBarbarianCurrent()));
-    obj.SetBarbarianRank(GET_JSON_DATA_OR_DEFAULT(BarbarianRank, Int, config.GetDefaultBarbarianRank()));
-    obj.SetMageCurrent(GET_JSON_DATA_OR_DEFAULT(MageCurrent, Int, config.GetDefaultMageCurrent()));
-    obj.SetMageRank(GET_JSON_DATA_OR_DEFAULT(MageRank, Int, config.GetDefaultMageRank()));
-    obj.SetRogueCurrent(GET_JSON_DATA_OR_DEFAULT(RogueCurrent, Int, config.GetDefaultRogueCurrent()));
-    obj.SetRogueRank(GET_JSON_DATA_OR_DEFAULT(RogueRank, Int, config.GetDefaultRogueRank()));
-    obj.SetBlademasterCurrent(GET_JSON_DATA_OR_DEFAULT(BlademasterCurrent, Int, config.GetDefaultBlademasterCurrent()));
-    obj.SetBlademasterRank(GET_JSON_DATA_OR_DEFAULT(BlademasterRank, Int, config.GetDefaultBlademasterRank()));
-    obj.SetAvatarCurrent(GET_JSON_DATA_OR_DEFAULT(AvatarCurrent, Int, config.GetDefaultAvatarCurrent()));
-    obj.SetAvatarRank(GET_JSON_DATA_OR_DEFAULT(AvatarRank, Int, config.GetDefaultAvatarRank()));
-    obj.SetAmbidextrousCurrent(GET_JSON_DATA_OR_DEFAULT(AmbidextrousCurrent, Int, config.GetDefaultAmbidextrousCurrent()));
-    obj.SetAmbidextrousRank(GET_JSON_DATA_OR_DEFAULT(AmbidextrousRank, Int, config.GetDefaultAmbidextrousRank()));
-    obj.SetFocusedCurrent(GET_JSON_DATA_OR_DEFAULT(FocusedCurrent, Int, config.GetDefaultFocusedCurrent()));
-    obj.SetFocusedRank(GET_JSON_DATA_OR_DEFAULT(FocusedRank, Int, config.GetDefaultFocusedRank()));
-    obj.SetStalwartCurrent(GET_JSON_DATA_OR_DEFAULT(StalwartCurrent, Int, config.GetDefaultStalwartCurrent()));
-    obj.SetStalwartRank(GET_JSON_DATA_OR_DEFAULT(StalwartRank, Int, config.GetDefaultStalwartRank()));
+    obj.SetBarbarianCurrent(GET_JSON_DATA_OR_DEFAULT(BarbarianCurrent, Int, 0));
+    obj.SetBarbarianRank(GET_JSON_DATA_OR_DEFAULT(BarbarianRank, Int, 0));
+    obj.SetMageCurrent(GET_JSON_DATA_OR_DEFAULT(MageCurrent, Int, 0));
+    obj.SetMageRank(GET_JSON_DATA_OR_DEFAULT(MageRank, Int, 0));
+    obj.SetRogueCurrent(GET_JSON_DATA_OR_DEFAULT(RogueCurrent, Int, 0));
+    obj.SetRogueRank(GET_JSON_DATA_OR_DEFAULT(RogueRank, Int, 0));
+    obj.SetBlademasterCurrent(GET_JSON_DATA_OR_DEFAULT(BlademasterCurrent, Int, 0));
+    obj.SetBlademasterRank(GET_JSON_DATA_OR_DEFAULT(BlademasterRank, Int, 0));
+    obj.SetAvatarCurrent(GET_JSON_DATA_OR_DEFAULT(AvatarCurrent, Int, 0));
+    obj.SetAvatarRank(GET_JSON_DATA_OR_DEFAULT(AvatarRank, Int, 0));
+    obj.SetAmbidextrousCurrent(GET_JSON_DATA_OR_DEFAULT(AmbidextrousCurrent, Int, 0));
+    obj.SetAmbidextrousRank(GET_JSON_DATA_OR_DEFAULT(AmbidextrousRank, Int, 0));
+    obj.SetFocusedCurrent(GET_JSON_DATA_OR_DEFAULT(FocusedCurrent, Int, 0));
+    obj.SetFocusedRank(GET_JSON_DATA_OR_DEFAULT(FocusedRank, Int, 0));
+    obj.SetStalwartCurrent(GET_JSON_DATA_OR_DEFAULT(StalwartCurrent, Int, 0));
+    obj.SetStalwartRank(GET_JSON_DATA_OR_DEFAULT(StalwartRank, Int, 0));
 
     // Weapon Skills
-    obj.SetSlashCurrent(GET_JSON_DATA_OR_DEFAULT(SlashCurrent, Int, config.GetDefaultSlashCurrent()));
-    obj.SetSlashRank(GET_JSON_DATA_OR_DEFAULT(SlashRank, Int, config.GetDefaultSlashRank()));
-    obj.SetSeverCurrent(GET_JSON_DATA_OR_DEFAULT(SeverCurrent, Int, config.GetDefaultSeverCurrent()));
-    obj.SetSeverRank(GET_JSON_DATA_OR_DEFAULT(SeverRank, Int, config.GetDefaultSeverRank()));
-    obj.SetSliceCurrent(GET_JSON_DATA_OR_DEFAULT(SliceCurrent, Int, config.GetDefaultSliceCurrent()));
-    obj.SetSliceRank(GET_JSON_DATA_OR_DEFAULT(SliceRank, Int, config.GetDefaultSliceRank()));
-    obj.SetSlitCurrent(GET_JSON_DATA_OR_DEFAULT(SlitCurrent, Int, config.GetDefaultSlitCurrent()));
-    obj.SetSlitRank(GET_JSON_DATA_OR_DEFAULT(SlitRank, Int, config.GetDefaultSlitRank()));
-    obj.SetCleaveCurrent(GET_JSON_DATA_OR_DEFAULT(CleaveCurrent, Int, config.GetDefaultCleaveCurrent()));
-    obj.SetCleaveRank(GET_JSON_DATA_OR_DEFAULT(CleaveRank, Int, config.GetDefaultCleaveRank()));
-    obj.SetDecapitateCurrent(GET_JSON_DATA_OR_DEFAULT(DecapitateCurrent, Int, config.GetDefaultDecapitateCurrent()));
-    obj.SetDecapitateRank(GET_JSON_DATA_OR_DEFAULT(DecapitateRank, Int, config.GetDefaultDecapitateRank()));
-    obj.SetParryCurrent(GET_JSON_DATA_OR_DEFAULT(ParryCurrent, Int, config.GetDefaultParryCurrent()));
-    obj.SetParryRank(GET_JSON_DATA_OR_DEFAULT(ParryRank, Int, config.GetDefaultParryRank()));
-    obj.SetRiposteCurrent(GET_JSON_DATA_OR_DEFAULT(RiposteCurrent, Int, config.GetDefaultRiposteCurrent()));
-    obj.SetRiposteRank(GET_JSON_DATA_OR_DEFAULT(RiposteRank, Int, config.GetDefaultRiposteRank()));
-    obj.SetBashCurrent(GET_JSON_DATA_OR_DEFAULT(BashCurrent, Int, config.GetDefaultBashCurrent()));
-    obj.SetBashRank(GET_JSON_DATA_OR_DEFAULT(BashRank, Int, config.GetDefaultBashRank()));
-    obj.SetSmashCurrent(GET_JSON_DATA_OR_DEFAULT(SmashCurrent, Int, config.GetDefaultSmashCurrent()));
-    obj.SetSmashRank(GET_JSON_DATA_OR_DEFAULT(SmashRank, Int, config.GetDefaultSmashRank()));
-    obj.SetCrushCurrent(GET_JSON_DATA_OR_DEFAULT(CrushCurrent, Int, config.GetDefaultCrushCurrent()));
-    obj.SetCrushRank(GET_JSON_DATA_OR_DEFAULT(CrushRank, Int, config.GetDefaultCrushRank()));
-    obj.SetImpactCurrent(GET_JSON_DATA_OR_DEFAULT(ImpactCurrent, Int, config.GetDefaultImpactCurrent()));
-    obj.SetImpactRank(GET_JSON_DATA_OR_DEFAULT(ImpactRank, Int, config.GetDefaultImpactRank()));
-    obj.SetBreakCurrent(GET_JSON_DATA_OR_DEFAULT(BreakCurrent, Int, config.GetDefaultBreakCurrent()));
-    obj.SetBreakRank(GET_JSON_DATA_OR_DEFAULT(BreakRank, Int, config.GetDefaultBreakRank()));
-    obj.SetCrackCurrent(GET_JSON_DATA_OR_DEFAULT(CrackCurrent, Int, config.GetDefaultCrackCurrent()));
-    obj.SetCrackRank(GET_JSON_DATA_OR_DEFAULT(CrackRank, Int, config.GetDefaultCrackRank()));
-    obj.SetBlockCurrent(GET_JSON_DATA_OR_DEFAULT(BlockCurrent, Int, config.GetDefaultBlockCurrent()));
-    obj.SetBlockRank(GET_JSON_DATA_OR_DEFAULT(BlockRank, Int, config.GetDefaultBlockRank()));
-    obj.SetRushCurrent(GET_JSON_DATA_OR_DEFAULT(RushCurrent, Int, config.GetDefaultRushCurrent()));
-    obj.SetRushRank(GET_JSON_DATA_OR_DEFAULT(RushRank, Int, config.GetDefaultRushRank()));
-    obj.SetPierceCurrent(GET_JSON_DATA_OR_DEFAULT(PierceCurrent, Int, config.GetDefaultPierceCurrent()));
-    obj.SetPierceRank(GET_JSON_DATA_OR_DEFAULT(PierceRank, Int, config.GetDefaultPierceRank()));
-    obj.SetDrillCurrent(GET_JSON_DATA_OR_DEFAULT(DrillCurrent, Int, config.GetDefaultDrillCurrent()));
-    obj.SetDrillRank(GET_JSON_DATA_OR_DEFAULT(DrillRank, Int, config.GetDefaultDrillRank()));
-    obj.SetShootCurrent(GET_JSON_DATA_OR_DEFAULT(ShootCurrent, Int, config.GetDefaultShootCurrent()));
-    obj.SetShootRank(GET_JSON_DATA_OR_DEFAULT(ShootRank, Int, config.GetDefaultShootRank()));
-    obj.SetImpaleCurrent(GET_JSON_DATA_OR_DEFAULT(ImpaleCurrent, Int, config.GetDefaultImpaleCurrent()));
-    obj.SetImpaleRank(GET_JSON_DATA_OR_DEFAULT(ImpaleRank, Int, config.GetDefaultImpaleRank()));
-    obj.SetStealthStrikeCurrent(GET_JSON_DATA_OR_DEFAULT(StealthStrikeCurrent, Int, config.GetDefaultStealthStrikeCurrent()));
-    obj.SetStealthStrikeRank(GET_JSON_DATA_OR_DEFAULT(StealthStrikeRank, Int, config.GetDefaultStealthStrikeRank()));
-    obj.SetCriticalShotCurrent(GET_JSON_DATA_OR_DEFAULT(CriticalShotCurrent, Int, config.GetDefaultCriticalShotCurrent()));
-    obj.SetCriticalShotRank(GET_JSON_DATA_OR_DEFAULT(CriticalShotRank, Int, config.GetDefaultCriticalShotRank()));
-    obj.SetDodgeCurrent(GET_JSON_DATA_OR_DEFAULT(DodgeCurrent, Int, config.GetDefaultDodgeCurrent()));
-    obj.SetDodgeRank(GET_JSON_DATA_OR_DEFAULT(DodgeRank, Int, config.GetDefaultDodgeRank()));
-    obj.SetCounterCurrent(GET_JSON_DATA_OR_DEFAULT(CounterCurrent, Int, config.GetDefaultCounterCurrent()));
-    obj.SetCounterRank(GET_JSON_DATA_OR_DEFAULT(CounterRank, Int, config.GetDefaultCounterRank()));
+    obj.SetSlashCurrent(GET_JSON_DATA_OR_DEFAULT(SlashCurrent, Int, 0));
+    obj.SetSlashRank(GET_JSON_DATA_OR_DEFAULT(SlashRank, Int, 0));
+    obj.SetSeverCurrent(GET_JSON_DATA_OR_DEFAULT(SeverCurrent, Int, 0));
+    obj.SetSeverRank(GET_JSON_DATA_OR_DEFAULT(SeverRank, Int, 0));
+    obj.SetSliceCurrent(GET_JSON_DATA_OR_DEFAULT(SliceCurrent, Int, 0));
+    obj.SetSliceRank(GET_JSON_DATA_OR_DEFAULT(SliceRank, Int, 0));
+    obj.SetSlitCurrent(GET_JSON_DATA_OR_DEFAULT(SlitCurrent, Int, 0));
+    obj.SetSlitRank(GET_JSON_DATA_OR_DEFAULT(SlitRank, Int, 0));
+    obj.SetCleaveCurrent(GET_JSON_DATA_OR_DEFAULT(CleaveCurrent, Int, 0));
+    obj.SetCleaveRank(GET_JSON_DATA_OR_DEFAULT(CleaveRank, Int, 0));
+    obj.SetDecapitateCurrent(GET_JSON_DATA_OR_DEFAULT(DecapitateCurrent, Int, 0));
+    obj.SetDecapitateRank(GET_JSON_DATA_OR_DEFAULT(DecapitateRank, Int, 0));
+    obj.SetParryCurrent(GET_JSON_DATA_OR_DEFAULT(ParryCurrent, Int, 0));
+    obj.SetParryRank(GET_JSON_DATA_OR_DEFAULT(ParryRank, Int, 0));
+    obj.SetRiposteCurrent(GET_JSON_DATA_OR_DEFAULT(RiposteCurrent, Int, 0));
+    obj.SetRiposteRank(GET_JSON_DATA_OR_DEFAULT(RiposteRank, Int, 0));
+    obj.SetBashCurrent(GET_JSON_DATA_OR_DEFAULT(BashCurrent, Int, 0));
+    obj.SetBashRank(GET_JSON_DATA_OR_DEFAULT(BashRank, Int, 0));
+    obj.SetSmashCurrent(GET_JSON_DATA_OR_DEFAULT(SmashCurrent, Int, 0));
+    obj.SetSmashRank(GET_JSON_DATA_OR_DEFAULT(SmashRank, Int, 0));
+    obj.SetCrushCurrent(GET_JSON_DATA_OR_DEFAULT(CrushCurrent, Int, 0));
+    obj.SetCrushRank(GET_JSON_DATA_OR_DEFAULT(CrushRank, Int, 0));
+    obj.SetImpactCurrent(GET_JSON_DATA_OR_DEFAULT(ImpactCurrent, Int, 0));
+    obj.SetImpactRank(GET_JSON_DATA_OR_DEFAULT(ImpactRank, Int, 0));
+    obj.SetBreakCurrent(GET_JSON_DATA_OR_DEFAULT(BreakCurrent, Int, 0));
+    obj.SetBreakRank(GET_JSON_DATA_OR_DEFAULT(BreakRank, Int, 0));
+    obj.SetCrackCurrent(GET_JSON_DATA_OR_DEFAULT(CrackCurrent, Int, 0));
+    obj.SetCrackRank(GET_JSON_DATA_OR_DEFAULT(CrackRank, Int, 0));
+    obj.SetBlockCurrent(GET_JSON_DATA_OR_DEFAULT(BlockCurrent, Int, 0));
+    obj.SetBlockRank(GET_JSON_DATA_OR_DEFAULT(BlockRank, Int, 0));
+    obj.SetRushCurrent(GET_JSON_DATA_OR_DEFAULT(RushCurrent, Int, 0));
+    obj.SetRushRank(GET_JSON_DATA_OR_DEFAULT(RushRank, Int, 0));
+    obj.SetPierceCurrent(GET_JSON_DATA_OR_DEFAULT(PierceCurrent, Int, 0));
+    obj.SetPierceRank(GET_JSON_DATA_OR_DEFAULT(PierceRank, Int, 0));
+    obj.SetDrillCurrent(GET_JSON_DATA_OR_DEFAULT(DrillCurrent, Int, 0));
+    obj.SetDrillRank(GET_JSON_DATA_OR_DEFAULT(DrillRank, Int, 0));
+    obj.SetShootCurrent(GET_JSON_DATA_OR_DEFAULT(ShootCurrent, Int, 0));
+    obj.SetShootRank(GET_JSON_DATA_OR_DEFAULT(ShootRank, Int, 0));
+    obj.SetImpaleCurrent(GET_JSON_DATA_OR_DEFAULT(ImpaleCurrent, Int, 0));
+    obj.SetImpaleRank(GET_JSON_DATA_OR_DEFAULT(ImpaleRank, Int, 0));
+    obj.SetStealthStrikeCurrent(GET_JSON_DATA_OR_DEFAULT(StealthStrikeCurrent, Int, 0));
+    obj.SetStealthStrikeRank(GET_JSON_DATA_OR_DEFAULT(StealthStrikeRank, Int, 0));
+    obj.SetCriticalShotCurrent(GET_JSON_DATA_OR_DEFAULT(CriticalShotCurrent, Int, 0));
+    obj.SetCriticalShotRank(GET_JSON_DATA_OR_DEFAULT(CriticalShotRank, Int, 0));
+    obj.SetDodgeCurrent(GET_JSON_DATA_OR_DEFAULT(DodgeCurrent, Int, 0));
+    obj.SetDodgeRank(GET_JSON_DATA_OR_DEFAULT(DodgeRank, Int, 0));
+    obj.SetCounterCurrent(GET_JSON_DATA_OR_DEFAULT(CounterCurrent, Int, 0));
+    obj.SetCounterRank(GET_JSON_DATA_OR_DEFAULT(CounterRank, Int, 0));
 
     // Alchemy Skills
-    obj.SetHealerCurrent(GET_JSON_DATA_OR_DEFAULT(HealerCurrent, Int, config.GetDefaultHealerCurrent()));
-    obj.SetHealerRank(GET_JSON_DATA_OR_DEFAULT(HealerRank, Int, config.GetDefaultHealerRank()));
-    obj.SetAlchemistCurrent(GET_JSON_DATA_OR_DEFAULT(AlchemistCurrent, Int, config.GetDefaultAlchemistCurrent()));
-    obj.SetAlchemistRank(GET_JSON_DATA_OR_DEFAULT(AlchemistRank, Int, config.GetDefaultAlchemistRank()));
-    obj.SetEnergistCurrent(GET_JSON_DATA_OR_DEFAULT(EnergistCurrent, Int, config.GetDefaultEnergistCurrent()));
-    obj.SetEnergistRank(GET_JSON_DATA_OR_DEFAULT(EnergistRank, Int, config.GetDefaultEnergistRank()));
-    obj.SetChemistCurrent(GET_JSON_DATA_OR_DEFAULT(ChemistCurrent, Int, config.GetDefaultChemistCurrent()));
-    obj.SetChemistRank(GET_JSON_DATA_OR_DEFAULT(ChemistRank, Int, config.GetDefaultChemistRank()));
+    obj.SetHealerCurrent(GET_JSON_DATA_OR_DEFAULT(HealerCurrent, Int, 0));
+    obj.SetHealerRank(GET_JSON_DATA_OR_DEFAULT(HealerRank, Int, 0));
+    obj.SetAlchemistCurrent(GET_JSON_DATA_OR_DEFAULT(AlchemistCurrent, Int, 0));
+    obj.SetAlchemistRank(GET_JSON_DATA_OR_DEFAULT(AlchemistRank, Int, 0));
+    obj.SetEnergistCurrent(GET_JSON_DATA_OR_DEFAULT(EnergistCurrent, Int, 0));
+    obj.SetEnergistRank(GET_JSON_DATA_OR_DEFAULT(EnergistRank, Int, 0));
+    obj.SetChemistCurrent(GET_JSON_DATA_OR_DEFAULT(ChemistCurrent, Int, 0));
+    obj.SetChemistRank(GET_JSON_DATA_OR_DEFAULT(ChemistRank, Int, 0));
 
     // Crafting Skills
-    obj.SetHammersmithCurrent(GET_JSON_DATA_OR_DEFAULT(HammersmithCurrent, Int, config.GetDefaultHammersmithCurrent()));
-    obj.SetHammersmithRank(GET_JSON_DATA_OR_DEFAULT(HammersmithRank, Int, config.GetDefaultHammersmithRank()));
-    obj.SetSpellsmithCurrent(GET_JSON_DATA_OR_DEFAULT(SpellsmithCurrent, Int, config.GetDefaultSpellsmithCurrent()));
-    obj.SetSpellsmithRank(GET_JSON_DATA_OR_DEFAULT(SpellsmithRank, Int, config.GetDefaultSpellsmithRank()));
-    obj.SetBowsmithCurrent(GET_JSON_DATA_OR_DEFAULT(BowsmithCurrent, Int, config.GetDefaultBowsmithCurrent()));
-    obj.SetBowsmithRank(GET_JSON_DATA_OR_DEFAULT(BowsmithRank, Int, config.GetDefaultBowsmithRank()));
-    obj.SetSwordsmithCurrent(GET_JSON_DATA_OR_DEFAULT(SwordsmithCurrent, Int, config.GetDefaultSwordsmithCurrent()));
-    obj.SetSwordsmithRank(GET_JSON_DATA_OR_DEFAULT(SwordsmithRank, Int, config.GetDefaultSwordsmithRank()));
-    obj.SetWeaverCurrent(GET_JSON_DATA_OR_DEFAULT(WeaverCurrent, Int, config.GetDefaultWeaverCurrent()));
-    obj.SetWeaverRank(GET_JSON_DATA_OR_DEFAULT(WeaverRank, Int, config.GetDefaultWeaverRank()));
-    obj.SetTannerCurrent(GET_JSON_DATA_OR_DEFAULT(TannerCurrent, Int, config.GetDefaultTannerCurrent()));
-    obj.SetTannerRank(GET_JSON_DATA_OR_DEFAULT(TannerRank, Int, config.GetDefaultTannerRank()));
-    obj.SetScalesmithCurrent(GET_JSON_DATA_OR_DEFAULT(ScalesmithCurrent, Int, config.GetDefaultScalesmithCurrent()));
-    obj.SetScalesmithRank(GET_JSON_DATA_OR_DEFAULT(ScalesmithRank, Int, config.GetDefaultScalesmithRank()));
-    obj.SetPlatesmithCurrent(GET_JSON_DATA_OR_DEFAULT(PlatesmithCurrent, Int, config.GetDefaultPlatesmithCurrent()));
-    obj.SetPlatesmithRank(GET_JSON_DATA_OR_DEFAULT(PlatesmithRank, Int, config.GetDefaultPlatesmithRank()));
-    obj.SetGoldsmithCurrent(GET_JSON_DATA_OR_DEFAULT(GoldsmithCurrent, Int, config.GetDefaultGoldsmithCurrent()));
-    obj.SetGoldsmithRank(GET_JSON_DATA_OR_DEFAULT(GoldsmithRank, Int, config.GetDefaultGoldsmithRank()));
-    obj.SetShieldsmithCurrent(GET_JSON_DATA_OR_DEFAULT(ShieldsmithCurrent, Int, config.GetDefaultShieldsmithCurrent()));
-    obj.SetShieldsmithRank(GET_JSON_DATA_OR_DEFAULT(ShieldsmithRank, Int, config.GetDefaultShieldsmithRank()));
+    obj.SetHammersmithCurrent(GET_JSON_DATA_OR_DEFAULT(HammersmithCurrent, Int, 0));
+    obj.SetHammersmithRank(GET_JSON_DATA_OR_DEFAULT(HammersmithRank, Int, 0));
+    obj.SetSpellsmithCurrent(GET_JSON_DATA_OR_DEFAULT(SpellsmithCurrent, Int, 0));
+    obj.SetSpellsmithRank(GET_JSON_DATA_OR_DEFAULT(SpellsmithRank, Int, 0));
+    obj.SetBowsmithCurrent(GET_JSON_DATA_OR_DEFAULT(BowsmithCurrent, Int, 0));
+    obj.SetBowsmithRank(GET_JSON_DATA_OR_DEFAULT(BowsmithRank, Int, 0));
+    obj.SetSwordsmithCurrent(GET_JSON_DATA_OR_DEFAULT(SwordsmithCurrent, Int, 0));
+    obj.SetSwordsmithRank(GET_JSON_DATA_OR_DEFAULT(SwordsmithRank, Int, 0));
+    obj.SetWeaverCurrent(GET_JSON_DATA_OR_DEFAULT(WeaverCurrent, Int, 0));
+    obj.SetWeaverRank(GET_JSON_DATA_OR_DEFAULT(WeaverRank, Int, 0));
+    obj.SetTannerCurrent(GET_JSON_DATA_OR_DEFAULT(TannerCurrent, Int, 0));
+    obj.SetTannerRank(GET_JSON_DATA_OR_DEFAULT(TannerRank, Int, 0));
+    obj.SetScalesmithCurrent(GET_JSON_DATA_OR_DEFAULT(ScalesmithCurrent, Int, 0));
+    obj.SetScalesmithRank(GET_JSON_DATA_OR_DEFAULT(ScalesmithRank, Int, 0));
+    obj.SetPlatesmithCurrent(GET_JSON_DATA_OR_DEFAULT(PlatesmithCurrent, Int, 0));
+    obj.SetPlatesmithRank(GET_JSON_DATA_OR_DEFAULT(PlatesmithRank, Int, 0));
+    obj.SetGoldsmithCurrent(GET_JSON_DATA_OR_DEFAULT(GoldsmithCurrent, Int, 0));
+    obj.SetGoldsmithRank(GET_JSON_DATA_OR_DEFAULT(GoldsmithRank, Int, 0));
+    obj.SetShieldsmithCurrent(GET_JSON_DATA_OR_DEFAULT(ShieldsmithCurrent, Int, 0));
+    obj.SetShieldsmithRank(GET_JSON_DATA_OR_DEFAULT(ShieldsmithRank, Int, 0));
 
     // Breakdown Skills
-    obj.SetHammerbaneCurrent(GET_JSON_DATA_OR_DEFAULT(HammerbaneCurrent, Int, config.GetDefaultHammerbaneCurrent()));
-    obj.SetHammerbaneRank(GET_JSON_DATA_OR_DEFAULT(HammerbaneRank, Int, config.GetDefaultHammerbaneRank()));
-    obj.SetSpellbaneCurrent(GET_JSON_DATA_OR_DEFAULT(SpellbaneCurrent, Int, config.GetDefaultSpellbaneCurrent()));
-    obj.SetSpellbaneRank(GET_JSON_DATA_OR_DEFAULT(SpellbaneRank, Int, config.GetDefaultSpellbaneRank()));
-    obj.SetBowbaneCurrent(GET_JSON_DATA_OR_DEFAULT(BowbaneCurrent, Int, config.GetDefaultBowbaneCurrent()));
-    obj.SetBowbaneRank(GET_JSON_DATA_OR_DEFAULT(BowbaneRank, Int, config.GetDefaultBowbaneRank()));
-    obj.SetSwordbaneCurrent(GET_JSON_DATA_OR_DEFAULT(SwordbaneCurrent, Int, config.GetDefaultSwordbaneCurrent()));
-    obj.SetSwordbaneRank(GET_JSON_DATA_OR_DEFAULT(SwordbaneRank, Int, config.GetDefaultSwordbaneRank()));
-    obj.SetThreadbareCurrent(GET_JSON_DATA_OR_DEFAULT(ThreadbareCurrent, Int, config.GetDefaultThreadbareCurrent()));
-    obj.SetThreadbareRank(GET_JSON_DATA_OR_DEFAULT(ThreadbareRank, Int, config.GetDefaultThreadbareRank()));
-    obj.SetStudRemoverCurrent(GET_JSON_DATA_OR_DEFAULT(StudRemoverCurrent, Int, config.GetDefaultStudRemoverCurrent()));
-    obj.SetStudRemoverRank(GET_JSON_DATA_OR_DEFAULT(StudRemoverRank, Int, config.GetDefaultStudRemoverRank()));
-    obj.SetScalebaneCurrent(GET_JSON_DATA_OR_DEFAULT(ScalebaneCurrent, Int, config.GetDefaultScalebaneCurrent()));
-    obj.SetScalebaneRank(GET_JSON_DATA_OR_DEFAULT(ScalebaneRank, Int, config.GetDefaultScalebaneRank()));
-    obj.SetPlatebaneCurrent(GET_JSON_DATA_OR_DEFAULT(PlatebaneCurrent, Int, config.GetDefaultPlatebaneCurrent()));
-    obj.SetPlatebaneRank(GET_JSON_DATA_OR_DEFAULT(PlatebaneRank, Int, config.GetDefaultPlatebaneRank()));
-    obj.SetGoldbaneCurrent(GET_JSON_DATA_OR_DEFAULT(GoldbaneCurrent, Int, config.GetDefaultGoldbaneCurrent()));
-    obj.SetGoldbaneRank(GET_JSON_DATA_OR_DEFAULT(GoldbaneRank, Int, config.GetDefaultGoldbaneRank()));
-    obj.SetShieldbaneCurrent(GET_JSON_DATA_OR_DEFAULT(ShieldbaneCurrent, Int, config.GetDefaultShieldbaneCurrent()));
-    obj.SetShieldbaneRank(GET_JSON_DATA_OR_DEFAULT(ShieldbaneRank, Int, config.GetDefaultShieldbaneRank()));
+    obj.SetHammerbaneCurrent(GET_JSON_DATA_OR_DEFAULT(HammerbaneCurrent, Int, 0));
+    obj.SetHammerbaneRank(GET_JSON_DATA_OR_DEFAULT(HammerbaneRank, Int, 0));
+    obj.SetSpellbaneCurrent(GET_JSON_DATA_OR_DEFAULT(SpellbaneCurrent, Int, 0));
+    obj.SetSpellbaneRank(GET_JSON_DATA_OR_DEFAULT(SpellbaneRank, Int, 0));
+    obj.SetBowbaneCurrent(GET_JSON_DATA_OR_DEFAULT(BowbaneCurrent, Int, 0));
+    obj.SetBowbaneRank(GET_JSON_DATA_OR_DEFAULT(BowbaneRank, Int, 0));
+    obj.SetSwordbaneCurrent(GET_JSON_DATA_OR_DEFAULT(SwordbaneCurrent, Int, 0));
+    obj.SetSwordbaneRank(GET_JSON_DATA_OR_DEFAULT(SwordbaneRank, Int, 0));
+    obj.SetThreadbareCurrent(GET_JSON_DATA_OR_DEFAULT(ThreadbareCurrent, Int, 0));
+    obj.SetThreadbareRank(GET_JSON_DATA_OR_DEFAULT(ThreadbareRank, Int, 0));
+    obj.SetStudRemoverCurrent(GET_JSON_DATA_OR_DEFAULT(StudRemoverCurrent, Int, 0));
+    obj.SetStudRemoverRank(GET_JSON_DATA_OR_DEFAULT(StudRemoverRank, Int, 0));
+    obj.SetScalebaneCurrent(GET_JSON_DATA_OR_DEFAULT(ScalebaneCurrent, Int, 0));
+    obj.SetScalebaneRank(GET_JSON_DATA_OR_DEFAULT(ScalebaneRank, Int, 0));
+    obj.SetPlatebaneCurrent(GET_JSON_DATA_OR_DEFAULT(PlatebaneCurrent, Int, 0));
+    obj.SetPlatebaneRank(GET_JSON_DATA_OR_DEFAULT(PlatebaneRank, Int, 0));
+    obj.SetGoldbaneCurrent(GET_JSON_DATA_OR_DEFAULT(GoldbaneCurrent, Int, 0));
+    obj.SetGoldbaneRank(GET_JSON_DATA_OR_DEFAULT(GoldbaneRank, Int, 0));
+    obj.SetShieldbaneCurrent(GET_JSON_DATA_OR_DEFAULT(ShieldbaneCurrent, Int, 0));
+    obj.SetShieldbaneRank(GET_JSON_DATA_OR_DEFAULT(ShieldbaneRank, Int, 0));
 
     // Affinity Skills
-    obj.SetHolyCurrent(GET_JSON_DATA_OR_DEFAULT(HolyCurrent, Int, config.GetDefaultHolyCurrent()));
-    obj.SetHolyRank(GET_JSON_DATA_OR_DEFAULT(HolyRank, Int, config.GetDefaultHolyRank()));
-    obj.SetFireCurrent(GET_JSON_DATA_OR_DEFAULT(FireCurrent, Int, config.GetDefaultFireCurrent()));
-    obj.SetFireRank(GET_JSON_DATA_OR_DEFAULT(FireRank, Int, config.GetDefaultFireRank()));
-    obj.SetIceCurrent(GET_JSON_DATA_OR_DEFAULT(IceCurrent, Int, config.GetDefaultIceCurrent()));
-    obj.SetIceRank(GET_JSON_DATA_OR_DEFAULT(IceRank, Int, config.GetDefaultIceRank()));
-    obj.SetShockCurrent(GET_JSON_DATA_OR_DEFAULT(ShockCurrent, Int, config.GetDefaultShockCurrent()));
-    obj.SetShockRank(GET_JSON_DATA_OR_DEFAULT(ShockRank, Int, config.GetDefaultShockRank()));
-    obj.SetDarkCurrent(GET_JSON_DATA_OR_DEFAULT(DarkCurrent, Int, config.GetDefaultDarkCurrent()));
-    obj.SetDarkRank(GET_JSON_DATA_OR_DEFAULT(DarkRank, Int, config.GetDefaultDarkRank()));
-    obj.SetLightCurrent(GET_JSON_DATA_OR_DEFAULT(LightCurrent, Int, config.GetDefaultLightCurrent()));
-    obj.SetLightRank(GET_JSON_DATA_OR_DEFAULT(LightRank, Int, config.GetDefaultLightRank()));
-    obj.SetForceCurrent(GET_JSON_DATA_OR_DEFAULT(ForceCurrent, Int, config.GetDefaultForceCurrent()));
-    obj.SetForceRank(GET_JSON_DATA_OR_DEFAULT(ForceRank, Int, config.GetDefaultForceRank()));
-    obj.SetMindCurrent(GET_JSON_DATA_OR_DEFAULT(MindCurrent, Int, config.GetDefaultMindCurrent()));
-    obj.SetMindRank(GET_JSON_DATA_OR_DEFAULT(MindRank, Int, config.GetDefaultMindRank()));
-    obj.SetEarthCurrent(GET_JSON_DATA_OR_DEFAULT(EarthCurrent, Int, config.GetDefaultEarthCurrent()));
-    obj.SetEarthRank(GET_JSON_DATA_OR_DEFAULT(EarthRank, Int, config.GetDefaultEarthRank()));
-    obj.SetBloodCurrent(GET_JSON_DATA_OR_DEFAULT(BloodCurrent, Int, config.GetDefaultBloodCurrent()));
-    obj.SetBloodRank(GET_JSON_DATA_OR_DEFAULT(BloodRank, Int, config.GetDefaultBloodRank()));
-    obj.SetFleshCurrent(GET_JSON_DATA_OR_DEFAULT(FleshCurrent, Int, config.GetDefaultFleshCurrent()));
-    obj.SetFleshRank(GET_JSON_DATA_OR_DEFAULT(FleshRank, Int, config.GetDefaultFleshRank()));
-    obj.SetWindCurrent(GET_JSON_DATA_OR_DEFAULT(WindCurrent, Int, config.GetDefaultWindCurrent()));
-    obj.SetWindRank(GET_JSON_DATA_OR_DEFAULT(WindRank, Int, config.GetDefaultWindRank()));
+    obj.SetHolyCurrent(GET_JSON_DATA_OR_DEFAULT(HolyCurrent, Int, 0));
+    obj.SetHolyRank(GET_JSON_DATA_OR_DEFAULT(HolyRank, Int, 0));
+    obj.SetFireCurrent(GET_JSON_DATA_OR_DEFAULT(FireCurrent, Int, 0));
+    obj.SetFireRank(GET_JSON_DATA_OR_DEFAULT(FireRank, Int, 0));
+    obj.SetIceCurrent(GET_JSON_DATA_OR_DEFAULT(IceCurrent, Int, 0));
+    obj.SetIceRank(GET_JSON_DATA_OR_DEFAULT(IceRank, Int, 0));
+    obj.SetShockCurrent(GET_JSON_DATA_OR_DEFAULT(ShockCurrent, Int, 0));
+    obj.SetShockRank(GET_JSON_DATA_OR_DEFAULT(ShockRank, Int, 0));
+    obj.SetDarkCurrent(GET_JSON_DATA_OR_DEFAULT(DarkCurrent, Int, 0));
+    obj.SetDarkRank(GET_JSON_DATA_OR_DEFAULT(DarkRank, Int, 0));
+    obj.SetLightCurrent(GET_JSON_DATA_OR_DEFAULT(LightCurrent, Int, 0));
+    obj.SetLightRank(GET_JSON_DATA_OR_DEFAULT(LightRank, Int, 0));
+    obj.SetForceCurrent(GET_JSON_DATA_OR_DEFAULT(ForceCurrent, Int, 0));
+    obj.SetForceRank(GET_JSON_DATA_OR_DEFAULT(ForceRank, Int, 0));
+    obj.SetMindCurrent(GET_JSON_DATA_OR_DEFAULT(MindCurrent, Int, 0));
+    obj.SetMindRank(GET_JSON_DATA_OR_DEFAULT(MindRank, Int, 0));
+    obj.SetEarthCurrent(GET_JSON_DATA_OR_DEFAULT(EarthCurrent, Int, 0));
+    obj.SetEarthRank(GET_JSON_DATA_OR_DEFAULT(EarthRank, Int, 0));
+    obj.SetBloodCurrent(GET_JSON_DATA_OR_DEFAULT(BloodCurrent, Int, 0));
+    obj.SetBloodRank(GET_JSON_DATA_OR_DEFAULT(BloodRank, Int, 0));
+    obj.SetFleshCurrent(GET_JSON_DATA_OR_DEFAULT(FleshCurrent, Int, 0));
+    obj.SetFleshRank(GET_JSON_DATA_OR_DEFAULT(FleshRank, Int, 0));
+    obj.SetWindCurrent(GET_JSON_DATA_OR_DEFAULT(WindCurrent, Int, 0));
+    obj.SetWindRank(GET_JSON_DATA_OR_DEFAULT(WindRank, Int, 0));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterSkillData, CharacterSkillData);

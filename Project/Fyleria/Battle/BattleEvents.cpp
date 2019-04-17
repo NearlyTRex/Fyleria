@@ -19,7 +19,7 @@ void HandleBattleStarted(const IndexedString& sCharacterID)
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Clear active changes
-    character.GetStatChangeData().ClearActiveChanges();
+    character.ClearActiveChanges();
 
     // Reset prolonged stat changes
     character.GetStatChangeData().SetProlongedStatChanges({});
@@ -44,7 +44,7 @@ void HandleBattleEnded(const IndexedString& sCharacterID)
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Clear active changes
-    character.GetStatChangeData().ClearActiveChanges();
+    character.ClearActiveChanges();
 
     // Reset prolonged stat changes
     character.GetStatChangeData().SetProlongedStatChanges({});
@@ -100,8 +100,8 @@ void HandleBattleFullyCompleted(const IndexedString& sCharacterID)
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterProgressData& progressData = character.GetProgressSegment(sSegment);
-        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+        CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Finish battle
         battleData.FinishBattle(progressData);
@@ -127,8 +127,8 @@ void HandleBattleRoundAdvanced(const IndexedString& sCharacterID)
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterProgressData& progressData = character.GetProgressSegment(sSegment);
-        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+        CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Advance round
         battleData.AdvanceRound(progressData);
@@ -160,7 +160,7 @@ void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Update damage given
         battleData.ApplyGivenDamage(iAmount);
@@ -195,8 +195,8 @@ void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterProgressData& progressData = character.GetProgressSegment(sSegment);
-        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+        CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Update damage taken
         progressData.ApplyTakenDamage(iAmount);
@@ -229,7 +229,7 @@ void HandleBattleChoosingTargets(const IndexedString& sCharacterID, const Indexe
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Update most recent attack targets
         battleData.SetMostRecentAttackTargets(vDestTargets);
@@ -257,7 +257,7 @@ void HandleBattleBecomingTarget(const IndexedString& sCharacterID, const Indexed
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Update most recent defend target
         battleData.SetMostRecentDefendTarget(sSourceTarget);
@@ -283,7 +283,7 @@ void HandleBattleActionAttackSetup(const IndexedString& sCharacterID, const Char
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Set targets for this action
         battleData.SetAttackTargetsThisAction(battleData.GetMostRecentAttackTargets());
@@ -310,7 +310,7 @@ void HandleBattleActionDefendSetup(const IndexedString& sCharacterID, const Char
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Set targets for this action
         battleData.SetAttackTargetsThisAction({});
@@ -352,8 +352,8 @@ void HandleBattleActionFinished(const IndexedString& sCharacterID, const Charact
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterProgressData& progressData = character.GetProgressSegment(sSegment);
-        CharacterBattleData& battleData = character.GetBattleSegment(sSegment);
+        CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
+        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Apply costs
         progressData.ApplyActionCost(action);

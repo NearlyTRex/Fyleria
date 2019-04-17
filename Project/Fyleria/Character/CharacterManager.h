@@ -20,7 +20,7 @@ public:
 
     // Load a character
     // This will overwrite any existing matching data
-    void LoadCharacter(const IndexedString& sCharacterID, const Character& character);
+    void LoadCharacter(const Character& character);
 
     // Load a character from a file
     // This will overwrite any existing matching data
@@ -56,13 +56,13 @@ public:
     // Apply a stat change entry
     Bool ApplyStatChangeEntry(const IndexedString& sSegment, const StatChangeEntry& entry);
 
-    // Apply a stat change entry float operation
+    // Apply a stat change entry bool operation
     Bool ApplyStatChangeEntryOperation(
         const IndexedString& sSegment,
         const IndexedString& sCharacterID,
         const IndexedString& sOperation,
         const IndexedString& sStat,
-        Float fValue);
+        Bool bValue);
 
     // Apply a stat change entry int operation
     Bool ApplyStatChangeEntryOperation(
@@ -72,13 +72,13 @@ public:
         const IndexedString& sStat,
         Int iValue);
 
-    // Apply a stat change entry bool operation
+    // Apply a stat change entry float operation
     Bool ApplyStatChangeEntryOperation(
         const IndexedString& sSegment,
         const IndexedString& sCharacterID,
         const IndexedString& sOperation,
         const IndexedString& sStat,
-        Bool bValue);
+        Float fValue);
 
     // Apply a stat change entry string operation
     Bool ApplyStatChangeEntryOperation(
@@ -99,21 +99,14 @@ public:
     // Determine if stat change entry uses a delta from source to destination characters
     Bool DoesStatChangeEntryUseDelta(const StatChangeEntry& changeEntry) const;
 
-    // Determine stat value types
-    Bool IsStatFloat(const IndexedString& sStat) const;
-    Bool IsStatInt(const IndexedString& sStat) const;
-    Bool IsStatBool(const IndexedString& sStat) const;
-    Bool IsStatString(const IndexedString& sStat) const;
-    Bool IsStatStringArray(const IndexedString& sStat) const;
-
     // Get delta changed values from stat change entry
     Bool GetDeltaStatChangeEntryValues(
         const IndexedString& sSegment,
         const IndexedString& sCharacterID,
         const StatChangeEntry& changeEntry,
-        FloatArray& vFloatValues,
-        IntArray& vIntValues,
         BoolArray& vBoolValues,
+        IntArray& vIntValues,
+        FloatArray& vFloatValues,
         IndexedStringArray& vStringValues) const;
 
     // Get fully changed values from stat change entry
@@ -121,9 +114,9 @@ public:
         const IndexedString& sSegment,
         const IndexedString& sCharacterID,
         const StatChangeEntry& changeEntry,
-        FloatArray& vFloatValues,
-        IntArray& vIntValues,
         BoolArray& vBoolValues,
+        IntArray& vIntValues,
+        FloatArray& vFloatValues,
         IndexedStringArray& vStringValues) const;
 
 private:
