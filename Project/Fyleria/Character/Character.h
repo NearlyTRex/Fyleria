@@ -9,7 +9,6 @@
 #include "CharacterData/CharacterActionData.h"
 #include "CharacterData/CharacterBasicData.h"
 #include "CharacterData/CharacterBattleData.h"
-#include "CharacterData/CharacterItemData.h"
 #include "CharacterData/CharacterProgressData.h"
 #include "CharacterData/CharacterSkillData.h"
 #include "CharacterData/CharacterSkillUseData.h"
@@ -100,9 +99,6 @@ public:
 
     // Action data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionData, CharacterActionData);
-
-    // Item data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemData, CharacterItemData);
 
     // Skill data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillData, CharacterSkillData);

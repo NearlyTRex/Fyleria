@@ -28,6 +28,9 @@ public:
     // Character ID
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterID, IndexedString);
 
+    // Party ID
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyID, IndexedString);
+
     // IndexedString stats
     MAKE_STAT_TYPE_ACCESSORS(FirstName, IndexedString);
     MAKE_STAT_TYPE_ACCESSORS(LastName, IndexedString);

@@ -18,6 +18,27 @@ public:
 
     // Constructors
     CharacterPartyMember();
+    CharacterPartyMember(const IndexedString& sCharacterID, const IndexedString& sCharacterTargetType);
+
+    // Get item counts
+    UInt GetEquippedItemTypeCount(const TreeIndex& index) const;
+    UInt GetEquippedWeaponCount(const IndexedString& sWeaponSet) const;
+    UInt GetEquippedShieldCount(const IndexedString& sWeaponSet) const;
+
+    // Check if an item can be added/removed
+    Bool CanAddEquippedItem(const TreeIndex& index) const;
+    Bool CanRemoveEquippedItem(const TreeIndex& index) const;
+
+    // Add/remove equipped items
+    Bool AddEquippedItem(const TreeIndex& index, const IndexedString& sEquipSlot);
+    Bool RemoveEquippedItem(const TreeIndex& index, const IndexedString& sEquipSlot);
+
+    // Get primary/secondary hand info
+    Bool GetHandInfoByWeaponSet(const IndexedString& sWeaponSet,
+        TreeIndex& primaryItemIndex,
+        TreeIndex& secondaryItemIndex,
+        IndexedStringArray& vPrimaryActionTypes,
+        IndexedStringArray& vSecondaryActionTypes) const;
 
     // Character ID
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterID, IndexedString);
@@ -25,12 +46,8 @@ public:
     // Character target type
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterTargetType, IndexedString);
 
-    // Attack/defend counters
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(AttackCounter, Int);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(DefendCounter, Int);
-
-    // Previous action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PreviousActionTypes, IndexedStringArray);
+    // Equipped items
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EquippedItems, CharacterPartyEquippedItemArray);
 };
 
 // Typedef

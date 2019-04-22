@@ -3,6 +3,8 @@
 
 #include "CharacterParty/CharacterParty.h"
 #include "CharacterParty/CharacterPartyItem.h"
+#include "CharacterParty/CharacterPartyEquippedItem.h"
+#include "CharacterParty/CharacterPartyMember.h"
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Macros.h"
 #include "Utility/Python.h"
@@ -19,30 +21,7 @@ PYBIND11_MAKE_OPAQUE(Gecko::CharacterPartyArray);
 
 PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
 {
-    // CharacterPartyItem.h
-    PyBindClass<Gecko::CharacterPartyItem>(m, "CharacterPartyItem")
-        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-        WRAPPING_ADD_METHOD_SIMPLE(DoesMatchSlot, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_METHOD_SIMPLE(CanAddAmount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_METHOD_SIMPLE(CanRemoveAmount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_METHOD_SIMPLE(CanEquipAmount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_METHOD_SIMPLE(CanUnequipAmount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_METHOD_SIMPLE(AddAmount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_METHOD_SIMPLE(RemoveAmount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_METHOD_SIMPLE(EquipAmount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_METHOD_SIMPLE(UnequipAmount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(TreeIndex, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Amount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(EquipCount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ApplicableEquipmentSlots, Gecko::CharacterPartyItem)
-    ;
-    PyBindVector<Gecko::CharacterPartyItemArray>(m, "CharacterPartyItemArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyItemToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyItemArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyItemFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyItemArrayFromJsonString, Gecko);
-
-    // CHaracterParty.h
+    // CharacterParty.h
     PyBindClass<Gecko::CharacterParty>(m, "CharacterParty")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_METHOD_SIMPLE(RegenerateCharacterData, Gecko::CharacterParty)
@@ -95,6 +74,60 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyFromJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyArrayFromJsonString, Gecko);
+
+    // CharacterPartyItem.h
+    PyBindClass<Gecko::CharacterPartyItem>(m, "CharacterPartyItem")
+        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_SIMPLE(DoesMatchSlot, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_METHOD_SIMPLE(CanAddAmount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_METHOD_SIMPLE(CanRemoveAmount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_METHOD_SIMPLE(CanEquipAmount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_METHOD_SIMPLE(CanUnequipAmount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_METHOD_SIMPLE(AddAmount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_METHOD_SIMPLE(RemoveAmount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_METHOD_SIMPLE(EquipAmount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_METHOD_SIMPLE(UnequipAmount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(TreeIndex, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Amount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(EquipCount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ApplicableEquipmentSlots, Gecko::CharacterPartyItem)
+    ;
+    PyBindVector<Gecko::CharacterPartyItemArray>(m, "CharacterPartyItemArray");
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyItemToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyItemArrayToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyItemFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyItemArrayFromJsonString, Gecko);
+
+    // CharacterPartyEquippedItem.h
+    PyBindClass<Gecko::CharacterPartyEquippedItem>(m, "CharacterPartyEquippedItem")
+        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(TreeIndex, Gecko::CharacterPartyEquippedItem)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ItemSlot, Gecko::CharacterPartyEquippedItem)
+    ;
+    PyBindVector<Gecko::CharacterPartyEquippedItemArray>(m, "CharacterPartyEquippedItemArray");
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyEquippedItemToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyEquippedItemArrayToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyEquippedItemFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyEquippedItemArrayFromJsonString, Gecko);
+
+    // CharacterPartyMember.h
+    PyBindClass<Gecko::CharacterPartyMember>(m, "CharacterPartyMember")
+        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_SIMPLE(GetEquippedItemTypeCount, Gecko::CharacterPartyMember)
+        WRAPPING_ADD_METHOD_SIMPLE(GetEquippedWeaponCount, Gecko::CharacterPartyMember)
+        WRAPPING_ADD_METHOD_SIMPLE(GetEquippedShieldCount, Gecko::CharacterPartyMember)
+        WRAPPING_ADD_METHOD_SIMPLE(CanAddEquippedItem, Gecko::CharacterPartyMember)
+        WRAPPING_ADD_METHOD_SIMPLE(CanRemoveEquippedItem, Gecko::CharacterPartyMember)
+        WRAPPING_ADD_METHOD_SIMPLE(AddEquippedItem, Gecko::CharacterPartyMember)
+        WRAPPING_ADD_METHOD_SIMPLE(RemoveEquippedItem, Gecko::CharacterPartyMember)
+        WRAPPING_ADD_METHOD_SIMPLE(GetHandInfoByWeaponSet, Gecko::CharacterPartyMember)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(EquippedItems, Gecko::CharacterPartyMember)
+    ;
+    PyBindVector<Gecko::CharacterPartyMemberArray>(m, "CharacterPartyMemberArray");
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyMemberToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyMemberArrayToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyMemberFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyMemberArrayFromJsonString, Gecko);
 
     // CharacterPartyManager.h
     PyBindClass<Gecko::CharacterPartyManager>(m, "CharacterPartyManager")

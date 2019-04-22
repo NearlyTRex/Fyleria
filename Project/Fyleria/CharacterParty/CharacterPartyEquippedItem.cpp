@@ -1,26 +1,21 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterProgressItem.h"
+#include "Character/CharacterPartyEquippedItem.h"
 
 namespace Gecko
 {
 
-CharacterProgressItem::CharacterProgressItem()
+CharacterPartyEquippedItem::CharacterPartyEquippedItem()
 {
-    // Item tree index
-    SetTreeIndex({});
-
-    // Item slot
-    SetItemSlot(IndexedString("None"));
 }
 
-CharacterProgressItem::CharacterProgressItem(const Json& jsonData)
+CharacterPartyEquippedItem::CharacterPartyEquippedItem(const Json& jsonData)
 {
     from_json(jsonData, *this);
 }
 
-void to_json(Json& jsonData, const CharacterProgressItem& obj)
+void to_json(Json& jsonData, const CharacterPartyEquippedItem& obj)
 {
     // Item tree index
     SET_JSON_DATA_IF_NOT_EMPTY(TreeIndex);
@@ -29,7 +24,7 @@ void to_json(Json& jsonData, const CharacterProgressItem& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(ItemSlot, IndexedString("None"));
 }
 
-void from_json(const Json& jsonData, CharacterProgressItem& obj)
+void from_json(const Json& jsonData, CharacterPartyEquippedItem& obj)
 {
     // Item tree index
     obj.SetTreeIndex(GET_JSON_DATA_OR_DEFAULT(TreeIndex, TreeIndex, TreeIndex()));
@@ -38,9 +33,9 @@ void from_json(const Json& jsonData, CharacterProgressItem& obj)
     obj.SetItemSlot(GET_JSON_DATA_OR_DEFAULT(ItemSlot, IndexedString, IndexedString("None")));
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterProgressItem, CharacterProgressItem);
+MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyEquippedItem, CharacterPartyEquippedItem);
 
-Bool operator==(const CharacterProgressItem& a, const CharacterProgressItem& b)
+Bool operator==(const CharacterPartyEquippedItem& a, const CharacterPartyEquippedItem& b)
 {
     return (
         (a.GetTreeIndex() == b.GetTreeIndex()) &&

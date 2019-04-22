@@ -70,6 +70,13 @@ public:
     // Stat names
     static void InitAllStatNames();
 
+    // Attack/defend counters
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(AttackCounter, Int);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(DefendCounter, Int);
+
+    // Previous action types
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PreviousActionTypes, IndexedStringArray);
+
     // IndexedString stats
     MAKE_STAT_TYPE_ACCESSORS(ActionSourceThisAction, IndexedString);
     MAKE_STAT_TYPE_ACCESSORS(MostRecentActionSource, IndexedString);

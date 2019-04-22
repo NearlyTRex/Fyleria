@@ -397,6 +397,13 @@ Bool CharacterBattleData::operator!=(const CharacterBattleData& other) const
 
 void to_json(Json& jsonData, const CharacterBattleData& obj)
 {
+    // Attack/defend counters
+    SET_JSON_DATA_IF_NOT_DEFAULT(AttackCounter, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(DefendCounter, 0);
+
+    // Previous action types
+    SET_JSON_DATA_IF_NOT_EMPTY(PreviousActionTypes);
+
     // Stat values
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedString);
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedStringArray);
@@ -407,6 +414,13 @@ void to_json(Json& jsonData, const CharacterBattleData& obj)
 
 void from_json(const Json& jsonData, CharacterBattleData& obj)
 {
+    // Attack/defend counters
+    obj.SetAttackCounter(GET_JSON_DATA_OR_DEFAULT(AttackCounter, Int, 0));
+    obj.SetDefendCounter(GET_JSON_DATA_OR_DEFAULT(DefendCounter, Int, 0));
+
+    // Previous action types
+    obj.SetPreviousActionTypes(GET_JSON_DATA_OR_DEFAULT(PreviousActionTypes, IndexedStringArray, IndexedStringArray()));
+
     // Stat values
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, IndexedString);
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, IndexedStringArray);

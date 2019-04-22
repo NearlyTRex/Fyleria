@@ -50,7 +50,12 @@ public:
     // Get member
     Int GetMemberIndexByID(const IndexedString& sCharacterID) const;
     Int GetMemberIndexByTargetType(const IndexedString& sCharacterTargetType) const;
-    const IndexedString& GetMember(UInt uIndex) const;
+    const CharacterPartyMember& GetMember(UInt uIndex) const;
+    const CharacterPartyMember& GetMemberByID(const IndexedString& sCharacterID) const;
+    const CharacterPartyMember& GetMemberByTargetType(const IndexedString& sCharacterTargetType) const;
+    CharacterPartyMember& GetMember(UInt uIndex);
+    CharacterPartyMember& GetMemberByID(const IndexedString& sCharacterID);
+    CharacterPartyMember& GetMemberByTargetType(const IndexedString& sCharacterTargetType);
 
     // Get character IDs
     Bool GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringArray& vCharacterIDs) const;
@@ -70,7 +75,10 @@ public:
 
     // Get item
     Int GetItemIndexByTreeIndex(const TreeIndex& index) const;
+    const CharacterPartyItem& GetItem(UInt uIndex) const;
+    const CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& index) const;
     CharacterPartyItem& GetItem(UInt uIndex);
+    CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& index);
 
     // Get best unequipped item for the given slot
     Int GetBestUnequippedItemIndex(UInt uCharacterIndex, const IndexedString& sSlot) const;
@@ -112,7 +120,7 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyType, IndexedString);
 
     // Array of members
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Members, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Members, CharacterPartyMemberArray);
 
     // Array of items
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Items, CharacterPartyItemArray);

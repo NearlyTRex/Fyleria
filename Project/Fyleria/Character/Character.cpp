@@ -100,11 +100,18 @@ Bool Character::operator!=(const Character& other) const
 void Character::UpdateEquipmentRatings(const IndexedString& sSegment)
 {
     // Get character data
+    const CharacterBasicData& basicData = GetBasicData();
     const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
     CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
+    IndexedString sCharacterID = basicData.GetCharacterID();
+    IndexedString sPartyID = basicData.GetPartyID();
+    const CharacterParty& characterParty = CharacterPartyManager::GetPartyByID(sPartyID);
+    const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
 
     // Update ratings
-    battleData.UpdateEquipmentRatings(GetBasicData().GetCurrentWeaponSet(), GetItemData().GetEquippedItems(), progressData);
+    IndexedString sCurrentWeaponSet = basicData.GetCurrentWeaponSet();
+    const CharacterPartyEquippedItemArray& vEquippedItems = characterPartyMember.GetEquippedItems();
+    battleData.UpdateEquipmentRatings(sCurrentWeaponSet, vEquippedItems, progressData);
 }
 
 void Character::UpdateAvailableChanges(const IndexedString& sSegment)

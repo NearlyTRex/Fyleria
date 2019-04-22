@@ -1,9 +1,13 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterProgressItem.h"
-#include "CharacterData/CharacterProgressData.h"
+#include "CharacterData/CharacterActionData.h"
+#include "CharacterData/CharacterBasicData.h"
 #include "CharacterData/CharacterBattleData.h"
+#include "CharacterData/CharacterProgressData.h"
+#include "CharacterData/CharacterSkillData.h"
+#include "CharacterData/CharacterSkillUseData.h"
+#include "CharacterData/CharacterStatChangeData.h"
 #include "Utility/Macros.h"
 #include "Utility/Python.h"
 
@@ -119,20 +123,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterBattleDataArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleDataFromJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleDataArrayFromJsonString, Gecko);
-
-    // CharacterItemData.h
-    PyBindClass<Gecko::CharacterItemData, STDSharedPtr<Gecko::CharacterItemData>>(m, "CharacterItemData")
-        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-        WRAPPING_ADD_METHOD_SIMPLE(GetEquippedItemTypeCount, Gecko::CharacterItemData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetEquippedWeaponCount, Gecko::CharacterItemData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetEquippedShieldCount, Gecko::CharacterItemData)
-        WRAPPING_ADD_METHOD_SIMPLE(CanAddEquippedItem, Gecko::CharacterItemData)
-        WRAPPING_ADD_METHOD_SIMPLE(CanRemoveEquippedItem, Gecko::CharacterItemData)
-        WRAPPING_ADD_METHOD_SIMPLE(AddEquippedItem, Gecko::CharacterItemData)
-        WRAPPING_ADD_METHOD_SIMPLE(RemoveEquippedItem, Gecko::CharacterItemData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetHandInfoByWeaponSet, Gecko::CharacterItemData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(EquippedItems, Gecko::CharacterItemData)
-    ;
 
     // CharacterProgressData.h
     PyBindClass<Gecko::CharacterProgressData, STDSharedPtr<Gecko::CharacterProgressData>>(m, "CharacterProgressData")
@@ -382,16 +372,4 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionableItemDataArray, Gecko::CharacterStatChangeData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ProlongedStatChanges, Gecko::CharacterStatChangeData)
     ;
-
-    // CharacterProgressItem.h
-    PyBindClass<Gecko::CharacterProgressItem>(m, "CharacterProgressItem")
-        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(TreeIndex, Gecko::CharacterProgressItem)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ItemSlot, Gecko::CharacterProgressItem)
-    ;
-    PyBindVector<Gecko::CharacterProgressItemArray>(m, "CharacterProgressItemArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterProgressItemToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterProgressItemArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterProgressItemFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterProgressItemArrayFromJsonString, Gecko);
 }
