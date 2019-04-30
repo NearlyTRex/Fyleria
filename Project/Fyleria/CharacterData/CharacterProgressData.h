@@ -5,7 +5,6 @@
 #define _GECKO_CHARACTER_PROGRESS_DATA_H_
 
 #include "CharacterAction/CharacterAction.h"
-#include "Character/CharacterProgressItem.h"
 #include "Stats/StatTypeHolder.h"
 
 namespace Gecko

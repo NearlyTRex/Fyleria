@@ -72,7 +72,10 @@ Bool CharacterParty::AddMember(const IndexedString& sCharacterID)
     }
 
     // Add member
-    GetMembers().emplace_back(sCharacterID, GetNextAvailableTargetType());
+    CharacterPartyMember newMember;
+    newMember.SetCharacterID(sCharacterID);
+    newMember.SetCharacterTargetType(GetNextAvailableTargetType());
+    GetMembers().push_back(newMember);
     UseTargetType(newMember.GetCharacterTargetType());
     CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetBasicData().SetPartyID(GetPartyID());
     return true;

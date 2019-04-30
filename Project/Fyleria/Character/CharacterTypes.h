@@ -109,11 +109,13 @@ BETTER_ENUM(CharacterProgressStatType_Int, Int,
 BETTER_ENUM(CharacterBattleStatType_IndexedString, Int,
     None,
     ActionSourceThisAction,
-    MostRecentActionSource
+    MostRecentActionSource,
+    CurrentWeaponSet
 );
 
 BETTER_ENUM(CharacterBattleStatType_IndexedStringArray, Int,
     None,
+    PreviousActionTypes,
     ActionTargetsThisAction,
     ActionTargetsThisRound,
     ActionSourcesThisRound,
@@ -130,6 +132,8 @@ BETTER_ENUM(CharacterBattleStatType_Bool, Int,
 
 BETTER_ENUM(CharacterBattleStatType_Int, Int,
     None,
+    AttackCounter,
+    DefendCounter,
     AllowedTargetAmount,
     DamageTakenThisRound,
     DamageTakenThisBattle,
@@ -375,8 +379,14 @@ IndexedString ConvertSkillWeaponTypeToCharacterProgressStatType(const IndexedStr
 
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterTreeIndexType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterSegmentType);
-MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterProgressStatType);
-MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBasicStatType_IndexedString);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBasicStatType_Int);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterProgressStatType_Int);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_IndexedString);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_IndexedStringArray);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_Bool);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_Int);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_Float);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterStatusType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBaseRaceType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterTransformedRaceType);
@@ -395,8 +405,14 @@ MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterActionRunType);
 
 MAKE_ENUM_CONVERTERS_DECL(CharacterTreeIndexType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterSegmentType);
-MAKE_ENUM_CONVERTERS_DECL(CharacterProgressStatType);
-MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBasicStatType_IndexedString);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBasicStatType_Int);
+MAKE_ENUM_CONVERTERS_DECL(CharacterProgressStatType_Int);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_IndexedString);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_IndexedStringArray);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_Bool);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_Int);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_Float);
 MAKE_ENUM_CONVERTERS_DECL(CharacterStatusType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterBaseRaceType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterTransformedRaceType);

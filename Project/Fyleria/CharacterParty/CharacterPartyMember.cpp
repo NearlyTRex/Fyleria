@@ -10,10 +10,9 @@ CharacterPartyMember::CharacterPartyMember()
 {
 }
 
-CharacterPartyMember::CharacterPartyMember(const IndexedString& sCharacterID, const IndexedString& sCharacterTargetType)
+CharacterPartyMember::CharacterPartyMember(const Json& jsonData)
 {
-    SetCharacterID(sCharacterID);
-    SetCharacterTargetType(sCharacterTargetType);
+    from_json(jsonData, *this);
 }
 
 UInt CharacterPartyMember::GetEquippedItemTypeCount(const TreeIndex& index) const

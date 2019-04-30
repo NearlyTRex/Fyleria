@@ -51,6 +51,25 @@ void Character::RegenerateCharacterData(
 #endif
 }
 
+const IndexedString& Character::GetCharacterID() const
+{
+    return GetBasicData().GetCharacterID();
+}
+
+const IndexedString& Character::GetPartyID() const
+{
+    return GetBasicData().GetPartyID();
+}
+
+const IndexedString& Character::GetCharacterTargetType() const
+{
+    IndexedString sCharacterID = GetCharacterID();
+    IndexedString sPartyID = GetPartyID();
+    const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
+    const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
+    return characterPartyMember.GetCharacterTargetType();
+}
+
 const CharacterProgressData& Character::GetProgressDataSegment(const IndexedString& sSegment) const
 {
     CharacterSegmentType eSegmentType = StringToCharacterSegmentType(sSegment);
@@ -66,7 +85,7 @@ const CharacterProgressData& Character::GetProgressDataSegment(const IndexedStri
 
 CharacterProgressData& Character::GetProgressDataSegment(const IndexedString& sSegment)
 {
-    return const_cast<CharacterProgressData&>(static_cast<const Character&>(*this).GetProgressDataSegment());
+    return const_cast<CharacterProgressData&>(static_cast<const Character&>(*this).GetProgressDataSegment(sSegment));
 }
 
 const CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& sSegment) const
@@ -84,7 +103,7 @@ const CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& 
 
 CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& sSegment)
 {
-    return const_cast<CharacterBattleData&>(static_cast<const Character&>(*this).GetBattleDataSegment());
+    return const_cast<CharacterBattleData&>(static_cast<const Character&>(*this).GetBattleDataSegment(sSegment));
 }
 
 Bool Character::operator==(const Character& other) const
@@ -105,11 +124,11 @@ void Character::UpdateEquipmentRatings(const IndexedString& sSegment)
     CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
     IndexedString sCharacterID = basicData.GetCharacterID();
     IndexedString sPartyID = basicData.GetPartyID();
-    const CharacterParty& characterParty = CharacterPartyManager::GetPartyByID(sPartyID);
+    const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
 
     // Update ratings
-    IndexedString sCurrentWeaponSet = basicData.GetCurrentWeaponSet();
+    IndexedString sCurrentWeaponSet = battleData.GetCurrentWeaponSet();
     const CharacterPartyEquippedItemArray& vEquippedItems = characterPartyMember.GetEquippedItems();
     battleData.UpdateEquipmentRatings(sCurrentWeaponSet, vEquippedItems, progressData);
 }
@@ -268,10 +287,10 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
     const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
 
     // Get character target type
-    const IndexedString& sCharacterTargetType = GetBasicData().GetCharacterTargetType();
+    const IndexedString& sCharacterTargetType = GetCharacterTargetType();
 
     // Get character weapon set
-    const IndexedString& sCurrentWeaponSet = GetBasicData().GetCurrentWeaponSet();
+    const IndexedString& sCurrentWeaponSet = GetBattleDataBase().GetCurrentWeaponSet();
 
     // Data sources should come from passive but apply to active
     const IndexedString sSourceSegment("Passive");
@@ -341,9 +360,6 @@ void to_json(Json& jsonData, const Character& obj)
     // Action data
     SET_JSON_DATA_IF_NOT_DEFAULT(ActionData, CharacterActionData());
 
-    // Item data
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemData, CharacterItemData());
-
     // Skill data
     SET_JSON_DATA_IF_NOT_DEFAULT(SkillData, CharacterSkillData());
 
@@ -369,9 +385,6 @@ void from_json(const Json& jsonData, Character& obj)
 
     // Action data
     obj.SetActionData(GET_JSON_DATA_OR_DEFAULT(ActionData, CharacterActionData, CharacterActionData()));
-
-    // Item data
-    obj.SetItemData(GET_JSON_DATA_OR_DEFAULT(ItemData, CharacterItemData, CharacterItemData()));
 
     // Skill data
     obj.SetSkillData(GET_JSON_DATA_OR_DEFAULT(SkillData, CharacterSkillData, CharacterSkillData()));

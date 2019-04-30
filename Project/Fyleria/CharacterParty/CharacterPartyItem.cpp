@@ -11,17 +11,11 @@ namespace Gecko
 
 CharacterPartyItem::CharacterPartyItem()
 {
-    // Item tree index
-    SetTreeIndex({});
+}
 
-    // Item amount
-    SetAmount(0);
-
-    // Number of equips (must be less than or equal to the amount of the item)
-    SetEquipCount(0);
-
-    // Applicable equipment slots
-    SetApplicableEquipmentSlots({});
+CharacterPartyItem::CharacterPartyItem(const Json& jsonData)
+{
+    from_json(jsonData, *this);
 }
 
 Bool CharacterPartyItem::DoesMatchSlot(const IndexedString& sSlot) const

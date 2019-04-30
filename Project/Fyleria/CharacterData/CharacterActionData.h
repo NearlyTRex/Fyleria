@@ -5,6 +5,7 @@
 #define _GECKO_CHARACTER_ACTION_DATA_H_
 
 #include "Character/CharacterTypes.h"
+#include "CharacterAction/CharacterAction.h"
 
 namespace Gecko
 {

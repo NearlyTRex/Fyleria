@@ -35,6 +35,15 @@ public:
         Bool bUpdateAvailableAP = true
     );
 
+    // Get character ID
+    const IndexedString& GetCharacterID() const;
+
+    // Get party ID
+    const IndexedString& GetPartyID() const;
+
+    // Get character target type
+    const IndexedString& GetCharacterTargetType() const;
+
     // Get progress data segment
     const CharacterProgressData& GetProgressDataSegment(const IndexedString& sSegment) const;
     CharacterProgressData& GetProgressDataSegment(const IndexedString& sSegment);

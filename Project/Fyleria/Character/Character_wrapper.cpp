@@ -89,20 +89,13 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
     PyBindClass<Gecko::Character>(m, "Character")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_METHOD_SIMPLE(RegenerateCharacterData, Gecko::Character)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetProgressSegment, Gecko::Character, PyBindReturnRefInternal, const Gecko::IndexedString&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetProgressSegment, Gecko::Character, PyBindReturnCopy, const Gecko::IndexedString&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetBattleSegment, Gecko::Character, PyBindReturnRefInternal, const Gecko::IndexedString&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetBattleSegment, Gecko::Character, PyBindReturnCopy, const Gecko::IndexedString&)
-        WRAPPING_ADD_METHOD_SIMPLE(GetBoolStatValue, Gecko::Character)
-        WRAPPING_ADD_METHOD_SIMPLE(GetIntStatValue, Gecko::Character)
-        WRAPPING_ADD_METHOD_SIMPLE(GetFloatStatValue, Gecko::Character)
-        WRAPPING_ADD_METHOD_SIMPLE(GetStringStatValue, Gecko::Character)
-        WRAPPING_ADD_METHOD_SIMPLE(GetStringArrayStatValue, Gecko::Character)
-        WRAPPING_ADD_METHOD_SIMPLE(SetBoolStatValue, Gecko::Character)
-        WRAPPING_ADD_METHOD_SIMPLE(SetIntStatValue, Gecko::Character)
-        WRAPPING_ADD_METHOD_SIMPLE(SetFloatStatValue, Gecko::Character)
-        WRAPPING_ADD_METHOD_SIMPLE(SetStringStatValue, Gecko::Character)
-        WRAPPING_ADD_METHOD_SIMPLE(SetStringArrayStatValue, Gecko::Character)
+        WRAPPING_ADD_METHOD_POLICY(GetCharacterID, Gecko::Character, PyBindReturnRefInternal)
+        WRAPPING_ADD_METHOD_POLICY(GetPartyID, Gecko::Character, PyBindReturnRefInternal)
+        WRAPPING_ADD_METHOD_POLICY(GetCharacterTargetType, Gecko::Character, PyBindReturnRefInternal)
+        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetProgressDataSegment, Gecko::Character, PyBindReturnRefInternal, const Gecko::IndexedString&)
+        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetProgressDataSegment, Gecko::Character, PyBindReturnCopy, const Gecko::IndexedString&)
+        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetBattleDataSegment, Gecko::Character, PyBindReturnRefInternal, const Gecko::IndexedString&)
+        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetBattleDataSegment, Gecko::Character, PyBindReturnCopy, const Gecko::IndexedString&)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ProgressDataBase, Gecko::Character)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ProgressDataPassives, Gecko::Character)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ProgressDataActives, Gecko::Character)
@@ -111,7 +104,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(BattleDataActives, Gecko::Character)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(BasicData, Gecko::Character)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionData, Gecko::Character)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ItemData, Gecko::Character)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(SkillData, Gecko::Character)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(SkillUseData, Gecko::Character)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(StatChangeData, Gecko::Character)
@@ -141,13 +133,8 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
         WRAPPING_ADD_METHOD_OVERLOADED(ApplyStatChangeEntryOperation, Gecko::CharacterManager, const Gecko::IndexedString&, const Gecko::IndexedString&, const Gecko::IndexedString&, const Gecko::IndexedString&, const Gecko::IndexedString&)
         WRAPPING_ADD_METHOD_OVERLOADED(ApplyStatChangeEntryOperation, Gecko::CharacterManager, const Gecko::IndexedString&, const Gecko::IndexedString&, const Gecko::IndexedString&, const Gecko::IndexedString&, const Gecko::IndexedStringArray&)
         WRAPPING_ADD_METHOD_SIMPLE(DoesStatChangeEntryUseDelta, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsStatFloat, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsStatInt, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsStatBool, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsStatString, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsStatStringArray, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetSourceStatChangeEntryValues, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetDestStatChangeEntryValues, Gecko::CharacterManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetDeltaStatChangeEntryValues, Gecko::CharacterManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetFullStatChangeEntryValues, Gecko::CharacterManager)
     ;
 
     // CharacterTypes.h
@@ -159,8 +146,14 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillWeaponTypeToCharacterActionType, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterTreeIndexTypeNames, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSegmentTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterProgressStatTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleStatTypeNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBasicStatType_IndexedStringNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBasicStatType_IntNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterProgressStatType_IntNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleStatType_IndexedStringNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleStatType_IndexedStringArrayNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleStatType_BoolNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleStatType_IntNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleStatType_FloatNames, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterStatusTypeNames, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBaseRaceTypeNames, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterTransformedRaceTypeNames, Gecko);

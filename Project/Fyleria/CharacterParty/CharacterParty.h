@@ -5,6 +5,7 @@
 #define _GECKO_CHARACTER_PARTY_H_
 
 #include "Character/Character.h"
+#include "CharacterParty/CharacterPartyMember.h"
 #include "CharacterParty/CharacterPartyItem.h"
 
 namespace Gecko

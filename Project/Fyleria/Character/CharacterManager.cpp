@@ -19,8 +19,8 @@ CharacterManager::CharacterManager()
 void CharacterManager::LoadCharacter(const Character& character)
 {
     // Load a character
-    const IndexedString& sCharacterID = character.GetBasicData().GetCharacterID();
-    const IndexedString& sCharacterTargetType = character.GetBasicData().GetCharacterTargetType();
+    const IndexedString& sCharacterID = character.GetCharacterID();
+    const IndexedString& sCharacterTargetType = character.GetCharacterTargetType();
     ASSERT_ERROR(!sCharacterID.empty(), "Invalid character ID '%s'", sCharacterID.c_str());
     ASSERT_ERROR(IsValidCharacterTargetType(sCharacterTargetType), "Character target type '%s' was not valid", sCharacterTargetType.c_str());
     m_tCharacters[sCharacterID] = character;
@@ -32,7 +32,7 @@ void CharacterManager::LoadCharacterFromFile(const IndexedString& sCharacterID, 
     Json jsonData;
     Bool bSuccess = ReadSerializedFile(sFilename, sType, jsonData);
     ASSERT_ERROR(bSuccess, "Unable to read file '%s' as type '%s'", sFilename.c_str(), sType.c_str());
-    LoadCharacter(sCharacterID, jsonData.get<Character>());
+    LoadCharacter(jsonData.get<Character>());
 }
 
 void CharacterManager::SaveCharacterToFile(const IndexedString& sCharacterID, const IndexedString& sFilename, const IndexedString& sType)
@@ -218,15 +218,15 @@ void CharacterManager::ApplyStatChange(
             }
             else if(localEntry.GetAttack() > 1)
             {
-                prolongedStatChange.SetAttack(character.GetAttackCounter() + localEntry.GetAttack());
+                prolongedStatChange.SetAttack(character.GetBattleDataBase().GetAttackCounter() + localEntry.GetAttack());
             }
             else if(localEntry.GetDefend() > 1)
             {
-                prolongedStatChange.SetDefend(character.GetDefendCounter() + localEntry.GetDefend());
+                prolongedStatChange.SetDefend(character.GetBattleDataBase().GetDefendCounter() + localEntry.GetDefend());
             }
 
             // Add prolonged entry
-            character.AddProlongedStatChange(treeIndex.GetTreeBranchLeafType(), prolongedStatChange);
+            character.GetStatChangeData().AddProlongedStatChange(treeIndex.GetTreeBranchLeafType(), prolongedStatChange);
         }
         else
         {
@@ -261,7 +261,7 @@ Bool CharacterManager::ApplyStatChangeEntry(const IndexedString& sSegment, const
         if(!GetFullStatChangeEntryValues(sSegment, entry.GetSourceCharacterID(), entry,
             vSourceBoolValues, vSourceIntValues, vSourceFloatValues, vSourceStringValues))
         {
-            continue;
+            return false;
         }
     }
 
@@ -321,17 +321,17 @@ Bool CharacterManager::ApplyStatChangeEntry(const IndexedString& sSegment, const
         }
 
         // String value in a String stat
-        else if(vSourceStringValues.size() == 1 && IsStatString(sDestStatType))
+        else if(vSourceStringValues.size() == 1 && IsStatIndexedString(sDestStatType))
         {
-            String sNewValue = vSourceStringValues[0];
+            IndexedString sNewValue = vSourceStringValues[0];
             Bool bResult = ApplyStatChangeEntryOperation(sSegment, sDestCharID, sOperation, sDestStatType, sNewValue);
             bAtLeastOneChange = bAtLeastOneChange || bResult;
         }
 
         // StringArray value in a StringArray stat
-        else if(vSourceStringValues.size() > 1 && IsStatStringArray(sDestStatType))
+        else if(vSourceStringValues.size() > 1 && IsStatIndexedStringArray(sDestStatType))
         {
-            StringArray vNewValues = vSourceStringValues;
+            IndexedStringArray vNewValues = vSourceStringValues;
             Bool bResult = ApplyStatChangeEntryOperation(sSegment, sDestCharID, sOperation, sDestStatType, vNewValues);
             bAtLeastOneChange = bAtLeastOneChange || bResult;
         }
@@ -525,7 +525,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
 
     // Get existing value
     IndexedString sStatValue("");
-    if(!character.GetStringStatValue(sSegment, sStat, sStatValue))
+    if(!character.GetIndexedStringStatValue(sSegment, sStat, sStatValue))
     {
         return false;
     }
@@ -540,13 +540,13 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 sStat.c_str(),
                 sStatValue.c_str(),
                 sCharacterID.c_str());
-            return character.SetStringStatValue(sSegment, sStat, sStatValue + sValue);
+            return character.SetIndexedStringStatValue(sSegment, sStat, sStatValue + sValue);
         case OperationType::Set:
             LOG_FORMAT_STATEMENT("-- Setting %s to %s stat in character '%s'\n",
                 sValue.c_str(),
                 sStat.c_str(),
                 sCharacterID.c_str());
-            return character.SetStringStatValue(sSegment, sStat, sValue);
+            return character.SetIndexedStringStatValue(sSegment, sStat, sValue);
         default:
             break;
     }
@@ -580,7 +580,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 sStat.c_str(),
                 sCharacterID.c_str());
 #endif
-            return character.SetStringArrayStatValue(sSegment, sStat, vValues);
+            return character.SetIndexedStringArrayStatValue(sSegment, sStat, vValues);
         }
         default:
             break;
@@ -612,7 +612,7 @@ Bool CharacterManager::GetDeltaStatChangeEntryValues(
     const Character& character = GetCharacter(sCharacterID);
 
     // Delta changes require a source stat type which will later be applied to a dest stat type
-    IndexedString sSourceStatType = entry.GetSourceStatType();
+    IndexedString sSourceStatType = changeEntry.GetSourceStatType();
 
     // Get source value
     Bool bSuccess = false;
@@ -670,7 +670,7 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
     const Character& character = GetCharacter(sCharacterID);
 
     // Full changes require just a destination stat type
-    IndexedString sDestStatType = entry.GetDestinationStatType();
+    IndexedString sDestStatType = changeEntry.GetDestinationStatType();
 
     // Get dest value
     Bool bSuccess = false;

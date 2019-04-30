@@ -28,8 +28,8 @@ void HandleBattleStarted(const IndexedString& sCharacterID)
     character.GetSkillUseData().SetSkillUseTrackingMap({});
 
     // Reset attack/defend counters
-    character.GetBasicData().SetAttackCounter(0);
-    character.GetBasicData().SetDefendCounter(0);
+    character.GetBattleDataBase().SetAttackCounter(0);
+    character.GetBattleDataBase().SetDefendCounter(0);
 }
 
 void HandleBattleEnded(const IndexedString& sCharacterID)
@@ -50,8 +50,8 @@ void HandleBattleEnded(const IndexedString& sCharacterID)
     character.GetStatChangeData().SetProlongedStatChanges({});
 
     // Reset attack/defend counters
-    character.GetBasicData().SetAttackCounter(0);
-    character.GetBasicData().SetDefendCounter(0);
+    character.GetBattleDataBase().SetAttackCounter(0);
+    character.GetBattleDataBase().SetDefendCounter(0);
 }
 
 void HandleBattleTally(const IndexedString& sCharacterID)
@@ -167,7 +167,7 @@ void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
     }
 
     // Update attack counter
-    character.GetBasicData().SetAttackCounter(character.GetBasicData().GetAttackCounter() + 1);
+    character.GetBattleDataBase().SetAttackCounter(character.GetBattleDataBase().GetAttackCounter() + 1);
 
     // Remove expired prolonged stat changes
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges();
@@ -207,7 +207,7 @@ void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
     }
 
     // Update defend counter
-    character.GetBasicData().SetDefendCounter(character.GetBasicData().GetDefendCounter() + 1);
+    character.GetBattleDataBase().SetDefendCounter(character.GetBattleDataBase().GetDefendCounter() + 1);
 
     // Remove expired prolonged stat changes
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges();
@@ -231,13 +231,13 @@ void HandleBattleChoosingTargets(const IndexedString& sCharacterID, const Indexe
         // Get appropriate segments
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
-        // Update most recent attack targets
-        battleData.SetMostRecentAttackTargets(vDestTargets);
+        // Update most recent action targets
+        battleData.SetMostRecentActionTargets(vDestTargets);
 
         // Update attack targets this round
-        IndexedStringArray vTargetsThisRound = battleData.GetAttackTargetsThisRound();
+        IndexedStringArray vTargetsThisRound = battleData.GetActionTargetsThisRound();
         vTargetsThisRound.insert(vTargetsThisRound.end(), vDestTargets.begin(), vDestTargets.end());
-        battleData.SetAttackTargetsThisRound(vTargetsThisRound);
+        battleData.SetActionTargetsThisRound(vTargetsThisRound);
     }
 }
 
@@ -259,11 +259,11 @@ void HandleBattleBecomingTarget(const IndexedString& sCharacterID, const Indexed
         // Get appropriate segments
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
-        // Update most recent defend target
-        battleData.SetMostRecentDefendTarget(sSourceTarget);
+        // Update most recent action source
+        battleData.SetMostRecentActionSource(sSourceTarget);
 
-        // Update defend targets this round
-        battleData.GetDefendTargetsThisRound().push_back(sSourceTarget);
+        // Update action sources this round
+        battleData.GetActionSourcesThisRound().push_back(sSourceTarget);
     }
 }
 
@@ -286,8 +286,8 @@ void HandleBattleActionAttackSetup(const IndexedString& sCharacterID, const Char
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Set targets for this action
-        battleData.SetAttackTargetsThisAction(battleData.GetMostRecentAttackTargets());
-        battleData.SetDefendTargetThisAction(IndexedString(""));
+        battleData.SetActionTargetsThisAction(battleData.GetMostRecentActionTargets());
+        battleData.SetActionSourceThisAction(IndexedString(""));
     }
 
     // Apply active changes
@@ -313,8 +313,8 @@ void HandleBattleActionDefendSetup(const IndexedString& sCharacterID, const Char
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Set targets for this action
-        battleData.SetAttackTargetsThisAction({});
-        battleData.SetDefendTargetThisAction(battleData.GetMostRecentDefendTarget());
+        battleData.SetActionTargetsThisAction({});
+        battleData.SetActionSourceThisAction(battleData.GetMostRecentActionSource());
     }
 
     // Apply active changes
@@ -333,7 +333,7 @@ void HandleBattleActionApplied(const IndexedString& sCharacterID, const Characte
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Store previous action types
-    character.GetBasicData().SetPreviousActionTypes(action.GetAllActionTypes());
+    character.GetBattleDataBase().SetPreviousActionTypes(action.GetAllActionTypes());
 }
 
 void HandleBattleActionFinished(const IndexedString& sCharacterID, const CharacterAction& action)
@@ -368,8 +368,8 @@ void HandleBattleActionFinished(const IndexedString& sCharacterID, const Charact
         battleData.ApplyNewStatus(progressData);
 
         // Clear action targets
-        battleData.SetAttackTargetsThisAction({});
-        battleData.SetDefendTargetThisAction(IndexedString(""));
+        battleData.SetActionTargetsThisAction({});
+        battleData.SetActionSourceThisAction(IndexedString(""));
     }
 
     // Clear active changes

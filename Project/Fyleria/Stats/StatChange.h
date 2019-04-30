@@ -55,7 +55,7 @@ public:
     IndexedStringArray GetIntersectingDefendRequirements(const IndexedStringArray& vActionTypes) const;
 
     // Get resolved characters
-    Bool GetResolvedCharacterLists(IndexedStringArray& vSourceCharIDs, IndexedStringArray& vDestCharIDs) const;
+    Bool GetResolvedCharacterArrays(IndexedStringArray& vSourceCharIDs, IndexedStringArray& vDestCharIDs) const;
 
     // Resolve target placeholders
     void ResolveTargetPlaceholders(const IndexedString& sCharacterID, const IndexedString& sSegment);

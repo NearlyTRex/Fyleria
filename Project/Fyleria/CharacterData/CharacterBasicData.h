@@ -41,7 +41,6 @@ public:
     MAKE_STAT_TYPE_ACCESSORS(BaseRace, IndexedString);
     MAKE_STAT_TYPE_ACCESSORS(TransformedRace, IndexedString);
     MAKE_STAT_TYPE_ACCESSORS(PowerSet, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(CurrentWeaponSet, IndexedString);
 
     // Int stats
     MAKE_STAT_TYPE_ACCESSORS(Age, Int);

@@ -36,9 +36,9 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(NumAttacksOnTarget, UByte);
 
     // Per attack lists of critical hit info and damage
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalCausedList, BoolArray);
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalBlockedList, BoolArray);
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackTargetDamageList, FloatArray);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalCausedArray, BoolArray);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalBlockedArray, BoolArray);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackTargetDamageArray, FloatArray);
 
     // Comparisons
     Bool operator==(const CharacterActionResult& other) const;

@@ -5,6 +5,7 @@
 #define _GECKO_CHARACTER_BATTLE_DATA_H_
 
 #include "CharacterData/CharacterProgressData.h"
+#include "CharacterParty/CharacterPartyEquippedItem.h"
 #include "Stats/StatTypeHolder.h"
 
 namespace Gecko
@@ -40,7 +41,7 @@ public:
 
     // Update equipment ratings
     void UpdateEquipmentRatings(const IndexedString& sWeaponSet,
-        const CharacterProgressItemArray& vEquippedItems,
+        const CharacterPartyEquippedItemArray& vEquippedItems,
         const CharacterProgressData& progressData);
 
     // Resolve target placeholders
@@ -70,18 +71,13 @@ public:
     // Stat names
     static void InitAllStatNames();
 
-    // Attack/defend counters
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(AttackCounter, Int);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(DefendCounter, Int);
-
-    // Previous action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PreviousActionTypes, IndexedStringArray);
-
     // IndexedString stats
     MAKE_STAT_TYPE_ACCESSORS(ActionSourceThisAction, IndexedString);
     MAKE_STAT_TYPE_ACCESSORS(MostRecentActionSource, IndexedString);
+    MAKE_STAT_TYPE_ACCESSORS(CurrentWeaponSet, IndexedString);
 
     // IndexedStringArray stats
+    MAKE_STAT_TYPE_ACCESSORS(PreviousActionTypes, IndexedStringArray);
     MAKE_STAT_TYPE_ACCESSORS(ActionTargetsThisAction, IndexedStringArray);
     MAKE_STAT_TYPE_ACCESSORS(ActionTargetsThisRound, IndexedStringArray);
     MAKE_STAT_TYPE_ACCESSORS(ActionTargetsLastRound, IndexedStringArray);
@@ -94,6 +90,8 @@ public:
     MAKE_STAT_TYPE_ACCESSORS(IsUnconscious, Bool);
 
     // Int stats
+    MAKE_STAT_TYPE_ACCESSORS(AttackCounter, Int);
+    MAKE_STAT_TYPE_ACCESSORS(DefendCounter, Int);
     MAKE_STAT_TYPE_ACCESSORS(AllowedTargetAmount, Int);
     MAKE_STAT_TYPE_ACCESSORS(DamageTakenThisRound, Int);
     MAKE_STAT_TYPE_ACCESSORS(DamageTakenThisBattle, Int);

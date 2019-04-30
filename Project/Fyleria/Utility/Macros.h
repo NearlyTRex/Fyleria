@@ -199,10 +199,10 @@ void Set##name(const type& varValue) { m_Data[#name] = varValue; }
 //=====================================================================================
 
 #define MAKE_STAT_TYPE_ACCESSORS(name, type)                                        \
-static void Init##name()                                                            \
+void Init##name()                                                                   \
 {                                                                                   \
-    GetStats().try_emplace(#name, StatType(type()));                                \
-    Get##type##StatNames().insert(#name);                                           \
+    GetStats().emplace(#name, type());                                              \
+    Get##type##StatNames().emplace(IndexedString(#name));                           \
 }                                                                                   \
 type Get##name() const                                                              \
 {                                                                                   \
@@ -262,20 +262,18 @@ Bool Get##type##StatValue(const IndexedString& sSegment, const IndexedString& sS
     const CharacterBasicData& basicData = GetBasicData();                                                           \
     const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                   \
     const CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                         \
-    return (                                                                                                        \
-        basicData.Get##type##StatValue(sStat, varValue) ||                                                          \
-        progressData.Get##type##StatValue(sStat, varValue) ||                                                       \
-        battleData.Get##type##StatValue(sStat, varValue);                                                           \
+    return (basicData.Get##type##StatValue(sStat, varValue) ||                                                      \
+            progressData.Get##type##StatValue(sStat, varValue) ||                                                   \
+            battleData.Get##type##StatValue(sStat, varValue));                                                      \
 }                                                                                                                   \
 Bool Set##type##StatValue(const IndexedString& sSegment, const IndexedString& sStat, const type& varValue)          \
 {                                                                                                                   \
     CharacterBasicData& basicData = GetBasicData();                                                                 \
     CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                         \
     CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                               \
-    return (                                                                                                        \
-        basicData.Set##type##StatValue(sStat, varValue) ||                                                          \
-        progressData.Set##type##StatValue(sStat, varValue) ||                                                       \
-        battleData.Set##type##StatValue(sStat, varValue);                                                           \
+    return (basicData.Set##type##StatValue(sStat, varValue) ||                                                      \
+            progressData.Set##type##StatValue(sStat, varValue) ||                                                   \
+            battleData.Set##type##StatValue(sStat, varValue));                                                      \
 }
 
 //=====================================================================================

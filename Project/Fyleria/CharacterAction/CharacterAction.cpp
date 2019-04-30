@@ -12,37 +12,6 @@ namespace Gecko
 CharacterAction::CharacterAction()
     : SerializableToJson()
 {
-    // Run type
-    SetRunType(IndexedString("None"));
-
-    // Order
-    SetOrder(0);
-
-    // Cost
-    SetCostAP(0);
-    SetCostHP(0);
-    SetCostMP(0);
-    SetCostEP(0);
-
-    // Applicable weapon set
-    SetWeaponSet(IndexedString("None"));
-
-    // Actions
-    SetPreviousActionTypes({});
-
-    // Skill
-    SetSkillTreeIndex({});
-
-    // Item
-    SetItemTreeIndex({});
-    SetItemAmount(0);
-
-    // Targets
-    SetSourceTargetType(IndexedString("None"));
-    SetAreDestinationTargetsIdentical(false);
-
-    // Characters
-    SetSourceCharacterID(IndexedString(""));
 }
 
 CharacterAction::CharacterAction(const Json& jsonData)
@@ -55,9 +24,9 @@ CharacterAction::CharacterAction(const String& jsonString)
 {
 }
 
-IndexedStringList CharacterAction::GetAllCharacterIDs() const
+IndexedStringArray CharacterAction::GetAllCharacterIDs() const
 {
-    IndexedStringList vAllCharacterIDs;
+    IndexedStringArray vAllCharacterIDs;
     vAllCharacterIDs.push_back(GetSourceCharacterID());
     for(const CharacterActionEntry& entry : GetActionEntries())
     {
@@ -66,9 +35,9 @@ IndexedStringList CharacterAction::GetAllCharacterIDs() const
     return vAllCharacterIDs;
 }
 
-IndexedStringList CharacterAction::GetAllActionTypes() const
+IndexedStringArray CharacterAction::GetAllActionTypes() const
 {
-    IndexedStringList vAllActionTypes;
+    IndexedStringArray vAllActionTypes;
     for(const CharacterActionEntry& entry : GetActionEntries())
     {
         vAllActionTypes.insert(vAllActionTypes.end(), entry.GetActionTypes().begin(), entry.GetActionTypes().end());
@@ -76,9 +45,9 @@ IndexedStringList CharacterAction::GetAllActionTypes() const
     return vAllActionTypes;
 }
 
-IndexedStringList CharacterAction::GetAllDestinationTargetTypes() const
+IndexedStringArray CharacterAction::GetAllDestinationTargetTypes() const
 {
-    IndexedStringList vAllDestinationTargetTypes;
+    IndexedStringArray vAllDestinationTargetTypes;
     for(const CharacterActionEntry& entry : GetActionEntries())
     {
         vAllDestinationTargetTypes.push_back(entry.GetDestinationTargetType());
@@ -104,7 +73,7 @@ Bool CharacterAction::PrepareCharacterIDs()
     if(GetSourceCharacterID().empty())
     {
         // Get source character info
-        IndexedStringList vSourceCharIDs;
+        IndexedStringArray vSourceCharIDs;
         IndexedString sSourceTargetType = GetSourceTargetType();
         IndexedString sSourcePartyType = ConvertCharacterTargetTypeToCharacterPartyType(sSourceTargetType);
         CharacterPartyManager::GetInstance()->GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
@@ -121,7 +90,7 @@ Bool CharacterAction::PrepareCharacterIDs()
     for(CharacterActionEntry& entry : GetActionEntries())
     {
         // Get destination character info
-        IndexedStringList vDestCharIDs;
+        IndexedStringArray vDestCharIDs;
         IndexedString sDestTargetType = entry.GetDestinationTargetType();
         IndexedString sDestPartyType = ConvertCharacterTargetTypeToCharacterPartyType(sDestTargetType);
         CharacterPartyManager::GetInstance()->GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
@@ -174,27 +143,6 @@ void to_json(Json& jsonData, const CharacterAction& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(SourceCharacterID, IndexedString(""));
 }
 
-void to_json(Json& jsonData, const CharacterActionSharedPtr& pObj)
-{
-    if(pObj)
-    {
-        jsonData = *pObj;
-    }
-}
-
-void to_json(Json& jsonData, const CharacterActionSharedPtrList& vObjs)
-{
-    // Convert obj array to json array
-    jsonData = JsonArray();
-    for(auto& pObj : vObjs)
-    {
-        if(pObj)
-        {
-            jsonData.push_back(*pObj);
-        }
-    }
-}
-
 void from_json(const Json& jsonData, CharacterAction& obj)
 {
     // Run type
@@ -213,10 +161,10 @@ void from_json(const Json& jsonData, CharacterAction& obj)
     obj.SetWeaponSet(GET_JSON_DATA_OR_DEFAULT(WeaponSet, IndexedString, IndexedString("None")));
 
     // Action entries
-    obj.SetActionEntries(GET_JSON_DATA_OR_DEFAULT(ActionEntries, CharacterActionEntryList, CharacterActionEntryList()));
+    obj.SetActionEntries(GET_JSON_DATA_OR_DEFAULT(ActionEntries, CharacterActionEntryArray, CharacterActionEntryArray()));
 
     // Previous action types
-    obj.SetPreviousActionTypes(GET_JSON_DATA_OR_DEFAULT(PreviousActionTypes, IndexedStringList, IndexedStringList()));
+    obj.SetPreviousActionTypes(GET_JSON_DATA_OR_DEFAULT(PreviousActionTypes, IndexedStringArray, IndexedStringArray()));
 
     // Skill
     obj.SetSkillTreeIndex(GET_JSON_DATA_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex()));
@@ -233,21 +181,6 @@ void from_json(const Json& jsonData, CharacterAction& obj)
     obj.SetSourceCharacterID(GET_JSON_DATA_OR_DEFAULT(SourceCharacterID, IndexedString, IndexedString("")));
 }
 
-void from_json(const Json& jsonData, CharacterActionSharedPtr& pObj)
-{
-    pObj = MakePolymorphicCharacterAction(jsonData);
-}
-
-void from_json(const Json& jsonData, CharacterActionSharedPtrList& vObjs)
-{
-    // Convert json array to obj array
-    vObjs.clear();
-    for (auto it = jsonData.begin(); it != jsonData.end(); ++it)
-    {
-        vObjs.push_back(MakePolymorphicCharacterAction(*it));
-    }
-}
-
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterAction, CharacterActionSharedPtr);
+MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterAction, CharacterAction);
 
 };

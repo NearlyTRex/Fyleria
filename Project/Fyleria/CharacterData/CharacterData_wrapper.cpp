@@ -18,13 +18,13 @@ PYBIND11_MAKE_OPAQUE(Gecko::CharacterProgressItemArray);
 PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
 {
     // CharacterActionData.h
-    PyBindClass<Gecko::CharacterActionData, STDSharedPtr<Gecko::CharacterActionData>>(m, "CharacterActionData")
+    PyBindClass<Gecko::CharacterActionData>(m, "CharacterActionData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(AvailableActions, Gecko::CharacterActionData)
     ;
 
     // CharacterBasicData.h
-    PyBindClass<Gecko::CharacterBasicData, STDSharedPtr<Gecko::CharacterBasicData>>(m, "CharacterBasicData")
+    PyBindClass<Gecko::CharacterBasicData, Gecko::StatTypeHolder>(m, "CharacterBasicData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CharacterID, Gecko::CharacterBasicData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CharacterTargetType, Gecko::CharacterBasicData)
@@ -45,7 +45,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
     ;
 
     // CharacterBattleData.h
-    PyBindClass<Gecko::CharacterBattleData, STDSharedPtr<Gecko::CharacterBattleData>>(m, "CharacterBattleData")
+    PyBindClass<Gecko::CharacterBattleData, Gecko::StatTypeHolder>(m, "CharacterBattleData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterBattleData)
         WRAPPING_ADD_METHOD_SIMPLE(ApplyNewStatus, Gecko::CharacterBattleData)
@@ -125,7 +125,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleDataArrayFromJsonString, Gecko);
 
     // CharacterProgressData.h
-    PyBindClass<Gecko::CharacterProgressData, STDSharedPtr<Gecko::CharacterProgressData>>(m, "CharacterProgressData")
+    PyBindClass<Gecko::CharacterProgressData, Gecko::StatTypeHolder>(m, "CharacterProgressData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterProgressData)
         WRAPPING_ADD_METHOD_SIMPLE(ApplyTakenDamage, Gecko::CharacterProgressData)
@@ -201,7 +201,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterProgressDataArrayFromJsonString, Gecko);
 
     // CharacterSkillData.h
-    PyBindClass<Gecko::CharacterSkillData, STDSharedPtr<Gecko::CharacterSkillData>>(m, "CharacterSkillData")
+    PyBindClass<Gecko::CharacterSkillData>(m, "CharacterSkillData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_METHOD_SIMPLE(SetAllSkillCurrentValues, Gecko::CharacterSkillData)
         WRAPPING_ADD_METHOD_SIMPLE(SetAllSkillRankingValues, Gecko::CharacterSkillData)
@@ -344,14 +344,14 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
     ;
 
     // CharacterSkillUseData.h
-    PyBindClass<Gecko::CharacterSkillUseData, STDSharedPtr<Gecko::CharacterSkillUseData>>(m, "CharacterSkillUseData")
+    PyBindClass<Gecko::CharacterSkillUseData>(m, "CharacterSkillUseData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_METHOD_SIMPLE(AddSkillUse, Gecko::CharacterSkillUseData)
         WRAPPING_ADD_METHOD_SIMPLE(GetSkillUseCount, Gecko::CharacterSkillUseData)
     ;
 
     // CharacterStatChangeData.h
-    PyBindClass<Gecko::CharacterStatChangeData, STDSharedPtr<Gecko::CharacterStatChangeData>>(m, "CharacterStatChangeData")
+    PyBindClass<Gecko::CharacterStatChangeData>(m, "CharacterStatChangeData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_METHOD_POLICY(GetPassiveChanges, Gecko::CharacterStatChangeData, PyBindReturnCopy)
         WRAPPING_ADD_METHOD_POLICY(GetActiveChanges, Gecko::CharacterStatChangeData, PyBindReturnCopy)

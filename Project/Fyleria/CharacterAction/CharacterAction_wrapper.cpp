@@ -46,16 +46,12 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionEntryArrayFromJsonString, Gecko);
 
     // CharacterAction.h
-    PyBindClass<Gecko::CharacterAction, STDSharedPtr<Gecko::CharacterAction>>(m, "CharacterAction")
+    PyBindClass<Gecko::CharacterAction>(m, "CharacterAction")
         WRAPPING_ADD_METHOD_SIMPLE(GetAllCharacterIDs, Gecko::CharacterAction)
         WRAPPING_ADD_METHOD_SIMPLE(GetAllActionTypes, Gecko::CharacterAction)
         WRAPPING_ADD_METHOD_SIMPLE(GetAllDestinationTargetTypes, Gecko::CharacterAction)
         WRAPPING_ADD_METHOD_SIMPLE(AreAllCharacterIDsValid, Gecko::CharacterAction)
         WRAPPING_ADD_METHOD_SIMPLE(PrepareCharacterIDs, Gecko::CharacterAction)
-        WRAPPING_ADD_METHOD_SIMPLE(Setup, Gecko::CharacterAction)
-        WRAPPING_ADD_METHOD_SIMPLE(Finish, Gecko::CharacterAction)
-        WRAPPING_ADD_METHOD_SIMPLE(GenerateResult, Gecko::CharacterAction)
-        WRAPPING_ADD_METHOD_SIMPLE(ApplyResult, Gecko::CharacterAction)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(RunType, Gecko::CharacterAction)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Order, Gecko::CharacterAction)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(CostAP, Gecko::CharacterAction)

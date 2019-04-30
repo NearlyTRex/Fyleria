@@ -9,23 +9,6 @@ namespace Gecko
 CharacterActionEntry::CharacterActionEntry()
     : SerializableToJson()
 {
-    // Action types
-    SetActionTypes({});
-
-    // Hand
-    SetHandType(IndexedString("None"));
-
-    // Whether hand is using a shield
-    SetIsHandTypeShield(false);
-
-    // Target
-    SetDestinationTargetType(IndexedString("None"));
-
-    // Character
-    SetDestinationCharacterID(IndexedString(""));
-
-    // Result
-    SetResult({});
 }
 
 CharacterActionEntry::CharacterActionEntry(const Json& jsonData)

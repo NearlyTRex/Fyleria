@@ -4,6 +4,7 @@
 #include "Character/CharacterTypes.h"
 #include "Items/ItemTypes.h"
 #include "Skills/SkillTypes.h"
+#include "Utility/Assert.h"
 
 namespace Gecko
 {
@@ -284,8 +285,14 @@ IndexedString ConvertSkillWeaponTypeToCharacterProgressStatType(const IndexedStr
 
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTreeIndexType);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterSegmentType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterProgressStatType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBasicStatType_IndexedString);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBasicStatType_Int);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterProgressStatType_Int);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_IndexedString);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_IndexedStringArray);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_Bool);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_Int);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_Float);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterStatusType);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBaseRaceType);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTransformedRaceType);
@@ -304,8 +311,14 @@ MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterActionRunType);
 
 MAKE_ENUM_CONVERTERS_IMPL(CharacterTreeIndexType);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterSegmentType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterProgressStatType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBasicStatType_IndexedString);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBasicStatType_Int);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterProgressStatType_Int);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_IndexedString);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_IndexedStringArray);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Bool);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Int);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Float);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterStatusType);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterBaseRaceType);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterTransformedRaceType);

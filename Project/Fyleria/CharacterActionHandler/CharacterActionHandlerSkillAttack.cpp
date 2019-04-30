@@ -2,7 +2,10 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "CharacterActionHandler/CharacterActionHandlerSkillAttack.h"
+#include "Character/CharacterManager.h"
 #include "Battle/BattleEvents.h"
+#include "Utility/Constants.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -27,7 +30,6 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(co
     const Character& destCharacter = CharacterManager::GetInstance()->GetCharacter(sDestCharID);
     const CharacterBattleData& sourceBattleData = sourceCharacter.GetBattleDataActives();
     const CharacterBattleData& destBattleData = destCharacter.GetBattleDataActives();
-    const CharacterProgressData& sourceProgressData = sourceCharacter.GetProgressDataActives();
 
     // Gather critical/multiple hit info
     const Float fSourceChanceToCauseCriticalHit = sourceBattleData.GetChanceToCauseCriticalHit();
@@ -49,7 +51,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(co
     Float fSecondaryBlunt = 0;
     Float fSecondaryPierce = 0;
     Float fSecondarySlash = 0;
-    const IndexedString& sHandedness = sourceCharacter.GetHandedness();
+    const IndexedString& sHandedness = sourceCharacter.GetBasicData().GetHandedness();
     if(bIsPrimaryHandAction && !bIsShield) { sourceBattleData.GetPrimaryWeaponRatings(sHandedness, fPrimaryBlunt, fPrimaryPierce, fPrimarySlash); }
     if(bIsPrimaryHandAction && bIsShield) { sourceBattleData.GetPrimaryShieldRatings(sHandedness, fPrimaryBlunt, fPrimaryPierce, fPrimarySlash); }
     if(bIsSecondaryHandAction && !bIsShield) { sourceBattleData.GetSecondaryWeaponRatings(sHandedness, fSecondaryBlunt, fSecondaryPierce, fSecondarySlash); }
@@ -135,7 +137,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(co
     }
 
     // Determine number of attacks
-    Bool bShouldApplyMultipleAttacks = STDDoesChanceSucceed<Float>(fSourceChanceToApplyMultipleAttacks);
+    Bool bShouldApplyMultipleAttacks = DoesChanceSucceed<Float>(fSourceChanceToApplyMultipleAttacks);
     Int iNumAttacks = (bShouldApplyMultipleAttacks) ? (s_kuBaseNumberOfSkillAttacks * fSourceAttacksMultiplier) : s_kuBaseNumberOfSkillAttacks;
     result.SetHaveMultipleAttacksSucceeded(bShouldApplyMultipleAttacks);
     result.SetNumAttacksOnTarget(iNumAttacks);
@@ -143,14 +145,14 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(co
     // In each attack, calculate the damage
     // This includes critical hits, which can be blocked
     Float fSkillAttackDamage = 0;
-    BoolList vCriticalHitOnTarget = result.GetIndividualAttackIsCriticalCausedList();
-    BoolList vTargetBlockedCriticalHit = result.GetIndividualAttackIsCriticalBlockedList();
-    FloatList vIndividualAttackTargetDamage = result.GetIndividualAttackTargetDamageList();
+    BoolArray vCriticalHitOnTarget = result.GetIndividualAttackIsCriticalCausedArray();
+    BoolArray vTargetBlockedCriticalHit = result.GetIndividualAttackIsCriticalBlockedArray();
+    FloatArray vIndividualAttackTargetDamage = result.GetIndividualAttackTargetDamageArray();
     for(Int i = 0; i < iNumAttacks; i++)
     {
         // Determine if critical hits will happen
-        Bool bCauseCriticalHit = STDDoesChanceSucceed<Float>(fSourceChanceToCauseCriticalHit);
-        Bool bBlockCriticalHit = STDDoesChanceSucceed<Float>(fDestChanceToBlockCriticalHit);
+        Bool bCauseCriticalHit = DoesChanceSucceed<Float>(fSourceChanceToCauseCriticalHit);
+        Bool bBlockCriticalHit = DoesChanceSucceed<Float>(fDestChanceToBlockCriticalHit);
         vCriticalHitOnTarget.push_back(bCauseCriticalHit);
         vTargetBlockedCriticalHit.push_back(bBlockCriticalHit);
 
@@ -168,9 +170,9 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(co
 
     }
     ASSERT_ERROR((vCriticalHitOnTarget.size() == vTargetBlockedCriticalHit.size()) == vIndividualAttackTargetDamage.size());
-    result.SetIndividualAttackIsCriticalCausedList(vCriticalHitOnTarget);
-    result.SetIndividualAttackIsCriticalBlockedList(vTargetBlockedCriticalHit);
-    result.SetIndividualAttackTargetDamageList(vIndividualAttackTargetDamage);
+    result.SetIndividualAttackIsCriticalCausedArray(vCriticalHitOnTarget);
+    result.SetIndividualAttackIsCriticalBlockedArray(vTargetBlockedCriticalHit);
+    result.SetIndividualAttackTargetDamageArray(vIndividualAttackTargetDamage);
 
     // Calculate result damage now
     Int iDamage = STDRound((fSkillAttackDamage * fGeneralDamageBonusPercent) + fGeneralDamageBonusValue);
@@ -186,11 +188,11 @@ Bool CharacterActionHandlerSkillAttack::Setup(CharacterAction& action)
     // Setup destination characters
     for(const CharacterActionEntry& entry : action.GetActionEntries())
     {
-        HandleBattleActionDefendSetup(entry.GetDestinationCharacterID());
+        HandleBattleActionDefendSetup(entry.GetDestinationCharacterID(), action);
     }
 
     // Setup source character
-    HandleBattleActionAttackSetup(action.GetSourceCharacterID());
+    HandleBattleActionAttackSetup(action.GetSourceCharacterID(), action);
     return true;
 }
 
@@ -205,11 +207,11 @@ Bool CharacterActionHandlerSkillAttack::Finish(CharacterAction& action)
     // Finish destination character actions
     for(const CharacterActionEntry& entry : action.GetActionEntries())
     {
-        HandleBattleActionFinished(entry.GetDestinationCharacterID());
+        HandleBattleActionFinished(entry.GetDestinationCharacterID(), action);
     }
 
     // Finish source character action
-    HandleBattleActionFinished(action.GetSourceCharacterID());
+    HandleBattleActionFinished(action.GetSourceCharacterID(), action);
     return true;
 }
 
@@ -229,7 +231,7 @@ Bool CharacterActionHandlerSkillAttack::GenerateResult(CharacterAction& action)
            entry.DoesMatchActionType(IndexedString("WeaponBaseBlunt")) ||
            entry.DoesMatchActionType(IndexedString("WeaponBaseSlash")))
         {
-            entry.SetResult(GetSkillAttackResult(entry));
+            entry.SetResult(GetSkillAttackResult(action, entry));
         }
     }
     return true;
@@ -259,7 +261,7 @@ Bool CharacterActionHandlerSkillAttack::ApplyResult(CharacterAction& action)
     HandleBattleGivingDamage(action.GetSourceCharacterID(), iFinalDamage);
 
     // Notify source character that their action was applied
-    HandleBattleActionApplied(action.GetSourceCharacterID());
+    HandleBattleActionApplied(action.GetSourceCharacterID(), action);
     return true;
 }
 

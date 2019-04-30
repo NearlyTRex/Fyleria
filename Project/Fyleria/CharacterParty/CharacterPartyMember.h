@@ -18,7 +18,7 @@ public:
 
     // Constructors
     CharacterPartyMember();
-    CharacterPartyMember(const IndexedString& sCharacterID, const IndexedString& sCharacterTargetType);
+    CharacterPartyMember(const Json& jsonData);
 
     // Get item counts
     UInt GetEquippedItemTypeCount(const TreeIndex& index) const;

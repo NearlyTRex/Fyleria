@@ -120,7 +120,7 @@ Bool CharacterBattleData::CanRegenerateFromStat(const IndexedString& sRegenStat)
 }
 
 void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet,
-    const CharacterProgressItemArray& vEquippedItems,
+    const CharacterPartyEquippedItemArray& vEquippedItems,
     const CharacterProgressData& progressData)
 {
     // Get weapon set
@@ -147,10 +147,10 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet
     Float fWeaponRight_BluntAttackPercent = 0;
     Float fWeaponRight_PierceAttackPercent = 0;
     Float fWeaponRight_SlashAttackPercent = 0;
-    for(auto&& progressItem : vEquippedItems)
+    for(auto&& equippedItem : vEquippedItems)
     {
-        const ItemTreeType eItemTreeType = StringToItemTreeType(progressItem.GetTreeIndex().GetTree());
-        const CharacterEquipmentType eEquipType = StringToCharacterEquipmentType(progressItem.GetItemSlot());
+        const ItemTreeType eItemTreeType = StringToItemTreeType(equippedItem.GetTreeIndex().GetTree());
+        const CharacterEquipmentType eEquipType = StringToCharacterEquipmentType(equippedItem.GetItemSlot());
         const Bool bValidEquipLeft =
             (bIsWeaponSetSelected1 && (eEquipType == +CharacterEquipmentType::Weapon1Left)) ||
             (bIsWeaponSetSelected2 && (eEquipType == +CharacterEquipmentType::Weapon2Left));
@@ -161,8 +161,8 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet
         {
             case ItemTreeType::Armor:
             {
-                const Bool bIsShield = IsItemShield(progressItem.GetTreeIndex());
-                const ItemDataArmor& itemArmor = RetrieveItemDataArmor(progressItem.GetTreeIndex());
+                const Bool bIsShield = IsItemShield(equippedItem.GetTreeIndex());
+                const ItemDataArmor& itemArmor = RetrieveItemDataArmor(equippedItem.GetTreeIndex());
                 if(bIsShield && bValidEquipLeft)
                 {
                     fShieldLeft_BluntDefendPercent = itemArmor.GetBluntDefendPercent();
@@ -188,7 +188,7 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet
             }
             case ItemTreeType::Weapon:
             {
-                const ItemDataWeapon& itemWeapon = RetrieveItemDataWeapon(progressItem.GetTreeIndex());
+                const ItemDataWeapon& itemWeapon = RetrieveItemDataWeapon(equippedItem.GetTreeIndex());
                 if(bValidEquipLeft)
                 {
                     fWeaponLeft_BluntAttackPercent = itemWeapon.GetBluntAttackPercent();
@@ -397,13 +397,6 @@ Bool CharacterBattleData::operator!=(const CharacterBattleData& other) const
 
 void to_json(Json& jsonData, const CharacterBattleData& obj)
 {
-    // Attack/defend counters
-    SET_JSON_DATA_IF_NOT_DEFAULT(AttackCounter, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(DefendCounter, 0);
-
-    // Previous action types
-    SET_JSON_DATA_IF_NOT_EMPTY(PreviousActionTypes);
-
     // Stat values
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedString);
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedStringArray);
@@ -414,13 +407,6 @@ void to_json(Json& jsonData, const CharacterBattleData& obj)
 
 void from_json(const Json& jsonData, CharacterBattleData& obj)
 {
-    // Attack/defend counters
-    obj.SetAttackCounter(GET_JSON_DATA_OR_DEFAULT(AttackCounter, Int, 0));
-    obj.SetDefendCounter(GET_JSON_DATA_OR_DEFAULT(DefendCounter, Int, 0));
-
-    // Previous action types
-    obj.SetPreviousActionTypes(GET_JSON_DATA_OR_DEFAULT(PreviousActionTypes, IndexedStringArray, IndexedStringArray()));
-
     // Stat values
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, IndexedString);
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, IndexedStringArray);

@@ -16,21 +16,21 @@ class StatType
 public:
 
     // Constructor
-    StatType(const BoostAny& oValue)
-        : m_xDataValue(oValue)
+    StatType(const BoostAny& value)
+        : m_DataValue(value)
     {}
 
     // Get data value
-    const BoostAny& GetDataValue() const { return m_oDataValue; }
-    BoostAny& GetDataValue() { return m_oDataValue; }
+    const BoostAny& GetDataValue() const { return m_DataValue; }
+    BoostAny& GetDataValue() { return m_DataValue; }
 
     // Set data value
-    void SetDataValue(const BoostAny& val) { m_oDataValue = val; }
+    void SetDataValue(const BoostAny& val) { m_DataValue = val; }
 
 private:
 
     // Data value
-    BoostAny m_oDataValue;
+    BoostAny m_DataValue;
 };
 
 // Typedefs

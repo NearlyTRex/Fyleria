@@ -5,6 +5,7 @@
 #define _GECKO_STAT_TYPE_HOLDER_H_
 
 #include "Stats/StatType.h"
+#include "Stats/StatNames.h"
 #include "Utility/Types.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"

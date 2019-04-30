@@ -9,22 +9,6 @@ namespace Gecko
 CharacterActionResult::CharacterActionResult()
     : SerializableToJson()
 {
-    // Final skill damage
-    SetFinalDamage(0);
-
-    // Whether target successfully defended
-    SetHasTargetDefendedSuccessfully(false);
-
-    // Whether multiple attacks succeeded
-    SetHaveMultipleAttacksSucceeded(false);
-
-    // Number of attacks to use on target
-    SetNumAttacksOnTarget(0);
-
-    // Per attack lists of critical hit info and damage
-    SetIndividualAttackIsCriticalCausedList({});
-    SetIndividualAttackIsCriticalBlockedList({});
-    SetIndividualAttackTargetDamageList({});
 }
 
 CharacterActionResult::CharacterActionResult(const Json& jsonData)

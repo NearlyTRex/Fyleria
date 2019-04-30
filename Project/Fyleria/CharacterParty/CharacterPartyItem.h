@@ -18,6 +18,7 @@ public:
 
     // Constructors
     CharacterPartyItem();
+    CharacterPartyItem(const Json& jsonData);
 
     // Does the type match the given slot?
     Bool DoesMatchSlot(const IndexedString& sSlot) const;
