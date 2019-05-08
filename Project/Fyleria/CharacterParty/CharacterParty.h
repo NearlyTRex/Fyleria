@@ -15,6 +15,10 @@ class CharacterParty
 {
 public:
 
+    // Types
+    typedef STDMap<IndexedString, CharacterPartyMember> CharacterPartyMemberMap;
+    typedef STDMap<IndexedString, CharacterPartyItem> CharacterPartyItemMap;
+
     // Constructors
     CharacterParty();
 
@@ -49,14 +53,11 @@ public:
     Bool FreeTargetType(const IndexedString& sCharacterTargetType);
 
     // Get member
-    Int GetMemberIndexByID(const IndexedString& sCharacterID) const;
-    Int GetMemberIndexByTargetType(const IndexedString& sCharacterTargetType) const;
-    const CharacterPartyMember& GetMember(UInt uIndex) const;
     const CharacterPartyMember& GetMemberByID(const IndexedString& sCharacterID) const;
     const CharacterPartyMember& GetMemberByTargetType(const IndexedString& sCharacterTargetType) const;
-    CharacterPartyMember& GetMember(UInt uIndex);
     CharacterPartyMember& GetMemberByID(const IndexedString& sCharacterID);
     CharacterPartyMember& GetMemberByTargetType(const IndexedString& sCharacterTargetType);
+    IndexedStringArray GetMemberCharacterIDs() const;
 
     // Get character IDs
     Bool GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringArray& vCharacterIDs) const;
@@ -69,33 +70,33 @@ public:
 
     // Add item
     Bool AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount);
-    Bool AddItemByIndex(const TreeIndex& index, UInt uAmount);
+    Bool AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount);
 
     // Remove item
-    Bool RemoveItem(const TreeIndex& index, UInt uAmount);
+    Bool RemoveItemByLeaf(const IndexedString& sLeaf, UInt uAmount);
+    Bool RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount);
 
     // Get item
-    Int GetItemIndexByTreeIndex(const TreeIndex& index) const;
-    const CharacterPartyItem& GetItem(UInt uIndex) const;
-    const CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& index) const;
-    CharacterPartyItem& GetItem(UInt uIndex);
-    CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& index);
+    const CharacterPartyItem& GetItemByLeaf(const IndexedString& sLeaf) const;
+    const CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& treeIndex) const;
+    CharacterPartyItem& GetItemByLeaf(const IndexedString& sLeaf);
+    CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& treeIndex);
 
     // Get best unequipped item for the given slot
-    Int GetBestUnequippedItemIndex(UInt uCharacterIndex, const IndexedString& sSlot) const;
+    TreeIndex GetBestUnequippedItem(const IndexedString& sCharacterID, const IndexedString& sSlot) const;
 
     // Equip item
-    Bool EquipItem(UInt uCharacterIndex, UInt uItemIndex, const IndexedString& sSlot);
+    Bool EquipItem(const IndexedString& sCharacterID, const IndexedString& sLeaf, const IndexedString& sSlot);
 
     // Unequip item
-    Bool UnequipItem(UInt uCharacterIndex, UInt uItemIndex, const IndexedString& sSlot);
+    Bool UnequipItem(const IndexedString& sCharacterID, const IndexedString& sLeaf, const IndexedString& sSlot);
 
     // Equip best items
-    Bool EquipBestItems(UInt uCharacterIndex);
+    Bool EquipBestItems(const IndexedString& sCharacterID);
     Bool EquipBestItemsForAllMembers();
 
     // Unequip all items
-    Bool UnequipAllItems(UInt uCharacterIndex);
+    Bool UnequipAllItems(const IndexedString& sCharacterID);
     Bool UnequipAllItemsForAllMembers();
 
     // Get member count
@@ -120,11 +121,11 @@ public:
     // Party type
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyType, IndexedString);
 
-    // Array of members
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Members, CharacterPartyMemberArray);
+    // Map of members
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Members, CharacterPartyMemberMap);
 
-    // Array of items
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Items, CharacterPartyItemArray);
+    // Map of items
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Items, CharacterPartyItemMap);
 
     // Arrays of available target types
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(AvailableTargetTypes, IndexedStringArray);
@@ -143,6 +144,8 @@ private:
     // Last time point
     STDTimePoint m_LastTimePoint;
 
+    // Empty data
+    static CharacterPartyMember s_EmptyCharacterPartyMember;
 };
 
 // Typedef

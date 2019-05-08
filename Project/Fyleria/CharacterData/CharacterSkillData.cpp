@@ -2,12 +2,102 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "CharacterData/CharacterSkillData.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
 
+#define SET_SKILL_FUNCTION_NODE(name)                                                               \
+{                                                                                                   \
+    CharacterSkillFunctionNode node;                                                                \
+    node[IndexedString("GetRank")] = BoostBind(&CharacterSkillData::Get##name##Rank, this);         \
+    node[IndexedString("SetRank")] = BoostBind(&CharacterSkillData::Set##name##Rank, this);         \
+    node[IndexedString("GetCurrent")] = BoostBind(&CharacterSkillData::Get##name##Current, this);   \
+    node[IndexedString("SetCurrent")] = BoostBind(&CharacterSkillData::Set##name##Current, this);   \
+    GetSkillFunctionMap()[IndexedString(#name)] = node;                                             \
+}
+
 CharacterSkillData::CharacterSkillData()
 {
+    // Combat Skills
+    SET_SKILL_FUNCTION_NODE(Barbarian);
+    SET_SKILL_FUNCTION_NODE(Mage);
+    SET_SKILL_FUNCTION_NODE(Rogue);
+    SET_SKILL_FUNCTION_NODE(Blademaster);
+    SET_SKILL_FUNCTION_NODE(Avatar);
+    SET_SKILL_FUNCTION_NODE(Ambidextrous);
+    SET_SKILL_FUNCTION_NODE(Focused);
+    SET_SKILL_FUNCTION_NODE(Stalwart);
+
+    // Weapon Skills
+    SET_SKILL_FUNCTION_NODE(Slash);
+    SET_SKILL_FUNCTION_NODE(Sever);
+    SET_SKILL_FUNCTION_NODE(Slice);
+    SET_SKILL_FUNCTION_NODE(Slit);
+    SET_SKILL_FUNCTION_NODE(Cleave);
+    SET_SKILL_FUNCTION_NODE(Decapitate);
+    SET_SKILL_FUNCTION_NODE(Parry);
+    SET_SKILL_FUNCTION_NODE(Riposte);
+    SET_SKILL_FUNCTION_NODE(Bash);
+    SET_SKILL_FUNCTION_NODE(Smash);
+    SET_SKILL_FUNCTION_NODE(Impact);
+    SET_SKILL_FUNCTION_NODE(Crush);
+    SET_SKILL_FUNCTION_NODE(Break);
+    SET_SKILL_FUNCTION_NODE(Crack);
+    SET_SKILL_FUNCTION_NODE(Block);
+    SET_SKILL_FUNCTION_NODE(Rush);
+    SET_SKILL_FUNCTION_NODE(Pierce);
+    SET_SKILL_FUNCTION_NODE(Drill);
+    SET_SKILL_FUNCTION_NODE(Shoot);
+    SET_SKILL_FUNCTION_NODE(Impale);
+    SET_SKILL_FUNCTION_NODE(StealthStrike);
+    SET_SKILL_FUNCTION_NODE(CriticalShot);
+    SET_SKILL_FUNCTION_NODE(Dodge);
+    SET_SKILL_FUNCTION_NODE(Counter);
+
+    // Alchemy Skills
+    SET_SKILL_FUNCTION_NODE(Healer);
+    SET_SKILL_FUNCTION_NODE(Alchemist);
+    SET_SKILL_FUNCTION_NODE(Energist);
+    SET_SKILL_FUNCTION_NODE(Chemist);
+
+    // Crafting Skills
+    SET_SKILL_FUNCTION_NODE(Hammersmith);
+    SET_SKILL_FUNCTION_NODE(Spellsmith);
+    SET_SKILL_FUNCTION_NODE(Bowsmith);
+    SET_SKILL_FUNCTION_NODE(Swordsmith);
+    SET_SKILL_FUNCTION_NODE(Weaver);
+    SET_SKILL_FUNCTION_NODE(Tanner);
+    SET_SKILL_FUNCTION_NODE(Scalesmith);
+    SET_SKILL_FUNCTION_NODE(Platesmith);
+    SET_SKILL_FUNCTION_NODE(Goldsmith);
+    SET_SKILL_FUNCTION_NODE(Shieldsmith);
+
+    // Breakdown Skills
+    SET_SKILL_FUNCTION_NODE(Hammerbane);
+    SET_SKILL_FUNCTION_NODE(Spellbane);
+    SET_SKILL_FUNCTION_NODE(Bowbane);
+    SET_SKILL_FUNCTION_NODE(Swordbane);
+    SET_SKILL_FUNCTION_NODE(Threadbare);
+    SET_SKILL_FUNCTION_NODE(StudRemover);
+    SET_SKILL_FUNCTION_NODE(Scalebane);
+    SET_SKILL_FUNCTION_NODE(Platebane);
+    SET_SKILL_FUNCTION_NODE(Goldbane);
+    SET_SKILL_FUNCTION_NODE(Shieldbane);
+
+    // Affinity Skills
+    SET_SKILL_FUNCTION_NODE(Holy);
+    SET_SKILL_FUNCTION_NODE(Fire);
+    SET_SKILL_FUNCTION_NODE(Ice);
+    SET_SKILL_FUNCTION_NODE(Shock);
+    SET_SKILL_FUNCTION_NODE(Dark);
+    SET_SKILL_FUNCTION_NODE(Light);
+    SET_SKILL_FUNCTION_NODE(Force);
+    SET_SKILL_FUNCTION_NODE(Mind);
+    SET_SKILL_FUNCTION_NODE(Earth);
+    SET_SKILL_FUNCTION_NODE(Blood);
+    SET_SKILL_FUNCTION_NODE(Flesh);
+    SET_SKILL_FUNCTION_NODE(Wind);
 }
 
 CharacterSkillData::~CharacterSkillData()
@@ -17,184 +107,91 @@ CharacterSkillData::~CharacterSkillData()
 void CharacterSkillData::Clear()
 {
     SetAllSkillCurrentValues(0);
-    SetAllSkillRankingValues(0);
+    SetAllSkillRankValues(0);
 }
 
-#define CHARACTER_SET_SKILL_VALUE(type, method, value)                      \
-{                                                                           \
-    for(auto&& sSkillType : type::_names())                                 \
-    {                                                                       \
-        CharacterSkillFunctionNode node = GetSkillFunctions(sSkillType);    \
-        if(node.IsValid()) { node.method(*this, value); }                   \
-    }                                                                       \
+#define CHARACTER_SET_SKILL_VALUE(type, skill, value)                   \
+{                                                                       \
+    for(auto&& sSkillType : type::_names())                             \
+    {                                                                   \
+        GetSkillSet##skill##Function(IndexedString(sSkillType))(value); \
+    }                                                                   \
 }
 
 void CharacterSkillData::SetAllSkillCurrentValues(UByte uValue)
 {
-    CHARACTER_SET_SKILL_VALUE(SkillWeaponType, SetCurrent, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillAlchemyType, SetCurrent, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillBreakdownType, SetCurrent, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillCombatType, SetCurrent, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillCraftingType, SetCurrent, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillAffinityType, SetCurrent, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillWeaponType, Current, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillAlchemyType, Current, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillBreakdownType, Current, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillCombatType, Current, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillCraftingType, Current, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillAffinityType, Current, uValue);
 }
 
-void CharacterSkillData::SetAllSkillRankingValues(UByte uValue)
+void CharacterSkillData::SetAllSkillRankValues(UByte uValue)
 {
-    CHARACTER_SET_SKILL_VALUE(SkillWeaponType, SetRank, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillAlchemyType, SetRank, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillBreakdownType, SetRank, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillCombatType, SetRank, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillCraftingType, SetRank, uValue);
-    CHARACTER_SET_SKILL_VALUE(SkillAffinityType, SetRank, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillWeaponType, Rank, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillAlchemyType, Rank, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillBreakdownType, Rank, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillCombatType, Rank, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillCraftingType, Rank, uValue);
+    CHARACTER_SET_SKILL_VALUE(SkillAffinityType, Rank, uValue);
 }
 
-Bool UpdateSkillRanking(const IndexedString& sSkillType)
+Bool CharacterSkillData::UpdateSkillRanking(const IndexedString& sSkillType)
 {
-    CharacterSkillFunctionNode node = GetSkillFunctions(sSkillType);
-    if(!node.IsValid())
-    {
-        return false;
-    }
+    auto GetRank = GetSkillGetRankFunction(sSkillType);
+    auto SetRank = GetSkillSetRankFunction(sSkillType);
+    auto GetCurrent = GetSkillGetCurrentFunction(sSkillType);
+    auto SetCurrent = GetSkillSetCurrentFunction(sSkillType);
 
-    UByte uRank = node.GetRank(*this);
+    UByte uRank = GetRank();
     if(uRank >= s_kuMaxSkillRank)
     {
         return false;
     }
 
-    UByte uCurrent = node.GetCurrent(*this);
-    node.SetCurrent(*this, uCurrent + 1);
+    UByte uCurrent = GetCurrent();
+    SetCurrent(uCurrent + 1);
     if(static_cast<UInt>(uCurrent + 1) >= s_kuSkillRankUpgradeAmount)
     {
-        node.SetCurrent(*this, 0);
-        node.SetRank(*this, uRank + 1);
+        SetCurrent(0);
+        SetRank(uRank + 1);
     }
     return true;
 }
 
-#define RETURN_SKILL_FUNCTION_NODE(name)                             \
-{                                                                    \
-    CharacterSkillFunctionNode node;                                 \
-    node.fnGetCurrent = &CharacterSkillData::Get##name##Current;     \
-    node.fnGetRank = &CharacterSkillData::Get##name##Rank;           \
-    node.fnSetCurrent = &CharacterSkillData::Set##name##Current;     \
-    node.fnSetRank = &CharacterSkillData::Set##name##Rank;           \
-    return node;                                                     \
+const CharacterSkillData::CharacterSkillFunctionNode& CharacterSkillData::GetSkillFunctions(
+    const IndexedString& sSkillType) const
+{
+    return GetSkillFunctionMap().at(sSkillType);
 }
 
-CharacterSkillData::CharacterSkillFunctionNode CharacterSkillData::GetSkillFunctions(const IndexedString& sSkillType) const
+const CharacterSkillData::CharacterSkillFunction& CharacterSkillData::GetSkillFunction(
+    const IndexedString& sSkillType,
+    const IndexedString& sNodeType) const
 {
-    SkillWeaponType eSkillWeaponType = IsValidSkillWeaponType(sSkillType) ? StringToSkillWeaponType(sSkillType) : +SkillWeaponType::None;
-    switch(eSkillWeaponType)
-    {
-        case SkillWeaponType::Slash: RETURN_SKILL_FUNCTION_NODE(Slash);
-        case SkillWeaponType::Sever: RETURN_SKILL_FUNCTION_NODE(Sever);
-        case SkillWeaponType::Slice: RETURN_SKILL_FUNCTION_NODE(Slice);
-        case SkillWeaponType::Slit: RETURN_SKILL_FUNCTION_NODE(Slit);
-        case SkillWeaponType::Cleave: RETURN_SKILL_FUNCTION_NODE(Cleave);
-        case SkillWeaponType::Decapitate: RETURN_SKILL_FUNCTION_NODE(Decapitate);
-        case SkillWeaponType::Parry: RETURN_SKILL_FUNCTION_NODE(Parry);
-        case SkillWeaponType::Riposte: RETURN_SKILL_FUNCTION_NODE(Riposte);
-        case SkillWeaponType::Bash: RETURN_SKILL_FUNCTION_NODE(Bash);
-        case SkillWeaponType::Smash: RETURN_SKILL_FUNCTION_NODE(Smash);
-        case SkillWeaponType::Impact: RETURN_SKILL_FUNCTION_NODE(Impact);
-        case SkillWeaponType::Crush: RETURN_SKILL_FUNCTION_NODE(Crush);
-        case SkillWeaponType::Break: RETURN_SKILL_FUNCTION_NODE(Break);
-        case SkillWeaponType::Crack: RETURN_SKILL_FUNCTION_NODE(Crack);
-        case SkillWeaponType::Block: RETURN_SKILL_FUNCTION_NODE(Block);
-        case SkillWeaponType::Rush: RETURN_SKILL_FUNCTION_NODE(Rush);
-        case SkillWeaponType::Pierce: RETURN_SKILL_FUNCTION_NODE(Pierce);
-        case SkillWeaponType::Drill: RETURN_SKILL_FUNCTION_NODE(Drill);
-        case SkillWeaponType::Shoot: RETURN_SKILL_FUNCTION_NODE(Shoot);
-        case SkillWeaponType::Impale: RETURN_SKILL_FUNCTION_NODE(Impale);
-        case SkillWeaponType::StealthStrike: RETURN_SKILL_FUNCTION_NODE(StealthStrike);
-        case SkillWeaponType::CriticalShot: RETURN_SKILL_FUNCTION_NODE(CriticalShot);
-        case SkillWeaponType::Dodge: RETURN_SKILL_FUNCTION_NODE(Dodge);
-        case SkillWeaponType::Counter: RETURN_SKILL_FUNCTION_NODE(Counter);
-        default:
-            break;
-    }
+    return GetSkillFunctions(sSkillType).at(sNodeType);
+}
 
-    SkillAlchemyType eSkillAlchemyType = IsValidSkillAlchemyType(sSkillType) ? StringToSkillAlchemyType(sSkillType) : +SkillAlchemyType::None;
-    switch(eSkillAlchemyType)
-    {
-        case SkillAlchemyType::Healer: RETURN_SKILL_FUNCTION_NODE(Healer);
-        case SkillAlchemyType::Alchemist: RETURN_SKILL_FUNCTION_NODE(Alchemist);
-        case SkillAlchemyType::Energist: RETURN_SKILL_FUNCTION_NODE(Energist);
-        case SkillAlchemyType::Chemist: RETURN_SKILL_FUNCTION_NODE(Chemist);
-        default:
-            break;
-    }
+UByteGetFunction CharacterSkillData::GetSkillGetRankFunction(const IndexedString& sSkillType) const
+{
+    return BoostAnyCast<UByteGetFunction>(GetSkillFunction(sSkillType, IndexedString("GetRank")));
+}
 
-    SkillBreakdownType eSkillBreakdownType = IsValidSkillBreakdownType(sSkillType) ? StringToSkillBreakdownType(sSkillType) : +SkillBreakdownType::None;
-    switch(eSkillBreakdownType)
-    {
-        case SkillBreakdownType::Hammerbane: RETURN_SKILL_FUNCTION_NODE(Hammerbane);
-        case SkillBreakdownType::Spellbane: RETURN_SKILL_FUNCTION_NODE(Spellbane);
-        case SkillBreakdownType::Bowbane: RETURN_SKILL_FUNCTION_NODE(Bowbane);
-        case SkillBreakdownType::Swordbane: RETURN_SKILL_FUNCTION_NODE(Swordbane);
-        case SkillBreakdownType::Threadbare: RETURN_SKILL_FUNCTION_NODE(Threadbare);
-        case SkillBreakdownType::StudRemover: RETURN_SKILL_FUNCTION_NODE(StudRemover);
-        case SkillBreakdownType::Scalebane: RETURN_SKILL_FUNCTION_NODE(Scalebane);
-        case SkillBreakdownType::Platebane: RETURN_SKILL_FUNCTION_NODE(Platebane);
-        case SkillBreakdownType::Goldbane: RETURN_SKILL_FUNCTION_NODE(Goldbane);
-        case SkillBreakdownType::Shieldbane: RETURN_SKILL_FUNCTION_NODE(Shieldbane);
-        default:
-            break;
-    }
+UByteSetFunction CharacterSkillData::GetSkillSetRankFunction(const IndexedString& sSkillType) const
+{
+    return BoostAnyCast<UByteSetFunction>(GetSkillFunction(sSkillType, IndexedString("SetRank")));
+}
 
-    SkillCombatType eSkillCombatType = IsValidSkillCombatType(sSkillType) ? StringToSkillCombatType(sSkillType) : +SkillCombatType::None;
-    switch(eSkillCombatType)
-    {
-        case SkillCombatType::Barbarian: RETURN_SKILL_FUNCTION_NODE(Barbarian);
-        case SkillCombatType::Mage: RETURN_SKILL_FUNCTION_NODE(Mage);
-        case SkillCombatType::Rogue: RETURN_SKILL_FUNCTION_NODE(Rogue);
-        case SkillCombatType::Blademaster: RETURN_SKILL_FUNCTION_NODE(Blademaster);
-        case SkillCombatType::Avatar: RETURN_SKILL_FUNCTION_NODE(Avatar);
-        case SkillCombatType::Ambidextrous: RETURN_SKILL_FUNCTION_NODE(Ambidextrous);
-        case SkillCombatType::Focused: RETURN_SKILL_FUNCTION_NODE(Focused);
-        case SkillCombatType::Stalwart: RETURN_SKILL_FUNCTION_NODE(Stalwart);
-        default:
-            break;
-    }
+UByteGetFunction CharacterSkillData::GetSkillGetCurrentFunction(const IndexedString& sSkillType) const
+{
+    return BoostAnyCast<UByteGetFunction>(GetSkillFunction(sSkillType, IndexedString("GetCurrent")));
+}
 
-    SkillCraftingType eSkillCraftingType = IsValidSkillCraftingType(sSkillType) ? StringToSkillCraftingType(sSkillType) : +SkillCraftingType::None;
-    switch(eSkillCraftingType)
-    {
-        case SkillCraftingType::Hammersmith: RETURN_SKILL_FUNCTION_NODE(Hammersmith);
-        case SkillCraftingType::Spellsmith: RETURN_SKILL_FUNCTION_NODE(Spellsmith);
-        case SkillCraftingType::Bowsmith: RETURN_SKILL_FUNCTION_NODE(Bowsmith);
-        case SkillCraftingType::Swordsmith: RETURN_SKILL_FUNCTION_NODE(Swordsmith);
-        case SkillCraftingType::Weaver: RETURN_SKILL_FUNCTION_NODE(Weaver);
-        case SkillCraftingType::Tanner: RETURN_SKILL_FUNCTION_NODE(Tanner);
-        case SkillCraftingType::Scalesmith: RETURN_SKILL_FUNCTION_NODE(Scalesmith);
-        case SkillCraftingType::Platesmith: RETURN_SKILL_FUNCTION_NODE(Platesmith);
-        case SkillCraftingType::Goldsmith: RETURN_SKILL_FUNCTION_NODE(Goldsmith);
-        case SkillCraftingType::Shieldsmith: RETURN_SKILL_FUNCTION_NODE(Shieldsmith);
-        default:
-            break;
-    }
-
-    SkillAffinityType eSkillAffinityType = IsValidSkillAffinityType(sSkillType) ? StringToSkillAffinityType(sSkillType) : +SkillAffinityType::None;
-    switch(eSkillAffinityType)
-    {
-        case SkillAffinityType::Holy: RETURN_SKILL_FUNCTION_NODE(Holy);
-        case SkillAffinityType::Fire: RETURN_SKILL_FUNCTION_NODE(Fire);
-        case SkillAffinityType::Ice: RETURN_SKILL_FUNCTION_NODE(Ice);
-        case SkillAffinityType::Shock: RETURN_SKILL_FUNCTION_NODE(Shock);
-        case SkillAffinityType::Dark: RETURN_SKILL_FUNCTION_NODE(Dark);
-        case SkillAffinityType::Light: RETURN_SKILL_FUNCTION_NODE(Light);
-        case SkillAffinityType::Force: RETURN_SKILL_FUNCTION_NODE(Force);
-        case SkillAffinityType::Mind: RETURN_SKILL_FUNCTION_NODE(Mind);
-        case SkillAffinityType::Earth: RETURN_SKILL_FUNCTION_NODE(Earth);
-        case SkillAffinityType::Blood: RETURN_SKILL_FUNCTION_NODE(Blood);
-        case SkillAffinityType::Flesh: RETURN_SKILL_FUNCTION_NODE(Flesh);
-        case SkillAffinityType::Wind: RETURN_SKILL_FUNCTION_NODE(Wind);
-        default:
-            break;
-    }
-    return CharacterSkillFunctionNode();
+UByteSetFunction CharacterSkillData::GetSkillSetCurrentFunction(const IndexedString& sSkillType) const
+{
+    return BoostAnyCast<UByteSetFunction>(GetSkillFunction(sSkillType, IndexedString("SetCurrent")));
 }
 
 Bool CharacterSkillData::operator==(const CharacterSkillData& other) const
@@ -360,9 +357,6 @@ void to_json(Json& jsonData, const CharacterSkillData& obj)
 
 void from_json(const Json& jsonData, CharacterSkillData& obj)
 {
-    // Get current configuration
-    const Config& config = ConfigManager::GetInstance()->GetCurrentConfig();
-
     // Combat Skills
     obj.SetBarbarianCurrent(GET_JSON_DATA_OR_DEFAULT(BarbarianCurrent, Int, 0));
     obj.SetBarbarianRank(GET_JSON_DATA_OR_DEFAULT(BarbarianRank, Int, 0));

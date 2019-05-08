@@ -2,12 +2,16 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "CharacterParty/CharacterParty.h"
-#include "Character/CharacterProgressData.h"
+#include "CharacterData/CharacterProgressData.h"
 #include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
+#include "Utility/Converters.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
+
+CharacterPartyMember CharacterParty::s_EmptyCharacterPartyMember = {};
 
 CharacterParty::CharacterParty()
     : m_bPlayTimePaused(true)
@@ -20,7 +24,7 @@ void CharacterParty::RegenerateCharacterData()
 {
     for(auto& member : GetMembers())
     {
-        CharacterManager::GetInstance()->GetCharacter(member.GetCharacterID()).RegenerateCharacterData();
+        CharacterManager::GetInstance()->GetCharacter(member.first).RegenerateCharacterData();
     }
 }
 
@@ -33,7 +37,7 @@ Bool CharacterParty::IsMemberPresent(const IndexedString& sCharacterID) const
 {
     for(auto& member : GetMembers())
     {
-        if (member.GetCharacterID() == sCharacterID)
+        if (member.first == sCharacterID)
         {
             return true;
         }
@@ -75,7 +79,7 @@ Bool CharacterParty::AddMember(const IndexedString& sCharacterID)
     CharacterPartyMember newMember;
     newMember.SetCharacterID(sCharacterID);
     newMember.SetCharacterTargetType(GetNextAvailableTargetType());
-    GetMembers().push_back(newMember);
+    GetMembers().insert({sCharacterID, newMember});
     UseTargetType(newMember.GetCharacterTargetType());
     CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetBasicData().SetPartyID(GetPartyID());
     return true;
@@ -91,11 +95,10 @@ Bool CharacterParty::RemoveMember(const IndexedString& sCharacterID)
     }
 
     // Remove member
-    UInt uMemberIndex = GetMemberIndexByID(sCharacterID);
-    UnequipAllItems(uMemberIndex);
-    FreeTargetType(GetMember(uMemberIndex).GetCharacterTargetType());
+    UnequipAllItems(sCharacterID);
+    FreeTargetType(GetMemberByID(sCharacterID).GetCharacterTargetType());
     CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetBasicData().SetPartyID({});
-    STDVectorRemoveElement<CharacterPartyMember>(GetMembers(), GetMember(uMemberIndex));
+    GetMembers().erase(sCharacterID);
     return true;
 }
 
@@ -158,7 +161,7 @@ Bool CharacterParty::UseTargetType(const IndexedString& sCharacterTargetType)
         return false;
     }
 
-    STDVectorRemoveElement<IndexedString>(GetAvailableTargetTypes(), sCharacterTargetType);
+    RemoveVectorElement<IndexedString>(GetAvailableTargetTypes(), sCharacterTargetType);
     GetTakenTargetTypes().push_back(sCharacterTargetType);
     return true;
 }
@@ -171,52 +174,25 @@ Bool CharacterParty::FreeTargetType(const IndexedString& sCharacterTargetType)
     }
 
     GetAvailableTargetTypes().push_back(sCharacterTargetType);
-    STDVectorRemoveElement<IndexedString>(GetTakenTargetTypes(), sCharacterTargetType);
+    RemoveVectorElement<IndexedString>(GetTakenTargetTypes(), sCharacterTargetType);
     return true;
-}
-
-Int CharacterParty::GetMemberIndexByID(const IndexedString& sCharacterID) const
-{
-    for(UInt i = 0; i < GetMembers().size(); i++)
-    {
-        if(GetMember(i).GetCharacterID() == sCharacterID)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
-Int CharacterParty::GetMemberIndexByTargetType(const IndexedString& sCharacterTargetType) const
-{
-    for(UInt i = 0; i < GetMembers().size(); i++)
-    {
-        if(GetMember(i).GetCharacterTargetType() == sCharacterTargetType)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
-const CharacterPartyMember& CharacterParty::GetMember(UInt uIndex) const
-{
-    return GetMembers().at(uIndex);
 }
 
 const CharacterPartyMember& CharacterParty::GetMemberByID(const IndexedString& sCharacterID) const
 {
-    return GetMembers().at(GetMemberIndexByID(sCharacterID));
+    return GetMembers().at(sCharacterID);
 }
 
 const CharacterPartyMember& CharacterParty::GetMemberByTargetType(const IndexedString& sCharacterTargetType) const
 {
-    return GetMembers().at(GetMemberIndexByTargetType(sCharacterTargetType));
-}
-
-CharacterPartyMember& CharacterParty::GetMember(UInt uIndex)
-{
-    return const_cast<CharacterPartyMember&>(static_cast<const CharacterParty&>(*this).GetMember(uIndex));
+    for (auto& member : GetMembers())
+    {
+        if (member.second.GetCharacterTargetType() == sCharacterTargetType)
+        {
+            return member.second;
+        }
+    }
+    return s_EmptyCharacterPartyMember;
 }
 
 CharacterPartyMember& CharacterParty::GetMemberByID(const IndexedString& sCharacterID)
@@ -229,23 +205,34 @@ CharacterPartyMember& CharacterParty::GetMemberByTargetType(const IndexedString&
     return const_cast<CharacterPartyMember&>(static_cast<const CharacterParty&>(*this).GetMemberByTargetType(sCharacterTargetType));
 }
 
+IndexedStringArray CharacterParty::GetMemberCharacterIDs() const
+{
+    IndexedStringArray vMemberCharacterIDs;
+    for(auto& member : GetMembers())
+    {
+        vMemberCharacterIDs.push_back(member.first);
+    }
+    return vMemberCharacterIDs;
+}
+
 Bool CharacterParty::GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringArray& vCharacterIDs) const
 {
     // Check if requesting for all allies/enemies
+    IndexedStringArray vAllMemberCharacterIDs = GetMemberCharacterIDs();
     CharacterPartyType ePartyType = StringToCharacterPartyType(GetPartyType());
     CharacterTargetType eTargetType = StringToCharacterTargetType(sCharacterTargetType);
     if((ePartyType == +CharacterPartyType::Ally && eTargetType == +CharacterTargetType::AllAllies) ||
        (ePartyType == +CharacterPartyType::Enemy && eTargetType == +CharacterTargetType::AllEnemies))
     {
-        vCharacterIDs = GetMembers();
+        vCharacterIDs = vAllMemberCharacterIDs;
         return true;
     }
 
     // Then check for specific targets
-    Int iMemberIndex = GetMemberIndexByTargetType(sCharacterTargetType);
-    if(iMemberIndex >= 0)
+    const CharacterPartyMember& member = GetMemberByTargetType(sCharacterTargetType);
+    if(!member.GetCharacterID().empty())
     {
-        vCharacterIDs.push_back(GetMembers()[iMemberIndex]);
+        vCharacterIDs.push_back(member.GetCharacterID());
         return true;
     }
     return false;
@@ -257,7 +244,7 @@ UInt CharacterParty::GetStatusMemberCount(const IndexedString& sStatus) const
     const CharacterStatusType eStatusType = (IsValidCharacterStatusType(sStatus)) ? StringToCharacterStatusType(sStatus) : +CharacterStatusType::None;
     for(auto& member : GetMembers())
     {
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(member.GetCharacterID());
+        const Character& character = CharacterManager::GetInstance()->GetCharacter(member.first);
         const CharacterBattleData& battleData = character.GetBattleDataBase();
         switch(eStatusType)
         {
@@ -283,10 +270,10 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
     TreeIndexArray vAllWeapons = GetAllWeaponItems();
 
     // Shuffle item lists
-    STDVectorShuffle<TreeIndex>(vAllArmors);
-    STDVectorShuffle<TreeIndex>(vAllIngredients);
-    STDVectorShuffle<TreeIndex>(vAllPotions);
-    STDVectorShuffle<TreeIndex>(vAllWeapons);
+    ShuffleVector<TreeIndex>(vAllArmors);
+    ShuffleVector<TreeIndex>(vAllIngredients);
+    ShuffleVector<TreeIndex>(vAllPotions);
+    ShuffleVector<TreeIndex>(vAllWeapons);
 
     // Take a look at each tree type
     Bool bAtLeastOneAdded = false;
@@ -302,16 +289,16 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
             switch(eItemTreeType)
             {
                 case ItemTreeType::Armor:
-                    randomTreeIndex = STDRandomVectorValue<TreeIndex>(vAllArmors);
+                    randomTreeIndex = GetRandomVectorValue<TreeIndex>(vAllArmors);
                     break;
                 case ItemTreeType::Ingredient:
-                    randomTreeIndex = STDRandomVectorValue<TreeIndex>(vAllIngredients);
+                    randomTreeIndex = GetRandomVectorValue<TreeIndex>(vAllIngredients);
                     break;
                 case ItemTreeType::Potion:
-                    randomTreeIndex = STDRandomVectorValue<TreeIndex>(vAllPotions);
+                    randomTreeIndex = GetRandomVectorValue<TreeIndex>(vAllPotions);
                     break;
                 case ItemTreeType::Weapon:
-                    randomTreeIndex = STDRandomVectorValue<TreeIndex>(vAllWeapons);
+                    randomTreeIndex = GetRandomVectorValue<TreeIndex>(vAllWeapons);
                     break;
                 default:
                     break;
@@ -320,7 +307,7 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
             // Add item
             if(!randomTreeIndex.empty())
             {
-                Bool bSuccess = AddItemByIndex(randomTreeIndex, STDRandomIntValue<Int>(iAmountStart, iAmountEnd));
+                Bool bSuccess = AddItemByTreeIndex(randomTreeIndex, GetRandomIntValue<Int>(iAmountStart, iAmountEnd));
                 if(bSuccess)
                 {
                     vAddedRandomTreeIndices.push_back(randomTreeIndex);
@@ -334,20 +321,15 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
 
 Bool CharacterParty::AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
 {
-    return AddItemByIndex(ResolveItemLeafIntoIndex(sLeaf), uAmount);
-}
-
-Bool CharacterParty::AddItemByIndex(const TreeIndex& index, UInt uAmount)
-{
-    if(!DoesItemDataExist(index))
+    TreeIndex treeIndex = ResolveItemLeafIntoIndex(sLeaf);
+    if(!DoesItemDataExist(treeIndex))
     {
         return false;
     }
 
-    Int iFoundIndex = GetItemIndexByTreeIndex(index);
-    if(iFoundIndex >= 0)
+    if (GetItems().count(sLeaf) > 0)
     {
-        CharacterPartyItem& item = GetItems()[iFoundIndex];
+        CharacterPartyItem& item = GetItems().at(sLeaf);
 #ifdef DEBUG
         Json jsonData = item;
         String sJsonString = jsonData.dump(4);
@@ -360,14 +342,14 @@ Bool CharacterParty::AddItemByIndex(const TreeIndex& index, UInt uAmount)
     }
     else
     {
-        IndexedString sItemType = RetrieveItemType(index);
+        IndexedString sItemType = RetrieveItemType(treeIndex);
         IndexedStringArray vEquipTypes = ConvertItemTypeToCharacterEquipTypes(sItemType);
         CharacterPartyItem newItem;
-        newItem.SetTreeIndex(index);
+        newItem.SetTreeIndex(treeIndex);
         newItem.SetAmount(uAmount);
         newItem.SetEquipCount(0);
         newItem.SetApplicableEquipmentSlots(vEquipTypes);
-        GetItems().push_back(newItem);
+        GetItems().insert({sLeaf, newItem});
 #ifdef DEBUG
         Json jsonData = newItem;
         String sJsonString = jsonData.dump(4);
@@ -379,56 +361,53 @@ Bool CharacterParty::AddItemByIndex(const TreeIndex& index, UInt uAmount)
     }
 }
 
-Bool CharacterParty::RemoveItem(const TreeIndex& index, UInt uAmount)
+Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount)
 {
-    Int iFoundIndex = GetItemIndexByTreeIndex(index);
-    if(iFoundIndex >= 0)
+    return AddItemByLeaf(treeIndex.GetLeaf(), uAmount);
+}
+
+Bool CharacterParty::RemoveItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
+{
+    if (GetItems().count(sLeaf) > 0)
     {
-        CharacterPartyItem& item = GetItems()[iFoundIndex];
+        CharacterPartyItem& item = GetItems().at(sLeaf);
         return item.RemoveAmount(uAmount);
     }
     return false;
 }
 
-Int CharacterParty::GetItemIndexByTreeIndex(const TreeIndex& index) const
+Bool CharacterParty::RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount)
 {
-    for(UInt i = 0; i < GetItems().size(); i++)
-    {
-        if(GetItem(i).GetTreeIndex() == index)
-        {
-            return i;
-        }
-    }
-    return -1;
+    return RemoveItemByLeaf(treeIndex.GetLeaf(), uAmount);
 }
 
-const CharacterPartyItem& CharacterParty::GetItem(UInt uIndex) const
+const CharacterPartyItem& CharacterParty::GetItemByLeaf(const IndexedString& sLeaf) const
 {
-    return GetItems().at(uIndex);
+    return GetItems().at(sLeaf);
 }
 
-const CharacterPartyItem& CharacterParty::GetItemByTreeIndex(const TreeIndex& index) const
+const CharacterPartyItem& CharacterParty::GetItemByTreeIndex(const TreeIndex& treeIndex) const
 {
-    return GetItems().at(GetItemIndexByTreeIndex(index));
+    return GetItems().at(treeIndex.GetLeaf());
 }
 
-CharacterPartyItem& CharacterParty::GetItem(UInt uIndex)
+CharacterPartyItem& CharacterParty::GetItemByLeaf(const IndexedString& sLeaf)
 {
-    return const_cast<CharacterPartyItem&>(static_cast<const CharacterParty&>(*this).GetItem(uIndex));
+    return const_cast<CharacterPartyItem&>(static_cast<const CharacterParty&>(*this).GetItemByLeaf(sLeaf));
 }
 
-CharacterPartyItem& CharacterParty::GetItemByTreeIndex(const TreeIndex& index)
+CharacterPartyItem& CharacterParty::GetItemByTreeIndex(const TreeIndex& treeIndex)
 {
-    return const_cast<CharacterPartyItem&>(static_cast<const CharacterParty&>(*this).GetItemByTreeIndex(index));
+    return const_cast<CharacterPartyItem&>(static_cast<const CharacterParty&>(*this).GetItemByTreeIndex(treeIndex));
 }
 
-Int CharacterParty::GetBestUnequippedItemIndex(UInt uCharacterIndex, const IndexedString& sSlot) const
+TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterID, const IndexedString& sSlot) const
 {
     // Check character
-    Int iBestIndex = -1;
-    if(uCharacterIndex >= GetMemberCount())
+    TreeIndex bestItem;
+    if(!IsMemberPresent(sCharacterID))
     {
-        return iBestIndex;
+        return bestItem;
     }
 
     // Get shield count for this weapon set (if applicable)
@@ -437,54 +416,50 @@ Int CharacterParty::GetBestUnequippedItemIndex(UInt uCharacterIndex, const Index
     UInt uShieldCount = 0;
     if(!sWeaponSet.IsNone())
     {
-        uShieldCount = GetMember(uCharacterIndex).GetEquippedShieldCount(sWeaponSet);
+        uShieldCount = GetMemberByID(sCharacterID).GetEquippedShieldCount(sWeaponSet);
     }
 
     // Look at each of the matching, unequipped items the party has and find the best one
-    TreeIndex bestItem;
-    for(UInt i = 0; i < GetItems().size(); i++)
+    for(auto& item : GetItems())
     {
-        const CharacterPartyItem& item = GetItems()[i];
-        if(uShieldCount == 1 && IsItemShield(item.GetTreeIndex()))
+        if(uShieldCount == 1 && IsItemShield(item.second.GetTreeIndex()))
         {
             continue;
         }
 
-        if(!item.DoesMatchSlot(sSlot))
+        if(!item.second.DoesMatchSlot(sSlot))
         {
             continue;
         }
 
-        if(!item.CanEquipAmount(1))
+        if(!item.second.CanEquipAmount(1))
         {
             continue;
         }
 
         if(bestItem.empty())
         {
-            iBestIndex = i;
-            bestItem = item.GetTreeIndex();
+            bestItem = item.second.GetTreeIndex();
             continue;
         }
 
-        Bool bIsArmor = DoesItemDataArmorExist(item.GetTreeIndex());
-        Bool bIsWeapon = DoesItemDataWeaponExist(item.GetTreeIndex());
+        Bool bIsArmor = DoesItemDataArmorExist(item.second.GetTreeIndex());
+        Bool bIsWeapon = DoesItemDataWeaponExist(item.second.GetTreeIndex());
         if(
-            (bIsArmor && IsArmorBetter(item.GetTreeIndex(), bestItem)) ||
-            (bIsWeapon && IsWeaponBetter(item.GetTreeIndex(), bestItem)))
+            (bIsArmor && IsArmorBetter(item.second.GetTreeIndex(), bestItem)) ||
+            (bIsWeapon && IsWeaponBetter(item.second.GetTreeIndex(), bestItem)))
         {
-            iBestIndex = i;
-            bestItem = item.GetTreeIndex();
+            bestItem = item.second.GetTreeIndex();
         }
     }
-    return iBestIndex;
+    return bestItem;
 }
 
-Bool CharacterParty::EquipItem(UInt uCharacterIndex, UInt uItemIndex, const IndexedString& sSlot)
+Bool CharacterParty::EquipItem(const IndexedString& sCharacterID, const IndexedString& sLeaf, const IndexedString& sSlot)
 {
     // Get the item and character
-    CharacterPartyItem& item = GetItem(uItemIndex);
-    CharacterPartyMember& member = GetMember(uCharacterIndex);
+    CharacterPartyItem& item = GetItemByLeaf(sLeaf);
+    CharacterPartyMember& member = GetMemberByID(sCharacterID);
 
     // Check if the item can be equipped
     if(!item.DoesMatchSlot(sSlot))
@@ -508,11 +483,11 @@ Bool CharacterParty::EquipItem(UInt uCharacterIndex, UInt uItemIndex, const Inde
     return true;
 }
 
-Bool CharacterParty::UnequipItem(UInt uCharacterIndex, UInt uItemIndex, const IndexedString& sSlot)
+Bool CharacterParty::UnequipItem(const IndexedString& sCharacterID, const IndexedString& sLeaf, const IndexedString& sSlot)
 {
     // Get the item and character
-    CharacterPartyItem& item = GetItem(uItemIndex);
-    CharacterPartyMember& member = GetMember(uCharacterIndex);
+    CharacterPartyItem& item = GetItemByLeaf(sLeaf);
+    CharacterPartyMember& member = GetMemberByID(sCharacterID);
 
     // Check if the item can be unequipped
     if(!item.DoesMatchSlot(sSlot))
@@ -536,23 +511,23 @@ Bool CharacterParty::UnequipItem(UInt uCharacterIndex, UInt uItemIndex, const In
     return true;
 }
 
-Bool CharacterParty::EquipBestItems(UInt uCharacterIndex)
+Bool CharacterParty::EquipBestItems(const IndexedString& sCharacterID)
 {
     // First unequip all that character's items
-    UnequipAllItems(uCharacterIndex);
+    UnequipAllItems(sCharacterID);
 
     // Get the best available item for each equipment slot
     for(const IndexedString& sEquipType : CharacterEquipmentType::_names())
     {
         // Get best item for this slot
-        Int iBestItemForSlot = GetBestUnequippedItemIndex(uCharacterIndex, sEquipType);
-        if(iBestItemForSlot < 0)
+        TreeIndex bestItemForSlot = GetBestUnequippedItem(sCharacterID, sEquipType);
+        if(bestItemForSlot.empty())
         {
             continue;
         }
 
         // Try equipping
-        if(!EquipItem(uCharacterIndex, iBestItemForSlot, sEquipType))
+        if(!EquipItem(sCharacterID, bestItemForSlot.GetLeaf(), sEquipType))
         {
             continue;
         }
@@ -562,25 +537,25 @@ Bool CharacterParty::EquipBestItems(UInt uCharacterIndex)
 
 Bool CharacterParty::EquipBestItemsForAllMembers()
 {
-    for(UInt i = 0; i < GetMembers().size(); i++)
+    for(auto& member : GetMembers())
     {
-        EquipBestItems(i);
+        EquipBestItems(member.first);
     }
     return true;
 }
 
-Bool CharacterParty::UnequipAllItems(UInt uCharacterIndex)
+Bool CharacterParty::UnequipAllItems(const IndexedString& sCharacterID)
 {
     // Get the member
-    CharacterPartyMember& member = GetMember(uCharacterIndex);
+    CharacterPartyMember& member = GetMemberByID(sCharacterID);
 
     // Try unequipping all of the character's items
     Bool bAtLeastOneSuccess = false;
     for(auto&& equippedItem : member.GetEquippedItems())
     {
         Bool bSuccess = UnequipItem(
-            uCharacterIndex,
-            GetItemIndexByTreeIndex(equippedItem.GetTreeIndex()),
+            sCharacterID,
+            equippedItem.GetTreeIndex().GetLeaf(),
             equippedItem.GetItemSlot());
         bAtLeastOneSuccess = bAtLeastOneSuccess || bSuccess;
     }
@@ -589,9 +564,9 @@ Bool CharacterParty::UnequipAllItems(UInt uCharacterIndex)
 
 Bool CharacterParty::UnequipAllItemsForAllMembers()
 {
-    for(UInt i = 0; i < GetMembers().size(); i++)
+    for(auto& member : GetMembers())
     {
-        UnequipAllItems(i);
+        UnequipAllItems(member.first);
     }
     return true;
 }
@@ -612,11 +587,11 @@ String CharacterParty::GetDescription() const
 #if DEBUG
     sDescription += "Party ID: " + GetPartyID().Get() + "\n";
     sDescription += "Party Type: " + GetPartyType().Get() + "\n";
-    sDescription += "Play Time: " + STDGetGameTime(GetPlayTime()) + "\n";
+    sDescription += "Play Time: " + ConvertGameTimeToString(GetPlayTime()) + "\n";
     sDescription += "Members: \n";
     for(auto& member: GetMembers())
     {
-        sDescription += "\t" + member.GetCharacterID().Get() + "\n";
+        sDescription += "\t" + member.first.Get() + "\n";
     }
     return sDescription;
 #endif
@@ -678,10 +653,10 @@ void to_json(Json& jsonData, const CharacterParty& obj)
     // Party type
     SET_JSON_DATA_IF_NOT_DEFAULT(PartyType, IndexedString("None"));
 
-    // Array of members
+    // Map of members
     SET_JSON_DATA_IF_NOT_EMPTY(Members);
 
-    // Array of items
+    // Map of items
     SET_JSON_DATA_IF_NOT_EMPTY(Items);
 
     // Arrays of available target types
@@ -702,11 +677,11 @@ void from_json(const Json& jsonData, CharacterParty& obj)
     // Party type
     obj.SetPartyType(GET_JSON_DATA_OR_DEFAULT(PartyType, IndexedString, IndexedString("None")));
 
-    // Array of members
-    obj.SetMembers(GET_JSON_DATA_OR_DEFAULT(Members, CharacterPartyMemberArray, CharacterPartyMemberArray()));
+    // Map of members
+    obj.SetMembers(GET_JSON_DATA_OR_DEFAULT(Members, CharacterParty::CharacterPartyMemberMap, CharacterParty::CharacterPartyMemberMap()));
 
-    // Array of items
-    obj.SetItems(GET_JSON_DATA_OR_DEFAULT(Items, CharacterPartyItemArray, CharacterPartyItemArray()));
+    // Map of items
+    obj.SetItems(GET_JSON_DATA_OR_DEFAULT(Items, CharacterParty::CharacterPartyItemMap, CharacterParty::CharacterPartyItemMap()));
 
     // Arrays of available target types
     obj.SetAvailableTargetTypes(GET_JSON_DATA_OR_DEFAULT(AvailableTargetTypes, IndexedStringArray, IndexedStringArray()));

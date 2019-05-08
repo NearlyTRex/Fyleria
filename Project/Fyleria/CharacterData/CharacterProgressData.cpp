@@ -4,6 +4,7 @@
 #include "CharacterData/CharacterProgressData.h"
 #include "Character/CharacterTypes.h"
 #include "Skills/SkillTree.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -30,16 +31,16 @@ void CharacterProgressData::Clear()
 
 void CharacterProgressData::ApplyTakenDamage(Int iDamage)
 {
-    Int iNewHealthPoints = STDClip<Int>(GetHealthPointsCurrent() - iDamage, 0, GetHealthPointsMax());
+    Int iNewHealthPoints = ClipValue<Int>(GetHealthPointsCurrent() - iDamage, 0, GetHealthPointsMax());
     SetHealthPointsCurrent(iNewHealthPoints);
 }
 
 void CharacterProgressData::ApplyRegeneration(Bool bCanRegenHP, Bool bCanRegenMP, Bool bCanRegenEP)
 {
     // Get new values
-    Int iNewHP = STDClip<Int>(GetHealthPointsCurrent() + GetHealthRegen(), 0, GetHealthPointsMax());
-    Int iNewMP = STDClip<Int>(GetMagicPointsCurrent() + GetMagicRegen(), -GetMagicPointsMax(), GetMagicPointsMax());
-    Int iNewEP = STDClip<Int>(GetEnergyPointsCurrent() + GetEnergyRegen(), -GetEnergyPointsMax(), GetEnergyPointsMax());
+    Int iNewHP = ClipValue<Int>(GetHealthPointsCurrent() + GetHealthRegen(), 0, GetHealthPointsMax());
+    Int iNewMP = ClipValue<Int>(GetMagicPointsCurrent() + GetMagicRegen(), -GetMagicPointsMax(), GetMagicPointsMax());
+    Int iNewEP = ClipValue<Int>(GetEnergyPointsCurrent() + GetEnergyRegen(), -GetEnergyPointsMax(), GetEnergyPointsMax());
 
     // Apply new values
     if(bCanRegenHP) { SetHealthPointsCurrent(iNewHP); }

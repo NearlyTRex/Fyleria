@@ -11,26 +11,36 @@
 #include "Utility/Macros.h"
 #include "Utility/Python.h"
 
-PYBIND11_MAKE_OPAQUE(Gecko::CharacterProgressDataArray);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterActionDataArray);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterBasicDataArray);
 PYBIND11_MAKE_OPAQUE(Gecko::CharacterBattleDataArray);
-PYBIND11_MAKE_OPAQUE(Gecko::CharacterProgressItemArray);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterProgressDataArray);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterSkillDataArray);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterSkillUseDataArray);
+PYBIND11_MAKE_OPAQUE(Gecko::CharacterStatChangeDataArray);
 
 PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
 {
     // CharacterActionData.h
     PyBindClass<Gecko::CharacterActionData>(m, "CharacterActionData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterActionData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(AvailableActions, Gecko::CharacterActionData)
     ;
+    PyBindVector<Gecko::CharacterActionDataArray>(m, "CharacterActionDataArray");
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionDataToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionDataArrayToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionDataFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionDataArrayFromJsonString, Gecko);
 
     // CharacterBasicData.h
     PyBindClass<Gecko::CharacterBasicData, Gecko::StatTypeHolder>(m, "CharacterBasicData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterBasicData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CharacterID, Gecko::CharacterBasicData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CharacterTargetType, Gecko::CharacterBasicData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(PartyID, Gecko::CharacterBasicData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(FirstName, Gecko::CharacterBasicData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(LastName, Gecko::CharacterBasicData)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Age, Gecko::CharacterBasicData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Gender, Gecko::CharacterBasicData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Hair, Gecko::CharacterBasicData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Eyes, Gecko::CharacterBasicData)
@@ -38,11 +48,13 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(BaseRace, Gecko::CharacterBasicData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(TransformedRace, Gecko::CharacterBasicData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(PowerSet, Gecko::CharacterBasicData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentWeaponSet, Gecko::CharacterBasicData)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(AttackCounter, Gecko::CharacterBasicData)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DefendCounter, Gecko::CharacterBasicData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(PreviousActionTypes, Gecko::CharacterBasicData)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Age, Gecko::CharacterBasicData)
     ;
+    PyBindVector<Gecko::CharacterBasicDataArray>(m, "CharacterBasicDataArray");
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterBasicDataToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterBasicDataArrayToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBasicDataFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBasicDataArrayFromJsonString, Gecko);
 
     // CharacterBattleData.h
     PyBindClass<Gecko::CharacterBattleData, Gecko::StatTypeHolder>(m, "CharacterBattleData")
@@ -55,31 +67,30 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_METHOD_SIMPLE(FinishBattle, Gecko::CharacterBattleData)
         WRAPPING_ADD_METHOD_SIMPLE(CanRegenerateFromStat, Gecko::CharacterBattleData)
         WRAPPING_ADD_METHOD_SIMPLE(UpdateEquipmentRatings, Gecko::CharacterBattleData)
+        WRAPPING_ADD_METHOD_SIMPLE(ResolveTargetPlaceholder, Gecko::CharacterBattleData)
         WRAPPING_ADD_METHOD_SIMPLE(GetPrimaryWeaponRatings, Gecko::CharacterBattleData)
         WRAPPING_ADD_METHOD_SIMPLE(GetSecondaryWeaponRatings, Gecko::CharacterBattleData)
         WRAPPING_ADD_METHOD_SIMPLE(GetPrimaryShieldRatings, Gecko::CharacterBattleData)
         WRAPPING_ADD_METHOD_SIMPLE(GetSecondaryShieldRatings, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetBoolStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetIntStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetFloatStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetStringStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetStringArrayStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(SetBoolStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(SetIntStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(SetFloatStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(SetStringStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_METHOD_SIMPLE(SetStringArrayStatValue, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(AttackTargetsThisAction, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(AttackTargetsThisRound, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(AttackTargetsLastRound, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(DefendTargetThisAction, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(DefendTargetsThisRound, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(DefendTargetsLastRound, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(MostRecentAttackTargets, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(MostRecentDefendTarget, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(AllowedTargetAmount, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionSourceThisAction, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(MostRecentActionSource, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentWeaponSet, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(PreviousActionTypes, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionTargetsThisAction, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionTargetsThisRound, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionTargetsLastRound, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionSourcesThisRound, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionSourcesLastRound, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(MostRecentActionTargets, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(IsDead, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(IsUnconscious, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(AttackCounter, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DefendCounter, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DamageTakenThisRound, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DamageTakenThisBattle, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DamageGivenThisRound, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DamageGivenThisBattle, Gecko::CharacterBattleData)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(AllowedTargetAmount, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(EquippedWeaponLeftBluntRating, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(EquippedWeaponLeftPierceRating, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(EquippedWeaponLeftSlashRating, Gecko::CharacterBattleData)
@@ -103,10 +114,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(CriticalHitMultiplier, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(ChanceToApplyMultipleAttacks, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(AttacksMultiplier, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DamageTakenThisRound, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DamageTakenThisBattle, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DamageGivenThisRound, Gecko::CharacterBattleData)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(DamageGivenThisBattle, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(WeaponPrimaryDamageBonusValue, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(WeaponPrimaryDamageBonusPercent, Gecko::CharacterBattleData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(WeaponSecondaryDamageBonusValue, Gecko::CharacterBattleData)
@@ -132,8 +139,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_METHOD_SIMPLE(ApplyRegeneration, Gecko::CharacterProgressData)
         WRAPPING_ADD_METHOD_SIMPLE(ApplyActionCost, Gecko::CharacterProgressData)
         WRAPPING_ADD_METHOD_SIMPLE(UpdateAvailableAP, Gecko::CharacterProgressData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetIntStatValue, Gecko::CharacterProgressData)
-        WRAPPING_ADD_METHOD_SIMPLE(SetIntStatValue, Gecko::CharacterProgressData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(HealthPointsCurrent, Gecko::CharacterProgressData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(MagicPointsCurrent, Gecko::CharacterProgressData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(EnergyPointsCurrent, Gecko::CharacterProgressData)
@@ -203,8 +208,9 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
     // CharacterSkillData.h
     PyBindClass<Gecko::CharacterSkillData>(m, "CharacterSkillData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterSkillData)
         WRAPPING_ADD_METHOD_SIMPLE(SetAllSkillCurrentValues, Gecko::CharacterSkillData)
-        WRAPPING_ADD_METHOD_SIMPLE(SetAllSkillRankingValues, Gecko::CharacterSkillData)
+        WRAPPING_ADD_METHOD_SIMPLE(SetAllSkillRankValues, Gecko::CharacterSkillData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(BarbarianCurrent, Gecko::CharacterSkillData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(BarbarianRank, Gecko::CharacterSkillData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(MageCurrent, Gecko::CharacterSkillData)
@@ -342,17 +348,29 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(WindCurrent, Gecko::CharacterSkillData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(WindRank, Gecko::CharacterSkillData)
     ;
+    PyBindVector<Gecko::CharacterSkillDataArray>(m, "CharacterSkillDataArray");
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterSkillDataToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterSkillDataArrayToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillDataFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillDataArrayFromJsonString, Gecko);
 
     // CharacterSkillUseData.h
     PyBindClass<Gecko::CharacterSkillUseData>(m, "CharacterSkillUseData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterSkillUseData)
         WRAPPING_ADD_METHOD_SIMPLE(AddSkillUse, Gecko::CharacterSkillUseData)
         WRAPPING_ADD_METHOD_SIMPLE(GetSkillUseCount, Gecko::CharacterSkillUseData)
     ;
+    PyBindVector<Gecko::CharacterSkillUseDataArray>(m, "CharacterSkillUseDataArray");
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterSkillUseDataToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterSkillUseDataArrayToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillUseDataFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillUseDataArrayFromJsonString, Gecko);
 
     // CharacterStatChangeData.h
     PyBindClass<Gecko::CharacterStatChangeData>(m, "CharacterStatChangeData")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterStatChangeData)
         WRAPPING_ADD_METHOD_POLICY(GetPassiveChanges, Gecko::CharacterStatChangeData, PyBindReturnCopy)
         WRAPPING_ADD_METHOD_POLICY(GetActiveChanges, Gecko::CharacterStatChangeData, PyBindReturnCopy)
         WRAPPING_ADD_METHOD_POLICY(GetActionableChanges, Gecko::CharacterStatChangeData, PyBindReturnCopy)
@@ -372,4 +390,9 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionableItemDataArray, Gecko::CharacterStatChangeData)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ProlongedStatChanges, Gecko::CharacterStatChangeData)
     ;
+    PyBindVector<Gecko::CharacterStatChangeDataArray>(m, "CharacterStatChangeDataArray");
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterStatChangeDataToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterStatChangeDataArrayToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterStatChangeDataFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterStatChangeDataArrayFromJsonString, Gecko);
 }

@@ -2,6 +2,7 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Battle/BattleEvents.h"
+#include "Battle/BattleManager.h"
 #include "Character/CharacterManager.h"
 
 namespace Gecko
@@ -135,7 +136,10 @@ void HandleBattleRoundAdvanced(const IndexedString& sCharacterID)
     }
 
     // Remove expired prolonged stat changes
-    character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges();
+    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
+    Int iCurrentAttack = character.GetBattleDataBase().GetAttackCounter();
+    Int iCurrentDefend = character.GetBattleDataBase().GetDefendCounter();
+    character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
 void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
@@ -170,7 +174,10 @@ void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
     character.GetBattleDataBase().SetAttackCounter(character.GetBattleDataBase().GetAttackCounter() + 1);
 
     // Remove expired prolonged stat changes
-    character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges();
+    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
+    Int iCurrentAttack = character.GetBattleDataBase().GetAttackCounter();
+    Int iCurrentDefend = character.GetBattleDataBase().GetDefendCounter();
+    character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
 void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
@@ -210,7 +217,10 @@ void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
     character.GetBattleDataBase().SetDefendCounter(character.GetBattleDataBase().GetDefendCounter() + 1);
 
     // Remove expired prolonged stat changes
-    character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges();
+    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
+    Int iCurrentAttack = character.GetBattleDataBase().GetAttackCounter();
+    Int iCurrentDefend = character.GetBattleDataBase().GetDefendCounter();
+    character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
 void HandleBattleChoosingTargets(const IndexedString& sCharacterID, const IndexedStringArray& vDestTargets)

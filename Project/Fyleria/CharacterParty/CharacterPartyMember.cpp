@@ -2,6 +2,11 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "CharacterParty/CharacterPartyMember.h"
+#include "Character/CharacterManager.h"
+#include "Character/CharacterTypes.h"
+#include "Items/ItemTree.h"
+#include "Utility/Constants.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -166,7 +171,7 @@ Bool CharacterPartyMember::RemoveEquippedItem(const TreeIndex& index, const Inde
     CharacterPartyEquippedItem equipItem;
     equipItem.SetTreeIndex(index);
     equipItem.SetItemSlot(sEquipSlot);
-    STDVectorRemoveElement<CharacterPartyEquippedItem>(GetEquippedItems(), equipItem);
+    RemoveVectorElement<CharacterPartyEquippedItem>(GetEquippedItems(), equipItem);
     return true;
 }
 
@@ -227,7 +232,8 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const IndexedString& sWeaponSe
     }
 
     // Translate left/right to primary/secondary
-    const CharacterHandednessType eHandedness = StringToCharacterHandednessType(GetHandedness());
+    const Character& character = CharacterManager::GetInstance()->GetCharacter(GetCharacterID());
+    const CharacterHandednessType eHandedness = StringToCharacterHandednessType(character.GetBasicData().GetHandedness());
     switch(eHandedness)
     {
         case CharacterHandednessType::LeftHanded:

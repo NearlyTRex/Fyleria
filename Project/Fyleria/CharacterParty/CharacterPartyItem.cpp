@@ -5,6 +5,7 @@
 #include "Character/CharacterTypes.h"
 #include "Items/ItemTypes.h"
 #include "Items/ItemTree.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -20,7 +21,7 @@ CharacterPartyItem::CharacterPartyItem(const Json& jsonData)
 
 Bool CharacterPartyItem::DoesMatchSlot(const IndexedString& sSlot) const
 {
-    return STDVectorDoesIntersectElement<IndexedString>(GetApplicableEquipmentSlots(), sSlot);
+    return DoesVectorIntersectElement<IndexedString>(GetApplicableEquipmentSlots(), sSlot);
 }
 
 Bool CharacterPartyItem::CanAddAmount(UInt uAmount) const
@@ -48,7 +49,7 @@ Bool CharacterPartyItem::AddAmount(UInt uAmount)
     if(CanAddAmount(uAmount))
     {
         const UInt kuMaxUInt = STDNumericLimits<UInt>::max();
-        UInt uNewAmount = STDClip<UInt>(GetAmount() + uAmount, 0, kuMaxUInt);
+        UInt uNewAmount = ClipValue<UInt>(GetAmount() + uAmount, 0, kuMaxUInt);
         SetAmount(uNewAmount);
         return true;
     }
@@ -60,7 +61,7 @@ Bool CharacterPartyItem::RemoveAmount(UInt uAmount)
     if(CanRemoveAmount(uAmount))
     {
         const UInt kuMaxInt = STDNumericLimits<Int>::max();
-        Int iNewAmount = STDClip<Int>((Int)GetAmount() - (Int)uAmount, 0, kuMaxInt);
+        Int iNewAmount = ClipValue<Int>((Int)GetAmount() - (Int)uAmount, 0, kuMaxInt);
         SetAmount((UInt)iNewAmount);
         return true;
     }

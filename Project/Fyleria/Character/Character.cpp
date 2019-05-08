@@ -14,6 +14,9 @@
 namespace Gecko
 {
 
+CharacterProgressData Character::s_EmptyCharacterProgressData = {};
+CharacterBattleData Character::s_EmptyCharacterBattleData = {};
+
 Character::Character()
 {
 }
@@ -78,7 +81,7 @@ const CharacterProgressData& Character::GetProgressDataSegment(const IndexedStri
         case CharacterSegmentType::Base: return GetProgressDataBase();
         case CharacterSegmentType::Passive: return GetProgressDataPassives();
         case CharacterSegmentType::Active: return GetProgressDataActives();
-        default: throw LogicError("Invalid character segment type: " + sSegment.Get());
+        default: break;
     }
     return s_EmptyCharacterProgressData;
 }
@@ -96,7 +99,7 @@ const CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& 
         case CharacterSegmentType::Base: return GetBattleDataBase();
         case CharacterSegmentType::Passive: return GetBattleDataPassives();
         case CharacterSegmentType::Active: return GetBattleDataActives();
-        default: throw LogicError("Invalid character segment type: " + sSegment.Get());
+        default: break;
     }
     return s_EmptyCharacterBattleData;
 }
@@ -332,7 +335,10 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
     }
 
     // Apply prolonged stat changes
-    for(const StatChangeEntry& entry : GetStatChangeData().GetProlongedStatChangeEntries())
+    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
+    Int iCurrentAttack = GetBattleDataBase().GetAttackCounter();
+    Int iCurrentDefend = GetBattleDataBase().GetDefendCounter();
+    for(const StatChangeEntry& entry : GetStatChangeData().GetProlongedStatChangeEntries(iCurrentRound, iCurrentAttack, iCurrentDefend))
     {
         CharacterManager::GetInstance()->ApplyStatChangeEntry(sDestSegment, entry);
     }

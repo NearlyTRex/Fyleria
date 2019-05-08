@@ -1,7 +1,7 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Character/CharacterBattleData.h"
+#include "CharacterData/CharacterBattleData.h"
 #include "Character/CharacterTypes.h"
 #include "Config/ConfigManager.h"
 #include "Items/ItemTree.h"
@@ -104,14 +104,14 @@ void CharacterBattleData::FinishBattle(CharacterProgressData& progressData)
 
 Bool CharacterBattleData::CanRegenerateFromStat(const IndexedString& sRegenStat) const
 {
-    const CharacterProgressStatType eProgressType = StringToCharacterProgressStatType(sRegenStat);
+    const CharacterProgressStatType_Int eProgressType = StringToCharacterProgressStatType_Int(sRegenStat);
     switch(eProgressType)
     {
-        case CharacterProgressStatType::HealthRegen:
+        case CharacterProgressStatType_Int::HealthRegen:
             return (!GetIsDead());
-        case CharacterProgressStatType::MagicRegen:
+        case CharacterProgressStatType_Int::MagicRegen:
             return (!GetIsDead());
-        case CharacterProgressStatType::EnergyRegen:
+        case CharacterProgressStatType_Int::EnergyRegen:
             return true;
         default:
             break;

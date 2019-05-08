@@ -12,6 +12,14 @@
 namespace Gecko
 {
 
+BETTER_ENUM(SkillFunctionNodeType, Int,
+    None,
+    GetRank,
+    SetRank,
+    GetCurrent,
+    SetCurrent
+);
+
 BETTER_ENUM(SkillTreeType, Int,
     None,
     Affinity,
@@ -127,6 +135,8 @@ BETTER_ENUM(SkillAffinityType, Int,
     Wind
 );
 
+
+MAKE_ENUM_GETSTRINGARRAY_DECL(SkillFunctionNodeType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(SkillTreeType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(SkillWeaponBaseType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(SkillWeaponType);
@@ -136,6 +146,7 @@ MAKE_ENUM_GETSTRINGARRAY_DECL(SkillCombatType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(SkillCraftingType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(SkillAffinityType);
 
+MAKE_ENUM_CONVERTERS_DECL(SkillFunctionNodeType);
 MAKE_ENUM_CONVERTERS_DECL(SkillTreeType);
 MAKE_ENUM_CONVERTERS_DECL(SkillWeaponBaseType);
 MAKE_ENUM_CONVERTERS_DECL(SkillWeaponType);

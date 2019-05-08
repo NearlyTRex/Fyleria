@@ -5,6 +5,7 @@
 #define _GECKO_CHARACTER_SKILL_DATA_H_
 
 #include "Character/CharacterTypes.h"
+#include "Skills/SkillTypes.h"
 
 namespace Gecko
 {
@@ -14,60 +15,34 @@ class CharacterSkillData
 public:
 
     // Types
-    typedef UByte (CharacterSkillData::*CharacterSkillFunction_Get)() const;
-    typedef void (CharacterSkillData::*CharacterSkillFunction_Set)(UByte);
-
-    // Character skill functions
-    struct CharacterSkillFunctionNode
-    {
-        // Constructor
-        CharacterSkillFunctionNode()
-            : fnGetCurrent(nullptr)
-            , fnGetRank(nullptr)
-            , fnSetCurrent(nullptr)
-            , fnSetRank(nullptr)
-        {}
-
-        // Check if pointers are valid
-        Bool IsValid() const
-        {
-            return (
-                fnGetCurrent != nullptr &&
-                fnGetRank != nullptr &&
-                fnSetCurrent != nullptr &&
-                fnSetRank != nullptr
-            );
-        }
-
-        // Accessors
-        UByte GetCurrent(const CharacterSkillData& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetCurrent)(); }
-        UByte GetRank(const CharacterSkillData& obj) const { return CALL_MEMBER_FN_PTR(obj, fnGetRank)(); }
-        void SetCurrent(CharacterSkillData& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetCurrent)(uValue); }
-        void SetRank(CharacterSkillData& obj, UByte uValue) { CALL_MEMBER_FN_PTR(obj, fnSetRank)(uValue); }
-
-        // Pointers
-        CharacterSkillFunction_Get fnGetCurrent;
-        CharacterSkillFunction_Get fnGetRank;
-        CharacterSkillFunction_Set fnSetCurrent;
-        CharacterSkillFunction_Set fnSetRank;
-    };
+    typedef BoostAny CharacterSkillFunction;
+    typedef STDMap<IndexedString, CharacterSkillFunction> CharacterSkillFunctionNode;
+    typedef STDMap<IndexedString, CharacterSkillFunctionNode> CharacterSkillFunctionMap;
 
     // Constructors
     CharacterSkillData();
     ~CharacterSkillData();
 
-    // Clear skill data
+    // Clear all data
     void Clear();
 
     // Set all skill data to a specific value
     void SetAllSkillCurrentValues(UByte uValue);
-    void SetAllSkillRankingValues(UByte uValue);
+    void SetAllSkillRankValues(UByte uValue);
 
     // Update skill rankings
     Bool UpdateSkillRanking(const IndexedString& sSkillType);
 
-    // Get skill ranking/current functions
-    CharacterSkillFunctionNode GetSkillFunctions(const IndexedString& sSkillType) const;
+    // Get skill Rank/current functions
+    const CharacterSkillFunctionNode& GetSkillFunctions(const IndexedString& sSkillType) const;
+    const CharacterSkillFunction& GetSkillFunction(const IndexedString& sSkillType, const IndexedString& sNodeType) const;
+    UByteGetFunction GetSkillGetRankFunction(const IndexedString& sSkillType) const;
+    UByteSetFunction GetSkillSetRankFunction(const IndexedString& sSkillType) const;
+    UByteGetFunction GetSkillGetCurrentFunction(const IndexedString& sSkillType) const;
+    UByteSetFunction GetSkillSetCurrentFunction(const IndexedString& sSkillType) const;
+
+    // Skill map
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillFunctionMap, CharacterSkillFunctionMap);
 
     // Combat Skills
     MAKE_RAW_BASIC_TYPE_ACCESSORS(BarbarianCurrent, UByte);

@@ -6,6 +6,7 @@
 
 #include "Character/CharacterTypes.h"
 #include "Stats/ProlongedStatChange.h"
+#include "Utility/TreeIndex.h"
 
 namespace Gecko
 {
@@ -21,6 +22,9 @@ public:
     CharacterStatChangeData();
     ~CharacterStatChangeData();
 
+    // Clear all data
+    void Clear();
+
     // Get tree actives/passives
     const TreeIndexArray& GetPassiveChanges(const IndexedString& sTreeIndexType) const;
     const TreeIndexArray& GetActiveChanges(const IndexedString& sTreeIndexType) const;
@@ -35,16 +39,16 @@ public:
     const ProlongedStatChange& GetProlongedStatChange(const IndexedString& sKey) const;
 
     // Get stat change entry lists from prolonged entries
-    StatChangeEntryArray GetProlongedStatChangeEntries() const;
+    StatChangeEntryArray GetProlongedStatChangeEntries(Int iRound, Int iAttack, Int iDefend) const;
 
     // Determine if prolonged stat change exists
     Bool DoesProlongedStatChangeExist(const IndexedString& sKey) const;
 
     // Determine if prolonged change has fully expired
-    Bool HasProlongedStatChangeExpired(const IndexedString& sKey) const;
+    Bool HasProlongedStatChangeExpired(const IndexedString& sKey, Int iRound, Int iAttack, Int iDefend) const;
 
     // Remove all expired prolonged stat changes
-    void RemoveAllExpiredProlongedStatChanges();
+    void RemoveAllExpiredProlongedStatChanges(Int iRound, Int iAttack, Int iDefend);
 
     // Passive data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PassiveSkillDataArray, TreeIndexArray);

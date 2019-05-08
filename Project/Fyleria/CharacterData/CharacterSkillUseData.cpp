@@ -8,12 +8,16 @@ namespace Gecko
 
 CharacterSkillUseData::CharacterSkillUseData()
 {
-    // Skill use tracking
-    SetSkillUseTrackingMap({});
 }
 
 CharacterSkillUseData::~CharacterSkillUseData()
 {
+}
+
+void CharacterSkillUseData::Clear()
+{
+    // Skill use tracking
+    SetSkillUseTrackingMap({});
 }
 
 void CharacterSkillUseData::AddSkillUse(const IndexedString& sSkillType, UInt uNum)

@@ -71,6 +71,22 @@ typedef STDVector<String> StringArray;
 typedef STDVector<WString> WStringArray;
 typedef STDVector<InputFile> InputFileArray;
 typedef STDVector<OutputFile> OutputFileArray;
+typedef BoostFunction<Byte()> ByteGetFunction;
+typedef BoostFunction<void(Byte)> ByteSetFunction;
+typedef BoostFunction<Short()> ShortGetFunction;
+typedef BoostFunction<void(Short)> ShortSetFunction;
+typedef BoostFunction<Int()> IntGetFunction;
+typedef BoostFunction<void(Int)> IntSetFunction;
+typedef BoostFunction<UByte()> UByteGetFunction;
+typedef BoostFunction<void(UByte)> UByteSetFunction;
+typedef BoostFunction<UShort()> UShortGetFunction;
+typedef BoostFunction<void(UShort)> UShortSetFunction;
+typedef BoostFunction<UInt()> UIntGetFunction;
+typedef BoostFunction<void(UInt)> UIntSetFunction;
+typedef BoostFunction<Float()> FloatGetFunction;
+typedef BoostFunction<void(Float)> FloatSetFunction;
+typedef BoostFunction<Double()> DoubleGetFunction;
+typedef BoostFunction<void(Double)> DoubleSetFunction;
 
 };
 

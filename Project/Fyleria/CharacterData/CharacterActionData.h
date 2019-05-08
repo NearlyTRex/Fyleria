@@ -18,6 +18,9 @@ public:
     CharacterActionData();
     ~CharacterActionData();
 
+    // Clear all data
+    void Clear();
+
     // List of character actions
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(AvailableActions, CharacterActionArray);
 

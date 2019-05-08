@@ -9,6 +9,8 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/format.hpp>
 #include <boost/filesystem.hpp>
+#include <boost/function.hpp>
+#include <boost/bind.hpp>
 
 // External function defines
 #define BoostAnyCast boost::any_cast
@@ -17,6 +19,8 @@
 
 // External type defines
 #define BoostAny boost::any
+#define BoostFunction boost::function
+#define BoostBind boost::bind
 #define BoostFilesystemPath boost::filesystem::path
 
 // External exception defines

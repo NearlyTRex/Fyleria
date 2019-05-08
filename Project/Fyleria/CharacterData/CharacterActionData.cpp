@@ -8,12 +8,16 @@ namespace Gecko
 
 CharacterActionData::CharacterActionData()
 {
-    // List of character actions
-    GetAvailableActions().clear();
 }
 
 CharacterActionData::~CharacterActionData()
 {
+}
+
+void CharacterActionData::Clear()
+{
+    // List of character actions
+    GetAvailableActions().clear();
 }
 
 Bool CharacterActionData::operator==(const CharacterActionData& other) const

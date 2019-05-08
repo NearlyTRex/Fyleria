@@ -10,6 +10,14 @@ const TreeIndexArray CharacterStatChangeData::s_vEmptyChanges = {};
 
 CharacterStatChangeData::CharacterStatChangeData()
 {
+}
+
+CharacterStatChangeData::~CharacterStatChangeData()
+{
+}
+
+void CharacterStatChangeData::Clear()
+{
     // Passive data
     GetPassiveSkillDataArray().clear();
     GetPassiveItemDataArray().clear();
@@ -24,10 +32,6 @@ CharacterStatChangeData::CharacterStatChangeData()
 
     // Prolonged stat changes
     SetProlongedStatChanges({});
-}
-
-CharacterStatChangeData::~CharacterStatChangeData()
-{
 }
 
 const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const IndexedString& sTreeIndexType) const
@@ -95,7 +99,7 @@ const ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const
     return (GetProlongedStatChanges().at(sKey));
 }
 
-StatChangeEntryArray CharacterStatChangeData::GetProlongedStatChangeEntries() const
+StatChangeEntryArray CharacterStatChangeData::GetProlongedStatChangeEntries(Int iRound, Int iAttack, Int iDefend) const
 {
     // Find all prolonged stat change entries that match current conditions
     StatChangeEntryArray vEntries;
@@ -103,7 +107,7 @@ StatChangeEntryArray CharacterStatChangeData::GetProlongedStatChangeEntries() co
     {
         // Ignore expired entries
         const IndexedString& sKey = IndexedString(it->first);
-        if(HasProlongedStatChangeExpired(sKey))
+        if(HasProlongedStatChangeExpired(sKey, iRound, iAttack, iDefend))
         {
             continue;
         }
@@ -112,9 +116,9 @@ StatChangeEntryArray CharacterStatChangeData::GetProlongedStatChangeEntries() co
         const ProlongedStatChange& change = it->second;
         const StatChangeEntry& entry = change.GetStatChangeEntry();
         if(
-            (change.IsValidRound() && change.GetRound() == BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex()) ||
-            (change.IsValidAttack() && change.GetAttack() == GetAttackCounter()) ||
-            (change.IsValidDefend() && change.GetDefend() == GetDefendCounter()))
+            (change.IsValidRound() && change.GetRound() == iRound) ||
+            (change.IsValidAttack() && change.GetAttack() == iAttack) ||
+            (change.IsValidDefend() && change.GetDefend() == iDefend))
         {
             vEntries.push_back(entry);
         }
@@ -127,22 +131,22 @@ Bool CharacterStatChangeData::DoesProlongedStatChangeExist(const IndexedString& 
     return (GetProlongedStatChanges().find(sKey) != GetProlongedStatChanges().end());
 }
 
-Bool CharacterStatChangeData::HasProlongedStatChangeExpired(const IndexedString& sKey) const
+Bool CharacterStatChangeData::HasProlongedStatChangeExpired(const IndexedString& sKey, Int iRound, Int iAttack, Int iDefend) const
 {
     const ProlongedStatChange& change = GetProlongedStatChange(sKey);
     return (
-        (change.IsValidRound() && change.GetRound() < BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex()) ||
-        (change.IsValidAttack() && change.GetAttack() < GetAttackCounter()) ||
-        (change.IsValidDefend() && change.GetDefend() < GetDefendCounter())
+        (change.IsValidRound() && change.GetRound() < iRound) ||
+        (change.IsValidAttack() && change.GetAttack() < iAttack) ||
+        (change.IsValidDefend() && change.GetDefend() < iDefend)
     );
 }
 
-void CharacterStatChangeData::RemoveAllExpiredProlongedStatChanges()
+void CharacterStatChangeData::RemoveAllExpiredProlongedStatChanges(Int iRound, Int iAttack, Int iDefend)
 {
     IndexedStringArray vKeys;
     for(auto it = GetProlongedStatChanges().begin(); it != GetProlongedStatChanges().end(); it++)
     {
-        if(HasProlongedStatChangeExpired(IndexedString(it->first)))
+        if(HasProlongedStatChangeExpired(IndexedString(it->first), iRound, iAttack, iDefend))
         {
             vKeys.push_back(IndexedString(it->first));
         }

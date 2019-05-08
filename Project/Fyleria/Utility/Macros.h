@@ -237,7 +237,7 @@ void Set##name(const type& var##name)                                           
     {                                                                               \
         type varStatValue = type();                                                 \
         IndexedString varStatName = IndexedString(eType._to_string());              \
-        if (obj.GetStatValue(obj.GetStats(), varStatName, varStatValue))            \
+        if (GetStatValue<type>(obj.GetStats(), varStatName, varStatValue))          \
         {                                                                           \
             jsonData[eType._to_string()] = varStatValue;                            \
         }                                                                           \
@@ -250,7 +250,7 @@ void Set##name(const type& var##name)                                           
     {                                                                               \
         type varStatValue = jsonData[eType._to_string()];                           \
         IndexedString varStatName = IndexedString(eType._to_string());              \
-        obj.SetStatValue(obj.GetStats(), varStatName, varStatValue);                \
+        SetStatValue<type>(obj.GetStats(), varStatName, varStatValue);              \
     }                                                                               \
 }
 

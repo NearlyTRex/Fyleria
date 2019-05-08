@@ -20,6 +20,9 @@ public:
     CharacterSkillUseData();
     ~CharacterSkillUseData();
 
+    // Clear all data
+    void Clear();
+
     // Add skill use
     void AddSkillUse(const IndexedString& sSkillType, UInt uNum);
 
