@@ -196,11 +196,11 @@ Bool StartsWith(const T& sText, const T& sToken)
 template <typename T>
 Bool EndsWith(const T& sText, const T& sToken)
 {
-	if(sText.size() >= sToken.size())
+    if(sText.size() >= sToken.size())
     {
-		return (sText.compare(sText.size() - sToken.size(), sToken.size(), sToken) == 0);
+        return (sText.compare(sText.size() - sToken.size(), sToken.size(), sToken) == 0);
     }
-	return false;
+    return false;
 }
 
 };
