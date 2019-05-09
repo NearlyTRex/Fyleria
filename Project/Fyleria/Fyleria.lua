@@ -39,6 +39,7 @@ appFyleria_libs = {
     "Boost",
     "FantasyName",
     "MicroPather",
+    "Pistache",
     "PyBind",
     "Python3",
     "TinyXML2",

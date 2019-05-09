@@ -55,22 +55,4 @@ extern "C" DLL_PUBLIC bool DLL_GetModuleResults(const char* sResultsID, char* sR
 // Verify module data
 extern "C" DLL_PUBLIC void DLL_VerifyModuleData();
 
-// Set user config folder
-extern "C" DLL_PUBLIC void DLL_SetUserConfigFolderOverride(const char* sFolder);
-
-// Set user data folder
-extern "C" DLL_PUBLIC void DLL_SetUserDataFolderOverride(const char* sFolder);
-
-// Set user cache folder
-extern "C" DLL_PUBLIC void DLL_SetUserCacheFolderOverride(const char* sFolder);
-
-// Start program running script
-extern "C" DLL_PUBLIC void DLL_Start_RunFileScript(const char* sScriptFilename);
-
-// Start program running web socket server
-extern "C" DLL_PUBLIC void DLL_Start_RunWebsocketServer(const char* sHostname, int iPort);
-
-// Start program running rest server
-extern "C" DLL_PUBLIC void DLL_Start_RunRestServer(const char* sHostname, const char* sWebRoot, int iPort, int iThreadCount);
-
 #endif

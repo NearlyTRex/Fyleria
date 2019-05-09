@@ -161,13 +161,7 @@ void VerifySkillTrees()
 
     // Load character generator
     CharacterGenerator generator;
-    IndexedString sGeneratorFile(ConfigManager::GetInstance()->GetCharacterGeneratorStaticFile());
-    Bool bLoadedGenerator = generator.FromFile(sGeneratorFile);
-    ASSERT_ERROR(bLoadedGenerator, "Could not load generator file '%s'\n", sGeneratorFile.c_str());
-    if(!bLoadedGenerator)
-    {
-        return;
-    }
+    generator.RandomizeAll();
 
     // Generate a character and party
     const IndexedString sCharacterID("CharacterID");

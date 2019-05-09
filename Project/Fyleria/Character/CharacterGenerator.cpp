@@ -74,17 +74,17 @@ CharacterProgressData CharacterGenerator::GenerateProgressData() const
 
 IndexedString CharacterGenerator::GenerateFirstName() const
 {
-    return IndexedString(GetUseRandomName() ? GenerateRandomFantasyName(GetFirstNamePattern()) : GetFirstName());
+    return IndexedString(GetUseRandomName() ? GenerateRandomFantasyName(GetCapitalizationToken().Get() + GetFirstNamePattern()) : GetFirstName());
 }
 
 IndexedString CharacterGenerator::GenerateLastName() const
 {
-    return IndexedString(GetUseRandomName() ? GenerateRandomFantasyName(GetLastNamePattern()) : GetLastName());
+    return IndexedString(GetUseRandomName() ? GenerateRandomFantasyName(GetCapitalizationToken().Get() + GetLastNamePattern()) : GetLastName());
 }
 
 Int CharacterGenerator::GenerateAge() const
 {
-    return GetRandomIntValue<Int>(GetAgeStart(), GetAgeEnd());
+    return (GetUseRandomAge() ? GetRandomIntValue<Int>(GetAgeStart(), GetAgeEnd()) : GetAge());
 }
 
 IndexedString CharacterGenerator::GenerateGender() const
@@ -120,6 +120,72 @@ IndexedString CharacterGenerator::GenerateTransformedRace() const
 IndexedString CharacterGenerator::GeneratePowerSet() const
 {
     return IndexedString(GetUseRandomPowerSet() ? GetRandomEnumValue<CharacterPowerSetType>() : GetPowerSet());
+}
+
+void CharacterGenerator::RandomizeBasics()
+{
+    SetFirstNamePattern(GetRandomNamePattern().Get());
+    SetLastNamePattern(GetRandomNamePattern().Get());
+    SetAgeStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetAgeEnd(GetRandomIntValue<Int>(GetAgeEnd() + 1, INT_MAX));
+    SetUseRandomName(true);
+    SetUseRandomAge(true);
+    SetUseRandomGender(true);
+    SetUseRandomHair(true);
+    SetUseRandomEyes(true);
+    SetUseRandomHandedness(true);
+    SetUseRandomBaseRace(true);
+    SetUseRandomTransformedRace(true);
+    SetUseRandomPowerSet(true);
+}
+
+void CharacterGenerator::RandomizeMeters()
+{
+    SetHPStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetHPEnd(GetRandomIntValue<Int>(GetHPStart() + 1, INT_MAX));
+    SetMPStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetMPEnd(GetRandomIntValue<Int>(GetMPStart() + 1, INT_MAX));
+    SetEPStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetEPEnd(GetRandomIntValue<Int>(GetEPStart() + 1, INT_MAX));
+    SetHPRegenStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetHPRegenEnd(GetRandomIntValue<Int>(GetHPRegenStart() + 1, INT_MAX));
+    SetMPRegenStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetMPRegenEnd(GetRandomIntValue<Int>(GetMPRegenStart() + 1, INT_MAX));
+    SetEPRegenStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetEPRegenEnd(GetRandomIntValue<Int>(GetEPRegenStart() + 1, INT_MAX));
+    SetSpeedStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetSpeedEnd(GetRandomIntValue<Int>(GetSpeedStart() + 1, INT_MAX));
+}
+
+void CharacterGenerator::RandomizeScoring()
+{
+    SetBluntATKStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetBluntATKEnd(GetRandomIntValue<Int>(GetBluntATKStart() + 1, INT_MAX));
+    SetBluntDEFStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetBluntDEFEnd(GetRandomIntValue<Int>(GetBluntDEFStart() + 1, INT_MAX));
+    SetPierceATKStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetPierceATKEnd(GetRandomIntValue<Int>(GetPierceATKStart() + 1, INT_MAX));
+    SetPierceDEFStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetPierceDEFEnd(GetRandomIntValue<Int>(GetPierceDEFStart() + 1, INT_MAX));
+    SetSlashATKStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetSlashATKEnd(GetRandomIntValue<Int>(GetSlashATKStart() + 1, INT_MAX));
+    SetSlashDEFStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetSlashDEFEnd(GetRandomIntValue<Int>(GetSlashDEFStart() + 1, INT_MAX));
+    SetEnergyATKStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetEnergyATKEnd(GetRandomIntValue<Int>(GetEnergyATKStart() + 1, INT_MAX));
+    SetEnergyDEFStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetEnergyDEFEnd(GetRandomIntValue<Int>(GetEnergyDEFStart() + 1, INT_MAX));
+    SetMagicATKStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetMagicATKEnd(GetRandomIntValue<Int>(GetMagicATKStart() + 1, INT_MAX));
+    SetMagicDEFStart(GetRandomIntValue<Int>(1, INT_MAX));
+    SetMagicDEFEnd(GetRandomIntValue<Int>(GetMagicDEFStart() + 1, INT_MAX));
+}
+
+void CharacterGenerator::RandomizeAll()
+{
+    RandomizeBasics();
+    RandomizeMeters();
+    RandomizeScoring();
 }
 
 MAKE_JSON_BASIC_TYPE_CONVERTERS_IMPL(CharacterGenerator);

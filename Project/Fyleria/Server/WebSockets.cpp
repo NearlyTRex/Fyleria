@@ -2,8 +2,8 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Server/WebSockets.h"
-#include "Utility/Macros.h"
 #include "Interface/Interface.h"
+#include "Utility/Macros.h"
 
 namespace Gecko
 {
@@ -21,16 +21,19 @@ WebsocketServer::WebsocketServer()
 
 void WebsocketServer::SetHostname(const String& sHost)
 {
+    // Set host name
     m_sHost = sHost;
 }
 
 void WebsocketServer::SetPort(Int iPort)
 {
+    // Set port number
     m_iPort = iPort;
 }
 
 void WebsocketServer::Reset()
 {
+    // Reset server
     LOG_STATEMENT("Resetting server");
     m_pServer = STDMakeSharedPtr<WebsocketAsioServer>();
 }
@@ -120,14 +123,14 @@ void WebsocketServer::OnClose(WebsocketConnectionHandlePtr pHandle)
 
 void WebsocketServer::OnMessage(WebsocketConnectionHandlePtr pHandle, WebsocketAsioMessagePtr pMessage)
 {
+    // Lock access
+    STDLockGuard<STDMutex> lock(m_ConnectionMutex);
+
     // Ignore if closing
     if (m_bClosing)
     {
         return;
     }
-
-    // Lock access
-    STDLockGuard<STDMutex> lock(m_ConnectionMutex);
 
     // Parse message payload
     Json jsonData = JsonParse(pMessage->get_payload());
@@ -219,6 +222,10 @@ void WebsocketServer::SendPayload(WebsocketConnectionHandlePtr pHandle, const Js
 
 const WebsocketConnectionMap& WebsocketServer::GetConnectionMap() const
 {
+    // Lock access
+    STDLockGuard<STDMutex> lock(m_ConnectionMutex);
+    
+    // Get connection map
     return m_ConnectionMap;
 }
 

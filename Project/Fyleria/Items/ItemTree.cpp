@@ -4,10 +4,10 @@
 #include "Items/ItemTree.h"
 #include "Config/ConfigManager.h"
 #include "Character/CharacterManager.h"
-#include "Character/CharacterPartyManager.h"
+#include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Constants.h"
-#include "Utility/TypesFantasyName.h"
-#include "Utility/TypesJson.h"
+#include "Utility/FantasyName.h"
+#include "Utility/Json.h"
 
 namespace Gecko
 {
@@ -109,13 +109,7 @@ void VerifyItemTrees()
 
     // Load character generator
     CharacterGenerator generator;
-    IndexedString sGeneratorFile(ConfigManager::GetInstance()->GetCharacterGeneratorRandomFile());
-    Bool bLoadedGenerator = generator.FromFile(sGeneratorFile);
-    ASSERT_ERROR(bLoadedGenerator, "Could not load generator file '%s'\n", sGeneratorFile.c_str());
-    if(!bLoadedGenerator)
-    {
-        return;
-    }
+    generator.RandomizeAll();
 
     // Generate a character and party
     const IndexedString sCharacterID("CharacterID");

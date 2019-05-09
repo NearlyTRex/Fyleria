@@ -8,6 +8,7 @@ require "Libs/FantasyName/FantasyName"
 require "Libs/ImmutableString/ImmutableString"
 require "Libs/MicroPather/MicroPather"
 require "Libs/ModernCPPJson/ModernCPPJson"
+require "Libs/Pistache/Pistache"
 require "Libs/PyBind/PyBind"
 require "Libs/Python3/Python3"
 require "Libs/TinyXML2/TinyXML2"
@@ -46,6 +47,7 @@ pic "On"
     includedirs(libImmutableString_includedirs)
     includedirs(libBetterEnums_includedirs)
     includedirs(libModernCPPJson_includedirs)
+    includedirs(libPistache_includedirs)
     includedirs(libPyBind_includedirs)
     includedirs(libPython3_includedirs)
     includedirs(libWebsocketpp_includedirs)
@@ -123,6 +125,17 @@ pic "On"
     files(libMicroPather_sources)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("MicroPather"))
+
+-- Pistache
+project "Pistache"
+kind "SharedLib"
+language "C++"
+pic "On"
+    includedirs(libPistache_includedirs)
+    files(libPistache_sources)
+    links(libPistache_libs)
+    targetdir(GetTargetDirectory())
+    targetname(GetTargetName("Pistache"))
 
 -- Python3
 project "Python3"

@@ -52,6 +52,11 @@ IndexedString& IndexedString::operator=(const String& sStr)
     return *this;
 }
 
+IndexedString IndexedString::operator+(const IndexedString& other)
+{
+    return IndexedString(Get() + other.Get());
+}
+
 void IndexedString::Set(const String& sStr)
 {
     // Find out if new string is already stored

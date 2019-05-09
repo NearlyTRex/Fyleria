@@ -5,8 +5,8 @@
 #define _GECKO_UTILITY_TEMPLATES_H_
 
 // Internal includes
-#include <Utility/Assert.h>
-#include <Utility/Logging.h>
+#include "Utility/Assert.h"
+#include "Utility/Logging.h"
 
 namespace Gecko
 {

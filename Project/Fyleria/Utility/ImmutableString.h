@@ -8,7 +8,7 @@
 #include <immutable_string.h>
 
 // Internal includes
-#include <Utility/Standard.h>
+#include "Utility/Standard.h"
 
 namespace Gecko
 {

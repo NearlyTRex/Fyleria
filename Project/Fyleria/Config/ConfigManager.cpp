@@ -2,6 +2,8 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Config/ConfigManager.h"
+#include "Utility/Assert.h"
+#include "Utility/Converters.h"
 #include "Utility/Filesystem.h"
 
 namespace Gecko
@@ -10,8 +12,6 @@ namespace Gecko
 ConfigManager::ConfigManager()
     : Singleton<ConfigManager>()
     , m_Empty()
-    , m_tConfigs()
-    , m_sCurrentConfigName("")
 {
 }
 
@@ -33,21 +33,21 @@ Bool ConfigManager::LoadConfig(const String& sName, const String& sFile)
     }
 
     // Add config
-    m_tConfigs[sName] = Config(jsonData);
+    GetLoadedConfigs().insert({sName, Config(jsonData)});
     return true;
 }
 
 Bool ConfigManager::DoesConfigExist(const String& sName) const
 {
-    auto iSearch = m_tConfigs.find(sName);
-    return (iSearch != m_tConfigs.end());
+    auto iSearch = GetLoadedConfigs().find(sName);
+    return (iSearch != GetLoadedConfigs().end());
 }
 
 const Config& ConfigManager::GetConfig(const String& sName) const
 {
     ASSERT_ERROR(DoesConfigExist(sName), "Config with name '%s' was not registered", sName.c_str());
-    auto iSearch = m_tConfigs.find(sName);
-    return (iSearch != m_tConfigs.end()) ? iSearch->second : m_Empty;
+    auto iSearch = GetLoadedConfigs().find(sName);
+    return (iSearch != GetLoadedConfigs().end()) ? iSearch->second : m_Empty;
 }
 
 const Config& ConfigManager::GetCurrentConfig() const
@@ -63,16 +63,6 @@ String ConfigManager::GetPythonLib() const
 WString ConfigManager::GetPythonLibW() const
 {
     return ConvertStringToWideString(GetPythonLib());
-}
-
-const String& ConfigManager::GetCurrentConfigName() const
-{
-    return m_sCurrentConfigName;
-}
-
-void ConfigManager::SetCurrentConfigName(const String& sName)
-{
-    m_sCurrentConfigName = sName;
 }
 
 Bool ConfigManager::IsPosix() const

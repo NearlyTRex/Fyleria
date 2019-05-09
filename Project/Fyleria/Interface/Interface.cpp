@@ -7,8 +7,10 @@
 #include "Utility/Logging.h"
 #include "Utility/Types.h"
 #include "Utility/Python.h"
-#include "Utility/Trace.h"
+#include "Utility/StackTrace.h"
 #include "Utility/FantasyName.h"
+#include "Utility/Filesystem.h"
+#include "Utility/Errors.h"
 
 #include "Config/ConfigManager.h"
 
@@ -21,9 +23,9 @@
 #include "Battle/Battle_wrapper.h"
 #include "Config/Config_wrapper.h"
 #include "Character/Character_wrapper.h"
-#include "Character/CharacterAction_wrapper.h"
-#include "Character/CharacterData_wrapper.h"
-#include "Character/CharacterParty_wrapper.h"
+#include "CharacterAction/CharacterAction_wrapper.h"
+#include "CharacterData/CharacterData_wrapper.h"
+#include "CharacterParty/CharacterParty_wrapper.h"
 #include "Items/Items_wrapper.h"
 #include "Module/Module_wrapper.h"
 #include "Recipes/Recipes_wrapper.h"
@@ -58,15 +60,11 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
 
     // Load config data
     ConfigManager::GetInstance()->SetCurrentConfigName("Default");
-    String sConfigFileLocation = ConfigManager::GetInstance()->GetUserConfigFolderLocation("config.json");
-    if (!DoesFileExist(FilesystemPath(sConfigFileLocation)))
+    if(!ConfigManager::GetInstance()->LoadConfig("Default", ConfigManager::GetInstance()->GetUserConfigFile()))
     {
-        ERROR_FORMAT_STATEMENT("Config file %s was not found.\n", sConfigFileLocation.c_str());
-        return false;
-    }
-    if(!ConfigManager::GetInstance()->LoadConfig("Default", "config.json"))
-    {
-        ERROR_STATEMENT("Could not load config data");
+        ERROR_FORMAT_STATEMENT("Could not load config file '%s' in folder '%s'",
+            ConfigManager::GetInstance()->GetUserConfigFile().c_str(),
+            ConfigManager::GetInstance()->GetUserConfigFolder().c_str());
         return false;
     }
 
@@ -167,7 +165,7 @@ bool DLL_Internal_RunModuleFile(const char* sFile, const char* sResultsID)
         auto sMessage = error.what();
         error.restore();
         ERROR_FORMAT_STATEMENT("%s\n", sMessage);
-        throw STDModuleError(sMessage);
+        throw ModuleError(sMessage);
     }
     if(sResultsID)
     {
@@ -218,7 +216,7 @@ bool DLL_Internal_RunModuleCommand(const char* sCommand, const char* sResultsID)
         auto sMessage = error.what();
         error.restore();
         ERROR_FORMAT_STATEMENT("%s\n", sMessage);
-        throw STDModuleError(sMessage);
+        throw ModuleError(sMessage);
     }
     if(sResultsID)
     {
@@ -299,187 +297,6 @@ extern "C" DLL_PUBLIC void DLL_VerifyModuleData()
     // Verify trees
     VerifySkillTrees();
     VerifyItemTrees();
-}
-
-extern "C" DLL_PUBLIC void DLL_SetUserConfigFolderOverride(const char* sFolder)
-{
-    // Lock API call
-    STDLockGuard<STDMutex> lock(g_ModuleMutex);
-
-    // Set override
-    ConfigManager::GetInstance()->SetUserConfigFolderOverride(sFolder);
-}
-
-extern "C" DLL_PUBLIC void DLL_SetUserDataFolderOverride(const char* sFolder)
-{
-    // Lock API call
-    STDLockGuard<STDMutex> lock(g_ModuleMutex);
-
-    // Set override
-    ConfigManager::GetInstance()->SetUserDataFolderOverride(sFolder);
-}
-
-extern "C" DLL_PUBLIC void DLL_SetUserCacheFolderOverride(const char* sFolder)
-{
-    // Lock API call
-    STDLockGuard<STDMutex> lock(g_ModuleMutex);
-
-    // Set override
-    ConfigManager::GetInstance()->SetUserCacheFolderOverride(sFolder);
-}
-
-extern "C" DLL_PUBLIC void DLL_Start_RunFileScript(const char* sScriptFilename)
-{
-    // Register signal handler
-#ifdef DEBUG
-    SignalHandler signalHandler(GetTraceSignals());
-#endif
-
-    // Check that the script file exists
-    if(!InputFile(sScriptFilename).good())
-    {
-        ERROR_FORMAT_STATEMENT("Script file '%s' was not found\n", sScriptFilename);
-        return;
-    }
-
-    // Initialize module
-    if (!DLL_InitModule())
-    {
-        ERROR_STATEMENT("Unable to initialize module");
-        return;
-    }
-
-    // Run script
-    DLL_RunModuleFile(sScriptFilename);
-
-    // Finalize module
-    if (!DLL_FinalizeModule())
-    {
-        ERROR_STATEMENT("Unable to finalize module");
-        return;
-    }
-}
-
-#ifdef WIN32
-BOOL WebsocketServerCtrlHandler(DWORD fdwCtrlType)
-{
-    switch(fdwCtrlType)
-    {
-    case CTRL_C_EVENT:
-    case CTRL_CLOSE_EVENT:
-        PRINTF("\nHandling Ctrl event\n");
-        WebsocketServer::GetInstance()->Stop();
-        return TRUE;
-    default:
-        return FALSE;
-    }
-}
-BOOL RestServerCtrlHandler(DWORD fdwCtrlType)
-{
-    switch(fdwCtrlType)
-    {
-    case CTRL_C_EVENT:
-    case CTRL_CLOSE_EVENT:
-        PRINTF("\nHandling Ctrl event\n");
-        RestServer::GetInstance()->Stop();
-        return TRUE;
-    default:
-        return FALSE;
-    }
-}
-#else
-static void WebsocketServerCtrlHandler(int signo)
-{
-    PRINTF("\nHandling Ctrl event\n");
-    WebsocketServer::GetInstance()->Stop();
-}
-static void RestServerCtrlHandler(int signo)
-{
-    PRINTF("\nHandling Ctrl event\n");
-    RestServer::GetInstance()->Stop();
-}
-#endif
-
-extern "C" DLL_PUBLIC void DLL_Start_RunWebsocketServer(const char* sHostname, int iPort)
-{
-    // Register signal handler
-#ifdef DEBUG
-    SignalHandler signalHandler(GetTraceSignals());
-#endif
-
-    // Register control interrupt handler
-#ifdef WIN32
-    SetConsoleCtrlHandler((PHANDLER_ROUTINE)WebsocketServerCtrlHandler, TRUE);
-#else
-    struct sigaction sigact;
-    sigact.sa_handler = WebsocketServerCtrlHandler;
-    sigemptyset(&sigact.sa_mask);
-    sigact.sa_flags = 0;
-    sigaction(SIGINT, &sigact, NULL);
-    sigaction(SIGTERM, &sigact, NULL);
-#endif
-
-    // Initialize module
-    if (!DLL_InitModule())
-    {
-        ERROR_STATEMENT("Unable to initialize module");
-        return;
-    }
-
-    // Start server
-    WebsocketServer::GetInstance()->SetHostname(sHostname);
-    WebsocketServer::GetInstance()->SetPort(iPort);
-    WebsocketServer::GetInstance()->Reset();
-    WebsocketServer::GetInstance()->Start();
-
-    // Finalize module
-    if (!DLL_FinalizeModule())
-    {
-        ERROR_STATEMENT("Unable to finalize module");
-        return;
-    }
-}
-
-extern "C" DLL_PUBLIC void DLL_Start_RunRestServer(const char* sHostname, const char* sWebRoot, int iPort, int iThreadCount)
-{
-    // Register signal handler
-#ifdef DEBUG
-    SignalHandler signalHandler(GetTraceSignals());
-#endif
-
-    // Register control interrupt handler
-#ifdef WIN32
-    SetConsoleCtrlHandler((PHANDLER_ROUTINE)RestServerCtrlHandler, TRUE);
-#else
-    struct sigaction sigact;
-    sigact.sa_handler = RestServerCtrlHandler;
-    sigemptyset(&sigact.sa_mask);
-    sigact.sa_flags = 0;
-    sigaction(SIGINT, &sigact, NULL);
-    sigaction(SIGTERM, &sigact, NULL);
-#endif
-
-    // Initialize module
-    if (!DLL_InitModule())
-    {
-        ERROR_STATEMENT("Unable to initialize module");
-        return;
-    }
-
-    // Start server
-    RestServer::GetInstance()->SetHostname(sHostname);
-    RestServer::GetInstance()->SetWebRoot(sWebRoot);
-    RestServer::GetInstance()->SetPort(iPort);
-    RestServer::GetInstance()->SetThreadCount(iThreadCount);
-    RestServer::GetInstance()->Reset();
-    RestServer::GetInstance()->Start();
-
-    // Finalize module
-    if (!DLL_FinalizeModule())
-    {
-        ERROR_STATEMENT("Unable to finalize module");
-        return;
-    }
 }
 
 };

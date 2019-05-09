@@ -37,11 +37,18 @@ public:
     IndexedString GenerateTransformedRace() const;
     IndexedString GeneratePowerSet() const;
 
-    // -- Basics --
+    // Randomization
+    void RandomizeBasics();
+    void RandomizeMeters();
+    void RandomizeScoring();
+    void RandomizeAll();
+
+    // Basics
     MAKE_JSON_BASIC_TYPE_ACCESSORS(FirstName, String);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(LastName, String);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(FirstNamePattern, String);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(LastNamePattern, String);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(Age, Int);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(AgeStart, Int);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(AgeEnd, Int);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(Gender, String);
@@ -52,6 +59,7 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(TransformedRace, String);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(PowerSet, String);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomName, Bool);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomAge, Bool);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomGender, Bool);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomHair, Bool);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomEyes, Bool);
@@ -60,7 +68,7 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomTransformedRace, Bool);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomPowerSet, Bool);
 
-    // -- Meters --
+    // Meters
     MAKE_JSON_BASIC_TYPE_ACCESSORS(HPStart, Int);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(HPEnd, Int);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(MPStart, Int);
@@ -76,7 +84,7 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(SpeedStart, Int);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(SpeedEnd, Int);
 
-    // -- Attack and Defense Scoring --
+    // Attack and Defense Scoring
     MAKE_JSON_BASIC_TYPE_ACCESSORS(BluntATKStart, Int);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(BluntATKEnd, Int);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(BluntDEFStart, Int);

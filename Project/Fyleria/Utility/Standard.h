@@ -84,8 +84,11 @@
 #define STDPlaceholder1 std::placeholders::_1
 #define STDPlaceholder2 std::placeholders::_2
 #define STDPlaceholder3 std::placeholders::_3
+#define STDAtomic std::atomic
 #define STDMutex std::mutex
+#define STDRecursiveMutex std::recursive_mutex
 #define STDLockGuard std::lock_guard
+#define STDUniqueLock std::unique_lock
 #define STDException std::exception
 #define STDLogicErrorException std::logic_error
 #define STDRuntimeErrorException std::runtime_error

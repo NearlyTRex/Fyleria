@@ -10,8 +10,8 @@
 #endif
 
 // Internal includes
-#include <Utility/Standard.h>
-#include <Utility/Boost.h>
+#include "Utility/Standard.h"
+#include "Utility/Boost.h"
 
 namespace Gecko
 {

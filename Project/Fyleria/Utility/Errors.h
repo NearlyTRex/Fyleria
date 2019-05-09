@@ -5,8 +5,8 @@
 #define _GECKO_UTILITY_ERRORS_H_
 
 // Internal includes
-#include <Utility/Enum.h>
-#include <Utility/Types.h>
+#include "Utility/Enum.h"
+#include "Utility/Types.h"
 
 namespace Gecko
 {

@@ -26,6 +26,7 @@ public:
     // Operators
     IndexedString& operator=(const IndexedString& other);
     IndexedString& operator=(const String& sStr);
+    IndexedString operator+(const IndexedString& other);
 
     // Set/get string
     void Set(const String& sStr);

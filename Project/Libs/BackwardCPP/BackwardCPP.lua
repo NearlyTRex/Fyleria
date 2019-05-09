@@ -16,9 +16,7 @@ libBackwardCPP_sources = {
 
 -- Defines
 libBackwardCPP_defines = {
-    "BACKWARD_HAS_BFD=1",
-    "BACKWARD_HAS_DW=1",
-    "BACKWARD_HAS_DWARF=1"
+    "BACKWARD_HAS_DW=1"
 }
 
 -- Libs

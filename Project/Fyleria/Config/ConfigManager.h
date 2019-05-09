@@ -15,6 +15,9 @@ class ConfigManager : public Singleton<ConfigManager>
 {
 public:
 
+    // Types
+    typedef STDUnorderedMap<String, Config> ConfigMapping;
+
     // Constructors
     ConfigManager();
 
@@ -132,14 +135,16 @@ public:
     MAKE_CURRENT_CONFIG_SHORTCUT_STRING(SkillWeaponStealthStrikeFile);
 
     // Current config name
-    const String& GetCurrentConfigName() const;
-    void SetCurrentConfigName(const String& sName);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentConfigName, String);
 
     // Config data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserConfigFile, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserConfigFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserDataFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserCacheFolder, String);
+
+    // Configuration map
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(LoadedConfigs, ConfigMapping);
 
     // Platforms
     Bool IsPosix() const;
@@ -154,12 +159,6 @@ private:
 
     // Empty config
     const Config m_Empty;
-
-    // Loaded configs
-    STDUnorderedMap<String, Config> m_tConfigs;
-
-    // Current config name
-    String m_sCurrentConfigName;
 };
 
 };

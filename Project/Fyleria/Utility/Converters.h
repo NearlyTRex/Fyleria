@@ -5,7 +5,7 @@
 #define _GECKO_UTILITY_CONVERTERS_H_
 
 // Internal includes
-#include <Utility/Types.h>
+#include "Utility/Types.h"
 
 namespace Gecko
 {
