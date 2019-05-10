@@ -55,6 +55,7 @@ Project/Libs/jQuery/orig
 Project/Libs/MicroPather/orig
 Project/Libs/ModernCPPJson/orig
 Project/Libs/Phaser/orig
+Project/Libs/Pistache/orig
 Project/Libs/PyBind/orig
 Project/Libs/Python3/orig
 Project/Libs/TinyXML2/orig
@@ -63,5 +64,3 @@ Project/Libs/Websocketpp/orig
 Project/Libs/Zlib/orig
 Project/Programs/Premake5/orig
 Project/Programs/Tiled/orig
-
-
