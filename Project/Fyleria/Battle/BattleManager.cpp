@@ -8,8 +8,6 @@ namespace Gecko
 
 BattleManager::BattleManager()
     : Singleton<BattleManager>()
-    , m_tBattles()
-    , m_sCurrentBattleName()
 {
 }
 
@@ -18,57 +16,46 @@ void BattleManager::CreateBattle(const IndexedString& sBattleName)
     // Create a new battle
     ASSERT_ERROR(!DoesBattleExist(sBattleName), "Battle '%s' was already registered", sBattleName.c_str());
     Battle newBattle;
-    m_tBattles.insert({sBattleName, newBattle});
+    GetBattles().insert({sBattleName, newBattle});
 }
 
 void BattleManager::UnloadBattle(const IndexedString& sBattleName)
 {
     // Unload battle
     ASSERT_ERROR(DoesBattleExist(sBattleName), "Battle '%s' was not registered", sBattleName.c_str());
-    m_tBattles.erase(sBattleName);
+    GetBattles().erase(sBattleName);
 }
 
 Bool BattleManager::DoesBattleExist(const IndexedString& sBattleName) const
 {
     // Check if battle exists
-    auto iSearch = m_tBattles.find(sBattleName);
-    return (iSearch != m_tBattles.end());
-}
-
-void BattleManager::SetAsCurrentBattle(const IndexedString& sBattleName)
-{
-    // Set the given battle name as the current battle
-    ASSERT_ERROR(DoesBattleExist(sBattleName), "Battle '%s' was not registered", sBattleName.c_str());
-    m_sCurrentBattleName = sBattleName;
-}
-
-const IndexedString& BattleManager::GetCurrentBattleName() const
-{
-    return m_sCurrentBattleName;
-}
-
-Battle& BattleManager::GetBattle(const IndexedString& sBattleName)
-{
-    // Get battle
-    ASSERT_ERROR(DoesBattleExist(sBattleName), "Battle '%s' was not registered", sBattleName.c_str());
-    return m_tBattles[sBattleName];
+    auto iSearch = GetBattles().find(sBattleName);
+    return (iSearch != GetBattles().end());
 }
 
 const Battle& BattleManager::GetBattle(const IndexedString& sBattleName) const
 {
     // Get battle
     ASSERT_ERROR(DoesBattleExist(sBattleName), "Battle '%s' was not registered", sBattleName.c_str());
-    auto iSearch = m_tBattles.find(sBattleName);
+    auto iSearch = GetBattles().find(sBattleName);
     return iSearch->second;
 }
 
-Battle& BattleManager::GetCurrentBattle()
+Battle& BattleManager::GetBattle(const IndexedString& sBattleName)
 {
-    return GetBattle(GetCurrentBattleName());
+    // Get battle
+    return const_cast<Battle&>(static_cast<const BattleManager&>(*this).GetBattle(sBattleName));
 }
 
 const Battle& BattleManager::GetCurrentBattle() const
 {
+    // Get current battle
+    return GetBattle(GetCurrentBattleName());
+}
+
+Battle& BattleManager::GetCurrentBattle()
+{
+    // Get current battle
     return GetBattle(GetCurrentBattleName());
 }
 

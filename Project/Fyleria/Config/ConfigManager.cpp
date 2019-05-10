@@ -9,9 +9,10 @@
 namespace Gecko
 {
 
+Config ConfigManager::s_EmptyConfig = {};
+
 ConfigManager::ConfigManager()
     : Singleton<ConfigManager>()
-    , m_Empty()
 {
 }
 
@@ -47,7 +48,7 @@ const Config& ConfigManager::GetConfig(const String& sName) const
 {
     ASSERT_ERROR(DoesConfigExist(sName), "Config with name '%s' was not registered", sName.c_str());
     auto iSearch = GetLoadedConfigs().find(sName);
-    return (iSearch != GetLoadedConfigs().end()) ? iSearch->second : m_Empty;
+    return (iSearch != GetLoadedConfigs().end()) ? iSearch->second : s_EmptyConfig;
 }
 
 const Config& ConfigManager::GetCurrentConfig() const

@@ -44,10 +44,10 @@ public:
     void FinishedWithCurrentAction();
 
     // Get action
-    CharacterAction& GetAction(Int iIndex);
     const CharacterAction& GetAction(Int iIndex) const;
-    CharacterAction& GetCurrentAction();
+    CharacterAction& GetAction(Int iIndex);
     const CharacterAction& GetCurrentAction() const;
+    CharacterAction& GetCurrentAction();
 
     // Are all actions finished
     Bool AreAllActionsFinished() const;

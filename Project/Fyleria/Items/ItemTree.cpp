@@ -270,7 +270,9 @@ TreeIndexArray GetAllEquippedItems(const IndexedString& sCharID)
     }
 
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
-    for(const CharacterProgressItem& item : character.GetEquippedItems())
+    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
+    const CharacterPartyMember& partyMember = party.GetMemberByID(sCharID);
+    for(auto& item : partyMember.GetEquippedItems())
     {
         vFinal.push_back(item.GetTreeIndex());
     }

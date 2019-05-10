@@ -9,20 +9,7 @@ namespace Gecko
 Save::Save()
     : SerializableToJson()
 {
-    // Slot
-    SetSlot(0);
-
-    // Time
-    SetTime(0);
-
-    // Description
-    SetDescription("");
-
-    // Party
-    SetParty({});
-
-    // Characters
-    SetCharacters({});
+    Clear();
 }
 
 Save::Save(const Json& jsonData)
@@ -33,6 +20,24 @@ Save::Save(const Json& jsonData)
 Save::Save(const String& jsonString)
     : SerializableToJson(JsonParse(jsonString))
 {
+}
+
+void Save::Clear()
+{
+    // Slot
+    SetSlot(0);
+
+    // Time
+    SetTime(0);
+
+    // Description
+    SetDescription("");
+
+    // Parties
+    SetParties({});
+
+    // Characters
+    SetCharacters({});
 }
 
 MAKE_JSON_BASIC_TYPE_CONVERTERS_IMPL(Save);

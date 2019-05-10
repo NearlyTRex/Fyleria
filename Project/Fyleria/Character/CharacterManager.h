@@ -15,6 +15,9 @@ class CharacterManager : public Singleton<CharacterManager>
 {
 public:
 
+    // Types
+    typedef STDUnorderedMap<IndexedString, Character, IndexedStringHasher> CharacterMappingType;
+
     // Constructors
     CharacterManager();
 
@@ -24,7 +27,7 @@ public:
 
     // Load a character from a file
     // This will overwrite any existing matching data
-    void LoadCharacterFromFile(const IndexedString& sCharacterID, const IndexedString& sFilename, const IndexedString& sType);
+    void LoadCharacterFromFile(const IndexedString& sFilename, const IndexedString& sType);
 
     // Save a character to file
     void SaveCharacterToFile(const IndexedString& sCharacterID, const IndexedString& sFilename, const IndexedString& sType);
@@ -41,9 +44,12 @@ public:
     // Generate a character
     void GenerateCharacter(const IndexedString& sCharacterID, const CharacterGenerator& generator);
 
+    // Check if character ID is valid
+    Bool IsValidCharacterID(const IndexedString& sCharacterID) const;
+
     // Get character
-    Character& GetCharacter(const IndexedString& sCharacterID);
     const Character& GetCharacter(const IndexedString& sCharacterID) const;
+    Character& GetCharacter(const IndexedString& sCharacterID);
 
     // Apply a stat change
     void ApplyStatChange(
@@ -119,10 +125,8 @@ public:
         FloatArray& vFloatValues,
         IndexedStringArray& vStringValues) const;
 
-private:
-
     // Characters
-    STDUnorderedMap<IndexedString, Character, IndexedStringHasher> m_tCharacters;
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Characters, CharacterMappingType);
 };
 
 };

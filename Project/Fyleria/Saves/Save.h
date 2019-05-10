@@ -22,6 +22,9 @@ public:
     explicit Save(const Json& jsonData);
     explicit Save(const String& jsonString);
 
+    // Clear all data
+    void Clear();
+
     // Slot
     MAKE_JSON_BASIC_TYPE_ACCESSORS(Slot, UByte);
 
@@ -32,7 +35,7 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(Description, String);
 
     // Party
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Party, CharacterParty);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(Parties, CharacterPartyArray);
 
     // Characters
     MAKE_JSON_BASIC_TYPE_ACCESSORS(Characters, CharacterArray);

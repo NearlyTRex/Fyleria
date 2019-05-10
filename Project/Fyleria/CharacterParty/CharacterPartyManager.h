@@ -14,16 +14,19 @@ class CharacterPartyManager : public Singleton<CharacterPartyManager>
 {
 public:
 
+    // Types
+    typedef STDUnorderedMap<IndexedString, CharacterParty, IndexedStringHasher> CharacterPartyMappingType;
+
     // Constructors
     CharacterPartyManager();
 
     // Load a party
     // This will overwrite any existing matching data
-    void LoadParty(const IndexedString& sPartyID, const CharacterParty& party);
+    void LoadParty(const CharacterParty& party);
 
     // Load a party from a file
     // This will overwrite any existing matching data
-    void LoadPartyFromFile(const IndexedString& sPartyID, const IndexedString& sFilename, const IndexedString& sType);
+    void LoadPartyFromFile(const IndexedString& sFilename, const IndexedString& sType);
 
     // Save a party to file
     void SavePartyToFile(const IndexedString& sPartyID, const IndexedString& sFilename, const IndexedString& sType);
@@ -37,35 +40,30 @@ public:
     // Determine if party exists
     Bool DoesPartyExist(const IndexedString& sPartyID) const;
 
-    // Set party ID as current ally/enemy party
-    void SetAsCurrentAllyParty(const IndexedString& sPartyID);
-    void SetAsCurrentEnemyParty(const IndexedString& sPartyID);
-
-    // Get current party IDs
-    const IndexedString& GetCurrentAllyPartyID() const;
-    const IndexedString& GetCurrentEnemyPartyID() const;
+    // Check if party ID is valid
+    Bool IsValidPartyID(const IndexedString& sPartyID) const;
 
     // Get party
-    CharacterParty& GetPartyByID(const IndexedString& sPartyID);
     const CharacterParty& GetPartyByID(const IndexedString& sPartyID) const;
-    CharacterParty& GetPartyByType(const IndexedString& sPartyType);
+    CharacterParty& GetPartyByID(const IndexedString& sPartyID);
     const CharacterParty& GetPartyByType(const IndexedString& sPartyType) const;
-    CharacterParty& GetCurrentAllyParty();
+    CharacterParty& GetPartyByType(const IndexedString& sPartyType);
     const CharacterParty& GetCurrentAllyParty() const;
-    CharacterParty& GetCurrentEnemyParty();
+    CharacterParty& GetCurrentAllyParty();
     const CharacterParty& GetCurrentEnemyParty() const;
+    CharacterParty& GetCurrentEnemyParty();
+
+    // Parties
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Parties, CharacterPartyMappingType);
+
+    // Current ally/enemy party
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentAllyPartyID, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentEnemyPartyID, IndexedString);
 
 private:
 
-    // Parties
-    STDUnorderedMap<IndexedString, CharacterParty, IndexedStringHasher> m_tParties;
-
-    // Current ally/enemy party
-    IndexedString m_sCurrentAllyPartyName;
-    IndexedString m_sCurrentEnemyPartyName;
-
     // Empty party
-    CharacterParty m_EmptyParty;
+    static CharacterParty s_EmptyCharacterParty;
 };
 
 };

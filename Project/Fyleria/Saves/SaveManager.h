@@ -14,6 +14,9 @@ class SaveManager : public Singleton<SaveManager>
 {
 public:
 
+    // Types
+    typedef STDUnorderedMap<UByte, Save> SaveMappingType;
+
     // Constructors
     SaveManager();
 
@@ -46,15 +49,15 @@ public:
     Bool IsSaveCapacityReached() const;
 
     // Get save
-    Save& GetSave(UByte uSlot);
     const Save& GetSave(UByte uSlot) const;
+    Save& GetSave(UByte uSlot);
 
     // Get all saves
     SaveArray GetAllSaves() const;
 
     // Pull save from memory
     // Creates a new save from the manager data in memory and loads it in the specified save slot
-    void PullSaveFromMemory(UByte uSlot, const IndexedString& sPartyID);
+    void PullSaveFromMemory(UByte uSlot, const IndexedStringArray& vPartyIDs, const String& sDescription, ULong uPlayTime);
 
     // Push save into memory
     // Copies the data from the specified save slot into manager memory
@@ -78,11 +81,8 @@ public:
     // Initialize empty save slots
     void InitializeEmptySaveSlots();
 
-private:
-
     // Saves
-    STDUnorderedMap<UByte, Save> m_tSaves;
-
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Saves, SaveMappingType);
 };
 
 };

@@ -16,7 +16,7 @@ class ConfigManager : public Singleton<ConfigManager>
 public:
 
     // Types
-    typedef STDUnorderedMap<String, Config> ConfigMapping;
+    typedef STDUnorderedMap<String, Config> ConfigMappingType;
 
     // Constructors
     ConfigManager();
@@ -144,7 +144,7 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserCacheFolder, String);
 
     // Configuration map
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(LoadedConfigs, ConfigMapping);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(LoadedConfigs, ConfigMappingType);
 
     // Platforms
     Bool IsPosix() const;
@@ -158,7 +158,7 @@ public:
 private:
 
     // Empty config
-    const Config m_Empty;
+    static Config s_EmptyConfig;
 };
 
 };

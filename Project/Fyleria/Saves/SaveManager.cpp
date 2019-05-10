@@ -16,8 +16,8 @@ SaveManager::SaveManager()
 void SaveManager::LoadSave(UByte uSlot, const Save& save)
 {
     // Load a save
-    m_tSaves[uSlot] = save;
-    m_tSaves[uSlot].SetSlot(uSlot);
+    GetSaves().insert({uSlot, save});
+    GetSaves().at(uSlot).SetSlot(uSlot);
 }
 
 void SaveManager::CreateSave(UByte uSlot)
@@ -26,27 +26,27 @@ void SaveManager::CreateSave(UByte uSlot)
     ASSERT_ERROR(!DoesSaveExist(uSlot), "Save slot '%u' was already registered", uSlot);
     Save newSave;
     newSave.SetSlot(uSlot);
-    m_tSaves.insert({uSlot, newSave});
+    GetSaves().insert({uSlot, newSave});
 }
 
 void SaveManager::UnloadSave(UByte uSlot)
 {
     // Unload save
     ASSERT_ERROR(DoesSaveExist(uSlot), "Save slot '%u' was not registered", uSlot);
-    m_tSaves.erase(uSlot);
+    GetSaves().erase(uSlot);
 }
 
 void SaveManager::UnloadAllSaves()
 {
     // Unload all saves
-    m_tSaves.clear();
+    GetSaves().clear();
 }
 
 Bool SaveManager::DoesSaveExist(UByte uSlot) const
 {
     // Check if save exists
-    auto iSearch = m_tSaves.find(uSlot);
-    return (iSearch != m_tSaves.end());
+    auto iSearch = GetSaves().find(uSlot);
+    return (iSearch != GetSaves().end());
 }
 
 UByte SaveManager::GetSaveCapacity() const
@@ -87,19 +87,18 @@ Bool SaveManager::IsSaveCapacityReached() const
     return vAvailableSlots.empty();
 }
 
-Save& SaveManager::GetSave(UByte uSlot)
-{
-    // Get save
-    ASSERT_ERROR(DoesSaveExist(uSlot), "Save slot '%u' was not registered", uSlot);
-    return m_tSaves[uSlot];
-}
-
 const Save& SaveManager::GetSave(UByte uSlot) const
 {
     // Get save
     ASSERT_ERROR(DoesSaveExist(uSlot), "Save slot '%u' was not registered", uSlot);
-    auto iSearch = m_tSaves.find(uSlot);
+    auto iSearch = GetSaves().find(uSlot);
     return iSearch->second;
+}
+
+Save& SaveManager::GetSave(UByte uSlot)
+{
+    // Get save
+    return const_cast<Save&>(static_cast<const SaveManager&>(*this).GetSave(uSlot));
 }
 
 SaveArray SaveManager::GetAllSaves() const
@@ -112,27 +111,32 @@ SaveArray SaveManager::GetAllSaves() const
     return vSaves;
 }
 
-void SaveManager::PullSaveFromMemory(UByte uSlot, const IndexedString& sPartyID)
+void SaveManager::PullSaveFromMemory(UByte uSlot, const IndexedStringArray& vPartyIDs, const String& sDescription, ULong uPlayTime)
 {
-    // Get party and attached characters
+    // Get parties and attached characters
+    CharacterPartyArray vParties;
     CharacterArray vCharacters;
-    CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
-    for(const IndexedString& sMemberID : party.GetMembers())
+    for (auto& sPartyID : vPartyIDs)
     {
-        vCharacters.push_back(CharacterManager::GetInstance()->GetCharacter(sMemberID));
-    }
+        // Add party
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
+        party.RegenerateCharacterData();
+        vParties.push_back(party);
 
-    // After getting party, make sure to regenerate character data
-    // We want to have the most accurate data before we save
-    party.RegenerateCharacterData();
+        // Add members of this party
+        for(auto& member : party.GetMembers())
+        {
+            vCharacters.push_back(CharacterManager::GetInstance()->GetCharacter(member.first));
+        }
+    }
 
     // Create save from this
     Save newSave;
     newSave.SetSlot(uSlot);
-    newSave.SetTime(party.GetPlayTime());
-    newSave.SetParty(party);
+    newSave.SetTime(uPlayTime);
+    newSave.SetParties(vParties);
     newSave.SetCharacters(vCharacters);
-    newSave.SetDescription(party.GetDescription());
+    newSave.SetDescription(sDescription);
 
     // Load save into manager, potentially overwriting an existing save
     LoadSave(uSlot, newSave);
@@ -146,11 +150,14 @@ void SaveManager::PushSaveIntoMemory(UByte uSlot)
     // Load characters
     for(const Character& character : save.GetCharacters())
     {
-        CharacterManager::GetInstance()->LoadCharacter(character.GetCharacterID(), character);
+        CharacterManager::GetInstance()->LoadCharacter(character);
     }
 
-    // Load party
-    CharacterPartyManager::GetInstance()->LoadParty(save.GetParty().GetPartyID(), save.GetParty());
+    // Load parties
+    for(const CharacterParty& party : save.GetParties())
+    {
+        CharacterPartyManager::GetInstance()->LoadParty(party);
+    }
 }
 
 void SaveManager::SaveToFile(UByte uSlot, const IndexedString& sFile, const IndexedString& sType)
@@ -206,19 +213,20 @@ void SaveManager::SaveAllToDirectory(const IndexedString& sDirectory, const Inde
     // Save each slot into a save file
     for(Int i = 0; i < GetSaveCapacity(); i++)
     {
-        FilesystemPath path = FilesystemPath(sDirectory.Get()) / FilesystemPath(sBase.Get() + STDToString(i) + sExt.Get());
-        SaveToFile(i, IndexedString(GetNativeFileLocation(path)), sType);
+        String sPath = JoinPaths(sDirectory.Get(), sBase.Get() + STDToString(i) + sExt.Get());
+        SaveToFile(i, IndexedString(sPath), sType);
     }
 }
 
 void SaveManager::LoadAllFromDirectory(const IndexedString& sDirectory, const IndexedString& sBase, const IndexedString& sExt, const IndexedString& sType)
 {
+    // Load each slot from a save file
     for(Int i = 0; i < GetSaveCapacity(); i++)
     {
-        FilesystemPath path = FilesystemPath(sDirectory.Get()) / FilesystemPath(sBase.Get() + STDToString(i) + sExt.Get());
-        if(DoesFileExist(path))
+        String sPath = JoinPaths(sDirectory.Get(), sBase.Get() + STDToString(i) + sExt.Get());
+        if(DoesFileExist(sPath))
         {
-            LoadFromFile(i, IndexedString(GetNativeFileLocation(path)), sType);
+            LoadFromFile(i, IndexedString(sPath), sType);
         }
     }
 }

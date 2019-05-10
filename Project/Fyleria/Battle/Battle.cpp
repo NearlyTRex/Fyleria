@@ -114,24 +114,23 @@ void Battle::FinishedWithCurrentAction()
     SetCurrentActionIndex(GetCurrentActionIndex() + 1);
 }
 
-CharacterAction& Battle::GetAction(Int iIndex)
-{
-    ASSERT_ERROR(iIndex >= 0 && iIndex < GetActionCount());
-    return GetActions()[iIndex];
-}
-
 const CharacterAction& Battle::GetAction(Int iIndex) const
 {
     ASSERT_ERROR(iIndex >= 0 && iIndex < GetActionCount());
     return GetActions()[iIndex];
 }
 
-CharacterAction& Battle::GetCurrentAction()
+CharacterAction& Battle::GetAction(Int iIndex)
+{
+    return const_cast<CharacterAction&>(static_cast<const Battle&>(*this).GetAction(iIndex));
+}
+
+const CharacterAction& Battle::GetCurrentAction() const
 {
     return GetAction(GetCurrentActionIndex());
 }
 
-const CharacterAction& Battle::GetCurrentAction() const
+CharacterAction& Battle::GetCurrentAction()
 {
     return GetAction(GetCurrentActionIndex());
 }

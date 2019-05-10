@@ -12,7 +12,6 @@ namespace Gecko
 
 CharacterManager::CharacterManager()
     : Singleton<CharacterManager>()
-    , m_tCharacters()
 {
 }
 
@@ -20,13 +19,11 @@ void CharacterManager::LoadCharacter(const Character& character)
 {
     // Load a character
     const IndexedString& sCharacterID = character.GetCharacterID();
-    const IndexedString& sCharacterTargetType = character.GetCharacterTargetType();
-    ASSERT_ERROR(!sCharacterID.empty(), "Invalid character ID '%s'", sCharacterID.c_str());
-    ASSERT_ERROR(IsValidCharacterTargetType(sCharacterTargetType), "Character target type '%s' was not valid", sCharacterTargetType.c_str());
-    m_tCharacters[sCharacterID] = character;
+    ASSERT_ERROR(IsValidCharacterID(sCharacterID), "Character ID '%s' was not valid", sCharacterID.c_str());
+    GetCharacters().insert({sCharacterID, character});
 }
 
-void CharacterManager::LoadCharacterFromFile(const IndexedString& sCharacterID, const IndexedString& sFilename, const IndexedString& sType)
+void CharacterManager::LoadCharacterFromFile(const IndexedString& sFilename, const IndexedString& sType)
 {
     // Load a character
     Json jsonData;
@@ -49,21 +46,21 @@ void CharacterManager::CreateCharacter(const IndexedString& sCharacterID)
     ASSERT_ERROR(!DoesCharacterExist(sCharacterID), "Character with ID '%s' was already registered", sCharacterID.c_str());
     Character newCharacter;
     newCharacter.GetBasicData().SetCharacterID(sCharacterID);
-    m_tCharacters.insert({sCharacterID, newCharacter});
+    GetCharacters().insert({sCharacterID, newCharacter});
 }
 
 void CharacterManager::UnloadCharacter(const IndexedString& sCharacterID)
 {
     // Unload character
     ASSERT_ERROR(DoesCharacterExist(sCharacterID), "Character with ID '%s' was not registered", sCharacterID.c_str());
-    m_tCharacters.erase(sCharacterID);
+    GetCharacters().erase(sCharacterID);
 }
 
 Bool CharacterManager::DoesCharacterExist(const IndexedString& sCharacterID) const
 {
     // Check if party exists
-    auto iSearch = m_tCharacters.find(sCharacterID);
-    return (iSearch != m_tCharacters.end());
+    auto iSearch = GetCharacters().find(sCharacterID);
+    return (iSearch != GetCharacters().end());
 }
 
 void CharacterManager::GenerateCharacter(const IndexedString& sCharacterID, const CharacterGenerator& generator)
@@ -97,19 +94,24 @@ void CharacterManager::GenerateCharacter(const IndexedString& sCharacterID, cons
 #endif
 }
 
-Character& CharacterManager::GetCharacter(const IndexedString& sCharacterID)
+Bool CharacterManager::IsValidCharacterID(const IndexedString& sCharacterID) const
 {
-    // Get character
-    ASSERT_ERROR(DoesCharacterExist(sCharacterID), "Character with ID '%s' was not registered", sCharacterID.c_str());
-    return m_tCharacters[sCharacterID];
+    // Check character ID validity
+    return (!sCharacterID.empty() && !sCharacterID.IsNone());
 }
 
 const Character& CharacterManager::GetCharacter(const IndexedString& sCharacterID) const
 {
     // Get character
     ASSERT_ERROR(DoesCharacterExist(sCharacterID), "Character with ID '%s' was not registered", sCharacterID.c_str());
-    auto iSearch = m_tCharacters.find(sCharacterID);
+    auto iSearch = GetCharacters().find(sCharacterID);
     return iSearch->second;
+}
+
+Character& CharacterManager::GetCharacter(const IndexedString& sCharacterID)
+{
+    // Get character
+    return const_cast<Character&>(static_cast<const CharacterManager&>(*this).GetCharacter(sCharacterID));
 }
 
 void CharacterManager::ApplyStatChange(
