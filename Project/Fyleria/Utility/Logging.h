@@ -20,11 +20,11 @@
 #define LOG_FORMAT_STATEMENT_NARGS(string) PRINTF("LOG: " string);
 #define LOG_WFORMAT_STATEMENT_NARGS(string) WPRINTF("LOG: " string);
 #else
-#define LOG_STATEMENT
-#define LOG_FORMAT_STATEMENT
-#define LOG_WFORMAT_STATEMENT
-#define LOG_FORMAT_STATEMENT_NARGS
-#define LOG_WFORMAT_STATEMENT_NARGS
+#define LOG_STATEMENT(string)
+#define LOG_FORMAT_STATEMENT(string, ...)
+#define LOG_WFORMAT_STATEMENT(string, ...)
+#define LOG_FORMAT_STATEMENT_NARGS(string)
+#define LOG_WFORMAT_STATEMENT_NARGS(string)
 #endif
 
 // Write an error statement
@@ -35,11 +35,11 @@
 #define ERROR_FORMAT_STATEMENT_NARGS(string) PRINTF("ERROR: " string);
 #define ERROR_WFORMAT_STATEMENT_NARGS(string) WPRINTF("ERROR: " string);
 #else
-#define ERROR_STATEMENT
-#define ERROR_FORMAT_STATEMENT
-#define ERROR_WFORMAT_STATEMENT
-#define ERROR_FORMAT_STATEMENT_NARGS
-#define ERROR_WFORMAT_STATEMENT_NARGS
+#define ERROR_STATEMENT(string)
+#define ERROR_FORMAT_STATEMENT(string, ...)
+#define ERROR_WFORMAT_STATEMENT(string, ...)
+#define ERROR_FORMAT_STATEMENT_NARGS(string)
+#define ERROR_WFORMAT_STATEMENT_NARGS(string)
 #endif
 
 #endif

@@ -593,8 +593,8 @@ String CharacterParty::GetDescription() const
     {
         sDescription += "\t" + member.first.Get() + "\n";
     }
-    return sDescription;
 #endif
+    return sDescription;
 }
 
 void CharacterParty::ResetPlayTime()

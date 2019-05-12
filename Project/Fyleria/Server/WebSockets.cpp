@@ -139,8 +139,7 @@ void WebsocketServer::OnMessage(WebsocketConnectionHandlePtr pHandle, WebsocketA
     Json jsonData = JsonParse(pMessage->get_payload());
     auto sJsonDataStr = jsonData.dump();
     auto pSharedHandle = pHandle.lock();
-    WebsocketRawConnectionPtr pConnection = pSharedHandle.get();
-    LOG_FORMAT_STATEMENT("Handing message to %p: %s\n", (void*)pConnection, sJsonDataStr.c_str());
+    LOG_FORMAT_STATEMENT("Handing message to %p: %s\n", (void*)pSharedHandle.get(), sJsonDataStr.c_str());
 
     // Output json
     Json outputJsonData;
@@ -212,8 +211,7 @@ void WebsocketServer::SendPayload(WebsocketConnectionHandlePtr pHandle, const Js
     {
         auto sJsonDataStr = jsonData.dump();
         auto pSharedHandle = pHandle.lock();
-        WebsocketRawConnectionPtr pConnection = pSharedHandle.get();
-        LOG_FORMAT_STATEMENT("Sending message to %p: %s\n", (void*)pConnection, sJsonDataStr.c_str());
+        LOG_FORMAT_STATEMENT("Sending message to %p: %s\n", (void*)pSharedHandle.get(), sJsonDataStr.c_str());
         m_pServer->send(pHandle, sJsonDataStr, WebsocketFrameOpcodeText);
     }
     catch (WebsocketException& e)
