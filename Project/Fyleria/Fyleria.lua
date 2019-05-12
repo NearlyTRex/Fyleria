@@ -40,11 +40,9 @@ appFyleria_libs = {
     "FantasyName",
     "MicroPather",
     "Pistache",
-    "PyBind",
     "Python3",
     "TinyXML2",
     "TMXParser",
-    "Websocketpp",
     "Zlib"
 }
 if os.host() == "windows" or _OPTIONS["with-mingw32"] or _OPTIONS["with-mingw64"] then
@@ -54,10 +52,10 @@ else
     table.insert(appFyleria_libs, "pthread")
     table.insert(appFyleria_libs, "util")
     table.insert(appFyleria_libs, "Qt5Gui")
-    table.insert(appFyleria_libs, "Qt5WebKit")
+    table.insert(appFyleria_libs, "Qt5WebEngine")
     table.insert(appFyleria_libs, "Qt5Xml")
     table.insert(appFyleria_libs, "Qt5Widgets")
-    table.insert(appFyleria_libs, "Qt5WebKitWidgets")
+    table.insert(appFyleria_libs, "Qt5WebEngineWidgets")
     table.insert(appFyleria_libs, "Qt5Core")
     table.insert(appFyleria_libs, "Qt5Network")
 end

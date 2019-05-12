@@ -164,6 +164,18 @@ pic "On"
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("TinyXML2"))
 
+-- TMXParser
+project "TMXParser"
+kind "SharedLib"
+language "C++"
+pic "On"
+    includedirs(libTMXParser_includedirs)
+    includedirs(libTinyXML2_includedirs)
+    files(libTMXParser_sources)
+    links(libTMXParser_libs)
+    targetdir(GetTargetDirectory())
+    targetname(GetTargetName("TMXParser"))
+
 -- Zlib
 project "Zlib"
 kind "SharedLib"
