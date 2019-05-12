@@ -60,6 +60,7 @@ pic "On"
     files(appFyleria_sources)
     links(appFyleria_libs)
     links(libBackwardCPP_libs)
+    links(libPython3_libs)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("FyleriaMain"))
 filter "configurations:Debug*"

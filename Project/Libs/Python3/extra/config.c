@@ -56,7 +56,6 @@ extern "C"
     extern PyObject* PyInit_errno(void);
     extern PyObject* PyInit_faulthandler(void);
     extern PyObject* PyInit_gc(void);
-    extern PyObject* PyInit_imp(void);
     extern PyObject* PyInit_itertools(void);
     extern PyObject* PyInit_math(void);
     extern PyObject* PyInit_mmap(void);
@@ -89,7 +88,6 @@ extern "C"
         {"_datetime", PyInit__datetime},
         {"_functools", PyInit__functools},
         {"_heapq", PyInit__heapq},
-        {"_imp", PyInit_imp},
         {"_io", PyInit__io},
         {"_json", PyInit__json},
         {"_lsprof", PyInit__lsprof},
