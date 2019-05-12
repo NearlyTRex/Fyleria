@@ -7,6 +7,8 @@
 #include "Utility/Types.h"
 #include "Utility/Json.h"
 #include "Utility/Filesystem.h"
+#include "Utility/Logging.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -21,7 +23,7 @@ void CustomHttpHandler::onRequest(const HttpRequest& request, HttpResponseWriter
     LOG_FORMAT_STATEMENT("Rest Handler Request: Method(%s) Resource(%s) Query(%s) Body(%s)\n",
         methodString(request.method()),
         request.resource().c_str(),
-        Json(request.query().raw()).dump().c_str(),
+        Json(request.query().parameters()).dump().c_str(),
         request.body().c_str());
     if (request.method() == HttpMethodGet)
     {
@@ -70,7 +72,7 @@ void CustomHttpHandler::onRequest(const HttpRequest& request, HttpResponseWriter
         }
         else
         {
-            String sMessage = (STDFormatString("Unknown POST resource '%1%'.") % request.resource()).str();
+            String sMessage = (BoostFormatString("Unknown POST resource '%1%'.") % request.resource()).str();
             HandleResponse(HttpCodeMethodNotAllowed, response, sMessage);
         }
     }
@@ -80,7 +82,7 @@ void CustomHttpHandler::onRequest(const HttpRequest& request, HttpResponseWriter
     }
     else
     {
-        String sMessage = (STDFormatString("Unhandled method '%1%'.") % methodString(request.method())).str();
+        String sMessage = (BoostFormatString("Unhandled method '%1%'.") % methodString(request.method())).str();
         HandleResponse(HttpCodeMethodNotAllowed, response, sMessage);
     }
 }
@@ -104,7 +106,7 @@ void CustomHttpHandler::DoPost_RunModuleFile(const HttpRequest& request, HttpRes
     bool return_value = DLL_RunModuleFile(sInputFile.c_str());
     if (!return_value)
     {
-        String sMessage = (STDFormatString("Could not run file '%1%'.") % sInputFile).str();
+        String sMessage = (BoostFormatString("Could not run file '%1%'.") % sInputFile).str();
         HandleResponse(HttpCodeConflict, response, sMessage);
         return;
     }
@@ -135,7 +137,7 @@ void CustomHttpHandler::DoPost_RunModuleFileResults(const HttpRequest& request, 
     bool return_value = DLL_RunModuleFileResults(sInputFile.c_str(), sInputResultsId.c_str());
     if (!return_value)
     {
-        String sMessage = (STDFormatString("Could not run file '%1%'.") % sInputFile).str();
+        String sMessage = (BoostFormatString("Could not run file '%1%'.") % sInputFile).str();
         HandleResponse(HttpCodeConflict, response, sMessage);
         return;
     }
@@ -158,7 +160,7 @@ void CustomHttpHandler::DoPost_RunModuleCommand(const HttpRequest& request, Http
     bool return_value = DLL_RunModuleCommand(sInputCommand.c_str());
     if (!return_value)
     {
-        String sMessage = (STDFormatString("Could not run command '%1%'.") % sInputCommand).str();
+        String sMessage = (BoostFormatString("Could not run command '%1%'.") % sInputCommand).str();
         HandleResponse(HttpCodeConflict, response, sMessage);
         return;
     }
@@ -189,7 +191,7 @@ void CustomHttpHandler::DoPost_RunModuleCommandResults(const HttpRequest& reques
     bool return_value = DLL_RunModuleCommandResults(sInputCommand.c_str(), sInputResultsId.c_str());
     if (!return_value)
     {
-        String sMessage = (STDFormatString("Could not run command '%1%'.") % sInputCommand).str();
+        String sMessage = (BoostFormatString("Could not run command '%1%'.") % sInputCommand).str();
         HandleResponse(HttpCodeConflict, response, sMessage);
         return;
     }
@@ -286,7 +288,7 @@ void CustomHttpHandler::DoGet_ServeFile(const HttpRequest& request, HttpResponse
     const String sResource = request.resource();
 
     // Check if resource string ends with directory
-    if(STDEndsWith(sResource, String("/")))
+    if(EndsWith(sResource, String("/")))
     {
         // List of all valid index files
         const STDVector<String> vValidIndexFiles = {
@@ -297,9 +299,11 @@ void CustomHttpHandler::DoGet_ServeFile(const HttpRequest& request, HttpResponse
         // Find the first valid index file
         for (auto& sIndexFile : vValidIndexFiles)
         {
+            // Get file path
+            String sResourceFile(RestServer::GetInstance()->GetWebRoot() + sResource + sIndexFile);
+
             // Try serving file
-            FilesystemPath pathResource(RestServer::GetInstance()->GetWebRoot() + sResource + sIndexFile);
-            if(SendFileToUser(response, pathResource.path()))
+            if(SendFileToUser(response, sResourceFile))
             {
                 return;
             }
@@ -307,16 +311,18 @@ void CustomHttpHandler::DoGet_ServeFile(const HttpRequest& request, HttpResponse
     }
     else
     {
+        // Get file path
+        String sResourceFile(RestServer::GetInstance()->GetWebRoot() + sResource);
+
         // Try serving file
-        FilesystemPath pathResource(RestServer::GetInstance()->GetWebRoot() + sResource);
-        if(SendFileToUser(response, pathResource.path()))
+        if(SendFileToUser(response, sResourceFile))
         {
             return;
         }
     }
 
     // File was not found
-    String sMessage = (STDFormatString("The requested URL '%1%' was not found on this server.") % sResource).str();
+    String sMessage = (BoostFormatString("The requested URL '%1%' was not found on this server.") % sResource).str();
     HandleResponse(HttpCodeNotFound, response, sMessage);
     return;
 }
@@ -340,7 +346,7 @@ Bool CustomHttpHandler::SendResultsToUser(HttpResponseWriter& response, const St
     char sResultsStr[uResultsLen + 1] = {0};
     if (!uResultsLen)
     {
-        String sMessage = (STDFormatString("The result size of '%1%' was zero.") % uResultsLen).str();
+        String sMessage = (BoostFormatString("The result size of '%1%' was zero.") % uResultsLen).str();
         HandleResponse(HttpCodeConflict, response, sMessage);
         return false;
     }
@@ -350,7 +356,7 @@ Bool CustomHttpHandler::SendResultsToUser(HttpResponseWriter& response, const St
     bool return_value = DLL_GetModuleResults(sResultsID.c_str(), sResultsStr, uResultsLen);
     if (!return_value)
     {
-        String sMessage = (STDFormatString("Failed retrieving result for '%1%'.") % sResultsID).str();
+        String sMessage = (BoostFormatString("Failed retrieving result for '%1%'.") % sResultsID).str();
         HandleResponse(HttpCodeConflict, response, sMessage);
         return false;
     }
@@ -371,7 +377,7 @@ Bool CustomHttpHandler::SendResultsToUser(HttpResponseWriter& response, const St
 Bool CustomHttpHandler::SendFileToUser(HttpResponseWriter& response, const String& sFile)
 {
     // Check file existence
-    if(!DoesFileExist(sFile) || !IsFile(sFile))
+    if(!DoesPathExist(sFile) || !IsFile(sFile))
     {
         return false;
     }
@@ -393,7 +399,7 @@ void CustomHttpHandler::GetOptionalParameter(const HttpRequest& request, const S
     // Optional parameter
     if (bParamInQuery)
     {
-        result = STDLexicalCast<T>(request.query().get(sParam).get());
+        result = BoostLexicalCast<T>(request.query().get(sParam).get());
     }
     else if (bParamInBody)
     {
@@ -412,7 +418,7 @@ Bool CustomHttpHandler::GetRequiredParameter(const HttpRequest& request, HttpRes
     // Required parameter
     if (bParamInQuery)
     {
-        result = STDLexicalCast<T>(request.query().get(sParam).get());
+        result = BoostLexicalCast<T>(request.query().get(sParam).get());
         return true;
     }
     else if (bParamInBody)
@@ -422,7 +428,7 @@ Bool CustomHttpHandler::GetRequiredParameter(const HttpRequest& request, HttpRes
     }
 
     // Missing parameter so it must be a bad request
-    String sMessage = (STDFormatString("Missing required parameter '%1%'.") % sParam).str();
+    String sMessage = (BoostFormatString("Missing required parameter '%1%'.") % sParam).str();
     LOG_FORMAT_STATEMENT("%s\n", sMessage.c_str());
     HandleResponse(HttpCodeBadRequest, response, sMessage);
     return false;

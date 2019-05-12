@@ -12,21 +12,20 @@ namespace Gecko
 Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8Array& vBytes)
 {
     // Check file existence
-    FilesystemPath path(sFilename.Get());
-    if(!DoesFileExist(path))
+    if(!DoesPathExist(sFilename.Get()))
     {
         return false;
     }
 
     // Open binary file
-    InputFile ifile(GetNativeFileLocation(path).c_str(), STDIOSFlagInputOperations | STDIOSFlagBinaryMode);
+    InputFile ifile(sFilename.c_str(), STDIOSFlagInputOperations | STDIOSFlagBinaryMode);
     if(!ifile.is_open() && ifile.good())
     {
         return false;
     }
 
     // Read binary data
-    SizeType szLength = GetFileSize(path);
+    SizeType szLength = GetFileSize(sFilename.Get());
     for(SizeType index = 0; index < szLength; index++)
     {
         Byte byte;
@@ -42,8 +41,7 @@ Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8Array& vBytes)
 Bool WriteBinaryFile(const IndexedString& sFilename, const FixedUnsigned8Array& vBytes)
 {
     // Open binary file
-    FilesystemPath path(sFilename.Get());
-    OutputFile ofile(GetNativeFileLocation(path).c_str(), STDIOSFlagOutputOperations | STDIOSFlagBinaryMode | STDIOSFlagTruncate);
+    OutputFile ofile(sFilename.Get().c_str(), STDIOSFlagOutputOperations | STDIOSFlagBinaryMode | STDIOSFlagTruncate);
     if(!ofile.is_open() && ofile.good())
     {
         return false;
@@ -144,7 +142,7 @@ Bool ReadJsonFile(const IndexedString& sFilename, Json& jsonData)
         return false;
     }
 
-    jsonData << ifile;
+    ifile >> jsonData;
     ifile.close();
     return true;
 }

@@ -2,6 +2,7 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Utility/FantasyName.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -14,7 +15,7 @@ String GenerateRandomFantasyName(const String& sPattern)
 
 IndexedString GetRandomNamePattern()
 {
-    static const IndexedStringVector vNamePatterns = {
+    static const IndexedStringArray vNamePatterns = {
         GetMiddleEarthNamePattern(),
         GetJapaneseNameConstrainedPattern(),
         GetJapaneseNameDiversePattern(),

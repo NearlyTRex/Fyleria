@@ -4,6 +4,8 @@
 #include "Skills/SkillData.h"
 #include "CharacterAction/CharacterAction.h"
 #include "Character/CharacterManager.h"
+#include "CharacterParty/CharacterPartyManager.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -130,10 +132,10 @@ Bool SkillData::GetIntersectingRequirementTypes(
     }
 
     // Remove duplicates
-    STDVectorRemoveDuplicates<IndexedString>(vPrimaryAttackIntersections);
-    STDVectorRemoveDuplicates<IndexedString>(vPrimaryDefendIntersections);
-    STDVectorRemoveDuplicates<IndexedString>(vSecondaryAttackIntersections);
-    STDVectorRemoveDuplicates<IndexedString>(vSecondaryDefendIntersections);
+    RemoveVectorDuplicates<IndexedString>(vPrimaryAttackIntersections);
+    RemoveVectorDuplicates<IndexedString>(vPrimaryDefendIntersections);
+    RemoveVectorDuplicates<IndexedString>(vSecondaryAttackIntersections);
+    RemoveVectorDuplicates<IndexedString>(vSecondaryDefendIntersections);
 
     // Return true if at least one of them is not empty
     return (
@@ -154,13 +156,15 @@ Bool SkillData::DoesMeetActionRequirements(const IndexedString& sCharacterID, co
 
     // Get character
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
+    const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
     // Get action types
     TreeIndex primaryItemIndex;
     TreeIndex secondaryItemIndex;
     IndexedStringArray vPrimaryActionTypes;
     IndexedStringArray vSecondaryActionTypes;
-    if(!character.GetHandInfoByWeaponSet(sWeaponSet,
+    if(!partyMember.GetHandInfoByWeaponSet(sWeaponSet,
         primaryItemIndex,
         secondaryItemIndex,
         vPrimaryActionTypes,

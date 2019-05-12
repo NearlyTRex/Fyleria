@@ -20,8 +20,8 @@ Bool ConfigManager::LoadConfig(const String& sName, const String& sFile)
 {
     // Create full path
     String sPathConfigFile = JoinPaths(GetUserConfigFolder(), sFile);
-    ASSERT_ERROR(DoesFileExist(sPathConfigFile), "Path '%s' could not be loaded for configuration", sPathConfigFile.c_str());
-    if(!DoesFileExist(sPathConfigFile))
+    ASSERT_ERROR(DoesPathExist(sPathConfigFile), "Path '%s' could not be loaded for configuration", sPathConfigFile.c_str());
+    if(!DoesPathExist(sPathConfigFile))
     {
         return false;
     }

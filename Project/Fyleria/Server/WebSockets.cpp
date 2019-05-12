@@ -3,7 +3,10 @@
 
 #include "Server/WebSockets.h"
 #include "Interface/Interface.h"
+#include "Utility/Errors.h"
 #include "Utility/Macros.h"
+#include "Utility/Logging.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -158,9 +161,9 @@ void WebsocketServer::OnMessage(WebsocketConnectionHandlePtr pHandle, WebsocketA
     {
         outputJsonData = HandleModuleFunctionCall(pHandle, jsonData);
     }
-    catch (STDGeneralError& error)
+    catch (GeneralError& error)
     {
-        outputJsonData["error_code"] = error.code();
+        outputJsonData["error_code"] = error.code()._to_integral();
         outputJsonData["error_message"] = error.what();
         outputJsonData["is_handled"] = true;
     }
@@ -224,7 +227,7 @@ const WebsocketConnectionMap& WebsocketServer::GetConnectionMap() const
 {
     // Lock access
     STDLockGuard<STDMutex> lock(m_ConnectionMutex);
-    
+
     // Get connection map
     return m_ConnectionMap;
 }

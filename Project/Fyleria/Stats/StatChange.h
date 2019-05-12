@@ -15,7 +15,7 @@
 namespace Gecko
 {
 
-// POD class for stat changes
+// Class for stat changes
 class StatChange
 {
 public:
@@ -23,6 +23,9 @@ public:
     // Constructors
     StatChange();
     StatChange(const Json& jsonData);
+
+    // Clear all data
+    void Clear();
 
     // ID
     static UInt GenerateNewID();

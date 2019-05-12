@@ -80,9 +80,9 @@ IndexedString TreeIndex::GetTreeBranchLeafType() const
     return (GetTree() + GetBranch() + GetLeaf());
 }
 
-IndexedStringList TreeIndex::GetTypes() const
+IndexedStringArray TreeIndex::GetTypes() const
 {
-    IndexedStringList vTypes = {
+    IndexedStringArray vTypes = {
         GetTree(),
         GetBranch(),
         GetLeaf()

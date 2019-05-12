@@ -224,7 +224,7 @@ void SaveManager::LoadAllFromDirectory(const IndexedString& sDirectory, const In
     for(Int i = 0; i < GetSaveCapacity(); i++)
     {
         String sPath = JoinPaths(sDirectory.Get(), sBase.Get() + STDToString(i) + sExt.Get());
-        if(DoesFileExist(sPath))
+        if(DoesPathExist(sPath))
         {
             LoadFromFile(i, IndexedString(sPath), sType);
         }

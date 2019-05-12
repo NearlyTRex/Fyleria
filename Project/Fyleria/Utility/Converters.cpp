@@ -8,13 +8,13 @@ namespace Gecko
 
 WString ConvertStringToWideString(const String& sString)
 {
-    GeckoWStringConvert<GeckoUTF8AndUTF16Conversion<WByte>> converter;
+    STDWStringConvert<STDUTF8AndUTF16Conversion<WByte>> converter;
     return converter.from_bytes(sString);
 }
 
 String ConvertWideStringToString(const WString& sWideString)
 {
-    GeckoWStringConvert<GeckoUTF8AndUTF16Conversion<WByte>> converter;
+    STDWStringConvert<STDUTF8AndUTF16Conversion<WByte>> converter;
     return converter.to_bytes(sWideString);
 }
 
@@ -47,9 +47,9 @@ String ConvertGameTimeToString(ULongLong uTime)
     // Return formatted string
     OutputStringStream ssOutput;
     ssOutput << uDays << ":";
-    ssOutput << GeckoSetFill('0') << GeckoSetWidth(2) << uHours << ':';
-    ssOutput << GeckoSetFill('0') << GeckoSetWidth(2) << uMinutes << ':';
-    ssOutput << GeckoSetFill('0') << GeckoSetWidth(2) << uSeconds;
+    ssOutput << STDSetFill('0') << STDSetWidth(2) << uHours << ':';
+    ssOutput << STDSetFill('0') << STDSetWidth(2) << uMinutes << ':';
+    ssOutput << STDSetFill('0') << STDSetWidth(2) << uSeconds;
     return ssOutput.str();
 }
 

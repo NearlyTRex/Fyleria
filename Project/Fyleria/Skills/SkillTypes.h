@@ -5,6 +5,7 @@
 #define _GECKO_SKILL_TYPES_H_
 
 // Internal includes
+#include "Utility/Assert.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"

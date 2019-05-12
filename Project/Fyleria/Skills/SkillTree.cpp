@@ -257,7 +257,7 @@ const SkillDataWeapon& RetrieveSkillDataWeapon(const TreeIndex& index)
 {                                                                                                                           \
     IndexedString sBranchName(#branch);                                                                                     \
     IndexedString sRankBase("Rank");                                                                                        \
-    Int iLeafNumber = character.Get##branch##Rank();                                                                        \
+    Int iLeafNumber = character.GetSkillData().Get##branch##Rank();                                                         \
     auto vLeaves = SkillTree##tree::GetInstance()->GetLeavesUnderNumber(sBranchName, sRankBase, iLeafNumber, bUniqueOnly);  \
     vFinal.insert(vFinal.end(), vLeaves.begin(), vLeaves.end());                                                            \
 }

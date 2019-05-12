@@ -142,7 +142,7 @@ private:
     WebsocketConnectionMap m_ConnectionMap;
 
     // Server connection mutex
-    STDMutex m_ConnectionMutex;
+    mutable STDMutex m_ConnectionMutex;
 };
 
 };

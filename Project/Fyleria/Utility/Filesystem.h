@@ -10,8 +10,8 @@
 namespace Gecko
 {
 
-// Does file exist
-Bool DoesFileExist(const String& sPath);
+// Does path exist
+Bool DoesPathExist(const String& sPath);
 
 // Is path a file
 Bool IsFile(const String& sPath);

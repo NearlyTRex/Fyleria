@@ -44,7 +44,7 @@ public:
         LOG_FORMAT_STATEMENT("Loading JSON file '%s' into branch %s\n", sBranchFile.c_str(), sBranchName.c_str());
 
         // Check that the file exists first
-        if(!DoesFileExist(sBranchFile.c_str()))
+        if(!DoesPathExist(sBranchFile.c_str()))
         {
             ERROR_FORMAT_STATEMENT("JSON file '%s' does not exist!\n", sBranchFile.c_str());
             return;

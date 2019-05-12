@@ -8,12 +8,24 @@
 #include "Items/ItemTypes.h"
 #include "Skills/SkillTypes.h"
 #include "Skills/SkillTree.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
 
 StatChange::StatChange()
     : m_uID(GenerateNewID())
+{
+    Clear();
+}
+
+StatChange::StatChange(const Json& jsonData)
+    : m_uID(GenerateNewID())
+{
+    from_json(jsonData, *this);
+}
+
+void StatChange::Clear()
 {
     // Relevant skill data
     SetSkillTreeIndex({});
@@ -58,12 +70,6 @@ StatChange::StatChange()
 
     // Stat change entry list
     SetStatChangeEntries({});
-}
-
-StatChange::StatChange(const Json& jsonData)
-    : m_uID(GenerateNewID())
-{
-    from_json(jsonData, *this);
 }
 
 UInt StatChange::GenerateNewID()
@@ -164,17 +170,21 @@ Bool StatChange::DoesMeetItemEquippedRequirements(const IndexedString& sCharacte
         return false;
     }
 
+    // Get character
+    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
+    const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
+
     // Get equipped item types
     IndexedStringArray vEquippedItemTypes;
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
-    for(auto&& progressItem : character.GetEquippedItems())
+    for(auto&& item : partyMember.GetEquippedItems())
     {
-        vEquippedItemTypes.push_back(RetrieveItemType(progressItem.GetTreeIndex()));
+        vEquippedItemTypes.push_back(RetrieveItemType(item.GetTreeIndex()));
     }
 
     // Get equipped item counts
-    const UInt uActualWeaponCount = character.GetEquippedWeaponCount(sWeaponSet);
-    const UInt uActualShieldCount = character.GetEquippedShieldCount(sWeaponSet);
+    const UInt uActualWeaponCount = partyMember.GetEquippedWeaponCount(sWeaponSet);
+    const UInt uActualShieldCount = partyMember.GetEquippedShieldCount(sWeaponSet);
 
     // Get some info regarding this change
     const UInt uChangeRequiredWeaponCount = GetRequiredEquippedWeaponCount();
@@ -195,11 +205,11 @@ Bool StatChange::DoesMeetItemEquippedRequirements(const IndexedString& sCharacte
     // Change requires specific equipped items
     else if(!vChangeRequiredItemEquippedTypesOR.empty())
     {
-        return STDVectorDoesIntersectOR<IndexedString>(vEquippedItemTypes, vChangeRequiredItemEquippedTypesOR);
+        return DoesVectorIntersectOR<IndexedString>(vEquippedItemTypes, vChangeRequiredItemEquippedTypesOR);
     }
     else if(!vChangeRequiredItemEquippedTypesAND.empty())
     {
-        return STDVectorDoesIntersectAND<IndexedString>(vEquippedItemTypes, vChangeRequiredItemEquippedTypesAND);
+        return DoesVectorIntersectAND<IndexedString>(vEquippedItemTypes, vChangeRequiredItemEquippedTypesAND);
     }
     return false;
 }
@@ -219,11 +229,11 @@ Bool StatChange::DoesMeetItemUsedRequirements(const IndexedStringArray& vActionI
     // The item type being used by the action matches the change requirement
     if(!vChangeRequiredItemsUsedOR.empty() && !vActionItemTypes.front().empty())
     {
-        return STDVectorDoesIntersectOR<IndexedString>(vActionItemTypes, vChangeRequiredItemsUsedOR);
+        return DoesVectorIntersectOR<IndexedString>(vActionItemTypes, vChangeRequiredItemsUsedOR);
     }
     else if(!vChangeRequiredItemsUsedAND.empty() && !vActionItemTypes.front().empty())
     {
-        return STDVectorDoesIntersectAND<IndexedString>(vActionItemTypes, vChangeRequiredItemsUsedAND);
+        return DoesVectorIntersectAND<IndexedString>(vActionItemTypes, vChangeRequiredItemsUsedAND);
     }
     return false;
 }
@@ -237,11 +247,11 @@ Bool StatChange::DoesMeetAttackRequirements(const IndexedStringArray& vActionTyp
     // Our character is sending action, and the action's types match the required attack types
     if(!vActionTypes.empty() && !vChangeRequiredAttackTypesOR.empty())
     {
-        return STDVectorDoesIntersectOR<IndexedString>(vActionTypes, vChangeRequiredAttackTypesOR);
+        return DoesVectorIntersectOR<IndexedString>(vActionTypes, vChangeRequiredAttackTypesOR);
     }
     else if(!vActionTypes.empty() && !vChangeRequiredAttackTypesAND.empty())
     {
-        return STDVectorDoesIntersectAND<IndexedString>(vActionTypes, vChangeRequiredAttackTypesAND);
+        return DoesVectorIntersectAND<IndexedString>(vActionTypes, vChangeRequiredAttackTypesAND);
     }
     return false;
 }
@@ -261,11 +271,11 @@ Bool StatChange::DoesMeetAttackRequirements(const IndexedStringArray& vActionTyp
     // Our character is sending action, and the action's previous types match the required previous attack types
     if(!vPreviousActionTypes.empty() && !vChangeRequiredPreviousAttackTypesOR.empty())
     {
-        return STDVectorDoesIntersectOR<IndexedString>(vPreviousActionTypes, vChangeRequiredPreviousAttackTypesOR);
+        return DoesVectorIntersectOR<IndexedString>(vPreviousActionTypes, vChangeRequiredPreviousAttackTypesOR);
     }
     else if(!vPreviousActionTypes.empty() && !vChangeRequiredPreviousAttackTypesAND.empty())
     {
-        return STDVectorDoesIntersectAND<IndexedString>(vPreviousActionTypes, vChangeRequiredPreviousAttackTypesAND);
+        return DoesVectorIntersectAND<IndexedString>(vPreviousActionTypes, vChangeRequiredPreviousAttackTypesAND);
     }
     return false;
 }
@@ -279,11 +289,11 @@ Bool StatChange::DoesMeetDefendRequirements(const IndexedStringArray& vActionTyp
     // Our character is receiving action, and the action's types match the required defend types
     if(!vActionTypes.empty() && !vChangeRequiredDefendTypesOR.empty())
     {
-        return STDVectorDoesIntersectOR<IndexedString>(vActionTypes, vChangeRequiredDefendTypesOR);
+        return DoesVectorIntersectOR<IndexedString>(vActionTypes, vChangeRequiredDefendTypesOR);
     }
     else if(!vActionTypes.empty() && !vChangeRequiredDefendTypesAND.empty())
     {
-        return STDVectorDoesIntersectAND<IndexedString>(vActionTypes, vChangeRequiredDefendTypesAND);
+        return DoesVectorIntersectAND<IndexedString>(vActionTypes, vChangeRequiredDefendTypesAND);
     }
     return false;
 }
@@ -303,11 +313,11 @@ Bool StatChange::DoesMeetDefendRequirements(const IndexedStringArray& vActionTyp
     // Our character is receiving action, and the action's previous types match the required previous defend types
     if(!vPreviousActionTypes.empty() && !vChangeRequiredPreviousDefendTypesOR.empty())
     {
-        return STDVectorDoesIntersectOR<IndexedString>(vPreviousActionTypes, vChangeRequiredPreviousDefendTypesOR);
+        return DoesVectorIntersectOR<IndexedString>(vPreviousActionTypes, vChangeRequiredPreviousDefendTypesOR);
     }
     else if(!vPreviousActionTypes.empty() && !vChangeRequiredPreviousDefendTypesAND.empty())
     {
-        return STDVectorDoesIntersectAND<IndexedString>(vPreviousActionTypes, vChangeRequiredPreviousDefendTypesAND);
+        return DoesVectorIntersectAND<IndexedString>(vPreviousActionTypes, vChangeRequiredPreviousDefendTypesAND);
     }
     return false;
 }
@@ -364,11 +374,11 @@ IndexedStringArray StatChange::GetIntersectingAttackRequirements(const IndexedSt
     // Get the intersection of attack types
     if(!vActionTypes.empty() && !vChangeRequiredAttackTypesOR.empty())
     {
-        return STDVectorFindIntersect<IndexedString>(vActionTypes, vChangeRequiredAttackTypesOR);
+        return FindVectorIntersection<IndexedString>(vActionTypes, vChangeRequiredAttackTypesOR);
     }
     else if(!vActionTypes.empty() && !vChangeRequiredAttackTypesAND.empty())
     {
-        return STDVectorFindIntersect<IndexedString>(vActionTypes, vChangeRequiredAttackTypesAND);
+        return FindVectorIntersection<IndexedString>(vActionTypes, vChangeRequiredAttackTypesAND);
     }
     return IndexedStringArray();
 }
@@ -382,11 +392,11 @@ IndexedStringArray StatChange::GetIntersectingDefendRequirements(const IndexedSt
     // Get the intersection of defend types
     if(!vActionTypes.empty() && !vChangeRequiredDefendTypesOR.empty())
     {
-        return STDVectorFindIntersect<IndexedString>(vActionTypes, vChangeRequiredDefendTypesOR);
+        return FindVectorIntersection<IndexedString>(vActionTypes, vChangeRequiredDefendTypesOR);
     }
     else if(!vActionTypes.empty() && !vChangeRequiredDefendTypesAND.empty())
     {
-        return STDVectorFindIntersect<IndexedString>(vActionTypes, vChangeRequiredDefendTypesAND);
+        return FindVectorIntersection<IndexedString>(vActionTypes, vChangeRequiredDefendTypesAND);
     }
     return IndexedStringArray();
 }
@@ -402,7 +412,7 @@ Bool StatChange::GetResolvedCharacterArrays(IndexedStringArray& vSourceCharIDs, 
     return (!vSourceCharIDs.empty() || !vDestCharIDs.empty());
 }
 
-void StatChange::ResolveTargetPlaceholders(const IndexedString& sCharacterID, const IndexedString& sSegment);
+void StatChange::ResolveTargetPlaceholders(const IndexedString& sCharacterID, const IndexedString& sSegment)
 {
     // Check character first
     if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
@@ -412,16 +422,12 @@ void StatChange::ResolveTargetPlaceholders(const IndexedString& sCharacterID, co
 
     // Get battle data
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
-    STDSharedPtr<const CharacterBattleData> pBattleData = GetBattleSegment(sSegment);
-    if(!pBattleData)
-    {
-        return;
-    }
+    const CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
     // Get resolved target types
-    IndexedString sSelfTargetType = character.GetBasicData().GetCharacterTargetType();
-    IndexedStringArray vSourceTargetTypes = pBattleData->ResolveTargetPlaceholder(sSelfTargetType, GetSourceTargetType());
-    IndexedStringArray vDestTargetTypes = pBattleData->ResolveTargetPlaceholder(sSelfTargetType, GetDestinationTargetType());
+    IndexedString sSelfTargetType = character.GetCharacterTargetType();
+    IndexedStringArray vSourceTargetTypes = battleData.ResolveTargetPlaceholder(sSelfTargetType, GetSourceTargetType());
+    IndexedStringArray vDestTargetTypes = battleData.ResolveTargetPlaceholder(sSelfTargetType, GetDestinationTargetType());
 
     // Save resolved target types
     if(!vSourceTargetTypes.empty())

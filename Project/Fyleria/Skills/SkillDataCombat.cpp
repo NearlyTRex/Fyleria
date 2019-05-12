@@ -4,6 +4,7 @@
 #include "Skills/SkillDataCombat.h"
 #include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
+#include "CharacterParty/CharacterPartyManager.h"
 
 namespace Gecko
 {
@@ -30,13 +31,15 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& s
 
     // Get character
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
+    const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
     // Get equipped item information
     TreeIndex primaryItemIndex;
     TreeIndex secondaryItemIndex;
     IndexedStringArray vPrimaryActionTypes;
     IndexedStringArray vSecondaryActionTypes;
-    if(!character.GetHandInfoByWeaponSet(sWeaponSet,
+    if(!partyMember.GetHandInfoByWeaponSet(sWeaponSet,
         primaryItemIndex,
         secondaryItemIndex,
         vPrimaryActionTypes,
@@ -120,7 +123,7 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& s
         // Add new action
         if(!newAction.GetActionEntries().empty())
         {
-            vNewActions.push_back(pNewAction);
+            vNewActions.push_back(newAction);
         }
     }
     return vNewActions;

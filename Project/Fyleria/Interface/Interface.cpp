@@ -69,7 +69,7 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     }
 
     // Check python library
-    if(!DoesFileExist(ConfigManager::GetInstance()->GetPythonLib()))
+    if(!DoesPathExist(ConfigManager::GetInstance()->GetPythonLib()))
     {
         ERROR_FORMAT_STATEMENT("Python library '%s' could not be found, check configuration file\n",
             ConfigManager::GetInstance()->GetPythonLib().c_str());

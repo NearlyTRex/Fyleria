@@ -3,6 +3,8 @@
 
 #include "Stats/StatChange.h"
 #include "Stats/StatChangeEntry.h"
+#include "Stats/ProlongedStatChange.h"
+#include "Stats/StatTypeHolder.h"
 #include "Utility/Macros.h"
 #include "Utility/Serializable.h"
 #include "Utility/Python.h"
@@ -32,7 +34,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoStats, m)
         WRAPPING_ADD_METHOD_SIMPLE(GetIntStatValue, Gecko::StatTypeHolder)
         WRAPPING_ADD_METHOD_SIMPLE(GetFloatStatValue, Gecko::StatTypeHolder)
         WRAPPING_ADD_METHOD_SIMPLE(GetDoubleStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(GetStatValue, Gecko::StatTypeHolder)
         WRAPPING_ADD_METHOD_SIMPLE(GetIndexedStringStatValue, Gecko::StatTypeHolder)
         WRAPPING_ADD_METHOD_SIMPLE(GetIndexedStringArrayStatValue, Gecko::StatTypeHolder)
         WRAPPING_ADD_METHOD_SIMPLE(SetBoolStatValue, Gecko::StatTypeHolder)

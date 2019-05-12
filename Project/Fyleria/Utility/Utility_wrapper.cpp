@@ -22,8 +22,14 @@ String GetAllTypeNames()
     // CharacterTypes.h
     jsonData["CharacterTreeIndexType"] = GetCharacterTreeIndexTypeNames();
     jsonData["CharacterSegmentType"] = GetCharacterSegmentTypeNames();
-    jsonData["CharacterProgressStatType"] = GetCharacterProgressStatTypeNames();
-    jsonData["CharacterBattleStatType"] = GetCharacterBattleStatTypeNames();
+    jsonData["CharacterBasicStatType_IndexedString"] = GetCharacterBasicStatType_IndexedStringNames();
+    jsonData["CharacterBasicStatType_Int"] = GetCharacterBasicStatType_IntNames();
+    jsonData["CharacterProgressStatType_Int"] = GetCharacterProgressStatType_IntNames();
+    jsonData["CharacterBattleStatType_IndexedString"] = GetCharacterBattleStatType_IndexedStringNames();
+    jsonData["CharacterBattleStatType_IndexedStringArray"] = GetCharacterBattleStatType_IndexedStringArrayNames();
+    jsonData["CharacterBattleStatType_Bool"] = GetCharacterBattleStatType_BoolNames();
+    jsonData["CharacterBattleStatType_Int"] = GetCharacterBattleStatType_IntNames();
+    jsonData["CharacterBattleStatType_Float"] = GetCharacterBattleStatType_FloatNames();
     jsonData["CharacterStatusType"] = GetCharacterStatusTypeNames();
     jsonData["CharacterBaseRaceType"] = GetCharacterBaseRaceTypeNames();
     jsonData["CharacterTransformedRaceType"] = GetCharacterTransformedRaceTypeNames();
@@ -62,8 +68,8 @@ String GetAllTypeNames()
 
 };
 
-PYBIND11_MAKE_OPAQUE(Gecko::TreeIndexList);
-PYBIND11_MAKE_OPAQUE(Gecko::IndexedStringList);
+PYBIND11_MAKE_OPAQUE(Gecko::TreeIndexArray);
+PYBIND11_MAKE_OPAQUE(Gecko::IndexedStringArray);
 
 PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
 {
@@ -79,9 +85,9 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
         WRAPPING_ADD_METHOD_SIMPLE(IsValid, Gecko::IndexedString)
         WRAPPING_ADD_METHOD_SIMPLE(GetIndex, Gecko::IndexedString)
     ;
-    PyBindVector<Gecko::IndexedStringList>(m, "IndexedStringList");
+    PyBindVector<Gecko::IndexedStringArray>(m, "IndexedStringArray");
     PyBindMakeImplicitlyConvertible<Gecko::String, Gecko::IndexedString>();
-    PyBindMakeImplicitlyConvertible<Gecko::StringList, Gecko::IndexedStringList>();
+    PyBindMakeImplicitlyConvertible<Gecko::StringArray, Gecko::IndexedStringArray>();
 
     // Serializable.h
     PyBindClass<Gecko::SerializableToJson>(m, "SerializableToJson")
@@ -114,11 +120,11 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
         WRAPPING_ADD_METHOD_SIMPLE(GetTreeBranchLeafType, Gecko::TreeIndex)
         WRAPPING_ADD_METHOD_SIMPLE(GetTypes, Gecko::TreeIndex)
     ;
-    PyBindVector<Gecko::TreeIndexList>(m, "TreeIndexList");
+    PyBindVector<Gecko::TreeIndexArray>(m, "TreeIndexArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertTreeIndexToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertTreeIndexListToJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertTreeIndexArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetTreeIndexFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetTreeIndexListFromJsonString, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetTreeIndexArrayFromJsonString, Gecko);
 
     // Serialization.h
     WRAPPING_STANDALONE_METHOD_SIMPLE(ReadBinaryFile, Gecko);
@@ -137,6 +143,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
 
     // FantasyName.h
     WRAPPING_STANDALONE_METHOD_SIMPLE(GenerateRandomFantasyName, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetRandomNamePattern, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCapitalizationToken, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetReverseToken, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetMiddleEarthNamePattern, Gecko);

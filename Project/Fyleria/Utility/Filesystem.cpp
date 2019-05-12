@@ -6,7 +6,7 @@
 namespace Gecko
 {
 
-Bool DoesFileExist(const String& sPath)
+Bool DoesPathExist(const String& sPath)
 {
     return false;
 }
