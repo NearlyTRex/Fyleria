@@ -46,6 +46,9 @@ Bool IsStatLongDouble(const IndexedString& sStat);
 Bool IsStatIndexedString(const IndexedString& sStat);
 Bool IsStatIndexedStringArray(const IndexedString& sStat);
 
+// Initialize all stat names
+void InitializeAllStatNames();
+
 };
 
 #endif

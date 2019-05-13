@@ -1,0 +1,15 @@
+// Fyleria Engine
+// Copyright © 2016 Go Go Gecko Productions
+
+#ifndef _GECKO_APPLICATION_H_
+#define _GECKO_APPLICATION_H_
+
+namespace Gecko
+{
+
+// Start application
+int StartApplication(int argc, char** argv, const char* sUrl, const char* sTitle, int iWidth, int iHeight);
+
+};
+
+#endif

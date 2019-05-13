@@ -11,9 +11,6 @@ namespace Gecko
 
 CharacterProgressData::CharacterProgressData()
 {
-    // Init stat names
-    InitAllStatNames();
-
     // Clear data
     Clear();
 }
@@ -162,8 +159,8 @@ void CharacterProgressData::InitAllStatNames()
         return;
     }
 
-    // Initialize stats
-    INITIALIZE_STAT_TYPE_VALUES(CharacterProgressStatType, Int);
+    // Initialize stat type names
+    INITIALIZE_STAT_TYPE_NAMES(CharacterProgressStatType, Int);
 
     // Finished
     s_bCharacterProgressData_StatNamesInitialized = true;

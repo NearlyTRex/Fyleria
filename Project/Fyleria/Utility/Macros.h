@@ -198,12 +198,15 @@ void Set##name(const type& varValue) { m_Data[#name] = varValue; }
 
 //=====================================================================================
 
-#define MAKE_STAT_TYPE_ACCESSORS(name, type)                                        \
-void Init##name()                                                                   \
+#define INITIALIZE_STAT_TYPE_NAMES(base, type)                                      \
 {                                                                                   \
-    GetStats().emplace(#name, type());                                              \
-    Get##type##StatNames().emplace(IndexedString(#name));                           \
-}                                                                                   \
+    for (auto& eType : base##_##type::_values())                                    \
+    {                                                                               \
+        Get##type##StatNames().insert(eType._to_string());                          \
+    }                                                                               \
+}
+
+#define MAKE_STAT_TYPE_ACCESSORS(name, type)                                        \
 type Get##name() const                                                              \
 {                                                                                   \
     type var##name = type();                                                        \
@@ -215,19 +218,11 @@ void Set##name(const type& var##name)                                           
     SetStatValue<type>(GetStats(), IndexedString(#name), var##name);                \
 }
 
-#define INITIALIZE_STAT_TYPE_VALUES(base, type)                                     \
-{                                                                                   \
-    for (auto& eType : base##_##type::_values())                                    \
-    {                                                                               \
-        Get##type##StatNames().insert(eType._to_string());                          \
-    }                                                                               \
-}
-
 #define RESET_STAT_TYPE_VALUES(base, type)                                          \
 {                                                                                   \
     for (auto& eType : base##_##type::_values())                                    \
     {                                                                               \
-        SetStatValue(GetStats(), IndexedString(eType._to_string()), type());        \
+        SetStatValue<type>(GetStats(), IndexedString(eType._to_string()), type());  \
     }                                                                               \
 }
 

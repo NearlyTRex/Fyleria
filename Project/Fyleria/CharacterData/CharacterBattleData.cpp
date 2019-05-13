@@ -12,9 +12,6 @@ namespace Gecko
 
 CharacterBattleData::CharacterBattleData()
 {
-    // Init stat names
-    InitAllStatNames();
-
     // Clear data
     Clear();
 }
@@ -374,12 +371,12 @@ void CharacterBattleData::InitAllStatNames()
         return;
     }
 
-    // Initialize stats
-    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedString);
-    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedStringArray);
-    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, Bool);
-    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, Int);
-    INITIALIZE_STAT_TYPE_VALUES(CharacterBattleStatType, Float);
+    // Initialize stat type names
+    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, IndexedString);
+    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, IndexedStringArray);
+    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Bool);
+    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Int);
+    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Float);
 
     // Finished
     s_bCharacterBattleData_StatNamesInitialized = true;

@@ -2,6 +2,9 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Stats/StatNames.h"
+#include "CharacterData/CharacterBasicData.h"
+#include "CharacterData/CharacterProgressData.h"
+#include "CharacterData/CharacterBattleData.h"
 
 namespace Gecko
 {
@@ -56,5 +59,12 @@ Bool IsStatDouble(const IndexedString& sStat) { return (GetDoubleStatNames().fin
 Bool IsStatLongDouble(const IndexedString& sStat) { return (GetLongDoubleStatNames().find(sStat) != GetLongDoubleStatNames().end()); }
 Bool IsStatIndexedString(const IndexedString& sStat) { return (GetIndexedStringStatNames().find(sStat) != GetIndexedStringStatNames().end()); }
 Bool IsStatIndexedStringArray(const IndexedString& sStat) { return (GetIndexedStringArrayStatNames().find(sStat) != GetIndexedStringArrayStatNames().end()); }
+
+void InitializeAllStatNames()
+{
+    CharacterBasicData::InitAllStatNames();
+    CharacterProgressData::InitAllStatNames();
+    CharacterBattleData::InitAllStatNames();
+}
 
 };

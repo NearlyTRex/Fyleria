@@ -8,9 +8,6 @@ namespace Gecko
 
 CharacterBasicData::CharacterBasicData()
 {
-    // Init stat names
-    InitAllStatNames();
-
     // Clear data
     Clear();
 }
@@ -39,9 +36,9 @@ void CharacterBasicData::InitAllStatNames()
         return;
     }
 
-    // Initialize stats
-    INITIALIZE_STAT_TYPE_VALUES(CharacterBasicStatType, IndexedString);
-    INITIALIZE_STAT_TYPE_VALUES(CharacterBasicStatType, Int);
+    // Initialize stat type names
+    INITIALIZE_STAT_TYPE_NAMES(CharacterBasicStatType, IndexedString);
+    INITIALIZE_STAT_TYPE_NAMES(CharacterBasicStatType, Int);
 
     // Finished
     s_bCharacterBasicData_StatNamesInitialized = true;
