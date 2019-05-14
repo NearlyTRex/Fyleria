@@ -32,10 +32,13 @@ Bool CreateDirectory(const String& sPath);
 Bool RemoveDirectory(const String& sPath);
 
 // Remove file
-void RemoveFile(const String& sPath);
+Bool RemoveFile(const String& sPath);
 
 // Get file size in bytes
 SizeType GetFileSize(const String& sPath);
+
+// Get canonical path
+String GetCanonicalPath(const String& sPath);
 
 // Join paths together
 String JoinPaths(const String& sPath1, const String& sPath2);

@@ -15,17 +15,21 @@ libBoost_libs = {
 
 -- Sources
 libBoost_sources = {
+    libBoost_srcdir .. "filesystem/src/codecvt_error_category.cpp",
+    libBoost_srcdir .. "filesystem/src/operations.cpp",
+    libBoost_srcdir .. "filesystem/src/path.cpp",
+    libBoost_srcdir .. "filesystem/src/path_traits.cpp",
+    libBoost_srcdir .. "filesystem/src/portability.cpp",
+    libBoost_srcdir .. "filesystem/src/unique_path.cpp",
+    libBoost_srcdir .. "filesystem/src/utf8_codecvt_facet.cpp",
     libBoost_srcdir .. "thread/src/future.cpp",
     libBoost_srcdir .. "thread/src/tss_null.cpp",
     libBoost_srcdir .. "system/src/error_code.cpp"
 }
-if os.host() == "windows" or _OPTIONS["with-mingw32"] or _OPTIONS["with-mingw64"] then
-    --table.insert(libBoost_sources, libBoost_srcdir .. "thread/src/win32/thread.cpp")
+if os.host() == "windows" then
+    table.insert(libBoost_sources, libBoost_srcdir .. "filesystem/src/windows_file_codecvt.cpp")
     table.insert(libBoost_sources, libBoost_srcdir .. "thread/src/win32/thread_primitives.cpp")
-    --table.insert(libBoost_sources, libBoost_srcdir .. "thread/src/win32/tss_dll.cpp")
-    --table.insert(libBoost_sources, libBoost_srcdir .. "thread/src/win32/tss_pe.cpp")
 else
     table.insert(libBoost_sources, libBoost_srcdir .. "thread/src/pthread/once.cpp")
-    --table.insert(libBoost_sources, libBoost_srcdir .. "thread/src/pthread/once_atomic.cpp")
     table.insert(libBoost_sources, libBoost_srcdir .. "thread/src/pthread/thread.cpp")
 end

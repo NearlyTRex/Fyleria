@@ -8,22 +8,22 @@ namespace Gecko
 
 Bool DoesPathExist(const String& sPath)
 {
-    return false;
+    return BoostFilesystemExists(BoostFilesystemPath(sPath));
 }
 
 Bool IsFile(const String& sPath)
 {
-    return false;
+    return BoostFilesystemIsFile(BoostFilesystemPath(sPath));
 }
 
 Bool IsDirectory(const String& sPath)
 {
-    return false;
+    return BoostFilesystemIsDirectory(BoostFilesystemPath(sPath));
 }
 
 Bool IsSymbolicLink(const String& sPath)
 {
-    return false;
+    return BoostFilesystemIsSymbolicLink(BoostFilesystemPath(sPath));
 }
 
 StringArray GetListOfFiles(const String& sPath)
@@ -33,26 +33,32 @@ StringArray GetListOfFiles(const String& sPath)
 
 Bool CreateDirectory(const String& sPath)
 {
-    return false;
+    return BoostFilesystemCreateDirectory(BoostFilesystemPath(sPath));
 }
 
 Bool RemoveDirectory(const String& sPath)
 {
-    return false;
+    return BoostFilesystemRemoveAll(BoostFilesystemPath(sPath)) > 0;
 }
 
-void RemoveFile(const String& sPath)
+Bool RemoveFile(const String& sPath)
 {
+    return BoostFilesystemRemove(BoostFilesystemPath(sPath));
 }
 
 SizeType GetFileSize(const String& sPath)
 {
-    return 0;
+    return BoostFilesystemFileSize(BoostFilesystemPath(sPath));
+}
+
+String GetCanonicalPath(const String& sPath)
+{
+    return BoostFilesystemCanonical(BoostFilesystemPath(sPath)).string();
 }
 
 String JoinPaths(const String& sPath1, const String& sPath2)
 {
-    return String();
+    return (BoostFilesystemPath(sPath1) / BoostFilesystemPath(sPath2)).string();
 }
 
 };

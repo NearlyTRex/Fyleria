@@ -22,10 +22,7 @@ libBackwardCPP_defines = {
 -- Libs
 libBackwardCPP_libs = {
 }
-if os.host() == "windows" or _OPTIONS["with-mingw32"] or _OPTIONS["with-mingw64"] then
+if os.host() == "windows" then
 elseif os.host() == "linux" then
-    table.insert(libBackwardCPP_libs, "bfd")
-    table.insert(libBackwardCPP_libs, "dl")
     table.insert(libBackwardCPP_libs, "dw")
-    table.insert(libBackwardCPP_libs, "dwarf")
 end

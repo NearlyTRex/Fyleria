@@ -30,7 +30,7 @@ libPython3_debugdefines = {
 libPython3_releasedefines = {
     "NDEBUG"
 }
-if os.host() == "windows" or _OPTIONS["with-mingw32"] or _OPTIONS["with-mingw64"] then
+if os.host() == "windows" then
     table.insert(libPython3_defines, "HAVE_ROUND")
     table.insert(libPython3_defines, "_CRT_SECURE_NO_WARNINGS")
     table.insert(libPython3_defines, "_CRT_SECURE_NO_DEPRECATE")
@@ -41,7 +41,7 @@ end
 libPython3_libs = {
     "Zlib"
 }
-if os.host() == "windows" or _OPTIONS["with-mingw32"] or _OPTIONS["with-mingw64"] then
+if os.host() == "windows" then
     table.insert(libPython3_libs, "version")
     table.insert(libPython3_libs, "ws2_32")
     table.insert(libPython3_libs, "shlwapi")
