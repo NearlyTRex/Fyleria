@@ -11,6 +11,8 @@
 #include <boost/filesystem.hpp>
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
+#include <boost/thread.hpp>
+#include <boost/program_options.hpp>
 
 // External function defines
 #define BoostAnyCast boost::any_cast
