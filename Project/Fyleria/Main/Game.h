@@ -8,7 +8,7 @@ namespace Gecko
 {
 
 // Initialize game
-bool InitializeGame();
+bool InitializeGame(const char* sConfigFile, const char* sConfigDir, const char* sDataDir, const char* sCacheDir);
 
 // Finalize game
 bool FinalizeGame();
@@ -21,6 +21,12 @@ void StartGameWebsocketServer(const char* sHostname, int iPort);
 
 // Start rest server
 void StartGameRestServer(const char* sHostname, const char* sWebRoot, int iPort, int iThreadCount);
+
+// Stop web socket server
+void StopGameWebsocketServer();
+
+// Stop rest server
+void StopGameRestServer();
 
 };
 

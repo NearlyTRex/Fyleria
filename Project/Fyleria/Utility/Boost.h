@@ -27,12 +27,20 @@
 #define BoostFilesystemCreateDirectory boost::filesystem::create_directory
 #define BoostFilesystemRemove boost::filesystem::remove
 #define BoostFilesystemRemoveAll boost::filesystem::remove_all
+#define BoostProgramOptionsStore boost::program_options::store
+#define BoostProgramOptionsNotify boost::program_options::notify
+#define BoostProgramOptionsParseCommandLine boost::program_options::parse_command_line
 
 // External type defines
 #define BoostAny boost::any
 #define BoostFunction boost::function
 #define BoostBind boost::bind
+#define BoostThread boost::thread
 #define BoostFilesystemPath boost::filesystem::path
+#define BoostProgramOptionsDescription boost::program_options::options_description
+#define BoostProgramOptionsVariablesMap boost::program_options::variables_map
+#define BoostProgramOptionsValue boost::program_options::value
+#define BoostProgramOptionsBoolSwitch boost::program_options::bool_switch
 
 // External exception defines
 #define BoostBadAnyCast boost::bad_any_cast

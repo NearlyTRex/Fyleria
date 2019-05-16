@@ -3,6 +3,9 @@
 
 // Internal includes
 #include "Main/Game.h"
+#include "Config/ConfigManager.h"
+#include "Items/ItemTree.h"
+#include "Skills/SkillTree.h"
 #include "Interface/Interface.h"
 #include "Server/WebSockets.h"
 #include "Server/Rest.h"
@@ -13,10 +16,13 @@
 namespace Gecko
 {
 
-bool InitializeGame()
+bool InitializeGame(const char* sConfigFile, const char* sConfigDir, const char* sDataDir, const char* sCacheDir)
 {
-    // Initialize stat names
-    InitializeAllStatNames();
+    // Set config data
+    ConfigManager::GetInstance()->SetUserConfigFile(sConfigFile);
+    ConfigManager::GetInstance()->SetUserConfigFolder(sConfigDir);
+    ConfigManager::GetInstance()->SetUserDataFolder(sDataDir);
+    ConfigManager::GetInstance()->SetUserCacheFolder(sCacheDir);
 
     // Initialize module
     if (!DLL_InitModule())
@@ -24,11 +30,22 @@ bool InitializeGame()
         ERROR_STATEMENT("Unable to initialize module");
         return false;
     }
+
+    // Initialize stat names
+    InitializeAllStatNames();
+
+    // Load trees
+    LoadItemTreesIntoMemory();
+    LoadSkillTreesIntoMemory();
     return true;
 }
 
 bool FinalizeGame()
 {
+    // Unload trees
+    UnloadItemTreesFromMemory();
+    UnloadSkillTreesFromMemory();
+
     // Finalize module
     if (!DLL_FinalizeModule())
     {
@@ -68,6 +85,18 @@ void StartGameRestServer(const char* sHostname, const char* sWebRoot, int iPort,
     RestServer::GetInstance()->SetThreadCount(iThreadCount);
     RestServer::GetInstance()->Reset();
     RestServer::GetInstance()->Start();
+}
+
+void StopGameWebsocketServer()
+{
+    // Stop server
+    WebsocketServer::GetInstance()->Stop();
+}
+
+void StopGameRestServer()
+{
+    // Stop server
+    RestServer::GetInstance()->Stop();
 }
 
 };
