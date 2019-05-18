@@ -8,6 +8,7 @@ require "Libs/FantasyName/FantasyName"
 require "Libs/ImmutableString/ImmutableString"
 require "Libs/MicroPather/MicroPather"
 require "Libs/ModernCPPJson/ModernCPPJson"
+require "Libs/ObjectThreadsafe/ObjectThreadsafe"
 require "Libs/Pistache/Pistache"
 require "Libs/PyBind/PyBind"
 require "Libs/Python3/Python3"
@@ -126,6 +127,10 @@ pic "On"
     files(libMicroPather_sources)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("MicroPather"))
+filter "configurations:Debug*"
+    defines(libMicroPather_debugdefines)
+filter "configurations:Release*"
+    defines(libMicroPather_releasedefines)
 
 -- Pistache
 project "Pistache"

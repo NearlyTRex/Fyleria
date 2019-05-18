@@ -46,6 +46,8 @@ def main():
         Project.SetupProject("ImmutableString", "Project/Libs", system_info, program_options)
         Project.SetupProject("MicroPather", "Project/Libs", system_info, program_options)
         Project.SetupProject("ModernCPPJson", "Project/Libs", system_info, program_options)
+        Project.SetupProject("ObjectThreadsafe", "Project/Libs", system_info, program_options)
+        Project.SetupProject("Pistache", "Project/Libs", system_info, program_options)
         Project.SetupProject("PyBind", "Project/Libs", system_info, program_options)
         Project.SetupProject("Python3", "Project/Libs", system_info, program_options)
         Project.SetupProject("TinyXML2", "Project/Libs", system_info, program_options)
