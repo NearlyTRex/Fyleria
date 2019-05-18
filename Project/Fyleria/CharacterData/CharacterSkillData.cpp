@@ -7,6 +7,14 @@
 namespace Gecko
 {
 
+CharacterSkillData::CharacterSkillData()
+{
+}
+
+CharacterSkillData::~CharacterSkillData()
+{
+}
+
 #define SET_SKILL_FUNCTION_NODE(name)                                                               \
 {                                                                                                   \
     CharacterSkillFunctionNode node;                                                                \
@@ -17,7 +25,7 @@ namespace Gecko
     GetSkillFunctionMap()[IndexedString(#name)] = node;                                             \
 }
 
-CharacterSkillData::CharacterSkillData()
+void CharacterSkillData::SetupSkillFunctions()
 {
     // Combat Skills
     SET_SKILL_FUNCTION_NODE(Barbarian);
@@ -98,10 +106,6 @@ CharacterSkillData::CharacterSkillData()
     SET_SKILL_FUNCTION_NODE(Blood);
     SET_SKILL_FUNCTION_NODE(Flesh);
     SET_SKILL_FUNCTION_NODE(Wind);
-}
-
-CharacterSkillData::~CharacterSkillData()
-{
 }
 
 void CharacterSkillData::Clear()

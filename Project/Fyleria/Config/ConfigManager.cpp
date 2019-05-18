@@ -3,13 +3,12 @@
 
 #include "Config/ConfigManager.h"
 #include "Utility/Assert.h"
+#include "Utility/Errors.h"
 #include "Utility/Converters.h"
 #include "Utility/Filesystem.h"
 
 namespace Gecko
 {
-
-Config ConfigManager::s_EmptyConfig = {};
 
 ConfigManager::ConfigManager()
     : Singleton<ConfigManager>()
@@ -48,7 +47,11 @@ const Config& ConfigManager::GetConfig(const String& sName) const
 {
     ASSERT_ERROR(DoesConfigExist(sName), "Config with name '%s' was not registered", sName.c_str());
     auto iSearch = GetLoadedConfigs().find(sName);
-    return (iSearch != GetLoadedConfigs().end()) ? iSearch->second : s_EmptyConfig;
+    if(iSearch != GetLoadedConfigs().end())
+    {
+        return iSearch->second;
+    }
+    throw RuntimeError("Invalid or unknown config requested: " + sName);
 }
 
 const Config& ConfigManager::GetCurrentConfig() const

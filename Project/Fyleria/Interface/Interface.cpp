@@ -48,6 +48,9 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     // Lock API call
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
+    // Start initialization
+    LOG_STATEMENT("Starting initialization...");
+
     // Check supported platforms
     if(
         ConfigManager::GetInstance()->IsIOS() ||
@@ -82,6 +85,7 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     Py_IgnoreEnvironmentFlag++;
 
     // Set python home
+    LOG_FORMAT_STATEMENT("Loading python library '%s'\n", ConfigManager::GetInstance()->GetPythonLib().c_str());
 #ifdef Py_USING_UNICODE
     Py_SetPythonHome(const_cast<wchar_t*>(ConfigManager::GetInstance()->GetPythonLibW().c_str()));
     Py_SetPath(ConfigManager::GetInstance()->GetPythonLibW().c_str());
@@ -98,12 +102,6 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     PyRun_SimpleString("import sys");
     PyRun_SimpleString("sys.path.append('Scripts')");
 
-    // Load trees into memory
-    LOG_STATEMENT("Loading trees into memory...");
-    LoadSkillTreesIntoMemory();
-    LoadItemTreesIntoMemory();
-    LOG_STATEMENT("Finished loading trees into memory");
-
     // Initialization finished!
     LOG_STATEMENT("Module successfully initialized");
     return true;
@@ -114,19 +112,11 @@ extern "C" DLL_PUBLIC bool DLL_FinalizeModule()
     // Lock API call
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
-    // Unload trees from memory
-    LOG_STATEMENT("Unloading trees from memory...");
-    UnloadSkillTreesFromMemory();
-    UnloadItemTreesFromMemory();
-    LOG_STATEMENT("Finished unloading trees from memory");
+    // Start finalization
+    LOG_STATEMENT("Starting finalization...");
 
     // Finalize interpreter
     PyBindFinalizeInterpreter();
-
-    // Clear module results
-    LOG_STATEMENT("Clearing all module results...");
-    ModuleResult::ClearAllResults();
-    LOG_STATEMENT("Finished clearing module results");
 
     // Finalization finished!
     LOG_STATEMENT("Module successfully finalized");

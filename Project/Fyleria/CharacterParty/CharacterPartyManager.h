@@ -59,11 +59,6 @@ public:
     // Current ally/enemy party
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentAllyPartyID, IndexedString);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentEnemyPartyID, IndexedString);
-
-private:
-
-    // Empty party
-    static CharacterParty s_EmptyCharacterParty;
 };
 
 };

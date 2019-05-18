@@ -8,8 +8,6 @@ namespace Gecko
 
 CharacterBasicData::CharacterBasicData()
 {
-    // Clear data
-    Clear();
 }
 
 CharacterBasicData::CharacterBasicData(const Json& jsonData)

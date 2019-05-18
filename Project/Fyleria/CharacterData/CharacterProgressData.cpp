@@ -11,8 +11,6 @@ namespace Gecko
 
 CharacterProgressData::CharacterProgressData()
 {
-    // Clear data
-    Clear();
 }
 
 CharacterProgressData::CharacterProgressData(const Json& jsonData)

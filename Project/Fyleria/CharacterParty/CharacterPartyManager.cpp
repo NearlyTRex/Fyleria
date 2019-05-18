@@ -3,12 +3,11 @@
 
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Character/CharacterTypes.h"
+#include "Utility/Errors.h"
 #include "Utility/Constants.h"
 
 namespace Gecko
 {
-
-CharacterParty CharacterPartyManager::s_EmptyCharacterParty = {};
 
 CharacterPartyManager::CharacterPartyManager()
     : Singleton<CharacterPartyManager>()
@@ -101,7 +100,11 @@ const CharacterParty& CharacterPartyManager::GetPartyByID(const IndexedString& s
     // Get party
     ASSERT_ERROR(DoesPartyExist(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
     auto iSearch = GetParties().find(sPartyID);
-    return iSearch->second;
+    if(iSearch != GetParties().end())
+    {
+        return iSearch->second;
+    }
+    throw RuntimeError("Invalid or unknown party ID requested: " + sPartyID.Get());
 }
 
 CharacterParty& CharacterPartyManager::GetPartyByID(const IndexedString& sPartyID)
@@ -114,9 +117,16 @@ const CharacterParty& CharacterPartyManager::GetPartyByType(const IndexedString&
 {
     // Get party
     const CharacterPartyType ePartyType = StringToCharacterPartyType(sPartyType);
-    if(ePartyType == +CharacterPartyType::Ally) { return GetCurrentAllyParty(); }
-    else if(ePartyType == +CharacterPartyType::Enemy) { return GetCurrentEnemyParty(); }
-    return s_EmptyCharacterParty;
+    switch(ePartyType)
+    {
+        case CharacterPartyType::Ally:
+            return GetCurrentAllyParty();
+        case CharacterPartyType::Enemy:
+            return GetCurrentEnemyParty();
+        default:
+            break;
+    }
+    throw RuntimeError("Invalid or unknown party type requested: " + sPartyType.Get());
 }
 
 CharacterParty& CharacterPartyManager::GetPartyByType(const IndexedString& sPartyType)

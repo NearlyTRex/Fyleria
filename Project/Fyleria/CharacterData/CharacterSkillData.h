@@ -23,6 +23,9 @@ public:
     CharacterSkillData();
     ~CharacterSkillData();
 
+    // Setup skill functions
+    void SetupSkillFunctions();
+
     // Clear all data
     void Clear();
 

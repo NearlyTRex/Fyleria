@@ -12,8 +12,6 @@ namespace Gecko
 
 CharacterBattleData::CharacterBattleData()
 {
-    // Clear data
-    Clear();
 }
 
 CharacterBattleData::CharacterBattleData(const Json& jsonData)

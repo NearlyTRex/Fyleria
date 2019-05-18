@@ -146,9 +146,10 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebHostname, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(RestUrl, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebsocketUrl, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EnableScrollbars, Bool);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EnableContextMenu, Bool);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(StartFullscreen, Bool);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllowScrollbars, Bool);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllowContextMenu, Bool);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StartMaximized, Bool);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ScreenWidth, Int);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ScreenHeight, Int);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(RestPort, Int);
@@ -169,11 +170,6 @@ public:
     Bool IsMac() const;
     Bool IsIOS() const;
     Bool IsAndroid() const;
-
-private:
-
-    // Empty config
-    static Config s_EmptyConfig;
 };
 
 };

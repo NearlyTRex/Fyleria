@@ -121,12 +121,6 @@ public:
     // Comparisons
     Bool operator==(const Character& other) const;
     Bool operator!=(const Character& other) const;
-
-private:
-
-    // Empty data
-    static CharacterProgressData s_EmptyCharacterProgressData;
-    static CharacterBattleData s_EmptyCharacterBattleData;
 };
 
 // Typedef

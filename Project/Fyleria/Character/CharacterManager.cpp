@@ -5,6 +5,7 @@
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Character/CharacterTypes.h"
 #include "Battle/BattleManager.h"
+#include "Utility/Errors.h"
 #include "Utility/Templates.h"
 
 namespace Gecko
@@ -105,7 +106,11 @@ const Character& CharacterManager::GetCharacter(const IndexedString& sCharacterI
     // Get character
     ASSERT_ERROR(DoesCharacterExist(sCharacterID), "Character with ID '%s' was not registered", sCharacterID.c_str());
     auto iSearch = GetCharacters().find(sCharacterID);
-    return iSearch->second;
+    if(iSearch != GetCharacters().end())
+    {
+        return iSearch->second;
+    }
+    throw RuntimeError("Invalid or unknown character ID requested: " + sCharacterID.Get());
 }
 
 Character& CharacterManager::GetCharacter(const IndexedString& sCharacterID)

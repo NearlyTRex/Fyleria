@@ -14,9 +14,6 @@
 namespace Gecko
 {
 
-CharacterProgressData Character::s_EmptyCharacterProgressData = {};
-CharacterBattleData Character::s_EmptyCharacterBattleData = {};
-
 Character::Character()
 {
 }
@@ -83,7 +80,7 @@ const CharacterProgressData& Character::GetProgressDataSegment(const IndexedStri
         case CharacterSegmentType::Active: return GetProgressDataActives();
         default: break;
     }
-    return s_EmptyCharacterProgressData;
+    throw RuntimeError("Invalid or unknown segment requested: " + sSegment.Get());
 }
 
 CharacterProgressData& Character::GetProgressDataSegment(const IndexedString& sSegment)
@@ -101,7 +98,7 @@ const CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& 
         case CharacterSegmentType::Active: return GetBattleDataActives();
         default: break;
     }
-    return s_EmptyCharacterBattleData;
+    throw RuntimeError("Invalid or unknown segment requested: " + sSegment.Get());
 }
 
 CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& sSegment)

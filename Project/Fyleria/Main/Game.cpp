@@ -26,19 +26,25 @@ bool InitializeGame()
     }
 
     // Initialize stat names
+    LOG_STATEMENT("Initializing stat names...");
     InitializeAllStatNames();
+    LOG_STATEMENT("Finished initializing stat names");
 
-    // Load trees
-    LoadItemTreesIntoMemory();
+    // Load trees into memory
+    LOG_STATEMENT("Loading trees into memory...");
     LoadSkillTreesIntoMemory();
+    LoadItemTreesIntoMemory();
+    LOG_STATEMENT("Finished loading trees into memory");
     return true;
 }
 
 bool FinalizeGame()
 {
-    // Unload trees
-    UnloadItemTreesFromMemory();
+    // Unload trees from memory
+    LOG_STATEMENT("Unloading trees from memory...");
     UnloadSkillTreesFromMemory();
+    UnloadItemTreesFromMemory();
+    LOG_STATEMENT("Finished unloading trees from memory");
 
     // Finalize module
     if (!DLL_FinalizeModule())

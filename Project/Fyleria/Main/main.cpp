@@ -36,9 +36,10 @@ int main(int argc, char** argv)
     Gecko::Int iRestPort = 0;
     Gecko::Int iWebsocketPort = 0;
     Gecko::Int iServerThreads = 0;
+    Gecko::Bool bEnableScrollbars = false;
+    Gecko::Bool bEnableContextMenu = false;
     Gecko::Bool bStartFullscreen = false;
-    Gecko::Bool bAllowScrollbars = false;
-    Gecko::Bool bAllowContextMenu = false;
+    Gecko::Bool bStartMaximized = false;
     Gecko::Bool bLaunchRestServer = false;
     Gecko::Bool bLaunchWebsocketServer = false;
     Gecko::Bool bLaunchWebGUI = false;
@@ -47,23 +48,24 @@ int main(int argc, char** argv)
     BoostProgramOptionsDescription desc("Allowed options");
     desc.add_options()
         ("help,h", "Print usage information")
-        ("config-file", BoostProgramOptionsValue(&sConfigFile)->default_value("config.json"), "Config file name")
-        ("config-dir", BoostProgramOptionsValue(&sConfigDir)->default_value("Config"), "Config directory")
-        ("data-dir", BoostProgramOptionsValue(&sDataDir)->default_value("Data"), "Data directory")
-        ("cache-dir", BoostProgramOptionsValue(&sCacheDir)->default_value("Cache"), "Cache directory")
-        ("web-dir", BoostProgramOptionsValue(&sWebDir)->default_value("Web"), "Web directory")
-        ("hostname", BoostProgramOptionsValue(&sWebHostname)->default_value("localhost"), "Host name")
-        ("screen-width", BoostProgramOptionsValue(&iScreenWidth)->default_value(1024), "Screen width")
-        ("screen-height", BoostProgramOptionsValue(&iScreenHeight)->default_value(768), "Screen height")
-        ("rest-port", BoostProgramOptionsValue(&iRestPort)->default_value(8080), "Rest server port")
-        ("websocket-port", BoostProgramOptionsValue(&iWebsocketPort)->default_value(8090), "Websocket server port")
-        ("server-threads", BoostProgramOptionsValue(&iServerThreads)->default_value(1), "Number of server threads")
-        ("start-fullscreen", BoostProgramOptionsBoolSwitch(&bStartFullscreen)->default_value(false), "Start in fullscreen")
-        ("allow-scrollbars", BoostProgramOptionsBoolSwitch(&bAllowScrollbars)->default_value(true), "Allow scrollbars")
-        ("allow-context-menu", BoostProgramOptionsBoolSwitch(&bAllowContextMenu)->default_value(true), "Allow context menu")
-        ("launch-rest-server", BoostProgramOptionsBoolSwitch(&bLaunchRestServer)->default_value(true), "Launch rest server")
-        ("launch-websocket-server", BoostProgramOptionsBoolSwitch(&bLaunchWebsocketServer)->default_value(true), "Launch websocket server")
-        ("launch-web-gui", BoostProgramOptionsBoolSwitch(&bLaunchWebGUI)->default_value(true), "Launch web gui")
+        ("config-file,f", BoostProgramOptionsValue(&sConfigFile)->default_value("config.json"), "Config file name")
+        ("config-dir,c", BoostProgramOptionsValue(&sConfigDir)->default_value("Config"), "Config directory")
+        ("data-dir,d", BoostProgramOptionsValue(&sDataDir)->default_value("Data"), "Data directory")
+        ("cache-dir,e", BoostProgramOptionsValue(&sCacheDir)->default_value("Cache"), "Cache directory")
+        ("web-dir,b", BoostProgramOptionsValue(&sWebDir)->default_value("Web"), "Web directory")
+        ("hostname,n", BoostProgramOptionsValue(&sWebHostname)->default_value("localhost"), "Host name")
+        ("screen-width,x", BoostProgramOptionsValue(&iScreenWidth)->default_value(1024), "Screen width")
+        ("screen-height,y", BoostProgramOptionsValue(&iScreenHeight)->default_value(768), "Screen height")
+        ("rest-port,r", BoostProgramOptionsValue(&iRestPort)->default_value(8080), "Rest server port")
+        ("websocket-port,w", BoostProgramOptionsValue(&iWebsocketPort)->default_value(8090), "Websocket server port")
+        ("server-threads,t", BoostProgramOptionsValue(&iServerThreads)->default_value(1), "Number of server threads")
+        ("enable-scrollbars,s", BoostProgramOptionsValue(&bEnableScrollbars)->default_value(true), "Enable scrollbars")
+        ("enable-context-menu,m", BoostProgramOptionsValue(&bEnableContextMenu)->default_value(true), "Enable context menu")
+        ("start-fullscreen,u", BoostProgramOptionsBoolSwitch(&bStartFullscreen), "Start fullscreen")
+        ("start-maximized,i", BoostProgramOptionsBoolSwitch(&bStartMaximized), "Start maximized")
+        ("launch-rest-server,j", BoostProgramOptionsBoolSwitch(&bLaunchRestServer), "Launch rest server")
+        ("launch-websocket-server,k", BoostProgramOptionsBoolSwitch(&bLaunchWebsocketServer), "Launch websocket server")
+        ("launch-web-gui,g", BoostProgramOptionsBoolSwitch(&bLaunchWebGUI), "Launch web gui")
     ;
 
     // Parse command line
@@ -85,9 +87,10 @@ int main(int argc, char** argv)
     Gecko::ConfigManager::GetInstance()->SetWebHostname(sWebHostname);
     Gecko::ConfigManager::GetInstance()->SetRestUrl((BoostFormatString("http://%1%:%2%") % sWebHostname % iRestPort).str());
     Gecko::ConfigManager::GetInstance()->SetWebsocketUrl((BoostFormatString("http://%1%:%2%") % sWebHostname % iWebsocketPort).str());
+    Gecko::ConfigManager::GetInstance()->SetEnableScrollbars(bEnableScrollbars);
+    Gecko::ConfigManager::GetInstance()->SetEnableContextMenu(bEnableContextMenu);
     Gecko::ConfigManager::GetInstance()->SetStartFullscreen(bStartFullscreen);
-    Gecko::ConfigManager::GetInstance()->SetAllowScrollbars(bAllowScrollbars);
-    Gecko::ConfigManager::GetInstance()->SetAllowContextMenu(bAllowContextMenu);
+    Gecko::ConfigManager::GetInstance()->SetStartMaximized(bStartMaximized);
     Gecko::ConfigManager::GetInstance()->SetScreenWidth(iScreenWidth);
     Gecko::ConfigManager::GetInstance()->SetScreenHeight(iScreenHeight);
     Gecko::ConfigManager::GetInstance()->SetRestPort(iRestPort);
