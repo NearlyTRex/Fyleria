@@ -79,6 +79,7 @@ libPython3_sources = {
     libPython3_srcdir .. "Modules/_sre.c",
     libPython3_srcdir .. "Modules/_stat.c",
     libPython3_srcdir .. "Modules/_struct.c",
+    libPython3_srcdir .. "Modules/_threadmodule.c",
     libPython3_srcdir .. "Modules/_tracemalloc.c",
     libPython3_srcdir .. "Modules/_weakref.c",
     libPython3_srcdir .. "Modules/arraymodule.c",
