@@ -29,6 +29,7 @@ int main(int argc, char** argv)
     Gecko::String sConfigDir;
     Gecko::String sDataDir;
     Gecko::String sCacheDir;
+    Gecko::String sPythonLibraryFile;
     Gecko::String sWebDir;
     Gecko::String sWebHostname;
     Gecko::Int iScreenWidth = 0;
@@ -52,6 +53,7 @@ int main(int argc, char** argv)
         ("config-dir,c", BoostProgramOptionsValue(&sConfigDir)->default_value("Config"), "Config directory")
         ("data-dir,d", BoostProgramOptionsValue(&sDataDir)->default_value("Data"), "Data directory")
         ("cache-dir,e", BoostProgramOptionsValue(&sCacheDir)->default_value("Cache"), "Cache directory")
+        ("python-lib,l", BoostProgramOptionsValue(&sPythonLibraryFile)->default_value("PythonLib.zip"), "Python library")
         ("web-dir,b", BoostProgramOptionsValue(&sWebDir)->default_value("Web"), "Web directory")
         ("hostname,n", BoostProgramOptionsValue(&sWebHostname)->default_value("localhost"), "Host name")
         ("screen-width,x", BoostProgramOptionsValue(&iScreenWidth)->default_value(1024), "Screen width")
@@ -83,6 +85,7 @@ int main(int argc, char** argv)
     Gecko::ConfigManager::GetInstance()->SetUserConfigFolder(sConfigDir);
     Gecko::ConfigManager::GetInstance()->SetUserDataFolder(sDataDir);
     Gecko::ConfigManager::GetInstance()->SetUserCacheFolder(sCacheDir);
+    Gecko::ConfigManager::GetInstance()->SetPythonLibraryFile(sPythonLibraryFile);
     Gecko::ConfigManager::GetInstance()->SetWebFolder(sWebDir);
     Gecko::ConfigManager::GetInstance()->SetWebHostname(sWebHostname);
     Gecko::ConfigManager::GetInstance()->SetRestUrl((BoostFormatString("http://%1%:%2%") % sWebHostname % iRestPort).str());

@@ -62,8 +62,10 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
         return false;
     }
 
-    // Get config file name
+    // Get file names
     String sConfigFile = ConfigManager::GetInstance()->GetConstructedConfigFilename();
+    String sPythonLibFile = ConfigManager::GetInstance()->GetConstructedPythonLibraryFilename();
+    WString sPythonLibFileW = ConvertStringToWideString(sPythonLibFile);
 
     // Load config data
     LOG_FORMAT_STATEMENT("Loading config file '%s'\n", sConfigFile.c_str());
@@ -75,15 +77,11 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
         return false;
     }
 
-    // Get python library file name
-    String sPythonLibFile = ConfigManager::GetInstance()->GetPythonLib();
-    WString sPythonLibFileW = ConvertStringToWideString(sPythonLibFile);
-
     // Check python library
     LOG_FORMAT_STATEMENT("Loading python library '%s'\n", sPythonLibFile.c_str());
-    if(!DoesPathExist(ConfigManager::GetInstance()->GetPythonLib()))
+    if(!DoesPathExist(sPythonLibFile))
     {
-        ERROR_FORMAT_STATEMENT("Python library '%s' could not be found, check configuration file\n",
+        ERROR_FORMAT_STATEMENT("Python library '%s' could not be found, check configuration data\n",
             sPythonLibFile.c_str());
         return false;
     }

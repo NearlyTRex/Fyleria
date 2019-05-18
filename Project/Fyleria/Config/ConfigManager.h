@@ -34,8 +34,8 @@ public:
     // Get constructed config file name
     String GetConstructedConfigFilename() const;
 
-    // Python library
-    MAKE_CURRENT_DATA_SHORTCUT_STRING(PythonLib);
+    // Get constructed python library file name
+    String GetConstructedPythonLibraryFilename() const;
 
     // Item file locations
     MAKE_CURRENT_CONFIG_SHORTCUT_STRING(ItemArmorChestFile);
@@ -144,6 +144,7 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserConfigFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserDataFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserCacheFolder, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PythonLibraryFile, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebHostname, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(RestUrl, String);

@@ -63,6 +63,11 @@ String ConfigManager::GetConstructedConfigFilename() const
     return GetCanonicalPath(JoinPaths(GetUserConfigFolder(), GetUserConfigFile()));
 }
 
+String ConfigManager::GetConstructedPythonLibraryFilename() const
+{
+    return GetCanonicalPath(JoinPaths(GetUserDataFolder(), GetPythonLibraryFile()));
+}
+
 Bool ConfigManager::IsPosix() const
 {
 #if defined(_POSIX_VERSION)
