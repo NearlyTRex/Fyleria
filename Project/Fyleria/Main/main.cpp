@@ -9,6 +9,7 @@
 // Local includes
 #include "Main/Application.h"
 #include "Main/Game.h"
+#include "Config/ConfigManager.h"
 #include "Utility/Types.h"
 #include "Utility/Standard.h"
 #include "Utility/Boost.h"
@@ -29,15 +30,14 @@ int main(int argc, char** argv)
     Gecko::String sDataDir;
     Gecko::String sCacheDir;
     Gecko::String sWebDir;
-    Gecko::String sHostname;
+    Gecko::String sWebHostname;
     Gecko::Int iScreenWidth = 0;
     Gecko::Int iScreenHeight = 0;
     Gecko::Int iRestPort = 0;
     Gecko::Int iWebsocketPort = 0;
     Gecko::Int iServerThreads = 0;
-    Gecko::Bool bFullscreen = false;
-    Gecko::Bool bAllowVScroll = false;
-    Gecko::Bool bAllowHScroll = false;
+    Gecko::Bool bStartFullscreen = false;
+    Gecko::Bool bAllowScrollbars = false;
     Gecko::Bool bAllowContextMenu = false;
     Gecko::Bool bLaunchRestServer = false;
     Gecko::Bool bLaunchWebsocketServer = false;
@@ -52,15 +52,14 @@ int main(int argc, char** argv)
         ("data-dir", BoostProgramOptionsValue(&sDataDir)->default_value("Data"), "Data directory")
         ("cache-dir", BoostProgramOptionsValue(&sCacheDir)->default_value("Cache"), "Cache directory")
         ("web-dir", BoostProgramOptionsValue(&sWebDir)->default_value("Web"), "Web directory")
-        ("hostname", BoostProgramOptionsValue(&sHostname)->default_value("localhost"), "Host name")
+        ("hostname", BoostProgramOptionsValue(&sWebHostname)->default_value("localhost"), "Host name")
         ("screen-width", BoostProgramOptionsValue(&iScreenWidth)->default_value(1024), "Screen width")
         ("screen-height", BoostProgramOptionsValue(&iScreenHeight)->default_value(768), "Screen height")
         ("rest-port", BoostProgramOptionsValue(&iRestPort)->default_value(8080), "Rest server port")
         ("websocket-port", BoostProgramOptionsValue(&iWebsocketPort)->default_value(8090), "Websocket server port")
         ("server-threads", BoostProgramOptionsValue(&iServerThreads)->default_value(1), "Number of server threads")
-        ("fullscreen", BoostProgramOptionsBoolSwitch(&bFullscreen)->default_value(false), "Start in fullscreen")
-        ("allow-vscroll", BoostProgramOptionsBoolSwitch(&bAllowVScroll)->default_value(true), "Allow vertical scrolling")
-        ("allow-hscroll", BoostProgramOptionsBoolSwitch(&bAllowHScroll)->default_value(true), "Allow horizontal scrolling")
+        ("start-fullscreen", BoostProgramOptionsBoolSwitch(&bStartFullscreen)->default_value(false), "Start in fullscreen")
+        ("allow-scrollbars", BoostProgramOptionsBoolSwitch(&bAllowScrollbars)->default_value(true), "Allow scrollbars")
         ("allow-context-menu", BoostProgramOptionsBoolSwitch(&bAllowContextMenu)->default_value(true), "Allow context menu")
         ("launch-rest-server", BoostProgramOptionsBoolSwitch(&bLaunchRestServer)->default_value(true), "Launch rest server")
         ("launch-websocket-server", BoostProgramOptionsBoolSwitch(&bLaunchWebsocketServer)->default_value(true), "Launch websocket server")
@@ -77,33 +76,40 @@ int main(int argc, char** argv)
         return EXIT_SUCCESS;
     }
 
-    // Initialize
-    if(!Gecko::InitializeGame(sConfigFile.c_str(), sConfigDir.c_str(), sDataDir.c_str(), sCacheDir.c_str()))
-    {
-        return EXIT_FAILURE;
-    }
+    // Set config data
+    Gecko::ConfigManager::GetInstance()->SetUserConfigFile(sConfigFile);
+    Gecko::ConfigManager::GetInstance()->SetUserConfigFolder(sConfigDir);
+    Gecko::ConfigManager::GetInstance()->SetUserDataFolder(sDataDir);
+    Gecko::ConfigManager::GetInstance()->SetUserCacheFolder(sCacheDir);
+    Gecko::ConfigManager::GetInstance()->SetWebFolder(sWebDir);
+    Gecko::ConfigManager::GetInstance()->SetWebHostname(sWebHostname);
+    Gecko::ConfigManager::GetInstance()->SetRestUrl((BoostFormatString("http://%1%:%2%") % sWebHostname % iRestPort).str());
+    Gecko::ConfigManager::GetInstance()->SetWebsocketUrl((BoostFormatString("http://%1%:%2%") % sWebHostname % iWebsocketPort).str());
+    Gecko::ConfigManager::GetInstance()->SetStartFullscreen(bStartFullscreen);
+    Gecko::ConfigManager::GetInstance()->SetAllowScrollbars(bAllowScrollbars);
+    Gecko::ConfigManager::GetInstance()->SetAllowContextMenu(bAllowContextMenu);
+    Gecko::ConfigManager::GetInstance()->SetScreenWidth(iScreenWidth);
+    Gecko::ConfigManager::GetInstance()->SetScreenHeight(iScreenHeight);
+    Gecko::ConfigManager::GetInstance()->SetRestPort(iRestPort);
+    Gecko::ConfigManager::GetInstance()->SetWebsocketPort(iWebsocketPort);
+    Gecko::ConfigManager::GetInstance()->SetServerThreads(iServerThreads);
 
-    // Launch rest server
+    // Launch server
     STDSharedPtr<BoostThread> pThreadRestServer;
+    STDSharedPtr<BoostThread> pThreadWebsocketServer;
     if(bLaunchRestServer)
     {
-        pThreadRestServer = STDMakeSharedPtr<BoostThread>(
-            &Gecko::StartGameRestServer, sHostname.c_str(), sWebDir.c_str(), iRestPort, iServerThreads);
+        pThreadRestServer = STDMakeSharedPtr<BoostThread>(&Gecko::StartGameRestServer);
     }
-
-    // Launch websocket server
-    STDSharedPtr<BoostThread> pThreadWebsocketServer;
-    if(bLaunchWebsocketServer)
+    else if(bLaunchWebsocketServer)
     {
-        pThreadWebsocketServer = STDMakeSharedPtr<BoostThread>(
-            &Gecko::StartGameWebsocketServer, sHostname.c_str(), iWebsocketPort);
+        pThreadWebsocketServer = STDMakeSharedPtr<BoostThread>(&Gecko::StartGameWebsocketServer);
     }
 
     // Launch web gui
-    if(bLaunchWebGUI)
+    if(bLaunchWebGUI && bLaunchRestServer)
     {
-        Gecko::String sURL = (BoostFormatString("http://%1%:%2%") % sHostname % iRestPort).str();
-        Gecko::StartApplication(argc, argv, sURL.c_str(), "Fyleria", iScreenWidth, iScreenHeight);
+        Gecko::StartApplication(argc, argv);
     }
 
     // Join threads
@@ -114,12 +120,6 @@ int main(int argc, char** argv)
     if (pThreadWebsocketServer.get())
     {
         pThreadWebsocketServer->join();
-    }
-
-    // Finalize
-    if(!Gecko::FinalizeGame())
-    {
-        return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;
 }

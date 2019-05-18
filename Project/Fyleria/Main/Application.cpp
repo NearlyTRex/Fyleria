@@ -5,10 +5,13 @@
 #include <QtWidgets/QApplication>
 #include <QtWebEngineWidgets/QWebEngineView>
 
+// Internal includes
+#include "Config/ConfigManager.h"
+
 namespace Gecko
 {
 
-int StartApplication(int argc, char** argv, const char* sUrl, const char* sTitle, int iWidth, int iHeight)
+int StartApplication(int argc, char** argv)
 {
     // Set attributes
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -18,8 +21,8 @@ int StartApplication(int argc, char** argv, const char* sUrl, const char* sTitle
 
     // Create view
     QWebEngineView view;
-    view.setUrl(QUrl(sUrl));
-    view.resize(iWidth, iHeight);
+    view.setUrl(QUrl(ConfigManager::GetInstance()->GetRestUrl().c_str()));
+    view.resize(ConfigManager::GetInstance()->GetScreenWidth(), ConfigManager::GetInstance()->GetScreenHeight());
     view.show();
 
     // Enter application main loop

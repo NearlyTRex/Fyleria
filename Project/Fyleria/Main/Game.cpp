@@ -16,14 +16,8 @@
 namespace Gecko
 {
 
-bool InitializeGame(const char* sConfigFile, const char* sConfigDir, const char* sDataDir, const char* sCacheDir)
+bool InitializeGame()
 {
-    // Set config data
-    ConfigManager::GetInstance()->SetUserConfigFile(sConfigFile);
-    ConfigManager::GetInstance()->SetUserConfigFolder(sConfigDir);
-    ConfigManager::GetInstance()->SetUserDataFolder(sDataDir);
-    ConfigManager::GetInstance()->SetUserCacheFolder(sCacheDir);
-
     // Initialize module
     if (!DLL_InitModule())
     {
@@ -67,24 +61,42 @@ void RunGameScript(const char* sScriptFilename)
     DLL_RunModuleFile(sScriptFilename);
 }
 
-void StartGameWebsocketServer(const char* sHostname, int iPort)
+void StartGameWebsocketServer()
 {
+    // Initialize game
+    if(!InitializeGame())
+    {
+        return;
+    }
+
     // Start server
-    WebsocketServer::GetInstance()->SetHostname(sHostname);
-    WebsocketServer::GetInstance()->SetPort(iPort);
+    WebsocketServer::GetInstance()->SetHostname(ConfigManager::GetInstance()->GetWebHostname());
+    WebsocketServer::GetInstance()->SetPort(ConfigManager::GetInstance()->GetWebsocketPort());
     WebsocketServer::GetInstance()->Reset();
     WebsocketServer::GetInstance()->Start();
+
+    // Finalize game
+    FinalizeGame();
 }
 
-void StartGameRestServer(const char* sHostname, const char* sWebRoot, int iPort, int iThreadCount)
+void StartGameRestServer()
 {
+    // Initialize game
+    if(!InitializeGame())
+    {
+        return;
+    }
+
     // Start server
-    RestServer::GetInstance()->SetHostname(sHostname);
-    RestServer::GetInstance()->SetWebRoot(sWebRoot);
-    RestServer::GetInstance()->SetPort(iPort);
-    RestServer::GetInstance()->SetThreadCount(iThreadCount);
+    RestServer::GetInstance()->SetHostname(ConfigManager::GetInstance()->GetWebHostname());
+    RestServer::GetInstance()->SetWebRoot(ConfigManager::GetInstance()->GetWebFolder());
+    RestServer::GetInstance()->SetPort(ConfigManager::GetInstance()->GetRestPort());
+    RestServer::GetInstance()->SetThreadCount(ConfigManager::GetInstance()->GetServerThreads());
     RestServer::GetInstance()->Reset();
     RestServer::GetInstance()->Start();
+
+    // Finalize game
+    FinalizeGame();
 }
 
 void StopGameWebsocketServer()
