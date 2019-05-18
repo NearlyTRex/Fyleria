@@ -102,6 +102,33 @@ Bool ConfigManager::IsWindows64() const
 #endif
 }
 
+Bool ConfigManager::IsLinux() const
+{
+#if defined(__linux__)
+    return true;
+#else
+    return false;
+#endif
+}
+
+Bool ConfigManager::IsLinux32() const
+{
+#if defined(__linux__) && defined(__i386__)
+    return true;
+#else
+    return false;
+#endif
+}
+
+Bool ConfigManager::IsLinux64() const
+{
+#if defined(__linux__) && defined(__x86_64__)
+    return true;
+#else
+    return false;
+#endif
+}
+
 Bool ConfigManager::IsMac() const
 {
 #if TARGET_OS_MAC == 1

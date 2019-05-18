@@ -142,6 +142,18 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserConfigFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserDataFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserCacheFolder, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebFolder, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebHostname, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RestUrl, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebsocketUrl, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StartFullscreen, Bool);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllowScrollbars, Bool);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllowContextMenu, Bool);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ScreenWidth, Int);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ScreenHeight, Int);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RestPort, Int);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebsocketPort, Int);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ServerThreads, Int);
 
     // Configuration map
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(LoadedConfigs, ConfigMappingType);
@@ -151,6 +163,9 @@ public:
     Bool IsWindows() const;
     Bool IsWindows32() const;
     Bool IsWindows64() const;
+    Bool IsLinux() const;
+    Bool IsLinux32() const;
+    Bool IsLinux64() const;
     Bool IsMac() const;
     Bool IsIOS() const;
     Bool IsAndroid() const;
