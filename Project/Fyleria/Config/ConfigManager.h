@@ -31,9 +31,11 @@ public:
     const Config& GetConfig(const String& sName) const;
     const Config& GetCurrentConfig() const;
 
-    // Get python library
-    String GetPythonLib() const;
-    WString GetPythonLibW() const;
+    // Get constructed config file name
+    String GetConstructedConfigFilename() const;
+
+    // Python library
+    MAKE_CURRENT_DATA_SHORTCUT_STRING(PythonLib);
 
     // Item file locations
     MAKE_CURRENT_CONFIG_SHORTCUT_STRING(ItemArmorChestFile);

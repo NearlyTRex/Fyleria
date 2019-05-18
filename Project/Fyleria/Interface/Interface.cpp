@@ -4,6 +4,7 @@
 #include "Interface/Interface.h"
 #include "Module/Module.h"
 #include "Utility/Assert.h"
+#include "Utility/Converters.h"
 #include "Utility/Logging.h"
 #include "Utility/Types.h"
 #include "Utility/Python.h"
@@ -61,21 +62,29 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
         return false;
     }
 
+    // Get config file name
+    String sConfigFile = ConfigManager::GetInstance()->GetConstructedConfigFilename();
+
     // Load config data
+    LOG_FORMAT_STATEMENT("Loading config file '%s'\n", sConfigFile.c_str());
     ConfigManager::GetInstance()->SetCurrentConfigName("Default");
-    if(!ConfigManager::GetInstance()->LoadConfig("Default", ConfigManager::GetInstance()->GetUserConfigFile()))
+    if(!ConfigManager::GetInstance()->LoadConfig("Default", sConfigFile))
     {
-        ERROR_FORMAT_STATEMENT("Could not load config file '%s' in folder '%s'",
-            ConfigManager::GetInstance()->GetUserConfigFile().c_str(),
-            ConfigManager::GetInstance()->GetUserConfigFolder().c_str());
+        ERROR_FORMAT_STATEMENT("Could not load configuration file '%s'\n",
+            sConfigFile.c_str());
         return false;
     }
 
+    // Get python library file name
+    String sPythonLibFile = ConfigManager::GetInstance()->GetPythonLib();
+    WString sPythonLibFileW = ConvertStringToWideString(sPythonLibFile);
+
     // Check python library
+    LOG_FORMAT_STATEMENT("Loading python library '%s'\n", sPythonLibFile.c_str());
     if(!DoesPathExist(ConfigManager::GetInstance()->GetPythonLib()))
     {
         ERROR_FORMAT_STATEMENT("Python library '%s' could not be found, check configuration file\n",
-            ConfigManager::GetInstance()->GetPythonLib().c_str());
+            sPythonLibFile.c_str());
         return false;
     }
 
@@ -85,13 +94,12 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     Py_IgnoreEnvironmentFlag++;
 
     // Set python home
-    LOG_FORMAT_STATEMENT("Loading python library '%s'\n", ConfigManager::GetInstance()->GetPythonLib().c_str());
 #ifdef Py_USING_UNICODE
-    Py_SetPythonHome(const_cast<wchar_t*>(ConfigManager::GetInstance()->GetPythonLibW().c_str()));
-    Py_SetPath(ConfigManager::GetInstance()->GetPythonLibW().c_str());
+    Py_SetPythonHome(const_cast<wchar_t*>(sPythonLibFileW.c_str()));
+    Py_SetPath(sPythonLibFileW.c_str());
 #else
-    Py_SetPythonHome(const_cast<char*>(ConfigManager::GetInstance()->GetPythonLib().c_str()));
-    Py_SetPath(ConfigManager::GetInstance()->GetPythonLib().c_str());
+    Py_SetPythonHome(const_cast<char*>(sPythonLibFile.c_str()));
+    Py_SetPath(sPythonLibFile.c_str());
 #endif
 
     // Initialize interpreter

@@ -16,7 +16,15 @@ String Get##name() const                                                        
 {                                                                                   \
     String sBasePath = GetUserConfigFolder();                                       \
     String sFuncPath = GetCurrentConfig().Get##name();                              \
-    return JoinPaths(sBasePath, sFuncPath);                                         \
+    return GetCanonicalPath(JoinPaths(sBasePath, sFuncPath));                       \
+}
+
+#define MAKE_CURRENT_DATA_SHORTCUT_STRING(name)                                     \
+String Get##name() const                                                            \
+{                                                                                   \
+    String sBasePath = GetUserDataFolder();                                         \
+    String sFuncPath = GetCurrentConfig().Get##name();                              \
+    return GetCanonicalPath(JoinPaths(sBasePath, sFuncPath));                       \
 }
 
 //=====================================================================================

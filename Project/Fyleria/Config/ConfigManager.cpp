@@ -18,16 +18,15 @@ ConfigManager::ConfigManager()
 Bool ConfigManager::LoadConfig(const String& sName, const String& sFile)
 {
     // Create full path
-    String sPathConfigFile = JoinPaths(GetUserConfigFolder(), sFile);
-    ASSERT_ERROR(DoesPathExist(sPathConfigFile), "Path '%s' could not be loaded for configuration", sPathConfigFile.c_str());
-    if(!DoesPathExist(sPathConfigFile))
+    ASSERT_ERROR(DoesPathExist(sFile), "Path '%s' could not be loaded for configuration", sFile.c_str());
+    if(!DoesPathExist(sFile))
     {
         return false;
     }
 
     // Read json data into config object
     Json jsonData;
-    if(!ReadJsonFile(IndexedString(sPathConfigFile), jsonData))
+    if(!ReadJsonFile(IndexedString(sFile), jsonData))
     {
         return false;
     }
@@ -59,14 +58,9 @@ const Config& ConfigManager::GetCurrentConfig() const
     return GetConfig(GetCurrentConfigName());
 }
 
-String ConfigManager::GetPythonLib() const
+String ConfigManager::GetConstructedConfigFilename() const
 {
-    return JoinPaths(GetUserConfigFolder(), GetCurrentConfig().GetPythonLib());
-}
-
-WString ConfigManager::GetPythonLibW() const
-{
-    return ConvertStringToWideString(GetPythonLib());
+    return GetCanonicalPath(JoinPaths(GetUserConfigFolder(), GetUserConfigFile()));
 }
 
 Bool ConfigManager::IsPosix() const
