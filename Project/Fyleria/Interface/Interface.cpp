@@ -90,6 +90,9 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     Py_NoSiteFlag++;
     Py_NoUserSiteDirectory++;
     Py_IgnoreEnvironmentFlag++;
+#ifdef DEBUG
+    Py_VerboseFlag++;
+#endif
 
     // Set python home
 #ifdef Py_USING_UNICODE
