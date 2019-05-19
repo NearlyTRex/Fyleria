@@ -15,7 +15,7 @@ IndexedString::IndexedString()
 }
 
 IndexedString::IndexedString(const IndexedString& other)
-    : m_iIndex(other.m_iIndex)
+    : m_iIndex(other.m_iIndex.load())
 {
 }
 
@@ -41,7 +41,7 @@ IndexedString& IndexedString::operator=(const IndexedString& other)
 {
     if(this != &other)
     {
-        m_iIndex = other.m_iIndex;
+        m_iIndex = other.m_iIndex.load();
     }
     return *this;
 }
@@ -73,7 +73,7 @@ void IndexedString::Set(const String& sStr)
         // Some extra logging
         LOG_FORMAT_STATEMENT("Adding string '%s' to index %i, current count is %zu\n",
             sImmutableStr.c_str(),
-            m_iIndex,
+            m_iIndex.load(),
             s_pStoredStrings->size());
         return;
     }
