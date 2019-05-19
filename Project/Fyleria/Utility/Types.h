@@ -12,6 +12,7 @@
 // Internal includes
 #include "Utility/Standard.h"
 #include "Utility/Boost.h"
+#include "Utility/ObjectThreadsafe.h"
 
 namespace Gecko
 {
@@ -49,16 +50,51 @@ typedef std::ifstream InputFile;
 typedef std::ofstream OutputFile;
 typedef std::istringstream InputStringStream;
 typedef std::ostringstream OutputStringStream;
+typedef std::atomic_size_t AtomicSizeType;
+typedef std::atomic_bool AtomicBool;
+typedef std::atomic_char AtomicByte;
+typedef std::atomic_wchar_t AtomicWByte;
+typedef std::atomic_short AtomicShort;
+typedef std::atomic_int AtomicInt;
+typedef std::atomic_long AtomicLong;
+typedef std::atomic_llong AtomicLongLong;
+typedef std::atomic_uchar AtomicUByte;
+typedef std::atomic_ushort AtomicUShort;
+typedef std::atomic_uint AtomicUInt;
+typedef std::atomic_ulong AtomicULong;
+typedef std::atomic_ullong AtomicULongLong;
+typedef std::atomic<float> AtomicFloat;
+typedef std::atomic<double> AtomicDouble;
+typedef std::atomic<long double> AtomicLongDouble;
+typedef std::atomic_uint8_t AtomicFixedUnsigned8;
+typedef std::atomic_uint16_t AtomicFixedUnsigned16;
+typedef std::atomic_uint32_t AtomicFixedUnsigned32;
+typedef std::atomic_uint64_t AtomicFixedUnsigned64;
+typedef std::atomic_int8_t AtomicFixedSigned8;
+typedef std::atomic_int16_t AtomicFixedSigned16;
+typedef std::atomic_int32_t AtomicFixedSigned32;
+typedef std::atomic_int64_t AtomicFixedSigned64;
+typedef SafeObject<String> SafeString;
+typedef SafeObject<WString> SafeWString;
+typedef SafeObject<InputFile> SafeInputFile;
+typedef SafeObject<OutputFile> SafeOutputFile;
+typedef SafeObject<InputStringStream> SafeInputStringStream;
+typedef SafeObject<OutputStringStream> SafeOutputStringStream;
 typedef STDVector<Byte> ByteArray;
 typedef STDVector<WByte> WByteArray;
 typedef STDVector<Bool> BoolArray;
 typedef STDVector<Short> ShortArray;
 typedef STDVector<Int> IntArray;
+typedef STDVector<Long> LongArray;
+typedef STDVector<LongLong> LongLongArray;
 typedef STDVector<UByte> UByteArray;
 typedef STDVector<UShort> UShortArray;
 typedef STDVector<UInt> UIntArray;
+typedef STDVector<ULong> ULongArray;
+typedef STDVector<ULongLong> ULongULongArray;
 typedef STDVector<Float> FloatArray;
 typedef STDVector<Double> DoubleArray;
+typedef STDVector<LongDouble> LongDoubleArray;
 typedef STDVector<FixedUnsigned8> FixedUnsigned8Array;
 typedef STDVector<FixedUnsigned16> FixedUnsigned16Array;
 typedef STDVector<FixedUnsigned32> FixedUnsigned32Array;

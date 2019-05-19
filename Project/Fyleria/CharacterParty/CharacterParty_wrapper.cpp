@@ -12,7 +12,7 @@
 namespace Gecko
 {
 
-CharacterPartyManager* GetCharacterPartyManager() { return CharacterPartyManager::GetInstance(); }
+SafePtr<CharacterPartyManager>& GetCharacterPartyManager() { return CharacterPartyManager::GetInstance(); }
 
 };
 
@@ -155,5 +155,5 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
     ;
 
     // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetCharacterPartyManager, Gecko, PyBindReturnAutoRef);
+    WRAPPING_STANDALONE_METHOD_POLICY(GetCharacterPartyManager, Gecko, PyBindReturnCopy);
 }

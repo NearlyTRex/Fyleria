@@ -5,6 +5,7 @@
 #define _GECKO_UTILITY_STANDARD_H_
 
 // Standard includes
+#include <atomic>
 #include <iostream>
 #include <iomanip>
 #include <algorithm>

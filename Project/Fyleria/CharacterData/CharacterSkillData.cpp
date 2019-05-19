@@ -150,14 +150,14 @@ Bool CharacterSkillData::UpdateSkillRanking(const IndexedString& sSkillType)
     auto SetCurrent = GetSkillSetCurrentFunction(sSkillType);
 
     UByte uRank = GetRank();
-    if(uRank >= s_kuMaxSkillRank)
+    if(uRank >= MAX_SKILL_RANK)
     {
         return false;
     }
 
     UByte uCurrent = GetCurrent();
     SetCurrent(uCurrent + 1);
-    if(static_cast<UInt>(uCurrent + 1) >= s_kuSkillRankUpgradeAmount)
+    if(static_cast<UInt>(uCurrent + 1) >= SKILL_RANK_UPGRADE_AMOUNT)
     {
         SetCurrent(0);
         SetRank(uRank + 1);

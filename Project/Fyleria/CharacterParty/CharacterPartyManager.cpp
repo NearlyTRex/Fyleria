@@ -47,7 +47,7 @@ void CharacterPartyManager::CreateParty(const IndexedString& sPartyID, const Ind
     ASSERT_ERROR(!DoesPartyExist(sPartyID), "Party '%s' was already registered", sPartyID.c_str());
     ASSERT_ERROR(IsValidCharacterPartyType(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
     IndexedStringArray vAvailableTargetTypes;
-    for(UInt i = 1; i <= s_kuMaxTeamCharacterAmount; i++)
+    for(UInt i = 1; i <= MAX_TEAM_CHARACTER_AMOUNT; i++)
     {
         vAvailableTargetTypes.push_back(sPartyType + IndexedString(STDToString(i)));
     }

@@ -10,7 +10,7 @@
 namespace Gecko
 {
 
-BattleManager* GetBattleManager() { return BattleManager::GetInstance(); }
+SafePtr<BattleManager>& GetBattleManager() { return BattleManager::GetInstance(); }
 
 };
 
@@ -83,5 +83,5 @@ PYBIND11_EMBEDDED_MODULE(GeckoBattle, m)
     ;
 
     // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetBattleManager, Gecko, PyBindReturnAutoRef);
+    WRAPPING_STANDALONE_METHOD_POLICY(GetBattleManager, Gecko, PyBindReturnCopy);
 }

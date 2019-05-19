@@ -8,19 +8,18 @@
 #include "Items/ItemTypes.h"
 #include "Skills/SkillTypes.h"
 #include "Skills/SkillTree.h"
+#include "Utility/Errors.h"
 #include "Utility/Templates.h"
 
 namespace Gecko
 {
 
 StatChange::StatChange()
-    : m_uID(GenerateNewID())
 {
-    Clear();
+    SetID(GenerateNewID());
 }
 
 StatChange::StatChange(const Json& jsonData)
-    : m_uID(GenerateNewID())
 {
     from_json(jsonData, *this);
 }
@@ -72,16 +71,11 @@ void StatChange::Clear()
     SetStatChangeEntries({});
 }
 
-UInt StatChange::GenerateNewID()
+ULongLong StatChange::GenerateNewID()
 {
-    static UInt s_uCurrentCount = 0;
+    static AtomicULongLong s_uCurrentCount(0);
     s_uCurrentCount++;
     return s_uCurrentCount;
-}
-
-UInt StatChange::GetID() const
-{
-    return m_uID;
 }
 
 Bool StatChange::IsActive() const
@@ -452,6 +446,9 @@ Bool StatChange::operator<(const StatChange& other) const
 
 void to_json(Json& jsonData, const StatChange& obj)
 {
+    // ID
+    SET_JSON_DATA_IF_NOT_DEFAULT(ID, 0);
+
     // Relevant skill data
     SET_JSON_DATA_IF_NOT_DEFAULT(SkillTreeIndex, TreeIndex());
 
@@ -499,6 +496,9 @@ void to_json(Json& jsonData, const StatChange& obj)
 
 void from_json(const Json& jsonData, StatChange& obj)
 {
+    // ID
+    obj.SetID(GET_JSON_DATA_OR_DEFAULT(ID, ULongLong, 0));
+
     // Relevant skill data
     obj.SetSkillTreeIndex(GET_JSON_DATA_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex()));
 
@@ -546,7 +546,6 @@ void from_json(const Json& jsonData, StatChange& obj)
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChange, StatChange);
 
-static const StatChangeArray s_vEmptyChanges;
 const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& index)
 {
     const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
@@ -559,7 +558,7 @@ const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeInd
         default:
             break;
     }
-    return s_vEmptyChanges;
+    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType.Get());
 }
 
 const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& index)
@@ -582,7 +581,7 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& index)
         default:
             break;
     }
-    return s_vEmptyChanges;
+    throw RuntimeError("Invalid or unknown tree index requested: " + index.GetTreeBranchLeafType());
 }
 
 const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& index)
@@ -601,7 +600,7 @@ const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& index)
         default:
             break;
     }
-    return s_vEmptyChanges;
+    throw RuntimeError("Invalid or unknown tree index requested: " + index.GetTreeBranchLeafType());
 }
 
 };

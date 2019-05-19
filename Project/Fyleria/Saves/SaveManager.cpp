@@ -52,7 +52,7 @@ Bool SaveManager::DoesSaveExist(UByte uSlot) const
 UByte SaveManager::GetSaveCapacity() const
 {
     // Get max number of save slots
-    return s_kuMaxSaveSlot;
+    return MAX_SAVE_SLOT;
 }
 
 UByteArray SaveManager::GetAllAvailableSaveSlots() const

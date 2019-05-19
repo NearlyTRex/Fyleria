@@ -10,7 +10,7 @@
 namespace Gecko
 {
 
-SaveManager* GetSaveManager() { return SaveManager::GetInstance(); }
+SafePtr<SaveManager>& GetSaveManager() { return SaveManager::GetInstance(); }
 
 };
 
@@ -57,5 +57,5 @@ PYBIND11_EMBEDDED_MODULE(GeckoSaves, m)
     ;
 
     // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetSaveManager, Gecko, PyBindReturnAutoRef);
+    WRAPPING_STANDALONE_METHOD_POLICY(GetSaveManager, Gecko, PyBindReturnCopy);
 }

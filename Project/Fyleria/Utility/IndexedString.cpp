@@ -7,7 +7,7 @@
 namespace Gecko
 {
 
-ImmutableStringArray IndexedString::s_vStoredStrings;
+SafeImmutableStringArray IndexedString::s_pStoredStrings = {};
 
 IndexedString::IndexedString()
     : m_iIndex(-1)
@@ -61,55 +61,55 @@ void IndexedString::Set(const String& sStr)
 {
     // Find out if new string is already stored
     ImmutableString sImmutableStr = sStr;
-    auto iSearch = STDFindData(s_vStoredStrings.begin(), s_vStoredStrings.end(), sImmutableStr);
+    auto iSearch = STDFindData(s_pStoredStrings->begin(), s_pStoredStrings->end(), sImmutableStr);
 
     // String is not found, we will have to add it
-    if(iSearch == s_vStoredStrings.end())
+    if(iSearch == s_pStoredStrings->end())
     {
         // Add new string
-        s_vStoredStrings.push_back(sImmutableStr);
-        m_iIndex = s_vStoredStrings.size() - 1;
+        s_pStoredStrings->push_back(sImmutableStr);
+        m_iIndex = s_pStoredStrings->size() - 1;
 
         // Some extra logging
         LOG_FORMAT_STATEMENT("Adding string '%s' to index %i, current count is %zu\n",
             sImmutableStr.c_str(),
             m_iIndex,
-            s_vStoredStrings.size());
+            s_pStoredStrings->size());
         return;
     }
 
     // String was found, make sure to update the index
-    m_iIndex = STDDistance(s_vStoredStrings.begin(), iSearch);
+    m_iIndex = STDDistance(s_pStoredStrings->begin(), iSearch);
 }
 
 String IndexedString::Get() const
 {
     // Return actual string
-    return (IsValid()) ? s_vStoredStrings[m_iIndex].mutable_string() : String();
+    return (IsValid()) ? s_pStoredStrings->at(m_iIndex).mutable_string() : String();
 }
 
 const ImmutableStringValueType* IndexedString::c_str() const
 {
     // Return c-string
-    return (IsValid()) ? s_vStoredStrings[m_iIndex].c_str() : nullptr;
+    return (IsValid()) ? s_pStoredStrings->at(m_iIndex).c_str() : nullptr;
 }
 
 Bool IndexedString::empty() const
 {
     // Return empty status
-    return (IsValid()) ? s_vStoredStrings[m_iIndex].empty() : true;
+    return (IsValid()) ? s_pStoredStrings->at(m_iIndex).empty() : true;
 }
 
 SizeType IndexedString::length() const
 {
     // Return length
-    return (IsValid()) ? s_vStoredStrings[m_iIndex].length() : 0;
+    return (IsValid()) ? s_pStoredStrings->at(m_iIndex).length() : 0;
 }
 
 Int IndexedString::compare(SizeType szPos, SizeType szLen, const IndexedString& sStr) const
 {
     // Return comparison
-    return (IsValid()) ? s_vStoredStrings[m_iIndex].compare(szPos, szLen, sStr.Get()) : 0;
+    return (IsValid()) ? s_pStoredStrings->at(m_iIndex).compare(szPos, szLen, sStr.Get()) : 0;
 }
 
 Bool IndexedString::IsNone() const
@@ -121,7 +121,7 @@ Bool IndexedString::IsNone() const
 Bool IndexedString::IsValid() const
 {
     // Return validity status
-    return (GetIndex() >= 0 && GetIndex() < static_cast<Int>(s_vStoredStrings.size()));
+    return (GetIndex() >= 0 && GetIndex() < static_cast<Int>(s_pStoredStrings->size()));
 }
 
 Int IndexedString::GetIndex() const

@@ -15,7 +15,7 @@ namespace ModuleResult
     void SetRunResultID(const String& sID);
 
     // Get run command/file result ID
-    const String& GetRunResultID();
+    String GetRunResultID();
 
     // Store result in the given id
     void StoreResult(const String& sID, const String& sResult);

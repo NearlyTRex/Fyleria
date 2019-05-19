@@ -103,7 +103,7 @@ Bool CharacterPartyMember::CanAddEquippedItem(const TreeIndex& index) const
         case ItemType::ArmorShieldPierce:
         case ItemType::ArmorShieldBlunt:
         case ItemType::ArmorShieldSlash:
-            return (uItemCount < s_kuHandSizeLimit);
+            return (uItemCount < HAND_SIZE_LIMIT);
         case ItemType::ArmorChest:
         case ItemType::ArmorFeet:
         case ItemType::ArmorFinger:
@@ -111,7 +111,7 @@ Bool CharacterPartyMember::CanAddEquippedItem(const TreeIndex& index) const
         case ItemType::ArmorHead:
         case ItemType::ArmorLegs:
         case ItemType::ArmorNeck:
-            return (uItemCount < s_kuBodySizeLimit);
+            return (uItemCount < BODY_SIZE_LIMIT);
         default:
             return false;
     }

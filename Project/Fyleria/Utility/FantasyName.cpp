@@ -15,7 +15,7 @@ String GenerateRandomFantasyName(const String& sPattern)
 
 IndexedString GetRandomNamePattern()
 {
-    static const IndexedStringArray vNamePatterns = {
+    const IndexedStringArray vNamePatterns = {
         GetMiddleEarthNamePattern(),
         GetJapaneseNameConstrainedPattern(),
         GetJapaneseNameDiversePattern(),

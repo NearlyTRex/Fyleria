@@ -10,23 +10,27 @@
 namespace Gecko
 {
 
+// Types
+typedef STDUnorderedSet<IndexedString, IndexedStringHasher> StatNameSetType;
+typedef SafeObject<StatNameSetType> SafeStatNameSetType;
+
 // Stat names
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetBoolStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetByteStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetShortStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetIntStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetLongStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetLongLongStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetUByteStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetUShortStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetUIntStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetULongStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetULongLongStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetFloatStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetDoubleStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetLongDoubleStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetIndexedStringStatNames();
-STDUnorderedSet<IndexedString, IndexedStringHasher>& GetIndexedStringArrayStatNames();
+SafeStatNameSetType& GetBoolStatNames();
+SafeStatNameSetType& GetByteStatNames();
+SafeStatNameSetType& GetShortStatNames();
+SafeStatNameSetType& GetIntStatNames();
+SafeStatNameSetType& GetLongStatNames();
+SafeStatNameSetType& GetLongLongStatNames();
+SafeStatNameSetType& GetUByteStatNames();
+SafeStatNameSetType& GetUShortStatNames();
+SafeStatNameSetType& GetUIntStatNames();
+SafeStatNameSetType& GetULongStatNames();
+SafeStatNameSetType& GetULongLongStatNames();
+SafeStatNameSetType& GetFloatStatNames();
+SafeStatNameSetType& GetDoubleStatNames();
+SafeStatNameSetType& GetLongDoubleStatNames();
+SafeStatNameSetType& GetIndexedStringStatNames();
+SafeStatNameSetType& GetIndexedStringArrayStatNames();
 
 // Determine stat value types
 Bool IsStatBool(const IndexedString& sStat);

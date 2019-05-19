@@ -10,39 +10,39 @@ namespace Gecko
 {
 
 // Binary file markers
-static const FixedUnsigned8Array s_ksvBinaryMarkerCBR = {'C', 'B', 'R'};
-static const FixedUnsigned8Array s_ksvBinaryMarkerMSG = {'M', 'S', 'G'};
+const FixedUnsigned8Array BINARY_MARKER_CBR = {'C', 'B', 'R'};
+const FixedUnsigned8Array BINARY_MARKER_MSG = {'M', 'S', 'G'};
 
 // Save limits
-static const UByte s_kuMaxSaveSlot = 5;
+const UByte MAX_SAVE_SLOT = 5;
 
 // Tree limits
-static const UInt s_kuMaxSkillRank = 20;
+const UInt MAX_SKILL_RANK = 20;
 
 // Character limits
-static const UInt s_kuMaxTeamCharacterAmount = 6;
+const UInt MAX_TEAM_CHARACTER_AMOUNT = 6;
 
 // Character index for team size of 6
-static const UInt s_kuCharacterIndex1 = 0;
-static const UInt s_kuCharacterIndex2 = 1;
-static const UInt s_kuCharacterIndex3 = 2;
-static const UInt s_kuCharacterIndex4 = 3;
-static const UInt s_kuCharacterIndex5 = 4;
-static const UInt s_kuCharacterIndex6 = 5;
+const UInt CHARACTER_INDEX_1 = 0;
+const UInt CHARACTER_INDEX_2 = 1;
+const UInt CHARACTER_INDEX_3 = 2;
+const UInt CHARACTER_INDEX_4 = 3;
+const UInt CHARACTER_INDEX_5 = 4;
+const UInt CHARACTER_INDEX_6 = 5;
 
 // Limits on equipped items
-static const UInt s_kuHandSizeLimit = 4;
-static const UInt s_kuBodySizeLimit = 1;
+const UInt HAND_SIZE_LIMIT = 4;
+const UInt BODY_SIZE_LIMIT = 1;
 
 // Skill attacks
-static const UInt s_kuBaseNumberOfSkillAttacks = 1;
+const UInt BASE_NUMBER_OF_SKILL_ATTACKS = 1;
 
 // Skill damage boundary
-static const Float s_kfSkillDamageBoundaryPercent = 0.1f;
-static const Float s_kfSkillDamageBoundaryDefaultValue = 1.0f;
+const Float SKILL_DAMAGE_BOUNDARY_PERCENT = 0.1f;
+const Float SKILL_DAMAGE_BOUNDARY_DEFAULT_VALUE = 1.0f;
 
 // Skill rank upgrade amount
-static const UInt s_kuSkillRankUpgradeAmount = 10;
+const UInt SKILL_RANK_UPGRADE_AMOUNT = 10;
 
 };
 

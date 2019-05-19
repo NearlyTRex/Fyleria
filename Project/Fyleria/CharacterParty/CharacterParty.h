@@ -143,9 +143,6 @@ private:
 
     // Last time point
     STDTimePoint m_LastTimePoint;
-
-    // Empty data
-    static CharacterPartyMember s_EmptyCharacterPartyMember;
 };
 
 // Typedef

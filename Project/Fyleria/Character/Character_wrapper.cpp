@@ -11,7 +11,7 @@
 namespace Gecko
 {
 
-CharacterManager* GetCharacterManager() { return CharacterManager::GetInstance(); }
+SafePtr<CharacterManager>& GetCharacterManager() { return CharacterManager::GetInstance(); }
 
 };
 
@@ -187,5 +187,5 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionTypeNames, Gecko);
 
     // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetCharacterManager, Gecko, PyBindReturnAutoRef);
+    WRAPPING_STANDALONE_METHOD_POLICY(GetCharacterManager, Gecko, PyBindReturnCopy);
 }

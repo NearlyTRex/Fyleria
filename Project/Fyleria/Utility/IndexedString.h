@@ -55,14 +55,16 @@ public:
 private:
 
     // Instance specific index
-    Int m_iIndex;
+    AtomicInt m_iIndex;
 
     // Stored strings
-    static ImmutableStringArray s_vStoredStrings;
+    static SafeImmutableStringArray s_pStoredStrings;
 };
 
 // Typedefs for IndexedString
 typedef STDVector<IndexedString> IndexedStringArray;
+typedef SafeObject<IndexedString> SafeIndexedString;
+typedef SafeObject<IndexedStringArray> SafeIndexedStringArray;
 
 // Operators for IndexedString
 IndexedString operator+(const IndexedString& a, const IndexedString& b);

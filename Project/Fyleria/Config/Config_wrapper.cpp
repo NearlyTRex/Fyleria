@@ -9,7 +9,7 @@
 namespace Gecko
 {
 
-ConfigManager* GetConfigManager() { return ConfigManager::GetInstance(); }
+SafePtr<ConfigManager>& GetConfigManager() { return ConfigManager::GetInstance(); }
 
 };
 
@@ -161,5 +161,5 @@ PYBIND11_EMBEDDED_MODULE(GeckoConfig, m)
     ;
 
     // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetConfigManager, Gecko, PyBindReturnAutoRef);
+    WRAPPING_STANDALONE_METHOD_POLICY(GetConfigManager, Gecko, PyBindReturnCopy);
 }

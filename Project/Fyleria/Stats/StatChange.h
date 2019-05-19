@@ -28,8 +28,7 @@ public:
     void Clear();
 
     // ID
-    static UInt GenerateNewID();
-    UInt GetID() const;
+    static ULongLong GenerateNewID();
 
     // Determine if change is passive, active, etc
     // Passive means that there are no requirements on costs/time/equipment, chances to run, or actions
@@ -62,6 +61,9 @@ public:
 
     // Resolve target placeholders
     void ResolveTargetPlaceholders(const IndexedString& sCharacterID, const IndexedString& sSegment);
+
+    // ID
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(ID, ULongLong);
 
     // Relevant skill data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
@@ -110,11 +112,6 @@ public:
     // Comparisons
     Bool operator==(const StatChange& other) const;
     Bool operator<(const StatChange& other) const;
-
-private:
-
-    // ID
-    UInt m_uID;
 };
 
 // Typedefs

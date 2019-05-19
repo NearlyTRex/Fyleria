@@ -4,6 +4,8 @@
 #ifndef _GECKO_UTILITY_SINGLETON_H_
 #define _GECKO_UTILITY_SINGLETON_H_
 
+#include "Utility/ObjectThreadsafe.h"
+
 namespace Gecko
 {
 
@@ -13,37 +15,29 @@ class Singleton
 public:
 
     // Constructors
-    Singleton() {}
+    Singleton() = default;
+    ~Singleton() = default;
 
     // Get instance
-    static T* GetInstance()
+    static SafePtr<T>& GetInstance()
     {
-        if(!m_Instance)
-        {
-            Singleton<T>::m_Instance = new T;
-        }
-        return m_Instance;
-    }
-
-    // Destroy instance
-    static void DestroyInstance()
-    {
-        delete Singleton<T>::m_Instance;
-        Singleton<T>::m_Instance = nullptr;
+        return m_pInstance;
     }
 
 private:
 
-    // Deleted
-    Singleton(Singleton const&) = delete;
-    Singleton& operator=(Singleton const&) = delete;
+    // Data
+    static SafePtr<T> m_pInstance;
 
-protected:
-    static T* m_Instance;
+    // Deleted
+    Singleton(const Singleton&) = delete;
+    Singleton& operator=(const Singleton&) = delete;
+    Singleton(Singleton&&) = delete;
+    Singleton& operator=(Singleton&&) = delete;
 };
 
 template<typename T>
-T* Singleton<T>::m_Instance = nullptr;
+SafePtr<T> Singleton<T>::m_pInstance = {};
 
 };
 

@@ -123,7 +123,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(co
     if(fSkillRatingDiff <= 0)
     {
         // If the attack is less than 10% lower than defense, apply 1 damage, otherwise none
-        if(fSourceAttackRating <= (fDestDefendRating * s_kfSkillDamageBoundaryPercent))
+        if(fSourceAttackRating <= (fDestDefendRating * SKILL_DAMAGE_BOUNDARY_PERCENT))
         {
             // No damage at all
             result.SetHasTargetDefendedSuccessfully(true);
@@ -132,13 +132,13 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(co
         else
         {
             // Default damage
-            fSkillRatingDiff = s_kfSkillDamageBoundaryDefaultValue;
+            fSkillRatingDiff = SKILL_DAMAGE_BOUNDARY_DEFAULT_VALUE;
         }
     }
 
     // Determine number of attacks
     Bool bShouldApplyMultipleAttacks = DoesChanceSucceed<Float>(fSourceChanceToApplyMultipleAttacks);
-    Int iNumAttacks = (bShouldApplyMultipleAttacks) ? (s_kuBaseNumberOfSkillAttacks * fSourceAttacksMultiplier) : s_kuBaseNumberOfSkillAttacks;
+    Int iNumAttacks = (bShouldApplyMultipleAttacks) ? (BASE_NUMBER_OF_SKILL_ATTACKS * fSourceAttacksMultiplier) : BASE_NUMBER_OF_SKILL_ATTACKS;
     result.SetHaveMultipleAttacksSucceeded(bShouldApplyMultipleAttacks);
     result.SetNumAttacksOnTarget(iNumAttacks);
 

@@ -210,7 +210,7 @@ void Set##name(const type& varValue) { m_Data[#name] = varValue; }
 {                                                                                   \
     for (auto& eType : base##_##type::_values())                                    \
     {                                                                               \
-        Get##type##StatNames().insert(eType._to_string());                          \
+        Get##type##StatNames()->insert(eType._to_string());                         \
     }                                                                               \
 }
 

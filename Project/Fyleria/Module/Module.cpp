@@ -2,28 +2,31 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Module/Module.h"
+#include "Utility/IndexedString.h"
 
 namespace Gecko
 {
 
 namespace ModuleResult
 {
-    static String s_sRunResultID;
-    static STDMap<String, String> s_tResultsStorage;
+    typedef STDMap<String, String> ModuleResultMapType;
+    typedef SafeObject<ModuleResultMapType> SafeModuleResultMapType;
+    static SafeIndexedString s_pRunResultID;
+    static SafeModuleResultMapType s_pResultsStorage;
 
     void SetRunResultID(const String& sID)
     {
-        s_sRunResultID = sID;
+        s_pRunResultID->Set(sID);
     }
 
-    const String& GetRunResultID()
+    String GetRunResultID()
     {
-        return s_sRunResultID;
+        return s_pRunResultID->Get();
     }
 
     void StoreResult(const String& sID, const String& sResult)
     {
-        s_tResultsStorage[sID] = sResult;
+        s_pResultsStorage->insert({sID, sResult});
     }
 
     void StoreRunResult(const String& sResult)
@@ -33,8 +36,8 @@ namespace ModuleResult
 
     String GetResult(const String& sID)
     {
-        auto iSearch = s_tResultsStorage.find(sID);
-        if(iSearch != s_tResultsStorage.end())
+        auto iSearch = s_pResultsStorage->find(sID);
+        if(iSearch != s_pResultsStorage->end())
         {
             return iSearch->second;
         }
@@ -46,18 +49,18 @@ namespace ModuleResult
 
     Bool DoesResultExist(const String& sID)
     {
-        auto iSearch = s_tResultsStorage.find(sID);
-        return (iSearch != s_tResultsStorage.end());
+        auto iSearch = s_pResultsStorage->find(sID);
+        return (iSearch != s_pResultsStorage->end());
     }
 
     void ClearResult(const String& sID)
     {
-        s_tResultsStorage.erase(sID);
+        s_pResultsStorage->erase(sID);
     }
 
     void ClearAllResults()
     {
-        s_tResultsStorage.clear();
+        s_pResultsStorage->clear();
     }
 };
 

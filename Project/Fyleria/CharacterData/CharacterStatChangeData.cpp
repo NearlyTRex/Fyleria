@@ -2,11 +2,10 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "CharacterData/CharacterStatChangeData.h"
+#include "Utility/Errors.h"
 
 namespace Gecko
 {
-
-const TreeIndexArray CharacterStatChangeData::s_vEmptyChanges = {};
 
 CharacterStatChangeData::CharacterStatChangeData()
 {
@@ -46,7 +45,7 @@ const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const IndexedSt
         default:
             break;
     }
-    return s_vEmptyChanges;
+    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType.Get());
 }
 
 const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const IndexedString& sTreeIndexType) const
@@ -61,7 +60,7 @@ const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const IndexedStr
         default:
             break;
     }
-    return s_vEmptyChanges;
+    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType.Get());
 }
 
 const TreeIndexArray& CharacterStatChangeData::GetActionableChanges(const IndexedString& sTreeIndexType) const
@@ -76,7 +75,7 @@ const TreeIndexArray& CharacterStatChangeData::GetActionableChanges(const Indexe
         default:
             break;
     }
-    return s_vEmptyChanges;
+    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType.Get());
 }
 
 void CharacterStatChangeData::AddProlongedStatChange(const IndexedString& sKey, const ProlongedStatChange& change)

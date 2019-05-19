@@ -69,11 +69,6 @@ public:
     Bool operator==(const CharacterStatChangeData& other) const;
     Bool operator!=(const CharacterStatChangeData& other) const;
 
-private:
-
-    // Empty change list
-    static const TreeIndexArray s_vEmptyChanges;
-
 };
 
 // Typedef

@@ -5,13 +5,12 @@
 #include "CharacterData/CharacterProgressData.h"
 #include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
+#include "Utility/Errors.h"
 #include "Utility/Converters.h"
 #include "Utility/Templates.h"
 
 namespace Gecko
 {
-
-CharacterPartyMember CharacterParty::s_EmptyCharacterPartyMember = {};
 
 CharacterParty::CharacterParty()
     : m_bPlayTimePaused(true)
@@ -192,7 +191,7 @@ const CharacterPartyMember& CharacterParty::GetMemberByTargetType(const IndexedS
             return member.second;
         }
     }
-    return s_EmptyCharacterPartyMember;
+    throw RuntimeError("No character matching character target type '" + sCharacterTargetType.Get() + "' was found");
 }
 
 CharacterPartyMember& CharacterParty::GetMemberByID(const IndexedString& sCharacterID)
