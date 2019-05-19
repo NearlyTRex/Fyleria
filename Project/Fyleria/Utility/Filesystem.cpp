@@ -26,11 +26,6 @@ Bool IsSymbolicLink(const String& sPath)
     return BoostFilesystemIsSymbolicLink(BoostFilesystemPath(sPath));
 }
 
-StringArray GetListOfFiles(const String& sPath)
-{
-    return StringArray();
-}
-
 Bool CreateDirectory(const String& sPath)
 {
     return BoostFilesystemCreateDirectory(BoostFilesystemPath(sPath));

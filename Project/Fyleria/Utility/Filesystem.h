@@ -22,9 +22,6 @@ Bool IsDirectory(const String& sPath);
 // Is path a symbolic link
 Bool IsSymbolicLink(const String& sPath);
 
-// Get list of files
-StringArray GetListOfFiles(const String& sPath);
-
 // Create directory
 Bool CreateDirectory(const String& sPath);
 
