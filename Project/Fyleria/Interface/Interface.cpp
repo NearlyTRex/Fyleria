@@ -65,7 +65,6 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     // Get file names
     String sConfigFile = ConfigManager::GetInstance()->GetConstructedConfigFilename();
     String sPythonLibFile = ConfigManager::GetInstance()->GetConstructedPythonLibraryFilename();
-    WString sPythonLibFileW = ConvertStringToWideString(sPythonLibFile);
 
     // Load config data
     LOG_FORMAT_STATEMENT("Loading config file '%s'\n", sConfigFile.c_str());
@@ -81,10 +80,24 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     LOG_FORMAT_STATEMENT("Loading python library '%s'\n", sPythonLibFile.c_str());
     if(!DoesPathExist(sPythonLibFile))
     {
-        ERROR_FORMAT_STATEMENT("Python library '%s' could not be found, check configuration data\n",
+        ERROR_FORMAT_STATEMENT("Python library '%s' could not be found\n",
             sPythonLibFile.c_str());
         return false;
     }
+
+    // Get python path separator
+#ifdef _WIN32
+    String sPathSeparator = ";";
+#else
+    String sPathSeparator = ":";
+#endif
+
+    // Generate python path
+    LOG_STATEMENT("Generating python path...");
+    String sPythonPath = sPathSeparator;
+    sPythonPath += sPythonLibFile + sPathSeparator;
+    WString sPythonPathW = ConvertStringToWideString(sPythonPath);
+    LOG_FORMAT_STATEMENT("Generated python path is '%s'\n", sPythonPath.c_str());
 
     // Skip site usage and ignore environment variables
     Py_NoSiteFlag++;
@@ -92,19 +105,22 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     Py_IgnoreEnvironmentFlag++;
 #ifdef DEBUG
     Py_VerboseFlag++;
+    Py_VerboseFlag++;
 #endif
 
     // Set python home
 #ifdef Py_USING_UNICODE
-    Py_SetPythonHome(const_cast<wchar_t*>(sPythonLibFileW.c_str()));
-    Py_SetPath(sPythonLibFileW.c_str());
+    Py_SetPythonHome(const_cast<wchar_t*>(sPythonPathW.c_str()));
+    Py_SetPath(sPythonPathW.c_str());
 #else
-    Py_SetPythonHome(const_cast<char*>(sPythonLibFile.c_str()));
-    Py_SetPath(sPythonLibFile.c_str());
+    Py_SetPythonHome(const_cast<char*>(sPythonPath.c_str()));
+    Py_SetPath(sPythonPath.c_str());
 #endif
 
     // Initialize interpreter
+    LOG_STATEMENT("Initializing python interpreter");
     PyBindInitializeInterpreter(false);
+    LOG_STATEMENT("Finished initializing python interpreter");
 
     // Import basic modules
     PyRun_SimpleString("import os");
@@ -125,7 +141,9 @@ extern "C" DLL_PUBLIC bool DLL_FinalizeModule()
     LOG_STATEMENT("Starting finalization...");
 
     // Finalize interpreter
+    LOG_STATEMENT("Finalizing python interpreter");
     PyBindFinalizeInterpreter();
+    LOG_STATEMENT("Finished finalizing python interpreter");
 
     // Finalization finished!
     LOG_STATEMENT("Module successfully finalized");

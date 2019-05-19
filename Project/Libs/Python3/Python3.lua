@@ -17,7 +17,6 @@ libPython3_includedirs = {
 libPython3_defines = {
     "Py_NO_ENABLE_SHARED",
     "Py_BUILD_CORE",
-    "_PYTHONFRAMEWORK=\"\"",
     "PYTHONPATH=\"\"",
     "PREFIX=\"\"",
     "EXEC_PREFIX=\"\"",
