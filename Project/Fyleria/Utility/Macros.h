@@ -190,6 +190,15 @@ const type& Get##name() const { return m_var##name; }                           
 type& Get##name() { return m_var##name; }                                           \
 void Set##name(const type& varValue) { m_var##name = varValue; }
 
+#define MAKE_RAW_GET_ONLY_BASIC_TYPE_ACCESSORS(name, type)                          \
+type m_var##name = type();                                                          \
+type Get##name() const { return m_var##name; }
+
+#define MAKE_RAW_GET_ONLY_OBJECT_TYPE_ACCESSORS(name, type)                         \
+type m_var##name;                                                                   \
+const type& Get##name() const { return m_var##name; }                               \
+type& Get##name() { return m_var##name; }
+
 //=====================================================================================
 
 #define MAKE_JSON_BASIC_TYPE_ACCESSORS(name, type)                                  \

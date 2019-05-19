@@ -84,10 +84,6 @@ public:
     // Constructor for web socket server
     WebsocketServer();
 
-    // Set hostname/port
-    void SetHostname(const String& sHost);
-    void SetPort(Int iPort);
-
     // Reset server
     void Reset();
 
@@ -96,6 +92,29 @@ public:
 
     // Stop server
     void Stop();
+
+    // Host name
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Hostname, String);
+
+    // Port number
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Port, Int);
+
+    // Whether server is closing
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Closing, Bool);
+
+    // Whether server has been shutdown
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Shutdown, Bool);
+
+    // ASIO server
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Server, STDSharedPtr<WebsocketAsioServer>);
+
+    // Server connection map
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ConnectionMap, WebsocketConnectionMap);
+
+    // Server connection mutex
+    MAKE_RAW_GET_ONLY_OBJECT_TYPE_ACCESSORS(ConnectionMutex, STDMutex);
+
+private:
 
     // Callback for a connection being opened
     void OnOpen(WebsocketConnectionHandlePtr pHandle);
@@ -112,37 +131,11 @@ public:
     // Send payload
     void SendPayload(WebsocketConnectionHandlePtr pHandle, const Json& jsonData);
 
-    // Get connection map
-    const WebsocketConnectionMap& GetConnectionMap() const;
-
-private:
-
     // Handle built-in functions
     Json HandleBuiltinFunctionCall(WebsocketConnectionHandlePtr pHandle, const Json& jsonData);
 
     // Handle module functions
     Json HandleModuleFunctionCall(WebsocketConnectionHandlePtr pHandle, const Json& jsonData);
-
-    // Host name
-    String m_sHost;
-
-    // Port number
-    Int m_iPort;
-
-    // Whether server is closing
-    Bool m_bClosing;
-
-    // Whether server has been shutdown
-    Bool m_bShutdown;
-
-    // ASIO server
-    STDSharedPtr<WebsocketAsioServer> m_pServer;
-
-    // Server connection map
-    WebsocketConnectionMap m_ConnectionMap;
-
-    // Server connection mutex
-    mutable STDMutex m_ConnectionMutex;
 };
 
 };

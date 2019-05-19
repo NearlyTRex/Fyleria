@@ -135,12 +135,15 @@ class CustomHttpHandler : public HttpHandler
 public:
 
     // Constructor
-    CustomHttpHandler();
+    CustomHttpHandler(const String& sWebRoot);
 
     // Request handler
     void onRequest(const HttpRequest& request, HttpResponseWriter response);
 
 private:
+
+    // Web root
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebRoot, String);
 
     // Callbacks
     void DoOptions_RequestToRun(const HttpRequest& request, HttpResponseWriter& response);
@@ -179,18 +182,6 @@ public:
     // Constructor for web socket server
     RestServer();
 
-    // Set hostname/root/port/threads
-    void SetHostname(const String& sHost);
-    void SetWebRoot(const String& sWebRoot);
-    void SetPort(Int iPort);
-    void SetThreadCount(Int iThreadCount);
-
-    // Get hostname/root/port/threads
-    const String& GetHostname() const;
-    const String& GetWebRoot() const;
-    Int GetPort() const;
-    Int GetThreadCount() const;
-
     // Reset server
     void Reset();
 
@@ -200,28 +191,26 @@ public:
     // Stop server
     void Stop();
 
-private:
-
     // Host name
-    String m_sHost;
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Hostname, String);
 
     // Web root
-    String m_sWebRoot;
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebRoot, String);
 
     // Port number
-    Int m_iPort;
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Port, Int);
 
     // Thread count
-    Int m_iThreadCount;
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(ThreadCount, Int);
 
     // Whether server is closing
-    Bool m_bClosing;
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Closing, Bool);
 
     // Whether server has been shutdown
-    Bool m_bShutdown;
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Shutdown, Bool);
 
     // Endpoint
-    STDSharedPtr<HttpEndpoint> m_pEndpoint;
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Endpoint, STDSharedPtr<HttpEndpoint>);
 };
 
 };

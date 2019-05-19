@@ -13,9 +13,10 @@
 namespace Gecko
 {
 
-CustomHttpHandler::CustomHttpHandler()
+CustomHttpHandler::CustomHttpHandler(const String& sWebRoot)
     : HttpHandler()
 {
+    SetWebRoot(sWebRoot);
 }
 
 void CustomHttpHandler::onRequest(const HttpRequest& request, HttpResponseWriter response)
@@ -291,7 +292,7 @@ void CustomHttpHandler::DoGet_ServeFile(const HttpRequest& request, HttpResponse
     if(EndsWith(sResource, String("/")))
     {
         // List of all valid index files
-        const STDVector<String> vValidIndexFiles = {
+        const StringArray vValidIndexFiles = {
             "index.html", "index.htm", "index.shtml", "index.php", "index.cgi",
             "default.html", "default.htm", "home.html", "home.htm", "placeholder.html"
         };
@@ -300,7 +301,7 @@ void CustomHttpHandler::DoGet_ServeFile(const HttpRequest& request, HttpResponse
         for (auto& sIndexFile : vValidIndexFiles)
         {
             // Get file path
-            String sResourceFile(RestServer::GetInstance()->GetWebRoot() + sResource + sIndexFile);
+            String sResourceFile(GetCanonicalPath(JoinPaths(GetWebRoot(), sResource + sIndexFile)));
 
             // Try serving file
             if(SendFileToUser(response, sResourceFile))
@@ -312,7 +313,7 @@ void CustomHttpHandler::DoGet_ServeFile(const HttpRequest& request, HttpResponse
     else
     {
         // Get file path
-        String sResourceFile(RestServer::GetInstance()->GetWebRoot() + sResource);
+        String sResourceFile(GetCanonicalPath(JoinPaths(GetWebRoot(), sResource)));
 
         // Try serving file
         if(SendFileToUser(response, sResourceFile))
@@ -379,6 +380,7 @@ Bool CustomHttpHandler::SendFileToUser(HttpResponseWriter& response, const Strin
     // Check file existence
     if(!DoesPathExist(sFile) || !IsFile(sFile))
     {
+        ERROR_FORMAT_STATEMENT("File '%s' does not exist\n", sFile.c_str());
         return false;
     }
 
@@ -435,76 +437,30 @@ Bool CustomHttpHandler::GetRequiredParameter(const HttpRequest& request, HttpRes
 }
 
 RestServer::RestServer()
-    : m_sHost()
-    , m_sWebRoot()
-    , m_iPort(-1)
-    , m_iThreadCount(1)
-    , m_bClosing(false)
-    , m_bShutdown(false)
-    , m_pEndpoint()
+    : Singleton<RestServer>()
 {
-}
-
-void RestServer::SetHostname(const String& sHost)
-{
-    m_sHost = sHost;
-}
-
-void RestServer::SetWebRoot(const String& sWebRoot)
-{
-    m_sWebRoot = sWebRoot;
-}
-
-void RestServer::SetPort(Int iPort)
-{
-    m_iPort = iPort;
-}
-
-void RestServer::SetThreadCount(Int iThreadCount)
-{
-    m_iThreadCount = iThreadCount;
-}
-
-const String& RestServer::GetHostname() const
-{
-    return m_sHost;
-}
-
-const String& RestServer::GetWebRoot() const
-{
-    return m_sWebRoot;
-}
-
-Int RestServer::GetPort() const
-{
-    return m_iPort;
-}
-
-Int RestServer::GetThreadCount() const
-{
-    return m_iThreadCount;
 }
 
 void RestServer::Reset()
 {
     LOG_STATEMENT("Resetting server");
-    ASSERT_ERROR(!m_sHost.empty(), "Host cannot be empty");
-    ASSERT_ERROR(m_iPort > 0, "Port must be a positive integer");
-    ASSERT_ERROR(m_iThreadCount > 0, "Thread count must be a positive integer");
-    m_pEndpoint = STDMakeSharedPtr<HttpEndpoint>(HttpAddress(m_sHost, m_iPort));
-    if (m_pEndpoint)
+    ASSERT_ERROR(!GetHostname().empty(), "Host cannot be empty");
+    ASSERT_ERROR(GetPort() > 0, "Port must be a positive integer");
+    ASSERT_ERROR(GetThreadCount() > 0, "Thread count must be a positive integer");
+    SetEndpoint(STDMakeSharedPtr<HttpEndpoint>(HttpAddress(GetHostname(), GetPort())));
+    if (GetEndpoint())
     {
         auto options = HttpEndpoint::options()
-            .threads(m_iThreadCount)
+            .threads(GetThreadCount())
             .flags(TcpOptionReuseAddr);
-        m_pEndpoint->init(options);
+        GetEndpoint()->init(options);
     }
 }
 
 void RestServer::Start()
 {
     // Check that endpoint exists
-    if (!m_pEndpoint)
+    if (!GetEndpoint())
     {
         return;
     }
@@ -513,31 +469,31 @@ void RestServer::Start()
     LOG_STATEMENT("Setting up server");
 
     // Set handlers
-    auto pHandler = HttpMakeHandler<CustomHttpHandler>();
-    m_pEndpoint->setHandler(pHandler);
+    auto pHandler = HttpMakeHandler<CustomHttpHandler>(GetWebRoot());
+    GetEndpoint()->setHandler(pHandler);
 
     // Start listening
-    LOG_FORMAT_STATEMENT("Now serving at http://%s:%d\n", m_sHost.c_str(), m_iPort);
+    LOG_FORMAT_STATEMENT("Now serving at http://%s:%d\n", GetHostname().c_str(), GetPort());
 
     // Start the server accept loop
-    m_pEndpoint->serve();
-    m_bShutdown = false;
-    m_bClosing = false;
+    GetEndpoint()->serve();
+    SetShutdown(false);
+    SetClosing(false);
 }
 
 void RestServer::Stop()
 {
     // Check that endpoint exists
-    if (!m_pEndpoint)
+    if (!GetEndpoint())
     {
         return;
     }
 
     // Halt server
-    m_pEndpoint->shutdown();
+    GetEndpoint()->shutdown();
     LOG_STATEMENT("Halting server...");
-    m_bShutdown = true;
-    m_bClosing = false;
+    SetShutdown(true);
+    SetClosing(false);
 }
 
 };

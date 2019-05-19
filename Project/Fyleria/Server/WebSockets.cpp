@@ -12,39 +12,21 @@ namespace Gecko
 {
 
 WebsocketServer::WebsocketServer()
-    : m_sHost()
-    , m_iPort(-1)
-    , m_bClosing(false)
-    , m_bShutdown(false)
-    , m_pServer()
-    , m_ConnectionMap()
-    , m_ConnectionMutex()
+    : Singleton<WebsocketServer>()
 {
-}
-
-void WebsocketServer::SetHostname(const String& sHost)
-{
-    // Set host name
-    m_sHost = sHost;
-}
-
-void WebsocketServer::SetPort(Int iPort)
-{
-    // Set port number
-    m_iPort = iPort;
 }
 
 void WebsocketServer::Reset()
 {
     // Reset server
     LOG_STATEMENT("Resetting server");
-    m_pServer = STDMakeSharedPtr<WebsocketAsioServer>();
+    SetServer(STDMakeSharedPtr<WebsocketAsioServer>());
 }
 
 void WebsocketServer::Start()
 {
     // Check that server exists
-    if (!m_pServer)
+    if (!GetServer())
     {
         return;
     }
@@ -53,84 +35,84 @@ void WebsocketServer::Start()
     LOG_STATEMENT("Setting up server");
 
     // Set channels
-    m_pServer->clear_access_channels(WebsocketAccessLogAll);
-    m_pServer->set_access_channels(WebsocketAccessLogAll);
-    m_pServer->clear_error_channels(WebsocketErrorLogAll);
-    m_pServer->set_error_channels(WebsocketErrorLogAll);
+    GetServer()->clear_access_channels(WebsocketAccessLogAll);
+    GetServer()->set_access_channels(WebsocketAccessLogAll);
+    GetServer()->clear_error_channels(WebsocketErrorLogAll);
+    GetServer()->set_error_channels(WebsocketErrorLogAll);
 
     // Initialize ASIO
-    m_pServer->init_asio();
-    m_pServer->set_reuse_addr(true);
+    GetServer()->init_asio();
+    GetServer()->set_reuse_addr(true);
 
     // Set handlers
-    m_pServer->set_open_handler(STDBindFunc(&WebsocketServer::OnOpen, this, STDPlaceholder1));
-    m_pServer->set_close_handler(STDBindFunc(&WebsocketServer::OnClose, this, STDPlaceholder1));
-    m_pServer->set_message_handler(STDBindFunc(&WebsocketServer::OnMessage, this, STDPlaceholder1, STDPlaceholder2));
+    GetServer()->set_open_handler(STDBindFunc(&WebsocketServer::OnOpen, this, STDPlaceholder1));
+    GetServer()->set_close_handler(STDBindFunc(&WebsocketServer::OnClose, this, STDPlaceholder1));
+    GetServer()->set_message_handler(STDBindFunc(&WebsocketServer::OnMessage, this, STDPlaceholder1, STDPlaceholder2));
 
     // Start listening
-    ASSERT_ERROR(!m_sHost.empty(), "Host cannot be empty");
-    ASSERT_ERROR(m_iPort > 0, "Port must be a positive integer");
-    m_pServer->listen(m_sHost, STDToString(m_iPort));
-    LOG_FORMAT_STATEMENT("Now serving at ws://%s:%d\n", m_sHost.c_str(), m_iPort);
+    ASSERT_ERROR(!GetHostname().empty(), "Host cannot be empty");
+    ASSERT_ERROR(GetPort() > 0, "Port must be a positive integer");
+    GetServer()->listen(GetHostname(), STDToString(GetPort()));
+    LOG_FORMAT_STATEMENT("Now serving at ws://%s:%d\n", GetHostname().c_str(), GetPort());
 
     // Start the server accept loop
-    m_pServer->start_accept();
-    m_pServer->run();
-    m_bShutdown = false;
+    GetServer()->start_accept();
+    GetServer()->run();
+    SetShutdown(false);
 }
 
 void WebsocketServer::Stop()
 {
     // Check that server exists
-    if (!m_pServer)
+    if (!GetServer())
     {
         return;
     }
 
     // Halt server
-    m_pServer->stop();
+    GetServer()->stop();
     LOG_STATEMENT("Halting server...");
-    m_bShutdown = true;
-    m_bClosing = false;
+    SetShutdown(true);
+    SetClosing(false);
 }
 
 void WebsocketServer::OnOpen(WebsocketConnectionHandlePtr pHandle)
 {
     // Lock access
-    STDLockGuard<STDMutex> lock(m_ConnectionMutex);
+    STDLockGuard<STDMutex> lock(GetConnectionMutex());
 
     // Stop from closing
-    m_bClosing = false;
+    SetClosing(false);
 
     // Add connection to map
     auto pSharedHandle = pHandle.lock();
     WebsocketRawConnectionPtr pConnection = pSharedHandle.get();
     LOG_FORMAT_STATEMENT("Opening connection to %p\n", (void*)pConnection);
-    m_ConnectionMap[pConnection] = pHandle;
+    GetConnectionMap().insert({pConnection, pHandle});
 }
 
 void WebsocketServer::OnClose(WebsocketConnectionHandlePtr pHandle)
 {
     // Lock access
-    STDLockGuard<STDMutex> lock(m_ConnectionMutex);
+    STDLockGuard<STDMutex> lock(GetConnectionMutex());
 
     // Start closing
-    m_bClosing = true;
+    SetClosing(true);
 
     // Remove connection from map
     auto pSharedHandle = pHandle.lock();
     WebsocketRawConnectionPtr pConnection = pSharedHandle.get();
     LOG_FORMAT_STATEMENT("Closing connection to %p\n", (void*)pConnection);
-    m_ConnectionMap.erase(pConnection);
+    GetConnectionMap().erase(pConnection);
 }
 
 void WebsocketServer::OnMessage(WebsocketConnectionHandlePtr pHandle, WebsocketAsioMessagePtr pMessage)
 {
     // Lock access
-    STDLockGuard<STDMutex> lock(m_ConnectionMutex);
+    STDLockGuard<STDMutex> lock(GetConnectionMutex());
 
     // Ignore if closing
-    if (m_bClosing)
+    if (GetClosing())
     {
         return;
     }
@@ -182,14 +164,14 @@ void WebsocketServer::OnMessage(WebsocketConnectionHandlePtr pHandle, WebsocketA
 void WebsocketServer::SendPayload(WebsocketRawConnectionPtr pConnection, const Json& jsonData)
 {
     // Ignore if closing
-    if (m_bClosing)
+    if (GetClosing())
     {
         return;
     }
 
     // Find connection handle
-    auto it = m_ConnectionMap.find(pConnection);
-    if (it == m_ConnectionMap.end())
+    auto it = GetConnectionMap().find(pConnection);
+    if (it == GetConnectionMap().end())
     {
         return;
     }
@@ -201,7 +183,7 @@ void WebsocketServer::SendPayload(WebsocketRawConnectionPtr pConnection, const J
 void WebsocketServer::SendPayload(WebsocketConnectionHandlePtr pHandle, const Json& jsonData)
 {
     // Ignore if closing
-    if (m_bClosing)
+    if (GetClosing())
     {
         return;
     }
@@ -212,22 +194,13 @@ void WebsocketServer::SendPayload(WebsocketConnectionHandlePtr pHandle, const Js
         auto sJsonDataStr = jsonData.dump();
         auto pSharedHandle = pHandle.lock();
         LOG_FORMAT_STATEMENT("Sending message to %p: %s\n", (void*)pSharedHandle.get(), sJsonDataStr.c_str());
-        m_pServer->send(pHandle, sJsonDataStr, WebsocketFrameOpcodeText);
+        GetServer()->send(pHandle, sJsonDataStr, WebsocketFrameOpcodeText);
     }
     catch (WebsocketException& e)
     {
         ERROR_FORMAT_STATEMENT("Websocket error %d : %s\n", e.code().value(), e.what());
         ERROR_FORMAT_STATEMENT("Original payload: \n%s\n", jsonData.dump(4).c_str());
     }
-}
-
-const WebsocketConnectionMap& WebsocketServer::GetConnectionMap() const
-{
-    // Lock access
-    STDLockGuard<STDMutex> lock(m_ConnectionMutex);
-
-    // Get connection map
-    return m_ConnectionMap;
 }
 
 Json WebsocketServer::HandleBuiltinFunctionCall(WebsocketConnectionHandlePtr pHandle, const Json& jsonData)
