@@ -1,8 +1,8 @@
 -- Configuration
 libObjectThreadsafe_extradir = "Libs/ObjectThreadsafe/extra/"
 libObjectThreadsafe_origdir = "Libs/ObjectThreadsafe/orig/"
-libObjectThreadsafe_srcdir = libObjectThreadsafe_origdir .. "ObjectThreadsafe/source/"
-libObjectThreadsafe_incdir = libObjectThreadsafe_origdir .. "ObjectThreadsafe/include/"
+libObjectThreadsafe_srcdir = libObjectThreadsafe_origdir
+libObjectThreadsafe_incdir = libObjectThreadsafe_origdir
 
 -- Includes
 libObjectThreadsafe_includedirs = {

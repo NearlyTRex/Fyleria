@@ -48,6 +48,7 @@ pic "On"
     includedirs(libImmutableString_includedirs)
     includedirs(libBetterEnums_includedirs)
     includedirs(libModernCPPJson_includedirs)
+    includedirs(libObjectThreadsafe_includedirs)
     includedirs(libPistache_includedirs)
     includedirs(libPyBind_includedirs)
     includedirs(libPython3_includedirs)
