@@ -25,21 +25,11 @@ void CharacterBasicData::Clear()
     RESET_STAT_TYPE_VALUES(CharacterBasicStatType, Int);
 }
 
-static Bool s_bCharacterBasicData_StatNamesInitialized = false;
 void CharacterBasicData::InitAllStatNames()
 {
-    // Check initialization
-    if(s_bCharacterBasicData_StatNamesInitialized)
-    {
-        return;
-    }
-
     // Initialize stat type names
     INITIALIZE_STAT_TYPE_NAMES(CharacterBasicStatType, IndexedString);
     INITIALIZE_STAT_TYPE_NAMES(CharacterBasicStatType, Int);
-
-    // Finished
-    s_bCharacterBasicData_StatNamesInitialized = true;
 }
 
 Bool CharacterBasicData::operator==(const CharacterBasicData& other) const

@@ -360,24 +360,14 @@ Bool CharacterBattleData::GetSecondaryShieldRatings(const IndexedString& sHanded
     return false;
 }
 
-static Bool s_bCharacterBattleData_StatNamesInitialized = false;
 void CharacterBattleData::InitAllStatNames()
 {
-    // Check initialization
-    if(s_bCharacterBattleData_StatNamesInitialized)
-    {
-        return;
-    }
-
     // Initialize stat type names
     INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, IndexedString);
     INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, IndexedStringArray);
     INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Bool);
     INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Int);
     INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Float);
-
-    // Finished
-    s_bCharacterBattleData_StatNamesInitialized = true;
 }
 
 Bool CharacterBattleData::operator==(const CharacterBattleData& other) const

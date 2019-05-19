@@ -148,20 +148,10 @@ void CharacterProgressData::UpdateAvailableAP(const TreeIndexArray& vIndices)
     }
 }
 
-static Bool s_bCharacterProgressData_StatNamesInitialized = false;
 void CharacterProgressData::InitAllStatNames()
 {
-    // Check initialization
-    if(s_bCharacterProgressData_StatNamesInitialized)
-    {
-        return;
-    }
-
     // Initialize stat type names
     INITIALIZE_STAT_TYPE_NAMES(CharacterProgressStatType, Int);
-
-    // Finished
-    s_bCharacterProgressData_StatNamesInitialized = true;
 }
 
 Bool CharacterProgressData::operator==(const CharacterProgressData& other) const
