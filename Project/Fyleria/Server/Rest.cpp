@@ -476,7 +476,7 @@ void RestServer::Start()
     LOG_FORMAT_STATEMENT("Now serving at http://%s:%d\n", GetHostname().c_str(), GetPort());
 
     // Start the server accept loop
-    GetEndpoint()->serve();
+    GetEndpoint()->serveThreaded();
     SetShutdown(false);
     SetClosing(false);
 }
