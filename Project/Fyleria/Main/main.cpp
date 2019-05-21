@@ -10,13 +10,14 @@
 #include "Main/Application.h"
 #include "Main/Game.h"
 #include "Config/ConfigManager.h"
+#include "Utility/Constants.h"
 #include "Utility/Types.h"
 #include "Utility/Standard.h"
 #include "Utility/Boost.h"
 #include "Utility/StackTrace.h"
 
 // Main
-int main(int argc, char** argv)
+int main(int iArgCount, char** vArgList)
 {
     // Register signal handler
 #ifdef DEBUG
@@ -32,6 +33,7 @@ int main(int argc, char** argv)
     Gecko::String sPythonLibraryFile;
     Gecko::String sWebDir;
     Gecko::String sWebHostname;
+    Gecko::String sWebGuiStartUrl;
     Gecko::Int iScreenWidth = 0;
     Gecko::Int iScreenHeight = 0;
     Gecko::Int iRestPort = 0;
@@ -46,9 +48,10 @@ int main(int argc, char** argv)
     Gecko::Bool bLaunchWebGUI = false;
 
     // Setup allowed options
-    BoostProgramOptionsDescription desc("Allowed options");
+    BoostProgramOptionsDescription desc(Gecko::String(APPLICATION_NAME_LONG) + " " + Gecko::String(APPLICATION_VERSION));
     desc.add_options()
         ("help,h", "Print usage information")
+        ("script-file,a", BoostProgramOptionsValue(&sScriptToRun), "Script file name")
         ("config-file,f", BoostProgramOptionsValue(&sConfigFile)->default_value("config.json"), "Config file name")
         ("config-dir,c", BoostProgramOptionsValue(&sConfigDir)->default_value("Config"), "Config directory")
         ("data-dir,d", BoostProgramOptionsValue(&sDataDir)->default_value("Data"), "Data directory")
@@ -60,6 +63,7 @@ int main(int argc, char** argv)
         ("screen-height,y", BoostProgramOptionsValue(&iScreenHeight)->default_value(768), "Screen height")
         ("rest-port,r", BoostProgramOptionsValue(&iRestPort)->default_value(8080), "Rest server port")
         ("websocket-port,w", BoostProgramOptionsValue(&iWebsocketPort)->default_value(8090), "Websocket server port")
+        ("web-gui-url,q", BoostProgramOptionsValue(&sWebGuiStartUrl)->default_value("http://localhost:8080"), "Web gui start url")
         ("server-threads,t", BoostProgramOptionsValue(&iServerThreads)->default_value(1), "Number of server threads")
         ("enable-scrollbars,s", BoostProgramOptionsValue(&bEnableScrollbars)->default_value(true), "Enable scrollbars")
         ("enable-context-menu,m", BoostProgramOptionsValue(&bEnableContextMenu)->default_value(true), "Enable context menu")
@@ -72,9 +76,15 @@ int main(int argc, char** argv)
 
     // Parse command line
     BoostProgramOptionsVariablesMap vm;
-    BoostProgramOptionsStore(BoostProgramOptionsParseCommandLine(argc, argv, desc), vm);
+    BoostProgramOptionsStore(BoostProgramOptionsParseCommandLine(iArgCount, vArgList, desc), vm);
     BoostProgramOptionsNotify(vm);
-    if(vm.count("help"))
+    Gecko::Bool bAtLeastOneMainOption = (
+        !sScriptToRun.empty() ||
+        bLaunchRestServer ||
+        bLaunchWebsocketServer ||
+        bLaunchWebGUI
+    );
+    if(vm.count("help") || !bAtLeastOneMainOption)
     {
         STDCout << desc << STDEndl;
         return EXIT_SUCCESS;
@@ -100,22 +110,39 @@ int main(int argc, char** argv)
     Gecko::ConfigManager::GetInstance()->SetWebsocketPort(iWebsocketPort);
     Gecko::ConfigManager::GetInstance()->SetServerThreads(iServerThreads);
 
+    // Run main script if it was specified
+    if(!sScriptToRun.empty())
+    {
+        Gecko::RunGameScript(sScriptToRun.c_str());
+        return EXIT_SUCCESS;
+    }
+
     // Launch server
-    STDSharedPtr<BoostThread> pThreadRestServer;
-    STDSharedPtr<BoostThread> pThreadWebsocketServer;
+    STDSharedPtr<STDThread> pThreadRestServer;
+    STDSharedPtr<STDThread> pThreadWebsocketServer;
     if(bLaunchRestServer)
     {
-        pThreadRestServer = STDMakeSharedPtr<BoostThread>(&Gecko::StartGameRestServer);
+        pThreadRestServer = STDMakeSharedPtr<STDThread>(&Gecko::StartGameRestServer);
     }
     else if(bLaunchWebsocketServer)
     {
-        pThreadWebsocketServer = STDMakeSharedPtr<BoostThread>(&Gecko::StartGameWebsocketServer);
+        pThreadWebsocketServer = STDMakeSharedPtr<STDThread>(&Gecko::StartGameWebsocketServer);
     }
 
     // Launch web gui
-    if(bLaunchWebGUI && bLaunchRestServer)
+    if(bLaunchWebGUI)
     {
-        Gecko::StartApplication(argc, argv);
+        Gecko::StartApplication(iArgCount, vArgList, sWebGuiStartUrl.c_str());
+    }
+
+    // Stop servers
+    if(bLaunchRestServer)
+    {
+        Gecko::StopGameRestServer();
+    }
+    else if(bLaunchWebsocketServer)
+    {
+        Gecko::StopGameWebsocketServer();
     }
 
     // Join threads

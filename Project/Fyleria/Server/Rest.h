@@ -203,12 +203,6 @@ public:
     // Thread count
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ThreadCount, Int);
 
-    // Whether server is closing
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(Closing, Bool);
-
-    // Whether server has been shutdown
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(Shutdown, Bool);
-
     // Endpoint
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Endpoint, STDSharedPtr<HttpEndpoint>);
 };

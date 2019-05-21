@@ -87,6 +87,8 @@
 #define STDPlaceholder3 std::placeholders::_3
 #define STDAtomic std::atomic
 #define STDMutex std::mutex
+#define STDThread std::thread
+#define STDConditionVariable std::condition_variable
 #define STDRecursiveMutex std::recursive_mutex
 #define STDLockGuard std::lock_guard
 #define STDUniqueLock std::unique_lock

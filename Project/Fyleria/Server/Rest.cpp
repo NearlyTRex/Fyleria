@@ -477,8 +477,6 @@ void RestServer::Start()
 
     // Start the server accept loop
     GetEndpoint()->serveThreaded();
-    SetShutdown(false);
-    SetClosing(false);
 }
 
 void RestServer::Stop()
@@ -492,8 +490,6 @@ void RestServer::Stop()
     // Halt server
     GetEndpoint()->shutdown();
     LOG_STATEMENT("Halting server...");
-    SetShutdown(true);
-    SetClosing(false);
 }
 
 };

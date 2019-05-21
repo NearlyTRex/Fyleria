@@ -8,18 +8,19 @@
 
 // Internal includes
 #include "Config/ConfigManager.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
 
-int StartApplication(int argc, char** argv)
+int StartApplication(int iArgCount, char** vArgList, const char* sUrl)
 {
     // Create application
-    QApplication app(argc, argv);
+    QApplication app(iArgCount, vArgList);
 
     // Set attributes
-    QCoreApplication::setApplicationName("Fyleria");
-    QCoreApplication::setApplicationVersion("v1.0");
+    QCoreApplication::setApplicationName(APPLICATION_NAME_SHORT);
+    QCoreApplication::setApplicationVersion(APPLICATION_VERSION);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
@@ -69,7 +70,7 @@ int StartApplication(int argc, char** argv)
         ConfigManager::GetInstance()->GetScreenHeight());
 
     // Set url
-    view.setUrl(QUrl(ConfigManager::GetInstance()->GetRestUrl().c_str()));
+    view.setUrl(QUrl(sUrl));
 
     // Show window
     view.show();

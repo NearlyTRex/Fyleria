@@ -8,7 +8,7 @@ namespace Gecko
 {
 
 // Start application
-int StartApplication(int argc, char** argv);
+int StartApplication(int iArgCount, char** vArgList, const char* sUrl);
 
 };
 

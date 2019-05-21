@@ -4,6 +4,13 @@
 #ifndef _GECKO_UTILITY_CONSTANTS_H_
 #define _GECKO_UTILITY_CONSTANTS_H_
 
+// Application name
+#define APPLICATION_NAME_SHORT                  "Fyleria"
+#define APPLICATION_NAME_LONG                   "Fyleria Game Engine"
+
+// Application version
+#define APPLICATION_VERSION                     "v1.0"
+
 // Save limits
 #define MAX_SAVE_SLOT                           5
 

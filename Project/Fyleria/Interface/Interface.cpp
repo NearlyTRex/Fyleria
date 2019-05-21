@@ -105,7 +105,6 @@ extern "C" DLL_PUBLIC bool DLL_InitModule()
     Py_IgnoreEnvironmentFlag++;
 #ifdef DEBUG
     Py_VerboseFlag++;
-    Py_VerboseFlag++;
 #endif
 
     // Set python home

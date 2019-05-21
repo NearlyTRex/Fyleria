@@ -16,6 +16,14 @@
 namespace Gecko
 {
 
+// Server closing mutexes
+STDMutex g_close_websocket_server_mutex;
+STDMutex g_close_rest_server_mutex;
+
+// Server closing condition variables
+STDConditionVariable g_should_close_websocket_server;
+STDConditionVariable g_should_close_rest_server;
+
 bool InitializeGame()
 {
     // Initialize module
@@ -58,13 +66,22 @@ bool FinalizeGame()
 void RunGameScript(const char* sScriptFilename)
 {
     // Make sure file exists
-    if(!DoesPathExist(sScriptFilename))
+    if(!DoesPathExist(sScriptFilename) || !IsFile(sScriptFilename))
+    {
+        return;
+    }
+
+    // Initialize game
+    if(!InitializeGame())
     {
         return;
     }
 
     // Run script
     DLL_RunModuleFile(sScriptFilename);
+
+    // Finalize game
+    FinalizeGame();
 }
 
 void StartGameWebsocketServer()
@@ -101,20 +118,24 @@ void StartGameRestServer()
     RestServer::GetInstance()->Reset();
     RestServer::GetInstance()->Start();
 
+    // Wait to finish
+    STDUniqueLock<STDMutex> lock(g_close_rest_server_mutex);
+    g_should_close_rest_server.wait(lock);
+
     // Finalize game
     FinalizeGame();
 }
 
 void StopGameWebsocketServer()
 {
-    // Stop server
-    WebsocketServer::GetInstance()->Stop();
+    // Notify server to close
+    g_should_close_websocket_server.notify_one();
 }
 
 void StopGameRestServer()
 {
-    // Stop server
-    RestServer::GetInstance()->Stop();
+    // Notify server to close
+    g_should_close_rest_server.notify_one();
 }
 
 };
