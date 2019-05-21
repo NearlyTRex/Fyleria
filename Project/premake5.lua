@@ -72,7 +72,7 @@ filter "configurations:Release*"
 
 -- Assert
 project "Assert"
-kind "SharedLib"
+kind "StaticLib"
 language "C++"
 pic "On"
     includedirs(libAssert_includedirs)
@@ -86,7 +86,7 @@ filter "configurations:Release*"
 
 -- BackwardCPP
 project "BackwardCPP"
-kind "SharedLib"
+kind "StaticLib"
 language "C++"
 pic "On"
     includedirs(libBackwardCPP_includedirs)
@@ -96,7 +96,7 @@ pic "On"
 
 -- Boost
 project "Boost"
-kind "SharedLib"
+kind "StaticLib"
 language "C++"
 pic "On"
     includedirs(libBoost_includedirs)
@@ -106,7 +106,7 @@ pic "On"
 
 -- FantasyName
 project "FantasyName"
-kind "SharedLib"
+kind "StaticLib"
 language "C++"
 pic "On"
     includedirs(libFantasyName_includedirs)
@@ -121,7 +121,7 @@ filter "configurations:Release*"
 
 -- MicroPather
 project "MicroPather"
-kind "SharedLib"
+kind "StaticLib"
 language "C++"
 pic "On"
     includedirs(libMicroPather_includedirs)
@@ -135,7 +135,7 @@ filter "configurations:Release*"
 
 -- Pistache
 project "Pistache"
-kind "SharedLib"
+kind "StaticLib"
 language "C++"
 pic "On"
     includedirs(libPistache_includedirs)
@@ -146,7 +146,7 @@ pic "On"
 
 -- Python3
 project "Python3"
-kind "SharedLib"
+kind "StaticLib"
 language "C"
 pic "On"
     includedirs(libPython3_includedirs)
@@ -163,7 +163,7 @@ filter "configurations:Release*"
 
 -- TinyXML2
 project "TinyXML2"
-kind "SharedLib"
+kind "StaticLib"
 language "C++"
 pic "On"
     includedirs(libTinyXML2_includedirs)
@@ -173,7 +173,7 @@ pic "On"
 
 -- TMXParser
 project "TMXParser"
-kind "SharedLib"
+kind "StaticLib"
 language "C++"
 pic "On"
     includedirs(libTMXParser_includedirs)
@@ -185,7 +185,7 @@ pic "On"
 
 -- Zlib
 project "Zlib"
-kind "SharedLib"
+kind "StaticLib"
 language "C"
 pic "On"
     includedirs(libZlib_includedirs)
