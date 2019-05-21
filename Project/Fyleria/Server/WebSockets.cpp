@@ -16,6 +16,14 @@ WebsocketServer::WebsocketServer()
 {
 }
 
+WebsocketServer::~WebsocketServer()
+{
+    if(GetServerRunThread().get() && GetServerRunThread()->joinable())
+    {
+        GetServerRunThread()->join();
+    }
+}
+
 void WebsocketServer::Reset()
 {
     // Reset server
@@ -57,7 +65,7 @@ void WebsocketServer::Start()
 
     // Start the server accept loop
     GetServer()->start_accept();
-    GetServer()->run();
+    SetServerRunThread(STDMakeSharedPtr<STDThread>([=]() { GetServer()->run(); } ));
     SetShutdown(false);
 }
 

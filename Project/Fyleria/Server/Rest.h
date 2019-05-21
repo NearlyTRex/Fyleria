@@ -179,7 +179,7 @@ class RestServer : public Singleton<RestServer>
 {
 public:
 
-    // Constructor for web socket server
+    // Constructor
     RestServer();
 
     // Reset server

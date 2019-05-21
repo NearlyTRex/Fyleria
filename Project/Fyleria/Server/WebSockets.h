@@ -81,8 +81,11 @@ class WebsocketServer : public Singleton<WebsocketServer>
 {
 public:
 
-    // Constructor for web socket server
+    // Constructor
     WebsocketServer();
+
+    // Destructor
+    virtual ~WebsocketServer();
 
     // Reset server
     void Reset();
@@ -107,6 +110,9 @@ public:
 
     // ASIO server
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Server, STDSharedPtr<WebsocketAsioServer>);
+
+    // Server run thread
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ServerRunThread, STDSharedPtr<STDThread>);
 
     // Server connection map
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ConnectionMap, WebsocketConnectionMap);

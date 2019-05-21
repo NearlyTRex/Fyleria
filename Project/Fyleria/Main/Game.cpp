@@ -98,6 +98,13 @@ void StartGameWebsocketServer()
     WebsocketServer::GetInstance()->Reset();
     WebsocketServer::GetInstance()->Start();
 
+    // Wait to finish
+    STDUniqueLock<STDMutex> lock(g_close_websocket_server_mutex);
+    g_should_close_websocket_server.wait(lock);
+
+    // Stop server
+    WebsocketServer::GetInstance()->Stop();
+
     // Finalize game
     FinalizeGame();
 }
@@ -121,6 +128,9 @@ void StartGameRestServer()
     // Wait to finish
     STDUniqueLock<STDMutex> lock(g_close_rest_server_mutex);
     g_should_close_rest_server.wait(lock);
+
+    // Stop server
+    RestServer::GetInstance()->Stop();
 
     // Finalize game
     FinalizeGame();
