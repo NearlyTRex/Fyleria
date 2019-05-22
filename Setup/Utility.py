@@ -68,33 +68,52 @@ def RunLiveSubprocess(subprocess_args = [], verbose_output = False):
         return -1
 ###########################################################################
 # Run extra steps
-def RunExtraSteps(steps, platform, flags):
+def RunExtraSteps(steps, platform, root_path, flags):
+
+    # Resolve paths
+    def ResolvePaths(path):
+        new_path = path.replace("$(ProjectRoot)", root_path)
+        return new_path
 
     # Run process and show output in realtime
     def RunProcess(process):
-        subprocess.call(process, shell=True)
+        new_process = ResolvePaths(process)
+        subprocess.call(new_process, shell=True)
 
     # Copy file
     def CopyFile(src, dest):
-        if os.path.isfile(src) and not os.path.exists(dest):
-            shutil.copyfile(src, dest)
+        new_src = ResolvePaths(src)
+        new_dest = ResolvePaths(dest)
+        if os.path.isfile(new_src) and not os.path.exists(new_dest):
+            shutil.copyfile(new_src, new_dest)
+
+    # Make directory
+    def MakeDirectory(dest):
+        new_dest = ResolvePaths(dest)
+        if not os.path.exists(new_dest):
+            try:
+                os.mkdir(new_dest)
+            except:
+                pass
 
     # Replace text in the given file
     def ReplaceText(filename, old, new):
-        if os.path.isfile(filename):
-            f = open(filename,'r')
+        new_filename = ResolvePaths(filename)
+        if os.path.isfile(new_filename):
+            f = open(new_filename,'r')
             filedata = f.read()
             f.close()
             newdata = filedata.replace(old, new)
-            f = open(filename,'w')
+            f = open(new_filename,'w')
             f.write(newdata)
             f.close()
 
     # Make the file executable
-    def MakeExecutable(file):
-        if os.path.isfile(file):
-            st = os.stat(file)
-            os.chmod(file, st.st_mode | stat.S_IEXEC)
+    def MakeExecutable(filename):
+        new_filename = ResolvePaths(filename)
+        if os.path.isfile(new_filename):
+            st = os.stat(new_filename)
+            os.chmod(new_filename, st.st_mode | stat.S_IEXEC)
 
     # Evaluate the steps for the given platform
     if platform in steps and flags:
