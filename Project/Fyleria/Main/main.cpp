@@ -16,9 +16,48 @@
 #include "Utility/Boost.h"
 #include "Utility/StackTrace.h"
 
+// Control interrupt handlers
+void ControlInterruptHandler()
+{
+    STDCout << STDEndl << "Handling Ctrl Event" << STDEndl << STDEndl;
+    Gecko::StopGameRestServer();
+    Gecko::StopGameWebsocketServer();
+}
+#ifdef WIN32
+BOOL ControlInterruptHandler(DWORD fdwCtrlType)
+{
+    switch(fdwCtrlType)
+    {
+    case CTRL_C_EVENT:
+    case CTRL_CLOSE_EVENT:
+        ControlInterruptHandler();
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+#else
+static void ControlInterruptHandler(int signo)
+{
+    ControlInterruptHandler();
+}
+#endif
+
 // Main
 int main(int iArgCount, char** vArgList)
 {
+    // Register control interrupt handler
+#ifdef WIN32
+    SetConsoleCtrlHandler((PHANDLER_ROUTINE)ControlInterruptHandler, TRUE);
+#else
+    struct sigaction sigact;
+    sigact.sa_handler = ControlInterruptHandler;
+    sigemptyset(&sigact.sa_mask);
+    sigact.sa_flags = 0;
+    sigaction(SIGINT, &sigact, NULL);
+    sigaction(SIGTERM, &sigact, NULL);
+#endif
+
     // Register signal handler
 #ifdef DEBUG
     Gecko::SignalHandler signalHandler(Gecko::GetStackTraceSignals());
@@ -136,21 +175,15 @@ int main(int iArgCount, char** vArgList)
     }
 
     // Stop servers
-    if(bLaunchRestServer)
-    {
-        Gecko::StopGameRestServer();
-    }
-    else if(bLaunchWebsocketServer)
-    {
-        Gecko::StopGameWebsocketServer();
-    }
+    Gecko::StopGameRestServer();
+    Gecko::StopGameWebsocketServer();
 
     // Join threads
-    if (pThreadRestServer.get())
+    if (pThreadRestServer.get() && pThreadRestServer->joinable())
     {
         pThreadRestServer->join();
     }
-    if (pThreadWebsocketServer.get())
+    if (pThreadWebsocketServer.get() && pThreadWebsocketServer->joinable())
     {
         pThreadWebsocketServer->join();
     }
