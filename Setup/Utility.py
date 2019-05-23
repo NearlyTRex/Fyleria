@@ -72,7 +72,7 @@ def RunExtraSteps(steps, platform, root_path, flags):
 
     # Resolve paths
     def ResolvePaths(path):
-        new_path = path.replace("$(ProjectRoot)", root_path)
+        new_path = path.replace("$(RootPath)", root_path)
         return new_path
 
     # Run process and show output in realtime
