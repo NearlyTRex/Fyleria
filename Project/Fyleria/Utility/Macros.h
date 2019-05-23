@@ -290,6 +290,32 @@ Bool Set##type##StatValue(const IndexedString& sSegment, const IndexedString& sS
 
 //=====================================================================================
 
+#define MAKE_MODULE_RESULT_VARIANT(method)                                                                          \
+void method##MR(const String& sResultID)                                                                            \
+{                                                                                                                   \
+    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method()).dump());                              \
+}
+
+#define MAKE_MODULE_RESULT_VARIANT_A1(method, at1, av1)                                                             \
+void method##MR(const String& sResultID, at1 av1)                                                                   \
+{                                                                                                                   \
+    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1)).dump());                           \
+}
+
+#define MAKE_MODULE_RESULT_VARIANT_A2(method, at1, av1, at2, av2)                                                   \
+void method##MR(const String& sResultID, at1 av1, at2 av2)                                                          \
+{                                                                                                                   \
+    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2)).dump());                      \
+}
+
+#define MAKE_MODULE_RESULT_VARIANT_A3(method, at1, av1, at2, av2, at3, av3)                                         \
+void method##MR(const String& sResultID, at1 av1, at3 av3, at3 av3)                                                 \
+{                                                                                                                   \
+    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2, av3)).dump());                 \
+}
+
+//=====================================================================================
+
 #define WRAPPING_ADD_CONSTRUCTOR_SIMPLE()                                                                   \
 .def(PyBindInit<>())
 
