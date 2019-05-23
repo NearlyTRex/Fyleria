@@ -2,7 +2,6 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Interface/Interface.h"
-#include "Module/Module.h"
 #include "Utility/Assert.h"
 #include "Utility/Converters.h"
 #include "Utility/Logging.h"
@@ -13,6 +12,7 @@
 #include "Utility/Filesystem.h"
 #include "Utility/Errors.h"
 
+#include "Module/ModuleResultManager.h"
 #include "Config/ConfigManager.h"
 
 #include "Character/Character.h"

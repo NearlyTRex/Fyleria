@@ -1,7 +1,7 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#include "Module/Module.h"
+#include "Module/ModuleResultManager.h"
 #include "Utility/Macros.h"
 #include "Utility/Python.h"
 
