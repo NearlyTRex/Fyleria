@@ -5,7 +5,7 @@
 #define _GECKO_CHARACTER_PARTY_MANAGER_H_
 
 #include "CharacterParty/CharacterParty.h"
-#include "Utility/Singleton.h"
+#include "Module/ModuleResultManager.h"
 
 namespace Gecko
 {
@@ -39,19 +39,31 @@ public:
 
     // Determine if party exists
     Bool DoesPartyExist(const IndexedString& sPartyID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesPartyExist, const IndexedString&, sPartyID);
 
     // Check if party ID is valid
     Bool IsValidPartyID(const IndexedString& sPartyID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsValidPartyID, const IndexedString&, sPartyID);
 
-    // Get party
+    // Get party by ID
     const CharacterParty& GetPartyByID(const IndexedString& sPartyID) const;
     CharacterParty& GetPartyByID(const IndexedString& sPartyID);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetPartyByID, const IndexedString&, sPartyID);
+
+    // Get party by type
     const CharacterParty& GetPartyByType(const IndexedString& sPartyType) const;
     CharacterParty& GetPartyByType(const IndexedString& sPartyType);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetPartyByType, const IndexedString&, sPartyType);
+
+    // Get current ally party
     const CharacterParty& GetCurrentAllyParty() const;
     CharacterParty& GetCurrentAllyParty();
+    MAKE_MODULE_RESULT_VARIANT(GetCurrentAllyParty);
+
+    // Get current enemy party
     const CharacterParty& GetCurrentEnemyParty() const;
     CharacterParty& GetCurrentEnemyParty();
+    MAKE_MODULE_RESULT_VARIANT(GetCurrentEnemyParty);
 
     // Parties
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Parties, CharacterPartyMappingType);

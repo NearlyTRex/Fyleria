@@ -5,6 +5,7 @@
 #define _GECKO_SAVE_MANAGER_H_
 
 #include "Saves/Save.h"
+#include "Module/ModuleResultManager.h"
 #include "Utility/Singleton.h"
 
 namespace Gecko
@@ -34,26 +35,33 @@ public:
 
     // Does save exist
     Bool DoesSaveExist(UByte uSlot) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesSaveExist, UByte, uSlot);
 
     // Get save capacity
     UByte GetSaveCapacity() const;
+    MAKE_MODULE_RESULT_VARIANT(GetSaveCapacity);
 
     // Get list of all available save slots
     UByteArray GetAllAvailableSaveSlots() const;
+    MAKE_MODULE_RESULT_VARIANT(GetAllAvailableSaveSlots);
 
     // Get list of all descriptions from save slots
     // Unused slots are also included
     StringArray GetAllSaveDescriptions() const;
+    MAKE_MODULE_RESULT_VARIANT(GetAllSaveDescriptions);
 
     // Is save capacity reached
     Bool IsSaveCapacityReached() const;
+    MAKE_MODULE_RESULT_VARIANT(IsSaveCapacityReached);
 
     // Get save
     const Save& GetSave(UByte uSlot) const;
     Save& GetSave(UByte uSlot);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetSave, UByte, uSlot);
 
     // Get all saves
     SaveArray GetAllSaves() const;
+    MAKE_MODULE_RESULT_VARIANT(GetAllSaves);
 
     // Pull save from memory
     // Creates a new save from the manager data in memory and loads it in the specified save slot
