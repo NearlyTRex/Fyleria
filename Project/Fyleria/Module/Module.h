@@ -1,27 +1,31 @@
 // Fyleria Engine
 // Copyright © 2016 Go Go Gecko Productions
 
-#ifndef _GECKO_MODULE_H_
-#define _GECKO_MODULE_H_
+#ifndef _GECKO_MODULE_RESULT_MANAGER_H_
+#define _GECKO_MODULE_RESULT_MANAGER_H_
 
 #include "Utility/Types.h"
+#include "Utility/Singleton.h"
+#include "Utility/Macros.h"
 
 namespace Gecko
 {
 
-namespace ModuleResult
+class ModuleResultManager : public Singleton<ModuleResultManager>
 {
-    // Set run command/file result ID
-    void SetRunResultID(const String& sID);
+public:
 
-    // Get run command/file result ID
-    String GetRunResultID();
+    // Types
+    typedef STDUnorderedMap<String, String> ModuleResultMappingType;
+
+    // Constructors
+    ModuleResultManager();
 
     // Store result in the given id
     void StoreResult(const String& sID, const String& sResult);
 
     // Store result in the run id
-    void StoreRunResult(const String& sResult);
+    void StoreCurrentResult(const String& sResult);
 
     // Get result from the given slot
     String GetResult(const String& sID);
@@ -34,6 +38,12 @@ namespace ModuleResult
 
     // Clear all the results
     void ClearAllResults();
+
+    // Current result
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentResult, String);
+
+    // Module results
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ModuleResults, ModuleResultMappingType);
 };
 
 };

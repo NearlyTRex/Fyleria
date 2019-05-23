@@ -159,7 +159,7 @@ bool DLL_Internal_RunModuleFile(const char* sFile, const char* sResultsID)
         // Set run result ID
         if(sResultsID)
         {
-            ModuleResult::SetRunResultID(sResultsID);
+            ModuleResultManager::GetInstance()->SetCurrentResult(sResultsID);
         }
 
         // Lock python state
@@ -176,7 +176,7 @@ bool DLL_Internal_RunModuleFile(const char* sFile, const char* sResultsID)
     {
         if(sResultsID)
         {
-            ModuleResult::SetRunResultID("");
+            ModuleResultManager::GetInstance()->SetCurrentResult("");
         }
         auto sMessage = error.what();
         error.restore();
@@ -185,7 +185,7 @@ bool DLL_Internal_RunModuleFile(const char* sFile, const char* sResultsID)
     }
     if(sResultsID)
     {
-        ModuleResult::SetRunResultID("");
+        ModuleResultManager::GetInstance()->SetCurrentResult("");
     }
     return true;
 }
@@ -210,7 +210,7 @@ bool DLL_Internal_RunModuleCommand(const char* sCommand, const char* sResultsID)
         // Set run result ID
         if(sResultsID)
         {
-            ModuleResult::SetRunResultID(sResultsID);
+            ModuleResultManager::GetInstance()->SetCurrentResult(sResultsID);
         }
 
         // Lock python state
@@ -227,7 +227,7 @@ bool DLL_Internal_RunModuleCommand(const char* sCommand, const char* sResultsID)
     {
         if(sResultsID)
         {
-            ModuleResult::SetRunResultID("");
+            ModuleResultManager::GetInstance()->SetCurrentResult("");
         }
         auto sMessage = error.what();
         error.restore();
@@ -236,7 +236,7 @@ bool DLL_Internal_RunModuleCommand(const char* sCommand, const char* sResultsID)
     }
     if(sResultsID)
     {
-        ModuleResult::SetRunResultID("");
+        ModuleResultManager::GetInstance()->SetCurrentResult("");
     }
     return true;
 }
@@ -257,7 +257,7 @@ extern "C" DLL_PUBLIC void DLL_ClearModuleResult(const char* sResultsID)
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
     // Clear the specific result
-    ModuleResult::ClearResult(String(sResultsID));
+    ModuleResultManager::GetInstance()->ClearResult(String(sResultsID));
 }
 
 extern "C" DLL_PUBLIC void DLL_ClearAllModuleResults()
@@ -266,7 +266,7 @@ extern "C" DLL_PUBLIC void DLL_ClearAllModuleResults()
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
     // Clear all results
-    ModuleResult::ClearAllResults();
+    ModuleResultManager::GetInstance()->ClearAllResults();
 }
 
 extern "C" DLL_PUBLIC bool DLL_DoesModuleResultExist(const char* sResultsID)
@@ -275,7 +275,7 @@ extern "C" DLL_PUBLIC bool DLL_DoesModuleResultExist(const char* sResultsID)
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
     // Determine if result exists
-    return ModuleResult::DoesResultExist(String(sResultsID));
+    return ModuleResultManager::GetInstance()->DoesResultExist(String(sResultsID));
 }
 
 extern "C" DLL_PUBLIC unsigned int DLL_GetModuleResultSize(const char* sResultsID)
@@ -284,7 +284,7 @@ extern "C" DLL_PUBLIC unsigned int DLL_GetModuleResultSize(const char* sResultsI
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
     // Get the result size
-    return ModuleResult::GetResult(String(sResultsID)).size();
+    return ModuleResultManager::GetInstance()->GetResult(String(sResultsID)).size();
 }
 
 extern "C" DLL_PUBLIC bool DLL_GetModuleResults(const char* sResultsID, char* sResultStr, unsigned int uResultLen)
@@ -293,7 +293,7 @@ extern "C" DLL_PUBLIC bool DLL_GetModuleResults(const char* sResultsID, char* sR
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
     // Search for the given result
-    String sResult = ModuleResult::GetResult(String(sResultsID));
+    String sResult = ModuleResultManager::GetInstance()->GetResult(String(sResultsID));
     if(sResult.empty())
     {
         ERROR_FORMAT_STATEMENT("Cannot get result for ID '%s'\n", sResultsID);

@@ -7,61 +7,48 @@
 namespace Gecko
 {
 
-namespace ModuleResult
+ModuleResultManager::ModuleResultManager()
+    : Singleton<ModuleResultManager>()
 {
-    typedef STDMap<String, String> ModuleResultMapType;
-    typedef SafeObject<ModuleResultMapType> SafeModuleResultMapType;
-    static SafeIndexedString s_pRunResultID;
-    static SafeModuleResultMapType s_pResultsStorage;
+}
 
-    void SetRunResultID(const String& sID)
-    {
-        s_pRunResultID->Set(sID);
-    }
+void ModuleResultManager::StoreResult(const String& sID, const String& sResult)
+{
+    GetModuleResults().insert({sID, sResult});
+}
 
-    String GetRunResultID()
-    {
-        return s_pRunResultID->Get();
-    }
+void ModuleResultManager::StoreCurrentResult(const String& sResult)
+{
+    StoreResult(GetCurrentResult(), sResult);
+}
 
-    void StoreResult(const String& sID, const String& sResult)
+String ModuleResultManager::GetResult(const String& sID)
+{
+    auto iSearch = GetModuleResults().find(sID);
+    if(iSearch != GetModuleResults().end())
     {
-        s_pResultsStorage->insert({sID, sResult});
+        return iSearch->second;
     }
+    else
+    {
+        return String();
+    }
+}
 
-    void StoreRunResult(const String& sResult)
-    {
-        StoreResult(GetRunResultID(), sResult);
-    }
+Bool ModuleResultManager::DoesResultExist(const String& sID)
+{
+    auto iSearch = GetModuleResults().find(sID);
+    return (iSearch != GetModuleResults().end());
+}
 
-    String GetResult(const String& sID)
-    {
-        auto iSearch = s_pResultsStorage->find(sID);
-        if(iSearch != s_pResultsStorage->end())
-        {
-            return iSearch->second;
-        }
-        else
-        {
-            return String();
-        }
-    }
+void ModuleResultManager::ClearResult(const String& sID)
+{
+    GetModuleResults().erase(sID);
+}
 
-    Bool DoesResultExist(const String& sID)
-    {
-        auto iSearch = s_pResultsStorage->find(sID);
-        return (iSearch != s_pResultsStorage->end());
-    }
-
-    void ClearResult(const String& sID)
-    {
-        s_pResultsStorage->erase(sID);
-    }
-
-    void ClearAllResults()
-    {
-        s_pResultsStorage->clear();
-    }
-};
+void ModuleResultManager::ClearAllResults()
+{
+    GetModuleResults().clear();
+}
 
 };

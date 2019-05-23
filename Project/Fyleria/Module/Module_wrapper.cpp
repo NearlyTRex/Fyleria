@@ -5,15 +5,26 @@
 #include "Utility/Macros.h"
 #include "Utility/Python.h"
 
+namespace Gecko
+{
+
+SafePtr<ModuleResultManager>& GetModuleResultManager() { return ModuleResultManager::GetInstance(); }
+
+};
+
 PYBIND11_EMBEDDED_MODULE(GeckoModule, m)
 {
-    // Module.h
-    WRAPPING_STANDALONE_METHOD_SIMPLE(SetRunResultID, Gecko::ModuleResult);
-    WRAPPING_STANDALONE_METHOD_POLICY(GetRunResultID, Gecko::ModuleResult, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(StoreResult, Gecko::ModuleResult);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(StoreRunResult, Gecko::ModuleResult);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetResult, Gecko::ModuleResult);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesResultExist, Gecko::ModuleResult);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ClearResult, Gecko::ModuleResult);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ClearAllResults, Gecko::ModuleResult);
+    // ModuleResultManager.h
+    PyBindClass<Gecko::ModuleResultManager>(m, "ModuleResultManager")
+        WRAPPING_ADD_METHOD_SIMPLE(StoreResult, Gecko::ModuleResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(StoreCurrentResult, Gecko::ModuleResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetResult, Gecko::ModuleResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(DoesResultExist, Gecko::ModuleResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(ClearResult, Gecko::ModuleResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(ClearAllResults, Gecko::ModuleResultManager)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentResult, Gecko::ModuleResultManager)
+    ;
+
+    // Local
+    WRAPPING_STANDALONE_METHOD_POLICY(GetModuleResultManager, Gecko, PyBindReturnCopy);
 }
