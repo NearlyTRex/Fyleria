@@ -41,6 +41,10 @@ __pycache__
 *.7z
 *.rar
 
+# Web
+*.min.css
+*.min.js
+
 # Folders
 Bin/*
 Project/Build_*
