@@ -54,6 +54,13 @@ PYBIND11_EMBEDDED_MODULE(GeckoSaves, m)
         WRAPPING_ADD_METHOD_SIMPLE(LoadAllFromDirectory, Gecko::SaveManager)
         WRAPPING_ADD_METHOD_SIMPLE(InitializeAllSaveSlots, Gecko::SaveManager)
         WRAPPING_ADD_METHOD_SIMPLE(InitializeEmptySaveSlots, Gecko::SaveManager)
+        WRAPPING_ADD_METHOD_SIMPLE(DoesSaveExist_MR, Gecko::SaveManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetSaveCapacity_MR, Gecko::SaveManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllAvailableSaveSlots_MR, Gecko::SaveManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllSaveDescriptions_MR, Gecko::SaveManager)
+        WRAPPING_ADD_METHOD_SIMPLE(IsSaveCapacityReached_MR, Gecko::SaveManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetSave_MR, Gecko::SaveManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllSaves_MR, Gecko::SaveManager)
     ;
 
     // Local

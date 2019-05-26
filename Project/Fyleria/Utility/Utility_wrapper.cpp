@@ -2,6 +2,7 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "Character/CharacterTypes.h"
+#include "Module/ModuleResultManager.h"
 #include "Items/ItemTypes.h"
 #include "Skills/SkillTypes.h"
 #include "Saves/SaveTypes.h"
@@ -65,6 +66,8 @@ String GetAllTypeNames()
     jsonData["FileType"] = GetFileTypeNames();
     return jsonData.dump();
 }
+
+MAKE_MODULE_RESULT_VARIANT(GetAllTypeNames);
 
 };
 
@@ -168,4 +171,5 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
 
     // Local
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllTypeNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllTypeNames_MR, Gecko);
 }
