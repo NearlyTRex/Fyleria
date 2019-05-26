@@ -13,6 +13,7 @@
 #include "CharacterData/CharacterSkillData.h"
 #include "CharacterData/CharacterSkillUseData.h"
 #include "CharacterData/CharacterStatChangeData.h"
+#include "Module/ModuleResultManager.h"
 #include "Items/ItemTree.h"
 #include "Skills/SkillTree.h"
 
@@ -37,20 +38,25 @@ public:
 
     // Get character ID
     const IndexedString& GetCharacterID() const;
+    MAKE_MODULE_RESULT_VARIANT(GetCharacterID);
 
     // Get party ID
     const IndexedString& GetPartyID() const;
+    MAKE_MODULE_RESULT_VARIANT(GetPartyID);
 
     // Get character target type
     const IndexedString& GetCharacterTargetType() const;
+    MAKE_MODULE_RESULT_VARIANT(GetCharacterTargetType);
 
     // Get progress data segment
     const CharacterProgressData& GetProgressDataSegment(const IndexedString& sSegment) const;
     CharacterProgressData& GetProgressDataSegment(const IndexedString& sSegment);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetProgressDataSegment, const IndexedString&, sSegment);
 
     // Get battle data segment
     const CharacterBattleData& GetBattleDataSegment(const IndexedString& sSegment) const;
     CharacterBattleData& GetBattleDataSegment(const IndexedString& sSegment);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetBattleDataSegment, const IndexedString&, sSegment);
 
     // Stat values
     MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(Bool);
@@ -97,26 +103,37 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ProgressDataBase, CharacterProgressData);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ProgressDataPassives, CharacterProgressData);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ProgressDataActives, CharacterProgressData);
+    MAKE_MODULE_RESULT_VARIANT(GetProgressDataBase);
+    MAKE_MODULE_RESULT_VARIANT(GetProgressDataPassives);
+    MAKE_MODULE_RESULT_VARIANT(GetProgressDataActives);
 
     // Battle data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(BattleDataBase, CharacterBattleData);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(BattleDataPassives, CharacterBattleData);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(BattleDataActives, CharacterBattleData);
+    MAKE_MODULE_RESULT_VARIANT(GetBattleDataBase);
+    MAKE_MODULE_RESULT_VARIANT(GetBattleDataPassives);
+    MAKE_MODULE_RESULT_VARIANT(GetBattleDataActives);
 
     // Basic data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(BasicData, CharacterBasicData);
+    MAKE_MODULE_RESULT_VARIANT(GetBasicData);
 
     // Action data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionData, CharacterActionData);
+    MAKE_MODULE_RESULT_VARIANT(GetActionData);
 
     // Skill data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillData, CharacterSkillData);
+    MAKE_MODULE_RESULT_VARIANT(GetSkillData);
 
     // Skill use data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillUseData, CharacterSkillUseData);
+    MAKE_MODULE_RESULT_VARIANT(GetSkillUseData);
 
     // Stat change data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChangeData, CharacterStatChangeData);
+    MAKE_MODULE_RESULT_VARIANT(GetStatChangeData);
 
     // Comparisons
     Bool operator==(const Character& other) const;

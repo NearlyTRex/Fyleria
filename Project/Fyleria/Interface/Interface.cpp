@@ -311,8 +311,8 @@ extern "C" DLL_PUBLIC void DLL_VerifyModuleData()
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
     // Verify trees
-    VerifySkillTrees();
-    VerifyItemTrees();
+    SkillTree::VerifySkillTrees();
+    ItemTree::VerifyItemTrees();
 }
 
 };

@@ -29,7 +29,7 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& s
 {
     // Skip base actions
     CharacterActionArray vNewActions;
-    if(IsBaseWeaponSkill(GetSkillTreeIndex()))
+    if(SkillTree::IsBaseWeaponSkill(GetSkillTreeIndex()))
     {
         return vNewActions;
     }
@@ -76,8 +76,8 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& s
     }
 
     // Get item types
-    IndexedString sPrimaryItemType = RetrieveItemType(primaryItemIndex);
-    IndexedString sSecondaryItemType = RetrieveItemType(secondaryItemIndex);
+    IndexedString sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
+    IndexedString sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
     IndexedString sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
     IndexedString sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
     if(sPrimaryItemActionType.IsNone() && sSecondaryItemActionType.IsNone())

@@ -5,7 +5,7 @@
 #define _GECKO_BATTLE_MANAGER_H_
 
 #include "Battle/Battle.h"
-#include "Utility/Singleton.h"
+#include "Module/ModuleResultManager.h"
 
 namespace Gecko
 {
@@ -28,12 +28,17 @@ public:
 
     // Determine if battle exists
     Bool DoesBattleExist(const IndexedString& sBattleName) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesBattleExist, const IndexedString&, sBattleName);
 
     // Get battle
     const Battle& GetBattle(const IndexedString& sPartyName) const;
     Battle& GetBattle(const IndexedString& sPartyName);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetBattle, const IndexedString&, sPartyName);
+
+    // Get current battle
     const Battle& GetCurrentBattle() const;
     Battle& GetCurrentBattle();
+    MAKE_MODULE_RESULT_VARIANT(GetCurrentBattle);
 
     // Battles
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Battles, BattleMappingType);

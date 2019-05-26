@@ -36,7 +36,7 @@ UInt CharacterPartyMember::GetEquippedWeaponCount(const IndexedString& sWeaponSe
     UInt uWeapon2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
     {
-        if(!IsItemWeapon(progressItem.GetTreeIndex()))
+        if(!ItemTree::IsItemWeapon(progressItem.GetTreeIndex()))
         {
             continue;
         }
@@ -66,7 +66,7 @@ UInt CharacterPartyMember::GetEquippedShieldCount(const IndexedString& sWeaponSe
     UInt uShield2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
     {
-        if(!IsItemShield(progressItem.GetTreeIndex()))
+        if(!ItemTree::IsItemShield(progressItem.GetTreeIndex()))
         {
             continue;
         }
@@ -93,7 +93,7 @@ UInt CharacterPartyMember::GetEquippedShieldCount(const IndexedString& sWeaponSe
 Bool CharacterPartyMember::CanAddEquippedItem(const TreeIndex& index) const
 {
     const UInt uItemCount = GetEquippedItemTypeCount(index);
-    const ItemType eItemType = StringToItemType(RetrieveItemType(index));
+    const ItemType eItemType = StringToItemType(ItemTree::RetrieveItemType(index));
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -120,7 +120,7 @@ Bool CharacterPartyMember::CanAddEquippedItem(const TreeIndex& index) const
 Bool CharacterPartyMember::CanRemoveEquippedItem(const TreeIndex& index) const
 {
     const UInt uItemCount = GetEquippedItemTypeCount(index);
-    const ItemType eItemType = StringToItemType(RetrieveItemType(index));
+    const ItemType eItemType = StringToItemType(ItemTree::RetrieveItemType(index));
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -203,7 +203,7 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const IndexedString& sWeaponSe
         {
             case ItemTreeType::Armor:
             {
-                const Bool bIsShield = IsItemShield(progressItem.GetTreeIndex());
+                const Bool bIsShield = ItemTree::IsItemShield(progressItem.GetTreeIndex());
                 if(bIsShield && bValidEquipLeft)
                 {
                     itemIndexLeft = progressItem.GetTreeIndex();
@@ -249,8 +249,8 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const IndexedString& sWeaponSe
     }
 
     // Fill action types
-    vPrimaryActionTypes = GetActionTypes(primaryItemIndex);
-    vSecondaryActionTypes = GetActionTypes(secondaryItemIndex);
+    vPrimaryActionTypes = ItemTree::GetActionTypes(primaryItemIndex);
+    vSecondaryActionTypes = ItemTree::GetActionTypes(secondaryItemIndex);
     return (!primaryItemIndex.empty() || !secondaryItemIndex.empty());
 }
 

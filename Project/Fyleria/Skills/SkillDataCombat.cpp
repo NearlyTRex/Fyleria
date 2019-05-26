@@ -49,8 +49,8 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& s
     }
 
     // Get item types
-    IndexedString sPrimaryItemType = RetrieveItemType(primaryItemIndex);
-    IndexedString sSecondaryItemType = RetrieveItemType(secondaryItemIndex);
+    IndexedString sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
+    IndexedString sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
     IndexedString sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
     IndexedString sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
     if(sPrimaryItemActionType.IsNone() && sSecondaryItemActionType.IsNone())
@@ -111,7 +111,7 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& s
         {
             // Create entry
             CharacterActionEntry newEntry;
-            Bool bUsePrimary = (!sPrimaryItemActionType.IsNone() && IsItemShield(primaryItemIndex));
+            Bool bUsePrimary = (!sPrimaryItemActionType.IsNone() && ItemTree::IsItemShield(primaryItemIndex));
             IndexedString sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
             IndexedString sHandTypeToUse = (bUsePrimary) ? IndexedString("Primary") : IndexedString("Secondary");
             newEntry.SetActionTypes({sActionTypeToUse});

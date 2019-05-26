@@ -371,7 +371,7 @@ void HandleBattleActionFinished(const IndexedString& sCharacterID, const Charact
         // If this was a skill action, we should track it
         if(!action.GetSkillTreeIndex().empty())
         {
-            character.GetSkillUseData().AddSkillUse(GetSkillType(action.GetSkillTreeIndex()), 1);
+            character.GetSkillUseData().AddSkillUse(SkillTree::GetSkillType(action.GetSkillTreeIndex()), 1);
         }
 
         // Apply new status

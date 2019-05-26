@@ -75,33 +75,36 @@ PYBIND11_EMBEDDED_MODULE(GeckoItems, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemDataWeaponArrayFromJsonString, Gecko);
 
     // ItemTree.h
-    WRAPPING_STANDALONE_METHOD_SIMPLE(LoadItemTreesIntoMemory, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(UnloadItemTreesFromMemory, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(VerifyItemTrees, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesItemDataExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesItemDataArmorExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesItemDataIngredientExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesItemDataPotionExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesItemDataWeaponExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveItemDataArmor, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveItemDataIngredient, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveItemDataPotion, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveItemDataWeapon, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(RetrieveItemType, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllArmorItems, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllIngredientItems, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllPotionItems, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllWeaponItems, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllEquippedItems, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ResolveItemLeafIntoIndex, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(IsItemActionable, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GenerateItemCharacterActions, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(IsArmorBetter, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(IsWeaponBetter, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(IsItemWeapon, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(IsItemShield, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetActionTypes, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(FillItemStatChangeArrays, Gecko);
+    PyBindClass<Gecko::ItemTree>(m, "ItemTree")
+        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(LoadItemTreesIntoMemory, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(UnloadItemTreesFromMemory, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(VerifyItemTrees, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesItemDataExist, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesItemDataArmorExist, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesItemDataIngredientExist, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesItemDataPotionExist, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesItemDataWeaponExist, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveItemDataArmor, Gecko::ItemTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveItemDataIngredient, Gecko::ItemTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveItemDataPotion, Gecko::ItemTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveItemDataWeapon, Gecko::ItemTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(RetrieveItemType, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllArmorItems, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllIngredientItems, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllPotionItems, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllWeaponItems, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllEquippedItems, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(ResolveItemLeafIntoIndex, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(IsItemActionable, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GenerateItemCharacterActions, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(IsArmorBetter, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(IsWeaponBetter, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(IsItemWeapon, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(IsItemShield, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetActionTypes, Gecko::ItemTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(FillItemStatChangeArrays, Gecko::ItemTree)
+    ;
 
     // ItemTypes.h
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemTreeTypeNames, Gecko);

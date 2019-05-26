@@ -142,13 +142,13 @@ void Character::UpdateAvailableChanges(const IndexedString& sSegment)
     TreeIndexArray vSkillPassives;
     TreeIndexArray vSkillActives;
     TreeIndexArray vSkillActionables;
-    FillSkillStatChangeArrays(sCharacterID, vSkillPassives, vSkillActives, vSkillActionables, true);
+    SkillTree::FillSkillStatChangeArrays(sCharacterID, vSkillPassives, vSkillActives, vSkillActionables, true);
 
     // Fill item indices
     TreeIndexArray vItemPassives;
     TreeIndexArray vItemActives;
     TreeIndexArray vItemActionables;
-    FillItemStatChangeArrays(GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
+    ItemTree::FillItemStatChangeArrays(ItemTree::GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
 
     // Add to stored changes
     GetStatChangeData().SetPassiveSkillDataArray(vSkillPassives);
@@ -194,14 +194,14 @@ void Character::UpdateAvailableActions(const IndexedString& sSegment)
 
                 // Add skill actions
                 CharacterActionArray vSkillActions;
-                if(bIsSkillAction && GenerateSkillCharacterActions(index, sCharacterID, sWeaponSet, vSkillActions))
+                if(bIsSkillAction && SkillTree::GenerateSkillCharacterActions(index, sCharacterID, sWeaponSet, vSkillActions))
                 {
                    vAvailableActions.insert(vAvailableActions.end(), vSkillActions.begin(), vSkillActions.end());
                 }
 
                 // Add item actions
                 CharacterActionArray vItemActions;
-                if(bIsSkillAction && GenerateItemCharacterActions(index, sCharacterID, sWeaponSet, vItemActions))
+                if(bIsSkillAction && ItemTree::GenerateItemCharacterActions(index, sCharacterID, sWeaponSet, vItemActions))
                 {
                    vAvailableActions.insert(vAvailableActions.end(), vItemActions.begin(), vItemActions.end());
                 }
@@ -219,7 +219,7 @@ void Character::UpdateAvailableAP(const IndexedString& sSegment)
     CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
 
     // Get weapon skills
-    TreeIndexArray vWeaponSkills = GetWeaponSkills(sCharacterID, true);
+    TreeIndexArray vWeaponSkills = SkillTree::GetWeaponSkills(sCharacterID, true);
     if(vWeaponSkills.empty())
     {
         return;

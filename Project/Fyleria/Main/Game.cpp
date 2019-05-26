@@ -40,8 +40,8 @@ bool InitializeGame()
 
     // Load trees into memory
     LOG_STATEMENT("Loading trees into memory...");
-    LoadSkillTreesIntoMemory();
-    LoadItemTreesIntoMemory();
+    SkillTree::LoadSkillTreesIntoMemory();
+    ItemTree::LoadItemTreesIntoMemory();
     LOG_STATEMENT("Finished loading trees into memory");
     return true;
 }
@@ -50,8 +50,8 @@ bool FinalizeGame()
 {
     // Unload trees from memory
     LOG_STATEMENT("Unloading trees from memory...");
-    UnloadSkillTreesFromMemory();
-    UnloadItemTreesFromMemory();
+    SkillTree::UnloadSkillTreesFromMemory();
+    ItemTree::UnloadItemTreesFromMemory();
     LOG_STATEMENT("Finished unloading trees from memory");
 
     // Finalize module

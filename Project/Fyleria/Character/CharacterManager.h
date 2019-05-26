@@ -6,7 +6,7 @@
 
 #include "Character/Character.h"
 #include "Character/CharacterGenerator.h"
-#include "Utility/Singleton.h"
+#include "Module/ModuleResultManager.h"
 
 namespace Gecko
 {
@@ -40,16 +40,19 @@ public:
 
     // Does a character exist
     Bool DoesCharacterExist(const IndexedString& sCharacterID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesCharacterExist, const IndexedString&, sCharacterID);
 
     // Generate a character
     void GenerateCharacter(const IndexedString& sCharacterID, const CharacterGenerator& generator);
 
     // Check if character ID is valid
     Bool IsValidCharacterID(const IndexedString& sCharacterID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsValidCharacterID, const IndexedString&, sCharacterID);
 
     // Get character
     const Character& GetCharacter(const IndexedString& sCharacterID) const;
     Character& GetCharacter(const IndexedString& sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetCharacter, const IndexedString&, sCharacterID);
 
     // Apply a stat change
     void ApplyStatChange(

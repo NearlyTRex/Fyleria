@@ -104,38 +104,41 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataWeaponArrayFromJsonString, Gecko);
 
     // SkillTree.h
-    WRAPPING_STANDALONE_METHOD_SIMPLE(LoadSkillTreesIntoMemory, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(UnloadSkillTreesFromMemory, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(VerifySkillTrees, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesSkillDataAffinityExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesSkillDataAlchemyExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesSkillDataBreakdownExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesSkillDataCombatExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesSkillDataCraftingExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(DoesSkillDataWeaponExist, Gecko);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveSkillDataAffinity, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveSkillDataAlchemy, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveSkillDataBreakdown, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveSkillDataCombat, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveSkillDataCrafting, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_POLICY(RetrieveSkillDataWeapon, Gecko, PyBindReturnCopy);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllAffinitySkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllAlchemySkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllBreakdownSkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllCombatSkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllCraftingSkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllWeaponSkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAffinitySkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAlchemySkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetBreakdownSkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCombatSkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCraftingSkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetWeaponSkills, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillType, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(IsBaseWeaponSkill, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(IsSkillActionable, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GenerateSkillCharacterActions, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(FillSkillStatChangeArrays, Gecko);
+    PyBindClass<Gecko::SkillTree>(m, "SkillTree")
+        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(LoadSkillTreesIntoMemory, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(UnloadSkillTreesFromMemory, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(VerifySkillTrees, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesSkillDataAffinityExist, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesSkillDataAlchemyExist, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesSkillDataBreakdownExist, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesSkillDataCombatExist, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesSkillDataCraftingExist, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(DoesSkillDataWeaponExist, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveSkillDataAffinity, Gecko::SkillTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveSkillDataAlchemy, Gecko::SkillTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveSkillDataBreakdown, Gecko::SkillTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveSkillDataCombat, Gecko::SkillTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveSkillDataCrafting, Gecko::SkillTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_POLICY(RetrieveSkillDataWeapon, Gecko::SkillTree, PyBindReturnCopy)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllAffinitySkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllAlchemySkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllBreakdownSkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllCombatSkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllCraftingSkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAllWeaponSkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAffinitySkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetAlchemySkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetBreakdownSkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetCombatSkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetCraftingSkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetWeaponSkills, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GetSkillType, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(IsBaseWeaponSkill, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(IsSkillActionable, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(GenerateSkillCharacterActions, Gecko::SkillTree)
+        WRAPPING_ADD_METHOD_STATIC_SIMPLE(FillSkillStatChangeArrays, Gecko::SkillTree)
+    ;
 
     // SkillTypes.h
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillTreeTypeNames, Gecko);

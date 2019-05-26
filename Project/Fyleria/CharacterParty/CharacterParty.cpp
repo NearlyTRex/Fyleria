@@ -263,10 +263,10 @@ UInt CharacterParty::GetStatusMemberCount(const IndexedString& sStatus) const
 Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd)
 {
     // Get lists of all items
-    TreeIndexArray vAllArmors = GetAllArmorItems();
-    TreeIndexArray vAllIngredients = GetAllIngredientItems();
-    TreeIndexArray vAllPotions = GetAllPotionItems();
-    TreeIndexArray vAllWeapons = GetAllWeaponItems();
+    TreeIndexArray vAllArmors = ItemTree::GetAllArmorItems();
+    TreeIndexArray vAllIngredients = ItemTree::GetAllIngredientItems();
+    TreeIndexArray vAllPotions = ItemTree::GetAllPotionItems();
+    TreeIndexArray vAllWeapons = ItemTree::GetAllWeaponItems();
 
     // Shuffle item lists
     ShuffleVector<TreeIndex>(vAllArmors);
@@ -320,8 +320,8 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
 
 Bool CharacterParty::AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
 {
-    TreeIndex treeIndex = ResolveItemLeafIntoIndex(sLeaf);
-    if(!DoesItemDataExist(treeIndex))
+    TreeIndex treeIndex = ItemTree::ResolveItemLeafIntoIndex(sLeaf);
+    if(!ItemTree::DoesItemDataExist(treeIndex))
     {
         return false;
     }
@@ -341,7 +341,7 @@ Bool CharacterParty::AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
     }
     else
     {
-        IndexedString sItemType = RetrieveItemType(treeIndex);
+        IndexedString sItemType = ItemTree::RetrieveItemType(treeIndex);
         IndexedStringArray vEquipTypes = ConvertItemTypeToCharacterEquipTypes(sItemType);
         CharacterPartyItem newItem;
         newItem.SetTreeIndex(treeIndex);
@@ -421,7 +421,7 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterI
     // Look at each of the matching, unequipped items the party has and find the best one
     for(auto& item : GetItems())
     {
-        if(uShieldCount == 1 && IsItemShield(item.second.GetTreeIndex()))
+        if(uShieldCount == 1 && ItemTree::IsItemShield(item.second.GetTreeIndex()))
         {
             continue;
         }
@@ -442,11 +442,11 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterI
             continue;
         }
 
-        Bool bIsArmor = DoesItemDataArmorExist(item.second.GetTreeIndex());
-        Bool bIsWeapon = DoesItemDataWeaponExist(item.second.GetTreeIndex());
+        Bool bIsArmor = ItemTree::DoesItemDataArmorExist(item.second.GetTreeIndex());
+        Bool bIsWeapon = ItemTree::DoesItemDataWeaponExist(item.second.GetTreeIndex());
         if(
-            (bIsArmor && IsArmorBetter(item.second.GetTreeIndex(), bestItem)) ||
-            (bIsWeapon && IsWeaponBetter(item.second.GetTreeIndex(), bestItem)))
+            (bIsArmor && ItemTree::IsArmorBetter(item.second.GetTreeIndex(), bestItem)) ||
+            (bIsWeapon && ItemTree::IsWeaponBetter(item.second.GetTreeIndex(), bestItem)))
         {
             bestItem = item.second.GetTreeIndex();
         }

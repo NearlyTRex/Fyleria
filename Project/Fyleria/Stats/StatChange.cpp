@@ -173,7 +173,7 @@ Bool StatChange::DoesMeetItemEquippedRequirements(const IndexedString& sCharacte
     IndexedStringArray vEquippedItemTypes;
     for(auto&& item : partyMember.GetEquippedItems())
     {
-        vEquippedItemTypes.push_back(RetrieveItemType(item.GetTreeIndex()));
+        vEquippedItemTypes.push_back(ItemTree::RetrieveItemType(item.GetTreeIndex()));
     }
 
     // Get equipped item counts
@@ -346,7 +346,7 @@ Bool StatChange::DoesMeetActiveRequirements(const IndexedString& sCharacterID, c
     }
     else if(DoesHaveItemUsedRequirements())
     {
-        return DoesMeetItemUsedRequirements(GetActionTypes(GetItemTreeIndex()));
+        return DoesMeetItemUsedRequirements(ItemTree::GetActionTypes(GetItemTreeIndex()));
     }
     else if(DoesHaveAttackRequirements() && bSelfIsActionSender)
     {
@@ -567,17 +567,17 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& index)
     switch(eSkillTreeType)
     {
         case SkillTreeType::Affinity:
-            return RetrieveSkillDataAffinity(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataAffinity(index).GetStatChanges();
         case SkillTreeType::Alchemy:
-            return RetrieveSkillDataAlchemy(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataAlchemy(index).GetStatChanges();
         case SkillTreeType::Crafting:
-            return RetrieveSkillDataCrafting(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataCrafting(index).GetStatChanges();
         case SkillTreeType::Breakdown:
-            return RetrieveSkillDataBreakdown(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataBreakdown(index).GetStatChanges();
         case SkillTreeType::Combat:
-            return RetrieveSkillDataCombat(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataCombat(index).GetStatChanges();
         case SkillTreeType::Weapon:
-            return RetrieveSkillDataWeapon(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataWeapon(index).GetStatChanges();
         default:
             break;
     }
@@ -590,13 +590,13 @@ const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& index)
     switch(eItemTreeType)
     {
         case ItemTreeType::Armor:
-            return RetrieveItemDataArmor(index).GetStatChanges();
+            return ItemTree::RetrieveItemDataArmor(index).GetStatChanges();
         case ItemTreeType::Ingredient:
-            return RetrieveItemDataIngredient(index).GetStatChanges();
+            return ItemTree::RetrieveItemDataIngredient(index).GetStatChanges();
         case ItemTreeType::Potion:
-            return RetrieveItemDataPotion(index).GetStatChanges();
+            return ItemTree::RetrieveItemDataPotion(index).GetStatChanges();
         case ItemTreeType::Weapon:
-            return RetrieveItemDataWeapon(index).GetStatChanges();
+            return ItemTree::RetrieveItemDataWeapon(index).GetStatChanges();
         default:
             break;
     }

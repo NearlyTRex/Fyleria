@@ -156,8 +156,8 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet
         {
             case ItemTreeType::Armor:
             {
-                const Bool bIsShield = IsItemShield(equippedItem.GetTreeIndex());
-                const ItemDataArmor& itemArmor = RetrieveItemDataArmor(equippedItem.GetTreeIndex());
+                const Bool bIsShield = ItemTree::IsItemShield(equippedItem.GetTreeIndex());
+                const ItemDataArmor& itemArmor = ItemTree::RetrieveItemDataArmor(equippedItem.GetTreeIndex());
                 if(bIsShield && bValidEquipLeft)
                 {
                     fShieldLeft_BluntDefendPercent = itemArmor.GetBluntDefendPercent();
@@ -183,7 +183,7 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet
             }
             case ItemTreeType::Weapon:
             {
-                const ItemDataWeapon& itemWeapon = RetrieveItemDataWeapon(equippedItem.GetTreeIndex());
+                const ItemDataWeapon& itemWeapon = ItemTree::RetrieveItemDataWeapon(equippedItem.GetTreeIndex());
                 if(bValidEquipLeft)
                 {
                     fWeaponLeft_BluntAttackPercent = itemWeapon.GetBluntAttackPercent();

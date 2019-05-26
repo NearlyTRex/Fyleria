@@ -309,9 +309,15 @@ void method##MR(const String& sResultID, at1 av1, at2 av2)                      
 }
 
 #define MAKE_MODULE_RESULT_VARIANT_A3(method, at1, av1, at2, av2, at3, av3)                                         \
-void method##MR(const String& sResultID, at1 av1, at3 av3, at3 av3)                                                 \
+void method##MR(const String& sResultID, at1 av1, at2 av2, at3 av3)                                                 \
 {                                                                                                                   \
     ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2, av3)).dump());                 \
+}
+
+#define MAKE_MODULE_RESULT_VARIANT_A4(method, at1, av1, at2, av2, at3, av3, at4, av4)                               \
+void method##MR(const String& sResultID, at1 av1, at2 av2, at3 av3, at4 av4)                                        \
+{                                                                                                                   \
+    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2, av3, av4)).dump());            \
 }
 
 //=====================================================================================
@@ -346,14 +352,26 @@ m.def(#name, &base::name, policy)
 #define WRAPPING_ADD_METHOD_SIMPLE(name, base)                                                              \
 .def(#name, &base::name)
 
+#define WRAPPING_ADD_METHOD_STATIC_SIMPLE(name, base)                                                       \
+.def_static(#name, &base::name)
+
 #define WRAPPING_ADD_METHOD_FUNC(name, func, base)                                                          \
 .def(#name, &base::func)
+
+#define WRAPPING_ADD_METHOD_STATIC_FUNC(name, func, base)                                                   \
+.def_static(#name, &base::func)
 
 #define WRAPPING_ADD_METHOD_ARGS(name, base, ...)                                                           \
 .def(#name, &base::name, __VA_ARGS__)
 
+#define WRAPPING_ADD_METHOD_STATIC_ARGS(name, base, ...)                                                    \
+.def_static(#name, &base::name, __VA_ARGS__)
+
 #define WRAPPING_ADD_METHOD_POLICY(name, base, policy)                                                      \
 .def(#name, &base::name, policy)
+
+#define WRAPPING_ADD_METHOD_STATIC_POLICY(name, base, policy)                                               \
+.def_static(#name, &base::name, policy)
 
 #define WRAPPING_ADD_METHOD_OVERLOADED(name, base, ...)                                                     \
 .def(#name, PyBindOverloadCast<__VA_ARGS__>(&base::name))

@@ -7,6 +7,7 @@
 #include "Character/Character.h"
 #include "CharacterParty/CharacterPartyMember.h"
 #include "CharacterParty/CharacterPartyItem.h"
+#include "Module/ModuleResultManager.h"
 
 namespace Gecko
 {
@@ -27,92 +28,154 @@ public:
 
     // Determine if party is full
     Bool IsPartyFull() const;
+    MAKE_MODULE_RESULT_VARIANT(IsPartyFull);
 
     // Determine if member is present
     Bool IsMemberPresent(const IndexedString& sCharacterID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsMemberPresent, const IndexedString&, sCharacterID);
 
-    // Determine if target type is available/taken
+    // Determine if target type is available
     Bool IsTargetTypeAvailable(const IndexedString& sCharacterTargetType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsTargetTypeAvailable, const IndexedString&, sCharacterTargetType);
+
+    // Determine if target type is taken
     Bool IsTargetTypeTaken(const IndexedString& sCharacterTargetType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsTargetTypeTaken, const IndexedString&, sCharacterTargetType);
 
     // Add member
     Bool AddMember(const IndexedString& sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(AddMember, const IndexedString&, sCharacterID);
 
     // Remove member
     Bool RemoveMember(const IndexedString& sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(RemoveMember, const IndexedString&, sCharacterID);
 
-    // Move/swap members
+    // Move member to the given target type
     Bool MoveMember(const IndexedString& sCharacterID, const IndexedString& sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A2(MoveMember, const IndexedString&, sCharacterID, const IndexedString&, sCharacterTargetType);
+
+    // Swap target types between members
     Bool SwapMembers(const IndexedString& sFirstCharacterID, const IndexedString& sSecondCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A2(SwapMembers, const IndexedString&, sFirstCharacterID, const IndexedString&, sSecondCharacterID);
 
     // Get next available target type
     IndexedString GetNextAvailableTargetType() const;
+    MAKE_MODULE_RESULT_VARIANT(GetNextAvailableTargetType);
 
-    // Use/free target types
+    // Use target types
     Bool UseTargetType(const IndexedString& sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A1(UseTargetType, const IndexedString&, sCharacterTargetType);
+
+    // Free target type
     Bool FreeTargetType(const IndexedString& sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A1(FreeTargetType, const IndexedString&, sCharacterTargetType);
 
-    // Get member
+    // Get member by ID
     const CharacterPartyMember& GetMemberByID(const IndexedString& sCharacterID) const;
-    const CharacterPartyMember& GetMemberByTargetType(const IndexedString& sCharacterTargetType) const;
     CharacterPartyMember& GetMemberByID(const IndexedString& sCharacterID);
-    CharacterPartyMember& GetMemberByTargetType(const IndexedString& sCharacterTargetType);
-    IndexedStringArray GetMemberCharacterIDs() const;
+    MAKE_MODULE_RESULT_VARIANT_A1(GetMemberByID, const IndexedString&, sCharacterID);
 
-    // Get character IDs
+    // Get member by target type
+    const CharacterPartyMember& GetMemberByTargetType(const IndexedString& sCharacterTargetType) const;
+    CharacterPartyMember& GetMemberByTargetType(const IndexedString& sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetMemberByTargetType, const IndexedString&, sCharacterTargetType);
+
+    // Get member character IDs
+    IndexedStringArray GetMemberCharacterIDs() const;
+    MAKE_MODULE_RESULT_VARIANT(GetMemberCharacterIDs);
+
+    // Get character IDs from target type
     Bool GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringArray& vCharacterIDs) const;
+    MAKE_MODULE_RESULT_VARIANT_A2(GetCharacterIDsFromTargetType, const IndexedString&, sCharacterTargetType, IndexedStringArray&, vCharacterIDs);
 
     // Check member status
     UInt GetStatusMemberCount(const IndexedString& sStatus) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(GetStatusMemberCount, const IndexedString&, sStatus);
 
     // Add random items
     Bool AddRandomItems(const IndexedStringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd);
+    MAKE_MODULE_RESULT_VARIANT_A4(AddRandomItems, const IndexedStringArray&, vTreeTypes, Int, iNumRandomItems, Int, iAmountStart, Int, iAmountEnd);
 
-    // Add item
+    // Add item by leaf
     Bool AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount);
+    MAKE_MODULE_RESULT_VARIANT_A2(AddItemByLeaf, const IndexedString&, sLeaf, UInt, uAmount);
+
+    // Add item by tree index
     Bool AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount);
+    MAKE_MODULE_RESULT_VARIANT_A2(AddItemByTreeIndex, const TreeIndex&, treeIndex, UInt, uAmount);
 
-    // Remove item
+    // Remove item by leaf
     Bool RemoveItemByLeaf(const IndexedString& sLeaf, UInt uAmount);
-    Bool RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount);
+    MAKE_MODULE_RESULT_VARIANT_A2(RemoveItemByLeaf, const IndexedString&, sLeaf, UInt, uAmount);
 
-    // Get item
+    // Remove item by tree index
+    Bool RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount);
+    MAKE_MODULE_RESULT_VARIANT_A2(RemoveItemByTreeIndex, const TreeIndex&, treeIndex, UInt, uAmount);
+
+    // Get item by leaf
     const CharacterPartyItem& GetItemByLeaf(const IndexedString& sLeaf) const;
-    const CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& treeIndex) const;
     CharacterPartyItem& GetItemByLeaf(const IndexedString& sLeaf);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetItemByLeaf, const IndexedString&, sLeaf);
+
+    // Get item by tree index
+    const CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& treeIndex) const;
     CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& treeIndex);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetItemByTreeIndex, const TreeIndex&, treeIndex);
 
     // Get best unequipped item for the given slot
     TreeIndex GetBestUnequippedItem(const IndexedString& sCharacterID, const IndexedString& sSlot) const;
+    MAKE_MODULE_RESULT_VARIANT_A2(GetBestUnequippedItem, const IndexedString&, sCharacterID, const IndexedString&, sSlot);
 
     // Equip item
     Bool EquipItem(const IndexedString& sCharacterID, const IndexedString& sLeaf, const IndexedString& sSlot);
+    MAKE_MODULE_RESULT_VARIANT_A3(EquipItem, const IndexedString&, sCharacterID, const IndexedString&, sLeaf, const IndexedString&, sSlot);
 
     // Unequip item
     Bool UnequipItem(const IndexedString& sCharacterID, const IndexedString& sLeaf, const IndexedString& sSlot);
+    MAKE_MODULE_RESULT_VARIANT_A3(UnequipItem, const IndexedString&, sCharacterID, const IndexedString&, sLeaf, const IndexedString&, sSlot);
 
-    // Equip best items
+    // Equip best items for the given member
     Bool EquipBestItems(const IndexedString& sCharacterID);
-    Bool EquipBestItemsForAllMembers();
+    MAKE_MODULE_RESULT_VARIANT_A1(EquipBestItems, const IndexedString&, sCharacterID);
 
-    // Unequip all items
+    // Equip best items for all members
+    Bool EquipBestItemsForAllMembers();
+    MAKE_MODULE_RESULT_VARIANT(EquipBestItemsForAllMembers);
+
+    // Unequip all items for the given member
     Bool UnequipAllItems(const IndexedString& sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(UnequipAllItems, const IndexedString&, sCharacterID);
+
+    // Unequip all items for all members
     Bool UnequipAllItemsForAllMembers();
+    MAKE_MODULE_RESULT_VARIANT(UnequipAllItemsForAllMembers);
 
     // Get member count
     UInt GetMemberCount() const;
+    MAKE_MODULE_RESULT_VARIANT(GetMemberCount);
 
     // Get item count
     UInt GetItemCount() const;
+    MAKE_MODULE_RESULT_VARIANT(GetItemCount);
 
     // Get description
     String GetDescription() const;
+    MAKE_MODULE_RESULT_VARIANT(GetDescription);
 
-    // Manage playtime
+    // Reset play time
     void ResetPlayTime();
+
+    // Pause play time
     void PausePlayTime();
+
+    // Resume play time
     void ResumePlayTime();
+
+    // Get play time
     ULongLong GetPlayTime() const;
+    MAKE_MODULE_RESULT_VARIANT(GetPlayTime);
+
+    // Set play time
     void SetPlayTime(ULongLong uTime);
 
     // Party ID

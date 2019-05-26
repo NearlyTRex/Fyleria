@@ -5,6 +5,7 @@
 #define _GECKO_BATTLE_H_
 
 #include "CharacterAction/CharacterAction.h"
+#include "Module/ModuleResultManager.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 
@@ -26,10 +27,17 @@ public:
     // Advance the round
     void AdvanceRound();
 
-    // Determine if battle is won/lost
+    // Determine if battle is over
     Bool IsBattleOver(const IndexedString& sPartyID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsBattleOver, const IndexedString&, sPartyID);
+
+    // Determine if battle is won
     Bool IsBattleWon() const;
+    MAKE_MODULE_RESULT_VARIANT(IsBattleWon);
+
+    // Determine if battle is lost
     Bool IsBattleLost() const;
+    MAKE_MODULE_RESULT_VARIANT(IsBattleLost);
 
     // Adding and processing actions that are chosen by the player
     void AddAction(const CharacterAction& action);
@@ -46,11 +54,16 @@ public:
     // Get action
     const CharacterAction& GetAction(Int iIndex) const;
     CharacterAction& GetAction(Int iIndex);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetAction, Int, iIndex);
+
+    // Get current action
     const CharacterAction& GetCurrentAction() const;
     CharacterAction& GetCurrentAction();
+    MAKE_MODULE_RESULT_VARIANT(GetCurrentAction);
 
     // Are all actions finished
     Bool AreAllActionsFinished() const;
+    MAKE_MODULE_RESULT_VARIANT(AreAllActionsFinished);
 
     // Battle status
     MAKE_RAW_BASIC_TYPE_ACCESSORS(IsBattleStarted, Bool);

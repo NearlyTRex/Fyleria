@@ -61,9 +61,9 @@ void CharacterProgressData::ApplyActionCost(const CharacterAction& action)
     {
         // Get matching stat type
         IndexedString sMatchingStatType;
-        if(DoesSkillDataWeaponExist(action.GetSkillTreeIndex()))
+        if(SkillTree::DoesSkillDataWeaponExist(action.GetSkillTreeIndex()))
         {
-            const SkillDataWeapon& skillDataWeapon = RetrieveSkillDataWeapon(action.GetSkillTreeIndex());
+            const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(action.GetSkillTreeIndex());
             sMatchingStatType = ConvertSkillWeaponTypeToCharacterProgressStatType(skillDataWeapon.GetSkillType());
         }
 
@@ -104,10 +104,10 @@ void CharacterProgressData::UpdateAvailableAP(const TreeIndexArray& vIndices)
     for(const TreeIndex& index : vIndices)
     {
         // Skill based action points
-        if(DoesSkillDataWeaponExist(index) && !IsBaseWeaponSkill(index))
+        if(SkillTree::DoesSkillDataWeaponExist(index) && !SkillTree::IsBaseWeaponSkill(index))
         {
             // Get skill information
-            const SkillDataWeapon& skillDataWeapon = RetrieveSkillDataWeapon(index);
+            const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(index);
             IndexedString sKey = index.GetTreeBranchType();
             Int iActionPoints = skillDataWeapon.GetActionPoints();
 
@@ -138,7 +138,7 @@ void CharacterProgressData::UpdateAvailableAP(const TreeIndexArray& vIndices)
         if(!skillIndex.empty())
         {
             // Update AP in each area
-            const SkillDataWeapon& skillDataWeapon = RetrieveSkillDataWeapon(skillIndex);
+            const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(skillIndex);
             const IndexedString sMatchingStatType = ConvertSkillWeaponTypeToCharacterProgressStatType(skillDataWeapon.GetSkillType());
             if(sMatchingStatType != IndexedString("None"))
             {
