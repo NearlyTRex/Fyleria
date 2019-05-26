@@ -22,7 +22,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoModule, m)
         WRAPPING_ADD_METHOD_SIMPLE(DoesResultExist, Gecko::ModuleResultManager)
         WRAPPING_ADD_METHOD_SIMPLE(ClearResult, Gecko::ModuleResultManager)
         WRAPPING_ADD_METHOD_SIMPLE(ClearAllResults, Gecko::ModuleResultManager)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentResult, Gecko::ModuleResultManager)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentResultID, Gecko::ModuleResultManager)
     ;
 
     // Local

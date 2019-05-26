@@ -39,8 +39,8 @@ public:
     // Clear all the results
     void ClearAllResults();
 
-    // Current result
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentResult, String);
+    // Current result ID
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentResultID, String);
 
     // Module results
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ModuleResults, ModuleResultMappingType);

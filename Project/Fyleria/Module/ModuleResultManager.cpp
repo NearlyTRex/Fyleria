@@ -19,7 +19,7 @@ void ModuleResultManager::StoreResult(const String& sID, const String& sResult)
 
 void ModuleResultManager::StoreCurrentResult(const String& sResult)
 {
-    StoreResult(GetCurrentResult(), sResult);
+    StoreResult(GetCurrentResultID(), sResult);
 }
 
 String ModuleResultManager::GetResult(const String& sID)
