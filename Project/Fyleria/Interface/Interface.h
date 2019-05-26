@@ -31,11 +31,12 @@ extern "C" DLL_PUBLIC bool DLL_FinalizeModule();
 
 // Run module file
 extern "C" DLL_PUBLIC bool DLL_RunModuleFile(const char* sFile);
-extern "C" DLL_PUBLIC bool DLL_RunModuleFileResults(const char* sFile, const char* sResultsID);
 
 // Run module command
 extern "C" DLL_PUBLIC bool DLL_RunModuleCommand(const char* sCommand);
-extern "C" DLL_PUBLIC bool DLL_RunModuleCommandResults(const char* sCommand, const char* sResultsID);
+
+// Set the current module result ID
+extern "C" DLL_PUBLIC void DLL_SetCurrentModuleResultID(const char* sResultsID);
 
 // Clear the results pointed to by the given ID
 extern "C" DLL_PUBLIC void DLL_ClearModuleResult(const char* sResultsID);

@@ -149,19 +149,13 @@ extern "C" DLL_PUBLIC bool DLL_FinalizeModule()
     return true;
 }
 
-bool DLL_Internal_RunModuleFile(const char* sFile, const char* sResultsID)
+extern "C" DLL_PUBLIC bool DLL_RunModuleFile(const char* sFile)
 {
     // Lock API call
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
     try
     {
-        // Set run result ID
-        if(sResultsID)
-        {
-            ModuleResultManager::GetInstance()->SetCurrentResult(sResultsID);
-        }
-
         // Lock python state
         PyBindAcquireScopedGIL acquire;
 
@@ -171,48 +165,25 @@ bool DLL_Internal_RunModuleFile(const char* sFile, const char* sResultsID)
         // Evaluate the statements in an separate Python file on disk
         LOG_FORMAT_STATEMENT("Running file '%s'\n", sFile);
         PyBindEvalFile(sFile, scope);
+        return true;
     }
     catch (PyBindRuntimeException& error)
     {
-        if(sResultsID)
-        {
-            ModuleResultManager::GetInstance()->SetCurrentResult("");
-        }
         auto sMessage = error.what();
         error.restore();
         ERROR_FORMAT_STATEMENT("%s\n", sMessage);
         throw ModuleError(sMessage);
     }
-    if(sResultsID)
-    {
-        ModuleResultManager::GetInstance()->SetCurrentResult("");
-    }
-    return true;
+    return false;
 }
 
-extern "C" DLL_PUBLIC bool DLL_RunModuleFile(const char* sFile)
-{
-    return DLL_Internal_RunModuleFile(sFile, nullptr);
-}
-
-extern "C" DLL_PUBLIC bool DLL_RunModuleFileResults(const char* sFile, const char* sResultsID)
-{
-    return DLL_Internal_RunModuleFile(sFile, sResultsID);
-}
-
-bool DLL_Internal_RunModuleCommand(const char* sCommand, const char* sResultsID)
+extern "C" DLL_PUBLIC bool DLL_RunModuleCommand(const char* sCommand)
 {
     // Lock API call
     STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
     try
     {
-        // Set run result ID
-        if(sResultsID)
-        {
-            ModuleResultManager::GetInstance()->SetCurrentResult(sResultsID);
-        }
-
         // Lock python state
         PyBindAcquireScopedGIL acquire;
 
@@ -222,33 +193,25 @@ bool DLL_Internal_RunModuleCommand(const char* sCommand, const char* sResultsID)
         // Evaluate a string containing a sequence of statements
         LOG_FORMAT_STATEMENT("Running command '%s'\n", sCommand);
         PyBindExec(sCommand, scope);
+        return true;
     }
     catch (PyBindRuntimeException& error)
     {
-        if(sResultsID)
-        {
-            ModuleResultManager::GetInstance()->SetCurrentResult("");
-        }
         auto sMessage = error.what();
         error.restore();
         ERROR_FORMAT_STATEMENT("%s\n", sMessage);
         throw ModuleError(sMessage);
     }
-    if(sResultsID)
-    {
-        ModuleResultManager::GetInstance()->SetCurrentResult("");
-    }
-    return true;
+    return false;
 }
 
-extern "C" DLL_PUBLIC bool DLL_RunModuleCommand(const char* sCommand)
+extern "C" DLL_PUBLIC void DLL_SetCurrentModuleResultID(const char* sResultsID)
 {
-    return DLL_Internal_RunModuleCommand(sCommand, nullptr);
-}
+    // Lock API call
+    STDLockGuard<STDMutex> lock(g_ModuleMutex);
 
-extern "C" DLL_PUBLIC bool DLL_RunModuleCommandResults(const char* sCommand, const char* sResultsID)
-{
-    return DLL_Internal_RunModuleCommand(sCommand, sResultsID);
+    // Set the current result ID
+    ModuleResultManager::GetInstance()->SetCurrentResultID(sResultsID);
 }
 
 extern "C" DLL_PUBLIC void DLL_ClearModuleResult(const char* sResultsID)
