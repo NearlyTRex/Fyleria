@@ -304,8 +304,8 @@ Json WebsocketServer::HandleModuleFunctionCall(WebsocketConnectionHandlePtr pHan
             return outputData;
         }
 
-        LOG_STATEMENT("Calling DLL_RunModuleFileResults");
-        bool return_value = DLL_RunModuleFileResults(sInputFile.c_str(), sInputResultsId.c_str());
+        LOG_STATEMENT("Calling DLL_RunModuleFile");
+        bool return_value = DLL_RunModuleFile(sInputFile.c_str());
         if (!return_value)
         {
             outputData["return_value"] = return_value;
@@ -361,8 +361,8 @@ Json WebsocketServer::HandleModuleFunctionCall(WebsocketConnectionHandlePtr pHan
             return outputData;
         }
 
-        LOG_STATEMENT("Calling DLL_RunModuleCommandResults");
-        bool return_value = DLL_RunModuleCommandResults(sInputCommand.c_str(), sInputResultsId.c_str());
+        LOG_STATEMENT("Calling DLL_RunModuleCommand");
+        bool return_value = DLL_RunModuleCommand(sInputCommand.c_str());
         if (!return_value)
         {
             outputData["return_value"] = return_value;
@@ -386,6 +386,23 @@ Json WebsocketServer::HandleModuleFunctionCall(WebsocketConnectionHandlePtr pHan
             LOG_STATEMENT("Calling DLL_ClearModuleResult");
             DLL_ClearModuleResult(sInputResultsId.c_str());
         }
+        return outputData;
+    }
+
+    // Set current module results ID
+    else if (sFunctionName == "set_current_module_result_id")
+    {
+        if (!bHaveResultsId)
+        {
+            LOG_STATEMENT("Missing required arguments");
+            outputData["error_code"] = (+WebsocketErrorType::MissingRequiredArguments)._to_integral();
+            outputData["error_message"] = (+WebsocketErrorType::MissingRequiredArguments)._to_string();
+            return outputData;
+        }
+
+        LOG_STATEMENT("Calling DLL_SetCurrentModuleResultID");
+        DLL_SetCurrentModuleResultID(sInputResultsId.c_str());
+        outputData["is_handled"] = true;
         return outputData;
     }
 

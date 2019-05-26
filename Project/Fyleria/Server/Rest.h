@@ -151,6 +151,7 @@ private:
     void DoPost_RunModuleFileResults(const HttpRequest& request, HttpResponseWriter& response);
     void DoPost_RunModuleCommand(const HttpRequest& request, HttpResponseWriter& response);
     void DoPost_RunModuleCommandResults(const HttpRequest& request, HttpResponseWriter& response);
+    void DoPost_SetCurrentModuleResultID(const HttpRequest& request, HttpResponseWriter& response);
     void DoPost_ClearModuleResult(const HttpRequest& request, HttpResponseWriter& response);
     void DoPost_ClearAllModuleResults(const HttpRequest& request, HttpResponseWriter& response);
     void DoGet_DoesModuleResultExist(const HttpRequest& request, HttpResponseWriter& response);

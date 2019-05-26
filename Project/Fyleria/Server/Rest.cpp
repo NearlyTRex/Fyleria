@@ -63,6 +63,10 @@ void CustomHttpHandler::onRequest(const HttpRequest& request, HttpResponseWriter
         {
             DoPost_RunModuleCommandResults(request, response);
         }
+        else if (request.resource() == "/api/set_current_module_result_id")
+        {
+            DoPost_SetCurrentModuleResultID(request, response);
+        }
         else if (request.resource() == "/api/clear_module_results")
         {
             DoPost_ClearModuleResult(request, response);
@@ -134,8 +138,8 @@ void CustomHttpHandler::DoPost_RunModuleFileResults(const HttpRequest& request, 
     GetOptionalParameter(request, "keep_results", bKeepResults);
 
     // Run method
-    LOG_STATEMENT("Calling DLL_RunModuleFileResults");
-    bool return_value = DLL_RunModuleFileResults(sInputFile.c_str(), sInputResultsId.c_str());
+    LOG_STATEMENT("Calling DLL_RunModuleFile");
+    bool return_value = DLL_RunModuleFile(sInputFile.c_str());
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run file '%1%'.") % sInputFile).str();
@@ -188,8 +192,8 @@ void CustomHttpHandler::DoPost_RunModuleCommandResults(const HttpRequest& reques
     GetOptionalParameter(request, "keep_results", bKeepResults);
 
     // Run method
-    LOG_STATEMENT("Calling DLL_RunModuleCommandResults");
-    bool return_value = DLL_RunModuleCommandResults(sInputCommand.c_str(), sInputResultsId.c_str());
+    LOG_STATEMENT("Calling DLL_RunModuleCommand");
+    bool return_value = DLL_RunModuleCommand(sInputCommand.c_str());
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run command '%1%'.") % sInputCommand).str();
@@ -199,6 +203,25 @@ void CustomHttpHandler::DoPost_RunModuleCommandResults(const HttpRequest& reques
 
     // Send results
     SendResultsToUser(response, sInputResultsId, bKeepResults);
+}
+
+void CustomHttpHandler::DoPost_SetCurrentModuleResultID(const HttpRequest& request, HttpResponseWriter& response)
+{
+    // Get input
+    String sInputResultsId = "";
+    if(!GetRequiredParameter(request, response, "results_id", sInputResultsId))
+    {
+        return;
+    }
+
+    // Run method
+    LOG_STATEMENT("Calling DLL_SetCurrentModuleResultID");
+    DLL_SetCurrentModuleResultID(sInputResultsId.c_str());
+
+    // Send results
+    Json return_json;
+    return_json["return_value"] = true;
+    HandleResponse(HttpCodeOk, response, return_json.dump());
 }
 
 void CustomHttpHandler::DoPost_ClearModuleResult(const HttpRequest& request, HttpResponseWriter& response)
