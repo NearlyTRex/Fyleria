@@ -13,9 +13,6 @@ namespace Gecko
 {
 
 CharacterParty::CharacterParty()
-    : m_bPlayTimePaused(true)
-    , m_uCurrentPlayTime(0)
-    , m_LastTimePoint()
 {
 }
 
@@ -25,6 +22,22 @@ void CharacterParty::RegenerateCharacterData()
     {
         CharacterManager::GetInstance()->GetCharacter(member.first).RegenerateCharacterData();
     }
+}
+
+Bool CharacterParty::IsPartyAbleToFight() const
+{
+    UInt uMemberCount = GetMemberCount();
+    if(uMemberCount == 0)
+    {
+        return false;
+    }
+
+    UInt uDeadMemberCount = GetStatusMemberCount((+CharacterStatusType::Dead)._to_string());
+    if(uMemberCount == uDeadMemberCount)
+    {
+        return false;
+    }
+    return true;
 }
 
 Bool CharacterParty::IsPartyFull() const
@@ -598,50 +611,50 @@ String CharacterParty::GetDescription() const
 
 void CharacterParty::ResetPlayTime()
 {
-    m_uCurrentPlayTime = 0;
-    m_LastTimePoint = STDGetCurrentTimePoint();
-    m_bPlayTimePaused = false;
+    SetCurrentPlayTime(0);
+    SetLastTimePoint(STDGetCurrentTimePoint());
+    SetPlayTimePaused(false);
 }
 
 void CharacterParty::PausePlayTime()
 {
-    if (m_bPlayTimePaused)
+    if (GetPlayTimePaused())
     {
         return;
     }
     STDTimePoint currentTimePoint = STDGetCurrentTimePoint();
-    ULongLong uDuration = STDGetTimePointDuration(currentTimePoint - m_LastTimePoint).count();
-    m_uCurrentPlayTime += uDuration;
-    m_bPlayTimePaused = true;
+    ULongLong uDuration = STDGetTimePointDuration(currentTimePoint - GetLastTimePoint()).count();
+    SetCurrentPlayTime(GetCurrentPlayTime() + uDuration);
+    SetPlayTimePaused(true);
 }
 
 void CharacterParty::ResumePlayTime()
 {
-    if (!m_bPlayTimePaused)
+    if (!GetPlayTimePaused())
     {
         return;
     }
-    m_LastTimePoint = STDGetCurrentTimePoint();
-    m_bPlayTimePaused = false;
+    SetLastTimePoint(STDGetCurrentTimePoint());
+    SetPlayTimePaused(false);
 }
 
 ULongLong CharacterParty::GetPlayTime() const
 {
-    if (m_bPlayTimePaused)
+    if (GetPlayTimePaused())
     {
-        return m_uCurrentPlayTime;
+        return GetCurrentPlayTime();
     }
     else
     {
         STDTimePoint currentTimePoint = STDGetCurrentTimePoint();
-        ULongLong uDuration = STDGetTimePointDuration(currentTimePoint - m_LastTimePoint).count();
-        return (m_uCurrentPlayTime + uDuration);
+        ULongLong uDuration = STDGetTimePointDuration(currentTimePoint - GetLastTimePoint()).count();
+        return (GetCurrentPlayTime() + uDuration);
     }
 }
 
 void CharacterParty::SetPlayTime(ULongLong uTime)
 {
-    m_uCurrentPlayTime = uTime;
+    SetCurrentPlayTime(uTime);
 }
 
 void to_json(Json& jsonData, const CharacterParty& obj)

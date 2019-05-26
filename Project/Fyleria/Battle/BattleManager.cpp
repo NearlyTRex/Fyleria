@@ -50,13 +50,13 @@ Battle& BattleManager::GetBattle(const IndexedString& sBattleName)
 const Battle& BattleManager::GetCurrentBattle() const
 {
     // Get current battle
-    return GetBattle(GetCurrentBattleName());
+    return GetBattle(GetCurrentBattleID());
 }
 
 Battle& BattleManager::GetCurrentBattle()
 {
     // Get current battle
-    return GetBattle(GetCurrentBattleName());
+    return const_cast<Battle&>(static_cast<const BattleManager&>(*this).GetCurrentBattle());
 }
 
 };

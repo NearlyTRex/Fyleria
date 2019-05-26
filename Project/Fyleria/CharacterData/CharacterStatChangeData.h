@@ -20,7 +20,7 @@ public:
 
     // Constructors
     CharacterStatChangeData();
-    ~CharacterStatChangeData();
+    CharacterStatChangeData(const Json& jsonData);
 
     // Clear all data
     void Clear();

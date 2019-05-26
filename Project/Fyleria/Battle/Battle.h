@@ -20,6 +20,9 @@ public:
     Battle();
     Battle(const Json& jsonData);
 
+    // Clear all data
+    void Clear();
+
     // Start/end battle
     void Start();
     void Finish();
@@ -80,8 +83,8 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ActionCount, Int);
 
     // Party names
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EnemyPartyName, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllyPartyName, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EnemyPartyID, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllyPartyID, IndexedString);
 };
 
 // Typedef

@@ -9,6 +9,15 @@ namespace Gecko
 
 Battle::Battle()
 {
+}
+
+Battle::Battle(const Json& jsonData)
+{
+    from_json(jsonData, *this);
+}
+
+void Battle::Clear()
+{
     // Battle status
     SetIsBattleStarted(false);
     SetIsBattleFinished(false);
@@ -23,14 +32,9 @@ Battle::Battle()
     SetActions({});
     SetActionCount(0);
 
-    // Party names
-    SetEnemyPartyName(IndexedString(""));
-    SetAllyPartyName(IndexedString(""));
-}
-
-Battle::Battle(const Json& jsonData)
-{
-    from_json(jsonData, *this);
+    // Party IDs
+    SetEnemyPartyID(IndexedString(""));
+    SetAllyPartyID(IndexedString(""));
 }
 
 void Battle::Start()
@@ -60,20 +64,18 @@ void Battle::AdvanceRound()
 
 Bool Battle::IsBattleOver(const IndexedString& sPartyID) const
 {
-    // A battle is over for sure if all of either party is dead
     const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
-    UInt uMemberCount = party.GetMemberCount();
-    return ((uMemberCount == 0) || uMemberCount == party.GetStatusMemberCount((+CharacterStatusType::Dead)._to_string()));
+    return party.IsPartyAbleToFight();
 }
 
 Bool Battle::IsBattleWon() const
 {
-    return (GetIsBattleManuallyWon() || IsBattleOver(GetEnemyPartyName()));
+    return (GetIsBattleManuallyWon() || IsBattleOver(GetEnemyPartyID()));
 }
 
 Bool Battle::IsBattleLost() const
 {
-    return (GetIsBattleManuallyLost() || IsBattleOver(GetAllyPartyName()));
+    return (GetIsBattleManuallyLost() || IsBattleOver(GetAllyPartyID()));
 }
 
 void Battle::AddAction(const CharacterAction& action)
@@ -157,8 +159,8 @@ void to_json(Json& jsonData, const Battle& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(ActionCount, 0);
 
     // Party names
-    SET_JSON_DATA_IF_NOT_DEFAULT(EnemyPartyName, IndexedString(""));
-    SET_JSON_DATA_IF_NOT_DEFAULT(AllyPartyName, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(EnemyPartyID, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(AllyPartyID, IndexedString(""));
 }
 
 void from_json(const Json& jsonData, Battle& obj)
@@ -177,9 +179,9 @@ void from_json(const Json& jsonData, Battle& obj)
     obj.SetActions(GET_JSON_DATA_OR_DEFAULT(Actions, CharacterActionArray, CharacterActionArray()));
     obj.SetActionCount(GET_JSON_DATA_OR_DEFAULT(ActionCount, Int, 0));
 
-    // Party names
-    obj.SetEnemyPartyName(GET_JSON_DATA_OR_DEFAULT(EnemyPartyName, IndexedString, IndexedString("")));
-    obj.SetAllyPartyName(GET_JSON_DATA_OR_DEFAULT(AllyPartyName, IndexedString, IndexedString("")));
+    // Party IDs
+    obj.SetEnemyPartyID(GET_JSON_DATA_OR_DEFAULT(EnemyPartyID, IndexedString, IndexedString("")));
+    obj.SetAllyPartyID(GET_JSON_DATA_OR_DEFAULT(AllyPartyID, IndexedString, IndexedString("")));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Battle, Battle);

@@ -10,8 +10,9 @@ CharacterSkillUseData::CharacterSkillUseData()
 {
 }
 
-CharacterSkillUseData::~CharacterSkillUseData()
+CharacterSkillUseData::CharacterSkillUseData(const Json& jsonData)
 {
+    from_json(jsonData, *this);
 }
 
 void CharacterSkillUseData::Clear()

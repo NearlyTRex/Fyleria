@@ -10,8 +10,9 @@ CharacterActionData::CharacterActionData()
 {
 }
 
-CharacterActionData::~CharacterActionData()
+CharacterActionData::CharacterActionData(const Json& jsonData)
 {
+    from_json(jsonData, *this);
 }
 
 void CharacterActionData::Clear()

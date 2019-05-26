@@ -16,7 +16,7 @@ public:
 
     // Constructors
     CharacterActionData();
-    ~CharacterActionData();
+    CharacterActionData(const Json& jsonData);
 
     // Clear all data
     void Clear();

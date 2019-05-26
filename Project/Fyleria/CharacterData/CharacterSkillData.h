@@ -21,7 +21,7 @@ public:
 
     // Constructors
     CharacterSkillData();
-    ~CharacterSkillData();
+    CharacterSkillData(const Json& jsonData);
 
     // Setup skill functions
     void SetupSkillFunctions();

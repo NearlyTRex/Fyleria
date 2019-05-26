@@ -18,7 +18,7 @@ public:
 
     // Constructors
     CharacterSkillUseData();
-    ~CharacterSkillUseData();
+    CharacterSkillUseData(const Json& jsonData);
 
     // Clear all data
     void Clear();

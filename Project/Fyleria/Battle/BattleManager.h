@@ -43,8 +43,8 @@ public:
     // Battles
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Battles, BattleMappingType);
 
-    // Current battle
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentBattleName, IndexedString);
+    // Current battle ID
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentBattleID, IndexedString);
 };
 
 };

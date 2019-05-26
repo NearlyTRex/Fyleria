@@ -11,8 +11,9 @@ CharacterStatChangeData::CharacterStatChangeData()
 {
 }
 
-CharacterStatChangeData::~CharacterStatChangeData()
+CharacterStatChangeData::CharacterStatChangeData(const Json& jsonData)
 {
+    from_json(jsonData, *this);
 }
 
 void CharacterStatChangeData::Clear()

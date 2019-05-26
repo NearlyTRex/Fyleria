@@ -26,6 +26,10 @@ public:
     // Regenerate character data
     void RegenerateCharacterData();
 
+    // Determine if party is able to fight
+    Bool IsPartyAbleToFight() const;
+    MAKE_MODULE_RESULT_VARIANT(IsPartyAbleToFight);
+
     // Determine if party is full
     Bool IsPartyFull() const;
     MAKE_MODULE_RESULT_VARIANT(IsPartyFull);
@@ -196,16 +200,14 @@ public:
     // Array of taken target types
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(TakenTargetTypes, IndexedStringArray);
 
-private:
-
     // Paused playtime
-    Bool m_bPlayTimePaused;
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(PlayTimePaused, Bool);
 
     // Current playtime
-    ULongLong m_uCurrentPlayTime;
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(CurrentPlayTime, ULongLong);
 
     // Last time point
-    STDTimePoint m_LastTimePoint;
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(LastTimePoint, STDTimePoint);
 };
 
 // Typedef
