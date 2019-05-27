@@ -56,6 +56,10 @@ public:
     const CharacterPartyEquippedItemArray& GetEquippedItems() const;
     MAKE_MODULE_RESULT_VARIANT(GetEquippedItems);
 
+    // Get available actions
+    const CharacterActionArray& GetAvailableActions() const;
+    MAKE_MODULE_RESULT_VARIANT(GetAvailableActions);
+
     // Get passive changes
     const TreeIndexArray& GetPassiveChanges(const IndexedString& sTreeIndexType) const;
     MAKE_MODULE_RESULT_VARIANT_A1(GetPassiveChanges, const IndexedString&, sTreeIndexType);

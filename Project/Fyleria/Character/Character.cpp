@@ -84,6 +84,11 @@ const CharacterPartyEquippedItemArray& Character::GetEquippedItems() const
     return characterPartyMember.GetEquippedItems();
 }
 
+const CharacterActionArray& Character::GetAvailableActions() const
+{
+    return GetActionData().GetAvailableActions();
+}
+
 const TreeIndexArray& Character::GetPassiveChanges(const IndexedString& sTreeIndexType) const
 {
     return GetStatChangeData().GetPassiveChanges(sTreeIndexType);
