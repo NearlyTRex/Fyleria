@@ -17,8 +17,8 @@ class CharacterParty
 public:
 
     // Types
-    typedef STDMap<IndexedString, CharacterPartyMember> CharacterPartyMemberMap;
-    typedef STDMap<IndexedString, CharacterPartyItem> CharacterPartyItemMap;
+    typedef STDUnorderedMap<IndexedString, CharacterPartyMember, IndexedStringHasher> CharacterPartyMemberMapType;
+    typedef STDUnorderedMap<IndexedString, CharacterPartyItem, IndexedStringHasher> CharacterPartyItemMapType;
 
     // Constructors
     CharacterParty();
@@ -189,10 +189,10 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyType, IndexedString);
 
     // Map of members
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Members, CharacterPartyMemberMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Members, CharacterPartyMemberMapType);
 
     // Map of items
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Items, CharacterPartyItemMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Items, CharacterPartyItemMapType);
 
     // Arrays of available target types
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(AvailableTargetTypes, IndexedStringArray);

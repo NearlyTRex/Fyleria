@@ -707,10 +707,10 @@ void from_json(const Json& jsonData, CharacterParty& obj)
     obj.SetPartyType(GET_JSON_DATA_OR_DEFAULT(PartyType, IndexedString, IndexedString("None")));
 
     // Map of members
-    obj.SetMembers(GET_JSON_DATA_OR_DEFAULT(Members, CharacterParty::CharacterPartyMemberMap, CharacterParty::CharacterPartyMemberMap()));
+    obj.SetMembers(GET_JSON_DATA_OR_DEFAULT(Members, CharacterParty::CharacterPartyMemberMapType, CharacterParty::CharacterPartyMemberMapType()));
 
     // Map of items
-    obj.SetItems(GET_JSON_DATA_OR_DEFAULT(Items, CharacterParty::CharacterPartyItemMap, CharacterParty::CharacterPartyItemMap()));
+    obj.SetItems(GET_JSON_DATA_OR_DEFAULT(Items, CharacterParty::CharacterPartyItemMapType, CharacterParty::CharacterPartyItemMapType()));
 
     // Arrays of available target types
     obj.SetAvailableTargetTypes(GET_JSON_DATA_OR_DEFAULT(AvailableTargetTypes, IndexedStringArray, IndexedStringArray()));
