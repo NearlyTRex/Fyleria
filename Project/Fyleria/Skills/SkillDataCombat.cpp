@@ -67,13 +67,6 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& s
     // Setup new actions
     for(auto& newAction : CreateBaseActions(sCharacterID, sWeaponSet))
     {
-        // For twin attack, we need to make sure to mark that the actual
-        // destination targets are identical
-        if(GetDataClass() == IndexedString("TwinAttack"))
-        {
-            newAction.SetAreDestinationTargetsIdentical(true);
-        }
-
         // Ambidextrous - Twin Attack
         // Ambidextrous - Split Focus
         // Attack two targets with both primary and secondary weapons

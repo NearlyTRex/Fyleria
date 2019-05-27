@@ -126,6 +126,7 @@ BETTER_ENUM(CharacterBattleStatType_IndexedStringArray, Int,
 
 BETTER_ENUM(CharacterBattleStatType_Bool, Int,
     None,
+    TargetsMustBeIdentical,
     IsDead,
     IsUnconscious
 );

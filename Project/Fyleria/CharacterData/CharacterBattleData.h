@@ -82,6 +82,7 @@ public:
     MAKE_STAT_TYPE_ACCESSORS(MostRecentActionTargets, IndexedStringArray);
 
     // Bool stats
+    MAKE_STAT_TYPE_ACCESSORS(TargetsMustBeIdentical, Bool);
     MAKE_STAT_TYPE_ACCESSORS(IsDead, Bool);
     MAKE_STAT_TYPE_ACCESSORS(IsUnconscious, Bool);
 

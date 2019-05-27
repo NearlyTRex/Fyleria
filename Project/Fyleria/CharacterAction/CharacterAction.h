@@ -74,7 +74,6 @@ public:
 
     // Targets
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceTargetType, IndexedString);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(AreDestinationTargetsIdentical, Bool);
 
     // Characters
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceCharacterID, IndexedString);

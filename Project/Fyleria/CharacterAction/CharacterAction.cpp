@@ -148,7 +148,6 @@ void to_json(Json& jsonData, const CharacterAction& obj)
 
     // Targets
     SET_JSON_DATA_IF_NOT_DEFAULT(SourceTargetType, IndexedString("None"));
-    SET_JSON_DATA_IF_NOT_DEFAULT(AreDestinationTargetsIdentical, false);
 
     // Characters
     SET_JSON_DATA_IF_NOT_DEFAULT(SourceCharacterID, IndexedString(""));
@@ -186,7 +185,6 @@ void from_json(const Json& jsonData, CharacterAction& obj)
 
     // Targets
     obj.SetSourceTargetType(GET_JSON_DATA_OR_DEFAULT(SourceTargetType, IndexedString, IndexedString("None")));
-    obj.SetAreDestinationTargetsIdentical(GET_JSON_DATA_OR_DEFAULT(AreDestinationTargetsIdentical, Bool, false));
 
     // Characters
     obj.SetSourceCharacterID(GET_JSON_DATA_OR_DEFAULT(SourceCharacterID, IndexedString, IndexedString("")));
