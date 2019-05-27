@@ -3,6 +3,11 @@
         "ItemDescription": "Very Weak Healing Potion",
         "ItemName": "Very Weak Healing Potion",
         "ItemType": "PotionHeal",
+        "DataClass": "HealPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionHeal"
         ],
@@ -28,6 +33,11 @@
         "ItemDescription": "Weak Healing Potion",
         "ItemName": "Weak Healing Potion",
         "ItemType": "PotionHeal",
+        "DataClass": "HealPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionHeal"
         ],
@@ -53,6 +63,11 @@
         "ItemDescription": "Average Healing Potion",
         "ItemName": "Average Healing Potion",
         "ItemType": "PotionHeal",
+        "DataClass": "HealPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionHeal"
         ],
@@ -78,6 +93,11 @@
         "ItemDescription": "Strong Healing Potion",
         "ItemName": "Strong Healing Potion",
         "ItemType": "PotionHeal",
+        "DataClass": "HealPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionHeal"
         ],
@@ -103,6 +123,11 @@
         "ItemDescription": "Very Strong Healing Potion",
         "ItemName": "Very Strong Healing Potion",
         "ItemType": "PotionHeal",
+        "DataClass": "HealPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionHeal"
         ],

@@ -3,6 +3,11 @@
         "ItemDescription": "Very Weak Energy Potion",
         "ItemName": "Very Weak Energy Potion",
         "ItemType": "PotionEnergy",
+        "DataClass": "EnergyPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionEnergy"
         ],
@@ -28,6 +33,11 @@
         "ItemDescription": "Weak Energy Potion",
         "ItemName": "Weak Energy Potion",
         "ItemType": "PotionEnergy",
+        "DataClass": "EnergyPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionEnergy"
         ],
@@ -53,6 +63,11 @@
         "ItemDescription": "Average Energy Potion",
         "ItemName": "Average Energy Potion",
         "ItemType": "PotionEnergy",
+        "DataClass": "EnergyPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionEnergy"
         ],
@@ -78,6 +93,11 @@
         "ItemDescription": "Strong Energy Potion",
         "ItemName": "Strong Energy Potion",
         "ItemType": "PotionEnergy",
+        "DataClass": "EnergyPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionEnergy"
         ],
@@ -103,6 +123,11 @@
         "ItemDescription": "Very Strong Energy Potion",
         "ItemName": "Very Strong Energy Potion",
         "ItemType": "PotionEnergy",
+        "DataClass": "EnergyPotion",
+        "RunTypes": [
+            "Battle",
+            "Field"
+        ],
         "ActionTypes": [
             "ItemPotionEnergy"
         ],
