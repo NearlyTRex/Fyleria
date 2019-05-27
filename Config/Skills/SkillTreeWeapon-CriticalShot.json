@@ -5,6 +5,9 @@
         "SkillName": "Base Attack",
         "SkillDescription": "Base Attack",
         "DataClass": "BaseAttack",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 0,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 0,
@@ -22,6 +25,9 @@
         "SkillName": "Aim Mastery I",
         "SkillDescription": "Aim Mastery I",
         "DataClass": "AimMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 15,
@@ -55,6 +61,9 @@
         "SkillName": "Endurance Fighter I",
         "SkillDescription": "Endurance Fighter I",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 20,
@@ -88,6 +97,9 @@
         "SkillName": "Cunning Warrior I",
         "SkillDescription": "Cunning Warrior I",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 20,
@@ -121,6 +133,9 @@
         "SkillName": "Deep Penetration I",
         "SkillDescription": "Deep Penetration I",
         "DataClass": "DeepPenetration",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 20,
@@ -180,6 +195,9 @@
         "SkillName": "Aim Mastery II",
         "SkillDescription": "Aim Mastery II",
         "DataClass": "AimMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 20,
@@ -219,6 +237,9 @@
         "SkillName": "Endurance Fighter II",
         "SkillDescription": "Endurance Fighter II",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 25,
@@ -258,6 +279,9 @@
         "SkillName": "Cunning Warrior II",
         "SkillDescription": "Cunning Warrior II",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 25,
@@ -297,6 +321,9 @@
         "SkillName": "Deep Penetration II",
         "SkillDescription": "Deep Penetration II",
         "DataClass": "DeepPenetration",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 25,
@@ -362,6 +389,9 @@
         "SkillName": "Aim Mastery III",
         "SkillDescription": "Aim Mastery III",
         "DataClass": "AimMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 25,
@@ -401,6 +431,9 @@
         "SkillName": "Endurance Fighter III",
         "SkillDescription": "Endurance Fighter III",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 30,
@@ -440,6 +473,9 @@
         "SkillName": "Cunning Warrior III",
         "SkillDescription": "Cunning Warrior III",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 30,
@@ -479,6 +515,9 @@
         "SkillName": "Deep Penetration III",
         "SkillDescription": "Deep Penetration III",
         "DataClass": "DeepPenetration",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 30,
@@ -544,6 +583,9 @@
         "SkillName": "Aim Mastery IV",
         "SkillDescription": "Aim Mastery IV",
         "DataClass": "AimMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 30,
@@ -583,6 +625,9 @@
         "SkillName": "Endurance Fighter IV",
         "SkillDescription": "Endurance Fighter IV",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 35,
@@ -622,6 +667,9 @@
         "SkillName": "Cunning Warrior IV",
         "SkillDescription": "Cunning Warrior IV",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 35,
@@ -661,6 +709,9 @@
         "SkillName": "Deep Penetration IV",
         "SkillDescription": "Deep Penetration IV",
         "DataClass": "DeepPenetration",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Pierce",
         "ActionPoints": 35,

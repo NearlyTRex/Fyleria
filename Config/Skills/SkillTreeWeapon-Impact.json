@@ -5,6 +5,9 @@
         "SkillName": "Base Attack",
         "SkillDescription": "Base Attack",
         "DataClass": "BaseAttack",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 0,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 0,
@@ -22,6 +25,9 @@
         "SkillName": "Blunt Mastery I",
         "SkillDescription": "Blunt Mastery I",
         "DataClass": "BluntMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 15,
@@ -55,6 +61,9 @@
         "SkillName": "Endurance Fighter I",
         "SkillDescription": "Endurance Fighter I",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 20,
@@ -88,6 +97,9 @@
         "SkillName": "Cunning Warrior I",
         "SkillDescription": "Cunning Warrior I",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 20,
@@ -121,6 +133,9 @@
         "SkillName": "Deep Impact I",
         "SkillDescription": "Deep Impact I",
         "DataClass": "DeepImpact",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 20,
@@ -188,6 +203,9 @@
         "SkillName": "Blunt Mastery II",
         "SkillDescription": "Blunt Mastery II",
         "DataClass": "BluntMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 20,
@@ -227,6 +245,9 @@
         "SkillName": "Endurance Fighter II",
         "SkillDescription": "Endurance Fighter II",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 25,
@@ -266,6 +287,9 @@
         "SkillName": "Cunning Warrior II",
         "SkillDescription": "Cunning Warrior II",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 25,
@@ -305,6 +329,9 @@
         "SkillName": "Deep Impact II",
         "SkillDescription": "Deep Impact II",
         "DataClass": "DeepImpact",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 25,
@@ -378,6 +405,9 @@
         "SkillName": "Blunt Mastery III",
         "SkillDescription": "Blunt Mastery III",
         "DataClass": "BluntMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 25,
@@ -417,6 +447,9 @@
         "SkillName": "Endurance Fighter III",
         "SkillDescription": "Endurance Fighter III",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 30,
@@ -456,6 +489,9 @@
         "SkillName": "Cunning Warrior III",
         "SkillDescription": "Cunning Warrior III",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 30,
@@ -495,6 +531,9 @@
         "SkillName": "Deep Impact III",
         "SkillDescription": "Deep Impact III",
         "DataClass": "DeepImpact",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 30,
@@ -568,6 +607,9 @@
         "SkillName": "Blunt Mastery IV",
         "SkillDescription": "Blunt Mastery IV",
         "DataClass": "BluntMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 30,
@@ -607,6 +649,9 @@
         "SkillName": "Endurance Fighter IV",
         "SkillDescription": "Endurance Fighter IV",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 35,
@@ -646,6 +691,9 @@
         "SkillName": "Cunning Warrior IV",
         "SkillDescription": "Cunning Warrior IV",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 35,
@@ -685,6 +733,9 @@
         "SkillName": "Deep Impact IV",
         "SkillDescription": "Deep Impact IV",
         "DataClass": "DeepImpact",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Blunt",
         "ActionPoints": 35,

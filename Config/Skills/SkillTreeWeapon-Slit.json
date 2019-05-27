@@ -5,6 +5,9 @@
         "SkillName": "Base Attack",
         "SkillDescription": "Base Attack",
         "DataClass": "BaseAttack",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 0,
         "WeaponBaseType": "Slash",
         "ActionPoints": 0,
@@ -22,6 +25,9 @@
         "SkillName": "Blade Mastery I",
         "SkillDescription": "Blade Mastery I",
         "DataClass": "BladeMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 15,
@@ -55,6 +61,9 @@
         "SkillName": "Endurance Fighter I",
         "SkillDescription": "Endurance Fighter I",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 20,
@@ -88,6 +97,9 @@
         "SkillName": "Cunning Warrior I",
         "SkillDescription": "Cunning Warrior I",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 20,
@@ -121,6 +133,9 @@
         "SkillName": "Deep Cut I",
         "SkillDescription": "Deep Cut I",
         "DataClass": "DeepCut",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 20,
@@ -189,6 +204,9 @@
         "SkillName": "Blade Mastery II",
         "SkillDescription": "Blade Mastery II",
         "DataClass": "BladeMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 20,
@@ -228,6 +246,9 @@
         "SkillName": "Endurance Fighter II",
         "SkillDescription": "Endurance Fighter II",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 25,
@@ -267,6 +288,9 @@
         "SkillName": "Cunning Warrior II",
         "SkillDescription": "Cunning Warrior II",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 25,
@@ -306,6 +330,9 @@
         "SkillName": "Deep Cut II",
         "SkillDescription": "Deep Cut II",
         "DataClass": "DeepCut",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 25,
@@ -380,6 +407,9 @@
         "SkillName": "Blade Mastery III",
         "SkillDescription": "Blade Mastery III",
         "DataClass": "BladeMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 25,
@@ -419,6 +449,9 @@
         "SkillName": "Endurance Fighter III",
         "SkillDescription": "Endurance Fighter III",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 30,
@@ -458,6 +491,9 @@
         "SkillName": "Cunning Warrior III",
         "SkillDescription": "Cunning Warrior III",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 30,
@@ -497,6 +533,9 @@
         "SkillName": "Deep Cut III",
         "SkillDescription": "Deep Cut III",
         "DataClass": "DeepCut",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 30,
@@ -578,6 +617,9 @@
         "SkillName": "Blade Mastery IV",
         "SkillDescription": "Blade Mastery IV",
         "DataClass": "BladeMastery",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 30,
@@ -617,6 +659,9 @@
         "SkillName": "Endurance Fighter IV",
         "SkillDescription": "Endurance Fighter IV",
         "DataClass": "EnduranceFighter",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 35,
@@ -656,6 +701,9 @@
         "SkillName": "Cunning Warrior IV",
         "SkillDescription": "Cunning Warrior IV",
         "DataClass": "CunningWarrior",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 35,
@@ -695,6 +743,9 @@
         "SkillName": "Deep Cut IV",
         "SkillDescription": "Deep Cut IV",
         "DataClass": "DeepCut",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostAP": 1,
         "WeaponBaseType": "Slash",
         "ActionPoints": 35,
