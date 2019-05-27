@@ -96,7 +96,23 @@
         "StatChanges": [
             {
                 "RequiredEquippedWeaponCount": 2,
-                "RequiredEquippedShieldCount": 0
+                "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
+                "DestinationTargetType": "Self",
+                "StatChangeEntries": [
+                    {
+                        "SourceStatType": "TargetsMustBeIdentical",
+                        "DestinationStatType": "TargetsMustBeIdentical",
+                        "FullBool": true,
+                        "OperationType": "Set"
+                    },
+                    {
+                        "SourceStatType": "AllowedTargetAmount",
+                        "DestinationStatType": "AllowedTargetAmount",
+                        "FullInt": 2,
+                        "OperationType": "Set"
+                    }
+                ]
             }
         ]
     },
@@ -185,7 +201,17 @@
         "StatChanges": [
             {
                 "RequiredEquippedWeaponCount": 2,
-                "RequiredEquippedShieldCount": 0
+                "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
+                "DestinationTargetType": "Self",
+                "StatChangeEntries": [
+                    {
+                        "SourceStatType": "AllowedTargetAmount",
+                        "DestinationStatType": "AllowedTargetAmount",
+                        "FullInt": 2,
+                        "OperationType": "Set"
+                    }
+                ]
             }
         ]
     },
@@ -286,7 +312,23 @@
         "StatChanges": [
             {
                 "RequiredEquippedWeaponCount": 2,
-                "RequiredEquippedShieldCount": 0
+                "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
+                "DestinationTargetType": "Self",
+                "StatChangeEntries": [
+                    {
+                        "SourceStatType": "TargetsMustBeIdentical",
+                        "DestinationStatType": "TargetsMustBeIdentical",
+                        "FullBool": true,
+                        "OperationType": "Set"
+                    },
+                    {
+                        "SourceStatType": "AllowedTargetAmount",
+                        "DestinationStatType": "AllowedTargetAmount",
+                        "FullInt": 2,
+                        "OperationType": "Set"
+                    }
+                ]
             }
         ]
     },
@@ -375,7 +417,17 @@
         "StatChanges": [
             {
                 "RequiredEquippedWeaponCount": 2,
-                "RequiredEquippedShieldCount": 0
+                "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
+                "DestinationTargetType": "Self",
+                "StatChangeEntries": [
+                    {
+                        "SourceStatType": "AllowedTargetAmount",
+                        "DestinationStatType": "AllowedTargetAmount",
+                        "FullInt": 2,
+                        "OperationType": "Set"
+                    }
+                ]
             }
         ]
     },
@@ -476,7 +528,23 @@
         "StatChanges": [
             {
                 "RequiredEquippedWeaponCount": 2,
-                "RequiredEquippedShieldCount": 0
+                "RequiredEquippedShieldCount": 0,
+                "SourceTargetType": "Self",
+                "DestinationTargetType": "Self",
+                "StatChangeEntries": [
+                    {
+                        "SourceStatType": "TargetsMustBeIdentical",
+                        "DestinationStatType": "TargetsMustBeIdentical",
+                        "FullBool": true,
+                        "OperationType": "Set"
+                    },
+                    {
+                        "SourceStatType": "AllowedTargetAmount",
+                        "DestinationStatType": "AllowedTargetAmount",
+                        "FullInt": 2,
+                        "OperationType": "Set"
+                    }
+                ]
             }
         ]
     }
