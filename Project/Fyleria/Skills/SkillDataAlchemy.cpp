@@ -9,8 +9,6 @@ namespace Gecko
 SkillDataAlchemy::SkillDataAlchemy()
     : SkillData()
 {
-    // Recipes
-    SetRecipes({});
 }
 
 SkillDataAlchemy::SkillDataAlchemy(const Json& jsonData)
@@ -19,8 +17,19 @@ SkillDataAlchemy::SkillDataAlchemy(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+void SkillDataAlchemy::Clear()
+{
+    // Base clear
+    SkillData::Clear();
+
+    // Recipes
+    SetRecipes({});
+}
+
 void to_json(Json& jsonData, const SkillDataAlchemy& obj)
 {
+    // Recipes
+    SET_JSON_DATA_IF_NOT_EMPTY(Recipes);
 }
 
 void from_json(const Json& jsonData, SkillDataAlchemy& obj)

@@ -22,6 +22,9 @@ public:
     SkillData();
     SkillData(const Json& jsonData);
 
+    // Clear all data
+    virtual void Clear();
+
     // Is actionable
     Bool IsActionable() const;
 

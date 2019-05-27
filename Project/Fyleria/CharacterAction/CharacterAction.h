@@ -5,6 +5,7 @@
 #define _GECKO_CHARACTER_ACTION_H_
 
 #include "CharacterAction/CharacterActionEntry.h"
+#include "Module/ModuleResultManager.h"
 #include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
@@ -25,18 +26,23 @@ public:
 
     // Get array of character IDs
     IndexedStringArray GetAllCharacterIDs() const;
+    MAKE_MODULE_RESULT_VARIANT(GetAllCharacterIDs);
 
     // Get array of action types from all entries
     IndexedStringArray GetAllActionTypes() const;
+    MAKE_MODULE_RESULT_VARIANT(GetAllActionTypes);
 
     // Get array of destination target types from all entries
     IndexedStringArray GetAllDestinationTargetTypes() const;
+    MAKE_MODULE_RESULT_VARIANT(GetAllDestinationTargetTypes);
 
     // Are all character IDs valid
     Bool AreAllCharacterIDsValid() const;
+    MAKE_MODULE_RESULT_VARIANT(AreAllCharacterIDsValid);
 
     // Prepare character IDs
     Bool PrepareCharacterIDs();
+    MAKE_MODULE_RESULT_VARIANT(PrepareCharacterIDs);
 
     // Run type
     MAKE_RAW_BASIC_TYPE_ACCESSORS(RunType, IndexedString);

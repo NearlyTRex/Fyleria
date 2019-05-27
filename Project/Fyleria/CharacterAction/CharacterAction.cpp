@@ -30,7 +30,10 @@ IndexedStringArray CharacterAction::GetAllCharacterIDs() const
     vAllCharacterIDs.push_back(GetSourceCharacterID());
     for(const CharacterActionEntry& entry : GetActionEntries())
     {
-        vAllCharacterIDs.push_back(entry.GetDestinationCharacterID());
+        vAllCharacterIDs.insert(
+            vAllCharacterIDs.end(),
+            entry.GetDestinationCharacterIDs().begin(),
+            entry.GetDestinationCharacterIDs().end());
     }
     return vAllCharacterIDs;
 }
@@ -99,8 +102,8 @@ Bool CharacterAction::PrepareCharacterIDs()
             return false;
         }
 
-        // Store destination character ID
-        entry.SetDestinationCharacterID(vDestCharIDs.front());
+        // Store destination character IDs
+        entry.SetDestinationCharacterIDs(vDestCharIDs);
     }
     return true;
 }

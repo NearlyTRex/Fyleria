@@ -12,6 +12,15 @@ namespace Gecko
 
 SkillData::SkillData()
 {
+}
+
+SkillData::SkillData(const Json& jsonData)
+{
+    from_json(jsonData, *this);
+}
+
+void SkillData::Clear()
+{
     // Run types
     SetRunTypes({});
 
@@ -39,11 +48,6 @@ SkillData::SkillData()
 
     // Stat changes
     SetStatChanges({});
-}
-
-SkillData::SkillData(const Json& jsonData)
-{
-    from_json(jsonData, *this);
 }
 
 Bool SkillData::IsActionable() const

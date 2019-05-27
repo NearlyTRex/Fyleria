@@ -9,8 +9,6 @@ namespace Gecko
 SkillDataBreakdown::SkillDataBreakdown()
     : SkillData()
 {
-    // Recipes
-    SetRecipes({});
 }
 
 SkillDataBreakdown::SkillDataBreakdown(const Json& jsonData)
@@ -19,8 +17,19 @@ SkillDataBreakdown::SkillDataBreakdown(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+void SkillDataBreakdown::Clear()
+{
+    // Base clear
+    SkillData::Clear();
+
+    // Recipes
+    SetRecipes({});
+}
+
 void to_json(Json& jsonData, const SkillDataBreakdown& obj)
 {
+    // Recipes
+    SET_JSON_DATA_IF_NOT_EMPTY(Recipes);
 }
 
 void from_json(const Json& jsonData, SkillDataBreakdown& obj)

@@ -229,10 +229,27 @@ IndexedStringArray CharacterParty::GetMemberCharacterIDs() const
 
 Bool CharacterParty::GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringArray& vCharacterIDs) const
 {
+    // Check if requesting something that cannot be resolved
+    CharacterTargetType eTargetType = StringToCharacterTargetType(sCharacterTargetType);
+    switch(eTargetType)
+    {
+        case CharacterTargetType::Self:
+        case CharacterTargetType::ActionTargetsThisAction:
+        case CharacterTargetType::ActionSourceThisAction:
+        case CharacterTargetType::ActionTargetsThisRound:
+        case CharacterTargetType::ActionSourcesThisRound:
+        case CharacterTargetType::ActionTargetsLastRound:
+        case CharacterTargetType::ActionSourcesLastRound:
+        case CharacterTargetType::MostRecentActionTargets:
+        case CharacterTargetType::MostRecentActionSource:
+            return false;
+        default:
+            break;
+    }
+
     // Check if requesting for all allies/enemies
     IndexedStringArray vAllMemberCharacterIDs = GetMemberCharacterIDs();
     CharacterPartyType ePartyType = StringToCharacterPartyType(GetPartyType());
-    CharacterTargetType eTargetType = StringToCharacterTargetType(sCharacterTargetType);
     if((ePartyType == +CharacterPartyType::Ally && eTargetType == +CharacterTargetType::AllAllies) ||
        (ePartyType == +CharacterPartyType::Enemy && eTargetType == +CharacterTargetType::AllEnemies))
     {

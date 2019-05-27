@@ -9,8 +9,6 @@ namespace Gecko
 SkillDataCrafting::SkillDataCrafting()
     : SkillData()
 {
-    // Recipes
-    SetRecipes({});
 }
 
 SkillDataCrafting::SkillDataCrafting(const Json& jsonData)
@@ -19,8 +17,19 @@ SkillDataCrafting::SkillDataCrafting(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+void SkillDataCrafting::Clear()
+{
+    // Base clear
+    SkillData::Clear();
+
+    // Recipes
+    SetRecipes({});
+}
+
 void to_json(Json& jsonData, const SkillDataCrafting& obj)
 {
+    // Recipes
+    SET_JSON_DATA_IF_NOT_EMPTY(Recipes);
 }
 
 void from_json(const Json& jsonData, SkillDataCrafting& obj)

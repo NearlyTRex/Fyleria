@@ -20,6 +20,12 @@ SkillDataCombat::SkillDataCombat(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+void SkillDataCombat::Clear()
+{
+    // Base clear
+    SkillData::Clear();
+}
+
 CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
 {
     // Check character

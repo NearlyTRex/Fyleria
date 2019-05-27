@@ -20,7 +20,10 @@ public:
     virtual ~CharacterActionHandlerSkillAttack();
 
     // Get skill attack result
-    CharacterActionResult GetSkillAttackResult(const CharacterAction& action, const CharacterActionEntry& entry) const;
+    CharacterActionResult GetSkillAttackResult(
+        const CharacterAction& action,
+        const CharacterActionEntry& entry,
+        const IndexedString& sDestCharID) const;
 
     // Stages for running the action
     virtual Bool Setup(CharacterAction& action);

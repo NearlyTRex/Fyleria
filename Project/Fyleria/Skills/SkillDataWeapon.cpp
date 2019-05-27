@@ -12,17 +12,24 @@ namespace Gecko
 SkillDataWeapon::SkillDataWeapon()
     : SkillData()
 {
-    // Weapon base type
-    SetWeaponBaseType(IndexedString("None"));
-
-    // Amount of action points available
-    SetActionPoints(0);
 }
 
 SkillDataWeapon::SkillDataWeapon(const Json& jsonData)
     : SkillData(jsonData)
 {
     from_json(jsonData, *this);
+}
+
+void SkillDataWeapon::Clear()
+{
+    // Base clear
+    SkillData::Clear();
+
+    // Weapon base type
+    SetWeaponBaseType(IndexedString("None"));
+
+    // Amount of action points available
+    SetActionPoints(0);
 }
 
 CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
@@ -140,6 +147,11 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& s
 
 void to_json(Json& jsonData, const SkillDataWeapon& obj)
 {
+    // Weapon base type
+    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponBaseType, IndexedString(""));
+
+    // Amount of action points available
+    SET_JSON_DATA_IF_NOT_DEFAULT(ActionPoints, 0);
 }
 
 void from_json(const Json& jsonData, SkillDataWeapon& obj)

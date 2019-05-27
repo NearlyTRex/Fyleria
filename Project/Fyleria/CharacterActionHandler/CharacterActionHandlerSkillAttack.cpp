@@ -18,14 +18,16 @@ CharacterActionHandlerSkillAttack::~CharacterActionHandlerSkillAttack()
 {
 }
 
-CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(const CharacterAction& action, const CharacterActionEntry& entry) const
+CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
+    const CharacterAction& action,
+    const CharacterActionEntry& entry,
+    const IndexedString& sDestCharID) const
 {
     // Action result
     CharacterActionResult result;
 
     // Get character data
     const IndexedString& sSourceCharID = action.GetSourceCharacterID();
-    const IndexedString& sDestCharID = entry.GetDestinationCharacterID();
     const Character& sourceCharacter = CharacterManager::GetInstance()->GetCharacter(sSourceCharID);
     const Character& destCharacter = CharacterManager::GetInstance()->GetCharacter(sDestCharID);
     const CharacterBattleData& sourceBattleData = sourceCharacter.GetBattleDataActives();
@@ -188,7 +190,10 @@ Bool CharacterActionHandlerSkillAttack::Setup(CharacterAction& action)
     // Setup destination characters
     for(const CharacterActionEntry& entry : action.GetActionEntries())
     {
-        HandleBattleActionDefendSetup(entry.GetDestinationCharacterID(), action);
+        for(const IndexedString& sDestCharID : entry.GetDestinationCharacterIDs())
+        {
+            HandleBattleActionDefendSetup(sDestCharID, action);
+        }
     }
 
     // Setup source character
@@ -207,7 +212,10 @@ Bool CharacterActionHandlerSkillAttack::Finish(CharacterAction& action)
     // Finish destination character actions
     for(const CharacterActionEntry& entry : action.GetActionEntries())
     {
-        HandleBattleActionFinished(entry.GetDestinationCharacterID(), action);
+        for(const IndexedString& sDestCharID : entry.GetDestinationCharacterIDs())
+        {
+            HandleBattleActionFinished(sDestCharID, action);
+        }
     }
 
     // Finish source character action
@@ -231,7 +239,11 @@ Bool CharacterActionHandlerSkillAttack::GenerateResult(CharacterAction& action)
            entry.DoesMatchActionType(IndexedString("WeaponBaseBlunt")) ||
            entry.DoesMatchActionType(IndexedString("WeaponBaseSlash")))
         {
-            entry.SetResult(GetSkillAttackResult(action, entry));
+            for(const IndexedString& sDestCharID : entry.GetDestinationCharacterIDs())
+            {
+                CharacterActionResult result = GetSkillAttackResult(action, entry, sDestCharID);
+                entry.GetResults().insert({sDestCharID, result});
+            }
         }
     }
     return true;
@@ -249,9 +261,14 @@ Bool CharacterActionHandlerSkillAttack::ApplyResult(CharacterAction& action)
     Int iFinalDamage = 0;
     for(const CharacterActionEntry& entry : action.GetActionEntries())
     {
-        // Send entry damage to character
-        Int iEntryDamage = entry.GetResult().GetFinalDamage();
-        HandleBattleTakingDamage(entry.GetDestinationCharacterID(), iEntryDamage);
+        // Look at each result
+        Int iEntryDamage = 0;
+        for(auto it = entry.GetResults().cbegin(); it != entry.GetResults().cend(); it++)
+        {
+            // Send entry damage to character
+            iEntryDamage = it->second.GetFinalDamage();
+            HandleBattleTakingDamage(it->first, iEntryDamage);
+        }
 
         // Add to final damage that the source character applied
         iFinalDamage += iEntryDamage;

@@ -78,6 +78,11 @@ Bool Battle::IsBattleLost() const
     return (GetIsBattleManuallyLost() || IsBattleOver(GetAllyPartyID()));
 }
 
+Bool Battle::IsSkillAttackAction(const CharacterAction& action) const
+{
+    return (!action.GetSkillTreeIndex().empty());
+}
+
 void Battle::AddAction(const CharacterAction& action)
 {
     GetActions().push_back(action);
@@ -97,18 +102,38 @@ void Battle::FinishedAddingActions()
 
 void Battle::RunCurrentActionSetup()
 {
+    CharacterAction& action = GetCurrentAction();
+    if(IsSkillAttackAction(action))
+    {
+        GetSkillAttackHandler().Setup(action);
+    }
 }
 
 void Battle::RunCurrentActionFinish()
 {
+    CharacterAction& action = GetCurrentAction();
+    if(IsSkillAttackAction(action))
+    {
+        GetSkillAttackHandler().Finish(action);
+    }
 }
 
 void Battle::RunCurrentActionGenerateResult()
 {
+    CharacterAction& action = GetCurrentAction();
+    if(IsSkillAttackAction(action))
+    {
+        GetSkillAttackHandler().GenerateResult(action);
+    }
 }
 
 void Battle::RunCurrentActionApplyResult()
 {
+    CharacterAction& action = GetCurrentAction();
+    if(IsSkillAttackAction(action))
+    {
+        GetSkillAttackHandler().ApplyResult(action);
+    }
 }
 
 void Battle::FinishedWithCurrentAction()

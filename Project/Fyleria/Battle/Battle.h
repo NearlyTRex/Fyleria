@@ -5,6 +5,7 @@
 #define _GECKO_BATTLE_H_
 
 #include "CharacterAction/CharacterAction.h"
+#include "CharacterActionHandler/CharacterActionHandlerSkillAttack.h"
 #include "Module/ModuleResultManager.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
@@ -41,6 +42,10 @@ public:
     // Determine if battle is lost
     Bool IsBattleLost() const;
     MAKE_MODULE_RESULT_VARIANT(IsBattleLost);
+
+    // Determine if action is skill attack
+    Bool IsSkillAttackAction(const CharacterAction& action) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsSkillAttackAction, const CharacterAction&, action);
 
     // Adding and processing actions that are chosen by the player
     void AddAction(const CharacterAction& action);
@@ -82,9 +87,12 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Actions, CharacterActionArray);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ActionCount, Int);
 
-    // Party names
+    // Party IDs
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(EnemyPartyID, IndexedString);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllyPartyID, IndexedString);
+
+    // Action handlers
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillAttackHandler, CharacterActionHandlerSkillAttack);
 };
 
 // Typedef

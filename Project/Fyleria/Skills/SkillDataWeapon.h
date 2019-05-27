@@ -18,6 +18,9 @@ public:
     SkillDataWeapon();
     SkillDataWeapon(const Json& jsonData);
 
+    // Clear all data
+    virtual void Clear();
+
     // Skill tree type
     static IndexedString GetTreeType()
     {

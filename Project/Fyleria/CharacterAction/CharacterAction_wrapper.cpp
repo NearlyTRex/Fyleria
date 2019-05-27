@@ -36,8 +36,8 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(HandType, Gecko::CharacterActionEntry)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(IsHandTypeShield, Gecko::CharacterActionEntry)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(DestinationTargetType, Gecko::CharacterActionEntry)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(DestinationCharacterID, Gecko::CharacterActionEntry)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Result, Gecko::CharacterActionEntry)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(DestinationCharacterIDs, Gecko::CharacterActionEntry)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Results, Gecko::CharacterActionEntry)
     ;
     PyBindVector<Gecko::CharacterActionEntryArray>(m, "CharacterActionEntryArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionEntryToJsonString, Gecko);
@@ -65,6 +65,11 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(ItemAmount, Gecko::CharacterAction)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(SourceTargetType, Gecko::CharacterAction)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(SourceCharacterID, Gecko::CharacterAction)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllCharacterIDs_MR, Gecko::CharacterAction)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllActionTypes_MR, Gecko::CharacterAction)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllDestinationTargetTypes_MR, Gecko::CharacterAction)
+        WRAPPING_ADD_METHOD_SIMPLE(AreAllCharacterIDsValid_MR, Gecko::CharacterAction)
+        WRAPPING_ADD_METHOD_SIMPLE(PrepareCharacterIDs_MR, Gecko::CharacterAction)
     ;
     PyBindVector<Gecko::CharacterActionArray>(m, "CharacterActionArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionToJsonString, Gecko);

@@ -17,6 +17,9 @@ class CharacterActionEntry : public SerializableToJson
 {
 public:
 
+    // Types
+    typedef STDUnorderedMap<IndexedString, CharacterActionResult, IndexedStringHasher> CharacterActionResultMapType;
+
     // Constructors
     CharacterActionEntry();
     explicit CharacterActionEntry(const Json& jsonData);
@@ -38,10 +41,10 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(DestinationTargetType, IndexedString);
 
     // Character
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(DestinationCharacterID, IndexedString);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(DestinationCharacterIDs, IndexedStringArray);
 
     // Result
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Result, CharacterActionResult);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(Results, CharacterActionResultMapType);
 
     // Comparisons
     Bool operator==(const CharacterActionEntry& other) const;
