@@ -71,6 +71,9 @@
         "SkillName": "Focused Strike I",
         "SkillDescription": "Focused Strike I",
         "DataClass": "FocusedStrike",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 5,
         "StatChanges": [
             {
@@ -164,6 +167,9 @@
         "SkillName": "Deadly Retribution I",
         "SkillDescription": "Deadly Retribution I",
         "DataClass": "DeadlyRetribution",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 10,
         "StatChanges": [
             {
@@ -269,6 +275,9 @@
         "SkillName": "Focused Strike II",
         "SkillDescription": "Focused Strike II",
         "DataClass": "FocusedStrike",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 4,
         "StatChanges": [
             {
@@ -362,6 +371,9 @@
         "SkillName": "Deadly Retribution II",
         "SkillDescription": "Deadly Retribution II",
         "DataClass": "DeadlyRetribution",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 9,
         "StatChanges": [
             {
@@ -467,6 +479,9 @@
         "SkillName": "Focused Strike III",
         "SkillDescription": "Focused Strike III",
         "DataClass": "FocusedStrike",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 3,
         "StatChanges": [
             {

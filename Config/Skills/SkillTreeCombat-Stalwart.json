@@ -71,6 +71,9 @@
         "SkillName": "Shield Punch I",
         "SkillDescription": "Shield Punch I",
         "DataClass": "ShieldPunch",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 5,
         "StatChanges": [
             {
@@ -156,6 +159,9 @@
         "SkillName": "Shield Charge I",
         "SkillDescription": "Shield Charge I",
         "DataClass": "ShieldCharge",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 10,
         "StatChanges": [
             {
@@ -267,6 +273,9 @@
         "SkillName": "Shield Punch II",
         "SkillDescription": "Shield Punch II",
         "DataClass": "ShieldPunch",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 4,
         "StatChanges": [
             {
@@ -352,6 +361,9 @@
         "SkillName": "Shield Charge II",
         "SkillDescription": "Shield Charge II",
         "DataClass": "ShieldCharge",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 9,
         "StatChanges": [
             {
@@ -463,6 +475,9 @@
         "SkillName": "Shield Punch III",
         "SkillDescription": "Shield Punch III",
         "DataClass": "ShieldPunch",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 3,
         "StatChanges": [
             {

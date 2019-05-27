@@ -92,6 +92,9 @@
         "SkillName": "Twin Attack I",
         "SkillDescription": "Twin Attack I",
         "DataClass": "TwinAttack",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 5,
         "StatChanges": [
             {
@@ -197,6 +200,9 @@
         "SkillName": "Split Focus I",
         "SkillDescription": "Split Focus I",
         "DataClass": "SplitFocus",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 10,
         "StatChanges": [
             {
@@ -308,6 +314,9 @@
         "SkillName": "Twin Attack II",
         "SkillDescription": "Twin Attack II",
         "DataClass": "TwinAttack",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 4,
         "StatChanges": [
             {
@@ -413,6 +422,9 @@
         "SkillName": "Split Focus II",
         "SkillDescription": "Split Focus II",
         "DataClass": "SplitFocus",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 10,
         "StatChanges": [
             {
@@ -524,6 +536,9 @@
         "SkillName": "Twin Attack III",
         "SkillDescription": "Twin Attack III",
         "DataClass": "TwinAttack",
+        "RunTypes": [
+            "Battle"
+        ],
         "SkillCostHP": 3,
         "StatChanges": [
             {
