@@ -106,7 +106,7 @@ Bool TreeIndex::operator==(const TreeIndex& other) const
 
 Bool TreeIndex::operator!=(const TreeIndex& other) const
 {
-    return !(*this == other);
+    return not operator==(other);
 }
 
 void to_json(Json& jsonData, const TreeIndex& obj)

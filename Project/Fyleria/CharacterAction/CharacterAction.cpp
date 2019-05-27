@@ -27,7 +27,10 @@ CharacterAction::CharacterAction(const String& jsonString)
 IndexedStringArray CharacterAction::GetAllCharacterIDs() const
 {
     IndexedStringArray vAllCharacterIDs;
-    vAllCharacterIDs.push_back(GetSourceCharacterID());
+    if(!GetSourceCharacterID().empty())
+    {
+        vAllCharacterIDs.push_back(GetSourceCharacterID());
+    }
     for(const CharacterActionEntry& entry : GetActionEntries())
     {
         vAllCharacterIDs.insert(
@@ -60,7 +63,12 @@ IndexedStringArray CharacterAction::GetAllDestinationTargetTypes() const
 
 Bool CharacterAction::AreAllCharacterIDsValid() const
 {
-    for(const IndexedString& sCharacterID : GetAllCharacterIDs())
+    IndexedStringArray vAllCharacterIDs = GetAllCharacterIDs();
+    if(vAllCharacterIDs.empty())
+    {
+        return false;
+    }
+    for(const IndexedString& sCharacterID : vAllCharacterIDs)
     {
         if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
         {

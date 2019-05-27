@@ -199,12 +199,12 @@ void CharacterStatChangeData::ApplyProlongedStatChanges(const IndexedString& sCh
 
 Bool CharacterStatChangeData::operator==(const CharacterStatChangeData& other) const
 {
-    return false;
+    return (Json(*this) == Json(other));
 }
 
 Bool CharacterStatChangeData::operator!=(const CharacterStatChangeData& other) const
 {
-    return false;
+    return not operator==(other);
 }
 
 void to_json(Json& jsonData, const CharacterStatChangeData& obj)

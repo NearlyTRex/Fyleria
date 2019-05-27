@@ -41,7 +41,7 @@ void CharacterActionData::UpdateAvailableActions(const IndexedString& sCharacter
         }
 
         // Look at each active change index of that type
-        for(const TreeIndex& index : character.GetActionableChanges(sIndexTreeType))
+        for(const TreeIndex& treeIndex : character.GetActionableChanges(sIndexTreeType))
         {
             // Look at each weapon set
             for(const IndexedString& sWeaponSet : CharacterWeaponSetType::_names())
@@ -54,14 +54,14 @@ void CharacterActionData::UpdateAvailableActions(const IndexedString& sCharacter
 
                 // Add skill actions
                 CharacterActionArray vSkillActions;
-                if(SkillTree::GenerateSkillCharacterActions(index, sCharacterID, sWeaponSet, vSkillActions))
+                if(SkillTree::GenerateSkillCharacterActions(treeIndex, sCharacterID, sWeaponSet, vSkillActions))
                 {
                    vAvailableActions.insert(vAvailableActions.end(), vSkillActions.begin(), vSkillActions.end());
                 }
 
                 // Add item actions
                 CharacterActionArray vItemActions;
-                if(ItemTree::GenerateItemCharacterActions(index, sCharacterID, sWeaponSet, vItemActions))
+                if(ItemTree::GenerateItemCharacterActions(treeIndex, sCharacterID, sWeaponSet, vItemActions))
                 {
                    vAvailableActions.insert(vAvailableActions.end(), vItemActions.begin(), vItemActions.end());
                 }
@@ -72,12 +72,12 @@ void CharacterActionData::UpdateAvailableActions(const IndexedString& sCharacter
 
 Bool CharacterActionData::operator==(const CharacterActionData& other) const
 {
-    return false;
+    return (Json(*this) == Json(other));
 }
 
 Bool CharacterActionData::operator!=(const CharacterActionData& other) const
 {
-    return false;
+    return not operator==(other);
 }
 
 void to_json(Json& jsonData, const CharacterActionData& obj)

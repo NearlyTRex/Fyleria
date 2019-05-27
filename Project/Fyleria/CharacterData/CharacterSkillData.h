@@ -15,10 +15,10 @@ class CharacterSkillData
 public:
 
     // Types
-    typedef BoostAny CharacterSkillFunction;
-    typedef STDUnorderedMap<IndexedString, CharacterSkillFunction, IndexedStringHasher> CharacterSkillFunctionNode;
-    typedef STDUnorderedMap<IndexedString, CharacterSkillFunctionNode, IndexedStringHasher> CharacterSkillFunctionMap;
-    typedef STDUnorderedMap<IndexedString, UInt, IndexedStringHasher> CharacterSkillUseTrackingMap;
+    typedef BoostAny CharacterSkillFunctionType;
+    typedef STDUnorderedMap<IndexedString, CharacterSkillFunctionType, IndexedStringHasher> CharacterSkillFunctionNodeType;
+    typedef STDUnorderedMap<IndexedString, CharacterSkillFunctionNodeType, IndexedStringHasher> CharacterSkillFunctionMapType;
+    typedef STDUnorderedMap<IndexedString, UInt, IndexedStringHasher> CharacterSkillUseTrackingMapType;
 
     // Constructors
     CharacterSkillData();
@@ -47,18 +47,18 @@ public:
     UInt GetSkillUseCount(const IndexedString& sSkillType) const;
 
     // Get skill Rank/current functions
-    const CharacterSkillFunctionNode& GetSkillFunctions(const IndexedString& sSkillType) const;
-    const CharacterSkillFunction& GetSkillFunction(const IndexedString& sSkillType, const IndexedString& sNodeType) const;
+    const CharacterSkillFunctionNodeType& GetSkillFunctions(const IndexedString& sSkillType) const;
+    const CharacterSkillFunctionType& GetSkillFunction(const IndexedString& sSkillType, const IndexedString& sNodeType) const;
     UByteGetFunction GetSkillGetRankFunction(const IndexedString& sSkillType) const;
     UByteSetFunction GetSkillSetRankFunction(const IndexedString& sSkillType) const;
     UByteGetFunction GetSkillGetCurrentFunction(const IndexedString& sSkillType) const;
     UByteSetFunction GetSkillSetCurrentFunction(const IndexedString& sSkillType) const;
 
     // Skill map
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillFunctionMap, CharacterSkillFunctionMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillFunctionMap, CharacterSkillFunctionMapType);
 
     // Skill use tracking
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillUseTrackingMap, CharacterSkillUseTrackingMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillUseTrackingMap, CharacterSkillUseTrackingMapType);
 
     // Combat Skills
     MAKE_RAW_BASIC_TYPE_ACCESSORS(BarbarianCurrent, UByte);

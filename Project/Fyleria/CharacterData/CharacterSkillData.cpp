@@ -18,7 +18,7 @@ CharacterSkillData::CharacterSkillData(const Json& jsonData)
 
 #define SET_SKILL_FUNCTION_NODE(name)                                                               \
 {                                                                                                   \
-    CharacterSkillFunctionNode node;                                                                \
+    CharacterSkillFunctionNodeType node;                                                            \
     node[IndexedString("GetRank")] = BoostBind(&CharacterSkillData::Get##name##Rank, this);         \
     node[IndexedString("SetRank")] = BoostBind(&CharacterSkillData::Set##name##Rank, this);         \
     node[IndexedString("GetCurrent")] = BoostBind(&CharacterSkillData::Get##name##Current, this);   \
@@ -207,13 +207,13 @@ UInt CharacterSkillData::GetSkillUseCount(const IndexedString& sSkillType) const
     return 0;
 }
 
-const CharacterSkillData::CharacterSkillFunctionNode& CharacterSkillData::GetSkillFunctions(
+const CharacterSkillData::CharacterSkillFunctionNodeType& CharacterSkillData::GetSkillFunctions(
     const IndexedString& sSkillType) const
 {
     return GetSkillFunctionMap().at(sSkillType);
 }
 
-const CharacterSkillData::CharacterSkillFunction& CharacterSkillData::GetSkillFunction(
+const CharacterSkillData::CharacterSkillFunctionType& CharacterSkillData::GetSkillFunction(
     const IndexedString& sSkillType,
     const IndexedString& sNodeType) const
 {
@@ -242,12 +242,12 @@ UByteSetFunction CharacterSkillData::GetSkillSetCurrentFunction(const IndexedStr
 
 Bool CharacterSkillData::operator==(const CharacterSkillData& other) const
 {
-    return false;
+    return (Json(*this) == Json(other));
 }
 
 Bool CharacterSkillData::operator!=(const CharacterSkillData& other) const
 {
-    return false;
+    return not operator==(other);
 }
 
 void to_json(Json& jsonData, const CharacterSkillData& obj)
