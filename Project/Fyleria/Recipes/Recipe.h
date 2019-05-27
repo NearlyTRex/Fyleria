@@ -21,6 +21,9 @@ public:
     Recipe();
     Recipe(const Json& jsonData);
 
+    // Clear all data
+    void Clear();
+
     // Chance to success
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ChanceToSucceed, Float);
 

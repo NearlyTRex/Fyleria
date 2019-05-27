@@ -19,6 +19,9 @@ public:
     ItemDataIngredient();
     ItemDataIngredient(const Json& jsonData);
 
+    // Clear all data
+    virtual void Clear();
+
     // Item tree type
     static IndexedString GetTreeType()
     {

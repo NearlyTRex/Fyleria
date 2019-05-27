@@ -8,6 +8,15 @@ namespace Gecko
 
 Recipe::Recipe()
 {
+}
+
+Recipe::Recipe(const Json& jsonData)
+{
+    from_json(jsonData, *this);
+}
+
+void Recipe::Clear()
+{
     // Chance to success
     SetChanceToSucceed(0);
 
@@ -16,11 +25,6 @@ Recipe::Recipe()
 
     // Results
     SetResults({});
-}
-
-Recipe::Recipe(const Json& jsonData)
-{
-    from_json(jsonData, *this);
 }
 
 void to_json(Json& jsonData, const Recipe& obj)

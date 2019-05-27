@@ -9,8 +9,6 @@ namespace Gecko
 ItemDataIngredient::ItemDataIngredient()
     : ItemData()
 {
-    // Stat changes
-    SetStatChanges({});
 }
 
 ItemDataIngredient::ItemDataIngredient(const Json& jsonData)
@@ -19,8 +17,19 @@ ItemDataIngredient::ItemDataIngredient(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+void ItemDataIngredient::Clear()
+{
+    // Base clear
+    ItemData::Clear();
+
+    // Stat changes
+    SetStatChanges({});
+}
+
 void to_json(Json& jsonData, const ItemDataIngredient& obj)
 {
+    // Stat changes
+    SET_JSON_DATA_IF_NOT_EMPTY(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemDataIngredient& obj)

@@ -9,6 +9,19 @@ namespace Gecko
 ItemDataWeapon::ItemDataWeapon()
     : ItemData()
 {
+}
+
+ItemDataWeapon::ItemDataWeapon(const Json& jsonData)
+    : ItemData(jsonData)
+{
+    from_json(jsonData, *this);
+}
+
+void ItemDataWeapon::Clear()
+{
+    // Base clear
+    ItemData::Clear();
+
     // Stat percents
     SetBluntAttackPercent(0);
     SetPierceAttackPercent(0);
@@ -16,12 +29,6 @@ ItemDataWeapon::ItemDataWeapon()
 
     // Stat changes
     SetStatChanges({});
-}
-
-ItemDataWeapon::ItemDataWeapon(const Json& jsonData)
-    : ItemData(jsonData)
-{
-    from_json(jsonData, *this);
 }
 
 CharacterActionArray ItemDataWeapon::CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
@@ -32,6 +39,13 @@ CharacterActionArray ItemDataWeapon::CreateWeaponActions(const IndexedString& sC
 
 void to_json(Json& jsonData, const ItemDataWeapon& obj)
 {
+    // Stat percents
+    SET_JSON_DATA_IF_NOT_DEFAULT(BluntAttackPercent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(PierceAttackPercent, 0);
+    SET_JSON_DATA_IF_NOT_DEFAULT(SlashAttackPercent, 0);
+
+    // Stat changes
+    SET_JSON_DATA_IF_NOT_EMPTY(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemDataWeapon& obj)

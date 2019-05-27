@@ -10,6 +10,15 @@ namespace Gecko
 
 ItemData::ItemData()
 {
+}
+
+ItemData::ItemData(const Json& jsonData)
+{
+    from_json(jsonData, *this);
+}
+
+void ItemData::Clear()
+{
     // Run types
     SetRunTypes({});
 
@@ -33,11 +42,6 @@ ItemData::ItemData()
 
     // Stat changes
     SetStatChanges({});
-}
-
-ItemData::ItemData(const Json& jsonData)
-{
-    from_json(jsonData, *this);
 }
 
 Bool ItemData::IsActionable() const
