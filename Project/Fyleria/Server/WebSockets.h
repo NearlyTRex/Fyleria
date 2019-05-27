@@ -31,7 +31,7 @@ typedef websocketpp::exception WebsocketException;
 typedef websocketpp::connection_hdl WebsocketConnectionHandlePtr;
 typedef websocketpp::server<websocketpp::config::asio> WebsocketAsioServer;
 typedef websocketpp::server<websocketpp::config::asio>::message_ptr WebsocketAsioMessagePtr;
-typedef STDMap<WebsocketRawConnectionPtr, WebsocketConnectionHandlePtr> WebsocketConnectionMap;
+typedef STDMap<WebsocketRawConnectionPtr, WebsocketConnectionHandlePtr> WebsocketConnectionMapType;
 
 // Defines
 #define WebsocketErrorLogNone               websocketpp::log::elevel::none
@@ -115,7 +115,7 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ServerRunThread, STDSharedPtr<STDThread>);
 
     // Server connection map
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ConnectionMap, WebsocketConnectionMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ConnectionMap, WebsocketConnectionMapType);
 
     // Server connection mutex
     MAKE_RAW_GET_ONLY_OBJECT_TYPE_ACCESSORS(ConnectionMutex, STDMutex);

@@ -144,7 +144,7 @@ void Battle::FinishedWithCurrentAction()
 const CharacterAction& Battle::GetAction(Int iIndex) const
 {
     ASSERT_ERROR(iIndex >= 0 && iIndex < GetActionCount());
-    return GetActions()[iIndex];
+    return GetActions().at(iIndex);
 }
 
 CharacterAction& Battle::GetAction(Int iIndex)

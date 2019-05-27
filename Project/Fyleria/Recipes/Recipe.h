@@ -12,7 +12,7 @@
 namespace Gecko
 {
 
-// POD class for recipes
+// Class for recipes
 class Recipe
 {
 public:

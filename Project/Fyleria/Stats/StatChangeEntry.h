@@ -12,7 +12,7 @@
 namespace Gecko
 {
 
-// POD class for stat change entries
+// Class for stat change entries
 class StatChangeEntry
 {
 public:
