@@ -123,9 +123,9 @@ void from_json(const Json& jsonData, StatChange& obj);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(StatChange, StatChange);
 
 // Get stat changes from the given tree nodes
-const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& index);
-const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& index);
-const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& index);
+const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& treeIndex);
+const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeIndex);
+const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeIndex);
 
 };
 

@@ -2,6 +2,10 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "CharacterData/CharacterStatChangeData.h"
+#include "Character/CharacterManager.h"
+#include "Battle/BattleManager.h"
+#include "Items/ItemTree.h"
+#include "Skills/SkillTree.h"
 #include "Utility/Errors.h"
 
 namespace Gecko
@@ -32,6 +36,29 @@ void CharacterStatChangeData::Clear()
 
     // Prolonged stat changes
     SetProlongedStatChanges({});
+}
+
+void CharacterStatChangeData::UpdateAvailableChanges(const IndexedString& sCharacterID)
+{
+    // Fill skill indices
+    TreeIndexArray vSkillPassives;
+    TreeIndexArray vSkillActives;
+    TreeIndexArray vSkillActionables;
+    SkillTree::FillSkillStatChangeArrays(sCharacterID, vSkillPassives, vSkillActives, vSkillActionables, true);
+
+    // Fill item indices
+    TreeIndexArray vItemPassives;
+    TreeIndexArray vItemActives;
+    TreeIndexArray vItemActionables;
+    ItemTree::FillItemStatChangeArrays(ItemTree::GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
+
+    // Add to stored changes
+    SetPassiveSkillDataArray(vSkillPassives);
+    SetPassiveItemDataArray(vItemPassives);
+    SetActiveSkillDataArray(vSkillActives);
+    SetActiveItemDataArray(vItemActives);
+    SetActionableSkillDataArray(vSkillActionables);
+    SetActionableItemDataArray(vItemActionables);
 }
 
 const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const IndexedString& sTreeIndexType) const
@@ -89,14 +116,14 @@ Bool CharacterStatChangeData::RemoveProlongedStatChange(const IndexedString& sKe
     return (GetProlongedStatChanges().erase(sKey) > 0);
 }
 
-ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const IndexedString& sKey)
+const ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const IndexedString& sKey) const
 {
     return (GetProlongedStatChanges().at(sKey));
 }
 
-const ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const IndexedString& sKey) const
+ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const IndexedString& sKey)
 {
-    return (GetProlongedStatChanges().at(sKey));
+    return const_cast<ProlongedStatChange&>(static_cast<const CharacterStatChangeData&>(*this).GetProlongedStatChange(sKey));
 }
 
 StatChangeEntryArray CharacterStatChangeData::GetProlongedStatChangeEntries(Int iRound, Int iAttack, Int iDefend) const
@@ -155,6 +182,18 @@ void CharacterStatChangeData::RemoveAllExpiredProlongedStatChanges(Int iRound, I
     for(const IndexedString& sKey : vKeys)
     {
         RemoveProlongedStatChange(sKey);
+    }
+}
+
+void CharacterStatChangeData::ApplyProlongedStatChanges(const IndexedString& sCharacterID, const IndexedString& sSegment)
+{
+    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
+    Int iCurrentAttack = character.GetBattleDataBase().GetAttackCounter();
+    Int iCurrentDefend = character.GetBattleDataBase().GetDefendCounter();
+    for(auto& entry : GetProlongedStatChangeEntries(iCurrentRound, iCurrentAttack, iCurrentDefend))
+    {
+        CharacterManager::GetInstance()->ApplyStatChangeEntry(sSegment, entry);
     }
 }
 

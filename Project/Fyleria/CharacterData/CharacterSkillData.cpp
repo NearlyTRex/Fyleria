@@ -113,6 +113,7 @@ void CharacterSkillData::Clear()
 {
     SetAllSkillCurrentValues(0);
     SetAllSkillRankValues(0);
+    SetSkillUseTrackingMap({});
 }
 
 #define CHARACTER_SET_SKILL_VALUE(type, skill, value)                   \
@@ -143,6 +144,22 @@ void CharacterSkillData::SetAllSkillRankValues(UByte uValue)
     CHARACTER_SET_SKILL_VALUE(SkillAffinityType, Rank, uValue);
 }
 
+void CharacterSkillData::UpdateUsedSkills()
+{
+    auto& tSkillTracking = GetSkillUseTrackingMap();
+    for(auto it = tSkillTracking.begin(); it != tSkillTracking.end(); it++)
+    {
+        const IndexedString& sSkillType = it->first;
+        UInt uUseCount = it->second;
+        if(sSkillType.IsNone() || uUseCount == 0)
+        {
+            continue;
+        }
+
+        UpdateSkillRanking(sSkillType);
+    }
+}
+
 Bool CharacterSkillData::UpdateSkillRanking(const IndexedString& sSkillType)
 {
     auto GetRank = GetSkillGetRankFunction(sSkillType);
@@ -164,6 +181,30 @@ Bool CharacterSkillData::UpdateSkillRanking(const IndexedString& sSkillType)
         SetRank(uRank + 1);
     }
     return true;
+}
+
+void CharacterSkillData::AddSkillUse(const IndexedString& sSkillType, UInt uNum)
+{
+    auto& tTrackingMap = GetSkillUseTrackingMap();
+    if(tTrackingMap.count(sSkillType))
+    {
+        tTrackingMap[sSkillType] = tTrackingMap[sSkillType] + uNum;
+    }
+    else
+    {
+        tTrackingMap[sSkillType] = uNum;
+    }
+}
+
+UInt CharacterSkillData::GetSkillUseCount(const IndexedString& sSkillType) const
+{
+    auto& tTrackingMap = GetSkillUseTrackingMap();
+    auto iSearch = tTrackingMap.find(sSkillType);
+    if(iSearch != tTrackingMap.end())
+    {
+        return iSearch->second;
+    }
+    return 0;
 }
 
 const CharacterSkillData::CharacterSkillFunctionNode& CharacterSkillData::GetSkillFunctions(

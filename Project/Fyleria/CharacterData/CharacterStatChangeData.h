@@ -25,6 +25,9 @@ public:
     // Clear all data
     void Clear();
 
+    // Update available passive, active, and actionable changes
+    void UpdateAvailableChanges(const IndexedString& sCharacterID);
+
     // Get tree actives/passives
     const TreeIndexArray& GetPassiveChanges(const IndexedString& sTreeIndexType) const;
     const TreeIndexArray& GetActiveChanges(const IndexedString& sTreeIndexType) const;
@@ -35,8 +38,8 @@ public:
     Bool RemoveProlongedStatChange(const IndexedString& sKey);
 
     // Get prolonged stat change
-    ProlongedStatChange& GetProlongedStatChange(const IndexedString& sKey);
     const ProlongedStatChange& GetProlongedStatChange(const IndexedString& sKey) const;
+    ProlongedStatChange& GetProlongedStatChange(const IndexedString& sKey);
 
     // Get stat change entry lists from prolonged entries
     StatChangeEntryArray GetProlongedStatChangeEntries(Int iRound, Int iAttack, Int iDefend) const;
@@ -49,6 +52,9 @@ public:
 
     // Remove all expired prolonged stat changes
     void RemoveAllExpiredProlongedStatChanges(Int iRound, Int iAttack, Int iDefend);
+
+    // Apply prolonged stat changes
+    void ApplyProlongedStatChanges(const IndexedString& sCharacterID, const IndexedString& sSegment);
 
     // Passive data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PassiveSkillDataArray, TreeIndexArray);

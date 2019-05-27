@@ -6,7 +6,6 @@
 #include "CharacterData/CharacterBattleData.h"
 #include "CharacterData/CharacterProgressData.h"
 #include "CharacterData/CharacterSkillData.h"
-#include "CharacterData/CharacterSkillUseData.h"
 #include "CharacterData/CharacterStatChangeData.h"
 #include "Utility/Macros.h"
 #include "Utility/Python.h"
@@ -16,7 +15,6 @@ PYBIND11_MAKE_OPAQUE(Gecko::CharacterBasicDataArray);
 PYBIND11_MAKE_OPAQUE(Gecko::CharacterBattleDataArray);
 PYBIND11_MAKE_OPAQUE(Gecko::CharacterProgressDataArray);
 PYBIND11_MAKE_OPAQUE(Gecko::CharacterSkillDataArray);
-PYBIND11_MAKE_OPAQUE(Gecko::CharacterSkillUseDataArray);
 PYBIND11_MAKE_OPAQUE(Gecko::CharacterStatChangeDataArray);
 
 PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
@@ -211,6 +209,10 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterSkillData)
         WRAPPING_ADD_METHOD_SIMPLE(SetAllSkillCurrentValues, Gecko::CharacterSkillData)
         WRAPPING_ADD_METHOD_SIMPLE(SetAllSkillRankValues, Gecko::CharacterSkillData)
+        WRAPPING_ADD_METHOD_SIMPLE(UpdateUsedSkills, Gecko::CharacterSkillData)
+        WRAPPING_ADD_METHOD_SIMPLE(UpdateSkillRanking, Gecko::CharacterSkillData)
+        WRAPPING_ADD_METHOD_SIMPLE(AddSkillUse, Gecko::CharacterSkillData)
+        WRAPPING_ADD_METHOD_SIMPLE(GetSkillUseCount, Gecko::CharacterSkillData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(BarbarianCurrent, Gecko::CharacterSkillData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(BarbarianRank, Gecko::CharacterSkillData)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(MageCurrent, Gecko::CharacterSkillData)
@@ -353,19 +355,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterSkillDataArrayToJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillDataFromJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillDataArrayFromJsonString, Gecko);
-
-    // CharacterSkillUseData.h
-    PyBindClass<Gecko::CharacterSkillUseData>(m, "CharacterSkillUseData")
-        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-        WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterSkillUseData)
-        WRAPPING_ADD_METHOD_SIMPLE(AddSkillUse, Gecko::CharacterSkillUseData)
-        WRAPPING_ADD_METHOD_SIMPLE(GetSkillUseCount, Gecko::CharacterSkillUseData)
-    ;
-    PyBindVector<Gecko::CharacterSkillUseDataArray>(m, "CharacterSkillUseDataArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterSkillUseDataToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterSkillUseDataArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillUseDataFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillUseDataArrayFromJsonString, Gecko);
 
     // CharacterStatChangeData.h
     PyBindClass<Gecko::CharacterStatChangeData>(m, "CharacterStatChangeData")

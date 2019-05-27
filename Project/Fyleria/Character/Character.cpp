@@ -33,11 +33,11 @@ void Character::RegenerateCharacterData(
     GetBattleDataActives().Clear();
 
     // Update character data
-    if(bUpdateSkillRankings) { UpdateSkillRankings(IndexedString("Base")); }
-    if(bUpdateEquipmentRatings) { UpdateEquipmentRatings(IndexedString("Base")); }
-    if(bUpdateAvailableChanges) { UpdateAvailableChanges(IndexedString("Base")); }
-    if(bUpdateAvailableActions) { UpdateAvailableActions(IndexedString("Base")); }
-    if(bUpdateAvailableAP) { UpdateAvailableAP(IndexedString("Base")); }
+    if(bUpdateSkillRankings) { UpdateSkillRankings(); }
+    if(bUpdateEquipmentRatings) { UpdateEquipmentRatings(); }
+    if(bUpdateAvailableChanges) { UpdateAvailableChanges(); }
+    if(bUpdateAvailableActions) { UpdateAvailableActions(); }
+    if(bUpdateAvailableAP) { UpdateAvailableAP(); }
 
     // Apply passives
     ApplyPassiveChanges();
@@ -51,23 +51,52 @@ void Character::RegenerateCharacterData(
 #endif
 }
 
-const IndexedString& Character::GetCharacterID() const
+IndexedString Character::GetCharacterID() const
 {
     return GetBasicData().GetCharacterID();
 }
 
-const IndexedString& Character::GetPartyID() const
+IndexedString Character::GetPartyID() const
 {
     return GetBasicData().GetPartyID();
 }
 
-const IndexedString& Character::GetCharacterTargetType() const
+IndexedString Character::GetCharacterTargetType() const
 {
     IndexedString sCharacterID = GetCharacterID();
     IndexedString sPartyID = GetPartyID();
     const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetCharacterTargetType();
+}
+
+IndexedString Character::GetCurrentWeaponSet() const
+{
+    return GetBattleDataBase().GetCurrentWeaponSet();
+}
+
+const CharacterPartyEquippedItemArray& Character::GetEquippedItems() const
+{
+    IndexedString sCharacterID = GetCharacterID();
+    IndexedString sPartyID = GetPartyID();
+    const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
+    const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
+    return characterPartyMember.GetEquippedItems();
+}
+
+const TreeIndexArray& Character::GetPassiveChanges(const IndexedString& sTreeIndexType) const
+{
+    return GetStatChangeData().GetPassiveChanges(sTreeIndexType);
+}
+
+const TreeIndexArray& Character::GetActiveChanges(const IndexedString& sTreeIndexType) const
+{
+    return GetStatChangeData().GetActiveChanges(sTreeIndexType);
+}
+
+const TreeIndexArray& Character::GetActionableChanges(const IndexedString& sTreeIndexType) const
+{
+    return GetStatChangeData().GetActionableChanges(sTreeIndexType);
 }
 
 const CharacterProgressData& Character::GetProgressDataSegment(const IndexedString& sSegment) const
@@ -116,161 +145,55 @@ Bool Character::operator!=(const Character& other) const
     return not operator==(other);
 }
 
-void Character::UpdateEquipmentRatings(const IndexedString& sSegment)
+void Character::UpdateEquipmentRatings()
 {
-    // Get character data
-    const CharacterBasicData& basicData = GetBasicData();
-    const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
-    CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
-    IndexedString sCharacterID = basicData.GetCharacterID();
-    IndexedString sPartyID = basicData.GetPartyID();
-    const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
-    const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
-
-    // Update ratings
-    IndexedString sCurrentWeaponSet = battleData.GetCurrentWeaponSet();
-    const CharacterPartyEquippedItemArray& vEquippedItems = characterPartyMember.GetEquippedItems();
-    battleData.UpdateEquipmentRatings(sCurrentWeaponSet, vEquippedItems, progressData);
+    // Update equipment ratings
+    GetBattleDataBase().UpdateEquipmentRatings(GetCharacterID(), IndexedString("Base"));
 }
 
-void Character::UpdateAvailableChanges(const IndexedString& sSegment)
+void Character::UpdateAvailableChanges()
 {
-    // Get character ID
-    const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
-
-    // Fill skill indices
-    TreeIndexArray vSkillPassives;
-    TreeIndexArray vSkillActives;
-    TreeIndexArray vSkillActionables;
-    SkillTree::FillSkillStatChangeArrays(sCharacterID, vSkillPassives, vSkillActives, vSkillActionables, true);
-
-    // Fill item indices
-    TreeIndexArray vItemPassives;
-    TreeIndexArray vItemActives;
-    TreeIndexArray vItemActionables;
-    ItemTree::FillItemStatChangeArrays(ItemTree::GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
-
-    // Add to stored changes
-    GetStatChangeData().SetPassiveSkillDataArray(vSkillPassives);
-    GetStatChangeData().SetPassiveItemDataArray(vItemPassives);
-    GetStatChangeData().SetActiveSkillDataArray(vSkillActives);
-    GetStatChangeData().SetActiveItemDataArray(vItemActives);
-    GetStatChangeData().SetActionableSkillDataArray(vSkillActionables);
-    GetStatChangeData().SetActionableItemDataArray(vItemActionables);
+    // Update available changes
+    GetStatChangeData().UpdateAvailableChanges(GetCharacterID());
 }
 
-void Character::UpdateAvailableActions(const IndexedString& sSegment)
+void Character::UpdateAvailableActions()
 {
-    // Get character ID
-    const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
-
-    // Clear stored actions
-    CharacterActionArray& vAvailableActions = GetActionData().GetAvailableActions();
-    vAvailableActions.clear();
-
-    // Look at each type of tree index
-    for(const IndexedString& sIndexTreeType : CharacterTreeIndexType::_names())
-    {
-        // Skip invalid tree types
-        if(sIndexTreeType.IsNone())
-        {
-            continue;
-        }
-
-        // Get actionable data
-        Bool bIsSkillAction = sIndexTreeType == IndexedString("Skill");
-
-        // Look at each active change index of that type
-        for(const TreeIndex& index : GetStatChangeData().GetActionableChanges(sIndexTreeType))
-        {
-            // Look at each weapon set
-            for(const IndexedString& sWeaponSet : CharacterWeaponSetType::_names())
-            {
-                // Skip invalid weapon sets
-                if(sWeaponSet.IsNone())
-                {
-                    continue;
-                }
-
-                // Add skill actions
-                CharacterActionArray vSkillActions;
-                if(bIsSkillAction && SkillTree::GenerateSkillCharacterActions(index, sCharacterID, sWeaponSet, vSkillActions))
-                {
-                   vAvailableActions.insert(vAvailableActions.end(), vSkillActions.begin(), vSkillActions.end());
-                }
-
-                // Add item actions
-                CharacterActionArray vItemActions;
-                if(bIsSkillAction && ItemTree::GenerateItemCharacterActions(index, sCharacterID, sWeaponSet, vItemActions))
-                {
-                   vAvailableActions.insert(vAvailableActions.end(), vItemActions.begin(), vItemActions.end());
-                }
-            }
-        }
-    }
+    // Update available actions
+    GetActionData().UpdateAvailableActions(GetCharacterID());
 }
 
-void Character::UpdateAvailableAP(const IndexedString& sSegment)
+void Character::UpdateAvailableAP()
 {
-    // Get character ID
-    const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
-
-    // Get character data
-    CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
-
-    // Get weapon skills
-    TreeIndexArray vWeaponSkills = SkillTree::GetWeaponSkills(sCharacterID, true);
-    if(vWeaponSkills.empty())
-    {
-        return;
-    }
-
     // Update available AP
-    progressData.UpdateAvailableAP(vWeaponSkills);
+    GetProgressDataBase().UpdateAvailableAP(GetCharacterID());
 }
 
-void Character::UpdateSkillRankings(const IndexedString& sSegment)
+void Character::UpdateSkillRankings()
 {
-    auto& tSkillTracking = GetSkillUseData().GetSkillUseTrackingMap();
-    for(auto it = tSkillTracking.begin(); it != tSkillTracking.end(); it++)
-    {
-        const IndexedString& sSkillType = it->first;
-        UInt uUseCount = it->second;
-        if(sSkillType.IsNone() || uUseCount == 0)
-        {
-            continue;
-        }
-
-        GetSkillData().UpdateSkillRanking(sSkillType);
-    }
+    // Update skill rankings
+    GetSkillData().UpdateUsedSkills();
 }
 
 void Character::ApplyPassiveChanges()
 {
-    // Get character ID
-    const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
-
     // Data sources should come from base but apply to passive
     const IndexedString sSourceSegment("Base");
     const IndexedString sDestSegment("Passive");
 
-    // Get character base data
-    const CharacterProgressData& progressData = GetProgressDataBase();
-    const CharacterBattleData& battleData = GetBattleDataBase();
-
     // Copy base data into passive to start with
-    SetProgressDataPassives(progressData);
-    SetBattleDataPassives(battleData);
+    SetProgressDataPassives(GetProgressDataBase());
+    SetBattleDataPassives(GetBattleDataBase());
 
     // Apply passives
     for(const IndexedString& sTreeIndexType : CharacterTreeIndexType::_names())
     {
-        for(const TreeIndex& index : GetStatChangeData().GetPassiveChanges(sTreeIndexType))
+        for(const TreeIndex& treeIndex : GetStatChangeData().GetPassiveChanges(sTreeIndexType))
         {
-            for(StatChange change : GetStatChangesFromTreeIndex(sTreeIndexType, index))
+            for(StatChange change : GetStatChangesFromTreeIndex(sTreeIndexType, treeIndex))
             {
                 // Resolve target placeholders
-                change.ResolveTargetPlaceholders(sCharacterID, sSourceSegment);
+                change.ResolveTargetPlaceholders(GetCharacterID(), sSourceSegment);
 
                 // Apply change
                 Bool bAllChangesApplied = false;
@@ -283,36 +206,23 @@ void Character::ApplyPassiveChanges()
 
 void Character::ApplyActiveChanges(const CharacterAction& action)
 {
-    // Get character ID
-    const IndexedString& sCharacterID = GetBasicData().GetCharacterID();
-
-    // Get character target type
-    const IndexedString& sCharacterTargetType = GetCharacterTargetType();
-
-    // Get character weapon set
-    const IndexedString& sCurrentWeaponSet = GetBattleDataBase().GetCurrentWeaponSet();
-
     // Data sources should come from passive but apply to active
     const IndexedString sSourceSegment("Passive");
     const IndexedString sDestSegment("Active");
 
-    // Get character passive data
-    const CharacterProgressData& progressData = GetProgressDataPassives();
-    const CharacterBattleData& battleData = GetBattleDataPassives();
-
     // Copy passive data into active to start with
-    SetProgressDataActives(progressData);
-    SetBattleDataActives(battleData);
+    SetProgressDataActives(GetProgressDataPassives());
+    SetBattleDataActives(GetBattleDataPassives());
 
     // Apply actives
     for(const IndexedString& sTreeIndexType : CharacterTreeIndexType::_names())
     {
-        for(const TreeIndex& index : GetStatChangeData().GetActiveChanges(sTreeIndexType))
+        for(const TreeIndex& treeIndex : GetStatChangeData().GetActiveChanges(sTreeIndexType))
         {
-            for(const StatChange& change : GetStatChangesFromTreeIndex(sTreeIndexType, index))
+            for(const StatChange& change : GetStatChangesFromTreeIndex(sTreeIndexType, treeIndex))
             {
                 // Ignore active changes that do not meet requirements
-                if(!change.DoesMeetActiveRequirements(sCharacterID, sCharacterTargetType, sCurrentWeaponSet, action))
+                if(!change.DoesMeetActiveRequirements(GetCharacterID(), GetCharacterTargetType(), GetCurrentWeaponSet(), action))
                 {
                     continue;
                 }
@@ -321,7 +231,7 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
                 StatChange localStatChange(change);
 
                 // Resolve target placeholders
-                localStatChange.ResolveTargetPlaceholders(sCharacterID, sSourceSegment);
+                localStatChange.ResolveTargetPlaceholders(GetCharacterID(), sSourceSegment);
 
                 // Apply change
                 Bool bAllChangesApplied = false;
@@ -332,13 +242,7 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
     }
 
     // Apply prolonged stat changes
-    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
-    Int iCurrentAttack = GetBattleDataBase().GetAttackCounter();
-    Int iCurrentDefend = GetBattleDataBase().GetDefendCounter();
-    for(const StatChangeEntry& entry : GetStatChangeData().GetProlongedStatChangeEntries(iCurrentRound, iCurrentAttack, iCurrentDefend))
-    {
-        CharacterManager::GetInstance()->ApplyStatChangeEntry(sDestSegment, entry);
-    }
+    GetStatChangeData().ApplyProlongedStatChanges(GetCharacterID(), sDestSegment);
 }
 
 void Character::ClearActiveChanges()
@@ -366,9 +270,6 @@ void to_json(Json& jsonData, const Character& obj)
     // Skill data
     SET_JSON_DATA_IF_NOT_DEFAULT(SkillData, CharacterSkillData());
 
-    // Skill use data
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillUseData, CharacterSkillUseData());
-
     // Stat change data
     SET_JSON_DATA_IF_NOT_DEFAULT(StatChangeData, CharacterStatChangeData());
 }
@@ -391,9 +292,6 @@ void from_json(const Json& jsonData, Character& obj)
 
     // Skill data
     obj.SetSkillData(GET_JSON_DATA_OR_DEFAULT(SkillData, CharacterSkillData, CharacterSkillData()));
-
-    // Skill use data
-    obj.SetSkillUseData(GET_JSON_DATA_OR_DEFAULT(SkillUseData, CharacterSkillUseData, CharacterSkillUseData()));
 
     // Stat change data
     obj.SetStatChangeData(GET_JSON_DATA_OR_DEFAULT(StatChangeData, CharacterStatChangeData, CharacterStatChangeData()));

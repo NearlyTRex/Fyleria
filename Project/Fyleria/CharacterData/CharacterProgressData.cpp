@@ -90,7 +90,7 @@ void CharacterProgressData::ApplyActionCost(const CharacterAction& action)
     }
 }
 
-void CharacterProgressData::UpdateAvailableAP(const TreeIndexArray& vIndices)
+void CharacterProgressData::UpdateAvailableAP(const IndexedString& sCharacterID)
 {
     // Action point count type
     struct ActionPointCountEntry
@@ -99,16 +99,23 @@ void CharacterProgressData::UpdateAvailableAP(const TreeIndexArray& vIndices)
         TreeIndex skillIndex;
     };
 
+    // Get weapon skills
+    TreeIndexArray vWeaponSkills = SkillTree::GetWeaponSkills(sCharacterID, true);
+    if(vWeaponSkills.empty())
+    {
+        return;
+    }
+
     // Populate a table of the highest amount of action points
     STDUnorderedMap<IndexedString, ActionPointCountEntry, IndexedStringHasher> tHighestActionPointCounts;
-    for(const TreeIndex& index : vIndices)
+    for(const TreeIndex& treeIndex : vWeaponSkills)
     {
         // Skill based action points
-        if(SkillTree::DoesSkillDataWeaponExist(index) && !SkillTree::IsBaseWeaponSkill(index))
+        if(SkillTree::DoesSkillDataWeaponExist(treeIndex) && !SkillTree::IsBaseWeaponSkill(treeIndex))
         {
             // Get skill information
-            const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(index);
-            IndexedString sKey = index.GetTreeBranchType();
+            const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(treeIndex);
+            IndexedString sKey = treeIndex.GetTreeBranchType();
             Int iActionPoints = skillDataWeapon.GetActionPoints();
 
             // Update or add new information
@@ -117,14 +124,14 @@ void CharacterProgressData::UpdateAvailableAP(const TreeIndexArray& vIndices)
                 if(iActionPoints > tHighestActionPointCounts[sKey].iCount)
                 {
                     tHighestActionPointCounts[sKey].iCount = iActionPoints;
-                    tHighestActionPointCounts[sKey].skillIndex = index;
+                    tHighestActionPointCounts[sKey].skillIndex = treeIndex;
                 }
             }
             else
             {
                 ActionPointCountEntry entry;
                 entry.iCount = iActionPoints;
-                entry.skillIndex = index;
+                entry.skillIndex = treeIndex;
                 tHighestActionPointCounts[sKey] = entry;
             }
         }

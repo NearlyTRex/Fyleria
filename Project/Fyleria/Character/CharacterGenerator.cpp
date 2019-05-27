@@ -124,8 +124,9 @@ IndexedString CharacterGenerator::GeneratePowerSet() const
 
 void CharacterGenerator::RandomizeBasics()
 {
-    SetFirstNamePattern(GetRandomNamePattern().Get());
-    SetLastNamePattern(GetRandomNamePattern().Get());
+    String sRandomNamePattern = GetRandomNamePattern().Get();
+    SetFirstNamePattern(sRandomNamePattern);
+    SetLastNamePattern(sRandomNamePattern);
     SetAgeStart(GetRandomIntValue<Int>(1, INT_MAX));
     SetAgeEnd(GetRandomIntValue<Int>(GetAgeEnd() + 1, INT_MAX));
     SetUseRandomName(true);

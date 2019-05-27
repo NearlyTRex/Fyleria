@@ -11,8 +11,8 @@
 #include "CharacterData/CharacterBattleData.h"
 #include "CharacterData/CharacterProgressData.h"
 #include "CharacterData/CharacterSkillData.h"
-#include "CharacterData/CharacterSkillUseData.h"
 #include "CharacterData/CharacterStatChangeData.h"
+#include "CharacterParty/CharacterPartyEquippedItem.h"
 #include "Module/ModuleResultManager.h"
 #include "Items/ItemTree.h"
 #include "Skills/SkillTree.h"
@@ -37,16 +37,36 @@ public:
     );
 
     // Get character ID
-    const IndexedString& GetCharacterID() const;
+    IndexedString GetCharacterID() const;
     MAKE_MODULE_RESULT_VARIANT(GetCharacterID);
 
     // Get party ID
-    const IndexedString& GetPartyID() const;
+    IndexedString GetPartyID() const;
     MAKE_MODULE_RESULT_VARIANT(GetPartyID);
 
     // Get character target type
-    const IndexedString& GetCharacterTargetType() const;
+    IndexedString GetCharacterTargetType() const;
     MAKE_MODULE_RESULT_VARIANT(GetCharacterTargetType);
+
+    // Get current weapon set
+    IndexedString GetCurrentWeaponSet() const;
+    MAKE_MODULE_RESULT_VARIANT(GetCurrentWeaponSet);
+
+    // Get equipped items
+    const CharacterPartyEquippedItemArray& GetEquippedItems() const;
+    MAKE_MODULE_RESULT_VARIANT(GetEquippedItems);
+
+    // Get passive changes
+    const TreeIndexArray& GetPassiveChanges(const IndexedString& sTreeIndexType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(GetPassiveChanges, const IndexedString&, sTreeIndexType);
+
+    // Get active changes
+    const TreeIndexArray& GetActiveChanges(const IndexedString& sTreeIndexType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(GetActiveChanges, const IndexedString&, sTreeIndexType);
+
+    // Get actionable changes
+    const TreeIndexArray& GetActionableChanges(const IndexedString& sTreeIndexType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(GetActionableChanges, const IndexedString&, sTreeIndexType);
 
     // Get progress data segment
     const CharacterProgressData& GetProgressDataSegment(const IndexedString& sSegment) const;
@@ -68,25 +88,25 @@ public:
     // Update equipment ratings
     // This pulls equipment and current attack/defense percents and fills
     // ratings for all equipment
-    void UpdateEquipmentRatings(const IndexedString& sSegment);
+    void UpdateEquipmentRatings();
 
     // Update available passive and active changes
     // This pulls all earned skills and equipped items and generates a list
     // of active and passive changes that can be applied
-    void UpdateAvailableChanges(const IndexedString& sSegment);
+    void UpdateAvailableChanges();
 
     // Update available actions
     // This polls the list of active changes and creates a list of
     // character actions that can be used as the basis for selectable actions
-    void UpdateAvailableActions(const IndexedString& sSegment);
+    void UpdateAvailableActions();
 
     // Update available AP
     // This searches the skills for ones that give AP and updates each type
-    void UpdateAvailableAP(const IndexedString& sSegment);
+    void UpdateAvailableAP();
 
     // Update skill rankings
     // This searches through the skill uses and upgrades ranks if necessary
-    void UpdateSkillRankings(const IndexedString& sSegment);
+    void UpdateSkillRankings();
 
     // Apply passive changes
     // Copy base data into passive data and apply each passive stat change
@@ -126,10 +146,6 @@ public:
     // Skill data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillData, CharacterSkillData);
     MAKE_MODULE_RESULT_VARIANT(GetSkillData);
-
-    // Skill use data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillUseData, CharacterSkillUseData);
-    MAKE_MODULE_RESULT_VARIANT(GetSkillUseData);
 
     // Stat change data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChangeData, CharacterStatChangeData);

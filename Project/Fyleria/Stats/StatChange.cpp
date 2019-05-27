@@ -546,61 +546,61 @@ void from_json(const Json& jsonData, StatChange& obj)
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChange, StatChange);
 
-const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& index)
+const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& treeIndex)
 {
     const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
     switch(eTreeIndexType)
     {
         case CharacterTreeIndexType::Skill:
-            return GetStatChangesFromSkillTreeIndex(index);
+            return GetStatChangesFromSkillTreeIndex(treeIndex);
         case CharacterTreeIndexType::Item:
-            return GetStatChangesFromItemTreeIndex(index);
+            return GetStatChangesFromItemTreeIndex(treeIndex);
         default:
             break;
     }
     throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType.Get());
 }
 
-const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& index)
+const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeIndex)
 {
-    const SkillTreeType eSkillTreeType = (IsValidSkillTreeType(index.GetTree())) ? StringToSkillTreeType(index.GetTree()) : +SkillTreeType::None;
+    const SkillTreeType eSkillTreeType = (IsValidSkillTreeType(treeIndex.GetTree())) ? StringToSkillTreeType(treeIndex.GetTree()) : +SkillTreeType::None;
     switch(eSkillTreeType)
     {
         case SkillTreeType::Affinity:
-            return SkillTree::RetrieveSkillDataAffinity(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataAffinity(treeIndex).GetStatChanges();
         case SkillTreeType::Alchemy:
-            return SkillTree::RetrieveSkillDataAlchemy(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataAlchemy(treeIndex).GetStatChanges();
         case SkillTreeType::Crafting:
-            return SkillTree::RetrieveSkillDataCrafting(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataCrafting(treeIndex).GetStatChanges();
         case SkillTreeType::Breakdown:
-            return SkillTree::RetrieveSkillDataBreakdown(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataBreakdown(treeIndex).GetStatChanges();
         case SkillTreeType::Combat:
-            return SkillTree::RetrieveSkillDataCombat(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataCombat(treeIndex).GetStatChanges();
         case SkillTreeType::Weapon:
-            return SkillTree::RetrieveSkillDataWeapon(index).GetStatChanges();
+            return SkillTree::RetrieveSkillDataWeapon(treeIndex).GetStatChanges();
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index requested: " + index.GetTreeBranchLeafType().Get());
+    throw RuntimeError("Invalid or unknown tree index requested: " + treeIndex.GetTreeBranchLeafType().Get());
 }
 
-const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& index)
+const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeIndex)
 {
-    const ItemTreeType eItemTreeType = (IsValidItemTreeType(index.GetTree())) ? StringToItemTreeType(index.GetTree()) : +ItemTreeType::None;
+    const ItemTreeType eItemTreeType = (IsValidItemTreeType(treeIndex.GetTree())) ? StringToItemTreeType(treeIndex.GetTree()) : +ItemTreeType::None;
     switch(eItemTreeType)
     {
         case ItemTreeType::Armor:
-            return ItemTree::RetrieveItemDataArmor(index).GetStatChanges();
+            return ItemTree::RetrieveItemDataArmor(treeIndex).GetStatChanges();
         case ItemTreeType::Ingredient:
-            return ItemTree::RetrieveItemDataIngredient(index).GetStatChanges();
+            return ItemTree::RetrieveItemDataIngredient(treeIndex).GetStatChanges();
         case ItemTreeType::Potion:
-            return ItemTree::RetrieveItemDataPotion(index).GetStatChanges();
+            return ItemTree::RetrieveItemDataPotion(treeIndex).GetStatChanges();
         case ItemTreeType::Weapon:
-            return ItemTree::RetrieveItemDataWeapon(index).GetStatChanges();
+            return ItemTree::RetrieveItemDataWeapon(treeIndex).GetStatChanges();
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index requested: " + index.GetTreeBranchLeafType().Get());
+    throw RuntimeError("Invalid or unknown tree index requested: " + treeIndex.GetTreeBranchLeafType().Get());
 }
 
 };

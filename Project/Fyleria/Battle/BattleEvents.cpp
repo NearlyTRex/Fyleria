@@ -10,12 +10,6 @@ namespace Gecko
 
 void HandleBattleStarted(const IndexedString& sCharacterID)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -26,7 +20,7 @@ void HandleBattleStarted(const IndexedString& sCharacterID)
     character.GetStatChangeData().SetProlongedStatChanges({});
 
     // Reset skill tracking
-    character.GetSkillUseData().SetSkillUseTrackingMap({});
+    character.GetSkillData().SetSkillUseTrackingMap({});
 
     // Reset attack/defend counters
     character.GetBattleDataBase().SetAttackCounter(0);
@@ -35,12 +29,6 @@ void HandleBattleStarted(const IndexedString& sCharacterID)
 
 void HandleBattleEnded(const IndexedString& sCharacterID)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -57,12 +45,6 @@ void HandleBattleEnded(const IndexedString& sCharacterID)
 
 void HandleBattleTally(const IndexedString& sCharacterID)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -87,12 +69,6 @@ void HandleBattleTally(const IndexedString& sCharacterID)
 
 void HandleBattleFullyCompleted(const IndexedString& sCharacterID)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -101,25 +77,18 @@ void HandleBattleFullyCompleted(const IndexedString& sCharacterID)
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Finish battle
-        battleData.FinishBattle(progressData);
+        battleData.FinishBattle(sCharacterID, sSegment);
     }
 
     // Reset skill tracking
-    character.GetSkillUseData().SetSkillUseTrackingMap({});
+    character.GetSkillData().SetSkillUseTrackingMap({});
 }
 
 void HandleBattleRoundAdvanced(const IndexedString& sCharacterID)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -128,11 +97,10 @@ void HandleBattleRoundAdvanced(const IndexedString& sCharacterID)
     for(const IndexedString& sSegment : vSegments)
     {
         // Get appropriate segments
-        CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Advance round
-        battleData.AdvanceRound(progressData);
+        battleData.AdvanceRound(sCharacterID, sSegment);
     }
 
     // Remove expired prolonged stat changes
@@ -144,20 +112,14 @@ void HandleBattleRoundAdvanced(const IndexedString& sCharacterID)
 
 void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    // Skip invalid damage
+    if(iAmount <= 0)
     {
         return;
     }
 
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
-
-    // Skip invalid damage
-    if(iAmount <= 0)
-    {
-        return;
-    }
 
     // Update character data across non-active segments
     const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
@@ -182,20 +144,14 @@ void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
 
 void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    // Skip invalid damage
+    if(iAmount <= 0)
     {
         return;
     }
 
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
-
-    // Skip invalid damage
-    if(iAmount <= 0)
-    {
-        return;
-    }
 
     // Update character data across non-active segments
     const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
@@ -210,7 +166,7 @@ void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
         battleData.ApplyTakenDamage(iAmount);
 
         // Apply new status
-        battleData.ApplyNewStatus(progressData);
+        battleData.ApplyNewStatus(sCharacterID, sSegment);
     }
 
     // Update defend counter
@@ -225,12 +181,6 @@ void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
 
 void HandleBattleChoosingTargets(const IndexedString& sCharacterID, const IndexedStringArray& vDestTargets)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -253,12 +203,6 @@ void HandleBattleChoosingTargets(const IndexedString& sCharacterID, const Indexe
 
 void HandleBattleBecomingTarget(const IndexedString& sCharacterID, const IndexedString& sSourceTarget)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -279,12 +223,6 @@ void HandleBattleBecomingTarget(const IndexedString& sCharacterID, const Indexed
 
 void HandleBattleActionAttackSetup(const IndexedString& sCharacterID, const CharacterAction& action)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -306,12 +244,6 @@ void HandleBattleActionAttackSetup(const IndexedString& sCharacterID, const Char
 
 void HandleBattleActionDefendSetup(const IndexedString& sCharacterID, const CharacterAction& action)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -333,12 +265,6 @@ void HandleBattleActionDefendSetup(const IndexedString& sCharacterID, const Char
 
 void HandleBattleActionApplied(const IndexedString& sCharacterID, const CharacterAction& action)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -348,12 +274,6 @@ void HandleBattleActionApplied(const IndexedString& sCharacterID, const Characte
 
 void HandleBattleActionFinished(const IndexedString& sCharacterID, const CharacterAction& action)
 {
-    // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
-    {
-        return;
-    }
-
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
@@ -371,11 +291,11 @@ void HandleBattleActionFinished(const IndexedString& sCharacterID, const Charact
         // If this was a skill action, we should track it
         if(!action.GetSkillTreeIndex().empty())
         {
-            character.GetSkillUseData().AddSkillUse(SkillTree::GetSkillType(action.GetSkillTreeIndex()), 1);
+            character.GetSkillData().AddSkillUse(SkillTree::GetSkillType(action.GetSkillTreeIndex()), 1);
         }
 
         // Apply new status
-        battleData.ApplyNewStatus(progressData);
+        battleData.ApplyNewStatus(sCharacterID, sSegment);
 
         // Clear action targets
         battleData.SetActionTargetsThisAction({});

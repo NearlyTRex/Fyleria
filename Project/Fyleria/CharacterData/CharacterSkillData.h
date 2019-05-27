@@ -16,8 +16,9 @@ public:
 
     // Types
     typedef BoostAny CharacterSkillFunction;
-    typedef STDMap<IndexedString, CharacterSkillFunction> CharacterSkillFunctionNode;
-    typedef STDMap<IndexedString, CharacterSkillFunctionNode> CharacterSkillFunctionMap;
+    typedef STDUnorderedMap<IndexedString, CharacterSkillFunction, IndexedStringHasher> CharacterSkillFunctionNode;
+    typedef STDUnorderedMap<IndexedString, CharacterSkillFunctionNode, IndexedStringHasher> CharacterSkillFunctionMap;
+    typedef STDUnorderedMap<IndexedString, UInt, IndexedStringHasher> CharacterSkillUseTrackingMap;
 
     // Constructors
     CharacterSkillData();
@@ -33,8 +34,17 @@ public:
     void SetAllSkillCurrentValues(UByte uValue);
     void SetAllSkillRankValues(UByte uValue);
 
-    // Update skill rankings
+    // Update used skills
+    void UpdateUsedSkills();
+
+    // Update skill ranking
     Bool UpdateSkillRanking(const IndexedString& sSkillType);
+
+    // Add skill use
+    void AddSkillUse(const IndexedString& sSkillType, UInt uNum);
+
+    // Get number of skill uses
+    UInt GetSkillUseCount(const IndexedString& sSkillType) const;
 
     // Get skill Rank/current functions
     const CharacterSkillFunctionNode& GetSkillFunctions(const IndexedString& sSkillType) const;
@@ -46,6 +56,9 @@ public:
 
     // Skill map
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillFunctionMap, CharacterSkillFunctionMap);
+
+    // Skill use tracking
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillUseTrackingMap, CharacterSkillUseTrackingMap);
 
     // Combat Skills
     MAKE_RAW_BASIC_TYPE_ACCESSORS(BarbarianCurrent, UByte);

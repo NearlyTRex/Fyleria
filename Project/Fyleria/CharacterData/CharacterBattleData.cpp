@@ -2,7 +2,10 @@
 // Copyright © 2016 Go Go Gecko Productions
 
 #include "CharacterData/CharacterBattleData.h"
+#include "CharacterData/CharacterProgressData.h"
+#include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
+#include "CharacterParty/CharacterPartyEquippedItem.h"
 #include "Config/ConfigManager.h"
 #include "Items/ItemTree.h"
 #include "Items/ItemTypes.h"
@@ -29,26 +32,37 @@ void CharacterBattleData::Clear()
     RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Float);
 }
 
-void CharacterBattleData::ApplyNewStatus(const CharacterProgressData& progressData)
+void CharacterBattleData::ApplyNewStatus(const IndexedString& sCharacterID, const IndexedString& sProgressSegment)
 {
+    // Get character info
+    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
+
+    // Update status
     SetIsDead(progressData.GetHealthPointsCurrent() <= 0);
     SetIsUnconscious(progressData.GetMagicPointsCurrent() <= 0 || progressData.GetEnergyPointsCurrent() <= 0);
 }
 
 void CharacterBattleData::ApplyGivenDamage(Int iDamage)
 {
+    // Apply given damage
     SetDamageGivenThisRound(GetDamageGivenThisRound() + abs(iDamage));
     SetDamageGivenThisBattle(GetDamageGivenThisBattle() + abs(iDamage));
 }
 
 void CharacterBattleData::ApplyTakenDamage(Int iDamage)
 {
+    // Apply taken damage
     SetDamageTakenThisRound(GetDamageTakenThisRound() + abs(iDamage));
     SetDamageTakenThisBattle(GetDamageTakenThisBattle() + abs(iDamage));
 }
 
-void CharacterBattleData::AdvanceRound(CharacterProgressData& progressData)
+void CharacterBattleData::AdvanceRound(const IndexedString& sCharacterID, const IndexedString& sProgressSegment)
 {
+    // Get character info
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
+
     // Apply regeneration
     Bool bCanRegenHP = CanRegenerateFromStat(IndexedString("HealthRegen"));
     Bool bCanRegenMP = CanRegenerateFromStat(IndexedString("MagicRegen"));
@@ -59,7 +73,7 @@ void CharacterBattleData::AdvanceRound(CharacterProgressData& progressData)
     }
 
     // Apply new status
-    ApplyNewStatus(progressData);
+    ApplyNewStatus(sCharacterID, sProgressSegment);
 
     // Clear this round's damage
     SetDamageGivenThisRound(0);
@@ -72,8 +86,12 @@ void CharacterBattleData::AdvanceRound(CharacterProgressData& progressData)
     SetActionSourcesThisRound({});
 }
 
-void CharacterBattleData::FinishBattle(CharacterProgressData& progressData)
+void CharacterBattleData::FinishBattle(const IndexedString& sCharacterID, const IndexedString& sProgressSegment)
 {
+    // Get character info
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
+
     // Update character health if they are "dead"
     if(GetIsDead())
     {
@@ -81,7 +99,7 @@ void CharacterBattleData::FinishBattle(CharacterProgressData& progressData)
     }
 
     // Apply new status
-    ApplyNewStatus(progressData);
+    ApplyNewStatus(sCharacterID, sProgressSegment);
 
     // Apply regeneration
     Bool bCanRegenHP = CanRegenerateFromStat(IndexedString("HealthRegen"));
@@ -114,10 +132,14 @@ Bool CharacterBattleData::CanRegenerateFromStat(const IndexedString& sRegenStat)
     return false;
 }
 
-void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sWeaponSet,
-    const CharacterPartyEquippedItemArray& vEquippedItems,
-    const CharacterProgressData& progressData)
+void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sCharacterID, const IndexedString& sProgressSegment)
 {
+    // Get character info
+    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
+    const IndexedString& sWeaponSet = character.GetCurrentWeaponSet();
+    const CharacterPartyEquippedItemArray& vEquippedItems = character.GetEquippedItems();
+
     // Get weapon set
     const CharacterWeaponSetType eWeaponSetType = StringToCharacterWeaponSetType(sWeaponSet);
     const Bool bIsWeaponSetSelected1 = (eWeaponSetType == +CharacterWeaponSetType::WeaponSet1);

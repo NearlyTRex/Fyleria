@@ -4,8 +4,6 @@
 #ifndef _GECKO_CHARACTER_BATTLE_DATA_H_
 #define _GECKO_CHARACTER_BATTLE_DATA_H_
 
-#include "CharacterData/CharacterProgressData.h"
-#include "CharacterParty/CharacterPartyEquippedItem.h"
 #include "Stats/StatTypeHolder.h"
 
 namespace Gecko
@@ -24,25 +22,23 @@ public:
     void Clear();
 
     // Apply status
-    void ApplyNewStatus(const CharacterProgressData& progressData);
+    void ApplyNewStatus(const IndexedString& sCharacterID, const IndexedString& sProgressSegment);
 
     // Apply damage
     void ApplyGivenDamage(Int iDamage);
     void ApplyTakenDamage(Int iDamage);
 
     // Advance round
-    void AdvanceRound(CharacterProgressData& progressData);
+    void AdvanceRound(const IndexedString& sCharacterID, const IndexedString& sProgressSegment);
 
     // Finish battle
-    void FinishBattle(CharacterProgressData& progressData);
+    void FinishBattle(const IndexedString& sCharacterID, const IndexedString& sProgressSegment);
 
     // Can regenerate from stat
     Bool CanRegenerateFromStat(const IndexedString& sRegenStat) const;
 
     // Update equipment ratings
-    void UpdateEquipmentRatings(const IndexedString& sWeaponSet,
-        const CharacterPartyEquippedItemArray& vEquippedItems,
-        const CharacterProgressData& progressData);
+    void UpdateEquipmentRatings(const IndexedString& sCharacterID, const IndexedString& sProgressSegment);
 
     // Resolve target placeholders
     IndexedStringArray ResolveTargetPlaceholder(const IndexedString& sSelfTargetType,

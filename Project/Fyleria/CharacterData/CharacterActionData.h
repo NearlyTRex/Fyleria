@@ -21,6 +21,9 @@ public:
     // Clear all data
     void Clear();
 
+    // Update available actions
+    void UpdateAvailableActions(const IndexedString& sCharacterID);
+
     // List of character actions
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(AvailableActions, CharacterActionArray);
 
