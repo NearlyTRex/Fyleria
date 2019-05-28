@@ -2,90 +2,90 @@
 "use strict";
 
 // Handle character management
-var CharacterManager = function() {
+let CharacterManager = function() {
 
     // Current server object
-    var currentServerObject = null;
+    let currentServerObject = null;
 
     // Load character manager
-    var loadCharacterManager = function () {
-        var cmd = `
-import character.charactermanager
-import character.charactertypes`;
+    let loadCharacterManager = function () {
+        let cmd = `
+import GeckoUtility
+import GeckoCharacter`;
         return currentServerObject.runModuleCommand(cmd);
     };
 
     // Load character from json
-    var loadCharacterFromJson = function (sCharacterID, sCharacterJson) {
-        var cmd = "character.charactermanager.LoadCharacterFromJson(\"" + sCharacterID + "\", " + JSON.stringify(sCharacterJson) + ")";
+    let loadCharacterFromJson = function (sCharacterID, sCharacterJson) {
+        let cmd = "GeckoCharacter.GetCharacterManager().LoadCharacterFromJson(\"" + sCharacterID + "\", " + JSON.stringify(sCharacterJson) + ")";
         return currentServerObject.runModuleCommand(cmd);
     };
 
     // Load character from file
-    var loadCharacterFromFile = function (sCharacterID, sCharacterFile) {
-        var cmd = "character.charactermanager.LoadCharacterFromFile(\"" + sCharacterID + "\", \"" + sCharacterFile + "\")";
+    let loadCharacterFromFile = function (sCharacterID, sCharacterFile) {
+        let cmd = "GeckoCharacter.GetCharacterManager().LoadCharacterFromFile(\"" + sCharacterID + "\", \"" + sCharacterFile + "\")";
         return currentServerObject.runModuleCommand(cmd);
     };
 
     // Save character to file
-    var saveCharacterToFile = function (sCharacterID, sCharacterFile) {
-        var cmd = "character.charactermanager.SaveCharacterToFile(\"" + sCharacterID + "\", \"" + sCharacterFile + "\")";
+    let saveCharacterToFile = function (sCharacterID, sCharacterFile) {
+        let cmd = "GeckoCharacter.GetCharacterManager().SaveCharacterToFile(\"" + sCharacterID + "\", \"" + sCharacterFile + "\")";
         return currentServerObject.runModuleCommand(cmd);
     };
 
     // Create character
-    var createCharacter = function (sCharacterID) {
-        var cmd = "character.charactermanager.CreateCharacter(\"" + sCharacterID + "\")";
+    let createCharacter = function (sCharacterID) {
+        let cmd = "GeckoCharacter.GetCharacterManager().CreateCharacter(\"" + sCharacterID + "\")";
         return currentServerObject.runModuleCommand(cmd);
     };
 
     // Unload character
-    var unloadCharacter = function (sCharacterID) {
-        var cmd = "character.charactermanager.UnloadCharacter(\"" + sCharacterID + "\")";
+    let unloadCharacter = function (sCharacterID) {
+        let cmd = "GeckoCharacter.GetCharacterManager().UnloadCharacter(\"" + sCharacterID + "\")";
         return currentServerObject.runModuleCommand(cmd);
     };
 
     // Does character exist
-    var doesCharacterExist = function (sCharacterID) {
-        var cmd = "character.charactermanager.DoesCharacterExist(\"" + sCharacterID + "\")";
-        var resultid = "CharacterManager:doesCharacterExist";
+    let doesCharacterExist = function (sCharacterID) {
+        let cmd = "GeckoCharacter.GetCharacterManager().DoesCharacterExist(\"" + sCharacterID + "\")";
+        let resultid = "CharacterManager:doesCharacterExist";
         return currentServerObject.runModuleCommandResults(cmd, resultid, true);
     };
 
     // Generate character
-    var generateCharacter = function (sCharacterID, sCharacterGeneratorJson) {
-        var cmd = "character.charactermanager.GenerateCharacter(\"" + sCharacterID + "\", \"" + sCharacterGeneratorJson + "\")";
+    let generateCharacter = function (sCharacterID, sCharacterGeneratorJson) {
+        let cmd = "GeckoCharacter.GetCharacterManager().GenerateCharacter(\"" + sCharacterID + "\", \"" + sCharacterGeneratorJson + "\")";
         return currentServerObject.runModuleCommand(cmd);
     };
 
     // Get character
-    var getCharacter = function (sCharacterID) {
-        var cmd = "character.charactermanager.GetCharacter(\"" + sCharacterID + "\")";
-        var resultid = "CharacterManager:getCharacter";
+    let getCharacter = function (sCharacterID) {
+        let cmd = "GeckoCharacter.GetCharacterManager().GetCharacter(\"" + sCharacterID + "\")";
+        let resultid = "CharacterManager:getCharacter";
         return currentServerObject.runModuleCommandResults(cmd, resultid, true);
     };
 
     // Get all type names
-    var getAllTypeNames = function () {
-        var cmd = "character.charactertypes.GetAllTypeNames()";
-        var resultid = "CharacterManager:getAllTypeNames";
+    let getAllTypeNames = function () {
+        let cmd = "GeckoUtility.GetAllTypeNames()";
+        let resultid = "CharacterManager:getAllTypeNames";
         return currentServerObject.runModuleCommandResults(cmd, resultid, true);
     };
 
     // ------ UI Updates ------ //
 
     // Type names have been updated
-    var typeNamesUpdated = function () {
+    let typeNamesUpdated = function () {
 
         // Create character select tags
-        for (var i = 0; i < createCharacterSelectTags.length; i++) {
-            var tag = createCharacterSelectTags[i].tag;
-            var initial = createCharacterSelectTags[i].initial;
-            var type = createCharacterSelectTags[i].type;
+        for (let i = 0; i < createCharacterSelectTags.length; i++) {
+            let tag = createCharacterSelectTags[i].tag;
+            let initial = createCharacterSelectTags[i].initial;
+            let type = createCharacterSelectTags[i].type;
             $(tag).empty();
             $(tag).append("<option value=''>" + initial + "</option>");
-            for (var j = 0; j < allTypeNames[type].length; j++) {
-                var value = allTypeNames[type][j];
+            for (let j = 0; j < allTypeNames[type].length; j++) {
+                let value = allTypeNames[type][j];
                 if (value.length > 0) {
                     $(tag).append("<option value='" + value + "'>" + value + "</option>");
                 }
@@ -96,10 +96,10 @@ import character.charactertypes`;
     // ------ Buttons ------ //
 
     // Register button handlers
-    var registerButtonHandlers = function () {
+    let registerButtonHandlers = function () {
         $(document).on("click", "#loadCharacterFromJson_submit", function(event) {
-            var sCharID = $("#loadCharacterFromJson_charID").val() || 0;
-            var sCharJson = $("#loadCharacterFromJson_textarea").val() || 0;
+            let sCharID = $("#loadCharacterFromJson_charID").val() || 0;
+            let sCharJson = $("#loadCharacterFromJson_textarea").val() || 0;
             if (sCharID.length == 0 || sCharJson.length == 0) {
                 onError("Error: Invalid character ID or character json.");
                 return;
@@ -110,8 +110,8 @@ import character.charactertypes`;
         });
 
         $(document).on("click", "#loadCharacterFromFile_submit", function(event) {
-            var sCharID = $("#loadCharacterFromFile_charID").val() || "";
-            var sFile = $("#loadCharacterFromFile_filename").val() || "";
+            let sCharID = $("#loadCharacterFromFile_charID").val() || "";
+            let sFile = $("#loadCharacterFromFile_filename").val() || "";
             if (sCharID.length == 0 || sFile.length == 0) {
                 onError("Error: Invalid character ID or filename.");
                 return;
@@ -122,8 +122,8 @@ import character.charactertypes`;
         });
 
         $(document).on("click", "#saveCharacterToFile_submit", function(event) {
-            var sCharID = $("#saveCharacterToFile_charID").val() || "";
-            var sFile = $("#saveCharacterToFile_filename").val() || "";
+            let sCharID = $("#saveCharacterToFile_charID").val() || "";
+            let sFile = $("#saveCharacterToFile_filename").val() || "";
             if (sCharID.length == 0 || sFile.length == 0) {
                 onError("Error: Invalid character ID or filename.");
                 return;
@@ -134,7 +134,7 @@ import character.charactertypes`;
         });
 
         $(document).on("click", "#unloadCharacter_submit", function(event) {
-            var sCharID = $("#unloadCharacter_charID").val() || 0;
+            let sCharID = $("#unloadCharacter_charID").val() || 0;
             if (sSlot.length == 0) {
                 onError("Error: Invalid character ID.");
                 return;
@@ -145,8 +145,8 @@ import character.charactertypes`;
         });
 
         $(document).on("click", "#generateCharacter_submit", function(event) {
-            var sCharID = $("#generateCharacter_charID").val() || 0;
-            var sGeneratorJson = $("#generateCharacter_textarea").val() || 0;
+            let sCharID = $("#generateCharacter_charID").val() || 0;
+            let sGeneratorJson = $("#generateCharacter_textarea").val() || 0;
             if (sCharID.length == 0 || sGeneratorJson.length == 0) {
                 onError("Error: Invalid character ID or character generator json.");
                 return;
@@ -157,7 +157,7 @@ import character.charactertypes`;
         });
 
         $(document).on("click", "#editCharacter_submit", function(event) {
-            var sCharID = $("#editCharacter_charID").val() || 0;
+            let sCharID = $("#editCharacter_charID").val() || 0;
             if (sCharID.length == 0) {
                 onError("Error: Invalid character ID.");
                 return;
@@ -370,22 +370,22 @@ import character.charactertypes`;
                 $("#createCharacter_sstrike_ap").val(charObj.ProgressDataBase.StealthStrikePoints);
             });
 
-            // var weapon1left = $("#createCharacter_weapon1left").val() || "";
-            // var weapon1right = $("#createCharacter_weapon1right").val() || "";
-            // var neck = $("#createCharacter_neck").val() || "";
-            // var weapon2left = $("#createCharacter_weapon2left").val() || "";
-            // var weapon2right = $("#createCharacter_weapon2right").val() || "";
-            // var head = $("#createCharacter_head").val() || "";
-            // var leftfingers = $("#createCharacter_leftfingers").val() || "";
-            // var rightfingers = $("#createCharacter_rightfingers").val() || "";
-            // var hands = $("#createCharacter_hands").val() || "";
-            // var feet = $("#createCharacter_feet").val() || "";
-            // var legs = $("#createCharacter_legs").val() || "";
-            // var chest = $("#createCharacter_chest").val() || "";
+            // let weapon1left = $("#createCharacter_weapon1left").val() || "";
+            // let weapon1right = $("#createCharacter_weapon1right").val() || "";
+            // let neck = $("#createCharacter_neck").val() || "";
+            // let weapon2left = $("#createCharacter_weapon2left").val() || "";
+            // let weapon2right = $("#createCharacter_weapon2right").val() || "";
+            // let head = $("#createCharacter_head").val() || "";
+            // let leftfingers = $("#createCharacter_leftfingers").val() || "";
+            // let rightfingers = $("#createCharacter_rightfingers").val() || "";
+            // let hands = $("#createCharacter_hands").val() || "";
+            // let feet = $("#createCharacter_feet").val() || "";
+            // let legs = $("#createCharacter_legs").val() || "";
+            // let chest = $("#createCharacter_chest").val() || "";
         });
 
         $(document).on("click", "#createCharacter_submit", function(event) {
-            var sCharID = $("#createCharacter_charID").val() || "";
+            let sCharID = $("#createCharacter_charID").val() || "";
             if (sCharID.length == 0) {
                 onError("Error: Invalid character ID.");
                 return;
@@ -596,7 +596,7 @@ import character.charactertypes`;
                 charObj.ProgressDataBase.SmashPoints = parseInt($("#createCharacter_smash_ap").val() || 0);
                 charObj.ProgressDataBase.Speed = parseInt($("#createCharacter_speed").val() || 0);
                 charObj.ProgressDataBase.StealthStrikePoints = parseInt($("#createCharacter_sstrike_ap").val() || 0);
-                var sCharJson = JSON.stringify(charObj);
+                let sCharJson = JSON.stringify(charObj);
                 return loadCharacterFromJson(sCharID, sCharJson);
             }).then(function () {
                 displayResults(true, "Saved character " + sCharID + ".");
@@ -605,10 +605,10 @@ import character.charactertypes`;
     };
 
     // Local data
-    var allTypeNames = [];
+    let allTypeNames = [];
 
     // Select tags
-    var createCharacterSelectTags = [
+    let createCharacterSelectTags = [
         {"tag": "#createCharacter_gender", "initial": "Gender Type...", "type": "CharacterGenderType"},
         {"tag": "#createCharacter_hair", "initial": "Hair Type...", "type": "CharacterHairType"},
         {"tag": "#createCharacter_eyes", "initial": "Eyes Type...", "type": "CharacterEyeType"},
@@ -620,7 +620,7 @@ import character.charactertypes`;
     ];
 
     // ------ Public API ------ //
-    var pub = {};
+    let pub = {};
 
     // Init
     pub.init = function (serverObj) {

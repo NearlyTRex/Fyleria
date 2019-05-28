@@ -1,4 +1,25 @@
 <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Character Manager</title>
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/lib/interface/rest.js"></script>
+    <script type="text/javascript" src="/pages/save_manager/save_manager.js"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+    "use strict";
+    let onAPIOpen = function() {};
+    let onAPIClose = function() {};
+    $(document).ready(function () {
+        RestServer.construct("http://localhost:8080", onAPIOpen, onAPIClose);
+        SaveManager.init(RestServer);
+    });
+    //]]>
+    </script>
+</head>
+
 <div class="container">
 
     <form>
@@ -136,18 +157,4 @@
 
 </div>
 
-<script type="text/javascript" src="save_manager.js"></script>
-<script type="text/javascript">
-//<![CDATA[
-"use strict";
-$(document).ready(function () {
-    if (configData.useWebsocket) {
-        SaveManager.init(WebsocketServer);
-    }
-    else if (configData.useRest) {
-        SaveManager.init(RestServer);
-    }
-});
-//]]>
-</script>
 </html>
