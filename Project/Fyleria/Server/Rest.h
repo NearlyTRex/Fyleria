@@ -168,11 +168,18 @@ private:
 
     // Get optional parameter
     template <class T>
-    void GetOptionalParameter(const HttpRequest& request, const String& sParam, T& result) const;
+    Bool GetOptionalParameter(
+        const HttpRequest& request,
+        const String& sParam,
+        T& result) const;
 
     // Get required parameter
     template <class T>
-    Bool GetRequiredParameter(const HttpRequest& request, HttpResponseWriter& response, const String& sParam, T& result);
+    Bool GetRequiredParameter(
+        const HttpRequest& request,
+        HttpResponseWriter& response,
+        const String& sParam,
+        T& result);
 };
 
 // Rest server

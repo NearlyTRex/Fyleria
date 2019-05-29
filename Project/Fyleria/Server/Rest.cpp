@@ -112,7 +112,7 @@ void CustomHttpHandler::DoPost_RunModuleFile(const HttpRequest& request, HttpRes
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run file '%1%'.") % sInputFile).str();
-        HandleResponse(HttpCodeConflict, response, sMessage);
+        HandleResponse(HttpCodeInternalServerError, response, sMessage);
         return;
     }
 
@@ -143,7 +143,7 @@ void CustomHttpHandler::DoPost_RunModuleFileResults(const HttpRequest& request, 
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run file '%1%'.") % sInputFile).str();
-        HandleResponse(HttpCodeConflict, response, sMessage);
+        HandleResponse(HttpCodeInternalServerError, response, sMessage);
         return;
     }
 
@@ -166,7 +166,7 @@ void CustomHttpHandler::DoPost_RunModuleCommand(const HttpRequest& request, Http
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run command '%1%'.") % sInputCommand).str();
-        HandleResponse(HttpCodeConflict, response, sMessage);
+        HandleResponse(HttpCodeInternalServerError, response, sMessage);
         return;
     }
 
@@ -197,7 +197,7 @@ void CustomHttpHandler::DoPost_RunModuleCommandResults(const HttpRequest& reques
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run command '%1%'.") % sInputCommand).str();
-        HandleResponse(HttpCodeConflict, response, sMessage);
+        HandleResponse(HttpCodeInternalServerError, response, sMessage);
         return;
     }
 
@@ -354,6 +354,7 @@ void CustomHttpHandler::DoGet_ServeFile(const HttpRequest& request, HttpResponse
 void CustomHttpHandler::HandleResponse(const HttpCode& code, HttpResponseWriter& response, const String& sResponse)
 {
     // Send response
+    LOG_FORMAT_STATEMENT("Sending response: code(%d), text(%s)\n", static_cast<int>(code), sResponse.c_str());
     response.headers()
         .add<HttpHeaderAccessControlAllowOrigin>("*")
         .add<HttpHeaderAccessControlAllowMethods>("GET, POST, OPTIONS")
@@ -371,7 +372,7 @@ Bool CustomHttpHandler::SendResultsToUser(HttpResponseWriter& response, const St
     if (!uResultsLen)
     {
         String sMessage = (BoostFormatString("The result size of '%1%' was zero.") % uResultsLen).str();
-        HandleResponse(HttpCodeConflict, response, sMessage);
+        HandleResponse(HttpCodeNotAcceptable, response, sMessage);
         return false;
     }
 
@@ -381,7 +382,7 @@ Bool CustomHttpHandler::SendResultsToUser(HttpResponseWriter& response, const St
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Failed retrieving result for '%1%'.") % sResultsID).str();
-        HandleResponse(HttpCodeConflict, response, sMessage);
+        HandleResponse(HttpCodeNotAcceptable, response, sMessage);
         return false;
     }
 
@@ -414,7 +415,10 @@ Bool CustomHttpHandler::SendFileToUser(HttpResponseWriter& response, const Strin
 }
 
 template <class T>
-void CustomHttpHandler::GetOptionalParameter(const HttpRequest& request, const String& sParam, T& result) const
+Bool CustomHttpHandler::GetOptionalParameter(
+    const HttpRequest& request,
+    const String& sParam,
+    T& result) const
 {
     // Determine parameter location
     Json jsonBody = (!request.body().empty()) ? JsonParse(request.body()) : Json();
@@ -425,15 +429,22 @@ void CustomHttpHandler::GetOptionalParameter(const HttpRequest& request, const S
     if (bParamInQuery)
     {
         result = BoostLexicalCast<T>(request.query().get(sParam).get());
+        return true;
     }
     else if (bParamInBody)
     {
         result = jsonBody[sParam].get<T>();
+        return true;
     }
+    return false;
 }
 
 template <class T>
-Bool CustomHttpHandler::GetRequiredParameter(const HttpRequest& request, HttpResponseWriter& response, const String& sParam, T& result)
+Bool CustomHttpHandler::GetRequiredParameter(
+    const HttpRequest& request,
+    HttpResponseWriter& response,
+    const String& sParam,
+    T& result)
 {
     // Determine parameter location
     Json jsonBody = (!request.body().empty()) ? JsonParse(request.body()) : Json();
@@ -454,7 +465,6 @@ Bool CustomHttpHandler::GetRequiredParameter(const HttpRequest& request, HttpRes
 
     // Missing parameter so it must be a bad request
     String sMessage = (BoostFormatString("Missing required parameter '%1%'.") % sParam).str();
-    LOG_FORMAT_STATEMENT("%s\n", sMessage.c_str());
     HandleResponse(HttpCodeBadRequest, response, sMessage);
     return false;
 }
