@@ -171,5 +171,5 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
 
     // Local
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllTypeNames_MR, Gecko);
+    WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllTypeNames_StoreResult, Gecko);
 }

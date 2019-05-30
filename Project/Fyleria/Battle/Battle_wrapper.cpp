@@ -48,12 +48,12 @@ PYBIND11_EMBEDDED_MODULE(GeckoBattle, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionCount, Gecko::Battle)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(EnemyPartyID, Gecko::Battle)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(AllyPartyID, Gecko::Battle)
-        WRAPPING_ADD_METHOD_SIMPLE(IsBattleOver_MR, Gecko::Battle)
-        WRAPPING_ADD_METHOD_SIMPLE(IsBattleWon_MR, Gecko::Battle)
-        WRAPPING_ADD_METHOD_SIMPLE(IsBattleLost_MR, Gecko::Battle)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAction_MR, Gecko::Battle)
-        WRAPPING_ADD_METHOD_SIMPLE(GetCurrentAction_MR, Gecko::Battle)
-        WRAPPING_ADD_METHOD_SIMPLE(AreAllActionsFinished_MR, Gecko::Battle)
+        WRAPPING_ADD_METHOD_SIMPLE(IsBattleOver_StoreResult, Gecko::Battle)
+        WRAPPING_ADD_METHOD_SIMPLE(IsBattleWon_StoreResult, Gecko::Battle)
+        WRAPPING_ADD_METHOD_SIMPLE(IsBattleLost_StoreResult, Gecko::Battle)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAction_StoreResult, Gecko::Battle)
+        WRAPPING_ADD_METHOD_SIMPLE(GetCurrentAction_StoreResult, Gecko::Battle)
+        WRAPPING_ADD_METHOD_SIMPLE(AreAllActionsFinished_StoreResult, Gecko::Battle)
     ;
     PyBindVector<Gecko::BattleArray>(m, "BattleArray");
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertBattleToJsonString, Gecko);
@@ -86,9 +86,9 @@ PYBIND11_EMBEDDED_MODULE(GeckoBattle, m)
         WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetBattle, Gecko::BattleManager, PyBindReturnRefInternal, const Gecko::IndexedString&)
         WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetCurrentBattle, Gecko::BattleManager, PyBindReturnCopy, )
         WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetCurrentBattle, Gecko::BattleManager, PyBindReturnRefInternal, )
-        WRAPPING_ADD_METHOD_SIMPLE(DoesBattleExist_MR, Gecko::BattleManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetBattle_MR, Gecko::BattleManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetCurrentBattle_MR, Gecko::BattleManager)
+        WRAPPING_ADD_METHOD_SIMPLE(DoesBattleExist_StoreResult, Gecko::BattleManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetBattle_StoreResult, Gecko::BattleManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetCurrentBattle_StoreResult, Gecko::BattleManager)
     ;
 
     // Local
