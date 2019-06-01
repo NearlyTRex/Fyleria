@@ -1,5 +1,5 @@
 // Fyleria Engine
-// Copyright © 2016 Go Go Gecko Productions
+// Copyright © 2019 Go Go Gecko Productions
 
 #ifndef _GECKO_CHARACTER_DATA_WRAPPER_H_
 #define _GECKO_CHARACTER_DATA_WRAPPER_H_
