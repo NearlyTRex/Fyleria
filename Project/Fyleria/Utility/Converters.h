@@ -19,6 +19,24 @@ String ConvertWideStringToString(const WString& sWideString);
 // Convert game time to string
 String ConvertGameTimeToString(ULongLong uTime);
 
+// Convert to url encoded string
+String ConvertToUrlEncodedString(const String& sString);
+
+// Convert to url decoded string
+String ConvertToUrlDecodedString(const String& sString);
+
+// Convert byte to hex string
+String ConvertByteToHexString(UByte uByte);
+
+// Convert hex string to byte
+UByte ConvertHexStringToByte(const String& sString);
+
+// Convert string to token array
+StringArray ConvertStringToTokenArray(const String& sString, const String& sChars);
+
+// Convert query string to string map
+StringMap ConvertQueryStringToStringMap(const String& sQuery);
+
 };
 
 #endif

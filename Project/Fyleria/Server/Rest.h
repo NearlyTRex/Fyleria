@@ -126,6 +126,7 @@ typedef Pistache::Rest::Request RestRequest;
 #define HttpHeaderServer                            Pistache::Http::Header::Server
 #define HttpHeaderUserAgent                         Pistache::Http::Header::UserAgent
 #define HttpHeaderRaw                               Pistache::Http::Header::Raw
+#define HttpMediaType                               Pistache::Http::Mime::MediaType
 
 // Custom http handler
 class CustomHttpHandler : public HttpHandler
@@ -157,10 +158,13 @@ private:
     void DoGet_DoesModuleResultExist(const HttpRequest& request, HttpResponseWriter& response);
     void DoGet_GetModuleResultSize(const HttpRequest& request, HttpResponseWriter& response);
     void DoGet_GetModuleResults(const HttpRequest& request, HttpResponseWriter& response);
-    void DoGet_ServeFile(const HttpRequest& request, HttpResponseWriter& response);
+
+    // Special handlers
+    void DoRequest_ServeTool(const HttpRequest& request, HttpResponseWriter& response);
+    void DoRequest_ServeFile(const HttpRequest& request, HttpResponseWriter& response);
 
     // Handle response
-    void HandleResponse(const HttpCode& code, HttpResponseWriter& response, const String& sResponse);
+    void HandleResponse(const HttpCode& code, HttpResponseWriter& response, const String& sResponse, const String& sMimeType);
 
     // Send results back to the user
     Bool SendResultsToUser(HttpResponseWriter& response, const String& sResultsID, Bool bKeepResults);

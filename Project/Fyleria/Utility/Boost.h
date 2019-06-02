@@ -13,6 +13,7 @@
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
 #include <boost/program_options.hpp>
+#include <boost/tokenizer.hpp>
 
 // External function defines
 #define BoostAnyCast boost::any_cast
@@ -41,6 +42,8 @@
 #define BoostProgramOptionsVariablesMap boost::program_options::variables_map
 #define BoostProgramOptionsValue boost::program_options::value
 #define BoostProgramOptionsBoolSwitch boost::program_options::bool_switch
+#define BoostTokenizer boost::tokenizer
+#define BoostCharSeparator boost::char_separator
 
 // External exception defines
 #define BoostBadAnyCast boost::bad_any_cast

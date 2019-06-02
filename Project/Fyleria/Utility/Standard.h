@@ -101,6 +101,7 @@
 #define STDGetTimePointDuration std::chrono::duration_cast<std::chrono::seconds>
 #define STDSetFill std::setfill
 #define STDSetWidth std::setw
+#define STDHex std::hex
 #define STDEnableSharedFromThis std::enable_shared_from_this
 #define STDGetSharedThis shared_from_this
 

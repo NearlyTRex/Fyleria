@@ -3,6 +3,9 @@
 
 #include "Server/Rest.h"
 #include "Interface/Interface.h"
+#include "Web/WebPageManager.h"
+#include "Utility/Constants.h"
+#include "Utility/Converters.h"
 #include "Utility/Macros.h"
 #include "Utility/Types.h"
 #include "Utility/Json.h"
@@ -28,57 +31,65 @@ void CustomHttpHandler::onRequest(const HttpRequest& request, HttpResponseWriter
         request.body().c_str());
     if (request.method() == HttpMethodGet)
     {
-        if (request.resource() == "/api/does_module_result_exist")
+        if (request.resource() == WEB_ENDPOINT_DOES_MODULE_RESULT_EXIST)
         {
             DoGet_DoesModuleResultExist(request, response);
         }
-        else if (request.resource() == "/api/get_module_result_size")
+        else if (request.resource() == WEB_ENDPOINT_GET_MODULE_RESULT_SIZE)
         {
             DoGet_GetModuleResultSize(request, response);
         }
-        else if (request.resource() == "/api/get_module_results")
+        else if (request.resource() == WEB_ENDPOINT_GET_MODULE_RESULTS)
         {
             DoGet_GetModuleResults(request, response);
         }
+        else if (StartsWith(request.resource(), String(WEB_PAGE_TOOL_BASE)))
+        {
+            DoRequest_ServeTool(request, response);
+        }
         else
         {
-            DoGet_ServeFile(request, response);
+            DoRequest_ServeFile(request, response);
         }
     }
     else if (request.method() == HttpMethodPost)
     {
-        if (request.resource() == "/api/run_module_file")
+        if (request.resource() == WEB_ENDPOINT_RUN_MODULE_FILE)
         {
             DoPost_RunModuleFile(request, response);
         }
-        else if (request.resource() == "/api/run_module_file_results")
+        else if (request.resource() == WEB_ENDPOINT_RUN_MODULE_FILE_RESULTS)
         {
             DoPost_RunModuleFileResults(request, response);
         }
-        else if (request.resource() == "/api/run_module_command")
+        else if (request.resource() == WEB_ENDPOINT_RUN_MODULE_COMMAND)
         {
             DoPost_RunModuleCommand(request, response);
         }
-        else if (request.resource() == "/api/run_module_command_results")
+        else if (request.resource() == WEB_ENDPOINT_RUN_MODULE_COMMAND_RESULTS)
         {
             DoPost_RunModuleCommandResults(request, response);
         }
-        else if (request.resource() == "/api/set_current_module_result_id")
+        else if (request.resource() == WEB_ENDPOINT_SET_CURRENT_MODULE_RESULT_ID)
         {
             DoPost_SetCurrentModuleResultID(request, response);
         }
-        else if (request.resource() == "/api/clear_module_results")
+        else if (request.resource() == WEB_ENDPOINT_CLEAR_MODULE_RESULTS)
         {
             DoPost_ClearModuleResult(request, response);
         }
-        else if (request.resource() == "/api/clear_all_module_results")
+        else if (request.resource() == WEB_ENDPOINT_CLEAR_ALL_MODULE_RESULTS)
         {
             DoPost_ClearAllModuleResults(request, response);
+        }
+        else if (StartsWith(request.resource(), String(WEB_PAGE_TOOL_BASE)))
+        {
+            DoRequest_ServeTool(request, response);
         }
         else
         {
             String sMessage = (BoostFormatString("Unknown POST resource '%1%'.") % request.resource()).str();
-            HandleResponse(HttpCodeMethodNotAllowed, response, sMessage);
+            HandleResponse(HttpCodeMethodNotAllowed, response, sMessage, "text/plain");
         }
     }
     else if (request.method() == HttpMethodOptions)
@@ -88,13 +99,13 @@ void CustomHttpHandler::onRequest(const HttpRequest& request, HttpResponseWriter
     else
     {
         String sMessage = (BoostFormatString("Unhandled method '%1%'.") % methodString(request.method())).str();
-        HandleResponse(HttpCodeMethodNotAllowed, response, sMessage);
+        HandleResponse(HttpCodeMethodNotAllowed, response, sMessage, "text/plain");
     }
 }
 
 void CustomHttpHandler::DoOptions_RequestToRun(const HttpRequest& request, HttpResponseWriter& response)
 {
-    HandleResponse(HttpCodeOk, response, "");
+    HandleResponse(HttpCodeOk, response, "", "text/plain");
 }
 
 void CustomHttpHandler::DoPost_RunModuleFile(const HttpRequest& request, HttpResponseWriter& response)
@@ -112,14 +123,14 @@ void CustomHttpHandler::DoPost_RunModuleFile(const HttpRequest& request, HttpRes
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run file '%1%'.") % sInputFile).str();
-        HandleResponse(HttpCodeInternalServerError, response, sMessage);
+        HandleResponse(HttpCodeInternalServerError, response, sMessage, "text/plain");
         return;
     }
 
     // Send results
     Json return_json;
     return_json["return_value"] = return_value;
-    HandleResponse(HttpCodeOk, response, return_json.dump());
+    HandleResponse(HttpCodeOk, response, return_json.dump(), "application/json");
 }
 
 void CustomHttpHandler::DoPost_RunModuleFileResults(const HttpRequest& request, HttpResponseWriter& response)
@@ -143,7 +154,7 @@ void CustomHttpHandler::DoPost_RunModuleFileResults(const HttpRequest& request, 
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run file '%1%'.") % sInputFile).str();
-        HandleResponse(HttpCodeInternalServerError, response, sMessage);
+        HandleResponse(HttpCodeInternalServerError, response, sMessage, "text/plain");
         return;
     }
 
@@ -166,14 +177,14 @@ void CustomHttpHandler::DoPost_RunModuleCommand(const HttpRequest& request, Http
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run command '%1%'.") % sInputCommand).str();
-        HandleResponse(HttpCodeInternalServerError, response, sMessage);
+        HandleResponse(HttpCodeInternalServerError, response, sMessage, "text/plain");
         return;
     }
 
     // Send results
     Json return_json;
     return_json["return_value"] = return_value;
-    HandleResponse(HttpCodeOk, response, return_json.dump());
+    HandleResponse(HttpCodeOk, response, return_json.dump(), "application/json");
 }
 
 void CustomHttpHandler::DoPost_RunModuleCommandResults(const HttpRequest& request, HttpResponseWriter& response)
@@ -197,7 +208,7 @@ void CustomHttpHandler::DoPost_RunModuleCommandResults(const HttpRequest& reques
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Could not run command '%1%'.") % sInputCommand).str();
-        HandleResponse(HttpCodeInternalServerError, response, sMessage);
+        HandleResponse(HttpCodeInternalServerError, response, sMessage, "text/plain");
         return;
     }
 
@@ -221,7 +232,7 @@ void CustomHttpHandler::DoPost_SetCurrentModuleResultID(const HttpRequest& reque
     // Send results
     Json return_json;
     return_json["return_value"] = true;
-    HandleResponse(HttpCodeOk, response, return_json.dump());
+    HandleResponse(HttpCodeOk, response, return_json.dump(), "application/json");
 }
 
 void CustomHttpHandler::DoPost_ClearModuleResult(const HttpRequest& request, HttpResponseWriter& response)
@@ -240,7 +251,7 @@ void CustomHttpHandler::DoPost_ClearModuleResult(const HttpRequest& request, Htt
     // Send results
     Json return_json;
     return_json["return_value"] = true;
-    HandleResponse(HttpCodeOk, response, return_json.dump());
+    HandleResponse(HttpCodeOk, response, return_json.dump(), "application/json");
 }
 
 void CustomHttpHandler::DoPost_ClearAllModuleResults(const HttpRequest& request, HttpResponseWriter& response)
@@ -252,7 +263,7 @@ void CustomHttpHandler::DoPost_ClearAllModuleResults(const HttpRequest& request,
     // Send results
     Json return_json;
     return_json["return_value"] = true;
-    HandleResponse(HttpCodeOk, response, return_json.dump());
+    HandleResponse(HttpCodeOk, response, return_json.dump(), "application/json");
 }
 
 void CustomHttpHandler::DoGet_DoesModuleResultExist(const HttpRequest& request, HttpResponseWriter& response)
@@ -271,7 +282,7 @@ void CustomHttpHandler::DoGet_DoesModuleResultExist(const HttpRequest& request, 
     // Send results
     Json return_json;
     return_json["return_value"] = return_value;
-    HandleResponse(HttpCodeOk, response, return_json.dump());
+    HandleResponse(HttpCodeOk, response, return_json.dump(), "application/json");
 }
 
 void CustomHttpHandler::DoGet_GetModuleResultSize(const HttpRequest& request, HttpResponseWriter& response)
@@ -290,7 +301,7 @@ void CustomHttpHandler::DoGet_GetModuleResultSize(const HttpRequest& request, Ht
     // Send results
     Json return_json;
     return_json["return_value"] = return_value;
-    HandleResponse(HttpCodeOk, response, return_json.dump());
+    HandleResponse(HttpCodeOk, response, return_json.dump(), "application/json");
 }
 
 void CustomHttpHandler::DoGet_GetModuleResults(const HttpRequest& request, HttpResponseWriter& response)
@@ -306,7 +317,54 @@ void CustomHttpHandler::DoGet_GetModuleResults(const HttpRequest& request, HttpR
     SendResultsToUser(response, sInputResultsId, true);
 }
 
-void CustomHttpHandler::DoGet_ServeFile(const HttpRequest& request, HttpResponseWriter& response)
+void CustomHttpHandler::DoRequest_ServeTool(const HttpRequest& request, HttpResponseWriter& response)
+{
+    // Get request resource string
+    const String sResource = request.resource();
+
+    // Retrieve GET/POST parameters
+    String sGetParams = request.query().as_str();
+    String sPostParams = request.body();
+
+    // Parse parameters
+    StringMap tGetParams = ConvertQueryStringToStringMap(sGetParams);
+    StringMap tPostParams = ConvertQueryStringToStringMap(sPostParams);
+    StringMap tAllParams;
+    tAllParams.insert(tGetParams.begin(), tGetParams.end());
+    tAllParams.insert(tPostParams.begin(), tPostParams.end());
+
+    // Check for available tools
+    String sOutput;
+    if(sResource == WEB_PAGE_TOOL_CHARACTER_MANAGER)
+    {
+        WebPageManager::GetInstance()->GetCharacterManagerPage().UpdatePageContent(tAllParams);
+        sOutput = WebPageManager::GetInstance()->GetCharacterManagerPage().GetPageContent();
+    }
+    else if(sResource == WEB_PAGE_TOOL_PARTY_MANAGER)
+    {
+        WebPageManager::GetInstance()->GetPartyManagerPage().UpdatePageContent(tAllParams);
+        sOutput = WebPageManager::GetInstance()->GetPartyManagerPage().GetPageContent();
+    }
+    else if(sResource == WEB_PAGE_TOOL_SAVE_MANAGER)
+    {
+        WebPageManager::GetInstance()->GetSaveManagerPage().UpdatePageContent(tAllParams);
+        sOutput = WebPageManager::GetInstance()->GetSaveManagerPage().GetPageContent();
+    }
+
+    // Handle unknown tools
+    if(sOutput.empty())
+    {
+        String sMessage = (BoostFormatString("The requested URL '%1%' was not found on this server.") % sResource).str();
+        HandleResponse(HttpCodeNotFound, response, sMessage, "text/plain");
+        return;
+    }
+
+    // Send output
+    HandleResponse(HttpCodeOk, response, sOutput, "text/html");
+    return;
+}
+
+void CustomHttpHandler::DoRequest_ServeFile(const HttpRequest& request, HttpResponseWriter& response)
 {
     // Get request resource string
     const String sResource = request.resource();
@@ -347,19 +405,19 @@ void CustomHttpHandler::DoGet_ServeFile(const HttpRequest& request, HttpResponse
 
     // File was not found
     String sMessage = (BoostFormatString("The requested URL '%1%' was not found on this server.") % sResource).str();
-    HandleResponse(HttpCodeNotFound, response, sMessage);
+    HandleResponse(HttpCodeNotFound, response, sMessage, "text/plain");
     return;
 }
 
-void CustomHttpHandler::HandleResponse(const HttpCode& code, HttpResponseWriter& response, const String& sResponse)
+void CustomHttpHandler::HandleResponse(const HttpCode& code, HttpResponseWriter& response, const String& sResponse, const String& sMimeType)
 {
     // Send response
-    LOG_FORMAT_STATEMENT("Sending response: code(%d), text(%s)\n", static_cast<int>(code), sResponse.c_str());
+    LOG_FORMAT_STATEMENT("Sending response: code(%d), text(%s), mime(%s)\n", static_cast<int>(code), sResponse.c_str(), sMimeType.c_str());
     response.headers()
         .add<HttpHeaderAccessControlAllowOrigin>("*")
         .add<HttpHeaderAccessControlAllowMethods>("GET, POST, OPTIONS")
         .add<HttpHeaderAccessControlAllowHeaders>("Content-Type")
-        .add<HttpHeaderContentType>(MIME(Text, Plain));
+        .add<HttpHeaderContentType>(HttpMediaType::fromString(sMimeType));
     response.send(code, sResponse);
 }
 
@@ -372,7 +430,7 @@ Bool CustomHttpHandler::SendResultsToUser(HttpResponseWriter& response, const St
     if (!uResultsLen)
     {
         String sMessage = (BoostFormatString("The result size of '%1%' was zero.") % uResultsLen).str();
-        HandleResponse(HttpCodeNotAcceptable, response, sMessage);
+        HandleResponse(HttpCodeNotAcceptable, response, sMessage, "text/plain");
         return false;
     }
 
@@ -382,7 +440,7 @@ Bool CustomHttpHandler::SendResultsToUser(HttpResponseWriter& response, const St
     if (!return_value)
     {
         String sMessage = (BoostFormatString("Failed retrieving result for '%1%'.") % sResultsID).str();
-        HandleResponse(HttpCodeNotAcceptable, response, sMessage);
+        HandleResponse(HttpCodeNotAcceptable, response, sMessage, "text/plain");
         return false;
     }
 
@@ -395,7 +453,7 @@ Bool CustomHttpHandler::SendResultsToUser(HttpResponseWriter& response, const St
     }
 
     // Send results
-    HandleResponse(HttpCodeOk, response, sResults);
+    HandleResponse(HttpCodeOk, response, sResults, "application/json");
     return true;
 }
 
@@ -465,7 +523,7 @@ Bool CustomHttpHandler::GetRequiredParameter(
 
     // Missing parameter so it must be a bad request
     String sMessage = (BoostFormatString("Missing required parameter '%1%'.") % sParam).str();
-    HandleResponse(HttpCodeBadRequest, response, sMessage);
+    HandleResponse(HttpCodeBadRequest, response, sMessage, "text/plain");
     return false;
 }
 
@@ -485,6 +543,7 @@ void RestServer::Reset()
     {
         auto options = HttpEndpoint::options()
             .threads(GetThreadCount())
+            .maxPayload(16384)
             .flags(TcpOptionReuseAddr);
         GetEndpoint()->init(options);
     }
