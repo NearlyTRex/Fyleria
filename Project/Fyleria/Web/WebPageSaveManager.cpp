@@ -11,7 +11,8 @@ WebPageSaveManager::WebPageSaveManager()
     : WebPage()
 {
     SetPageTemplate(R"TEMPLATE(
-<html>
+<!DOCTYPE html>
+<html lang="en-GB">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Save Manager</title>
@@ -41,7 +42,7 @@ WebPageSaveManager::WebPageSaveManager()
                 </select>
             </div>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="pullSave_partyID" placeholder="Party Identifier" value="%pullSave_partyID%"></input>
+                <input type="text" class="form-control" name="pullSave_partyID" placeholder="Party Identifier" value="%pullSave_partyID%"/>
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="pullSave_submit">Run</button>
@@ -119,7 +120,7 @@ WebPageSaveManager::WebPageSaveManager()
                 </select>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadFromFile_filename" placeholder="Filename" value="%loadFromFile_filename%"></input>
+                <input type="text" class="form-control" name="loadFromFile_filename" placeholder="Filename" value="%loadFromFile_filename%"/>
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="loadFromFile_submit">Run</button>
@@ -140,7 +141,7 @@ WebPageSaveManager::WebPageSaveManager()
                 </select>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="saveToFile_filename" placeholder="Filename" value="%saveToFile_filename%"></input>
+                <input type="text" class="form-control" name="saveToFile_filename" placeholder="Filename" value="%saveToFile_filename%"/>
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="saveToFile_submit">Run</button>
@@ -149,13 +150,13 @@ WebPageSaveManager::WebPageSaveManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Save All To Dir</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="saveAllToDir_directory" placeholder="Directory" value="%saveAllToDir_directory%"></input>
+                <input type="text" class="form-control" name="saveAllToDir_directory" placeholder="Directory" value="%saveAllToDir_directory%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="saveAllToDir_basename" placeholder="Basename" value="%saveAllToDir_basename%"></input>
+                <input type="text" class="form-control" name="saveAllToDir_basename" placeholder="Basename" value="%saveAllToDir_basename%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="saveAllToDir_extension" placeholder="Extension" value="%saveAllToDir_extension%"></input>
+                <input type="text" class="form-control" name="saveAllToDir_extension" placeholder="Extension" value="%saveAllToDir_extension%"/>
             </div>
             <div class="col-sm-2">
                 <select class="form-control" name="saveAllToDir_saveType">
@@ -170,13 +171,13 @@ WebPageSaveManager::WebPageSaveManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load All From Dir</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="loadAllFromDir_directory" placeholder="Directory" value="%loadAllFromDir_directory%"></input>
+                <input type="text" class="form-control" name="loadAllFromDir_directory" placeholder="Directory" value="%loadAllFromDir_directory%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="loadAllFromDir_basename" placeholder="Basename" value="%loadAllFromDir_basename%"></input>
+                <input type="text" class="form-control" name="loadAllFromDir_basename" placeholder="Basename" value="%loadAllFromDir_basename%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="loadAllFromDir_extension" placeholder="Extension" value="%loadAllFromDir_extension%"></input>
+                <input type="text" class="form-control" name="loadAllFromDir_extension" placeholder="Extension" value="%loadAllFromDir_extension%"/>
             </div>
             <div class="col-sm-2">
                 <select class="form-control" name="loadAllFromDir_saveType">

@@ -11,7 +11,8 @@ WebPagePartyManager::WebPagePartyManager()
     : WebPage()
 {
     SetPageTemplate(R"TEMPLATE(
-<html>
+<!DOCTYPE html>
+<html lang="en-GB">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Party Manager</title>
@@ -29,7 +30,7 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load From JSON</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadPartyFromJson_partyID" placeholder="Party Identifier" value="%loadPartyFromJson_partyID%"></input>
+                <input type="text" class="form-control" name="loadPartyFromJson_partyID" placeholder="Party Identifier" value="%loadPartyFromJson_partyID%"/>
             </div>
             <div class="col-sm-4">
                 <textarea style="resize: none;" class="form-control" rows="3" name="loadPartyFromJson_textarea" placeholder="Raw party json">%loadPartyFromJson_textarea%</textarea>
@@ -41,10 +42,10 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load From File</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadPartyFromFile_partyID" placeholder="Party Identifier" value="%loadPartyFromFile_partyID%"></input>
+                <input type="text" class="form-control" name="loadPartyFromFile_partyID" placeholder="Party Identifier" value="%loadPartyFromFile_partyID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadPartyFromFile_filename" placeholder="Filename" value="%loadPartyFromFile_filename%"></input>
+                <input type="text" class="form-control" name="loadPartyFromFile_filename" placeholder="Filename" value="%loadPartyFromFile_filename%"/>
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="loadPartyFromFile_submit">Run</button>
@@ -53,10 +54,10 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Save To File</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="savePartyToFile_partyID" placeholder="Party Identifier" value="%savePartyToFile_partyID%"></input>
+                <input type="text" class="form-control" name="savePartyToFile_partyID" placeholder="Party Identifier" value="%savePartyToFile_partyID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="savePartyToFile_filename" placeholder="Filename" value="%savePartyToFile_filename%"></input>
+                <input type="text" class="form-control" name="savePartyToFile_filename" placeholder="Filename" value="%savePartyToFile_filename%"/>
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="savePartyToFile_submit">Run</button>
@@ -65,7 +66,7 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Unload Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="unloadParty_partyID" placeholder="Party Identifier" value="%unloadParty_partyID%"></input>
+                <input type="text" class="form-control" name="unloadParty_partyID" placeholder="Party Identifier" value="%unloadParty_partyID%"/>
             </div>
             <div class="col-sm-4">
             </div>
@@ -76,7 +77,7 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Delete Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="deleteParty_partyID" placeholder="Party Identifier" value="%deleteParty_partyID%"></input>
+                <input type="text" class="form-control" name="deleteParty_partyID" placeholder="Party Identifier" value="%deleteParty_partyID%"/>
             </div>
             <div class="col-sm-4">
             </div>
@@ -87,7 +88,7 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Set As Current Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="setCurrentParty_partyID" placeholder="Party Identifier" value="%setCurrentParty_partyID%"></input>
+                <input type="text" class="form-control" name="setCurrentParty_partyID" placeholder="Party Identifier" value="%setCurrentParty_partyID%"/>
             </div>
             <div class="col-sm-2">
                 <select class="form-control" name="setCurrentParty_partytype">
@@ -104,7 +105,7 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Create Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="createParty_partyID" placeholder="Party Identifier" value="%createParty_partyID%"></input>
+                <input type="text" class="form-control" name="createParty_partyID" placeholder="Party Identifier" value="%createParty_partyID%"/>
             </div>
             <div class="col-sm-2">
                 <select class="form-control" name="createParty_partytype">
@@ -114,7 +115,7 @@ WebPagePartyManager::WebPagePartyManager()
             </div>
             <div class="col-sm-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="current" name="createParty_setascurrent" checked="%createParty_setascurrent%"></input>
+                    <input class="form-check-input" type="checkbox" value="current" name="createParty_setascurrent" checked="%createParty_setascurrent%"/>
                     <label class="form-check-label" for="createParty_setascurrent">
                         Set as current
                     </label>
@@ -140,10 +141,10 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Current Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="currentParty_ally" placeholder="Ally Party" readonly="readonly" value="%currentParty_ally%"></input>
+                <input type="text" class="form-control" name="currentParty_ally" placeholder="Ally Party" readonly="readonly" value="%currentParty_ally%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="currentParty_enemy" placeholder="Enemy Party" readonly="readonly" value="%currentParty_enemy%"></input>
+                <input type="text" class="form-control" name="currentParty_enemy" placeholder="Enemy Party" readonly="readonly" value="%currentParty_enemy%"/>
             </div>
         </div>
         <div class="form-group row">
