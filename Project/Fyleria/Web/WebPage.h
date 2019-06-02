@@ -35,9 +35,6 @@ public:
 
     // Page template
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageTemplate, String);
-
-    // Page template tokens
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageTemplateTokens, StringArray);
 };
 
 // Typedefs

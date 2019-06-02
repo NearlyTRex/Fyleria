@@ -14,6 +14,7 @@
 #include <boost/thread.hpp>
 #include <boost/program_options.hpp>
 #include <boost/tokenizer.hpp>
+#include <boost/algorithm/string/replace.hpp>
 
 // External function defines
 #define BoostAnyCast boost::any_cast
@@ -31,6 +32,8 @@
 #define BoostProgramOptionsStore boost::program_options::store
 #define BoostProgramOptionsNotify boost::program_options::notify
 #define BoostProgramOptionsParseCommandLine boost::program_options::parse_command_line
+#define BoostReplaceAll boost::replace_all
+#define BoostReplaceAllCopy boost::replace_all_copy
 
 // External type defines
 #define BoostAny boost::any

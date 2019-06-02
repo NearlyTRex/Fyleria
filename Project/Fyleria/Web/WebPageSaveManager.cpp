@@ -2,6 +2,7 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Web/WebPageSaveManager.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -9,20 +10,6 @@ namespace Gecko
 WebPageSaveManager::WebPageSaveManager()
     : WebPage()
 {
-    SetPageTemplateTokens({
-        "%optionList_saveSlot%",
-        "%optionList_saveType%",
-        "%pullSave_partyID%",
-        "%loadSave_textarea%",
-        "%loadFromFile_filename%",
-        "%saveToFile_filename%",
-        "%saveAllToDir_directory%",
-        "%saveAllToDir_basename%",
-        "%saveAllToDir_extension%",
-        "%loadAllFromDir_directory%",
-        "%loadAllFromDir_basename%",
-        "%loadAllFromDir_extension%"
-    });
     SetPageTemplate(R"TEMPLATE(
 <html>
 <head>
@@ -213,6 +200,37 @@ WebPageSaveManager::~WebPageSaveManager()
 
 void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
 {
+    // Replacement tokens
+    String sSubmitUrl = WEB_PAGE_TOOL_SAVE_MANAGER;
+    String sOptionList_SaveSlot;
+    String sOptionList_SaveType;
+    String sPullSave_PartyID;
+    String sLoadSave_Textarea;
+    String sLoadFromFile_Filename;
+    String sSaveToFile_Filename;
+    String sSaveAllToDir_Directory;
+    String sSaveAllToDir_Basename;
+    String sSaveAllToDir_Extension;
+    String sLoadAllFromDir_Directory;
+    String sLoadAllFromDir_Basename;
+    String sLoadAllFromDir_Extension;
+
+    // Set page content
+    String sPage = GetPageTemplate();
+    BoostReplaceAll(sPage, "%submit_url%", sSubmitUrl);
+    BoostReplaceAll(sPage, "%optionList_saveSlot%", sOptionList_SaveSlot);
+    BoostReplaceAll(sPage, "%optionList_saveType%", sOptionList_SaveType);
+    BoostReplaceAll(sPage, "%pullSave_partyID%", sPullSave_PartyID);
+    BoostReplaceAll(sPage, "%loadSave_textarea%", sLoadSave_Textarea);
+    BoostReplaceAll(sPage, "%loadFromFile_filename%", sLoadFromFile_Filename);
+    BoostReplaceAll(sPage, "%saveToFile_filename%", sSaveToFile_Filename);
+    BoostReplaceAll(sPage, "%saveAllToDir_directory%", sSaveAllToDir_Directory);
+    BoostReplaceAll(sPage, "%saveAllToDir_basename%", sSaveAllToDir_Basename);
+    BoostReplaceAll(sPage, "%saveAllToDir_extension%", sSaveAllToDir_Basename);
+    BoostReplaceAll(sPage, "%loadAllFromDir_directory%", sLoadAllFromDir_Directory);
+    BoostReplaceAll(sPage, "%loadAllFromDir_basename%", sLoadAllFromDir_Basename);
+    BoostReplaceAll(sPage, "%loadAllFromDir_extension%", sLoadAllFromDir_Extension);
+    SetPageContent(sPage);
 }
 
 };

@@ -323,12 +323,8 @@ void CustomHttpHandler::DoRequest_ServeTool(const HttpRequest& request, HttpResp
     const String sResource = request.resource();
 
     // Retrieve GET/POST parameters
-    String sGetParams = request.query().as_str();
-    String sPostParams = request.body();
-
-    // Parse parameters
-    StringMap tGetParams = ConvertQueryStringToStringMap(sGetParams);
-    StringMap tPostParams = ConvertQueryStringToStringMap(sPostParams);
+    StringMap tGetParams = ConvertQueryStringToStringMap(request.query().as_str());
+    StringMap tPostParams = ConvertQueryStringToStringMap(request.body());
     StringMap tAllParams;
     tAllParams.insert(tGetParams.begin(), tGetParams.end());
     tAllParams.insert(tPostParams.begin(), tPostParams.end());

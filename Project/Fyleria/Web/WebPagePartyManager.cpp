@@ -2,6 +2,7 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Web/WebPagePartyManager.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -162,6 +163,41 @@ WebPagePartyManager::~WebPagePartyManager()
 
 void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
 {
+    // Replacement tokens
+    String sSubmitUrl = WEB_PAGE_TOOL_PARTY_MANAGER;
+    String sOptionList_PartyType;
+    String sCreateParty_PartyID;
+    String sCreateParty_SetAsCurrent;
+    String sCurrentParty_Ally;
+    String sCurrentParty_Enemy;
+    String sDeleteParty_PartyID;
+    String sLoadPartyFromFile_Filename;
+    String sLoadPartyFromFile_PartyID;
+    String sLoadPartyFromJson_Textarea;
+    String sLoadPartyFromJson_PartyID;
+    String sSavePartyToFile_Filename;
+    String sSavePartyToFile_PartyID;
+    String sSetCurrentParty_PartyID;
+    String sUnloadParty_PartyID;
+
+    // Set page content
+    String sPage = GetPageTemplate();
+    BoostReplaceAll(sPage, "%submit_url%", sSubmitUrl);
+    BoostReplaceAll(sPage, "%optionList_partytype%", sOptionList_PartyType);
+    BoostReplaceAll(sPage, "%createParty_partyID%", sCreateParty_PartyID);
+    BoostReplaceAll(sPage, "%createParty_setascurrent%", sCreateParty_SetAsCurrent);
+    BoostReplaceAll(sPage, "%currentParty_ally%", sCurrentParty_Ally);
+    BoostReplaceAll(sPage, "%currentParty_enemy%", sCurrentParty_Enemy);
+    BoostReplaceAll(sPage, "%deleteParty_partyID%", sDeleteParty_PartyID);
+    BoostReplaceAll(sPage, "%loadPartyFromFile_filename%", sLoadPartyFromFile_Filename);
+    BoostReplaceAll(sPage, "%loadPartyFromFile_partyID%", sLoadPartyFromFile_PartyID);
+    BoostReplaceAll(sPage, "%loadPartyFromJson_textarea%", sLoadPartyFromJson_Textarea);
+    BoostReplaceAll(sPage, "%loadPartyFromJson_partyID%", sLoadPartyFromJson_PartyID);
+    BoostReplaceAll(sPage, "%savePartyToFile_filename%", sSavePartyToFile_Filename);
+    BoostReplaceAll(sPage, "%savePartyToFile_partyID%", sSavePartyToFile_PartyID);
+    BoostReplaceAll(sPage, "%setCurrentParty_partyID%", sSetCurrentParty_PartyID);
+    BoostReplaceAll(sPage, "%unloadParty_partyID%", sUnloadParty_PartyID);
+    SetPageContent(sPage);
 }
 
 };

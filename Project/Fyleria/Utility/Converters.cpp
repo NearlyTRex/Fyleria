@@ -145,6 +145,10 @@ StringMap ConvertQueryStringToStringMap(const String& sQuery)
         {
             tMap.insert({vParts[0], vParts[1]});
         }
+        else if(vParts.size() == 1)
+        {
+            tMap.insert({vParts[0], ""});
+        }
     }
     return tMap;
 }
