@@ -25,19 +25,22 @@ def SetupProject(project_name, project_base_dir, system_info, program_options):
     archive_olddir = os.path.join(projectdir, module.Setup['extractdir'])
     archive_newdir = os.path.join(projectdir, "orig")
 
-    # Remove archive if we are forcing a new download
-    if program_options.force_download and os.path.exists(archive_file):
+    # Detect if we should be downloading
+    should_download = (program_options.force_download == True) or not os.path.exists(archive_file)
+
+    # Remove archive
+    if should_download and os.path.exists(archive_file):
         Utility.LogStatement("Removing old archive file %s" % archive_file)
         os.remove(archive_file)
 
-    # Remove old folders if we are forcing a new download
-    if program_options.force_download:
+    # Remove old folders
+    if should_download:
         Utility.LogStatement("Removing old folders %s and %s" % (archive_olddir, archive_newdir))
         shutil.rmtree(archive_olddir, ignore_errors=True)
         shutil.rmtree(archive_newdir, ignore_errors=True)
 
-    # Download archive if we are forcing a new download and the archive does not exist yet
-    if program_options.force_download and not os.path.exists(archive_file):
+    # Download archive
+    if should_download and not os.path.exists(archive_file):
         from urllib.request import urlopen
         Utility.LogStatement("Downloading " + module.Setup['url'] + " to file " + archive_file)
         request = urlopen(module.Setup['url'])
