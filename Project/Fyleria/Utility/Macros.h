@@ -29,6 +29,9 @@ String Get##name() const                                                        
 
 //=====================================================================================
 
+#define GET_MAP_DATA_OR_DEFAULT(map, key, value_default)                            \
+(map.find(key) != map.end()) ? map.at(key) : value_default
+
 #define GET_JSON_DATA_OR_DEFAULT(name, value_type, value_default)                   \
 (jsonData.find(#name) != jsonData.end()) ? jsonData[#name].get<value_type>() : value_default
 
@@ -163,6 +166,7 @@ StringArray Get##type##Names()                                                  
 
 #define MAKE_ENUM_CONVERTERS_DECL(type)                                             \
 type StringTo##type(const IndexedString& sType);                                    \
+type StringTo##type##OrNone(const IndexedString& sType);                            \
 Bool IsValid##type(const IndexedString& sType);
 
 #define MAKE_ENUM_CONVERTERS_IMPL(type)                                             \
@@ -171,6 +175,14 @@ type StringTo##type(const IndexedString& sType)                                 
     ASSERT_ERROR(type::_is_valid(sType.c_str()),                                    \
         "Type '%s' was not a valid enum string for type", sType.c_str());           \
     return type::_from_string(sType.c_str());                                       \
+}                                                                                   \
+type StringTo##type##OrNone(const IndexedString& sType)                             \
+{                                                                                   \
+    if(type::_is_valid(sType.c_str()))                                              \
+    {                                                                               \
+        return type::_from_string(sType.c_str());                                   \
+    }                                                                               \
+    return +type::None;                                                             \
 }                                                                                   \
 Bool IsValid##type(const IndexedString& sType)                                      \
 {                                                                                   \
