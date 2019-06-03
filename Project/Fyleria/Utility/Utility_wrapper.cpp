@@ -46,6 +46,9 @@ String GetAllTypeNames()
     jsonData["CharacterPartyType"] = GetCharacterPartyTypeNames();
     jsonData["CharacterActionType"] = GetCharacterActionTypeNames();
 
+    // SaveTypes.h
+    jsonData["SaveSlotType"] = GetSaveSlotTypeNames();
+
     // SkillTypes.h
     jsonData["SkillTreeType"] = GetSkillTreeTypeNames();
     jsonData["SkillWeaponBaseType"] = GetSkillWeaponBaseTypeNames();

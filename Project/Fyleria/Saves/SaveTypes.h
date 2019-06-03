@@ -9,4 +9,22 @@
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 
+namespace Gecko
+{
+
+BETTER_ENUM(SaveSlotType, Int,
+    None,
+    Slot1,
+    Slot2,
+    Slot3,
+    Slot4,
+    Slot5
+);
+
+MAKE_ENUM_GETSTRINGARRAY_DECL(SaveSlotType);
+
+MAKE_ENUM_CONVERTERS_DECL(SaveSlotType);
+
+};
+
 #endif
