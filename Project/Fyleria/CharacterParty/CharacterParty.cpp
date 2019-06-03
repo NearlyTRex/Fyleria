@@ -270,7 +270,7 @@ Bool CharacterParty::GetCharacterIDsFromTargetType(const IndexedString& sCharact
 UInt CharacterParty::GetStatusMemberCount(const IndexedString& sStatus) const
 {
     UInt uCount = 0;
-    const CharacterStatusType eStatusType = (IsValidCharacterStatusType(sStatus)) ? StringToCharacterStatusType(sStatus) : +CharacterStatusType::None;
+    const CharacterStatusType eStatusType = StringToCharacterStatusTypeOrNone(sStatus);
     for(auto& member : GetMembers())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(member.first);
@@ -310,7 +310,7 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
     for(const IndexedString& sTreeType : vTreeTypes)
     {
         // Only do a certain amount of random pulls
-        const ItemTreeType eItemTreeType = IsValidItemTreeType(sTreeType) ? StringToItemTreeType(sTreeType) : +ItemTreeType::None;
+        const ItemTreeType eItemTreeType = StringToItemTreeTypeOrNone(sTreeType);
         for(Int i = 0; i < iNumRandomItems; i++)
         {
             // Get the random item

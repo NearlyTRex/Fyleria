@@ -563,7 +563,7 @@ const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeInd
 
 const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeIndex)
 {
-    const SkillTreeType eSkillTreeType = (IsValidSkillTreeType(treeIndex.GetTree())) ? StringToSkillTreeType(treeIndex.GetTree()) : +SkillTreeType::None;
+    const SkillTreeType eSkillTreeType = StringToSkillTreeTypeOrNone(treeIndex.GetTree());
     switch(eSkillTreeType)
     {
         case SkillTreeType::Affinity:
@@ -586,7 +586,7 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeInd
 
 const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeIndex)
 {
-    const ItemTreeType eItemTreeType = (IsValidItemTreeType(treeIndex.GetTree())) ? StringToItemTreeType(treeIndex.GetTree()) : +ItemTreeType::None;
+    const ItemTreeType eItemTreeType = StringToItemTreeTypeOrNone(treeIndex.GetTree());
     switch(eItemTreeType)
     {
         case ItemTreeType::Armor:

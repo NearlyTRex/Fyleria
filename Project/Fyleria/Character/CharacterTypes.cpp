@@ -16,7 +16,7 @@ IndexedString ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const Indexe
         return IndexedString("None");
     }
 
-    const CharacterEquipmentType eCharacterEquipmentType = (IsValidCharacterEquipmentType(sCharacterEquipmentType)) ? StringToCharacterEquipmentType(sCharacterEquipmentType) : +CharacterEquipmentType::None;
+    const CharacterEquipmentType eCharacterEquipmentType = StringToCharacterEquipmentTypeOrNone(sCharacterEquipmentType);
     switch(eCharacterEquipmentType)
     {
         case CharacterEquipmentType::Weapon1Left:
@@ -37,7 +37,7 @@ IndexedString ConvertCharacterTargetTypeToCharacterPartyType(const IndexedString
         return IndexedString("None");
     }
 
-    const CharacterTargetType eCharacterTargetType = (IsValidCharacterTargetType(sCharacterTargetType)) ? StringToCharacterTargetType(sCharacterTargetType) : +CharacterTargetType::None;
+    const CharacterTargetType eCharacterTargetType = StringToCharacterTargetTypeOrNone(sCharacterTargetType);
     switch(eCharacterTargetType)
     {
         case CharacterTargetType::AllAllies:
@@ -68,7 +68,7 @@ IndexedString ConvertItemTypeToCharacterActionType(const IndexedString& sItemTyp
         return IndexedString("None");
     }
 
-    const ItemType eItemType = (IsValidItemType(sItemType)) ? StringToItemType(sItemType) : +ItemType::None;
+    const ItemType eItemType = StringToItemTypeOrNone(sItemType);
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -93,7 +93,7 @@ IndexedStringArray ConvertItemTypeToCharacterEquipTypes(const IndexedString& sIt
         return vEquipTypes;
     }
 
-    const ItemType eItemType = (IsValidItemType(sItemType)) ? StringToItemType(sItemType) : +ItemType::None;
+    const ItemType eItemType = StringToItemTypeOrNone(sItemType);
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -143,7 +143,7 @@ IndexedString ConvertSkillWeaponBaseTypeToCharacterActionType(const IndexedStrin
         return IndexedString("None");
     }
 
-    const SkillWeaponBaseType eSkillWeaponBaseType = (IsValidSkillWeaponBaseType(sSkillWeaponBaseType)) ? StringToSkillWeaponBaseType(sSkillWeaponBaseType) : +SkillWeaponBaseType::None;
+    const SkillWeaponBaseType eSkillWeaponBaseType = StringToSkillWeaponBaseTypeOrNone(sSkillWeaponBaseType);
     switch(eSkillWeaponBaseType)
     {
         case SkillWeaponBaseType::Slash:
@@ -164,7 +164,7 @@ IndexedString ConvertSkillWeaponTypeToCharacterActionType(const IndexedString& s
         return IndexedString("None");
     }
 
-    const SkillWeaponType eSkillWeaponType = (IsValidSkillWeaponType(sSkillWeaponType)) ? StringToSkillWeaponType(sSkillWeaponType) : +SkillWeaponType::None;
+    const SkillWeaponType eSkillWeaponType = StringToSkillWeaponTypeOrNone(sSkillWeaponType);
     switch(eSkillWeaponType)
     {
         case SkillWeaponType::Slash:
@@ -227,7 +227,7 @@ IndexedString ConvertSkillWeaponTypeToCharacterProgressStatType(const IndexedStr
         return IndexedString("None");
     }
 
-    const SkillWeaponType eSkillWeaponType = (IsValidSkillWeaponType(sSkillWeaponType)) ? StringToSkillWeaponType(sSkillWeaponType) : +SkillWeaponType::None;
+    const SkillWeaponType eSkillWeaponType = StringToSkillWeaponTypeOrNone(sSkillWeaponType);
     switch(eSkillWeaponType)
     {
         case SkillWeaponType::Slash:
