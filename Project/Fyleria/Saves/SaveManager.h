@@ -63,13 +63,12 @@ public:
     SaveArray GetAllSaves() const;
     MAKE_MODULE_RESULT_VARIANT(GetAllSaves);
 
-    // Pull save from memory
-    // Creates a new save from the manager data in memory and loads it in the specified save slot
-    void PullSaveFromMemory(UByte uSlot, const IndexedStringArray& vPartyIDs, const String& sDescription, ULong uPlayTime);
+    // Collect data and create a save
+    void CollectSaveData(UByte uSlot, const IndexedString& sPartyID);
+    void CollectSaveData(UByte uSlot, const IndexedStringArray& vPartyIDs, const String& sDescription, ULong uPlayTime);
 
-    // Push save into memory
-    // Copies the data from the specified save slot into manager memory
-    void PushSaveIntoMemory(UByte uSlot);
+    // Disperse save data
+    void DisperseSaveData(UByte uSlot);
 
     // Save to file
     void SaveToFile(UByte uSlot, const IndexedString& sFile, const IndexedString& sType);

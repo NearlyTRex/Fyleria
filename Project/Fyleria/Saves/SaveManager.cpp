@@ -111,7 +111,13 @@ SaveArray SaveManager::GetAllSaves() const
     return vSaves;
 }
 
-void SaveManager::PullSaveFromMemory(UByte uSlot, const IndexedStringArray& vPartyIDs, const String& sDescription, ULong uPlayTime)
+void SaveManager::CollectSaveData(UByte uSlot, const IndexedString& sPartyID)
+{
+    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
+    CollectSaveData(uSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
+}
+
+void SaveManager::CollectSaveData(UByte uSlot, const IndexedStringArray& vPartyIDs, const String& sDescription, ULong uPlayTime)
 {
     // Get parties and attached characters
     CharacterPartyArray vParties;
@@ -142,7 +148,7 @@ void SaveManager::PullSaveFromMemory(UByte uSlot, const IndexedStringArray& vPar
     LoadSave(uSlot, newSave);
 }
 
-void SaveManager::PushSaveIntoMemory(UByte uSlot)
+void SaveManager::DisperseSaveData(UByte uSlot)
 {
     // Get save from slot
     const Save& save = GetSave(uSlot);
@@ -210,23 +216,43 @@ void SaveManager::LoadFromFile(UByte uSlot, const IndexedString& sFile, const In
 
 void SaveManager::SaveAllToDirectory(const IndexedString& sDirectory, const IndexedString& sBase, const IndexedString& sExt, const IndexedString& sType)
 {
-    // Save each slot into a save file
-    for(Int i = 0; i < GetSaveCapacity(); i++)
+    // Create directory if it does not yet exist
+    String sSavePath = GetAbsolutePath(sDirectory.Get());
+    if(!DoesPathExist(sSavePath))
     {
-        String sPath = JoinPaths(sDirectory.Get(), sBase.Get() + STDToString(i) + sExt.Get());
-        SaveToFile(i, IndexedString(sPath), sType);
+        CreateDirectory(sSavePath);
+    }
+
+    // Save each slot into a save file
+    for(auto& sSlotName : GetSaveSlotTypeNames())
+    {
+        if(sSlotName == "None")
+        {
+            continue;
+        }
+        SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
+        String sPath = JoinPaths(sDirectory.Get(), sBase.Get() + sSlotName + String(".") + sExt.Get());
+        SaveToFile(eSlotType._to_integral(), IndexedString(sPath), sType);
     }
 }
 
 void SaveManager::LoadAllFromDirectory(const IndexedString& sDirectory, const IndexedString& sBase, const IndexedString& sExt, const IndexedString& sType)
 {
+    // Get save path
+    String sSavePath = GetCanonicalPath(sDirectory.Get());
+
     // Load each slot from a save file
-    for(Int i = 0; i < GetSaveCapacity(); i++)
+    for(auto& sSlotName : GetSaveSlotTypeNames())
     {
-        String sPath = JoinPaths(sDirectory.Get(), sBase.Get() + STDToString(i) + sExt.Get());
+        if(sSlotName == "None")
+        {
+            continue;
+        }
+        SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
+        String sPath = JoinPaths(sSavePath, sBase.Get() + sSlotName + String(".") + sExt.Get());
         if(DoesPathExist(sPath))
         {
-            LoadFromFile(i, IndexedString(sPath), sType);
+            LoadFromFile(eSlotType._to_integral(), IndexedString(sPath), sType);
         }
     }
 }
@@ -237,20 +263,30 @@ void SaveManager::InitializeAllSaveSlots()
     UnloadAllSaves();
 
     // Create a save for all slots
-    for(Int i = 0; i < GetSaveCapacity(); i++)
+    for(auto& sSlotName : GetSaveSlotTypeNames())
     {
-        CreateSave(i);
+        if(sSlotName == "None")
+        {
+            continue;
+        }
+        SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
+        CreateSave(eSlotType._to_integral());
     }
 }
 
 void SaveManager::InitializeEmptySaveSlots()
 {
     // Create a save for empty slots
-    for(Int i = 0; i < GetSaveCapacity(); i++)
+    for(auto& sSlotName : GetSaveSlotTypeNames())
     {
-        if (!DoesSaveExist(i))
+        if(sSlotName == "None")
         {
-            CreateSave(i);
+            continue;
+        }
+        SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
+        if (!DoesSaveExist(eSlotType._to_integral()))
+        {
+            CreateSave(eSlotType._to_integral());
         }
     }
 }
