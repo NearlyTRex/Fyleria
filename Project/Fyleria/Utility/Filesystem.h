@@ -34,6 +34,9 @@ Bool RemoveFile(const String& sPath);
 // Get file size in bytes
 SizeType GetFileSize(const String& sPath);
 
+// Get absolute path
+String GetAbsolutePath(const String& sPath);
+
 // Get canonical path
 String GetCanonicalPath(const String& sPath);
 

@@ -21,6 +21,7 @@
 #define BoostLexicalCast boost::lexical_cast
 #define BoostFormatString boost::format
 #define BoostFilesystemExists boost::filesystem::exists
+#define BoostFilesystemAbsolute boost::filesystem::absolute
 #define BoostFilesystemCanonical boost::filesystem::canonical
 #define BoostFilesystemFileSize boost::filesystem::file_size
 #define BoostFilesystemIsDirectory boost::filesystem::is_directory

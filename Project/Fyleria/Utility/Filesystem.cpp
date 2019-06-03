@@ -46,6 +46,11 @@ SizeType GetFileSize(const String& sPath)
     return BoostFilesystemFileSize(BoostFilesystemPath(sPath));
 }
 
+String GetAbsolutePath(const String& sPath)
+{
+    return BoostFilesystemAbsolute(BoostFilesystemPath(sPath)).string();
+}
+
 String GetCanonicalPath(const String& sPath)
 {
     return BoostFilesystemCanonical(BoostFilesystemPath(sPath)).string();
