@@ -322,6 +322,21 @@ void method##_StoreResult(const String& sResultID, at1 av1, at2 av2, at3 av3, at
 
 //=====================================================================================
 
+#define MAKE_HTML_OPTION_LIST_STRING(type)                                                          \
+String sOptionList_##type;                                                                          \
+{                                                                                                   \
+    for(auto& sTypeName : Get##type##Names())                                                       \
+    {                                                                                               \
+        if(sTypeName == "None")                                                                     \
+        {                                                                                           \
+            continue;                                                                               \
+        }                                                                                           \
+        sOptionList_##type += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>";     \
+    }                                                                                               \
+}
+
+//=====================================================================================
+
 #define WRAPPING_ADD_CONSTRUCTOR_SIMPLE()                                                                   \
 .def(PyBindInit<>())
 

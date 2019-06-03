@@ -2,6 +2,7 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Web/WebPageCharacterManager.h"
+#include "Character/CharacterTypes.h"
 #include "Utility/Constants.h"
 
 namespace Gecko
@@ -108,8 +109,8 @@ WebPageCharacterManager::WebPageCharacterManager()
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Save Character Changes</label>
-            <div class="col-sm-8">
+            <label class="col-sm-4 col-form-label">Save Character Changes</label>
+            <div class="col-sm-6">
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="saveCharacter_submit">Run</button>
@@ -137,25 +138,25 @@ WebPageCharacterManager::WebPageCharacterManager()
         <div class="form-group row">
             <div class="col-sm-3">
                 <select class="form-control" name="characterDetails_gender">
-                    <option value="">Gender...</option>
+                    <option value="" disabled="disabled">Gender...</option>
                     %optionList_gender%
                 </select>
             </div>
             <div class="col-sm-3">
                 <select class="form-control" name="characterDetails_hair">
-                    <option value="">Hair...</option>
+                    <option value="" disabled="disabled">Hair...</option>
                     %optionList_hair%
                 </select>
             </div>
             <div class="col-sm-3">
                 <select class="form-control" name="characterDetails_eyes">
-                    <option value="">Eyes...</option>
+                    <option value="" disabled="disabled">Eyes...</option>
                     %optionList_eyes%
                 </select>
             </div>
             <div class="col-sm-3">
                 <select class="form-control" name="characterDetails_handed">
-                    <option value="">Handedness...</option>
+                    <option value="" disabled="disabled">Handedness...</option>
                     %optionList_handed%
                 </select>
             </div>
@@ -165,25 +166,25 @@ WebPageCharacterManager::WebPageCharacterManager()
         <div class="form-group row">
             <div class="col-sm-3">
                 <select class="form-control" name="characterDetails_powerset">
-                    <option value="">Power Set...</option>
+                    <option value="" disabled="disabled">Power Set...</option>
                     %optionList_powerset%
                 </select>
             </div>
             <div class="col-sm-3">
                 <select class="form-control" name="characterDetails_baserace">
-                    <option value="">Base Race...</option>
+                    <option value="" disabled="disabled">Base Race...</option>
                     %optionList_baserace%
                 </select>
             </div>
             <div class="col-sm-3">
                 <select class="form-control" name="characterDetails_transformedrace">
-                    <option value="">Transformed Race...</option>
+                    <option value="" disabled="disabled">Transformed Race...</option>
                     %optionList_transformedrace%
                 </select>
             </div>
             <div class="col-sm-3">
                 <select class="form-control" name="characterDetails_currentweaponset">
-                    <option value="">Weapon Set...</option>
+                    <option value="" disabled="disabled">Weapon Set...</option>
                     %optionList_currentweaponset%
                 </select>
             </div>
@@ -956,28 +957,27 @@ WebPageCharacterManager::~WebPageCharacterManager()
 
 void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
 {
-    // Replacement tokens
-    String sSubmitUrl = WEB_PAGE_TOOL_CHARACTER_MANAGER;
-    String sOptionList_Gender;
-    String sOptionList_Hair;
-    String sOptionList_Eyes;
-    String sOptionList_Handed;
-    String sOptionList_PowerSet;
-    String sOptionList_BaseRace;
-    String sOptionList_TransformedRace;
-    String sOptionList_CurrentWeaponSet;
+    // Build option lists
+    MAKE_HTML_OPTION_LIST_STRING(CharacterGenderType);
+    MAKE_HTML_OPTION_LIST_STRING(CharacterHairType);
+    MAKE_HTML_OPTION_LIST_STRING(CharacterEyeType);
+    MAKE_HTML_OPTION_LIST_STRING(CharacterHandednessType);
+    MAKE_HTML_OPTION_LIST_STRING(CharacterPowerSetType);
+    MAKE_HTML_OPTION_LIST_STRING(CharacterBaseRaceType);
+    MAKE_HTML_OPTION_LIST_STRING(CharacterTransformedRaceType);
+    MAKE_HTML_OPTION_LIST_STRING(CharacterWeaponSetType);
 
     // Set page content
     String sPage = GetPageTemplate();
-    BoostReplaceAll(sPage, "%submit_url%", sSubmitUrl);
-    BoostReplaceAll(sPage, "%optionList_gender%", sOptionList_Gender);
-    BoostReplaceAll(sPage, "%optionList_hair%", sOptionList_Hair);
-    BoostReplaceAll(sPage, "%optionList_eyes%", sOptionList_Eyes);
-    BoostReplaceAll(sPage, "%optionList_handed%", sOptionList_Handed);
-    BoostReplaceAll(sPage, "%optionList_powerset%", sOptionList_PowerSet);
-    BoostReplaceAll(sPage, "%optionList_baserace%", sOptionList_BaseRace);
-    BoostReplaceAll(sPage, "%optionList_transformedrace%", sOptionList_TransformedRace);
-    BoostReplaceAll(sPage, "%optionList_currentweaponset%", sOptionList_CurrentWeaponSet);
+    BoostReplaceAll(sPage, "%submit_url%", WEB_PAGE_TOOL_CHARACTER_MANAGER);
+    BoostReplaceAll(sPage, "%optionList_gender%", sOptionList_CharacterGenderType);
+    BoostReplaceAll(sPage, "%optionList_hair%", sOptionList_CharacterHairType);
+    BoostReplaceAll(sPage, "%optionList_eyes%", sOptionList_CharacterEyeType);
+    BoostReplaceAll(sPage, "%optionList_handed%", sOptionList_CharacterHandednessType);
+    BoostReplaceAll(sPage, "%optionList_powerset%", sOptionList_CharacterPowerSetType);
+    BoostReplaceAll(sPage, "%optionList_baserace%", sOptionList_CharacterBaseRaceType);
+    BoostReplaceAll(sPage, "%optionList_transformedrace%", sOptionList_CharacterTransformedRaceType);
+    BoostReplaceAll(sPage, "%optionList_currentweaponset%", sOptionList_CharacterWeaponSetType);
     BoostReplaceAll(sPage, "%createCharacter_charID%", "");
     BoostReplaceAll(sPage, "%deleteCharacter_charID%", "");
     BoostReplaceAll(sPage, "%generateCharacter_charID%", "");

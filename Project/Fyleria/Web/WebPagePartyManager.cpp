@@ -2,6 +2,7 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Web/WebPagePartyManager.h"
+#include "Character/CharacterTypes.h"
 #include "Utility/Constants.h"
 
 namespace Gecko
@@ -92,7 +93,7 @@ WebPagePartyManager::WebPagePartyManager()
             </div>
             <div class="col-sm-2">
                 <select class="form-control" name="setCurrentParty_partytype">
-                    <option value="">Party Type...</option>
+                    <option value="" disabled="disabled">Party Type...</option>
                     %optionList_partytype%
                 </select>
             </div>
@@ -109,7 +110,7 @@ WebPagePartyManager::WebPagePartyManager()
             </div>
             <div class="col-sm-2">
                 <select class="form-control" name="createParty_partytype">
-                    <option value="">Party Type...</option>
+                    <option value="" disabled="disabled">Party Type...</option>
                     %optionList_partytype%
                 </select>
             </div>
@@ -126,8 +127,8 @@ WebPagePartyManager::WebPagePartyManager()
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Save Party Changes</label>
-            <div class="col-sm-8">
+            <label class="col-sm-4 col-form-label">Save Party Changes</label>
+            <div class="col-sm-6">
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="saveParty_submit">Run</button>
@@ -164,9 +165,10 @@ WebPagePartyManager::~WebPagePartyManager()
 
 void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
 {
+    // Build option lists
+    MAKE_HTML_OPTION_LIST_STRING(CharacterPartyType);
+
     // Replacement tokens
-    String sSubmitUrl = WEB_PAGE_TOOL_PARTY_MANAGER;
-    String sOptionList_PartyType;
     String sCreateParty_PartyID;
     String sCreateParty_SetAsCurrent;
     String sCurrentParty_Ally;
@@ -183,8 +185,8 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
 
     // Set page content
     String sPage = GetPageTemplate();
-    BoostReplaceAll(sPage, "%submit_url%", sSubmitUrl);
-    BoostReplaceAll(sPage, "%optionList_partytype%", sOptionList_PartyType);
+    BoostReplaceAll(sPage, "%submit_url%", WEB_PAGE_TOOL_PARTY_MANAGER);
+    BoostReplaceAll(sPage, "%optionList_partytype%", sOptionList_CharacterPartyType);
     BoostReplaceAll(sPage, "%createParty_partyID%", sCreateParty_PartyID);
     BoostReplaceAll(sPage, "%createParty_setascurrent%", sCreateParty_SetAsCurrent);
     BoostReplaceAll(sPage, "%currentParty_ally%", sCurrentParty_Ally);

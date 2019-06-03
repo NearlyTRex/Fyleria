@@ -2,6 +2,8 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Web/WebPageSaveManager.h"
+#include "Saves/SaveTypes.h"
+#include "Utility/Enum.h"
 #include "Utility/Constants.h"
 
 namespace Gecko
@@ -36,9 +38,9 @@ WebPageSaveManager::WebPageSaveManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Pull Save</label>
             <div class="col-sm-2">
-                <select class="form-control" name="pullSave_saveSlot">
-                    <option value="">Save Slot...</option>
-                    %optionList_saveSlot%
+                <select class="form-control" name="pullSave_saveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    %optionList_saveSlotType%
                 </select>
             </div>
             <div class="col-sm-6">
@@ -51,9 +53,9 @@ WebPageSaveManager::WebPageSaveManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Push Save</label>
             <div class="col-sm-2">
-                <select class="form-control" name="pushSave_saveSlot">
-                    <option value="">Save Slot...</option>
-                    %optionList_saveSlot%
+                <select class="form-control" name="pushSave_saveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    %optionList_saveSlotType%
                 </select>
             </div>
             <div class="col-sm-6">
@@ -65,9 +67,9 @@ WebPageSaveManager::WebPageSaveManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load Save</label>
             <div class="col-sm-2">
-                <select class="form-control" name="loadSave_saveSlot">
-                    <option value="">Save Slot...</option>
-                    %optionList_saveSlot%
+                <select class="form-control" name="loadSave_saveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    %optionList_saveSlotType%
                 </select>
             </div>
             <div class="col-sm-6">
@@ -80,9 +82,9 @@ WebPageSaveManager::WebPageSaveManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Unload Save</label>
             <div class="col-sm-2">
-                <select class="form-control" name="unloadSave_saveSlot">
-                    <option value="">Save Slot...</option>
-                    %optionList_saveSlot%
+                <select class="form-control" name="unloadSave_saveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    %optionList_saveSlotType%
                 </select>
             </div>
             <div class="col-sm-6">
@@ -94,9 +96,9 @@ WebPageSaveManager::WebPageSaveManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Delete Save</label>
             <div class="col-sm-2">
-                <select class="form-control" name="deleteSave_saveSlot">
-                    <option value="">Save Slot...</option>
-                    %optionList_saveSlot%
+                <select class="form-control" name="deleteSave_saveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    %optionList_saveSlotType%
                 </select>
             </div>
             <div class="col-sm-6">
@@ -108,15 +110,15 @@ WebPageSaveManager::WebPageSaveManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load From File</label>
             <div class="col-sm-2">
-                <select class="form-control" name="loadFromFile_saveSlot">
-                    <option value="">Save Slot...</option>
-                    %optionList_saveSlot%
+                <select class="form-control" name="loadFromFile_saveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    %optionList_saveSlotType%
                 </select>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" name="loadFromFile_saveType">
-                    <option value="">Save Type...</option>
-                    %optionList_saveType%
+                <select class="form-control" name="loadFromFile_fileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %optionList_fileType%
                 </select>
             </div>
             <div class="col-sm-4">
@@ -129,15 +131,15 @@ WebPageSaveManager::WebPageSaveManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Save To File</label>
             <div class="col-sm-2">
-                <select class="form-control" name="saveToFile_saveSlot">
-                    <option value="">Save Slot...</option>
-                    %optionList_saveSlot%
+                <select class="form-control" name="saveToFile_saveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    %optionList_saveSlotType%
                 </select>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" name="saveToFile_saveType">
-                    <option value="">Save Type...</option>
-                    %optionList_saveType%
+                <select class="form-control" name="saveToFile_fileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %optionList_fileType%
                 </select>
             </div>
             <div class="col-sm-4">
@@ -159,9 +161,9 @@ WebPageSaveManager::WebPageSaveManager()
                 <input type="text" class="form-control" name="saveAllToDir_extension" placeholder="Extension" value="%saveAllToDir_extension%"/>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" name="saveAllToDir_saveType">
-                    <option value="">Save Type...</option>
-                    %optionList_saveType%
+                <select class="form-control" name="saveAllToDir_fileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %optionList_fileType%
                 </select>
             </div>
             <div class="col-sm-2">
@@ -180,9 +182,9 @@ WebPageSaveManager::WebPageSaveManager()
                 <input type="text" class="form-control" name="loadAllFromDir_extension" placeholder="Extension" value="%loadAllFromDir_extension%"/>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" name="loadAllFromDir_saveType">
-                    <option value="">Save Type...</option>
-                    %optionList_saveType%
+                <select class="form-control" name="loadAllFromDir_fileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %optionList_fileType%
                 </select>
             </div>
             <div class="col-sm-2">
@@ -201,10 +203,11 @@ WebPageSaveManager::~WebPageSaveManager()
 
 void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
 {
+    // Build option lists
+    MAKE_HTML_OPTION_LIST_STRING(SaveSlotType);
+    MAKE_HTML_OPTION_LIST_STRING(FileType);
+
     // Replacement tokens
-    String sSubmitUrl = WEB_PAGE_TOOL_SAVE_MANAGER;
-    String sOptionList_SaveSlot;
-    String sOptionList_SaveType;
     String sPullSave_PartyID;
     String sLoadSave_Textarea;
     String sLoadFromFile_Filename;
@@ -218,9 +221,9 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
 
     // Set page content
     String sPage = GetPageTemplate();
-    BoostReplaceAll(sPage, "%submit_url%", sSubmitUrl);
-    BoostReplaceAll(sPage, "%optionList_saveSlot%", sOptionList_SaveSlot);
-    BoostReplaceAll(sPage, "%optionList_saveType%", sOptionList_SaveType);
+    BoostReplaceAll(sPage, "%submit_url%", WEB_PAGE_TOOL_SAVE_MANAGER);
+    BoostReplaceAll(sPage, "%optionList_saveSlotType%", sOptionList_SaveSlotType);
+    BoostReplaceAll(sPage, "%optionList_fileType%", sOptionList_FileType);
     BoostReplaceAll(sPage, "%pullSave_partyID%", sPullSave_PartyID);
     BoostReplaceAll(sPage, "%loadSave_textarea%", sLoadSave_Textarea);
     BoostReplaceAll(sPage, "%loadFromFile_filename%", sLoadFromFile_Filename);
