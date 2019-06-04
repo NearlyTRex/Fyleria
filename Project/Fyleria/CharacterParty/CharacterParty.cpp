@@ -16,6 +16,16 @@ CharacterParty::CharacterParty()
 {
 }
 
+CharacterParty::CharacterParty(const Json& jsonData)
+{
+    from_json(jsonData, *this);
+}
+
+CharacterParty::CharacterParty(const String& jsonString)
+{
+    from_json(JsonParse(jsonString), *this);
+}
+
 void CharacterParty::RegenerateCharacterData()
 {
     for(auto& member : GetMembers())

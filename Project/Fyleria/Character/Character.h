@@ -26,6 +26,8 @@ public:
 
     // Constructors
     Character();
+    explicit Character(const Json& jsonData);
+    explicit Character(const String& jsonString);
 
     // Regenerate character data
     void RegenerateCharacterData(

@@ -18,6 +18,16 @@ Character::Character()
 {
 }
 
+Character::Character(const Json& jsonData)
+{
+    from_json(jsonData, *this);
+}
+
+Character::Character(const String& jsonString)
+{
+    from_json(JsonParse(jsonString), *this);
+}
+
 void Character::RegenerateCharacterData(
     Bool bUpdateSkillRankings /*= true*/,
     Bool bUpdateEquipmentRatings /*= true*/,
