@@ -43,6 +43,7 @@ String GetAllTypeNames()
     jsonData["CharacterHandType"] = GetCharacterHandTypeNames();
     jsonData["CharacterEquipmentType"] = GetCharacterEquipmentTypeNames();
     jsonData["CharacterTargetType"] = GetCharacterTargetTypeNames();
+    jsonData["CharacterResolvedTargetType"] = GetCharacterResolvedTargetTypeNames();
     jsonData["CharacterPartyType"] = GetCharacterPartyTypeNames();
     jsonData["CharacterActionType"] = GetCharacterActionTypeNames();
 

@@ -299,6 +299,22 @@ BETTER_ENUM(CharacterTargetType, Int,
     Ally6
 );
 
+BETTER_ENUM(CharacterResolvedTargetType, Int,
+    None,
+    Enemy1,
+    Enemy2,
+    Enemy3,
+    Enemy4,
+    Enemy5,
+    Enemy6,
+    Ally1,
+    Ally2,
+    Ally3,
+    Ally4,
+    Ally5,
+    Ally6
+);
+
 BETTER_ENUM(CharacterPartyType, Int,
     None,
     Ally,
@@ -400,6 +416,7 @@ MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterHandednessType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterHandType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterEquipmentType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterTargetType);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterResolvedTargetType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterPartyType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterActionType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterActionRunType);
@@ -426,6 +443,7 @@ MAKE_ENUM_CONVERTERS_DECL(CharacterHandednessType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterHandType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterEquipmentType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterTargetType);
+MAKE_ENUM_CONVERTERS_DECL(CharacterResolvedTargetType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterPartyType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterActionType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterActionRunType);
