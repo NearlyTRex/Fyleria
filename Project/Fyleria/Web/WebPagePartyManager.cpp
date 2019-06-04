@@ -3,8 +3,11 @@
 
 #include "Web/WebPagePartyManager.h"
 #include "Character/CharacterTypes.h"
+#include "CharacterParty/CharacterPartyManager.h"
 #include "Items/ItemTypes.h"
 #include "Utility/Constants.h"
+#include "Utility/Enum.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -23,7 +26,7 @@ WebPagePartyManager::WebPagePartyManager()
     <script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <div class="container">
-    <form action="%submit_url%" method="post">
+    <form action="%sSubmit_Url%" method="post">
         <div class="form-group row">
             <div class="col"><hr></div>
             <div class="col-auto">Controls</div>
@@ -31,254 +34,258 @@ WebPagePartyManager::WebPagePartyManager()
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load From JSON</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadPartyFromJson_partyID" placeholder="Party Identifier" value="%loadPartyFromJson_partyID%"/>
-            </div>
-            <div class="col-sm-4">
-                <textarea style="resize: none;" class="form-control" rows="3" name="loadPartyFromJson_textarea" placeholder="Raw party json">%loadPartyFromJson_textarea%</textarea>
+            <div class="col-sm-8">
+                <textarea style="resize: none;" class="form-control" rows="3" name="sLoadPartyFromJson_Textarea" placeholder="Raw party json">%sLoadPartyFromJson_Textarea%</textarea>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="loadPartyFromJson_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="load_party_from_json">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load From File</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadPartyFromFile_partyID" placeholder="Party Identifier" value="%loadPartyFromFile_partyID%"/>
+                <input type="text" class="form-control" name="sLoadPartyFromFile_Filename" placeholder="Filename" value="%sLoadPartyFromFile_Filename%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadPartyFromFile_filename" placeholder="Filename" value="%loadPartyFromFile_filename%"/>
+                <select class="form-control" name="sLoadPartyFromFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %sOptionList_FileType%
+                </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="loadPartyFromFile_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="load_party_from_file">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Save To File</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="savePartyToFile_partyID" placeholder="Party Identifier" value="%savePartyToFile_partyID%"/>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="sSavePartyToFile_PartyID" placeholder="Party Identifier" value="%sSavePartyToFile_PartyID%"/>
             </div>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="savePartyToFile_filename" placeholder="Filename" value="%savePartyToFile_filename%"/>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="sSavePartyToFile_Filename" placeholder="Filename" value="%sSavePartyToFile_Filename%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="savePartyToFile_submit">Run</button>
+                <select class="form-control" name="sSavePartyToFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %sOptionList_FileType%
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="save_party_to_file">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Unload Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="unloadParty_partyID" placeholder="Party Identifier" value="%unloadParty_partyID%"/>
+                <input type="text" class="form-control" name="sUnloadParty_PartyID" placeholder="Party Identifier" value="%sUnloadParty_PartyID%"/>
             </div>
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unloadParty_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="unload_party">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Set As Current Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="setCurrentParty_partyID" placeholder="Party Identifier" value="%setCurrentParty_partyID%"/>
+                <input type="text" class="form-control" name="sSetCurrentParty_PartyID" placeholder="Party Identifier" value="%sSetCurrentParty_PartyID%"/>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" name="setCurrentParty_partytype">
+                <select class="form-control" name="sSetCurrentParty_PartyType">
                     <option value="" disabled="disabled">Party Type...</option>
-                    %optionList_partytype%
+                    %sOptionList_CharacterPartyType%
                 </select>
             </div>
             <div class="col-sm-2">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="setCurrentParty_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="set_current_party">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Create Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="createParty_partyID" placeholder="Party Identifier" value="%createParty_partyID%"/>
+                <input type="text" class="form-control" name="sCreateParty_PartyID" placeholder="Party Identifier" value="%sCreateParty_PartyID%"/>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" name="createParty_partytype">
+                <select class="form-control" name="sCreateParty_PartyType">
                     <option value="" disabled="disabled">Party Type...</option>
-                    %optionList_partytype%
+                    %sOptionList_CharacterPartyType%
                 </select>
             </div>
             <div class="col-sm-2">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="current" name="createParty_setascurrent" checked="%createParty_setascurrent%"/>
-                    <label class="form-check-label" for="createParty_setascurrent">
-                        Set as current
-                    </label>
+                    <input class="form-check-input" type="checkbox" value="current" name="sCreateParty_SetAsCurrent" checked="checked"/>
+                    <label class="form-check-label">Set as current</label>
                 </div>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="createParty_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="create_party">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Add Member</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="addMember_partyID" placeholder="Party Identifier" value="%addMember_partyID%"/>
+                <input type="text" class="form-control" name="sAddMember_PartyID" placeholder="Party Identifier" value="%sAddMember_PartyID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="addMember_charID" placeholder="Character Identifier" value="%addMember_charID%"/>
+                <input type="text" class="form-control" name="sAddMember_CharID" placeholder="Character Identifier" value="%sAddMember_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="addMember_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="add_member">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Remove Member</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="removeMember_partyID" placeholder="Party Identifier" value="%removeMember_partyID%"/>
+                <input type="text" class="form-control" name="sRemoveMember_PartyID" placeholder="Party Identifier" value="%sRemoveMember_PartyID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="removeMember_charID" placeholder="Character Identifier" value="%removeMember_charID%"/>
+                <input type="text" class="form-control" name="sRemoveMember_CharID" placeholder="Character Identifier" value="%sRemoveMember_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="removeMember_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="remove_member">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Move Member</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="moveMember_partyID" placeholder="Party Identifier" value="%moveMember_partyID%"/>
+                <input type="text" class="form-control" name="sMoveMember_PartyID" placeholder="Party Identifier" value="%sMoveMember_PartyID%"/>
             </div>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="moveMember_charID" placeholder="Character Identifier" value="%moveMember_charID%"/>
+                <input type="text" class="form-control" name="sMoveMember_CharID" placeholder="Character Identifier" value="%sMoveMember_CharID%"/>
             </div>
             <div class="col-sm-3">
-                <select class="form-control" name="moveMember_charTargetType">
+                <select class="form-control" name="sMoveMember_CharTargetType">
                     <option value="" disabled="disabled">Character Target Type...</option>
-                    %optionList_chartargettype%
+                    %sOptionList_CharacterResolvedTargetType%
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="moveMember_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="move_member">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Swap Member</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="swapMember_partyID" placeholder="Party Identifier" value="%swapMember_partyID%"/>
+                <input type="text" class="form-control" name="sSwapMember_PartyID" placeholder="Party Identifier" value="%sSwapMember_PartyID%"/>
             </div>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="swapMember_first_charID" placeholder="First Character Identifier" value="%swapMember_first_charID%"/>
+                <input type="text" class="form-control" name="sSwapMember_First_CharID" placeholder="First Character Identifier" value="%sSwapMember_First_CharID%"/>
             </div>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="swapMember_second_charID" placeholder="Second Character Identifier" value="%swapMember_second_charID%"/>
+                <input type="text" class="form-control" name="sSwapMember_Second_CharID" placeholder="Second Character Identifier" value="%sSwapMember_Second_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="swapMember_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="swap_member">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Add Item</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="addItem_partyID" placeholder="Party Identifier" value="%addItem_partyID%"/>
+                <input type="text" class="form-control" name="sAddItem_PartyID" placeholder="Party Identifier" value="%sAddItem_PartyID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="addItem_itemName" placeholder="Item Name" value="%addItem_itemName%"/>
+                <input type="text" class="form-control" name="sAddItem_ItemName" placeholder="Item Name" value="%sAddItem_ItemName%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="addItem_itemAmount" placeholder="Item Amount" value="%addItem_itemAmount%"/>
+                <input type="text" class="form-control" name="sAddItem_ItemAmount" placeholder="Item Amount" value="%sAddItem_ItemAmount%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="addItem_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="add_item">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Add Random Items</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="addRandomItems_partyID" placeholder="Party Identifier" value="%addRandomItems_partyID%"/>
+                <input type="text" class="form-control" name="sAddRandomItems_PartyID" placeholder="Party Identifier" value="%sAddRandomItems_PartyID%"/>
             </div>
             <div class="col-sm-2">
-                <select class="form-control" name="addRandomItems_itemtreetype">
+                <select class="form-control" name="sAddRandomItems_ItemTreeType">
                     <option value="" disabled="disabled">Item Tree Type...</option>
-                    %optionList_itemtreetype%
+                    %sOptionList_ItemTreeType%
                 </select>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="addRandomItems_itemCount" placeholder="Item Count" value="%addRandomItems_itemCount%"/>
+                <input type="text" class="form-control" name="sAddRandomItems_ItemCount" placeholder="Item Count" value="%sAddRandomItems_ItemCount%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="addRandomItems_itemAmount" placeholder="Item Amount" value="%addRandomItems_itemAmount%"/>
+                <input type="text" class="form-control" name="sAddRandomItems_ItemAmount" placeholder="Item Amount" value="%sAddRandomItems_ItemAmount%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="addItem_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="add_random_items">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Remove Item</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="removeItem_partyID" placeholder="Party Identifier" value="%removeItem_partyID%"/>
+                <input type="text" class="form-control" name="sRemoveItem_PartyID" placeholder="Party Identifier" value="%sRemoveItem_PartyID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="removeItem_itemName" placeholder="Item Name" value="%removeItem_itemName%"/>
+                <input type="text" class="form-control" name="sRemoveItem_ItemName" placeholder="Item Name" value="%sRemoveItem_ItemName%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="removeItem_itemAmount" placeholder="Item Amount" value="%removeItem_itemAmount%"/>
+                <input type="text" class="form-control" name="sRemoveItem_ItemAmount" placeholder="Item Amount" value="%sRemoveItem_ItemAmount%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="removeItem_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="remove_item">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Equip Best Items</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="equipBestItems_partyID" placeholder="Party Identifier" value="%equipBestItems_partyID%"/>
+                <input type="text" class="form-control" name="sEquipBestItems_PartyID" placeholder="Party Identifier" value="%sEquipBestItems_PartyID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="equipBestItems_charID" placeholder="Character Identifier" value="%equipBestItems_charID%"/>
+                <input type="text" class="form-control" name="sEquipBestItems_CharID" placeholder="Character Identifier" value="%sEquipBestItems_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="equipBestItems_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="equip_best_items">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Unequip Best Items</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="unequipBestItems_partyID" placeholder="Party Identifier" value="%unequipBestItems_partyID%"/>
+                <input type="text" class="form-control" name="sUnequipBestItems_PartyID" placeholder="Party Identifier" value="%sUnequipBestItems_PartyID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="unequipBestItems_charID" placeholder="Character Identifier" value="%unequipBestItems_charID%"/>
+                <input type="text" class="form-control" name="sUnequipBestItems_CharID" placeholder="Character Identifier" value="%sUnequipBestItems_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unequipBestItems_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="unequip_best_items">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Equip Best Items</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="equipBestItemsAllMembers_partyID" placeholder="Party Identifier" value="%equipBestItemsAllMembers_partyID%"/>
+                <input type="text" class="form-control" name="sEquipBestItemsAllMembers_PartyID" placeholder="Party Identifier" value="%sEquipBestItemsAllMembers_PartyID%"/>
             </div>
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="equipBestItemsAllMembers_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="equip_best_items_all_members">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Unequip Best Items</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="unequipBestItemsAllMembers_partyID" placeholder="Party Identifier" value="%unequipBestItemsAllMembers_partyID%"/>
+                <input type="text" class="form-control" name="sUnequipBestItemsAllMembers_PartyID" placeholder="Party Identifier" value="%sUnequipBestItemsAllMembers_PartyID%"/>
             </div>
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unequipBestItemsAllMembers_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="unequip_best_items_all_members">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Display Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="displayParty_partyID" placeholder="Party Identifier" value="%displayParty_partyID%"/>
+                <input type="text" class="form-control" name="sDisplayParty_PartyID" placeholder="Party Identifier" value="%sDisplayParty_PartyID%"/>
             </div>
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="displayParty_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="display_party">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -286,7 +293,7 @@ WebPagePartyManager::WebPagePartyManager()
             <div class="col-sm-6">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="saveParty_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="save_party">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -297,11 +304,11 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Current Ally Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" readonly="readonly" value="%currentParty_ally%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCurrentParty_Ally%"/>
             </div>
             <label class="col-sm-2 col-form-label">Current Enemy Party</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" readonly="readonly" value="%currentParty_enemy%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCurrentParty_Enemy%"/>
             </div>
         </div>
         <div class="form-group row">
@@ -312,50 +319,50 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Party ID</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" readonly="readonly" value="%partyDetails_partyID%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sPartyDetails_PartyID%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Party Type</label>
             <div class="col-sm-4">
-                <select class="form-control" name="partyDetails_partytype">
+                <select class="form-control" name="sPartyDetails_PartyType">
                     <option value="" disabled="disabled">Party Type...</option>
-                    %optionList_partytype%
+                    %sOptionList_CharacterPartyType%
                 </select>
             </div>
             <label class="col-sm-2 col-form-label">Play Time</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" value="%partyDetails_playtime%"/>
+                <input type="text" class="form-control" value="%sPartyDetails_PlayTime%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Taken Target Types</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" readonly="readonly" value="%partyDetails_takenTargetTypes%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sPartyDetails_TakenTargetTypes%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Available Target Types</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" readonly="readonly" value="%partyDetails_availableTargetTypes%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sPartyDetails_AvailableTargetTypes%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Members</label>
             <div class="col-sm-10">
-                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%partyDetails_members%</textarea>
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sPartyDetails_Members%</textarea>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Items</label>
             <div class="col-sm-10">
-                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%partyDetails_items%</textarea>
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sPartyDetails_Items%</textarea>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-10">
-                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%partyDetails_description%</textarea>
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sPartyDetails_Description%</textarea>
             </div>
         </div>
     </form>
@@ -374,108 +381,261 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     MAKE_HTML_OPTION_LIST_STRING(CharacterPartyType);
     MAKE_HTML_OPTION_LIST_STRING(CharacterResolvedTargetType);
     MAKE_HTML_OPTION_LIST_STRING(ItemTreeType);
+    MAKE_HTML_OPTION_LIST_STRING(FileType);
 
     // Get fields
     String sAction = GET_MAP_DATA_OR_DEFAULT(tParams, "action", "");
-    String sCreateParty_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "createParty_partyID", "");
-    String sCreateParty_SetAsCurrent = GET_MAP_DATA_OR_DEFAULT(tParams, "createParty_setascurrent", "");
-    String sLoadPartyFromFile_Filename = GET_MAP_DATA_OR_DEFAULT(tParams, "loadPartyFromFile_filename", "");
-    String sLoadPartyFromFile_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "loadPartyFromFile_partyID", "");
-    String sLoadPartyFromJson_Textarea = GET_MAP_DATA_OR_DEFAULT(tParams, "loadPartyFromJson_textarea", "");
-    String sLoadPartyFromJson_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "loadPartyFromJson_partyID", "");
-    String sSavePartyToFile_Filename = GET_MAP_DATA_OR_DEFAULT(tParams, "savePartyToFile_filename", "");
-    String sSavePartyToFile_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "savePartyToFile_partyID", "");
-    String sSetCurrentParty_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "setCurrentParty_partyID", "");
-    String sUnloadParty_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "unloadParty_partyID", "");
-    String sAddMember_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "addMember_partyID", "");
-    String sAddMember_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "addMember_charID", "");
-    String sRemoveMember_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "removeMember_partyID", "");
-    String sRemoveMember_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "removeMember_charID", "");
-    String sMoveMember_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "moveMember_partyID", "");
-    String sMoveMember_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "moveMember_charID", "");
-    String sSwapMember_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "swapMember_partyID", "");
-    String sSwapMember_First_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "swapMember_first_charID", "");
-    String sSwapMember_Second_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "swapMember_second_charID", "");
-    String sAddItem_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "addItem_partyID", "");
-    String sAddItem_ItemName = GET_MAP_DATA_OR_DEFAULT(tParams, "addItem_itemName", "");
-    String sAddItem_ItemAmount = GET_MAP_DATA_OR_DEFAULT(tParams, "addItem_itemAmount", "");
-    String sAddRandomItems_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "addRandomItems_partyID", "");
-    String sAddRandomItems_ItemCount = GET_MAP_DATA_OR_DEFAULT(tParams, "addRandomItems_itemCount", "");
-    String sAddRandomItems_ItemAmount = GET_MAP_DATA_OR_DEFAULT(tParams, "addRandomItems_itemAmount", "");
-    String sRemoveItem_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "removeItem_partyID", "");
-    String sRemoveItem_ItemName = GET_MAP_DATA_OR_DEFAULT(tParams, "removeItem_itemName", "");
-    String sRemoveItem_ItemAmount = GET_MAP_DATA_OR_DEFAULT(tParams, "removeItem_itemAmount", "");
-    String sEquipBestItems_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "equipBestItems_partyID", "");
-    String sEquipBestItems_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "equipBestItems_charID", "");
-    String sUnequipBestItems_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "unequipBestItems_partyID", "");
-    String sUnequipBestItems_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "unequipBestItems_charID", "");
-    String sEquipBestItemsAllMembers_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "equipBestItemsAllMembers_partyID", "");
-    String sUnequipBestItemsAllMembers_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "unequipBestItemsAllMembers_partyID", "");
-    String sDisplayParty_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "displayParty_partyID", "");
+    String sLoadPartyFromJson_Textarea = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadPartyFromJson_Textarea", "");
+    String sLoadPartyFromFile_Filename = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadPartyFromFile_Filename", "");
+    String sLoadPartyFromFile_FileType = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadPartyFromFile_FileType", "");
+    String sSavePartyToFile_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sSavePartyToFile_PartyID", "");
+    String sSavePartyToFile_Filename = GET_MAP_DATA_OR_DEFAULT(tParams, "sSavePartyToFile_Filename", "");
+    String sSavePartyToFile_FileType = GET_MAP_DATA_OR_DEFAULT(tParams, "sSavePartyToFile_FileType", "");
+    String sUnloadParty_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnloadParty_PartyID", "");
+    String sSetCurrentParty_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sSetCurrentParty_PartyID", "");
+    String sSetCurrentParty_PartyType = GET_MAP_DATA_OR_DEFAULT(tParams, "sSetCurrentParty_PartyType", "");
+    String sCreateParty_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sCreateParty_PartyID", "");
+    String sCreateParty_PartyType = GET_MAP_DATA_OR_DEFAULT(tParams, "sCreateParty_PartyType", "");
+    String sCreateParty_SetAsCurrent = GET_MAP_DATA_OR_DEFAULT(tParams, "sCreateParty_SetAsCurrent", "");
+    String sAddMember_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sAddMember_PartyID", "");
+    String sAddMember_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sAddMember_CharID", "");
+    String sRemoveMember_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sRemoveMember_PartyID", "");
+    String sRemoveMember_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sRemoveMember_CharID", "");
+    String sMoveMember_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sMoveMember_PartyID", "");
+    String sMoveMember_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sMoveMember_CharID", "");
+    String sMoveMember_CharTargetType = GET_MAP_DATA_OR_DEFAULT(tParams, "sMoveMember_CharTargetType", "");
+    String sSwapMember_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sSwapMember_PartyID", "");
+    String sSwapMember_First_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sSwapMember_First_CharID", "");
+    String sSwapMember_Second_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sSwapMember_Second_CharID", "");
+    String sAddItem_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sAddItem_PartyID", "");
+    String sAddItem_ItemName = GET_MAP_DATA_OR_DEFAULT(tParams, "sAddItem_ItemName", "");
+    String sAddItem_ItemAmount = GET_MAP_DATA_OR_DEFAULT(tParams, "sAddItem_ItemAmount", "");
+    String sAddRandomItems_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sAddRandomItems_PartyID", "");
+    String sAddRandomItems_ItemTreeType = GET_MAP_DATA_OR_DEFAULT(tParams, "sAddRandomItems_ItemTreeType", "");
+    String sAddRandomItems_ItemCount = GET_MAP_DATA_OR_DEFAULT(tParams, "sAddRandomItems_ItemCount", "");
+    String sAddRandomItems_ItemAmount = GET_MAP_DATA_OR_DEFAULT(tParams, "sAddRandomItems_ItemAmount", "");
+    String sRemoveItem_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sRemoveItem_PartyID", "");
+    String sRemoveItem_ItemName = GET_MAP_DATA_OR_DEFAULT(tParams, "sRemoveItem_ItemName", "");
+    String sRemoveItem_ItemAmount = GET_MAP_DATA_OR_DEFAULT(tParams, "sRemoveItem_ItemAmount", "");
+    String sEquipBestItems_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipBestItems_PartyID", "");
+    String sEquipBestItems_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipBestItems_CharID", "");
+    String sUnequipBestItems_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnequipBestItems_PartyID", "");
+    String sUnequipBestItems_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnequipBestItems_CharID", "");
+    String sEquipBestItemsAllMembers_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipBestItemsAllMembers_PartyID", "");
+    String sUnequipBestItemsAllMembers_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnequipBestItemsAllMembers_PartyID", "");
+    String sDisplayParty_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sDisplayParty_PartyID", "");
+    String sPartyDetails_PartyType = GET_MAP_DATA_OR_DEFAULT(tParams, "sPartyDetails_PartyType", "");
+    String sPartyDetails_PlayTime = GET_MAP_DATA_OR_DEFAULT(tParams, "sPartyDetails_PlayTime", "");
 
-    // Get current parties
-    String sCurrentParty_Ally;
-    String sCurrentParty_Enemy;
-
-    // Get party details
+    // Party details
     String sPartyDetails_PartyID;
-    String sPartyDetails_PlayTime;
     String sPartyDetails_TakenTargetTypes;
     String sPartyDetails_AvailableTargetTypes;
     String sPartyDetails_Members;
     String sPartyDetails_Items;
     String sPartyDetails_Description;
 
+    // Check action
+    if(sAction == "load_party_from_json")
+    {
+        CharacterPartyManager::GetInstance()->LoadParty(
+            CharacterParty(sLoadPartyFromJson_Textarea)
+        );
+    }
+    else if(sAction == "load_party_from_file")
+    {
+        CharacterPartyManager::GetInstance()->LoadPartyFromFile(
+            sLoadPartyFromFile_Filename,
+            sLoadPartyFromFile_FileType
+        );
+    }
+    else if(sAction == "save_party_to_file")
+    {
+        CharacterPartyManager::GetInstance()->SavePartyToFile(
+            sSavePartyToFile_PartyID,
+            sSavePartyToFile_Filename,
+            sSavePartyToFile_FileType
+        );
+    }
+    else if(sAction == "unload_party")
+    {
+        CharacterPartyManager::GetInstance()->UnloadParty(
+            sUnloadParty_PartyID
+        );
+    }
+    else if(sAction == "set_current_party")
+    {
+        const CharacterPartyType ePartyType = StringToCharacterPartyType(sSetCurrentParty_PartyType);
+        switch(ePartyType)
+        {
+            case CharacterPartyType::Ally:
+                CharacterPartyManager::GetInstance()->SetCurrentAllyPartyID(sSetCurrentParty_PartyID);
+                break;
+            case CharacterPartyType::Enemy:
+                CharacterPartyManager::GetInstance()->SetCurrentEnemyPartyID(sSetCurrentParty_PartyID);
+                break;
+            default:
+                break;
+        }
+    }
+    else if(sAction == "create_party")
+    {
+        CharacterPartyManager::GetInstance()->CreateParty(
+            sCreateParty_PartyID,
+            sCreateParty_PartyType,
+            (sCreateParty_SetAsCurrent == "current")
+        );
+    }
+    else if(sAction == "add_member")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sAddMember_PartyID);
+        party.AddMember(
+            sAddMember_CharID
+        );
+    }
+    else if(sAction == "remove_member")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sRemoveMember_PartyID);
+        party.RemoveMember(
+            sRemoveMember_CharID
+        );
+    }
+    else if(sAction == "move_member")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sMoveMember_PartyID);
+        party.MoveMember(
+            sMoveMember_CharID,
+            sMoveMember_CharTargetType
+        );
+    }
+    else if(sAction == "swap_member")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sSwapMember_PartyID);
+        party.SwapMembers(
+            sSwapMember_First_CharID,
+            sSwapMember_Second_CharID
+        );
+    }
+    else if(sAction == "add_item")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sAddItem_PartyID);
+        party.AddItemByLeaf(
+            sAddItem_ItemName,
+            BoostLexicalCast<UInt>(sAddItem_ItemAmount)
+        );
+    }
+    else if(sAction == "add_random_items")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sAddRandomItems_PartyID);
+        party.AddRandomItems(
+            {sAddRandomItems_ItemTreeType},
+            BoostLexicalCast<Int>(sAddRandomItems_ItemCount),
+            BoostLexicalCast<Int>(sAddRandomItems_ItemAmount),
+            BoostLexicalCast<Int>(sAddRandomItems_ItemAmount)
+        );
+    }
+    else if(sAction == "remove_item")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sRemoveItem_PartyID);
+        party.RemoveItemByLeaf(
+            sRemoveItem_ItemName,
+            BoostLexicalCast<UInt>(sRemoveItem_ItemAmount)
+        );
+    }
+    else if(sAction == "equip_best_items")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sEquipBestItems_PartyID);
+        party.EquipBestItems(
+            sEquipBestItems_CharID
+        );
+    }
+    else if(sAction == "unequip_best_items")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sUnequipBestItems_PartyID);
+        party.UnequipAllItems(
+            sUnequipBestItems_CharID
+        );
+    }
+    else if(sAction == "equip_best_items_all_members")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sEquipBestItemsAllMembers_PartyID);
+        party.EquipBestItemsForAllMembers();
+    }
+    else if(sAction == "unequip_best_items_all_members")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sUnequipBestItemsAllMembers_PartyID);
+        party.UnequipAllItemsForAllMembers();
+    }
+    else if(sAction == "display_party")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sDisplayParty_PartyID);
+        sPartyDetails_PartyID = party.GetPartyID().Get();
+        sPartyDetails_PartyType = party.GetPartyType().Get();
+        sPartyDetails_PlayTime = STDToString(party.GetPlayTime());
+        sPartyDetails_TakenTargetTypes = ConcatStringVector(party.GetTakenTargetTypes()).Get();
+        sPartyDetails_AvailableTargetTypes = ConcatStringVector(party.GetAvailableTargetTypes()).Get();
+        sPartyDetails_Members = Json(party.GetMembers()).dump(4);
+        sPartyDetails_Items = Json(party.GetItems()).dump(4);
+        sPartyDetails_Description = party.GetDescription();
+    }
+    else if(sAction == "save_party")
+    {
+
+    }
+
+    // Get current parties
+    String sCurrentParty_Ally = CharacterPartyManager::GetInstance()->GetCurrentAllyPartyID().Get();
+    String sCurrentParty_Enemy = CharacterPartyManager::GetInstance()->GetCurrentEnemyPartyID().Get();
+
     // Set page content
     String sPage = GetPageTemplate();
-    BoostReplaceAll(sPage, "%submit_url%", WEB_PAGE_TOOL_PARTY_MANAGER);
-    BoostReplaceAll(sPage, "%optionList_partytype%", sOptionList_CharacterPartyType);
-    BoostReplaceAll(sPage, "%optionList_chartargettype%", sOptionList_CharacterResolvedTargetType);
-    BoostReplaceAll(sPage, "%optionList_itemtreetype%", sOptionList_ItemTreeType);
-    BoostReplaceAll(sPage, "%createParty_partyID%", sCreateParty_PartyID);
-    BoostReplaceAll(sPage, "%createParty_setascurrent%", sCreateParty_SetAsCurrent);
-    BoostReplaceAll(sPage, "%loadPartyFromFile_filename%", sLoadPartyFromFile_Filename);
-    BoostReplaceAll(sPage, "%loadPartyFromFile_partyID%", sLoadPartyFromFile_PartyID);
-    BoostReplaceAll(sPage, "%loadPartyFromJson_textarea%", sLoadPartyFromJson_Textarea);
-    BoostReplaceAll(sPage, "%loadPartyFromJson_partyID%", sLoadPartyFromJson_PartyID);
-    BoostReplaceAll(sPage, "%savePartyToFile_filename%", sSavePartyToFile_Filename);
-    BoostReplaceAll(sPage, "%savePartyToFile_partyID%", sSavePartyToFile_PartyID);
-    BoostReplaceAll(sPage, "%setCurrentParty_partyID%", sSetCurrentParty_PartyID);
-    BoostReplaceAll(sPage, "%unloadParty_partyID%", sUnloadParty_PartyID);
-    BoostReplaceAll(sPage, "%addMember_partyID%", sAddMember_PartyID);
-    BoostReplaceAll(sPage, "%addMember_charID%", sAddMember_CharID);
-    BoostReplaceAll(sPage, "%removeMember_partyID%", sRemoveMember_PartyID);
-    BoostReplaceAll(sPage, "%removeMember_charID%", sRemoveMember_CharID);
-    BoostReplaceAll(sPage, "%moveMember_partyID%", sMoveMember_PartyID);
-    BoostReplaceAll(sPage, "%moveMember_charID%", sMoveMember_CharID);
-    BoostReplaceAll(sPage, "%swapMember_partyID%", sSwapMember_PartyID);
-    BoostReplaceAll(sPage, "%swapMember_first_charID%", sSwapMember_First_CharID);
-    BoostReplaceAll(sPage, "%swapMember_second_charID%", sSwapMember_Second_CharID);
-    BoostReplaceAll(sPage, "%addItem_partyID%", sAddItem_PartyID);
-    BoostReplaceAll(sPage, "%addItem_itemName%", sAddItem_ItemName);
-    BoostReplaceAll(sPage, "%addItem_itemAmount%", sAddItem_ItemAmount);
-    BoostReplaceAll(sPage, "%addRandomItems_partyID%", sAddRandomItems_PartyID);
-    BoostReplaceAll(sPage, "%addRandomItems_itemCount%", sAddRandomItems_ItemCount);
-    BoostReplaceAll(sPage, "%addRandomItems_itemAmount%", sAddRandomItems_ItemAmount);
-    BoostReplaceAll(sPage, "%removeItem_partyID%", sRemoveItem_PartyID);
-    BoostReplaceAll(sPage, "%removeItem_itemName%", sRemoveItem_ItemName);
-    BoostReplaceAll(sPage, "%removeItem_itemAmount%", sRemoveItem_ItemAmount);
-    BoostReplaceAll(sPage, "%equipBestItems_partyID%", sEquipBestItems_PartyID);
-    BoostReplaceAll(sPage, "%equipBestItems_charID%", sEquipBestItems_CharID);
-    BoostReplaceAll(sPage, "%unequipBestItems_partyID%", sUnequipBestItems_PartyID);
-    BoostReplaceAll(sPage, "%unequipBestItems_charID%", sUnequipBestItems_CharID);
-    BoostReplaceAll(sPage, "%equipBestItemsAllMembers_partyID%", sEquipBestItemsAllMembers_PartyID);
-    BoostReplaceAll(sPage, "%unequipBestItemsAllMembers_partyID%", sUnequipBestItemsAllMembers_PartyID);
-    BoostReplaceAll(sPage, "%displayParty_partyID%", sDisplayParty_PartyID);
-    BoostReplaceAll(sPage, "%currentParty_ally%", sCurrentParty_Ally);
-    BoostReplaceAll(sPage, "%currentParty_enemy%", sCurrentParty_Enemy);
-    BoostReplaceAll(sPage, "%partyDetails_partyID%", sPartyDetails_PartyID);
-    BoostReplaceAll(sPage, "%partyDetails_playtime%", sPartyDetails_PlayTime);
-    BoostReplaceAll(sPage, "%partyDetails_takenTargetTypes%", sPartyDetails_TakenTargetTypes);
-    BoostReplaceAll(sPage, "%partyDetails_availableTargetTypes%", sPartyDetails_AvailableTargetTypes);
-    BoostReplaceAll(sPage, "%partyDetails_members%", sPartyDetails_Members);
-    BoostReplaceAll(sPage, "%partyDetails_items%", sPartyDetails_Items);
-    BoostReplaceAll(sPage, "%partyDetails_description%", sPartyDetails_Description);
+    BoostReplaceAll(sPage, "%sSubmit_Url%", WEB_PAGE_TOOL_PARTY_MANAGER);
+    BoostReplaceAll(sPage, "%sOptionList_CharacterPartyType%", sOptionList_CharacterPartyType);
+    BoostReplaceAll(sPage, "%sOptionList_CharacterResolvedTargetType%", sOptionList_CharacterResolvedTargetType);
+    BoostReplaceAll(sPage, "%sOptionList_ItemTreeType%", sOptionList_ItemTreeType);
+    BoostReplaceAll(sPage, "%sOptionList_FileType%", sOptionList_FileType);
+    BoostReplaceAll(sPage, "%sLoadPartyFromJson_Textarea%", sLoadPartyFromJson_Textarea);
+    BoostReplaceAll(sPage, "%sLoadPartyFromFile_Filename%", sLoadPartyFromFile_Filename);
+    BoostReplaceAll(sPage, "%sSavePartyToFile_PartyID%", sSavePartyToFile_PartyID);
+    BoostReplaceAll(sPage, "%sSavePartyToFile_Filename%", sSavePartyToFile_Filename);
+    BoostReplaceAll(sPage, "%sUnloadParty_PartyID%", sUnloadParty_PartyID);
+    BoostReplaceAll(sPage, "%sSetCurrentParty_PartyID%", sSetCurrentParty_PartyID);
+    BoostReplaceAll(sPage, "%sCreateParty_PartyID%", sCreateParty_PartyID);
+    BoostReplaceAll(sPage, "%sCreateParty_SetAsCurrent%", sCreateParty_SetAsCurrent);
+    BoostReplaceAll(sPage, "%sAddMember_PartyID%", sAddMember_PartyID);
+    BoostReplaceAll(sPage, "%sAddMember_CharID%", sAddMember_CharID);
+    BoostReplaceAll(sPage, "%sRemoveMember_PartyID%", sRemoveMember_PartyID);
+    BoostReplaceAll(sPage, "%sRemoveMember_CharID%", sRemoveMember_CharID);
+    BoostReplaceAll(sPage, "%sMoveMember_PartyID%", sMoveMember_PartyID);
+    BoostReplaceAll(sPage, "%sMoveMember_CharID%", sMoveMember_CharID);
+    BoostReplaceAll(sPage, "%sSwapMember_PartyID%", sSwapMember_PartyID);
+    BoostReplaceAll(sPage, "%sSwapMember_First_CharID%", sSwapMember_First_CharID);
+    BoostReplaceAll(sPage, "%sSwapMember_Second_CharID%", sSwapMember_Second_CharID);
+    BoostReplaceAll(sPage, "%sAddItem_PartyID%", sAddItem_PartyID);
+    BoostReplaceAll(sPage, "%sAddItem_ItemName%", sAddItem_ItemName);
+    BoostReplaceAll(sPage, "%sAddItem_ItemAmount%", sAddItem_ItemAmount);
+    BoostReplaceAll(sPage, "%sAddRandomItems_PartyID%", sAddRandomItems_PartyID);
+    BoostReplaceAll(sPage, "%sAddRandomItems_ItemCount%", sAddRandomItems_ItemCount);
+    BoostReplaceAll(sPage, "%sAddRandomItems_ItemAmount%", sAddRandomItems_ItemAmount);
+    BoostReplaceAll(sPage, "%sRemoveItem_PartyID%", sRemoveItem_PartyID);
+    BoostReplaceAll(sPage, "%sRemoveItem_ItemName%", sRemoveItem_ItemName);
+    BoostReplaceAll(sPage, "%sRemoveItem_ItemAmount%", sRemoveItem_ItemAmount);
+    BoostReplaceAll(sPage, "%sEquipBestItems_PartyID%", sEquipBestItems_PartyID);
+    BoostReplaceAll(sPage, "%sEquipBestItems_CharID%", sEquipBestItems_CharID);
+    BoostReplaceAll(sPage, "%sUnequipBestItems_PartyID%", sUnequipBestItems_PartyID);
+    BoostReplaceAll(sPage, "%sUnequipBestItems_CharID%", sUnequipBestItems_CharID);
+    BoostReplaceAll(sPage, "%sEquipBestItemsAllMembers_PartyID%", sEquipBestItemsAllMembers_PartyID);
+    BoostReplaceAll(sPage, "%sUnequipBestItemsAllMembers_PartyID%", sUnequipBestItemsAllMembers_PartyID);
+    BoostReplaceAll(sPage, "%sDisplayParty_PartyID%", sDisplayParty_PartyID);
+    BoostReplaceAll(sPage, "%sCurrentParty_Ally%", sCurrentParty_Ally);
+    BoostReplaceAll(sPage, "%sCurrentParty_Enemy%", sCurrentParty_Enemy);
+    BoostReplaceAll(sPage, "%sPartyDetails_PartyID%", sPartyDetails_PartyID);
+    BoostReplaceAll(sPage, "%sPartyDetails_PlayTime%", sPartyDetails_PlayTime);
+    BoostReplaceAll(sPage, "%sPartyDetails_TakenTargetTypes%", sPartyDetails_TakenTargetTypes);
+    BoostReplaceAll(sPage, "%sPartyDetails_AvailableTargetTypes%", sPartyDetails_AvailableTargetTypes);
+    BoostReplaceAll(sPage, "%sPartyDetails_Members%", sPartyDetails_Members);
+    BoostReplaceAll(sPage, "%sPartyDetails_Items%", sPartyDetails_Items);
+    BoostReplaceAll(sPage, "%sPartyDetails_Description%", sPartyDetails_Description);
     SetPageContent(sPage);
 }
 
