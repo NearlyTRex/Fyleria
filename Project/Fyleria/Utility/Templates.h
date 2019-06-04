@@ -152,7 +152,7 @@ void ShuffleVector(STDVector<T>& vVector)
 template <typename T>
 void PrintStringVector(const STDVector<T>& vVector)
 {
-    PRINTF("(");
+    PRINTF("[");
     for(UInt i = 0; i < vVector.size(); i++)
     {
         PRINTF("%s", vVector[i].c_str());
@@ -161,14 +161,14 @@ void PrintStringVector(const STDVector<T>& vVector)
             PRINTF(", ");
         }
     }
-    PRINTF(")\n");
+    PRINTF("]\n");
 }
 
 // Concatenate vector of strings to one string
 template <typename T>
 T ConcatStringVector(const STDVector<T>& vVector)
 {
-    T sStr = "(";
+    T sStr = "[";
     for(UInt i = 0; i < vVector.size(); i++)
     {
         sStr = sStr + vVector[i];
@@ -177,7 +177,7 @@ T ConcatStringVector(const STDVector<T>& vVector)
             sStr = sStr + T(", ");
         }
     }
-    sStr = sStr + ")";
+    sStr = sStr + "]";
     return sStr;
 }
 
