@@ -43,10 +43,10 @@ WebPagePartyManager::WebPagePartyManager()
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load From File</label>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <input type="text" class="form-control" name="sLoadPartyFromFile_Filename" placeholder="Filename" value="%sLoadPartyFromFile_Filename%"/>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <select class="form-control" name="sLoadPartyFromFile_FileType">
                     <option value="" disabled="disabled">File Type...</option>
                     %sOptionList_FileType%
