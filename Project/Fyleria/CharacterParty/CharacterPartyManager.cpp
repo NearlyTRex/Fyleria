@@ -55,6 +55,7 @@ void CharacterPartyManager::CreateParty(const IndexedString& sPartyID, const Ind
     newParty.SetPartyID(sPartyID);
     newParty.SetPartyType(sPartyType);
     newParty.SetAvailableTargetTypes(vAvailableTargetTypes);
+    newParty.ResetPlayTime();
     GetParties().insert({sPartyID, newParty});
 
     // Set as current ally/enemy
@@ -80,6 +81,14 @@ void CharacterPartyManager::UnloadParty(const IndexedString& sPartyID)
     // Unload party
     ASSERT_ERROR(DoesPartyExist(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
     GetParties().erase(sPartyID);
+    if(sPartyID == GetCurrentAllyPartyID())
+    {
+        SetCurrentAllyPartyID("");
+    }
+    else if(sPartyID == GetCurrentEnemyPartyID())
+    {
+        SetCurrentEnemyPartyID("");
+    }
 }
 
 Bool CharacterPartyManager::DoesPartyExist(const IndexedString& sPartyID) const

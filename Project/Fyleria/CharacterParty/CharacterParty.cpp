@@ -640,7 +640,7 @@ void CharacterParty::ResetPlayTime()
 {
     SetCurrentPlayTime(0);
     SetLastTimePoint(STDGetCurrentTimePoint());
-    SetPlayTimePaused(false);
+    SetPlayTimePaused(true);
 }
 
 void CharacterParty::PausePlayTime()
