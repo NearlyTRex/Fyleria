@@ -84,16 +84,16 @@ Bool CharacterParty::IsTargetTypeTaken(const IndexedString& sCharacterTargetType
 Bool CharacterParty::AddMember(const IndexedString& sCharacterID)
 {
     // Check if party is full
-    ASSERT_ERROR(!IsPartyFull(), "Party at ID '%s' is full", GetPartyID().c_str());
     if(IsPartyFull())
     {
+        ERROR_FORMAT_STATEMENT("Party at ID '%s' is full\n", GetPartyID().c_str());
         return false;
     }
 
     // Check if member does not exist first
-    ASSERT_ERROR(!IsMemberPresent(sCharacterID), "Character at ID '%s' was already present in party", sCharacterID.c_str());
     if(IsMemberPresent(sCharacterID))
     {
+        ERROR_FORMAT_STATEMENT("Character at ID '%s' was already present in party\n", sCharacterID.c_str());
         return false;
     }
 
@@ -110,9 +110,9 @@ Bool CharacterParty::AddMember(const IndexedString& sCharacterID)
 Bool CharacterParty::RemoveMember(const IndexedString& sCharacterID)
 {
     // Check if member exists first
-    ASSERT_ERROR(IsMemberPresent(sCharacterID), "Character at ID '%s' was not present in party", sCharacterID.c_str());
     if(!IsMemberPresent(sCharacterID))
     {
+        ERROR_FORMAT_STATEMENT("Character at ID '%s' was not present in party\n", sCharacterID.c_str());
         return false;
     }
 
@@ -127,15 +127,16 @@ Bool CharacterParty::RemoveMember(const IndexedString& sCharacterID)
 Bool CharacterParty::MoveMember(const IndexedString& sCharacterID, const IndexedString& sCharacterTargetType)
 {
     // Check if member exists first
-    ASSERT_ERROR(IsMemberPresent(sCharacterID), "Character at ID '%s' was not present in party", sCharacterID.c_str());
     if(!IsMemberPresent(sCharacterID))
     {
+        ERROR_FORMAT_STATEMENT("Character at ID '%s' was not present in party\n", sCharacterID.c_str());
         return false;
     }
 
     // Check if new target type is available
     if(!IsTargetTypeAvailable(sCharacterTargetType))
     {
+        ERROR_FORMAT_STATEMENT("Target type '%s' is not available\n", sCharacterTargetType.c_str());
         return false;
     }
 
@@ -150,10 +151,11 @@ Bool CharacterParty::MoveMember(const IndexedString& sCharacterID, const Indexed
 Bool CharacterParty::SwapMembers(const IndexedString& sFirstCharacterID, const IndexedString& sSecondCharacterID)
 {
     // Check if members exists first
-    ASSERT_ERROR(IsMemberPresent(sFirstCharacterID), "Character at ID '%s' was not present in party", sFirstCharacterID.c_str());
-    ASSERT_ERROR(IsMemberPresent(sSecondCharacterID), "Character at ID '%s' was not present in party", sSecondCharacterID.c_str());
     if(!IsMemberPresent(sFirstCharacterID) || !IsMemberPresent(sSecondCharacterID))
     {
+        ERROR_FORMAT_STATEMENT("Character at ID '%s' or ID '%s' was not present in party\n",
+            sFirstCharacterID.c_str(),
+            sSecondCharacterID.c_str());
         return false;
     }
 
@@ -302,6 +304,16 @@ UInt CharacterParty::GetStatusMemberCount(const IndexedString& sStatus) const
 
 Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd)
 {
+    // Notify user
+    LOG_FORMAT_STATEMENT(
+        "Trying to add random items to party '%s' "
+        "(vTreeTypes = '%s', iNumRandomItems = %d, iAmountStart = %d, iAmountEnd = %d)\n",
+        GetPartyID().c_str(),
+        ConcatStringVector(vTreeTypes).c_str(),
+        iNumRandomItems,
+        iAmountStart,
+        iAmountEnd);
+
     // Get lists of all items
     TreeIndexArray vAllArmors = ItemTree::GetAllArmorItems();
     TreeIndexArray vAllIngredients = ItemTree::GetAllIngredientItems();
@@ -346,9 +358,14 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
             // Add item
             if(!randomTreeIndex.empty())
             {
-                Bool bSuccess = AddItemByTreeIndex(randomTreeIndex, GetRandomIntValue<Int>(iAmountStart, iAmountEnd));
+                UInt uAmount = GetRandomIntValue<Int>(iAmountStart, iAmountEnd);
+                Bool bSuccess = AddItemByTreeIndex(randomTreeIndex, uAmount);
                 if(bSuccess)
                 {
+                    LOG_FORMAT_STATEMENT("Added item '%s' to party '%s' by amount %d\n",
+                        randomTreeIndex.GetTreeBranchLeafType().c_str(),
+                        GetPartyID().c_str(),
+                        uAmount);
                     vAddedRandomTreeIndices.push_back(randomTreeIndex);
                 }
                 bAtLeastOneAdded = bAtLeastOneAdded || bSuccess;
@@ -361,8 +378,15 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
 Bool CharacterParty::AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
 {
     TreeIndex treeIndex = ItemTree::ResolveItemLeafIntoIndex(sLeaf);
+    if(treeIndex.empty())
+    {
+        ERROR_FORMAT_STATEMENT("Unable to resolve leaf '%s' into a valid tree index\n", sLeaf.c_str());
+        return false;
+    }
+
     if(!ItemTree::DoesItemDataExist(treeIndex))
     {
+        ERROR_FORMAT_STATEMENT("Tree index '%s' was not found\n", treeIndex.GetTreeBranchLeafType().c_str());
         return false;
     }
 
@@ -451,6 +475,10 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterI
 
     // Get shield count for this weapon set (if applicable)
     // We do this because we don't want to autofill more than one shield
+    LOG_FORMAT_STATEMENT("Looking for best unequipped item (matching slot '%s') for character '%s' in party '%s'\n",
+        sSlot.c_str(),
+        sCharacterID.c_str(),
+        GetPartyID().c_str());
     const IndexedString sWeaponSet = ConvertCharacterEquipmentTypeToCharacterWeaponSetType(sSlot);
     UInt uShieldCount = 0;
     if(!sWeaponSet.IsNone())
@@ -491,6 +519,12 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterI
             bestItem = item.second.GetTreeIndex();
         }
     }
+#if DEBUG
+    if(!bestItem.empty())
+    {
+        LOG_FORMAT_STATEMENT("Found item '%s'\n", bestItem.GetTreeBranchLeafType().c_str());
+    }
+#endif
     return bestItem;
 }
 
@@ -503,20 +537,36 @@ Bool CharacterParty::EquipItem(const IndexedString& sCharacterID, const IndexedS
     // Check if the item can be equipped
     if(!item.DoesMatchSlot(sSlot))
     {
+        ERROR_FORMAT_STATEMENT("Item '%s' does not match slot '%s'\n",
+            sLeaf.c_str(),
+            sSlot.c_str());
         return false;
     }
     if(!item.CanEquipAmount(1))
     {
+        ERROR_FORMAT_STATEMENT("Item '%s' cannot be equipped (Amount = %d, Equip Count = %d)\n",
+            sLeaf.c_str(),
+            item.GetAmount(),
+            item.GetEquipCount());
         return false;
     }
     if(!member.CanAddEquippedItem(item.GetTreeIndex()))
     {
+        ERROR_FORMAT_STATEMENT("Member '%s' in party '%s' cannot equip item '%s'\n",
+            sCharacterID.c_str(),
+            GetPartyID().c_str(),
+            sLeaf.c_str());
         return false;
     }
 
     // Mark the item as being equipped
     if(!member.AddEquippedItem(item.GetTreeIndex(), sSlot) || !item.EquipAmount(1))
     {
+        ERROR_FORMAT_STATEMENT("Member '%s' in party '%s' was not able to equip item '%s' to slot '%s'\n",
+            sCharacterID.c_str(),
+            GetPartyID().c_str(),
+            sLeaf.c_str(),
+            sSlot.c_str());
         return false;
     }
     return true;
@@ -531,20 +581,36 @@ Bool CharacterParty::UnequipItem(const IndexedString& sCharacterID, const Indexe
     // Check if the item can be unequipped
     if(!item.DoesMatchSlot(sSlot))
     {
+        ERROR_FORMAT_STATEMENT("Item '%s' does not match slot '%s'\n",
+            sLeaf.c_str(),
+            sSlot.c_str());
         return false;
     }
     if(!item.CanUnequipAmount(1))
     {
+        ERROR_FORMAT_STATEMENT("Item '%s' cannot be unequipped (Amount = %d, Equip Count = %d)\n",
+            sLeaf.c_str(),
+            item.GetAmount(),
+            item.GetEquipCount());
         return false;
     }
     if(!member.CanRemoveEquippedItem(item.GetTreeIndex()))
     {
+        ERROR_FORMAT_STATEMENT("Member '%s' in party '%s' cannot unequip item '%s'\n",
+            sCharacterID.c_str(),
+            GetPartyID().c_str(),
+            sLeaf.c_str());
         return false;
     }
 
     // Mark the item as being equipped
     if(!member.RemoveEquippedItem(item.GetTreeIndex(), sSlot) || !item.UnequipAmount(1))
     {
+        ERROR_FORMAT_STATEMENT("Member '%s' in party '%s' was not able to unequip item '%s' to slot '%s'\n",
+            sCharacterID.c_str(),
+            GetPartyID().c_str(),
+            sLeaf.c_str(),
+            sSlot.c_str());
         return false;
     }
     return true;
@@ -638,6 +704,7 @@ String CharacterParty::GetDescription() const
 
 void CharacterParty::ResetPlayTime()
 {
+    LOG_FORMAT_STATEMENT("Resetting play time for party '%s'\n", GetPartyID().c_str());
     SetCurrentPlayTime(0);
     SetLastTimePoint(STDGetCurrentTimePoint());
     SetPlayTimePaused(true);
@@ -645,6 +712,7 @@ void CharacterParty::ResetPlayTime()
 
 void CharacterParty::PausePlayTime()
 {
+    LOG_FORMAT_STATEMENT("Pausing play time for party '%s'\n", GetPartyID().c_str());
     if (GetPlayTimePaused())
     {
         return;
@@ -657,6 +725,7 @@ void CharacterParty::PausePlayTime()
 
 void CharacterParty::ResumePlayTime()
 {
+    LOG_FORMAT_STATEMENT("Resuming play time for party '%s'\n", GetPartyID().c_str());
     if (!GetPlayTimePaused())
     {
         return;
