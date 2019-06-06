@@ -279,26 +279,39 @@ TreeIndexArray ItemTree::GetAllEquippedItems(const IndexedString& sCharID)
 
 TreeIndex ItemTree::ResolveItemLeafIntoIndex(const IndexedString& sLeaf)
 {
-    TreeIndex armorIndex(IndexedString("Item"), IndexedString("Armor"), sLeaf);
-    TreeIndex ingredientIndex(IndexedString("Item"), IndexedString("Ingredient"), sLeaf);
-    TreeIndex potionIndex(IndexedString("Item"), IndexedString("Potion"), sLeaf);
-    TreeIndex weaponIndex(IndexedString("Item"), IndexedString("Weapon"), sLeaf);
+    // Check armor
+    TreeIndex armorIndex(IndexedString("Armor"),
+        ItemTreeArmor::GetInstance()->GetBranchFromLeaf(sLeaf), sLeaf);
     if(DoesItemDataArmorExist(armorIndex))
     {
         return armorIndex;
     }
-    else if(DoesItemDataIngredientExist(ingredientIndex))
-    {
-        return ingredientIndex;
-    }
-    else if(DoesItemDataPotionExist(potionIndex))
-    {
-        return potionIndex;
-    }
-    else if(DoesItemDataWeaponExist(weaponIndex))
+
+    // Check weapon
+    TreeIndex weaponIndex(IndexedString("Weapon"),
+        ItemTreeWeapon::GetInstance()->GetBranchFromLeaf(sLeaf), sLeaf);
+    if(DoesItemDataWeaponExist(weaponIndex))
     {
         return weaponIndex;
     }
+
+    // Check potion
+    TreeIndex potionIndex(IndexedString("Potion"),
+        ItemTreePotion::GetInstance()->GetBranchFromLeaf(sLeaf), sLeaf);
+    if(DoesItemDataPotionExist(potionIndex))
+    {
+        return potionIndex;
+    }
+
+    // Check ingredient
+    TreeIndex ingredientIndex(IndexedString("Ingredient"),
+        ItemTreeIngredient::GetInstance()->GetBranchFromLeaf(sLeaf), sLeaf);
+    if(DoesItemDataIngredientExist(ingredientIndex))
+    {
+        return ingredientIndex;
+    }
+
+    // Nothing found
     return TreeIndex();
 }
 
