@@ -232,6 +232,48 @@ WebPagePartyManager::WebPagePartyManager()
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Equip Item</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sEquipItem_PartyID" placeholder="Party Identifier" value="%sEquipItem_PartyID%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sEquipItem_CharID" placeholder="Character Identifier" value="%sEquipItem_CharID%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sEquipItem_ItemName" placeholder="Item Name" value="%sEquipItem_ItemName%"/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="sEquipItem_CharacterEquipmentType">
+                    <option value="" disabled="disabled">Slot Type...</option>
+                    %sOptionList_CharacterEquipmentType%
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="equip_item">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Unequip Item</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sUnequipItem_PartyID" placeholder="Party Identifier" value="%sUnequipItem_PartyID%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sUnequipItem_CharID" placeholder="Character Identifier" value="%sUnequipItem_CharID%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sUnequipItem_ItemName" placeholder="Item Name" value="%sUnequipItem_ItemName%"/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="sUnequipItem_CharacterEquipmentType">
+                    <option value="" disabled="disabled">Slot Type...</option>
+                    %sOptionList_CharacterEquipmentType%
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="unequip_item">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-2 col-form-label">Equip Best Items</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" name="sEquipBestItems_PartyID" placeholder="Party Identifier" value="%sEquipBestItems_PartyID%"/>
@@ -289,14 +331,6 @@ WebPagePartyManager::WebPagePartyManager()
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Save Party Changes</label>
-            <div class="col-sm-6">
-            </div>
-            <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="save_party">Run</button>
-            </div>
-        </div>
-        <div class="form-group row">
             <div class="col"><hr></div>
             <div class="col-auto">Party List</div>
             <div class="col"><hr></div>
@@ -325,14 +359,11 @@ WebPagePartyManager::WebPagePartyManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Party Type</label>
             <div class="col-sm-4">
-                <select class="form-control" name="sPartyDetails_PartyType">
-                    <option value="" disabled="disabled">Party Type...</option>
-                    %sOptionList_CharacterPartyType%
-                </select>
+                <input type="text" class="form-control" readonly="readonly" value="%sPartyDetails_PartyType%"/>
             </div>
             <label class="col-sm-2 col-form-label">Play Time</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" value="%sPartyDetails_PlayTime%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sPartyDetails_PlayTime%"/>
             </div>
         </div>
         <div class="form-group row">
@@ -380,6 +411,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     // Build option lists
     MAKE_HTML_OPTION_LIST_STRING(CharacterPartyType);
     MAKE_HTML_OPTION_LIST_STRING(CharacterResolvedTargetType);
+    MAKE_HTML_OPTION_LIST_STRING(CharacterEquipmentType);
     MAKE_HTML_OPTION_LIST_STRING(ItemTreeType);
     MAKE_HTML_OPTION_LIST_STRING(FileType);
 
@@ -417,6 +449,14 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     String sRemoveItem_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sRemoveItem_PartyID", "");
     String sRemoveItem_ItemName = GET_MAP_DATA_OR_DEFAULT(tParams, "sRemoveItem_ItemName", "");
     String sRemoveItem_ItemAmount = GET_MAP_DATA_OR_DEFAULT(tParams, "sRemoveItem_ItemAmount", "");
+    String sEquipItem_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipItem_PartyID", "");
+    String sEquipItem_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipItem_CharID", "");
+    String sEquipItem_ItemName = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipItem_ItemName", "");
+    String sEquipItem_CharacterEquipmentType = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipItem_CharacterEquipmentType", "");
+    String sUnequipItem_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnequipItem_PartyID", "");
+    String sUnequipItem_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnequipItem_CharID", "");
+    String sUnequipItem_ItemName = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnequipItem_ItemName", "");
+    String sUnequipItem_CharacterEquipmentType = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnequipItem_CharacterEquipmentType", "");
     String sEquipBestItems_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipBestItems_PartyID", "");
     String sEquipBestItems_CharID = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipBestItems_CharID", "");
     String sUnequipBestItems_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnequipBestItems_PartyID", "");
@@ -424,16 +464,19 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     String sEquipBestItemsAllMembers_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sEquipBestItemsAllMembers_PartyID", "");
     String sUnequipBestItemsAllMembers_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnequipBestItemsAllMembers_PartyID", "");
     String sDisplayParty_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sDisplayParty_PartyID", "");
-    String sPartyDetails_PartyType = GET_MAP_DATA_OR_DEFAULT(tParams, "sPartyDetails_PartyType", "");
-    String sPartyDetails_PlayTime = GET_MAP_DATA_OR_DEFAULT(tParams, "sPartyDetails_PlayTime", "");
 
     // Party details
     String sPartyDetails_PartyID;
+    String sPartyDetails_PartyType;
+    String sPartyDetails_PlayTime;
     String sPartyDetails_TakenTargetTypes;
     String sPartyDetails_AvailableTargetTypes;
     String sPartyDetails_Members;
     String sPartyDetails_Items;
     String sPartyDetails_Description;
+
+    // Party to display
+    String sPartyToDisplay;
 
     // Check action
     if(sAction == "load_party_from_json")
@@ -485,6 +528,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
             sCreateParty_PartyType,
             (sCreateParty_SetAsCurrent == "current")
         );
+        sPartyToDisplay = sCreateParty_PartyID;
     }
     else if(sAction == "add_member")
     {
@@ -492,6 +536,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
         party.AddMember(
             sAddMember_CharID
         );
+        sPartyToDisplay = sAddMember_PartyID;
     }
     else if(sAction == "remove_member")
     {
@@ -499,6 +544,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
         party.RemoveMember(
             sRemoveMember_CharID
         );
+        sPartyToDisplay = sRemoveMember_PartyID;
     }
     else if(sAction == "move_member")
     {
@@ -507,6 +553,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
             sMoveMember_CharID,
             sMoveMember_CharTargetType
         );
+        sPartyToDisplay = sMoveMember_PartyID;
     }
     else if(sAction == "swap_member")
     {
@@ -515,6 +562,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
             sSwapMember_First_CharID,
             sSwapMember_Second_CharID
         );
+        sPartyToDisplay = sSwapMember_PartyID;
     }
     else if(sAction == "add_item")
     {
@@ -523,6 +571,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
             sAddItem_ItemName,
             BoostLexicalCast<UInt>(sAddItem_ItemAmount)
         );
+        sPartyToDisplay = sAddItem_PartyID;
     }
     else if(sAction == "add_random_items")
     {
@@ -533,6 +582,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
             BoostLexicalCast<Int>(sAddRandomItems_ItemAmount),
             BoostLexicalCast<Int>(sAddRandomItems_ItemAmount)
         );
+        sPartyToDisplay = sAddRandomItems_PartyID;
     }
     else if(sAction == "remove_item")
     {
@@ -541,6 +591,27 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
             sRemoveItem_ItemName,
             BoostLexicalCast<UInt>(sRemoveItem_ItemAmount)
         );
+        sPartyToDisplay = sRemoveItem_PartyID;
+    }
+    else if(sAction == "equip_item")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sEquipItem_PartyID);
+        party.EquipItem(
+            sEquipItem_CharID,
+            sEquipItem_ItemName,
+            sEquipItem_CharacterEquipmentType
+        );
+        sPartyToDisplay = sEquipItem_PartyID;
+    }
+    else if(sAction == "unequip_item")
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sUnequipItem_PartyID);
+        party.UnequipItem(
+            sUnequipItem_CharID,
+            sUnequipItem_ItemName,
+            sUnequipItem_CharacterEquipmentType
+        );
+        sPartyToDisplay = sUnequipItem_PartyID;
     }
     else if(sAction == "equip_best_items")
     {
@@ -548,6 +619,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
         party.EquipBestItems(
             sEquipBestItems_CharID
         );
+        sPartyToDisplay = sEquipBestItems_PartyID;
     }
     else if(sAction == "unequip_best_items")
     {
@@ -555,20 +627,29 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
         party.UnequipAllItems(
             sUnequipBestItems_CharID
         );
+        sPartyToDisplay = sUnequipBestItems_PartyID;
     }
     else if(sAction == "equip_best_items_all_members")
     {
         CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sEquipBestItemsAllMembers_PartyID);
         party.EquipBestItemsForAllMembers();
+        sPartyToDisplay = sEquipBestItemsAllMembers_PartyID;
     }
     else if(sAction == "unequip_best_items_all_members")
     {
         CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sUnequipBestItemsAllMembers_PartyID);
         party.UnequipAllItemsForAllMembers();
+        sPartyToDisplay = sUnequipBestItemsAllMembers_PartyID;
     }
     else if(sAction == "display_party")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sDisplayParty_PartyID);
+        sPartyToDisplay = sDisplayParty_PartyID;
+    }
+
+    // Display party
+    if(!sPartyToDisplay.empty())
+    {
+        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyToDisplay);
         sPartyDetails_PartyID = party.GetPartyID().Get();
         sPartyDetails_PartyType = party.GetPartyType().Get();
         sPartyDetails_PlayTime = STDToString(party.GetPlayTime());
@@ -577,10 +658,6 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
         sPartyDetails_Members = Json(party.GetMembers()).dump(4);
         sPartyDetails_Items = Json(party.GetItems()).dump(4);
         sPartyDetails_Description = party.GetDescription();
-    }
-    else if(sAction == "save_party")
-    {
-
     }
 
     // Get current parties
@@ -592,6 +669,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     BoostReplaceAll(sPage, "%sSubmit_Url%", WEB_PAGE_TOOL_PARTY_MANAGER);
     BoostReplaceAll(sPage, "%sOptionList_CharacterPartyType%", sOptionList_CharacterPartyType);
     BoostReplaceAll(sPage, "%sOptionList_CharacterResolvedTargetType%", sOptionList_CharacterResolvedTargetType);
+    BoostReplaceAll(sPage, "%sOptionList_CharacterEquipmentType%", sOptionList_CharacterEquipmentType);
     BoostReplaceAll(sPage, "%sOptionList_ItemTreeType%", sOptionList_ItemTreeType);
     BoostReplaceAll(sPage, "%sOptionList_FileType%", sOptionList_FileType);
     BoostReplaceAll(sPage, "%sLoadPartyFromJson_Textarea%", sLoadPartyFromJson_Textarea);
@@ -620,6 +698,12 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     BoostReplaceAll(sPage, "%sRemoveItem_PartyID%", sRemoveItem_PartyID);
     BoostReplaceAll(sPage, "%sRemoveItem_ItemName%", sRemoveItem_ItemName);
     BoostReplaceAll(sPage, "%sRemoveItem_ItemAmount%", sRemoveItem_ItemAmount);
+    BoostReplaceAll(sPage, "%sEquipItem_PartyID%", sEquipItem_PartyID);
+    BoostReplaceAll(sPage, "%sEquipItem_CharID%", sEquipItem_CharID);
+    BoostReplaceAll(sPage, "%sEquipItem_ItemName%", sEquipItem_ItemName);
+    BoostReplaceAll(sPage, "%sUnequipItem_PartyID%", sUnequipItem_PartyID);
+    BoostReplaceAll(sPage, "%sUnequipItem_CharID%", sUnequipItem_CharID);
+    BoostReplaceAll(sPage, "%sUnequipItem_ItemName%", sUnequipItem_ItemName);
     BoostReplaceAll(sPage, "%sEquipBestItems_PartyID%", sEquipBestItems_PartyID);
     BoostReplaceAll(sPage, "%sEquipBestItems_CharID%", sEquipBestItems_CharID);
     BoostReplaceAll(sPage, "%sUnequipBestItems_PartyID%", sUnequipBestItems_PartyID);
@@ -630,6 +714,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     BoostReplaceAll(sPage, "%sCurrentParty_Ally%", sCurrentParty_Ally);
     BoostReplaceAll(sPage, "%sCurrentParty_Enemy%", sCurrentParty_Enemy);
     BoostReplaceAll(sPage, "%sPartyDetails_PartyID%", sPartyDetails_PartyID);
+    BoostReplaceAll(sPage, "%sPartyDetails_PartyType%", sPartyDetails_PartyType);
     BoostReplaceAll(sPage, "%sPartyDetails_PlayTime%", sPartyDetails_PlayTime);
     BoostReplaceAll(sPage, "%sPartyDetails_TakenTargetTypes%", sPartyDetails_TakenTargetTypes);
     BoostReplaceAll(sPage, "%sPartyDetails_AvailableTargetTypes%", sPartyDetails_AvailableTargetTypes);
