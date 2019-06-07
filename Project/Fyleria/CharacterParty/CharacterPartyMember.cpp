@@ -25,7 +25,7 @@ UInt CharacterPartyMember::GetEquippedItemTypeCount(const TreeIndex& index) cons
     TreeIndexArray vEquippedItemIndices;
     for(auto&& progressItem : GetEquippedItems())
     {
-        vEquippedItemIndices.push_back(progressItem.GetTreeIndex());
+        vEquippedItemIndices.push_back(progressItem.GetItemTreeIndex());
     }
     return STDCountData(vEquippedItemIndices.begin(), vEquippedItemIndices.end(), index);
 }
@@ -36,7 +36,7 @@ UInt CharacterPartyMember::GetEquippedWeaponCount(const IndexedString& sWeaponSe
     UInt uWeapon2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
     {
-        if(!ItemTree::IsItemWeapon(progressItem.GetTreeIndex()))
+        if(!ItemTree::IsItemWeapon(progressItem.GetItemTreeIndex()))
         {
             continue;
         }
@@ -66,7 +66,7 @@ UInt CharacterPartyMember::GetEquippedShieldCount(const IndexedString& sWeaponSe
     UInt uShield2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
     {
-        if(!ItemTree::IsItemShield(progressItem.GetTreeIndex()))
+        if(!ItemTree::IsItemShield(progressItem.GetItemTreeIndex()))
         {
             continue;
         }
@@ -153,7 +153,7 @@ Bool CharacterPartyMember::AddEquippedItem(const TreeIndex& index, const Indexed
 
     // Add item
     CharacterPartyEquippedItem equipItem;
-    equipItem.SetTreeIndex(index);
+    equipItem.SetItemTreeIndex(index);
     equipItem.SetItemSlot(sEquipSlot);
     GetEquippedItems().push_back(equipItem);
     return true;
@@ -169,7 +169,7 @@ Bool CharacterPartyMember::RemoveEquippedItem(const TreeIndex& index, const Inde
 
     // Remove item
     CharacterPartyEquippedItem equipItem;
-    equipItem.SetTreeIndex(index);
+    equipItem.SetItemTreeIndex(index);
     equipItem.SetItemSlot(sEquipSlot);
     RemoveVectorElement<CharacterPartyEquippedItem>(GetEquippedItems(), equipItem);
     return true;
@@ -191,7 +191,7 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const IndexedString& sWeaponSe
     TreeIndex itemIndexRight;
     for(auto&& progressItem : GetEquippedItems())
     {
-        const ItemTreeType eItemTreeType = StringToItemTreeType(progressItem.GetTreeIndex().GetTree());
+        const ItemTreeType eItemTreeType = StringToItemTreeType(progressItem.GetItemTreeIndex().GetTree());
         const CharacterEquipmentType eEquipType = StringToCharacterEquipmentType(progressItem.GetItemSlot());
         const Bool bValidEquipLeft =
             (bIsWeaponSetSelected1 && (eEquipType == +CharacterEquipmentType::Weapon1Left)) ||
@@ -203,14 +203,14 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const IndexedString& sWeaponSe
         {
             case ItemTreeType::Armor:
             {
-                const Bool bIsShield = ItemTree::IsItemShield(progressItem.GetTreeIndex());
+                const Bool bIsShield = ItemTree::IsItemShield(progressItem.GetItemTreeIndex());
                 if(bIsShield && bValidEquipLeft)
                 {
-                    itemIndexLeft = progressItem.GetTreeIndex();
+                    itemIndexLeft = progressItem.GetItemTreeIndex();
                 }
                 else if(bIsShield && bValidEquipRight)
                 {
-                    itemIndexRight = progressItem.GetTreeIndex();
+                    itemIndexRight = progressItem.GetItemTreeIndex();
                 }
                 break;
             }
@@ -218,11 +218,11 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const IndexedString& sWeaponSe
             {
                 if(bValidEquipLeft)
                 {
-                    itemIndexLeft = progressItem.GetTreeIndex();
+                    itemIndexLeft = progressItem.GetItemTreeIndex();
                 }
                 else if(bValidEquipRight)
                 {
-                    itemIndexRight = progressItem.GetTreeIndex();
+                    itemIndexRight = progressItem.GetItemTreeIndex();
                 }
                 break;
             }

@@ -23,7 +23,7 @@ public:
     CharacterPartyEquippedItem(const Json& jsonData);
 
     // Item tree index
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(TreeIndex, TreeIndex);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
 
     // Item slot
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemSlot, IndexedString);

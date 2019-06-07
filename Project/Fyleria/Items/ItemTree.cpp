@@ -272,7 +272,7 @@ TreeIndexArray ItemTree::GetAllEquippedItems(const IndexedString& sCharID)
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
     for(auto& item : character.GetEquippedItems())
     {
-        vFinal.push_back(item.GetTreeIndex());
+        vFinal.push_back(item.GetItemTreeIndex());
     }
     return vFinal;
 }

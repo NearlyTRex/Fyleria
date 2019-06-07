@@ -10,64 +10,27 @@ namespace Gecko
 
 TreeIndex::TreeIndex()
     : SerializableToJson()
-    , m_sTreeName()
-    , m_sBranchName()
-    , m_sLeafName()
-{}
+{
+}
 
 TreeIndex::TreeIndex(const IndexedString& sTree, const IndexedString& sBranch, const IndexedString& sLeaf)
     : SerializableToJson()
-    , m_sTreeName(sTree)
-    , m_sBranchName(sBranch)
-    , m_sLeafName(sLeaf)
-{}
+{
+    SetTree(sTree);
+    SetBranch(sBranch);
+    SetLeaf(sLeaf);
+}
 
 TreeIndex::TreeIndex(const Json& jsonData)
-    : SerializableToJson()
-    , m_sTreeName()
-    , m_sBranchName()
-    , m_sLeafName()
+    : SerializableToJson(jsonData)
 {
     from_json(jsonData, *this);
 }
 
 TreeIndex::TreeIndex(const String& jsonString)
-    : SerializableToJson()
-    , m_sTreeName()
-    , m_sBranchName()
-    , m_sLeafName()
+    : SerializableToJson(JsonParse(jsonString))
 {
     from_json(JsonParse(jsonString), *this);
-}
-
-const IndexedString& TreeIndex::GetTree() const
-{
-    return m_sTreeName;
-}
-
-const IndexedString& TreeIndex::GetBranch() const
-{
-    return m_sBranchName;
-}
-
-const IndexedString& TreeIndex::GetLeaf() const
-{
-    return m_sLeafName;
-}
-
-void TreeIndex::SetTree(const IndexedString& sName)
-{
-    m_sTreeName = sName;
-}
-
-void TreeIndex::SetBranch(const IndexedString& sName)
-{
-    m_sBranchName = sName;
-}
-
-void TreeIndex::SetLeaf(const IndexedString& sName)
-{
-    m_sLeafName = sName;
 }
 
 IndexedString TreeIndex::GetTreeBranchType() const
@@ -97,6 +60,17 @@ Bool TreeIndex::empty() const
             GetLeaf().empty());
 }
 
+TreeIndex& TreeIndex::operator=(const TreeIndex& other)
+{
+    if(this != &other)
+    {
+        SetTree(other.GetTree());
+        SetBranch(other.GetBranch());
+        SetLeaf(other.GetLeaf());
+    }
+    return *this;
+}
+
 Bool TreeIndex::operator==(const TreeIndex& other) const
 {
     return ((GetTree() == other.GetTree()) &&
@@ -111,9 +85,9 @@ Bool TreeIndex::operator!=(const TreeIndex& other) const
 
 void to_json(Json& jsonData, const TreeIndex& obj)
 {
-    jsonData["Tree"] = obj.GetTree();
-    jsonData["Branch"] = obj.GetBranch();
-    jsonData["Leaf"] = obj.GetLeaf();
+    SET_JSON_DATA_IF_NOT_DEFAULT(Tree, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(Branch, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(Leaf, IndexedString(""));
 }
 
 void from_json(const Json& jsonData, TreeIndex& obj)

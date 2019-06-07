@@ -128,8 +128,8 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
         WRAPPING_ADD_METHOD_SIMPLE(RemoveAmount, Gecko::CharacterPartyItem)
         WRAPPING_ADD_METHOD_SIMPLE(EquipAmount, Gecko::CharacterPartyItem)
         WRAPPING_ADD_METHOD_SIMPLE(UnequipAmount, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(TreeIndex, Gecko::CharacterPartyItem)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Amount, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ItemTreeIndex, Gecko::CharacterPartyItem)
+        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(ItemAmount, Gecko::CharacterPartyItem)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(EquipCount, Gecko::CharacterPartyItem)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ApplicableEquipmentSlots, Gecko::CharacterPartyItem)
     ;
@@ -142,7 +142,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
     // CharacterPartyEquippedItem.h
     PyBindClass<Gecko::CharacterPartyEquippedItem>(m, "CharacterPartyEquippedItem")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(TreeIndex, Gecko::CharacterPartyEquippedItem)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ItemTreeIndex, Gecko::CharacterPartyEquippedItem)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ItemSlot, Gecko::CharacterPartyEquippedItem)
     ;
     PyBindVector<Gecko::CharacterPartyEquippedItemArray>(m, "CharacterPartyEquippedItemArray");

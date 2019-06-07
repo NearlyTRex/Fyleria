@@ -173,7 +173,7 @@ Bool StatChange::DoesMeetItemEquippedRequirements(const IndexedString& sCharacte
     IndexedStringArray vEquippedItemTypes;
     for(auto&& item : partyMember.GetEquippedItems())
     {
-        vEquippedItemTypes.push_back(ItemTree::RetrieveItemType(item.GetTreeIndex()));
+        vEquippedItemTypes.push_back(ItemTree::RetrieveItemType(item.GetItemTreeIndex()));
     }
 
     // Get equipped item counts

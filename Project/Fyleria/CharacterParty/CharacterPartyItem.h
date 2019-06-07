@@ -38,10 +38,10 @@ public:
     Bool UnequipAmount(UInt uAmount);
 
     // Item tree index
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(TreeIndex, TreeIndex);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
 
     // Item amount
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(Amount, UByte);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(ItemAmount, UByte);
 
     // Number of equips (must be less than or equal to the amount of the item)
     MAKE_RAW_BASIC_TYPE_ACCESSORS(EquipCount, UByte);

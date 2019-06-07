@@ -20,14 +20,6 @@ public:
     explicit TreeIndex(const Json& jsonData);
     explicit TreeIndex(const String& jsonString);
 
-    // Tree/branch/leaf name
-    const IndexedString& GetTree() const;
-    const IndexedString& GetBranch() const;
-    const IndexedString& GetLeaf() const;
-    void SetTree(const IndexedString& sName);
-    void SetBranch(const IndexedString& sName);
-    void SetLeaf(const IndexedString& sName);
-
     // Composite types
     IndexedString GetTreeBranchType() const;
     IndexedString GetTreeBranchLeafType() const;
@@ -36,18 +28,27 @@ public:
     // Compatibility
     Bool empty() const;
 
+    // Operators
+    TreeIndex& operator=(const TreeIndex& other);
+
     // Comparisons
     Bool operator==(const TreeIndex& other) const;
     Bool operator!=(const TreeIndex& other) const;
 
-private:
+    // Tree name
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Tree, IndexedString);
 
-    // Branch/leaf name
-    IndexedString m_sTreeName;
-    IndexedString m_sBranchName;
-    IndexedString m_sLeafName;
+    // Branch name
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Branch, IndexedString);
+
+    // Leaf name
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Leaf, IndexedString);
 };
-typedef STDVector<TreeIndex> TreeIndexArray;
+
+// Typedef
+MAKE_TYPE_TYPEDEFS(TreeIndex);
+
+// JSON Converters
 void to_json(Json& jsonData, const TreeIndex& obj);
 void from_json(const Json& jsonData, TreeIndex& obj);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(TreeIndex, TreeIndex);

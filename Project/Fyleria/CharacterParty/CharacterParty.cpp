@@ -378,9 +378,14 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
 Bool CharacterParty::AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
 {
     TreeIndex treeIndex = ItemTree::ResolveItemLeafIntoIndex(sLeaf);
+    return AddItemByTreeIndex(treeIndex, uAmount);
+}
+
+Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount)
+{
     if(treeIndex.empty())
     {
-        ERROR_FORMAT_STATEMENT("Unable to resolve leaf '%s' into a valid tree index\n", sLeaf.c_str());
+        ERROR_STATEMENT("Received an empty tree index");
         return false;
     }
 
@@ -390,14 +395,16 @@ Bool CharacterParty::AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
         return false;
     }
 
-    if (GetItems().count(sLeaf) > 0)
+    IndexedString sLeaf = treeIndex.GetLeaf();
+    if(GetItems().count(sLeaf) > 0)
     {
         CharacterPartyItem& item = GetItems().at(sLeaf);
 #ifdef DEBUG
         Json jsonData = item;
         String sJsonString = jsonData.dump(4);
-        LOG_FORMAT_STATEMENT("Adding value of %d to existing item to party (PartyID = '%s'):\n%s\n",
+        LOG_FORMAT_STATEMENT("Adding value of %d to existing item '%s' to party (PartyID = '%s'):\n%s\n",
             uAmount,
+            sLeaf.c_str(),
             GetPartyID().c_str(),
             sJsonString.c_str());
 #endif
@@ -408,15 +415,16 @@ Bool CharacterParty::AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
         IndexedString sItemType = ItemTree::RetrieveItemType(treeIndex);
         IndexedStringArray vEquipTypes = ConvertItemTypeToCharacterEquipTypes(sItemType);
         CharacterPartyItem newItem;
-        newItem.SetTreeIndex(treeIndex);
-        newItem.SetAmount(uAmount);
+        newItem.SetItemTreeIndex(treeIndex);
+        newItem.SetItemAmount(uAmount);
         newItem.SetEquipCount(0);
         newItem.SetApplicableEquipmentSlots(vEquipTypes);
         GetItems().insert({sLeaf, newItem});
 #ifdef DEBUG
         Json jsonData = newItem;
         String sJsonString = jsonData.dump(4);
-        LOG_FORMAT_STATEMENT("Adding new item to party (PartyID = '%s'):\n%s\n",
+        LOG_FORMAT_STATEMENT("Adding new item '%s' to party (PartyID = '%s'):\n%s\n",
+            sLeaf.c_str(),
             GetPartyID().c_str(),
             sJsonString.c_str());
 #endif
@@ -424,24 +432,50 @@ Bool CharacterParty::AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
     }
 }
 
-Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount)
-{
-    return AddItemByLeaf(treeIndex.GetLeaf(), uAmount);
-}
-
 Bool CharacterParty::RemoveItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
 {
-    if (GetItems().count(sLeaf) > 0)
-    {
-        CharacterPartyItem& item = GetItems().at(sLeaf);
-        return item.RemoveAmount(uAmount);
-    }
-    return false;
+    TreeIndex treeIndex = ItemTree::ResolveItemLeafIntoIndex(sLeaf);
+    return RemoveItemByTreeIndex(treeIndex, uAmount);
 }
 
 Bool CharacterParty::RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount)
 {
-    return RemoveItemByLeaf(treeIndex.GetLeaf(), uAmount);
+    if(treeIndex.empty())
+    {
+        ERROR_STATEMENT("Received an empty tree index");
+        return false;
+    }
+
+    if(!ItemTree::DoesItemDataExist(treeIndex))
+    {
+        ERROR_FORMAT_STATEMENT("Tree index '%s' was not found\n", treeIndex.GetTreeBranchLeafType().c_str());
+        return false;
+    }
+
+    IndexedString sLeaf = treeIndex.GetLeaf();
+    if(GetItems().count(sLeaf) == 0)
+    {
+        LOG_FORMAT_STATEMENT("Item '%s' could not be removed from party '%s' because it was not present\n",
+            sLeaf.c_str(),
+            GetPartyID().c_str());
+        return false;
+    }
+
+    if(GetItems().count(sLeaf) > 0)
+    {
+        CharacterPartyItem& item = GetItems().at(sLeaf);
+#ifdef DEBUG
+        Json jsonData = item;
+        String sJsonString = jsonData.dump(4);
+        LOG_FORMAT_STATEMENT("Subtracting value of %d from existing item '%s' to party (PartyID = '%s'):\n%s\n",
+            uAmount,
+            sLeaf.c_str(),
+            GetPartyID().c_str(),
+            sJsonString.c_str());
+#endif
+        return item.RemoveAmount(uAmount);
+    }
+    return false;
 }
 
 const CharacterPartyItem& CharacterParty::GetItemByLeaf(const IndexedString& sLeaf) const
@@ -489,7 +523,7 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterI
     // Look at each of the matching, unequipped items the party has and find the best one
     for(auto& item : GetItems())
     {
-        if(uShieldCount == 1 && ItemTree::IsItemShield(item.second.GetTreeIndex()))
+        if(uShieldCount == 1 && ItemTree::IsItemShield(item.second.GetItemTreeIndex()))
         {
             continue;
         }
@@ -506,17 +540,17 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterI
 
         if(bestItem.empty())
         {
-            bestItem = item.second.GetTreeIndex();
+            bestItem = item.second.GetItemTreeIndex();
             continue;
         }
 
-        Bool bIsArmor = ItemTree::DoesItemDataArmorExist(item.second.GetTreeIndex());
-        Bool bIsWeapon = ItemTree::DoesItemDataWeaponExist(item.second.GetTreeIndex());
+        Bool bIsArmor = ItemTree::DoesItemDataArmorExist(item.second.GetItemTreeIndex());
+        Bool bIsWeapon = ItemTree::DoesItemDataWeaponExist(item.second.GetItemTreeIndex());
         if(
-            (bIsArmor && ItemTree::IsArmorBetter(item.second.GetTreeIndex(), bestItem)) ||
-            (bIsWeapon && ItemTree::IsWeaponBetter(item.second.GetTreeIndex(), bestItem)))
+            (bIsArmor && ItemTree::IsArmorBetter(item.second.GetItemTreeIndex(), bestItem)) ||
+            (bIsWeapon && ItemTree::IsWeaponBetter(item.second.GetItemTreeIndex(), bestItem)))
         {
-            bestItem = item.second.GetTreeIndex();
+            bestItem = item.second.GetItemTreeIndex();
         }
     }
 #if DEBUG
@@ -546,11 +580,11 @@ Bool CharacterParty::EquipItem(const IndexedString& sCharacterID, const IndexedS
     {
         ERROR_FORMAT_STATEMENT("Item '%s' cannot be equipped (Amount = %d, Equip Count = %d)\n",
             sLeaf.c_str(),
-            item.GetAmount(),
+            item.GetItemAmount(),
             item.GetEquipCount());
         return false;
     }
-    if(!member.CanAddEquippedItem(item.GetTreeIndex()))
+    if(!member.CanAddEquippedItem(item.GetItemTreeIndex()))
     {
         ERROR_FORMAT_STATEMENT("Member '%s' in party '%s' cannot equip item '%s'\n",
             sCharacterID.c_str(),
@@ -560,7 +594,7 @@ Bool CharacterParty::EquipItem(const IndexedString& sCharacterID, const IndexedS
     }
 
     // Mark the item as being equipped
-    if(!member.AddEquippedItem(item.GetTreeIndex(), sSlot) || !item.EquipAmount(1))
+    if(!member.AddEquippedItem(item.GetItemTreeIndex(), sSlot) || !item.EquipAmount(1))
     {
         ERROR_FORMAT_STATEMENT("Member '%s' in party '%s' was not able to equip item '%s' to slot '%s'\n",
             sCharacterID.c_str(),
@@ -590,11 +624,11 @@ Bool CharacterParty::UnequipItem(const IndexedString& sCharacterID, const Indexe
     {
         ERROR_FORMAT_STATEMENT("Item '%s' cannot be unequipped (Amount = %d, Equip Count = %d)\n",
             sLeaf.c_str(),
-            item.GetAmount(),
+            item.GetItemAmount(),
             item.GetEquipCount());
         return false;
     }
-    if(!member.CanRemoveEquippedItem(item.GetTreeIndex()))
+    if(!member.CanRemoveEquippedItem(item.GetItemTreeIndex()))
     {
         ERROR_FORMAT_STATEMENT("Member '%s' in party '%s' cannot unequip item '%s'\n",
             sCharacterID.c_str(),
@@ -604,7 +638,7 @@ Bool CharacterParty::UnequipItem(const IndexedString& sCharacterID, const Indexe
     }
 
     // Mark the item as being equipped
-    if(!member.RemoveEquippedItem(item.GetTreeIndex(), sSlot) || !item.UnequipAmount(1))
+    if(!member.RemoveEquippedItem(item.GetItemTreeIndex(), sSlot) || !item.UnequipAmount(1))
     {
         ERROR_FORMAT_STATEMENT("Member '%s' in party '%s' was not able to unequip item '%s' to slot '%s'\n",
             sCharacterID.c_str(),
@@ -660,7 +694,7 @@ Bool CharacterParty::UnequipAllItems(const IndexedString& sCharacterID)
     {
         Bool bSuccess = UnequipItem(
             sCharacterID,
-            equippedItem.GetTreeIndex().GetLeaf(),
+            equippedItem.GetItemTreeIndex().GetLeaf(),
             equippedItem.GetItemSlot());
         bAtLeastOneSuccess = bAtLeastOneSuccess || bSuccess;
     }

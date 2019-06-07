@@ -166,7 +166,7 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sCharacter
     Float fWeaponRight_SlashAttackPercent = 0;
     for(auto&& equippedItem : vEquippedItems)
     {
-        const ItemTreeType eItemTreeType = StringToItemTreeType(equippedItem.GetTreeIndex().GetTree());
+        const ItemTreeType eItemTreeType = StringToItemTreeType(equippedItem.GetItemTreeIndex().GetTree());
         const CharacterEquipmentType eEquipType = StringToCharacterEquipmentType(equippedItem.GetItemSlot());
         const Bool bValidEquipLeft =
             (bIsWeaponSetSelected1 && (eEquipType == +CharacterEquipmentType::Weapon1Left)) ||
@@ -178,8 +178,8 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sCharacter
         {
             case ItemTreeType::Armor:
             {
-                const Bool bIsShield = ItemTree::IsItemShield(equippedItem.GetTreeIndex());
-                const ItemDataArmor& itemArmor = ItemTree::RetrieveItemDataArmor(equippedItem.GetTreeIndex());
+                const Bool bIsShield = ItemTree::IsItemShield(equippedItem.GetItemTreeIndex());
+                const ItemDataArmor& itemArmor = ItemTree::RetrieveItemDataArmor(equippedItem.GetItemTreeIndex());
                 if(bIsShield && bValidEquipLeft)
                 {
                     fShieldLeft_BluntDefendPercent = itemArmor.GetBluntDefendPercent();
@@ -205,7 +205,7 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sCharacter
             }
             case ItemTreeType::Weapon:
             {
-                const ItemDataWeapon& itemWeapon = ItemTree::RetrieveItemDataWeapon(equippedItem.GetTreeIndex());
+                const ItemDataWeapon& itemWeapon = ItemTree::RetrieveItemDataWeapon(equippedItem.GetItemTreeIndex());
                 if(bValidEquipLeft)
                 {
                     fWeaponLeft_BluntAttackPercent = itemWeapon.GetBluntAttackPercent();

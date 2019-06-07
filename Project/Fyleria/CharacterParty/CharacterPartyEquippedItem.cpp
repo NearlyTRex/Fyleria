@@ -18,7 +18,7 @@ CharacterPartyEquippedItem::CharacterPartyEquippedItem(const Json& jsonData)
 void to_json(Json& jsonData, const CharacterPartyEquippedItem& obj)
 {
     // Item tree index
-    SET_JSON_DATA_IF_NOT_EMPTY(TreeIndex);
+    SET_JSON_DATA_IF_NOT_EMPTY(ItemTreeIndex);
 
     // Item slot
     SET_JSON_DATA_IF_NOT_DEFAULT(ItemSlot, IndexedString("None"));
@@ -27,7 +27,7 @@ void to_json(Json& jsonData, const CharacterPartyEquippedItem& obj)
 void from_json(const Json& jsonData, CharacterPartyEquippedItem& obj)
 {
     // Item tree index
-    obj.SetTreeIndex(GET_JSON_DATA_OR_DEFAULT(TreeIndex, TreeIndex, TreeIndex()));
+    obj.SetItemTreeIndex(GET_JSON_DATA_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex()));
 
     // Item slot
     obj.SetItemSlot(GET_JSON_DATA_OR_DEFAULT(ItemSlot, IndexedString, IndexedString("None")));
@@ -38,7 +38,7 @@ MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyEquippedItem, CharacterPart
 Bool operator==(const CharacterPartyEquippedItem& a, const CharacterPartyEquippedItem& b)
 {
     return (
-        (a.GetTreeIndex() == b.GetTreeIndex()) &&
+        (a.GetItemTreeIndex() == b.GetItemTreeIndex()) &&
         (a.GetItemSlot() == b.GetItemSlot())
     );
 }
