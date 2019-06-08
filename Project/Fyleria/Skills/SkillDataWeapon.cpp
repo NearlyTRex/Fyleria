@@ -157,10 +157,10 @@ void to_json(Json& jsonData, const SkillDataWeapon& obj)
 void from_json(const Json& jsonData, SkillDataWeapon& obj)
 {
     // Weapon base type
-    obj.SetWeaponBaseType(GET_JSON_DATA_OR_DEFAULT(WeaponBaseType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(WeaponBaseType, IndexedString, IndexedString("None"));
 
     // Amount of action points available
-    obj.SetActionPoints(GET_JSON_DATA_OR_DEFAULT(ActionPoints, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionPoints, Int, 0);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(SkillDataWeapon, SkillDataWeapon);

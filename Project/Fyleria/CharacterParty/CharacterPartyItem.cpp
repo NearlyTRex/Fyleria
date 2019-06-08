@@ -106,16 +106,16 @@ void to_json(Json& jsonData, const CharacterPartyItem& obj)
 void from_json(const Json& jsonData, CharacterPartyItem& obj)
 {
     // Item tree index
-    obj.SetItemTreeIndex(GET_JSON_DATA_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
 
     // Item amount
-    obj.SetItemAmount(GET_JSON_DATA_OR_DEFAULT(ItemAmount, UByte, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemAmount, UByte, 0);
 
     // Number of equips (must be less than or equal to the amount of the item)
-    obj.SetEquipCount(GET_JSON_DATA_OR_DEFAULT(EquipCount, UByte, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(EquipCount, UByte, 0);
 
     // Applicable equipment slots
-    obj.SetApplicableEquipmentSlots(GET_JSON_DATA_OR_DEFAULT(ApplicableEquipmentSlots, IndexedStringArray, IndexedStringArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ApplicableEquipmentSlots, IndexedStringArray, IndexedStringArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyItem, CharacterPartyItem);

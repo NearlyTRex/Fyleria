@@ -51,12 +51,12 @@ void to_json(Json& jsonData, const ItemDataWeapon& obj)
 void from_json(const Json& jsonData, ItemDataWeapon& obj)
 {
     // Stat percents
-    obj.SetBluntAttackPercent(GET_JSON_DATA_OR_DEFAULT(BluntAttackPercent, Float, 0));
-    obj.SetPierceAttackPercent(GET_JSON_DATA_OR_DEFAULT(PierceAttackPercent, Float, 0));
-    obj.SetSlashAttackPercent(GET_JSON_DATA_OR_DEFAULT(SlashAttackPercent, Float, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BluntAttackPercent, Float, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PierceAttackPercent, Float, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SlashAttackPercent, Float, 0);
 
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataWeapon, ItemDataWeapon);

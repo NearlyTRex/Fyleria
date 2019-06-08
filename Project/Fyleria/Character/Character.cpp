@@ -292,24 +292,24 @@ void to_json(Json& jsonData, const Character& obj)
 void from_json(const Json& jsonData, Character& obj)
 {
     // Segmented progress data
-    obj.SetProgressDataBase(GET_JSON_DATA_OR_DEFAULT(ProgressDataBase, CharacterProgressData, CharacterProgressData()));
-    obj.SetProgressDataPassives(GET_JSON_DATA_OR_DEFAULT(ProgressDataPassives, CharacterProgressData, CharacterProgressData()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ProgressDataBase, CharacterProgressData, CharacterProgressData());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ProgressDataPassives, CharacterProgressData, CharacterProgressData());
 
     // Segmented battle data
-    obj.SetBattleDataBase(GET_JSON_DATA_OR_DEFAULT(BattleDataBase, CharacterBattleData, CharacterBattleData()));
-    obj.SetBattleDataPassives(GET_JSON_DATA_OR_DEFAULT(BattleDataPassives, CharacterBattleData, CharacterBattleData()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BattleDataBase, CharacterBattleData, CharacterBattleData());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BattleDataPassives, CharacterBattleData, CharacterBattleData());
 
     // Basic data
-    obj.SetBasicData(GET_JSON_DATA_OR_DEFAULT(BasicData, CharacterBasicData, CharacterBasicData()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BasicData, CharacterBasicData, CharacterBasicData());
 
     // Action data
-    obj.SetActionData(GET_JSON_DATA_OR_DEFAULT(ActionData, CharacterActionData, CharacterActionData()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionData, CharacterActionData, CharacterActionData());
 
     // Skill data
-    obj.SetSkillData(GET_JSON_DATA_OR_DEFAULT(SkillData, CharacterSkillData, CharacterSkillData()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillData, CharacterSkillData, CharacterSkillData());
 
     // Stat change data
-    obj.SetStatChangeData(GET_JSON_DATA_OR_DEFAULT(StatChangeData, CharacterStatChangeData, CharacterStatChangeData()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChangeData, CharacterStatChangeData, CharacterStatChangeData());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Character, Character);

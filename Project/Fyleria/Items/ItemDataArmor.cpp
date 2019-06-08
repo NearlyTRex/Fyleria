@@ -53,13 +53,13 @@ void to_json(Json& jsonData, const ItemDataArmor& obj)
 void from_json(const Json& jsonData, ItemDataArmor& obj)
 {
     // Stat percents
-    obj.SetBluntDefendPercent(GET_JSON_DATA_OR_DEFAULT(BluntDefendPercent, Float, 0));
-    obj.SetPierceDefendPercent(GET_JSON_DATA_OR_DEFAULT(PierceDefendPercent, Float, 0));
-    obj.SetSlashDefendPercent(GET_JSON_DATA_OR_DEFAULT(SlashDefendPercent, Float, 0));
-    obj.SetMagicDefendPercent(GET_JSON_DATA_OR_DEFAULT(MagicDefendPercent, Float, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BluntDefendPercent, Float, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PierceDefendPercent, Float, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SlashDefendPercent, Float, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(MagicDefendPercent, Float, 0);
 
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataArmor, ItemDataArmor);

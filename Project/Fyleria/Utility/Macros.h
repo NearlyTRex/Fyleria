@@ -29,32 +29,11 @@ String Get##name() const                                                        
 
 //=====================================================================================
 
-#define GET_MAP_DATA_OR_DEFAULT(map, key, value_default)                            \
-(map.find(key) != map.end()) ? map.at(key) : value_default
-
-#define GET_JSON_DATA_OR_DEFAULT(name, value_type, value_default)                   \
-(jsonData.find(#name) != jsonData.end()) ? jsonData[#name].get<value_type>() : value_default
-
-#define GET_JSON_SHAREDPTR_DATA_OR_DEFAULT(name, type)                              \
-(jsonData.find(#name) != jsonData.end()) ? STDMakeSharedPtr<type>(jsonData[#name].get<type>()) : STDSharedPtr<type>()
-
 #define SET_JSON_DATA_IF_NOT_DEFAULT(name, value_default)                           \
 {                                                                                   \
     if(obj.Get##name() != value_default)                                            \
     {                                                                               \
         jsonData[#name] = obj.Get##name();                                          \
-    }                                                                               \
-    else                                                                            \
-    {                                                                               \
-        jsonData[#name] = value_default;                                            \
-    }                                                                               \
-}
-
-#define SET_JSON_DATA_IF_NOT_DEFAULT_FROM_PTR(name, value_default)                  \
-{                                                                                   \
-    if(obj.Get##name() && (*obj.Get##name() != value_default))                      \
-    {                                                                               \
-        jsonData[#name] = *obj.Get##name();                                         \
     }                                                                               \
     else                                                                            \
     {                                                                               \
@@ -74,22 +53,15 @@ String Get##name() const                                                        
     }                                                                               \
 }
 
-#define SET_JSON_DATA_FROM_PTR_ARRAY_IF_NOT_EMPTY(name)                             \
+#define SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(name, value_type, value_default)          \
 {                                                                                   \
-    if(!obj.Get##name().empty())                                                    \
+    if(jsonData.find(#name) != jsonData.end())                                      \
     {                                                                               \
-        jsonData[#name] = JsonArray();                                              \
-        for(auto& pObj : obj.Get##name())                                           \
-        {                                                                           \
-            if(pObj)                                                                \
-            {                                                                       \
-                jsonData[#name].push_back(*pObj);                                   \
-            }                                                                       \
-        }                                                                           \
+        obj.Set##name(jsonData[#name].get<value_type>());                           \
     }                                                                               \
     else                                                                            \
     {                                                                               \
-        jsonData[#name] = JsonArray();                                              \
+        obj.Set##name(value_default);                                               \
     }                                                                               \
 }
 

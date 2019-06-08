@@ -269,13 +269,13 @@ void to_json(Json& jsonData, const CharacterPartyMember& obj)
 void from_json(const Json& jsonData, CharacterPartyMember& obj)
 {
     // Character ID
-    obj.SetCharacterID(GET_JSON_DATA_OR_DEFAULT(CharacterID, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterID, IndexedString, IndexedString(""));
 
     // Character target type
-    obj.SetCharacterTargetType(GET_JSON_DATA_OR_DEFAULT(CharacterTargetType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterTargetType, IndexedString, IndexedString("None"));
 
     // Equipped items
-    obj.SetEquippedItems(GET_JSON_DATA_OR_DEFAULT(EquippedItems, CharacterPartyEquippedItemArray, CharacterPartyEquippedItemArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(EquippedItems, CharacterPartyEquippedItemArray, CharacterPartyEquippedItemArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyMember, CharacterPartyMember);

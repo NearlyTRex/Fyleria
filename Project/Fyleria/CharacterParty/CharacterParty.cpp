@@ -814,25 +814,25 @@ void to_json(Json& jsonData, const CharacterParty& obj)
 void from_json(const Json& jsonData, CharacterParty& obj)
 {
     // Party ID
-    obj.SetPartyID(GET_JSON_DATA_OR_DEFAULT(PartyID, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PartyID, IndexedString, IndexedString(""));
 
     // Party type
-    obj.SetPartyType(GET_JSON_DATA_OR_DEFAULT(PartyType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PartyType, IndexedString, IndexedString("None"));
 
     // Map of members
-    obj.SetMembers(GET_JSON_DATA_OR_DEFAULT(Members, CharacterParty::CharacterPartyMemberMapType, CharacterParty::CharacterPartyMemberMapType()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Members, CharacterParty::CharacterPartyMemberMapType, CharacterParty::CharacterPartyMemberMapType());
 
     // Map of items
-    obj.SetItems(GET_JSON_DATA_OR_DEFAULT(Items, CharacterParty::CharacterPartyItemMapType, CharacterParty::CharacterPartyItemMapType()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Items, CharacterParty::CharacterPartyItemMapType, CharacterParty::CharacterPartyItemMapType());
 
     // Arrays of available target types
-    obj.SetAvailableTargetTypes(GET_JSON_DATA_OR_DEFAULT(AvailableTargetTypes, IndexedStringArray, IndexedStringArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AvailableTargetTypes, IndexedStringArray, IndexedStringArray());
 
     // Array of taken target types
-    obj.SetTakenTargetTypes(GET_JSON_DATA_OR_DEFAULT(TakenTargetTypes, IndexedStringArray, IndexedStringArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(TakenTargetTypes, IndexedStringArray, IndexedStringArray());
 
     // Play time
-    obj.SetPlayTime(GET_JSON_DATA_OR_DEFAULT(PlayTime, ULongLong, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PlayTime, ULongLong, 0);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterParty, CharacterParty);

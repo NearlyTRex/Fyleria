@@ -92,9 +92,9 @@ void to_json(Json& jsonData, const TreeIndex& obj)
 
 void from_json(const Json& jsonData, TreeIndex& obj)
 {
-    obj.SetTree(GET_JSON_DATA_OR_DEFAULT(Tree, IndexedString, IndexedString("")));
-    obj.SetBranch(GET_JSON_DATA_OR_DEFAULT(Branch, IndexedString, IndexedString("")));
-    obj.SetLeaf(GET_JSON_DATA_OR_DEFAULT(Leaf, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Tree, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Branch, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Leaf, IndexedString, IndexedString(""));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(TreeIndex, TreeIndex);

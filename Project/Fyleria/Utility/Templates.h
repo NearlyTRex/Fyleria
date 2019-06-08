@@ -203,6 +203,16 @@ Bool EndsWith(const T& sText, const T& sToken)
     return false;
 }
 
+// Get map data or a default value
+template <typename MapType>
+typename MapType::mapped_type GetMapDataOrDefault(
+    const MapType& map,
+    typename MapType::key_type key,
+    typename MapType::mapped_type default_value)
+{
+    return (map.find(key) != map.end()) ? map.at(key) : default_value;
+}
+
 };
 
 #endif

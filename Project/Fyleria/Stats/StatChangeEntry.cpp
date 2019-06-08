@@ -78,35 +78,35 @@ void to_json(Json& jsonData, const StatChangeEntry& obj)
 void from_json(const Json& jsonData, StatChangeEntry& obj)
 {
     // Applicable round or attack number
-    obj.SetRound(GET_JSON_DATA_OR_DEFAULT(Round, Int, 0));
-    obj.SetAttack(GET_JSON_DATA_OR_DEFAULT(Attack, Int, 0));
-    obj.SetDefend(GET_JSON_DATA_OR_DEFAULT(Defend, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Round, Int, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Attack, Int, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Defend, Int, 0);
 
     // Delta amounts
-    obj.SetDeltaFloat(GET_JSON_DATA_OR_DEFAULT(DeltaFloat, Float, 0));
-    obj.SetDeltaInt(GET_JSON_DATA_OR_DEFAULT(DeltaInt, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DeltaFloat, Float, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DeltaInt, Int, 0);
 
     // Full amounts
-    obj.SetFullPercent(GET_JSON_DATA_OR_DEFAULT(FullPercent, Float, 0));
-    obj.SetFullFloat(GET_JSON_DATA_OR_DEFAULT(FullFloat, Float, 0));
-    obj.SetFullInt(GET_JSON_DATA_OR_DEFAULT(FullInt, Int, 0));
-    obj.SetFullBool(GET_JSON_DATA_OR_DEFAULT(FullBool, Bool, false));
-    obj.SetFullString(GET_JSON_DATA_OR_DEFAULT(FullString, IndexedString, IndexedString("")));
-    obj.SetFullFloatArray(GET_JSON_DATA_OR_DEFAULT(FullFloatArray, FloatArray, FloatArray()));
-    obj.SetFullIntArray(GET_JSON_DATA_OR_DEFAULT(FullIntArray, IntArray, IntArray()));
-    obj.SetFullBoolArray(GET_JSON_DATA_OR_DEFAULT(FullBoolArray, BoolArray, BoolArray()));
-    obj.SetFullStringArray(GET_JSON_DATA_OR_DEFAULT(FullStringArray, IndexedStringArray, IndexedStringArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullPercent, Float, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullFloat, Float, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullInt, Int, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullBool, Bool, false);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullString, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullFloatArray, FloatArray, FloatArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullIntArray, IntArray, IntArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullBoolArray, BoolArray, BoolArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullStringArray, IndexedStringArray, IndexedStringArray());
 
     // Operation type (Add, Multiply, etc)
-    obj.SetOperationType(GET_JSON_DATA_OR_DEFAULT(OperationType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OperationType, IndexedString, IndexedString("None"));
 
     // Stats to serve as source and destination
-    obj.SetSourceStatType(GET_JSON_DATA_OR_DEFAULT(SourceStatType, IndexedString, IndexedString("None")));
-    obj.SetDestinationStatType(GET_JSON_DATA_OR_DEFAULT(DestinationStatType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceStatType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationStatType, IndexedString, IndexedString("None"));
 
     // Character IDs for applying
-    obj.SetSourceCharacterID(GET_JSON_DATA_OR_DEFAULT(SourceCharacterID, IndexedString, IndexedString("")));
-    obj.SetDestinationCharacterIDs(GET_JSON_DATA_OR_DEFAULT(DestinationCharacterIDs, IndexedStringArray, IndexedStringArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceCharacterID, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationCharacterIDs, IndexedStringArray, IndexedStringArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChangeEntry, StatChangeEntry);

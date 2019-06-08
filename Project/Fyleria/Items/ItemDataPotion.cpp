@@ -41,7 +41,7 @@ void to_json(Json& jsonData, const ItemDataPotion& obj)
 void from_json(const Json& jsonData, ItemDataPotion& obj)
 {
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataPotion, ItemDataPotion);

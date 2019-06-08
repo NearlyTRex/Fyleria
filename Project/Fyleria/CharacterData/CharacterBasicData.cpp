@@ -55,7 +55,7 @@ void to_json(Json& jsonData, const CharacterBasicData& obj)
 void from_json(const Json& jsonData, CharacterBasicData& obj)
 {
     // Character ID
-    obj.SetCharacterID(GET_JSON_DATA_OR_DEFAULT(CharacterID, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterID, IndexedString, IndexedString(""));
 
     // Stat values
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBasicStatType, IndexedString);

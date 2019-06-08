@@ -32,7 +32,7 @@ void to_json(Json& jsonData, const PolymorphicBase& obj)
 void from_json(const Json& jsonData, PolymorphicBase& obj)
 {
     // Type name
-    obj.SetTypeName(GET_JSON_DATA_OR_DEFAULT(TypeName, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(TypeName, IndexedString, IndexedString(""));
 }
 
 };

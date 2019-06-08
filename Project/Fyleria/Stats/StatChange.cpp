@@ -497,51 +497,51 @@ void to_json(Json& jsonData, const StatChange& obj)
 void from_json(const Json& jsonData, StatChange& obj)
 {
     // ID
-    obj.SetID(GET_JSON_DATA_OR_DEFAULT(ID, ULongLong, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ID, ULongLong, 0);
 
     // Relevant skill data
-    obj.SetSkillTreeIndex(GET_JSON_DATA_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex());
 
     // Relevant item data
-    obj.SetItemTreeIndex(GET_JSON_DATA_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
 
     // Percent chance to apply this change
-    obj.SetChanceToApply(GET_JSON_DATA_OR_DEFAULT(ChanceToApply, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ChanceToApply, Int, 0);
 
     // Amount of rounds to apply this change (0 is indefinite)
-    obj.SetRoundAmount(GET_JSON_DATA_OR_DEFAULT(RoundAmount, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RoundAmount, Int, 0);
 
     // Amount of attacks to apply this change (0 is indefinite)
-    obj.SetAttackAmount(GET_JSON_DATA_OR_DEFAULT(AttackAmount, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AttackAmount, Int, 0);
 
     // Amount of defends to apply this change (0 is indefinite)
-    obj.SetDefendAmount(GET_JSON_DATA_OR_DEFAULT(DefendAmount, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DefendAmount, Int, 0);
 
     // Required items or attack types
-    obj.SetRequiredItemEquippedTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredItemEquippedTypesOR, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredItemEquippedTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredItemEquippedTypesAND, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredItemUsedTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredItemUsedTypesOR, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredItemUsedTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredItemUsedTypesAND, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredAttackTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredAttackTypesOR, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredAttackTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredAttackTypesAND, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredDefendTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredDefendTypesOR, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredDefendTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredDefendTypesAND, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredPreviousAttackTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousAttackTypesOR, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredPreviousAttackTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousAttackTypesAND, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredPreviousDefendTypesOR(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousDefendTypesOR, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredPreviousDefendTypesAND(GET_JSON_DATA_OR_DEFAULT(RequiredPreviousDefendTypesAND, IndexedStringArray, IndexedStringArray()));
-    obj.SetRequiredEquippedWeaponCount(GET_JSON_DATA_OR_DEFAULT(RequiredEquippedWeaponCount, Int, 0));
-    obj.SetRequiredEquippedShieldCount(GET_JSON_DATA_OR_DEFAULT(RequiredEquippedShieldCount, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredItemEquippedTypesOR, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredItemEquippedTypesAND, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredItemUsedTypesOR, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredItemUsedTypesAND, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredAttackTypesOR, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredAttackTypesAND, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredDefendTypesOR, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredDefendTypesAND, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredPreviousAttackTypesOR, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredPreviousAttackTypesAND, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredPreviousDefendTypesOR, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredPreviousDefendTypesAND, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredEquippedWeaponCount, Int, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredEquippedShieldCount, Int, 0);
 
     // Whether destination target is the same as the source target
-    obj.SetDestinationIsSource(GET_JSON_DATA_OR_DEFAULT(DestinationIsSource, Bool, false));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationIsSource, Bool, false);
 
     // Source and destination targets
-    obj.SetSourceTargetType(GET_JSON_DATA_OR_DEFAULT(SourceTargetType, IndexedString, IndexedString("None")));
-    obj.SetDestinationTargetType(GET_JSON_DATA_OR_DEFAULT(DestinationTargetType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceTargetType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationTargetType, IndexedString, IndexedString("None"));
 
     // Stat change entry list
-    obj.SetStatChangeEntries(GET_JSON_DATA_OR_DEFAULT(StatChangeEntries, StatChangeEntryArray, StatChangeEntryArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChangeEntries, StatChangeEntryArray, StatChangeEntryArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChange, StatChange);

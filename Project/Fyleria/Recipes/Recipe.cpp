@@ -42,13 +42,13 @@ void to_json(Json& jsonData, const Recipe& obj)
 void from_json(const Json& jsonData, Recipe& obj)
 {
     // Chance to success
-    obj.SetChanceToSucceed(GET_JSON_DATA_OR_DEFAULT(ChanceToSucceed, Float, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ChanceToSucceed, Float, 0);
 
     // Ingredients
-    obj.SetIngredients(GET_JSON_DATA_OR_DEFAULT(Ingredients, RecipeEntryArray, RecipeEntryArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Ingredients, RecipeEntryArray, RecipeEntryArray());
 
     // Results
-    obj.SetResults(GET_JSON_DATA_OR_DEFAULT(Results, RecipeEntryArray, RecipeEntryArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Results, RecipeEntryArray, RecipeEntryArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Recipe, Recipe);

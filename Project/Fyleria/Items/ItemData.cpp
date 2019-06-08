@@ -143,28 +143,28 @@ void to_json(Json& jsonData, const ItemData& obj)
 void from_json(const Json& jsonData, ItemData& obj)
 {
     // Run types
-    obj.SetRunTypes(GET_JSON_DATA_OR_DEFAULT(RunTypes, IndexedStringArray, IndexedStringArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunTypes, IndexedStringArray, IndexedStringArray());
 
     // Data class
-    obj.SetDataClass(GET_JSON_DATA_OR_DEFAULT(DataClass, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DataClass, IndexedString, IndexedString(""));
 
     // Item name
-    obj.SetItemName(GET_JSON_DATA_OR_DEFAULT(ItemName, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemName, IndexedString, IndexedString(""));
 
     // Item description
-    obj.SetItemDescription(GET_JSON_DATA_OR_DEFAULT(ItemDescription, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemDescription, IndexedString, IndexedString(""));
 
     // Item type
-    obj.SetItemType(GET_JSON_DATA_OR_DEFAULT(ItemType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemType, IndexedString, IndexedString("None"));
 
     // Item index
-    obj.SetItemTreeIndex(GET_JSON_DATA_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
 
     // Action types
-    obj.SetActionTypes(GET_JSON_DATA_OR_DEFAULT(ActionTypes, IndexedStringArray, IndexedStringArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionTypes, IndexedStringArray, IndexedStringArray());
 
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 };

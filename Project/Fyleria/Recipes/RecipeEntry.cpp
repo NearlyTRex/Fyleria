@@ -66,25 +66,25 @@ void to_json(Json& jsonData, const RecipeEntry& obj)
 void from_json(const Json& jsonData, RecipeEntry& obj)
 {
     // Chance to success
-    obj.SetChanceToSucceed(GET_JSON_DATA_OR_DEFAULT(ChanceToSucceed, Float, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ChanceToSucceed, Float, 0);
 
     // Input type
-    obj.SetInputPotionName(GET_JSON_DATA_OR_DEFAULT(InputPotionName, IndexedString, IndexedString("")));
-    obj.SetInputIngredientName(GET_JSON_DATA_OR_DEFAULT(InputIngredientName, IndexedString, IndexedString("")));
-    obj.SetInputWeaponName(GET_JSON_DATA_OR_DEFAULT(InputWeaponName, IndexedString, IndexedString("")));
-    obj.SetInputArmorName(GET_JSON_DATA_OR_DEFAULT(InputArmorName, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputPotionName, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputIngredientName, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputWeaponName, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputArmorName, IndexedString, IndexedString(""));
 
     // Output type
-    obj.SetOutputPotionName(GET_JSON_DATA_OR_DEFAULT(OutputPotionName, IndexedString, IndexedString("")));
-    obj.SetOutputIngredientName(GET_JSON_DATA_OR_DEFAULT(OutputIngredientName, IndexedString, IndexedString("")));
-    obj.SetOutputWeaponName(GET_JSON_DATA_OR_DEFAULT(OutputWeaponName, IndexedString, IndexedString("")));
-    obj.SetOutputArmorName(GET_JSON_DATA_OR_DEFAULT(OutputArmorName, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputPotionName, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputIngredientName, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputWeaponName, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputArmorName, IndexedString, IndexedString(""));
 
     // Input amount
-    obj.SetInputAmount(GET_JSON_DATA_OR_DEFAULT(InputAmount, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputAmount, Int, 0);
 
     // Output amount
-    obj.SetOutputAmount(GET_JSON_DATA_OR_DEFAULT(OutputAmount, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputAmount, Int, 0);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(RecipeEntry, RecipeEntry);

@@ -258,32 +258,32 @@ void to_json(Json& jsonData, const SkillData& obj)
 void from_json(const Json& jsonData, SkillData& obj)
 {
     // Run types
-    obj.SetRunTypes(GET_JSON_DATA_OR_DEFAULT(RunTypes, IndexedStringArray, IndexedStringArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunTypes, IndexedStringArray, IndexedStringArray());
 
     // Data class
-    obj.SetDataClass(GET_JSON_DATA_OR_DEFAULT(DataClass, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DataClass, IndexedString, IndexedString(""));
 
     // Skill rank
-    obj.SetSkillRank(GET_JSON_DATA_OR_DEFAULT(SkillRank, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillRank, Int, 0);
 
     // Skill name
-    obj.SetSkillName(GET_JSON_DATA_OR_DEFAULT(SkillName, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillName, IndexedString, IndexedString(""));
 
     // Skill description
-    obj.SetSkillDescription(GET_JSON_DATA_OR_DEFAULT(SkillDescription, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillDescription, IndexedString, IndexedString(""));
 
     // Skill type
-    obj.SetSkillType(GET_JSON_DATA_OR_DEFAULT(SkillType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillType, IndexedString, IndexedString("None"));
 
     // Skill costs
-    obj.SetSkillCostAP(GET_JSON_DATA_OR_DEFAULT(SkillCostAP, Int, 0));
-    obj.SetSkillCostHP(GET_JSON_DATA_OR_DEFAULT(SkillCostHP, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillCostAP, Int, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillCostHP, Int, 0);
 
     // Skill index
-    obj.SetSkillTreeIndex(GET_JSON_DATA_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex());
 
     // Stat changes
-    obj.SetStatChanges(GET_JSON_DATA_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 };

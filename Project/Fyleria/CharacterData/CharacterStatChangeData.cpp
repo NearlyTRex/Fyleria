@@ -225,16 +225,16 @@ void to_json(Json& jsonData, const CharacterStatChangeData& obj)
 void from_json(const Json& jsonData, CharacterStatChangeData& obj)
 {
     // Passive data
-    obj.SetPassiveSkillDataArray(GET_JSON_DATA_OR_DEFAULT(PassiveSkillDataArray, TreeIndexArray, TreeIndexArray()));
-    obj.SetPassiveItemDataArray(GET_JSON_DATA_OR_DEFAULT(PassiveItemDataArray, TreeIndexArray, TreeIndexArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PassiveSkillDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PassiveItemDataArray, TreeIndexArray, TreeIndexArray());
 
     // Active data
-    obj.SetActiveSkillDataArray(GET_JSON_DATA_OR_DEFAULT(ActiveSkillDataArray, TreeIndexArray, TreeIndexArray()));
-    obj.SetActiveItemDataArray(GET_JSON_DATA_OR_DEFAULT(ActiveItemDataArray, TreeIndexArray, TreeIndexArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActiveSkillDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActiveItemDataArray, TreeIndexArray, TreeIndexArray());
 
     // Actionable data
-    obj.SetActionableSkillDataArray(GET_JSON_DATA_OR_DEFAULT(ActionableSkillDataArray, TreeIndexArray, TreeIndexArray()));
-    obj.SetActionableItemDataArray(GET_JSON_DATA_OR_DEFAULT(ActionableItemDataArray, TreeIndexArray, TreeIndexArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionableSkillDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionableItemDataArray, TreeIndexArray, TreeIndexArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterStatChangeData, CharacterStatChangeData);

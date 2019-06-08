@@ -191,22 +191,22 @@ void to_json(Json& jsonData, const Battle& obj)
 void from_json(const Json& jsonData, Battle& obj)
 {
     // Battle status
-    obj.SetIsBattleStarted(GET_JSON_DATA_OR_DEFAULT(IsBattleStarted, Bool, false));
-    obj.SetIsBattleFinished(GET_JSON_DATA_OR_DEFAULT(IsBattleFinished, Bool, false));
-    obj.SetIsBattleManuallyWon(GET_JSON_DATA_OR_DEFAULT(IsBattleManuallyWon, Bool, false));
-    obj.SetIsBattleManuallyLost(GET_JSON_DATA_OR_DEFAULT(IsBattleManuallyLost, Bool, false));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(IsBattleStarted, Bool, false);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(IsBattleFinished, Bool, false);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(IsBattleManuallyWon, Bool, false);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(IsBattleManuallyLost, Bool, false);
 
     // Current action/round
-    obj.SetCurrentActionIndex(GET_JSON_DATA_OR_DEFAULT(CurrentActionIndex, Int, 0));
-    obj.SetCurrentRoundIndex(GET_JSON_DATA_OR_DEFAULT(CurrentRoundIndex, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CurrentActionIndex, Int, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CurrentRoundIndex, Int, 0);
 
     // Actions
-    obj.SetActions(GET_JSON_DATA_OR_DEFAULT(Actions, CharacterActionArray, CharacterActionArray()));
-    obj.SetActionCount(GET_JSON_DATA_OR_DEFAULT(ActionCount, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Actions, CharacterActionArray, CharacterActionArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionCount, Int, 0);
 
     // Party IDs
-    obj.SetEnemyPartyID(GET_JSON_DATA_OR_DEFAULT(EnemyPartyID, IndexedString, IndexedString("")));
-    obj.SetAllyPartyID(GET_JSON_DATA_OR_DEFAULT(AllyPartyID, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(EnemyPartyID, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AllyPartyID, IndexedString, IndexedString(""));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Battle, Battle);

@@ -6,6 +6,7 @@
 #include "Saves/SaveTypes.h"
 #include "Utility/Enum.h"
 #include "Utility/Constants.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -201,27 +202,27 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     MAKE_HTML_OPTION_LIST_STRING(FileType);
 
     // Get fields
-    String sAction = GET_MAP_DATA_OR_DEFAULT(tParams, "action", "");
-    String sCollectSaveData_SaveSlotType = GET_MAP_DATA_OR_DEFAULT(tParams, "sCollectSaveData_SaveSlotType", "");
-    String sCollectSaveData_PartyID = GET_MAP_DATA_OR_DEFAULT(tParams, "sCollectSaveData_PartyID", "");
-    String sDisperseSaveData_SaveSlotType = GET_MAP_DATA_OR_DEFAULT(tParams, "sDisperseSaveData_SaveSlotType", "");
-    String sLoadSave_SaveSlotType = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadSave_SaveSlotType", "");
-    String sLoadSave_Textarea = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadSave_Textarea", "");
-    String sUnloadSave_SaveSlotType = GET_MAP_DATA_OR_DEFAULT(tParams, "sUnloadSave_SaveSlotType", "");
-    String sLoadFromFile_SaveSlotType = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadFromFile_SaveSlotType", "");
-    String sLoadFromFile_FileType = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadFromFile_FileType", "");
-    String sLoadFromFile_Filename = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadFromFile_Filename", "");
-    String sSaveToFile_SaveSlotType = GET_MAP_DATA_OR_DEFAULT(tParams, "sSaveToFile_SaveSlotType", "");
-    String sSaveToFile_FileType = GET_MAP_DATA_OR_DEFAULT(tParams, "sSaveToFile_FileType", "");
-    String sSaveToFile_Filename = GET_MAP_DATA_OR_DEFAULT(tParams, "sSaveToFile_Filename", "");
-    String sLoadAllFromDir_Directory = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadAllFromDir_Directory", "");
-    String sLoadAllFromDir_Basename = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadAllFromDir_Basename", "");
-    String sLoadAllFromDir_Extension = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadAllFromDir_Extension", "");
-    String sLoadAllFromDir_FileType = GET_MAP_DATA_OR_DEFAULT(tParams, "sLoadAllFromDir_FileType", "");
-    String sSaveAllToDir_Directory = GET_MAP_DATA_OR_DEFAULT(tParams, "sSaveAllToDir_Directory", "");
-    String sSaveAllToDir_Basename = GET_MAP_DATA_OR_DEFAULT(tParams, "sSaveAllToDir_Basename", "");
-    String sSaveAllToDir_Extension = GET_MAP_DATA_OR_DEFAULT(tParams, "sSaveAllToDir_Extension", "");
-    String sSaveAllToDir_FileType = GET_MAP_DATA_OR_DEFAULT(tParams, "sSaveAllToDir_FileType", "");
+    String sAction = GetMapDataOrDefault(tParams, "action", "");
+    String sCollectSaveData_SaveSlotType = GetMapDataOrDefault(tParams, "sCollectSaveData_SaveSlotType", "");
+    String sCollectSaveData_PartyID = GetMapDataOrDefault(tParams, "sCollectSaveData_PartyID", "");
+    String sDisperseSaveData_SaveSlotType = GetMapDataOrDefault(tParams, "sDisperseSaveData_SaveSlotType", "");
+    String sLoadSave_SaveSlotType = GetMapDataOrDefault(tParams, "sLoadSave_SaveSlotType", "");
+    String sLoadSave_Textarea = GetMapDataOrDefault(tParams, "sLoadSave_Textarea", "");
+    String sUnloadSave_SaveSlotType = GetMapDataOrDefault(tParams, "sUnloadSave_SaveSlotType", "");
+    String sLoadFromFile_SaveSlotType = GetMapDataOrDefault(tParams, "sLoadFromFile_SaveSlotType", "");
+    String sLoadFromFile_FileType = GetMapDataOrDefault(tParams, "sLoadFromFile_FileType", "");
+    String sLoadFromFile_Filename = GetMapDataOrDefault(tParams, "sLoadFromFile_Filename", "");
+    String sSaveToFile_SaveSlotType = GetMapDataOrDefault(tParams, "sSaveToFile_SaveSlotType", "");
+    String sSaveToFile_FileType = GetMapDataOrDefault(tParams, "sSaveToFile_FileType", "");
+    String sSaveToFile_Filename = GetMapDataOrDefault(tParams, "sSaveToFile_Filename", "");
+    String sLoadAllFromDir_Directory = GetMapDataOrDefault(tParams, "sLoadAllFromDir_Directory", "");
+    String sLoadAllFromDir_Basename = GetMapDataOrDefault(tParams, "sLoadAllFromDir_Basename", "");
+    String sLoadAllFromDir_Extension = GetMapDataOrDefault(tParams, "sLoadAllFromDir_Extension", "");
+    String sLoadAllFromDir_FileType = GetMapDataOrDefault(tParams, "sLoadAllFromDir_FileType", "");
+    String sSaveAllToDir_Directory = GetMapDataOrDefault(tParams, "sSaveAllToDir_Directory", "");
+    String sSaveAllToDir_Basename = GetMapDataOrDefault(tParams, "sSaveAllToDir_Basename", "");
+    String sSaveAllToDir_Extension = GetMapDataOrDefault(tParams, "sSaveAllToDir_Extension", "");
+    String sSaveAllToDir_FileType = GetMapDataOrDefault(tParams, "sSaveAllToDir_FileType", "");
 
     // Check action
     if(sAction == "initalize_empty_save_slots")

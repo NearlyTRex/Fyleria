@@ -156,38 +156,38 @@ void to_json(Json& jsonData, const CharacterAction& obj)
 void from_json(const Json& jsonData, CharacterAction& obj)
 {
     // Run type
-    obj.SetRunType(GET_JSON_DATA_OR_DEFAULT(RunType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunType, IndexedString, IndexedString("None"));
 
     // Order
-    obj.SetOrder(GET_JSON_DATA_OR_DEFAULT(Order, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Order, Int, 0);
 
     // Cost
-    obj.SetCostAP(GET_JSON_DATA_OR_DEFAULT(CostAP, Int, 0));
-    obj.SetCostHP(GET_JSON_DATA_OR_DEFAULT(CostHP, Int, 0));
-    obj.SetCostMP(GET_JSON_DATA_OR_DEFAULT(CostMP, Int, 0));
-    obj.SetCostEP(GET_JSON_DATA_OR_DEFAULT(CostEP, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CostAP, Int, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CostHP, Int, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CostMP, Int, 0);
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CostEP, Int, 0);
 
     // Applicable weapon set
-    obj.SetWeaponSet(GET_JSON_DATA_OR_DEFAULT(WeaponSet, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(WeaponSet, IndexedString, IndexedString("None"));
 
     // Action entries
-    obj.SetActionEntries(GET_JSON_DATA_OR_DEFAULT(ActionEntries, CharacterActionEntryArray, CharacterActionEntryArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionEntries, CharacterActionEntryArray, CharacterActionEntryArray());
 
     // Previous action types
-    obj.SetPreviousActionTypes(GET_JSON_DATA_OR_DEFAULT(PreviousActionTypes, IndexedStringArray, IndexedStringArray()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PreviousActionTypes, IndexedStringArray, IndexedStringArray());
 
     // Skill
-    obj.SetSkillTreeIndex(GET_JSON_DATA_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex()));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex());
 
     // Item
-    obj.SetItemTreeIndex(GET_JSON_DATA_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex()));
-    obj.SetItemAmount(GET_JSON_DATA_OR_DEFAULT(ItemAmount, Int, 0));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemAmount, Int, 0);
 
     // Targets
-    obj.SetSourceTargetType(GET_JSON_DATA_OR_DEFAULT(SourceTargetType, IndexedString, IndexedString("None")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceTargetType, IndexedString, IndexedString("None"));
 
     // Characters
-    obj.SetSourceCharacterID(GET_JSON_DATA_OR_DEFAULT(SourceCharacterID, IndexedString, IndexedString("")));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceCharacterID, IndexedString, IndexedString(""));
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterAction, CharacterAction);
