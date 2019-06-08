@@ -5,7 +5,6 @@
 #define _GECKO_CHARACTER_ACTION_ENTRY_H_
 
 #include "CharacterAction/CharacterActionResult.h"
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Json.h"
 #include "Utility/Serializable.h"
@@ -18,7 +17,7 @@ class CharacterActionEntry : public SerializableToJson
 public:
 
     // Types
-    typedef STDUnorderedMap<IndexedString, CharacterActionResult, IndexedStringHasher> CharacterActionResultMapType;
+    typedef STDUnorderedMap<String, CharacterActionResult> CharacterActionResultMapType;
 
     // Constructors
     CharacterActionEntry();
@@ -26,22 +25,22 @@ public:
     explicit CharacterActionEntry(const String& jsonString);
 
     // Determine if action type is a match
-    Bool DoesMatchActionType(const IndexedString& sType) const;
+    Bool DoesMatchActionType(const String& sType) const;
 
     // Action types
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(ActionTypes, IndexedStringArray);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(ActionTypes, StringArray);
 
     // Hand
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(HandType, IndexedString);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(HandType, String);
 
     // Whether hand is using a shield
     MAKE_JSON_BASIC_TYPE_ACCESSORS(IsHandTypeShield, Bool);
 
     // Target
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(DestinationTargetType, IndexedString);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(DestinationTargetType, String);
 
     // Character
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(DestinationCharacterIDs, IndexedStringArray);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(DestinationCharacterIDs, StringArray);
 
     // Result
     MAKE_JSON_BASIC_TYPE_ACCESSORS(Results, CharacterActionResultMapType);

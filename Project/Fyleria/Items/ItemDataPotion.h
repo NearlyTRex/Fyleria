@@ -23,13 +23,13 @@ public:
     virtual void Clear();
 
     // Item tree type
-    static IndexedString GetTreeType()
+    static String GetTreeType()
     {
-        return IndexedString(ItemTreeType(ItemTreeType::Potion)._to_string());
+        return String(ItemTreeType(ItemTreeType::Potion)._to_string());
     }
 
     // Create potion action
-    CharacterActionArray CreatePotionActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreatePotionActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Stat changes
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);

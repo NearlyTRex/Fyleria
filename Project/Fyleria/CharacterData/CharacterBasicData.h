@@ -26,21 +26,21 @@ public:
     static void InitAllStatNames();
 
     // Character ID
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterID, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterID, String);
 
     // Party ID
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyID, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyID, String);
 
-    // IndexedString stats
-    MAKE_STAT_TYPE_ACCESSORS(FirstName, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(LastName, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(Gender, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(Hair, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(Eyes, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(Handedness, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(BaseRace, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(TransformedRace, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(PowerSet, IndexedString);
+    // String stats
+    MAKE_STAT_TYPE_ACCESSORS(FirstName, String);
+    MAKE_STAT_TYPE_ACCESSORS(LastName, String);
+    MAKE_STAT_TYPE_ACCESSORS(Gender, String);
+    MAKE_STAT_TYPE_ACCESSORS(Hair, String);
+    MAKE_STAT_TYPE_ACCESSORS(Eyes, String);
+    MAKE_STAT_TYPE_ACCESSORS(Handedness, String);
+    MAKE_STAT_TYPE_ACCESSORS(BaseRace, String);
+    MAKE_STAT_TYPE_ACCESSORS(TransformedRace, String);
+    MAKE_STAT_TYPE_ACCESSORS(PowerSet, String);
 
     // Int stats
     MAKE_STAT_TYPE_ACCESSORS(Age, Int);

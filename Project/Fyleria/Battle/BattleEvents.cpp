@@ -8,7 +8,7 @@
 namespace Gecko
 {
 
-void HandleBattleStarted(const IndexedString& sCharacterID)
+void HandleBattleStarted(const String& sCharacterID)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
@@ -27,7 +27,7 @@ void HandleBattleStarted(const IndexedString& sCharacterID)
     character.GetBattleDataBase().SetDefendCounter(0);
 }
 
-void HandleBattleEnded(const IndexedString& sCharacterID)
+void HandleBattleEnded(const String& sCharacterID)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
@@ -43,7 +43,7 @@ void HandleBattleEnded(const IndexedString& sCharacterID)
     character.GetBattleDataBase().SetDefendCounter(0);
 }
 
-void HandleBattleTally(const IndexedString& sCharacterID)
+void HandleBattleTally(const String& sCharacterID)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
@@ -67,14 +67,14 @@ void HandleBattleTally(const IndexedString& sCharacterID)
     );
 }
 
-void HandleBattleFullyCompleted(const IndexedString& sCharacterID)
+void HandleBattleFullyCompleted(const String& sCharacterID)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
-    for(const IndexedString& sSegment : vSegments)
+    const StringArray vSegments = {String("Base"), String("Passive")};
+    for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
@@ -87,14 +87,14 @@ void HandleBattleFullyCompleted(const IndexedString& sCharacterID)
     character.GetSkillData().SetSkillUseTrackingMap({});
 }
 
-void HandleBattleRoundAdvanced(const IndexedString& sCharacterID)
+void HandleBattleRoundAdvanced(const String& sCharacterID)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
-    for(const IndexedString& sSegment : vSegments)
+    const StringArray vSegments = {String("Base"), String("Passive")};
+    for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
@@ -110,7 +110,7 @@ void HandleBattleRoundAdvanced(const IndexedString& sCharacterID)
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
-void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
+void HandleBattleGivingDamage(const String& sCharacterID, Int iAmount)
 {
     // Skip invalid damage
     if(iAmount <= 0)
@@ -122,8 +122,8 @@ void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
-    for(const IndexedString& sSegment : vSegments)
+    const StringArray vSegments = {String("Base"), String("Passive")};
+    for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
@@ -142,7 +142,7 @@ void HandleBattleGivingDamage(const IndexedString& sCharacterID, Int iAmount)
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
-void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
+void HandleBattleTakingDamage(const String& sCharacterID, Int iAmount)
 {
     // Skip invalid damage
     if(iAmount <= 0)
@@ -154,8 +154,8 @@ void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
-    for(const IndexedString& sSegment : vSegments)
+    const StringArray vSegments = {String("Base"), String("Passive")};
+    for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
         CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
@@ -179,14 +179,14 @@ void HandleBattleTakingDamage(const IndexedString& sCharacterID, Int iAmount)
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
-void HandleBattleChoosingTargets(const IndexedString& sCharacterID, const IndexedStringArray& vDestTargets)
+void HandleBattleChoosingTargets(const String& sCharacterID, const StringArray& vDestTargets)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
-    for(const IndexedString& sSegment : vSegments)
+    const StringArray vSegments = {String("Base"), String("Passive")};
+    for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
@@ -195,20 +195,20 @@ void HandleBattleChoosingTargets(const IndexedString& sCharacterID, const Indexe
         battleData.SetMostRecentActionTargets(vDestTargets);
 
         // Update attack targets this round
-        IndexedStringArray vTargetsThisRound = battleData.GetActionTargetsThisRound();
+        StringArray vTargetsThisRound = battleData.GetActionTargetsThisRound();
         vTargetsThisRound.insert(vTargetsThisRound.end(), vDestTargets.begin(), vDestTargets.end());
         battleData.SetActionTargetsThisRound(vTargetsThisRound);
     }
 }
 
-void HandleBattleBecomingTarget(const IndexedString& sCharacterID, const IndexedString& sSourceTarget)
+void HandleBattleBecomingTarget(const String& sCharacterID, const String& sSourceTarget)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
-    for(const IndexedString& sSegment : vSegments)
+    const StringArray vSegments = {String("Base"), String("Passive")};
+    for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
@@ -221,35 +221,35 @@ void HandleBattleBecomingTarget(const IndexedString& sCharacterID, const Indexed
     }
 }
 
-void HandleBattleActionAttackSetup(const IndexedString& sCharacterID, const CharacterAction& action)
+void HandleBattleActionAttackSetup(const String& sCharacterID, const CharacterAction& action)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
-    for(const IndexedString& sSegment : vSegments)
+    const StringArray vSegments = {String("Base"), String("Passive")};
+    for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Set targets for this action
         battleData.SetActionTargetsThisAction(battleData.GetMostRecentActionTargets());
-        battleData.SetActionSourceThisAction(IndexedString(""));
+        battleData.SetActionSourceThisAction("");
     }
 
     // Apply active changes
     character.ApplyActiveChanges(action);
 }
 
-void HandleBattleActionDefendSetup(const IndexedString& sCharacterID, const CharacterAction& action)
+void HandleBattleActionDefendSetup(const String& sCharacterID, const CharacterAction& action)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
-    for(const IndexedString& sSegment : vSegments)
+    const StringArray vSegments = {String("Base"), String("Passive")};
+    for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
@@ -263,7 +263,7 @@ void HandleBattleActionDefendSetup(const IndexedString& sCharacterID, const Char
     character.ApplyActiveChanges(action);
 }
 
-void HandleBattleActionApplied(const IndexedString& sCharacterID, const CharacterAction& action)
+void HandleBattleActionApplied(const String& sCharacterID, const CharacterAction& action)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
@@ -272,14 +272,14 @@ void HandleBattleActionApplied(const IndexedString& sCharacterID, const Characte
     character.GetBattleDataBase().SetPreviousActionTypes(action.GetAllActionTypes());
 }
 
-void HandleBattleActionFinished(const IndexedString& sCharacterID, const CharacterAction& action)
+void HandleBattleActionFinished(const String& sCharacterID, const CharacterAction& action)
 {
     // Get character
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const IndexedStringArray vSegments = {IndexedString("Base"), IndexedString("Passive")};
-    for(const IndexedString& sSegment : vSegments)
+    const StringArray vSegments = {String("Base"), String("Passive")};
+    for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
         CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
@@ -299,7 +299,7 @@ void HandleBattleActionFinished(const IndexedString& sCharacterID, const Charact
 
         // Clear action targets
         battleData.SetActionTargetsThisAction({});
-        battleData.SetActionSourceThisAction(IndexedString(""));
+        battleData.SetActionSourceThisAction("");
     }
 
     // Clear active changes

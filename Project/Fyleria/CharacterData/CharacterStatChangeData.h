@@ -16,7 +16,7 @@ class CharacterStatChangeData
 public:
 
     // Types
-    typedef STDUnorderedMap<IndexedString, ProlongedStatChange, IndexedStringHasher> ProlongedStatChangeMapType;
+    typedef STDUnorderedMap<String, ProlongedStatChange> ProlongedStatChangeMapType;
 
     // Constructors
     CharacterStatChangeData();
@@ -26,35 +26,35 @@ public:
     void Clear();
 
     // Update available passive, active, and actionable changes
-    void UpdateAvailableChanges(const IndexedString& sCharacterID);
+    void UpdateAvailableChanges(const String& sCharacterID);
 
     // Get tree actives/passives
-    const TreeIndexArray& GetPassiveChanges(const IndexedString& sTreeIndexType) const;
-    const TreeIndexArray& GetActiveChanges(const IndexedString& sTreeIndexType) const;
-    const TreeIndexArray& GetActionableChanges(const IndexedString& sTreeIndexType) const;
+    const TreeIndexArray& GetPassiveChanges(const String& sTreeIndexType) const;
+    const TreeIndexArray& GetActiveChanges(const String& sTreeIndexType) const;
+    const TreeIndexArray& GetActionableChanges(const String& sTreeIndexType) const;
 
     // Add/remove prolonged stat changes
-    void AddProlongedStatChange(const IndexedString& sKey, const ProlongedStatChange& change);
-    Bool RemoveProlongedStatChange(const IndexedString& sKey);
+    void AddProlongedStatChange(const String& sKey, const ProlongedStatChange& change);
+    Bool RemoveProlongedStatChange(const String& sKey);
 
     // Get prolonged stat change
-    const ProlongedStatChange& GetProlongedStatChange(const IndexedString& sKey) const;
-    ProlongedStatChange& GetProlongedStatChange(const IndexedString& sKey);
+    const ProlongedStatChange& GetProlongedStatChange(const String& sKey) const;
+    ProlongedStatChange& GetProlongedStatChange(const String& sKey);
 
     // Get stat change entry lists from prolonged entries
     StatChangeEntryArray GetProlongedStatChangeEntries(Int iRound, Int iAttack, Int iDefend) const;
 
     // Determine if prolonged stat change exists
-    Bool DoesProlongedStatChangeExist(const IndexedString& sKey) const;
+    Bool DoesProlongedStatChangeExist(const String& sKey) const;
 
     // Determine if prolonged change has fully expired
-    Bool HasProlongedStatChangeExpired(const IndexedString& sKey, Int iRound, Int iAttack, Int iDefend) const;
+    Bool HasProlongedStatChangeExpired(const String& sKey, Int iRound, Int iAttack, Int iDefend) const;
 
     // Remove all expired prolonged stat changes
     void RemoveAllExpiredProlongedStatChanges(Int iRound, Int iAttack, Int iDefend);
 
     // Apply prolonged stat changes
-    void ApplyProlongedStatChanges(const IndexedString& sCharacterID, const IndexedString& sSegment);
+    void ApplyProlongedStatChanges(const String& sCharacterID, const String& sSegment);
 
     // Passive data
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PassiveSkillDataArray, TreeIndexArray);

@@ -9,7 +9,6 @@
 
 // Internal includes
 #include "Utility/Types.h"
-#include "Utility/IndexedString.h"
 
 namespace Gecko
 {
@@ -20,32 +19,32 @@ namespace Gecko
     String GenerateRandomFantasyName(const String& sPattern);
 
     // Get random name pattern
-    IndexedString GetRandomNamePattern();
+    String GetRandomNamePattern();
 
     // Tokens
-    IndexedString GetCapitalizationToken();
-    IndexedString GetReverseToken();
+    String GetCapitalizationToken();
+    String GetReverseToken();
 
     // Prebuilt patterns
-    IndexedString GetMiddleEarthNamePattern();
-    IndexedString GetJapaneseNameConstrainedPattern();
-    IndexedString GetJapaneseNameDiversePattern();
-    IndexedString GetChineseNamePattern();
-    IndexedString GetGreekNamePattern();
-    IndexedString GetHawaiianName1Pattern();
-    IndexedString GetHawaiianName2Pattern();
-    IndexedString GetOldLatinPlaceNamePattern();
-    IndexedString GetDragonPernNamePattern();
-    IndexedString GetDragonRiderNamePattern();
-    IndexedString GetPokemonNamePattern();
-    IndexedString GetFantasyVowelsRNamePattern();
-    IndexedString GetFantasySANamePattern();
-    IndexedString GetFantasyHLNamePattern();
-    IndexedString GetFantasyNLNamePattern();
-    IndexedString GetFantasyKNNamePattern();
-    IndexedString GetFantasyJGZNamePattern();
-    IndexedString GetFantasyKJYNamePattern();
-    IndexedString GetFantasySENamePattern();
+    String GetMiddleEarthNamePattern();
+    String GetJapaneseNameConstrainedPattern();
+    String GetJapaneseNameDiversePattern();
+    String GetChineseNamePattern();
+    String GetGreekNamePattern();
+    String GetHawaiianName1Pattern();
+    String GetHawaiianName2Pattern();
+    String GetOldLatinPlaceNamePattern();
+    String GetDragonPernNamePattern();
+    String GetDragonRiderNamePattern();
+    String GetPokemonNamePattern();
+    String GetFantasyVowelsRNamePattern();
+    String GetFantasySANamePattern();
+    String GetFantasyHLNamePattern();
+    String GetFantasyNLNamePattern();
+    String GetFantasyKNNamePattern();
+    String GetFantasyJGZNamePattern();
+    String GetFantasyKJYNamePattern();
+    String GetFantasySENamePattern();
 };
 
 #endif

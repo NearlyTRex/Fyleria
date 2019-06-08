@@ -38,7 +38,7 @@ void CharacterStatChangeData::Clear()
     SetProlongedStatChanges({});
 }
 
-void CharacterStatChangeData::UpdateAvailableChanges(const IndexedString& sCharacterID)
+void CharacterStatChangeData::UpdateAvailableChanges(const String& sCharacterID)
 {
     // Fill skill indices
     TreeIndexArray vSkillPassives;
@@ -61,7 +61,7 @@ void CharacterStatChangeData::UpdateAvailableChanges(const IndexedString& sChara
     SetActionableItemDataArray(vItemActionables);
 }
 
-const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const IndexedString& sTreeIndexType) const
+const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const String& sTreeIndexType) const
 {
     const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
     switch(eTreeIndexType)
@@ -73,10 +73,10 @@ const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const IndexedSt
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType.Get());
+    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType);
 }
 
-const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const IndexedString& sTreeIndexType) const
+const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const String& sTreeIndexType) const
 {
     const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
     switch(eTreeIndexType)
@@ -88,10 +88,10 @@ const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const IndexedStr
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType.Get());
+    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType);
 }
 
-const TreeIndexArray& CharacterStatChangeData::GetActionableChanges(const IndexedString& sTreeIndexType) const
+const TreeIndexArray& CharacterStatChangeData::GetActionableChanges(const String& sTreeIndexType) const
 {
     const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
     switch(eTreeIndexType)
@@ -103,25 +103,25 @@ const TreeIndexArray& CharacterStatChangeData::GetActionableChanges(const Indexe
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType.Get());
+    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType);
 }
 
-void CharacterStatChangeData::AddProlongedStatChange(const IndexedString& sKey, const ProlongedStatChange& change)
+void CharacterStatChangeData::AddProlongedStatChange(const String& sKey, const ProlongedStatChange& change)
 {
     GetProlongedStatChanges()[sKey] = change;
 }
 
-Bool CharacterStatChangeData::RemoveProlongedStatChange(const IndexedString& sKey)
+Bool CharacterStatChangeData::RemoveProlongedStatChange(const String& sKey)
 {
     return (GetProlongedStatChanges().erase(sKey) > 0);
 }
 
-const ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const IndexedString& sKey) const
+const ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const String& sKey) const
 {
     return (GetProlongedStatChanges().at(sKey));
 }
 
-ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const IndexedString& sKey)
+ProlongedStatChange& CharacterStatChangeData::GetProlongedStatChange(const String& sKey)
 {
     return const_cast<ProlongedStatChange&>(static_cast<const CharacterStatChangeData&>(*this).GetProlongedStatChange(sKey));
 }
@@ -133,7 +133,7 @@ StatChangeEntryArray CharacterStatChangeData::GetProlongedStatChangeEntries(Int 
     for(auto it = GetProlongedStatChanges().begin(); it != GetProlongedStatChanges().end(); it++)
     {
         // Ignore expired entries
-        const IndexedString& sKey = IndexedString(it->first);
+        const String& sKey = String(it->first);
         if(HasProlongedStatChangeExpired(sKey, iRound, iAttack, iDefend))
         {
             continue;
@@ -153,12 +153,12 @@ StatChangeEntryArray CharacterStatChangeData::GetProlongedStatChangeEntries(Int 
     return vEntries;
 }
 
-Bool CharacterStatChangeData::DoesProlongedStatChangeExist(const IndexedString& sKey) const
+Bool CharacterStatChangeData::DoesProlongedStatChangeExist(const String& sKey) const
 {
     return (GetProlongedStatChanges().find(sKey) != GetProlongedStatChanges().end());
 }
 
-Bool CharacterStatChangeData::HasProlongedStatChangeExpired(const IndexedString& sKey, Int iRound, Int iAttack, Int iDefend) const
+Bool CharacterStatChangeData::HasProlongedStatChangeExpired(const String& sKey, Int iRound, Int iAttack, Int iDefend) const
 {
     const ProlongedStatChange& change = GetProlongedStatChange(sKey);
     return (
@@ -170,22 +170,22 @@ Bool CharacterStatChangeData::HasProlongedStatChangeExpired(const IndexedString&
 
 void CharacterStatChangeData::RemoveAllExpiredProlongedStatChanges(Int iRound, Int iAttack, Int iDefend)
 {
-    IndexedStringArray vKeys;
+    StringArray vKeys;
     for(auto it = GetProlongedStatChanges().begin(); it != GetProlongedStatChanges().end(); it++)
     {
-        if(HasProlongedStatChangeExpired(IndexedString(it->first), iRound, iAttack, iDefend))
+        if(HasProlongedStatChangeExpired(String(it->first), iRound, iAttack, iDefend))
         {
-            vKeys.push_back(IndexedString(it->first));
+            vKeys.push_back(String(it->first));
         }
     }
 
-    for(const IndexedString& sKey : vKeys)
+    for(const String& sKey : vKeys)
     {
         RemoveProlongedStatChange(sKey);
     }
 }
 
-void CharacterStatChangeData::ApplyProlongedStatChanges(const IndexedString& sCharacterID, const IndexedString& sSegment)
+void CharacterStatChangeData::ApplyProlongedStatChanges(const String& sCharacterID, const String& sSegment)
 {
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
     Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();

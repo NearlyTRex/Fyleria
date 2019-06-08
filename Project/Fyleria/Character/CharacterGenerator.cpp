@@ -19,7 +19,7 @@ CharacterGenerator::CharacterGenerator(const Json& jsonData)
 {
 }
 
-CharacterBasicData CharacterGenerator::GenerateBasicData(const IndexedString& sCharacterID) const
+CharacterBasicData CharacterGenerator::GenerateBasicData(const String& sCharacterID) const
 {
     // Create basic data
     CharacterBasicData basicData;
@@ -72,14 +72,14 @@ CharacterProgressData CharacterGenerator::GenerateProgressData() const
     return progressData;
 }
 
-IndexedString CharacterGenerator::GenerateFirstName() const
+String CharacterGenerator::GenerateFirstName() const
 {
-    return IndexedString(GetUseRandomName() ? GenerateRandomFantasyName(GetCapitalizationToken().Get() + GetFirstNamePattern()) : GetFirstName());
+    return String(GetUseRandomName() ? GenerateRandomFantasyName(GetCapitalizationToken() + GetFirstNamePattern()) : GetFirstName());
 }
 
-IndexedString CharacterGenerator::GenerateLastName() const
+String CharacterGenerator::GenerateLastName() const
 {
-    return IndexedString(GetUseRandomName() ? GenerateRandomFantasyName(GetCapitalizationToken().Get() + GetLastNamePattern()) : GetLastName());
+    return String(GetUseRandomName() ? GenerateRandomFantasyName(GetCapitalizationToken() + GetLastNamePattern()) : GetLastName());
 }
 
 Int CharacterGenerator::GenerateAge() const
@@ -87,44 +87,44 @@ Int CharacterGenerator::GenerateAge() const
     return (GetUseRandomAge() ? GetRandomIntValue<Int>(GetAgeStart(), GetAgeEnd()) : GetAge());
 }
 
-IndexedString CharacterGenerator::GenerateGender() const
+String CharacterGenerator::GenerateGender() const
 {
-    return IndexedString(GetUseRandomGender() ? GetRandomEnumValue<CharacterGenderType>() : GetGender());
+    return String(GetUseRandomGender() ? GetRandomEnumValue<CharacterGenderType>() : GetGender());
 }
 
-IndexedString CharacterGenerator::GenerateHair() const
+String CharacterGenerator::GenerateHair() const
 {
-    return IndexedString(GetUseRandomHair() ? GetRandomEnumValue<CharacterHairType>() : GetHair());
+    return String(GetUseRandomHair() ? GetRandomEnumValue<CharacterHairType>() : GetHair());
 }
 
-IndexedString CharacterGenerator::GenerateEyes() const
+String CharacterGenerator::GenerateEyes() const
 {
-    return IndexedString(GetUseRandomEyes() ? GetRandomEnumValue<CharacterEyeType>() : GetEyes());
+    return String(GetUseRandomEyes() ? GetRandomEnumValue<CharacterEyeType>() : GetEyes());
 }
 
-IndexedString CharacterGenerator::GenerateHandedness() const
+String CharacterGenerator::GenerateHandedness() const
 {
-    return IndexedString(GetUseRandomHandedness() ? GetRandomEnumValue<CharacterHandednessType>() : GetHandedness());
+    return String(GetUseRandomHandedness() ? GetRandomEnumValue<CharacterHandednessType>() : GetHandedness());
 }
 
-IndexedString CharacterGenerator::GenerateBaseRace() const
+String CharacterGenerator::GenerateBaseRace() const
 {
-    return IndexedString(GetUseRandomBaseRace() ? GetRandomEnumValue<CharacterBaseRaceType>() : GetBaseRace());
+    return String(GetUseRandomBaseRace() ? GetRandomEnumValue<CharacterBaseRaceType>() : GetBaseRace());
 }
 
-IndexedString CharacterGenerator::GenerateTransformedRace() const
+String CharacterGenerator::GenerateTransformedRace() const
 {
-    return IndexedString(GetUseRandomTransformedRace() ? GetRandomEnumValue<CharacterTransformedRaceType>() : GetTransformedRace());
+    return String(GetUseRandomTransformedRace() ? GetRandomEnumValue<CharacterTransformedRaceType>() : GetTransformedRace());
 }
 
-IndexedString CharacterGenerator::GeneratePowerSet() const
+String CharacterGenerator::GeneratePowerSet() const
 {
-    return IndexedString(GetUseRandomPowerSet() ? GetRandomEnumValue<CharacterPowerSetType>() : GetPowerSet());
+    return String(GetUseRandomPowerSet() ? GetRandomEnumValue<CharacterPowerSetType>() : GetPowerSet());
 }
 
 void CharacterGenerator::RandomizeBasics()
 {
-    String sRandomNamePattern = GetRandomNamePattern().Get();
+    String sRandomNamePattern = GetRandomNamePattern();
     SetFirstNamePattern(sRandomNamePattern);
     SetLastNamePattern(sRandomNamePattern);
     SetAgeStart(GetRandomIntValue<Int>(1, INT_MAX));

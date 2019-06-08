@@ -19,11 +19,11 @@ CharacterSkillData::CharacterSkillData(const Json& jsonData)
 #define SET_SKILL_FUNCTION_NODE(name)                                                               \
 {                                                                                                   \
     CharacterSkillFunctionNodeType node;                                                            \
-    node[IndexedString("GetRank")] = BoostBind(&CharacterSkillData::Get##name##Rank, this);         \
-    node[IndexedString("SetRank")] = BoostBind(&CharacterSkillData::Set##name##Rank, this);         \
-    node[IndexedString("GetCurrent")] = BoostBind(&CharacterSkillData::Get##name##Current, this);   \
-    node[IndexedString("SetCurrent")] = BoostBind(&CharacterSkillData::Set##name##Current, this);   \
-    GetSkillFunctionMap()[IndexedString(#name)] = node;                                             \
+    node[String("GetRank")] = BoostBind(&CharacterSkillData::Get##name##Rank, this);         \
+    node[String("SetRank")] = BoostBind(&CharacterSkillData::Set##name##Rank, this);         \
+    node[String("GetCurrent")] = BoostBind(&CharacterSkillData::Get##name##Current, this);   \
+    node[String("SetCurrent")] = BoostBind(&CharacterSkillData::Set##name##Current, this);   \
+    GetSkillFunctionMap()[String(#name)] = node;                                             \
 }
 
 void CharacterSkillData::SetupSkillFunctions()
@@ -120,7 +120,7 @@ void CharacterSkillData::Clear()
 {                                                                       \
     for(auto&& sSkillType : type::_names())                             \
     {                                                                   \
-        GetSkillSet##skill##Function(IndexedString(sSkillType))(value); \
+        GetSkillSet##skill##Function(String(sSkillType))(value); \
     }                                                                   \
 }
 
@@ -149,9 +149,9 @@ void CharacterSkillData::UpdateUsedSkills()
     auto& tSkillTracking = GetSkillUseTrackingMap();
     for(auto it = tSkillTracking.begin(); it != tSkillTracking.end(); it++)
     {
-        const IndexedString& sSkillType = it->first;
+        const String& sSkillType = it->first;
         UInt uUseCount = it->second;
-        if(sSkillType.IsNone() || uUseCount == 0)
+        if(sSkillType == "None" || uUseCount == 0)
         {
             continue;
         }
@@ -160,7 +160,7 @@ void CharacterSkillData::UpdateUsedSkills()
     }
 }
 
-Bool CharacterSkillData::UpdateSkillRanking(const IndexedString& sSkillType)
+Bool CharacterSkillData::UpdateSkillRanking(const String& sSkillType)
 {
     auto GetRank = GetSkillGetRankFunction(sSkillType);
     auto SetRank = GetSkillSetRankFunction(sSkillType);
@@ -183,7 +183,7 @@ Bool CharacterSkillData::UpdateSkillRanking(const IndexedString& sSkillType)
     return true;
 }
 
-void CharacterSkillData::AddSkillUse(const IndexedString& sSkillType, UInt uNum)
+void CharacterSkillData::AddSkillUse(const String& sSkillType, UInt uNum)
 {
     auto& tTrackingMap = GetSkillUseTrackingMap();
     if(tTrackingMap.count(sSkillType))
@@ -196,7 +196,7 @@ void CharacterSkillData::AddSkillUse(const IndexedString& sSkillType, UInt uNum)
     }
 }
 
-UInt CharacterSkillData::GetSkillUseCount(const IndexedString& sSkillType) const
+UInt CharacterSkillData::GetSkillUseCount(const String& sSkillType) const
 {
     auto& tTrackingMap = GetSkillUseTrackingMap();
     auto iSearch = tTrackingMap.find(sSkillType);
@@ -208,36 +208,36 @@ UInt CharacterSkillData::GetSkillUseCount(const IndexedString& sSkillType) const
 }
 
 const CharacterSkillData::CharacterSkillFunctionNodeType& CharacterSkillData::GetSkillFunctions(
-    const IndexedString& sSkillType) const
+    const String& sSkillType) const
 {
     return GetSkillFunctionMap().at(sSkillType);
 }
 
 const CharacterSkillData::CharacterSkillFunctionType& CharacterSkillData::GetSkillFunction(
-    const IndexedString& sSkillType,
-    const IndexedString& sNodeType) const
+    const String& sSkillType,
+    const String& sNodeType) const
 {
     return GetSkillFunctions(sSkillType).at(sNodeType);
 }
 
-UByteGetFunction CharacterSkillData::GetSkillGetRankFunction(const IndexedString& sSkillType) const
+UByteGetFunction CharacterSkillData::GetSkillGetRankFunction(const String& sSkillType) const
 {
-    return BoostAnyCast<UByteGetFunction>(GetSkillFunction(sSkillType, IndexedString("GetRank")));
+    return BoostAnyCast<UByteGetFunction>(GetSkillFunction(sSkillType, String("GetRank")));
 }
 
-UByteSetFunction CharacterSkillData::GetSkillSetRankFunction(const IndexedString& sSkillType) const
+UByteSetFunction CharacterSkillData::GetSkillSetRankFunction(const String& sSkillType) const
 {
-    return BoostAnyCast<UByteSetFunction>(GetSkillFunction(sSkillType, IndexedString("SetRank")));
+    return BoostAnyCast<UByteSetFunction>(GetSkillFunction(sSkillType, String("SetRank")));
 }
 
-UByteGetFunction CharacterSkillData::GetSkillGetCurrentFunction(const IndexedString& sSkillType) const
+UByteGetFunction CharacterSkillData::GetSkillGetCurrentFunction(const String& sSkillType) const
 {
-    return BoostAnyCast<UByteGetFunction>(GetSkillFunction(sSkillType, IndexedString("GetCurrent")));
+    return BoostAnyCast<UByteGetFunction>(GetSkillFunction(sSkillType, String("GetCurrent")));
 }
 
-UByteSetFunction CharacterSkillData::GetSkillSetCurrentFunction(const IndexedString& sSkillType) const
+UByteSetFunction CharacterSkillData::GetSkillSetCurrentFunction(const String& sSkillType) const
 {
-    return BoostAnyCast<UByteSetFunction>(GetSkillFunction(sSkillType, IndexedString("SetCurrent")));
+    return BoostAnyCast<UByteSetFunction>(GetSkillFunction(sSkillType, String("SetCurrent")));
 }
 
 Bool CharacterSkillData::operator==(const CharacterSkillData& other) const

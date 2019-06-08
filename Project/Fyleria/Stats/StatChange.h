@@ -43,24 +43,24 @@ public:
     Bool DoesHaveDefendRequirements() const;
 
     // Determine if change meets specific requirements
-    Bool DoesMeetItemEquippedRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
-    Bool DoesMeetItemUsedRequirements(const IndexedStringArray& vActionItemTypes) const;
-    Bool DoesMeetAttackRequirements(const IndexedStringArray& vActionTypes) const;
-    Bool DoesMeetAttackRequirements(const IndexedStringArray& vActionTypes, const IndexedStringArray& vPreviousActionTypes) const;
-    Bool DoesMeetDefendRequirements(const IndexedStringArray& vActionTypes) const;
-    Bool DoesMeetDefendRequirements(const IndexedStringArray& vActionTypes, const IndexedStringArray& vPreviousActionTypes) const;
-    Bool DoesMeetActiveRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
-    Bool DoesMeetActiveRequirements(const IndexedString& sCharacterID, const IndexedString& sCharacterTargetType, const IndexedString& sWeaponSet, const CharacterAction& action) const;
+    Bool DoesMeetItemEquippedRequirements(const String& sCharacterID, const String& sWeaponSet) const;
+    Bool DoesMeetItemUsedRequirements(const StringArray& vActionItemTypes) const;
+    Bool DoesMeetAttackRequirements(const StringArray& vActionTypes) const;
+    Bool DoesMeetAttackRequirements(const StringArray& vActionTypes, const StringArray& vPreviousActionTypes) const;
+    Bool DoesMeetDefendRequirements(const StringArray& vActionTypes) const;
+    Bool DoesMeetDefendRequirements(const StringArray& vActionTypes, const StringArray& vPreviousActionTypes) const;
+    Bool DoesMeetActiveRequirements(const String& sCharacterID, const String& sWeaponSet) const;
+    Bool DoesMeetActiveRequirements(const String& sCharacterID, const String& sCharacterTargetType, const String& sWeaponSet, const CharacterAction& action) const;
 
     // Get intersecting requirements
-    IndexedStringArray GetIntersectingAttackRequirements(const IndexedStringArray& vActionTypes) const;
-    IndexedStringArray GetIntersectingDefendRequirements(const IndexedStringArray& vActionTypes) const;
+    StringArray GetIntersectingAttackRequirements(const StringArray& vActionTypes) const;
+    StringArray GetIntersectingDefendRequirements(const StringArray& vActionTypes) const;
 
     // Get resolved characters
-    Bool GetResolvedCharacterArrays(IndexedStringArray& vSourceCharIDs, IndexedStringArray& vDestCharIDs) const;
+    Bool GetResolvedCharacterArrays(StringArray& vSourceCharIDs, StringArray& vDestCharIDs) const;
 
     // Resolve target placeholders
-    void ResolveTargetPlaceholders(const IndexedString& sCharacterID, const IndexedString& sSegment);
+    void ResolveTargetPlaceholders(const String& sCharacterID, const String& sSegment);
 
     // ID
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ID, ULongLong);
@@ -84,18 +84,18 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(DefendAmount, UByte);
 
     // Required items or attack types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesOR, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesAND, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesOR, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesAND, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesOR, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesAND, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesOR, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesAND, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesOR, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesAND, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesOR, IndexedStringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesAND, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesOR, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesAND, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesOR, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesAND, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesOR, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesAND, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesOR, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesAND, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesOR, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesAND, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesOR, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesAND, StringArray);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredEquippedWeaponCount, UByte);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredEquippedShieldCount, UByte);
 
@@ -103,8 +103,8 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(DestinationIsSource, Bool);
 
     // Source and destination targets
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceTargetType, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationTargetType, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceTargetType, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationTargetType, String);
 
     // Stat change list
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChangeEntries, StatChangeEntryArray);
@@ -123,7 +123,7 @@ void from_json(const Json& jsonData, StatChange& obj);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(StatChange, StatChange);
 
 // Get stat changes from the given tree nodes
-const StatChangeArray& GetStatChangesFromTreeIndex(const IndexedString& sTreeIndexType, const TreeIndex& treeIndex);
+const StatChangeArray& GetStatChangesFromTreeIndex(const String& sTreeIndexType, const TreeIndex& treeIndex);
 const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeIndex);
 const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeIndex);
 

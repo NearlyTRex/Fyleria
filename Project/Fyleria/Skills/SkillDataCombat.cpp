@@ -26,7 +26,7 @@ void SkillDataCombat::Clear()
     SkillData::Clear();
 }
 
-CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray SkillDataCombat::CreateCombatActions(const String& sCharacterID, const String& sWeaponSet) const
 {
     // Check character
     CharacterActionArray vNewActions;
@@ -43,8 +43,8 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& s
     // Get equipped item information
     TreeIndex primaryItemIndex;
     TreeIndex secondaryItemIndex;
-    IndexedStringArray vPrimaryActionTypes;
-    IndexedStringArray vSecondaryActionTypes;
+    StringArray vPrimaryActionTypes;
+    StringArray vSecondaryActionTypes;
     if(!partyMember.GetHandInfoByWeaponSet(sWeaponSet,
         primaryItemIndex,
         secondaryItemIndex,
@@ -55,11 +55,12 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& s
     }
 
     // Get item types
-    IndexedString sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
-    IndexedString sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
-    IndexedString sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
-    IndexedString sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
-    if(sPrimaryItemActionType.IsNone() && sSecondaryItemActionType.IsNone())
+    String sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
+    String sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
+    String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
+    String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
+    String sActionNoneType = (+CharacterActionType::None)._to_string();
+    if(sPrimaryItemActionType == sActionNoneType && sSecondaryItemActionType == sActionNoneType)
     {
         return vNewActions;
     }
@@ -70,33 +71,33 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& s
         // Ambidextrous - Twin Attack
         // Ambidextrous - Split Focus
         // Attack two targets with both primary and secondary weapons
-        if(GetDataClass() == IndexedString("TwinAttack") ||
-           GetDataClass() == IndexedString("SplitFocus"))
+        if(GetDataClass() == String("TwinAttack") ||
+           GetDataClass() == String("SplitFocus"))
         {
             // Create primary entry
             CharacterActionEntry newEntryPrimary;
             newEntryPrimary.SetActionTypes({sPrimaryItemActionType});
-            newEntryPrimary.SetHandType(IndexedString("Primary"));
+            newEntryPrimary.SetHandType(String("Primary"));
             newAction.GetActionEntries().push_back(newEntryPrimary);
 
             // Create secondary entry
             CharacterActionEntry newEntrySecondary;
             newEntrySecondary.SetActionTypes({sSecondaryItemActionType});
-            newEntrySecondary.SetHandType(IndexedString("Secondary"));
+            newEntrySecondary.SetHandType(String("Secondary"));
             newAction.GetActionEntries().push_back(newEntrySecondary);
         }
 
         // Focused - Focused Strike
         // Focused - Deadly Retribution
         // Attack a single target with primary or secondary weapon, whichever one is equipped
-        else if(GetDataClass() == IndexedString("FocusedStrike") ||
-                GetDataClass() == IndexedString("DeadlyRetribution"))
+        else if(GetDataClass() == String("FocusedStrike") ||
+                GetDataClass() == String("DeadlyRetribution"))
         {
             // Create entry
             CharacterActionEntry newEntry;
-            Bool bUsePrimary = (!sPrimaryItemActionType.IsNone());
-            IndexedString sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
-            IndexedString sHandTypeToUse = (bUsePrimary) ? IndexedString("Primary") : IndexedString("Secondary");
+            Bool bUsePrimary = (sPrimaryItemActionType != sActionNoneType);
+            String sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
+            String sHandTypeToUse = (bUsePrimary) ? String("Primary") : String("Secondary");
             newEntry.SetActionTypes({sActionTypeToUse});
             newEntry.SetHandType(sHandTypeToUse);
             newAction.GetActionEntries().push_back(newEntry);
@@ -105,14 +106,14 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const IndexedString& s
         // Stalwart - Shield Punch
         // Stalwart - Shield Charge
         // Attack a single target with primary or secondary shield, whichever one is the shield
-        else if(GetDataClass() == IndexedString("ShieldPunch") ||
-                GetDataClass() == IndexedString("ShieldCharge"))
+        else if(GetDataClass() == String("ShieldPunch") ||
+                GetDataClass() == String("ShieldCharge"))
         {
             // Create entry
             CharacterActionEntry newEntry;
-            Bool bUsePrimary = (!sPrimaryItemActionType.IsNone() && ItemTree::IsItemShield(primaryItemIndex));
-            IndexedString sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
-            IndexedString sHandTypeToUse = (bUsePrimary) ? IndexedString("Primary") : IndexedString("Secondary");
+            Bool bUsePrimary = (sPrimaryItemActionType != sActionNoneType && ItemTree::IsItemShield(primaryItemIndex));
+            String sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
+            String sHandTypeToUse = (bUsePrimary) ? String("Primary") : String("Secondary");
             newEntry.SetActionTypes({sActionTypeToUse});
             newEntry.SetHandType(sHandTypeToUse);
             newEntry.SetIsHandTypeShield(true);

@@ -25,14 +25,14 @@ CharacterBattleData::CharacterBattleData(const Json& jsonData)
 void CharacterBattleData::Clear()
 {
     // Clear stat values
-    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedString);
-    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedStringArray);
+    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, String);
+    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, StringArray);
     RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Bool);
     RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Int);
     RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Float);
 }
 
-void CharacterBattleData::ApplyNewStatus(const IndexedString& sCharacterID, const IndexedString& sProgressSegment)
+void CharacterBattleData::ApplyNewStatus(const String& sCharacterID, const String& sProgressSegment)
 {
     // Get character info
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
@@ -57,16 +57,16 @@ void CharacterBattleData::ApplyTakenDamage(Int iDamage)
     SetDamageTakenThisBattle(GetDamageTakenThisBattle() + abs(iDamage));
 }
 
-void CharacterBattleData::AdvanceRound(const IndexedString& sCharacterID, const IndexedString& sProgressSegment)
+void CharacterBattleData::AdvanceRound(const String& sCharacterID, const String& sProgressSegment)
 {
     // Get character info
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
 
     // Apply regeneration
-    Bool bCanRegenHP = CanRegenerateFromStat(IndexedString("HealthRegen"));
-    Bool bCanRegenMP = CanRegenerateFromStat(IndexedString("MagicRegen"));
-    Bool bCanRegenEP = CanRegenerateFromStat(IndexedString("EnergyRegen"));
+    Bool bCanRegenHP = CanRegenerateFromStat(String("HealthRegen"));
+    Bool bCanRegenMP = CanRegenerateFromStat(String("MagicRegen"));
+    Bool bCanRegenEP = CanRegenerateFromStat(String("EnergyRegen"));
     if(bCanRegenHP || bCanRegenMP || bCanRegenEP)
     {
         progressData.ApplyRegeneration(bCanRegenHP, bCanRegenMP, bCanRegenEP);
@@ -86,7 +86,7 @@ void CharacterBattleData::AdvanceRound(const IndexedString& sCharacterID, const 
     SetActionSourcesThisRound({});
 }
 
-void CharacterBattleData::FinishBattle(const IndexedString& sCharacterID, const IndexedString& sProgressSegment)
+void CharacterBattleData::FinishBattle(const String& sCharacterID, const String& sProgressSegment)
 {
     // Get character info
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
@@ -102,9 +102,9 @@ void CharacterBattleData::FinishBattle(const IndexedString& sCharacterID, const 
     ApplyNewStatus(sCharacterID, sProgressSegment);
 
     // Apply regeneration
-    Bool bCanRegenHP = CanRegenerateFromStat(IndexedString("HealthRegen"));
-    Bool bCanRegenMP = CanRegenerateFromStat(IndexedString("MagicRegen"));
-    Bool bCanRegenEP = CanRegenerateFromStat(IndexedString("EnergyRegen"));
+    Bool bCanRegenHP = CanRegenerateFromStat(String("HealthRegen"));
+    Bool bCanRegenMP = CanRegenerateFromStat(String("MagicRegen"));
+    Bool bCanRegenEP = CanRegenerateFromStat(String("EnergyRegen"));
     if(bCanRegenHP || bCanRegenMP || bCanRegenEP)
     {
         progressData.ApplyRegeneration(bCanRegenHP, bCanRegenMP, bCanRegenEP);
@@ -115,7 +115,7 @@ void CharacterBattleData::FinishBattle(const IndexedString& sCharacterID, const 
     SetDamageTakenThisBattle(0);
 }
 
-Bool CharacterBattleData::CanRegenerateFromStat(const IndexedString& sRegenStat) const
+Bool CharacterBattleData::CanRegenerateFromStat(const String& sRegenStat) const
 {
     const CharacterProgressStatType_Int eProgressType = StringToCharacterProgressStatType_Int(sRegenStat);
     switch(eProgressType)
@@ -132,12 +132,12 @@ Bool CharacterBattleData::CanRegenerateFromStat(const IndexedString& sRegenStat)
     return false;
 }
 
-void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sCharacterID, const IndexedString& sProgressSegment)
+void CharacterBattleData::UpdateEquipmentRatings(const String& sCharacterID, const String& sProgressSegment)
 {
     // Get character info
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
     const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
-    const IndexedString& sWeaponSet = character.GetCurrentWeaponSet();
+    const String& sWeaponSet = character.GetCurrentWeaponSet();
     const CharacterPartyEquippedItemArray& vEquippedItems = character.GetEquippedItems();
 
     // Get weapon set
@@ -246,10 +246,10 @@ void CharacterBattleData::UpdateEquipmentRatings(const IndexedString& sCharacter
     SetEquippedArmorMagicRating(fArmor_MagicDefendPercent * progressData.GetMagicDefense());
 }
 
-IndexedStringArray CharacterBattleData::ResolveTargetPlaceholder(const IndexedString& sSelfTargetType,
-    const IndexedString& sPlaceholderTargetType) const
+StringArray CharacterBattleData::ResolveTargetPlaceholder(const String& sSelfTargetType,
+    const String& sPlaceholderTargetType) const
 {
-    IndexedStringArray vTargets;
+    StringArray vTargets;
     const CharacterTargetType eTargetType = StringToCharacterTargetType(sPlaceholderTargetType);
     switch(eTargetType)
     {
@@ -286,7 +286,7 @@ IndexedStringArray CharacterBattleData::ResolveTargetPlaceholder(const IndexedSt
     return vTargets;
 }
 
-Bool CharacterBattleData::GetPrimaryWeaponRatings(const IndexedString& sHandedness,
+Bool CharacterBattleData::GetPrimaryWeaponRatings(const String& sHandedness,
     Float& fPrimaryBlunt,
     Float& fPrimaryPierce,
     Float& fPrimarySlash) const
@@ -310,7 +310,7 @@ Bool CharacterBattleData::GetPrimaryWeaponRatings(const IndexedString& sHandedne
     return false;
 }
 
-Bool CharacterBattleData::GetSecondaryWeaponRatings(const IndexedString& sHandedness,
+Bool CharacterBattleData::GetSecondaryWeaponRatings(const String& sHandedness,
     Float& fSecondaryBlunt,
     Float& fSecondaryPierce,
     Float& fSecondarySlash) const
@@ -334,7 +334,7 @@ Bool CharacterBattleData::GetSecondaryWeaponRatings(const IndexedString& sHanded
     return false;
 }
 
-Bool CharacterBattleData::GetPrimaryShieldRatings(const IndexedString& sHandedness,
+Bool CharacterBattleData::GetPrimaryShieldRatings(const String& sHandedness,
     Float& fPrimaryBlunt,
     Float& fPrimaryPierce,
     Float& fPrimarySlash) const
@@ -358,7 +358,7 @@ Bool CharacterBattleData::GetPrimaryShieldRatings(const IndexedString& sHandedne
     return false;
 }
 
-Bool CharacterBattleData::GetSecondaryShieldRatings(const IndexedString& sHandedness,
+Bool CharacterBattleData::GetSecondaryShieldRatings(const String& sHandedness,
     Float& fSecondaryBlunt,
     Float& fSecondaryPierce,
     Float& fSecondarySlash) const
@@ -385,8 +385,8 @@ Bool CharacterBattleData::GetSecondaryShieldRatings(const IndexedString& sHanded
 void CharacterBattleData::InitAllStatNames()
 {
     // Initialize stat type names
-    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, IndexedString);
-    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, IndexedStringArray);
+    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, String);
+    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, StringArray);
     INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Bool);
     INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Int);
     INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Float);
@@ -405,8 +405,8 @@ Bool CharacterBattleData::operator!=(const CharacterBattleData& other) const
 void to_json(Json& jsonData, const CharacterBattleData& obj)
 {
     // Stat values
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedString);
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, IndexedStringArray);
+    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, String);
+    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, StringArray);
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, Bool);
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, Int);
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, Float);
@@ -415,8 +415,8 @@ void to_json(Json& jsonData, const CharacterBattleData& obj)
 void from_json(const Json& jsonData, CharacterBattleData& obj)
 {
     // Stat values
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, IndexedString);
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, IndexedStringArray);
+    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, String);
+    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, StringArray);
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Bool);
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Int);
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Float);

@@ -22,9 +22,9 @@ public:
     virtual void Clear();
 
     // Skill tree type
-    static IndexedString GetTreeType()
+    static String GetTreeType()
     {
-        return IndexedString(SkillTreeType(SkillTreeType::Affinity)._to_string());
+        return String(SkillTreeType(SkillTreeType::Affinity)._to_string());
     }
 };
 

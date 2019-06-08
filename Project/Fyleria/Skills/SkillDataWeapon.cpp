@@ -26,13 +26,13 @@ void SkillDataWeapon::Clear()
     SkillData::Clear();
 
     // Weapon base type
-    SetWeaponBaseType(IndexedString("None"));
+    SetWeaponBaseType("");
 
     // Amount of action points available
     SetActionPoints(0);
 }
 
-CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray SkillDataWeapon::CreateWeaponActions(const String& sCharacterID, const String& sWeaponSet) const
 {
     // Skip base actions
     CharacterActionArray vNewActions;
@@ -55,8 +55,8 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& s
     // Get equipped item information
     TreeIndex primaryItemIndex;
     TreeIndex secondaryItemIndex;
-    IndexedStringArray vPrimaryActionTypes;
-    IndexedStringArray vSecondaryActionTypes;
+    StringArray vPrimaryActionTypes;
+    StringArray vSecondaryActionTypes;
     if(!partyMember.GetHandInfoByWeaponSet(sWeaponSet,
        primaryItemIndex,
        secondaryItemIndex,
@@ -67,10 +67,10 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& s
     }
 
     // Get intersecting requirements
-    IndexedStringArray vPrimaryAttackIntersections;
-    IndexedStringArray vPrimaryDefendIntersections;
-    IndexedStringArray vSecondaryAttackIntersections;
-    IndexedStringArray vSecondaryDefendIntersections;
+    StringArray vPrimaryAttackIntersections;
+    StringArray vPrimaryDefendIntersections;
+    StringArray vSecondaryAttackIntersections;
+    StringArray vSecondaryDefendIntersections;
     if(!GetIntersectingRequirementTypes(
         vPrimaryActionTypes,
         vSecondaryActionTypes,
@@ -83,11 +83,12 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& s
     }
 
     // Get item types
-    IndexedString sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
-    IndexedString sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
-    IndexedString sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
-    IndexedString sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
-    if(sPrimaryItemActionType.IsNone() && sSecondaryItemActionType.IsNone())
+    String sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
+    String sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
+    String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
+    String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
+    String sActionNoneType = (+CharacterActionType::None)._to_string();
+    if(sPrimaryItemActionType == sActionNoneType && sSecondaryItemActionType == sActionNoneType)
     {
         return vNewActions;
     }
@@ -95,24 +96,24 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& s
     // Create a list of action combinations
     struct ActionCombination
     {
-        IndexedStringArray vActionTypes;
-        IndexedString sHandType;
+        StringArray vActionTypes;
+        String sHandType;
     };
     STDVector<ActionCombination> vCombinations;
 
     // Get preliminary info for checking combinations
-    Bool bHavePrimaryAction = !sPrimaryItemActionType.IsNone();
-    Bool bHaveSecondaryAction = !sSecondaryItemActionType.IsNone();
+    Bool bHavePrimaryAction = sPrimaryItemActionType != sActionNoneType;
+    Bool bHaveSecondaryAction = sSecondaryItemActionType != sActionNoneType;
     Bool bOnlyAttackReqs = DoesHaveOnlyAttackRequirements();
 
     // Add attack combinations from primary hand
     if(bHavePrimaryAction && bOnlyAttackReqs)
     {
-        for(const IndexedString& sActionType : vPrimaryAttackIntersections)
+        for(const String& sActionType : vPrimaryAttackIntersections)
         {
             ActionCombination newCombination;
             newCombination.vActionTypes = {sPrimaryItemActionType, sActionType};
-            newCombination.sHandType = IndexedString("Primary");
+            newCombination.sHandType = String("Primary");
             vCombinations.push_back(newCombination);
         }
     }
@@ -120,11 +121,11 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& s
     // Add attack combinations from secondary hand
     if(bHaveSecondaryAction && bOnlyAttackReqs)
     {
-        for(const IndexedString& sActionType : vSecondaryAttackIntersections)
+        for(const String& sActionType : vSecondaryAttackIntersections)
         {
             ActionCombination newCombination;
             newCombination.vActionTypes = {sSecondaryItemActionType, sActionType};
-            newCombination.sHandType = IndexedString("Secondary");
+            newCombination.sHandType = String("Secondary");
             vCombinations.push_back(newCombination);
         }
     }
@@ -148,7 +149,7 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const IndexedString& s
 void to_json(Json& jsonData, const SkillDataWeapon& obj)
 {
     // Weapon base type
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponBaseType, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponBaseType, "");
 
     // Amount of action points available
     SET_JSON_DATA_IF_NOT_DEFAULT(ActionPoints, 0);
@@ -157,7 +158,7 @@ void to_json(Json& jsonData, const SkillDataWeapon& obj)
 void from_json(const Json& jsonData, SkillDataWeapon& obj)
 {
     // Weapon base type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(WeaponBaseType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(WeaponBaseType, String, "");
 
     // Amount of action points available
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionPoints, Int, 0);

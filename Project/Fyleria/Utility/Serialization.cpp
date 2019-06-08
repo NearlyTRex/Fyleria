@@ -12,10 +12,10 @@ namespace Gecko
 const FixedUnsigned8Array vBinaryMarkersCBR = {'C', 'B', 'R'};
 const FixedUnsigned8Array vBinaryMarkersMSG = {'M', 'S', 'G'};
 
-Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8Array& vBytes)
+Bool ReadBinaryFile(const String& sFilename, FixedUnsigned8Array& vBytes)
 {
     // Check file existence
-    if(!DoesPathExist(sFilename.Get()))
+    if(!DoesPathExist(sFilename))
     {
         return false;
     }
@@ -28,7 +28,7 @@ Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8Array& vBytes)
     }
 
     // Read binary data
-    SizeType szLength = GetFileSize(sFilename.Get());
+    SizeType szLength = GetFileSize(sFilename);
     for(SizeType index = 0; index < szLength; index++)
     {
         Byte byte;
@@ -41,10 +41,10 @@ Bool ReadBinaryFile(const IndexedString& sFilename, FixedUnsigned8Array& vBytes)
     return true;
 }
 
-Bool WriteBinaryFile(const IndexedString& sFilename, const FixedUnsigned8Array& vBytes)
+Bool WriteBinaryFile(const String& sFilename, const FixedUnsigned8Array& vBytes)
 {
     // Open binary file
-    OutputFile ofile(sFilename.Get().c_str(), STDIOSFlagOutputOperations | STDIOSFlagBinaryMode | STDIOSFlagTruncate);
+    OutputFile ofile(sFilename.c_str(), STDIOSFlagOutputOperations | STDIOSFlagBinaryMode | STDIOSFlagTruncate);
     if(!ofile.is_open() && ofile.good())
     {
         return false;
@@ -117,7 +117,7 @@ Bool RemoveMsgPackHeader(FixedUnsigned8Array& vBytes)
     return true;
 }
 
-Bool ReadSerializedFile(const IndexedString& sFilename, const IndexedString& sType, Json& jsonData)
+Bool ReadSerializedFile(const String& sFilename, const String& sType, Json& jsonData)
 {
     const FileType eFileType = StringToFileType(sType);
     switch (eFileType)
@@ -137,7 +137,7 @@ Bool ReadSerializedFile(const IndexedString& sFilename, const IndexedString& sTy
     return false;
 }
 
-Bool ReadJsonFile(const IndexedString& sFilename, Json& jsonData)
+Bool ReadJsonFile(const String& sFilename, Json& jsonData)
 {
     InputFile ifile(sFilename.c_str());
     if(!ifile.is_open())
@@ -150,7 +150,7 @@ Bool ReadJsonFile(const IndexedString& sFilename, Json& jsonData)
     return true;
 }
 
-Bool ReadJsonFile(const IndexedString& sFilename, String& jsonString)
+Bool ReadJsonFile(const String& sFilename, String& jsonString)
 {
     Json jsonData;
     if(!ReadJsonFile(sFilename, jsonData))
@@ -161,7 +161,7 @@ Bool ReadJsonFile(const IndexedString& sFilename, String& jsonString)
     return true;
 }
 
-Bool ReadCBORFile(const IndexedString& sFilename, Json& jsonData)
+Bool ReadCBORFile(const String& sFilename, Json& jsonData)
 {
     FixedUnsigned8Array vBytes;
     if(!ReadBinaryFile(sFilename, vBytes))
@@ -183,7 +183,7 @@ Bool ReadCBORFile(const IndexedString& sFilename, Json& jsonData)
     return true;
 }
 
-Bool ReadMsgPackFile(const IndexedString& sFilename, Json& jsonData)
+Bool ReadMsgPackFile(const String& sFilename, Json& jsonData)
 {
     FixedUnsigned8Array vBytes;
     if(!ReadBinaryFile(sFilename, vBytes))
@@ -205,7 +205,7 @@ Bool ReadMsgPackFile(const IndexedString& sFilename, Json& jsonData)
     return true;
 }
 
-Bool WriteSerializedFile(const IndexedString& sFilename, const IndexedString& sType, const Json& jsonData)
+Bool WriteSerializedFile(const String& sFilename, const String& sType, const Json& jsonData)
 {
     const FileType eFileType = StringToFileType(sType);
     switch (eFileType)
@@ -225,7 +225,7 @@ Bool WriteSerializedFile(const IndexedString& sFilename, const IndexedString& sT
     return false;
 }
 
-Bool WriteJsonFile(const IndexedString& sFilename, const Json& jsonData)
+Bool WriteJsonFile(const String& sFilename, const Json& jsonData)
 {
     OutputFile ofile(sFilename.c_str());
     if(!ofile.is_open())
@@ -239,12 +239,12 @@ Bool WriteJsonFile(const IndexedString& sFilename, const Json& jsonData)
     return true;
 }
 
-Bool WriteJsonFile(const IndexedString& sFilename, const String& jsonString)
+Bool WriteJsonFile(const String& sFilename, const String& jsonString)
 {
     return WriteJsonFile(sFilename, JsonParse(jsonString));
 }
 
-Bool WriteCBORFile(const IndexedString& sFilename, const Json& jsonData)
+Bool WriteCBORFile(const String& sFilename, const Json& jsonData)
 {
     FixedUnsigned8Array vFileBytes = vBinaryMarkersCBR;
     FixedUnsigned8Array vJsonBytes = JsonToCBOR(jsonData);
@@ -252,7 +252,7 @@ Bool WriteCBORFile(const IndexedString& sFilename, const Json& jsonData)
     return WriteBinaryFile(sFilename, vFileBytes);
 }
 
-Bool WriteMsgPackFile(const IndexedString& sFilename, const Json& jsonData)
+Bool WriteMsgPackFile(const String& sFilename, const Json& jsonData)
 {
     FixedUnsigned8Array vFileBytes = vBinaryMarkersMSG;
     FixedUnsigned8Array vJsonBytes = JsonToMsgPack(jsonData);

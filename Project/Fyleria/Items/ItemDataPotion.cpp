@@ -26,7 +26,7 @@ void ItemDataPotion::Clear()
     SetStatChanges({});
 }
 
-CharacterActionArray ItemDataPotion::CreatePotionActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray ItemDataPotion::CreatePotionActions(const String& sCharacterID, const String& sWeaponSet) const
 {
     CharacterActionArray vNewActions;
     return vNewActions;

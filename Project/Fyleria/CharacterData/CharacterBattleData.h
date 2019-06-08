@@ -22,44 +22,44 @@ public:
     void Clear();
 
     // Apply status
-    void ApplyNewStatus(const IndexedString& sCharacterID, const IndexedString& sProgressSegment);
+    void ApplyNewStatus(const String& sCharacterID, const String& sProgressSegment);
 
     // Apply damage
     void ApplyGivenDamage(Int iDamage);
     void ApplyTakenDamage(Int iDamage);
 
     // Advance round
-    void AdvanceRound(const IndexedString& sCharacterID, const IndexedString& sProgressSegment);
+    void AdvanceRound(const String& sCharacterID, const String& sProgressSegment);
 
     // Finish battle
-    void FinishBattle(const IndexedString& sCharacterID, const IndexedString& sProgressSegment);
+    void FinishBattle(const String& sCharacterID, const String& sProgressSegment);
 
     // Can regenerate from stat
-    Bool CanRegenerateFromStat(const IndexedString& sRegenStat) const;
+    Bool CanRegenerateFromStat(const String& sRegenStat) const;
 
     // Update equipment ratings
-    void UpdateEquipmentRatings(const IndexedString& sCharacterID, const IndexedString& sProgressSegment);
+    void UpdateEquipmentRatings(const String& sCharacterID, const String& sProgressSegment);
 
     // Resolve target placeholders
-    IndexedStringArray ResolveTargetPlaceholder(const IndexedString& sSelfTargetType,
-        const IndexedString& sPlaceholderTargetType) const;
+    StringArray ResolveTargetPlaceholder(const String& sSelfTargetType,
+        const String& sPlaceholderTargetType) const;
 
     // Weapon ratings based on handedness
-    Bool GetPrimaryWeaponRatings(const IndexedString& sHandedness,
+    Bool GetPrimaryWeaponRatings(const String& sHandedness,
         Float& fPrimaryBlunt,
         Float& fPrimaryPierce,
         Float& fPrimarySlash) const;
-    Bool GetSecondaryWeaponRatings(const IndexedString& sHandedness,
+    Bool GetSecondaryWeaponRatings(const String& sHandedness,
         Float& fSecondaryBlunt,
         Float& fSecondaryPierce,
         Float& fSecondarySlash) const;
 
     // Shield ratings based on handedness
-    Bool GetPrimaryShieldRatings(const IndexedString& sHandedness,
+    Bool GetPrimaryShieldRatings(const String& sHandedness,
         Float& fPrimaryBlunt,
         Float& fPrimaryPierce,
         Float& fPrimarySlash) const;
-    Bool GetSecondaryShieldRatings(const IndexedString& sHandedness,
+    Bool GetSecondaryShieldRatings(const String& sHandedness,
         Float& fSecondaryBlunt,
         Float& fSecondaryPierce,
         Float& fSecondarySlash) const;
@@ -67,19 +67,19 @@ public:
     // Stat names
     static void InitAllStatNames();
 
-    // IndexedString stats
-    MAKE_STAT_TYPE_ACCESSORS(ActionSourceThisAction, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(MostRecentActionSource, IndexedString);
-    MAKE_STAT_TYPE_ACCESSORS(CurrentWeaponSet, IndexedString);
+    // String stats
+    MAKE_STAT_TYPE_ACCESSORS(ActionSourceThisAction, String);
+    MAKE_STAT_TYPE_ACCESSORS(MostRecentActionSource, String);
+    MAKE_STAT_TYPE_ACCESSORS(CurrentWeaponSet, String);
 
-    // IndexedStringArray stats
-    MAKE_STAT_TYPE_ACCESSORS(PreviousActionTypes, IndexedStringArray);
-    MAKE_STAT_TYPE_ACCESSORS(ActionTargetsThisAction, IndexedStringArray);
-    MAKE_STAT_TYPE_ACCESSORS(ActionTargetsThisRound, IndexedStringArray);
-    MAKE_STAT_TYPE_ACCESSORS(ActionTargetsLastRound, IndexedStringArray);
-    MAKE_STAT_TYPE_ACCESSORS(ActionSourcesThisRound, IndexedStringArray);
-    MAKE_STAT_TYPE_ACCESSORS(ActionSourcesLastRound, IndexedStringArray);
-    MAKE_STAT_TYPE_ACCESSORS(MostRecentActionTargets, IndexedStringArray);
+    // StringArray stats
+    MAKE_STAT_TYPE_ACCESSORS(PreviousActionTypes, StringArray);
+    MAKE_STAT_TYPE_ACCESSORS(ActionTargetsThisAction, StringArray);
+    MAKE_STAT_TYPE_ACCESSORS(ActionTargetsThisRound, StringArray);
+    MAKE_STAT_TYPE_ACCESSORS(ActionTargetsLastRound, StringArray);
+    MAKE_STAT_TYPE_ACCESSORS(ActionSourcesThisRound, StringArray);
+    MAKE_STAT_TYPE_ACCESSORS(ActionSourcesLastRound, StringArray);
+    MAKE_STAT_TYPE_ACCESSORS(MostRecentActionTargets, StringArray);
 
     // Bool stats
     MAKE_STAT_TYPE_ACCESSORS(TargetsMustBeIdentical, Bool);

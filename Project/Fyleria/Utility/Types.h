@@ -110,6 +110,8 @@ typedef STDVector<InputFile> InputFileArray;
 typedef STDVector<OutputFile> OutputFileArray;
 typedef STDUnorderedMap<String, String> StringMap;
 typedef STDUnorderedMap<WString, WString> WStringMap;
+typedef STDUnorderedSet<String> StringSet;
+typedef STDUnorderedSet<WString> WStringSet;
 typedef BoostFunction<Byte()> ByteGetFunction;
 typedef BoostFunction<void(Byte)> ByteSetFunction;
 typedef BoostFunction<Short()> ShortGetFunction;

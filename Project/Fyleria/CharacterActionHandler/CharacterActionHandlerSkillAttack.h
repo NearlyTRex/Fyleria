@@ -23,7 +23,7 @@ public:
     CharacterActionResult GetSkillAttackResult(
         const CharacterAction& action,
         const CharacterActionEntry& entry,
-        const IndexedString& sDestCharID) const;
+        const String& sDestCharID) const;
 
     // Stages for running the action
     virtual Bool Setup(CharacterAction& action);

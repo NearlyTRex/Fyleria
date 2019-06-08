@@ -64,23 +64,23 @@ public:
     MAKE_MODULE_RESULT_VARIANT(GetAllSaves);
 
     // Collect data and create a save
-    void CollectSaveData(UByte uSlot, const IndexedString& sPartyID);
-    void CollectSaveData(UByte uSlot, const IndexedStringArray& vPartyIDs, const String& sDescription, ULong uPlayTime);
+    void CollectSaveData(UByte uSlot, const String& sPartyID);
+    void CollectSaveData(UByte uSlot, const StringArray& vPartyIDs, const String& sDescription, ULong uPlayTime);
 
     // Disperse save data
     void DisperseSaveData(UByte uSlot);
 
     // Save to file
-    void SaveToFile(UByte uSlot, const IndexedString& sFile, const IndexedString& sType);
+    void SaveToFile(UByte uSlot, const String& sFile, const String& sType);
 
     // Load to file
-    void LoadFromFile(UByte uSlot, const IndexedString& sFile, const IndexedString& sType);
+    void LoadFromFile(UByte uSlot, const String& sFile, const String& sType);
 
     // Save all to the given directory
-    void SaveAllToDirectory(const IndexedString& sDirectory, const IndexedString& sBase, const IndexedString& sExt, const IndexedString& sType);
+    void SaveAllToDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType);
 
     // Load all from the given directory
-    void LoadAllFromDirectory(const IndexedString& sDirectory, const IndexedString& sBase, const IndexedString& sExt, const IndexedString& sType);
+    void LoadAllFromDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType);
 
     // Initialize all save slots
     void InitializeAllSaveSlots();

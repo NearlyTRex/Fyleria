@@ -2,7 +2,6 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Module/ModuleResultManager.h"
-#include "Utility/IndexedString.h"
 
 namespace Gecko
 {

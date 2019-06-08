@@ -5,7 +5,6 @@
 #define _GECKO_ITEMDATA_H_
 
 #include "Stats/StatChange.h"
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"
@@ -28,28 +27,28 @@ public:
     Bool IsActionable() const;
 
     // Does meet action requirements
-    Bool DoesMeetActionRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    Bool DoesMeetActionRequirements(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Create base character action
-    CharacterActionArray CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateBaseActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Run types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, StringArray);
 
     // Data class
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DataClass, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DataClass, String);
 
     // Item name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemName, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemName, String);
 
     // Item description
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemDescription, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemDescription, String);
 
     // Item type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemType, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemType, String);
 
     // Action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionTypes, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionTypes, StringArray);
 
     // Item index
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);

@@ -32,8 +32,8 @@ public:
     void AdvanceRound();
 
     // Determine if battle is over
-    Bool IsBattleOver(const IndexedString& sPartyID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsBattleOver, const IndexedString&, sPartyID);
+    Bool IsBattleOver(const String& sPartyID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsBattleOver, const String&, sPartyID);
 
     // Determine if battle is won
     Bool IsBattleWon() const;
@@ -88,8 +88,8 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ActionCount, Int);
 
     // Party IDs
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EnemyPartyID, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllyPartyID, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EnemyPartyID, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllyPartyID, String);
 
     // Action handlers
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillAttackHandler, CharacterActionHandlerSkillAttack);

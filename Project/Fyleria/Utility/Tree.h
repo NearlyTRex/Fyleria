@@ -4,7 +4,6 @@
 #ifndef _GECKO_UTILITY_TREE_H_
 #define _GECKO_UTILITY_TREE_H_
 
-#include "Utility/IndexedString.h"
 #include "Utility/Assert.h"
 #include "Utility/Logging.h"
 #include "Utility/Singleton.h"
@@ -26,7 +25,7 @@ public:
     }
 
     // Get tree type
-    static IndexedString GetTreeType()
+    static String GetTreeType()
     {
         return T::GetTreeType();
     }
@@ -38,7 +37,7 @@ public:
     }
 
     // Add branch
-    void AddBranch(const IndexedString& sBranchName, const IndexedString& sBranchFile)
+    void AddBranch(const String& sBranchName, const String& sBranchFile)
     {
         // Log loading of JSON data
         LOG_FORMAT_STATEMENT("Loading JSON file '%s' into branch %s\n", sBranchFile.c_str(), sBranchName.c_str());
@@ -60,12 +59,12 @@ public:
         // Add branches
         for(auto it = jsonData.begin(); it != jsonData.end(); it++)
         {
-            AddLeaf(sBranchName, IndexedString(it.key()), T(it.value()));
+            AddLeaf(sBranchName, String(it.key()), T(it.value()));
         }
     }
 
     // Add leaf
-    void AddLeaf(const IndexedString& sBranchName, const IndexedString& sLeafName, const T& data)
+    void AddLeaf(const String& sBranchName, const String& sLeafName, const T& data)
     {
         if(!sBranchName.empty() && !sLeafName.empty())
         {
@@ -74,16 +73,16 @@ public:
     }
 
     // Get leaf
-    T& GetLeaf(const IndexedString& sBranchName, const IndexedString& sLeafName)
+    T& GetLeaf(const String& sBranchName, const String& sLeafName)
     {
         ASSERT_ERROR(HasLeaf(sBranchName, sLeafName), "Specified leaf '%s' on branch '%s' was not found", sLeafName.c_str(), sBranchName.c_str());
         return m_tBranches[sBranchName][sLeafName];
     }
 
     // Get leaf
-    T& GetLeaf(const IndexedString& sLeafName)
+    T& GetLeaf(const String& sLeafName)
     {
-        IndexedString sBranchName = GetBranchFromLeaf(sLeafName);
+        String sBranchName = GetBranchFromLeaf(sLeafName);
         ASSERT_ERROR(!sBranchName.empty(), "Specified leaf '%s' was not found on any branches", sLeafName.c_str());
         return GetLeaf(sBranchName, sLeafName);
     }
@@ -95,13 +94,13 @@ public:
     }
 
     // Get numbered leaf
-    T& GetNumberedLeaf(const IndexedString& sBranchName, const IndexedString& sLeafBase, Int iLeafNumber)
+    T& GetNumberedLeaf(const String& sBranchName, const String& sLeafBase, Int iLeafNumber)
     {
         return GetLeaf(sBranchName, GetLeafNameFromNumber(sLeafBase, iLeafNumber));
     }
 
     // Get all leaves
-    TreeIndexArray GetAllLeaves(const IndexedString& sBranchName)
+    TreeIndexArray GetAllLeaves(const String& sBranchName)
     {
         // Check branch
         TreeIndexArray vLeaves;
@@ -128,7 +127,7 @@ public:
     }
 
     // Get all unique leaves under the given number
-    TreeIndexArray GetLeavesUnderNumber(const IndexedString& sBranchName, const IndexedString& sLeafBase, Int iLeafNumber, Bool bUniqueOnly)
+    TreeIndexArray GetLeavesUnderNumber(const String& sBranchName, const String& sLeafBase, Int iLeafNumber, Bool bUniqueOnly)
     {
         // Check branch
         TreeIndexArray vLeaves;
@@ -154,7 +153,7 @@ public:
                 T& leaf = GetNumberedLeaf(sBranchName, sLeafBase, i);
 
                 // Skip if we already have a matching class
-                String sClass = leaf.GetSkillType().Get() + String("_") + leaf.GetDataClass().Get();
+                String sClass = leaf.GetSkillType() + String("_") + leaf.GetDataClass();
                 auto iClassSearch = STDFindData(vCheckedClasses.begin(), vCheckedClasses.end(), sClass);
                 if(iClassSearch != vCheckedClasses.end())
                 {
@@ -172,26 +171,26 @@ public:
     }
 
     // Check if a branch exists
-    Bool HasBranch(const IndexedString& sBranchName)
+    Bool HasBranch(const String& sBranchName)
     {
         return (m_tBranches.find(sBranchName) != m_tBranches.end());
     }
 
     // Check if a leaf exists
-    Bool HasLeaf(const IndexedString& sBranchName, const IndexedString& sLeafName)
+    Bool HasLeaf(const String& sBranchName, const String& sLeafName)
     {
         return (m_tBranches.find(sBranchName) != m_tBranches.end() &&
                 m_tBranches[sBranchName].find(sLeafName) != m_tBranches[sBranchName].end());
     }
 
     // Check if a numbered leaf exists
-    Bool HasLeaf(const IndexedString& sBranchName, const IndexedString& sLeafBase, Int iLeafNumber)
+    Bool HasLeaf(const String& sBranchName, const String& sLeafBase, Int iLeafNumber)
     {
         return HasLeaf(sBranchName, GetLeafNameFromNumber(sLeafBase, iLeafNumber));
     }
 
     // Check if a leaf exists
-    Bool HasLeaf(const IndexedString& sLeafName)
+    Bool HasLeaf(const String& sLeafName)
     {
         return HasLeaf(GetBranchFromLeaf(sLeafName), sLeafName);
     }
@@ -203,9 +202,9 @@ public:
     }
 
     // Get branch name from leaf name
-    IndexedString GetBranchFromLeaf(const IndexedString& sLeafName)
+    String GetBranchFromLeaf(const String& sLeafName)
     {
-        IndexedString sBranchName("");
+        String sBranchName("");
         for(auto it = m_tBranches.begin(); it != m_tBranches.end(); ++it)
         {
             if(HasLeaf(it->first, sLeafName))
@@ -218,9 +217,9 @@ public:
     }
 
     // Get leaf name from base and number
-    IndexedString GetLeafNameFromNumber(const IndexedString& sLeafBase, Int iLeafNumber)
+    String GetLeafNameFromNumber(const String& sLeafBase, Int iLeafNumber)
     {
-        return sLeafBase + IndexedString(STDToString(iLeafNumber));
+        return sLeafBase + String(STDToString(iLeafNumber));
     }
 
 private:
@@ -230,11 +229,11 @@ private:
     Tree& operator=(Tree const&) = delete;
 
     // Leaves
-    typedef STDUnorderedMap<IndexedString, T, IndexedStringHasher> LeafType;
-    typedef STDUnorderedMap<IndexedString, LeafType, IndexedStringHasher> BranchType;
+    typedef STDUnorderedMap<String, T> LeafType;
+    typedef STDUnorderedMap<String, LeafType> BranchType;
     typedef typename LeafType::iterator LeafTypeIterator;
     typedef typename LeafType::const_iterator LeafTypeConstIterator;
-    typedef STDPair<IndexedString, T> BranchNodeType;
+    typedef STDPair<String, T> BranchNodeType;
     BranchType m_tBranches;
 };
 

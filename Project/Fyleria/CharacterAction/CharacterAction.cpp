@@ -24,9 +24,9 @@ CharacterAction::CharacterAction(const String& jsonString)
 {
 }
 
-IndexedStringArray CharacterAction::GetAllCharacterIDs() const
+StringArray CharacterAction::GetAllCharacterIDs() const
 {
-    IndexedStringArray vAllCharacterIDs;
+    StringArray vAllCharacterIDs;
     if(!GetSourceCharacterID().empty())
     {
         vAllCharacterIDs.push_back(GetSourceCharacterID());
@@ -41,9 +41,9 @@ IndexedStringArray CharacterAction::GetAllCharacterIDs() const
     return vAllCharacterIDs;
 }
 
-IndexedStringArray CharacterAction::GetAllActionTypes() const
+StringArray CharacterAction::GetAllActionTypes() const
 {
-    IndexedStringArray vAllActionTypes;
+    StringArray vAllActionTypes;
     for(const CharacterActionEntry& entry : GetActionEntries())
     {
         vAllActionTypes.insert(vAllActionTypes.end(), entry.GetActionTypes().begin(), entry.GetActionTypes().end());
@@ -51,9 +51,9 @@ IndexedStringArray CharacterAction::GetAllActionTypes() const
     return vAllActionTypes;
 }
 
-IndexedStringArray CharacterAction::GetAllDestinationTargetTypes() const
+StringArray CharacterAction::GetAllDestinationTargetTypes() const
 {
-    IndexedStringArray vAllDestinationTargetTypes;
+    StringArray vAllDestinationTargetTypes;
     for(const CharacterActionEntry& entry : GetActionEntries())
     {
         vAllDestinationTargetTypes.push_back(entry.GetDestinationTargetType());
@@ -63,12 +63,12 @@ IndexedStringArray CharacterAction::GetAllDestinationTargetTypes() const
 
 Bool CharacterAction::AreAllCharacterIDsValid() const
 {
-    IndexedStringArray vAllCharacterIDs = GetAllCharacterIDs();
+    StringArray vAllCharacterIDs = GetAllCharacterIDs();
     if(vAllCharacterIDs.empty())
     {
         return false;
     }
-    for(const IndexedString& sCharacterID : vAllCharacterIDs)
+    for(const String& sCharacterID : vAllCharacterIDs)
     {
         if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
         {
@@ -84,9 +84,9 @@ Bool CharacterAction::PrepareCharacterIDs()
     if(GetSourceCharacterID().empty())
     {
         // Get source character info
-        IndexedStringArray vSourceCharIDs;
-        IndexedString sSourceTargetType = GetSourceTargetType();
-        IndexedString sSourcePartyType = ConvertCharacterTargetTypeToCharacterPartyType(sSourceTargetType);
+        StringArray vSourceCharIDs;
+        String sSourceTargetType = GetSourceTargetType();
+        String sSourcePartyType = ConvertCharacterTargetTypeToCharacterPartyType(sSourceTargetType);
         CharacterPartyManager::GetInstance()->GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
         if(vSourceCharIDs.empty())
         {
@@ -101,9 +101,9 @@ Bool CharacterAction::PrepareCharacterIDs()
     for(CharacterActionEntry& entry : GetActionEntries())
     {
         // Get destination character info
-        IndexedStringArray vDestCharIDs;
-        IndexedString sDestTargetType = entry.GetDestinationTargetType();
-        IndexedString sDestPartyType = ConvertCharacterTargetTypeToCharacterPartyType(sDestTargetType);
+        StringArray vDestCharIDs;
+        String sDestTargetType = entry.GetDestinationTargetType();
+        String sDestPartyType = ConvertCharacterTargetTypeToCharacterPartyType(sDestTargetType);
         CharacterPartyManager::GetInstance()->GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
         if(vDestCharIDs.empty())
         {
@@ -119,7 +119,7 @@ Bool CharacterAction::PrepareCharacterIDs()
 void to_json(Json& jsonData, const CharacterAction& obj)
 {
     // Run type
-    SET_JSON_DATA_IF_NOT_DEFAULT(RunType, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(RunType, "");
 
     // Order
     SET_JSON_DATA_IF_NOT_DEFAULT(Order, 0);
@@ -131,7 +131,7 @@ void to_json(Json& jsonData, const CharacterAction& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(CostEP, 0);
 
     // Applicable weapon set
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponSet, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponSet, "");
 
     // Action entries
     SET_JSON_DATA_IF_NOT_EMPTY(ActionEntries);
@@ -147,16 +147,16 @@ void to_json(Json& jsonData, const CharacterAction& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(ItemAmount, 0);
 
     // Targets
-    SET_JSON_DATA_IF_NOT_DEFAULT(SourceTargetType, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(SourceTargetType, "");
 
     // Characters
-    SET_JSON_DATA_IF_NOT_DEFAULT(SourceCharacterID, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(SourceCharacterID, "");
 }
 
 void from_json(const Json& jsonData, CharacterAction& obj)
 {
     // Run type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunType, String, "");
 
     // Order
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Order, Int, 0);
@@ -168,13 +168,13 @@ void from_json(const Json& jsonData, CharacterAction& obj)
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CostEP, Int, 0);
 
     // Applicable weapon set
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(WeaponSet, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(WeaponSet, String, "");
 
     // Action entries
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionEntries, CharacterActionEntryArray, CharacterActionEntryArray());
 
     // Previous action types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PreviousActionTypes, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PreviousActionTypes, StringArray, StringArray());
 
     // Skill
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex());
@@ -184,10 +184,10 @@ void from_json(const Json& jsonData, CharacterAction& obj)
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemAmount, Int, 0);
 
     // Targets
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceTargetType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceTargetType, String, "");
 
     // Characters
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceCharacterID, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceCharacterID, String, "");
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterAction, CharacterAction);

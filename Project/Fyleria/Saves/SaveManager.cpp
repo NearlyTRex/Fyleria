@@ -111,13 +111,13 @@ SaveArray SaveManager::GetAllSaves() const
     return vSaves;
 }
 
-void SaveManager::CollectSaveData(UByte uSlot, const IndexedString& sPartyID)
+void SaveManager::CollectSaveData(UByte uSlot, const String& sPartyID)
 {
     const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
     CollectSaveData(uSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
 }
 
-void SaveManager::CollectSaveData(UByte uSlot, const IndexedStringArray& vPartyIDs, const String& sDescription, ULong uPlayTime)
+void SaveManager::CollectSaveData(UByte uSlot, const StringArray& vPartyIDs, const String& sDescription, ULong uPlayTime)
 {
     // Get parties and attached characters
     CharacterPartyArray vParties;
@@ -166,7 +166,7 @@ void SaveManager::DisperseSaveData(UByte uSlot)
     }
 }
 
-void SaveManager::SaveToFile(UByte uSlot, const IndexedString& sFile, const IndexedString& sType)
+void SaveManager::SaveToFile(UByte uSlot, const String& sFile, const String& sType)
 {
     // Save to file based on the file type
     Bool bSuccess = false;
@@ -190,7 +190,7 @@ void SaveManager::SaveToFile(UByte uSlot, const IndexedString& sFile, const Inde
     }
 }
 
-void SaveManager::LoadFromFile(UByte uSlot, const IndexedString& sFile, const IndexedString& sType)
+void SaveManager::LoadFromFile(UByte uSlot, const String& sFile, const String& sType)
 {
     // Load from file based on the file type
     Bool bSuccess = false;
@@ -214,10 +214,10 @@ void SaveManager::LoadFromFile(UByte uSlot, const IndexedString& sFile, const In
     }
 }
 
-void SaveManager::SaveAllToDirectory(const IndexedString& sDirectory, const IndexedString& sBase, const IndexedString& sExt, const IndexedString& sType)
+void SaveManager::SaveAllToDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType)
 {
     // Create directory if it does not yet exist
-    String sSavePath = GetAbsolutePath(sDirectory.Get());
+    String sSavePath = GetAbsolutePath(sDirectory);
     if(!DoesPathExist(sSavePath))
     {
         CreateDirectory(sSavePath);
@@ -226,33 +226,33 @@ void SaveManager::SaveAllToDirectory(const IndexedString& sDirectory, const Inde
     // Save each slot into a save file
     for(auto& sSlotName : GetSaveSlotTypeNames())
     {
-        if(sSlotName == "None")
+        if(sSlotName == (+SaveSlotType::None)._to_string())
         {
             continue;
         }
         SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
-        String sPath = JoinPaths(sDirectory.Get(), sBase.Get() + sSlotName + String(".") + sExt.Get());
-        SaveToFile(eSlotType._to_integral(), IndexedString(sPath), sType);
+        String sPath = JoinPaths(sDirectory, sBase + sSlotName + String(".") + sExt);
+        SaveToFile(eSlotType._to_integral(), String(sPath), sType);
     }
 }
 
-void SaveManager::LoadAllFromDirectory(const IndexedString& sDirectory, const IndexedString& sBase, const IndexedString& sExt, const IndexedString& sType)
+void SaveManager::LoadAllFromDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType)
 {
     // Get save path
-    String sSavePath = GetCanonicalPath(sDirectory.Get());
+    String sSavePath = GetCanonicalPath(sDirectory);
 
     // Load each slot from a save file
     for(auto& sSlotName : GetSaveSlotTypeNames())
     {
-        if(sSlotName == "None")
+        if(sSlotName == (+SaveSlotType::None)._to_string())
         {
             continue;
         }
         SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
-        String sPath = JoinPaths(sSavePath, sBase.Get() + sSlotName + String(".") + sExt.Get());
+        String sPath = JoinPaths(sSavePath, sBase + sSlotName + String(".") + sExt);
         if(DoesPathExist(sPath))
         {
-            LoadFromFile(eSlotType._to_integral(), IndexedString(sPath), sType);
+            LoadFromFile(eSlotType._to_integral(), String(sPath), sType);
         }
     }
 }
@@ -265,7 +265,7 @@ void SaveManager::InitializeAllSaveSlots()
     // Create a save for all slots
     for(auto& sSlotName : GetSaveSlotTypeNames())
     {
-        if(sSlotName == "None")
+        if(sSlotName == (+SaveSlotType::None)._to_string())
         {
             continue;
         }
@@ -279,7 +279,7 @@ void SaveManager::InitializeEmptySaveSlots()
     // Create a save for empty slots
     for(auto& sSlotName : GetSaveSlotTypeNames())
     {
-        if(sSlotName == "None")
+        if(sSlotName == (+SaveSlotType::None)._to_string())
         {
             continue;
         }

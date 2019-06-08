@@ -22,7 +22,7 @@ public:
     void Clear();
 
     // Update available actions
-    void UpdateAvailableActions(const IndexedString& sCharacterID);
+    void UpdateAvailableActions(const String& sCharacterID);
 
     // List of character actions
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(AvailableActions, CharacterActionArray);

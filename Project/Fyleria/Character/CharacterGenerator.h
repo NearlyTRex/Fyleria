@@ -7,7 +7,6 @@
 #include "CharacterData/CharacterBasicData.h"
 #include "CharacterData/CharacterProgressData.h"
 #include "CharacterData/CharacterBattleData.h"
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Json.h"
 #include "Utility/Serializable.h"
@@ -24,18 +23,18 @@ public:
     CharacterGenerator(const Json& jsonData);
 
     // Generate character data
-    CharacterBasicData GenerateBasicData(const IndexedString& sCharacterID) const;
+    CharacterBasicData GenerateBasicData(const String& sCharacterID) const;
     CharacterProgressData GenerateProgressData() const;
-    IndexedString GenerateFirstName() const;
-    IndexedString GenerateLastName() const;
+    String GenerateFirstName() const;
+    String GenerateLastName() const;
     Int GenerateAge() const;
-    IndexedString GenerateGender() const;
-    IndexedString GenerateHair() const;
-    IndexedString GenerateEyes() const;
-    IndexedString GenerateHandedness() const;
-    IndexedString GenerateBaseRace() const;
-    IndexedString GenerateTransformedRace() const;
-    IndexedString GeneratePowerSet() const;
+    String GenerateGender() const;
+    String GenerateHair() const;
+    String GenerateEyes() const;
+    String GenerateHandedness() const;
+    String GenerateBaseRace() const;
+    String GenerateTransformedRace() const;
+    String GeneratePowerSet() const;
 
     // Randomization
     void RandomizeBasics();

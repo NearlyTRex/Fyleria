@@ -23,9 +23,9 @@ public:
     virtual void Clear();
 
     // Skill tree type
-    static IndexedString GetTreeType()
+    static String GetTreeType()
     {
-        return IndexedString(SkillTreeType(SkillTreeType::Crafting)._to_string());
+        return String(SkillTreeType(SkillTreeType::Crafting)._to_string());
     }
 
     // Recipes

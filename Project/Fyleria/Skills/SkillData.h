@@ -6,7 +6,6 @@
 
 #include "CharacterAction/CharacterAction.h"
 #include "Stats/StatChange.h"
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"
@@ -39,36 +38,36 @@ public:
 
     // Get intersecting attack requirements
     Bool GetIntersectingRequirementTypes(
-        const IndexedStringArray& vPrimaryActionTypes,
-        const IndexedStringArray& vSecondaryActionTypes,
-        IndexedStringArray& vPrimaryAttackIntersections,
-        IndexedStringArray& vPrimaryDefendIntersections,
-        IndexedStringArray& vSecondaryAttackIntersections,
-        IndexedStringArray& vSecondaryDefendIntersections) const;
+        const StringArray& vPrimaryActionTypes,
+        const StringArray& vSecondaryActionTypes,
+        StringArray& vPrimaryAttackIntersections,
+        StringArray& vPrimaryDefendIntersections,
+        StringArray& vSecondaryAttackIntersections,
+        StringArray& vSecondaryDefendIntersections) const;
 
     // Does meet action requirements
-    Bool DoesMeetActionRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    Bool DoesMeetActionRequirements(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Create base character action
-    CharacterActionArray CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateBaseActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Run types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, StringArray);
 
     // Data class
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DataClass, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DataClass, String);
 
     // Skill rank
     MAKE_RAW_BASIC_TYPE_ACCESSORS(SkillRank, UByte);
 
     // Skill name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillName, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillName, String);
 
     // Skill description
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillDescription, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillDescription, String);
 
     // Skill type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillType, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillType, String);
 
     // Skill costs
     MAKE_RAW_BASIC_TYPE_ACCESSORS(SkillCostAP, UByte);

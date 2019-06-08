@@ -31,7 +31,7 @@ void ItemDataWeapon::Clear()
     SetStatChanges({});
 }
 
-CharacterActionArray ItemDataWeapon::CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray ItemDataWeapon::CreateWeaponActions(const String& sCharacterID, const String& sWeaponSet) const
 {
     CharacterActionArray vNewActions;
     return vNewActions;

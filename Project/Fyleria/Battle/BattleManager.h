@@ -15,25 +15,25 @@ class BattleManager : public Singleton<BattleManager>
 public:
 
     // Types
-    typedef STDUnorderedMap<IndexedString, Battle, IndexedStringHasher> BattleMappingType;
+    typedef STDUnorderedMap<String, Battle> BattleMappingType;
 
     // Constructors
     BattleManager();
 
     // Create a battle
-    void CreateBattle(const IndexedString& sBattleName);
+    void CreateBattle(const String& sBattleName);
 
     // Unload battle
-    void UnloadBattle(const IndexedString& sBattleName);
+    void UnloadBattle(const String& sBattleName);
 
     // Determine if battle exists
-    Bool DoesBattleExist(const IndexedString& sBattleName) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesBattleExist, const IndexedString&, sBattleName);
+    Bool DoesBattleExist(const String& sBattleName) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesBattleExist, const String&, sBattleName);
 
     // Get battle
-    const Battle& GetBattle(const IndexedString& sPartyName) const;
-    Battle& GetBattle(const IndexedString& sPartyName);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetBattle, const IndexedString&, sPartyName);
+    const Battle& GetBattle(const String& sPartyName) const;
+    Battle& GetBattle(const String& sPartyName);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetBattle, const String&, sPartyName);
 
     // Get current battle
     const Battle& GetCurrentBattle() const;
@@ -44,7 +44,7 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Battles, BattleMappingType);
 
     // Current battle ID
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentBattleID, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentBattleID, String);
 };
 
 };

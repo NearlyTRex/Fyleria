@@ -21,7 +21,7 @@ void to_json(Json& jsonData, const CharacterPartyEquippedItem& obj)
     SET_JSON_DATA_IF_NOT_EMPTY(ItemTreeIndex);
 
     // Item slot
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemSlot, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(ItemSlot, "");
 }
 
 void from_json(const Json& jsonData, CharacterPartyEquippedItem& obj)
@@ -30,7 +30,7 @@ void from_json(const Json& jsonData, CharacterPartyEquippedItem& obj)
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
 
     // Item slot
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemSlot, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemSlot, String, "");
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyEquippedItem, CharacterPartyEquippedItem);

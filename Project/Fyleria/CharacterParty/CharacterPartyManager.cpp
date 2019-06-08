@@ -17,14 +17,14 @@ CharacterPartyManager::CharacterPartyManager()
 void CharacterPartyManager::LoadParty(const CharacterParty& party)
 {
     // Load a party
-    const IndexedString& sPartyID = party.GetPartyID();
-    const IndexedString& sPartyType = party.GetPartyType();
+    const String& sPartyID = party.GetPartyID();
+    const String& sPartyType = party.GetPartyType();
     ASSERT_ERROR(IsValidPartyID(sPartyID), "Party ID '%s' was not valid", sPartyID.c_str());
     ASSERT_ERROR(IsValidCharacterPartyType(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
     GetParties().insert({sPartyID, party});
 }
 
-void CharacterPartyManager::LoadPartyFromFile(const IndexedString& sFilename, const IndexedString& sType)
+void CharacterPartyManager::LoadPartyFromFile(const String& sFilename, const String& sType)
 {
     // Load a party
     Json jsonData;
@@ -33,7 +33,7 @@ void CharacterPartyManager::LoadPartyFromFile(const IndexedString& sFilename, co
     LoadParty(jsonData.get<CharacterParty>());
 }
 
-void CharacterPartyManager::SavePartyToFile(const IndexedString& sPartyID, const IndexedString& sFilename, const IndexedString& sType)
+void CharacterPartyManager::SavePartyToFile(const String& sPartyID, const String& sFilename, const String& sType)
 {
     // Save a party
     Json jsonData = GetPartyByID(sPartyID);
@@ -41,15 +41,15 @@ void CharacterPartyManager::SavePartyToFile(const IndexedString& sPartyID, const
     ASSERT_ERROR(bSuccess, "Unable to write file '%s' as type '%s'", sFilename.c_str(), sType.c_str());
 }
 
-void CharacterPartyManager::CreateParty(const IndexedString& sPartyID, const IndexedString& sPartyType, Bool bSetAsCurrent /*= false*/)
+void CharacterPartyManager::CreateParty(const String& sPartyID, const String& sPartyType, Bool bSetAsCurrent /*= false*/)
 {
     // Create a new party
     ASSERT_ERROR(!DoesPartyExist(sPartyID), "Party '%s' was already registered", sPartyID.c_str());
     ASSERT_ERROR(IsValidCharacterPartyType(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
-    IndexedStringArray vAvailableTargetTypes;
+    StringArray vAvailableTargetTypes;
     for(UInt i = 1; i <= MAX_TEAM_CHARACTER_AMOUNT; i++)
     {
-        vAvailableTargetTypes.push_back(sPartyType + IndexedString(STDToString(i)));
+        vAvailableTargetTypes.push_back(sPartyType + String(STDToString(i)));
     }
     CharacterParty newParty;
     newParty.SetPartyID(sPartyID);
@@ -76,7 +76,7 @@ void CharacterPartyManager::CreateParty(const IndexedString& sPartyID, const Ind
     }
 }
 
-void CharacterPartyManager::UnloadParty(const IndexedString& sPartyID)
+void CharacterPartyManager::UnloadParty(const String& sPartyID)
 {
     // Unload party
     ASSERT_ERROR(DoesPartyExist(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
@@ -91,20 +91,20 @@ void CharacterPartyManager::UnloadParty(const IndexedString& sPartyID)
     }
 }
 
-Bool CharacterPartyManager::DoesPartyExist(const IndexedString& sPartyID) const
+Bool CharacterPartyManager::DoesPartyExist(const String& sPartyID) const
 {
     // Check if party exists
     auto iSearch = GetParties().find(sPartyID);
     return (iSearch != GetParties().end());
 }
 
-Bool CharacterPartyManager::IsValidPartyID(const IndexedString& sPartyID) const
+Bool CharacterPartyManager::IsValidPartyID(const String& sPartyID) const
 {
     // Check party ID validity
-    return (!sPartyID.empty() && !sPartyID.IsNone());
+    return (!sPartyID.empty());
 }
 
-const CharacterParty& CharacterPartyManager::GetPartyByID(const IndexedString& sPartyID) const
+const CharacterParty& CharacterPartyManager::GetPartyByID(const String& sPartyID) const
 {
     // Get party
     ASSERT_ERROR(DoesPartyExist(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
@@ -113,16 +113,16 @@ const CharacterParty& CharacterPartyManager::GetPartyByID(const IndexedString& s
     {
         return iSearch->second;
     }
-    throw RuntimeError("Invalid or unknown party ID requested: " + sPartyID.Get());
+    throw RuntimeError("Invalid or unknown party ID requested: " + sPartyID);
 }
 
-CharacterParty& CharacterPartyManager::GetPartyByID(const IndexedString& sPartyID)
+CharacterParty& CharacterPartyManager::GetPartyByID(const String& sPartyID)
 {
     // Get party
     return const_cast<CharacterParty&>(static_cast<const CharacterPartyManager&>(*this).GetPartyByID(sPartyID));
 }
 
-const CharacterParty& CharacterPartyManager::GetPartyByType(const IndexedString& sPartyType) const
+const CharacterParty& CharacterPartyManager::GetPartyByType(const String& sPartyType) const
 {
     // Get party
     const CharacterPartyType ePartyType = StringToCharacterPartyType(sPartyType);
@@ -135,10 +135,10 @@ const CharacterParty& CharacterPartyManager::GetPartyByType(const IndexedString&
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown party type requested: " + sPartyType.Get());
+    throw RuntimeError("Invalid or unknown party type requested: " + sPartyType);
 }
 
-CharacterParty& CharacterPartyManager::GetPartyByType(const IndexedString& sPartyType)
+CharacterParty& CharacterPartyManager::GetPartyByType(const String& sPartyType)
 {
     // Get party
     return const_cast<CharacterParty&>(static_cast<const CharacterPartyManager&>(*this).GetPartyByType(sPartyType));

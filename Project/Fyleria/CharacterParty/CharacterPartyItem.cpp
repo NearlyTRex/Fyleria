@@ -19,9 +19,9 @@ CharacterPartyItem::CharacterPartyItem(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
-Bool CharacterPartyItem::DoesMatchSlot(const IndexedString& sSlot) const
+Bool CharacterPartyItem::DoesMatchSlot(const String& sSlot) const
 {
-    return DoesVectorIntersectElement<IndexedString>(GetApplicableEquipmentSlots(), sSlot);
+    return DoesVectorIntersectElement<String>(GetApplicableEquipmentSlots(), sSlot);
 }
 
 Bool CharacterPartyItem::CanAddAmount(UInt uAmount) const
@@ -115,7 +115,7 @@ void from_json(const Json& jsonData, CharacterPartyItem& obj)
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(EquipCount, UByte, 0);
 
     // Applicable equipment slots
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ApplicableEquipmentSlots, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ApplicableEquipmentSlots, StringArray, StringArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyItem, CharacterPartyItem);

@@ -19,12 +19,12 @@ CharacterManager::CharacterManager()
 void CharacterManager::LoadCharacter(const Character& character)
 {
     // Load a character
-    const IndexedString& sCharacterID = character.GetCharacterID();
+    const String& sCharacterID = character.GetCharacterID();
     ASSERT_ERROR(IsValidCharacterID(sCharacterID), "Character ID '%s' was not valid", sCharacterID.c_str());
     GetCharacters().insert({sCharacterID, character});
 }
 
-void CharacterManager::LoadCharacterFromFile(const IndexedString& sFilename, const IndexedString& sType)
+void CharacterManager::LoadCharacterFromFile(const String& sFilename, const String& sType)
 {
     // Load a character
     Json jsonData;
@@ -33,7 +33,7 @@ void CharacterManager::LoadCharacterFromFile(const IndexedString& sFilename, con
     LoadCharacter(jsonData.get<Character>());
 }
 
-void CharacterManager::SaveCharacterToFile(const IndexedString& sCharacterID, const IndexedString& sFilename, const IndexedString& sType)
+void CharacterManager::SaveCharacterToFile(const String& sCharacterID, const String& sFilename, const String& sType)
 {
     // Save a character
     Json jsonData = GetCharacter(sCharacterID);
@@ -41,7 +41,7 @@ void CharacterManager::SaveCharacterToFile(const IndexedString& sCharacterID, co
     ASSERT_ERROR(bSuccess, "Unable to write file '%s' as type '%s'", sFilename.c_str(), sType.c_str());
 }
 
-void CharacterManager::CreateCharacter(const IndexedString& sCharacterID)
+void CharacterManager::CreateCharacter(const String& sCharacterID)
 {
     // Create a new character
     ASSERT_ERROR(!DoesCharacterExist(sCharacterID), "Character with ID '%s' was already registered", sCharacterID.c_str());
@@ -50,21 +50,21 @@ void CharacterManager::CreateCharacter(const IndexedString& sCharacterID)
     GetCharacters().insert({sCharacterID, newCharacter});
 }
 
-void CharacterManager::UnloadCharacter(const IndexedString& sCharacterID)
+void CharacterManager::UnloadCharacter(const String& sCharacterID)
 {
     // Unload character
     ASSERT_ERROR(DoesCharacterExist(sCharacterID), "Character with ID '%s' was not registered", sCharacterID.c_str());
     GetCharacters().erase(sCharacterID);
 }
 
-Bool CharacterManager::DoesCharacterExist(const IndexedString& sCharacterID) const
+Bool CharacterManager::DoesCharacterExist(const String& sCharacterID) const
 {
     // Check if party exists
     auto iSearch = GetCharacters().find(sCharacterID);
     return (iSearch != GetCharacters().end());
 }
 
-void CharacterManager::GenerateCharacter(const IndexedString& sCharacterID, const CharacterGenerator& generator)
+void CharacterManager::GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator)
 {
     // Log start
     LOG_FORMAT_STATEMENT("Generating character (CharacterID = '%s') ...\n", sCharacterID.c_str());
@@ -95,13 +95,13 @@ void CharacterManager::GenerateCharacter(const IndexedString& sCharacterID, cons
 #endif
 }
 
-Bool CharacterManager::IsValidCharacterID(const IndexedString& sCharacterID) const
+Bool CharacterManager::IsValidCharacterID(const String& sCharacterID) const
 {
     // Check character ID validity
-    return (!sCharacterID.empty() && !sCharacterID.IsNone());
+    return (!sCharacterID.empty());
 }
 
-const Character& CharacterManager::GetCharacter(const IndexedString& sCharacterID) const
+const Character& CharacterManager::GetCharacter(const String& sCharacterID) const
 {
     // Get character
     ASSERT_ERROR(DoesCharacterExist(sCharacterID), "Character with ID '%s' was not registered", sCharacterID.c_str());
@@ -110,17 +110,17 @@ const Character& CharacterManager::GetCharacter(const IndexedString& sCharacterI
     {
         return iSearch->second;
     }
-    throw RuntimeError("Invalid or unknown character ID requested: " + sCharacterID.Get());
+    throw RuntimeError("Invalid or unknown character ID requested: " + sCharacterID);
 }
 
-Character& CharacterManager::GetCharacter(const IndexedString& sCharacterID)
+Character& CharacterManager::GetCharacter(const String& sCharacterID)
 {
     // Get character
     return const_cast<Character&>(static_cast<const CharacterManager&>(*this).GetCharacter(sCharacterID));
 }
 
 void CharacterManager::ApplyStatChange(
-    const IndexedString& sSegment,
+    const String& sSegment,
     const StatChange& change,
     Bool& bAllChangesApplied,
     Bool& bAtLeastOneChange,
@@ -142,8 +142,8 @@ void CharacterManager::ApplyStatChange(
     }
 
     // Get character IDs
-    IndexedStringArray vSourceCharIDs;
-    IndexedStringArray vDestCharIDs;
+    StringArray vSourceCharIDs;
+    StringArray vDestCharIDs;
     if(!change.GetResolvedCharacterArrays(vSourceCharIDs, vDestCharIDs))
     {
         LOG_FORMAT_STATEMENT("Invalid character IDs (Skill = '%s', "
@@ -176,7 +176,7 @@ void CharacterManager::ApplyStatChange(
     for(const StatChangeEntry& entry : change.GetStatChangeEntries())
     {
         // Check operation type
-        IndexedString sOperation = entry.GetOperationType();
+        String sOperation = entry.GetOperationType();
         ASSERT_WARNING(!sOperation.empty(),
             "Stat change (tree = '%s', type = '%s', skill = '%s') is missing a valid operation type",
             treeIndex.GetTree().c_str(),
@@ -196,7 +196,7 @@ void CharacterManager::ApplyStatChange(
         // Get source character ID
         // This normally should be just one character as the source of the value
         // Otherwise, we could have a many-to-many relationship which is harder to resolve
-        IndexedString sSourceCharID = (vSourceCharIDs.size() >= 1) ? vSourceCharIDs.front() : IndexedString("");
+        String sSourceCharID = (vSourceCharIDs.size() >= 1) ? vSourceCharIDs.front() : "";
 
         // Check that source character ID can resolve
         if(!DoesCharacterExist(sSourceCharID))
@@ -245,13 +245,13 @@ void CharacterManager::ApplyStatChange(
     }
 }
 
-Bool CharacterManager::ApplyStatChangeEntry(const IndexedString& sSegment, const StatChangeEntry& entry)
+Bool CharacterManager::ApplyStatChangeEntry(const String& sSegment, const StatChangeEntry& entry)
 {
     // Source values
     BoolArray vSourceBoolValues;
     IntArray vSourceIntValues;
     FloatArray vSourceFloatValues;
-    IndexedStringArray vSourceStringValues;
+    StringArray vSourceStringValues;
 
     // Get source values
     Bool bDoesUseDelta = DoesStatChangeEntryUseDelta(entry);
@@ -274,10 +274,10 @@ Bool CharacterManager::ApplyStatChangeEntry(const IndexedString& sSegment, const
 
     // Loop through destination characters
     // We are going to try to apply this change to all of them
-    IndexedString sDestStatType = entry.GetDestinationStatType();
+    String sDestStatType = entry.GetDestinationStatType();
     Bool bAtLeastOneChange = false;
-    IndexedString sOperation = entry.GetOperationType();
-    for(const IndexedString& sDestCharID : entry.GetDestinationCharacterIDs())
+    String sOperation = entry.GetOperationType();
+    for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
     {
         // Float value in a Float stat
         if(vSourceFloatValues.size() == 1 && IsStatFloat(sDestStatType))
@@ -328,17 +328,17 @@ Bool CharacterManager::ApplyStatChangeEntry(const IndexedString& sSegment, const
         }
 
         // String value in a String stat
-        else if(vSourceStringValues.size() == 1 && IsStatIndexedString(sDestStatType))
+        else if(vSourceStringValues.size() == 1 && IsStatString(sDestStatType))
         {
-            IndexedString sNewValue = vSourceStringValues[0];
+            String sNewValue = vSourceStringValues[0];
             Bool bResult = ApplyStatChangeEntryOperation(sSegment, sDestCharID, sOperation, sDestStatType, sNewValue);
             bAtLeastOneChange = bAtLeastOneChange || bResult;
         }
 
         // StringArray value in a StringArray stat
-        else if(vSourceStringValues.size() > 1 && IsStatIndexedStringArray(sDestStatType))
+        else if(vSourceStringValues.size() > 1 && IsStatStringArray(sDestStatType))
         {
-            IndexedStringArray vNewValues = vSourceStringValues;
+            StringArray vNewValues = vSourceStringValues;
             Bool bResult = ApplyStatChangeEntryOperation(sSegment, sDestCharID, sOperation, sDestStatType, vNewValues);
             bAtLeastOneChange = bAtLeastOneChange || bResult;
         }
@@ -347,10 +347,10 @@ Bool CharacterManager::ApplyStatChangeEntry(const IndexedString& sSegment, const
 }
 
 Bool CharacterManager::ApplyStatChangeEntryOperation(
-    const IndexedString& sSegment,
-    const IndexedString& sCharacterID,
-    const IndexedString& sOperation,
-    const IndexedString& sStat,
+    const String& sSegment,
+    const String& sCharacterID,
+    const String& sOperation,
+    const String& sStat,
     Bool bValue)
 {
     // Get character
@@ -373,10 +373,10 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
 }
 
 Bool CharacterManager::ApplyStatChangeEntryOperation(
-    const IndexedString& sSegment,
-    const IndexedString& sCharacterID,
-    const IndexedString& sOperation,
-    const IndexedString& sStat,
+    const String& sSegment,
+    const String& sCharacterID,
+    const String& sOperation,
+    const String& sStat,
     Int iValue)
 {
     // Get character
@@ -447,10 +447,10 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
 }
 
 Bool CharacterManager::ApplyStatChangeEntryOperation(
-    const IndexedString& sSegment,
-    const IndexedString& sCharacterID,
-    const IndexedString& sOperation,
-    const IndexedString& sStat,
+    const String& sSegment,
+    const String& sCharacterID,
+    const String& sOperation,
+    const String& sStat,
     Float fValue)
 {
     // Get character
@@ -521,18 +521,18 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
 }
 
 Bool CharacterManager::ApplyStatChangeEntryOperation(
-    const IndexedString& sSegment,
-    const IndexedString& sCharacterID,
-    const IndexedString& sOperation,
-    const IndexedString& sStat,
-    const IndexedString& sValue)
+    const String& sSegment,
+    const String& sCharacterID,
+    const String& sOperation,
+    const String& sStat,
+    const String& sValue)
 {
     // Get character
     Character& character = GetCharacter(sCharacterID);
 
     // Get existing value
-    IndexedString sStatValue("");
-    if(!character.GetIndexedStringStatValue(sSegment, sStat, sStatValue))
+    String sStatValue("");
+    if(!character.GetStringStatValue(sSegment, sStat, sStatValue))
     {
         return false;
     }
@@ -547,13 +547,13 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 sStat.c_str(),
                 sStatValue.c_str(),
                 sCharacterID.c_str());
-            return character.SetIndexedStringStatValue(sSegment, sStat, sStatValue + sValue);
+            return character.SetStringStatValue(sSegment, sStat, sStatValue + sValue);
         case OperationType::Set:
             LOG_FORMAT_STATEMENT("-- Setting %s to %s stat in character '%s'\n",
                 sValue.c_str(),
                 sStat.c_str(),
                 sCharacterID.c_str());
-            return character.SetIndexedStringStatValue(sSegment, sStat, sValue);
+            return character.SetStringStatValue(sSegment, sStat, sValue);
         default:
             break;
     }
@@ -561,11 +561,11 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
 }
 
 Bool CharacterManager::ApplyStatChangeEntryOperation(
-    const IndexedString& sSegment,
-    const IndexedString& sCharacterID,
-    const IndexedString& sOperation,
-    const IndexedString& sStat,
-    const IndexedStringArray& vValues)
+    const String& sSegment,
+    const String& sCharacterID,
+    const String& sOperation,
+    const String& sStat,
+    const StringArray& vValues)
 {
     // Get character
     Character& character = GetCharacter(sCharacterID);
@@ -580,14 +580,14 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
             String sValue = "";
             for(UInt i = 0; i < vValues.size(); i++)
             {
-                sValue += (vValues[i].Get() + String(","));
+                sValue += (vValues[i] + String(","));
             }
             LOG_FORMAT_STATEMENT("-- Setting (%s) to %s stat in character '%s'\n",
                 sValue.c_str(),
                 sStat.c_str(),
                 sCharacterID.c_str());
 #endif
-            return character.SetIndexedStringArrayStatValue(sSegment, sStat, vValues);
+            return character.SetStringArrayStatValue(sSegment, sStat, vValues);
         }
         default:
             break;
@@ -601,13 +601,13 @@ Bool CharacterManager::DoesStatChangeEntryUseDelta(const StatChangeEntry& change
 }
 
 Bool CharacterManager::GetDeltaStatChangeEntryValues(
-    const IndexedString& sSegment,
-    const IndexedString& sCharacterID,
+    const String& sSegment,
+    const String& sCharacterID,
     const StatChangeEntry& changeEntry,
     BoolArray& vBoolValues,
     IntArray& vIntValues,
     FloatArray& vFloatValues,
-    IndexedStringArray& vStringValues) const
+    StringArray& vStringValues) const
 {
     // Clear values
     vBoolValues.clear();
@@ -619,7 +619,7 @@ Bool CharacterManager::GetDeltaStatChangeEntryValues(
     const Character& character = GetCharacter(sCharacterID);
 
     // Delta changes require a source stat type which will later be applied to a dest stat type
-    IndexedString sSourceStatType = changeEntry.GetSourceStatType();
+    String sSourceStatType = changeEntry.GetSourceStatType();
 
     // Get source value
     Bool bSuccess = false;
@@ -659,13 +659,13 @@ Bool CharacterManager::GetDeltaStatChangeEntryValues(
 }
 
 Bool CharacterManager::GetFullStatChangeEntryValues(
-    const IndexedString& sSegment,
-    const IndexedString& sCharacterID,
+    const String& sSegment,
+    const String& sCharacterID,
     const StatChangeEntry& changeEntry,
     BoolArray& vBoolValues,
     IntArray& vIntValues,
     FloatArray& vFloatValues,
-    IndexedStringArray& vStringValues) const
+    StringArray& vStringValues) const
 {
     // Clear values
     vBoolValues.clear();
@@ -677,7 +677,7 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
     const Character& character = GetCharacter(sCharacterID);
 
     // Full changes require just a destination stat type
-    IndexedString sDestStatType = changeEntry.GetDestinationStatType();
+    String sDestStatType = changeEntry.GetDestinationStatType();
 
     // Get dest value
     Bool bSuccess = false;
@@ -727,15 +727,15 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
     }
     else if(!changeEntry.GetFullString().empty())
     {
-        IndexedString sNewValue = changeEntry.GetFullString();
+        String sNewValue = changeEntry.GetFullString();
         LOG_FORMAT_STATEMENT("-- Using full string value of %s directly\n", sNewValue.c_str());
         vStringValues.push_back(sNewValue);
         bSuccess = true;
     }
     else if(!changeEntry.GetFullStringArray().empty())
     {
-        IndexedStringArray vNewValues = changeEntry.GetFullStringArray();
-        LOG_FORMAT_STATEMENT("-- Using full string array value of %s directly\n", ConcatStringVector<IndexedString>(vNewValues).c_str());
+        StringArray vNewValues = changeEntry.GetFullStringArray();
+        LOG_FORMAT_STATEMENT("-- Using full string array value of %s directly\n", ConcatStringVector<String>(vNewValues).c_str());
         vStringValues = vNewValues;
         bSuccess = true;
     }

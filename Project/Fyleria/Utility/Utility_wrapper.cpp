@@ -6,6 +6,7 @@
 #include "Items/ItemTypes.h"
 #include "Skills/SkillTypes.h"
 #include "Saves/SaveTypes.h"
+#include "Utility/IndexedString.h"
 #include "Utility/Serializable.h"
 #include "Utility/Tree.h"
 #include "Utility/Enum.h"
@@ -23,11 +24,11 @@ String GetAllTypeNames()
     // CharacterTypes.h
     jsonData["CharacterTreeIndexType"] = GetCharacterTreeIndexTypeNames();
     jsonData["CharacterSegmentType"] = GetCharacterSegmentTypeNames();
-    jsonData["CharacterBasicStatType_IndexedString"] = GetCharacterBasicStatType_IndexedStringNames();
+    jsonData["CharacterBasicStatType_String"] = GetCharacterBasicStatType_StringNames();
     jsonData["CharacterBasicStatType_Int"] = GetCharacterBasicStatType_IntNames();
     jsonData["CharacterProgressStatType_Int"] = GetCharacterProgressStatType_IntNames();
-    jsonData["CharacterBattleStatType_IndexedString"] = GetCharacterBattleStatType_IndexedStringNames();
-    jsonData["CharacterBattleStatType_IndexedStringArray"] = GetCharacterBattleStatType_IndexedStringArrayNames();
+    jsonData["CharacterBattleStatType_String"] = GetCharacterBattleStatType_StringNames();
+    jsonData["CharacterBattleStatType_StringArray"] = GetCharacterBattleStatType_StringArrayNames();
     jsonData["CharacterBattleStatType_Bool"] = GetCharacterBattleStatType_BoolNames();
     jsonData["CharacterBattleStatType_Int"] = GetCharacterBattleStatType_IntNames();
     jsonData["CharacterBattleStatType_Float"] = GetCharacterBattleStatType_FloatNames();
@@ -119,7 +120,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
     // TreeIndex.h
     PyBindClass<Gecko::TreeIndex, Gecko::SerializableToJson>(m, "TreeIndex")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-        WRAPPING_ADD_CONSTRUCTOR_ARGS(const Gecko::IndexedString&, const Gecko::IndexedString&, const Gecko::IndexedString&)
+        WRAPPING_ADD_CONSTRUCTOR_ARGS(const Gecko::String&, const Gecko::String&, const Gecko::String&)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Tree, Gecko::TreeIndex)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Branch, Gecko::TreeIndex)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Leaf, Gecko::TreeIndex)

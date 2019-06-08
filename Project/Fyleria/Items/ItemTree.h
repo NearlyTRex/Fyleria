@@ -55,7 +55,7 @@ public:
     static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveItemDataWeapon, const TreeIndex&, treeIndex);
 
     // Retrieve item type
-    static IndexedString RetrieveItemType(const TreeIndex& treeIndex);
+    static String RetrieveItemType(const TreeIndex& treeIndex);
     static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveItemType, const TreeIndex&, treeIndex);
 
     // Get item lists
@@ -63,16 +63,16 @@ public:
     static TreeIndexArray GetAllIngredientItems();
     static TreeIndexArray GetAllPotionItems();
     static TreeIndexArray GetAllWeaponItems();
-    static TreeIndexArray GetAllEquippedItems(const IndexedString& sCharID);
+    static TreeIndexArray GetAllEquippedItems(const String& sCharID);
     static MAKE_MODULE_RESULT_VARIANT(GetAllArmorItems);
     static MAKE_MODULE_RESULT_VARIANT(GetAllIngredientItems);
     static MAKE_MODULE_RESULT_VARIANT(GetAllPotionItems);
     static MAKE_MODULE_RESULT_VARIANT(GetAllWeaponItems);
-    static MAKE_MODULE_RESULT_VARIANT_A1(GetAllEquippedItems, const IndexedString&, sCharID);
+    static MAKE_MODULE_RESULT_VARIANT_A1(GetAllEquippedItems, const String&, sCharID);
 
     // Resolve leaf into index
-    static TreeIndex ResolveItemLeafIntoIndex(const IndexedString& sLeaf);
-    static MAKE_MODULE_RESULT_VARIANT_A1(ResolveItemLeafIntoIndex, const IndexedString&, sLeaf);
+    static TreeIndex ResolveItemLeafIntoIndex(const String& sLeaf);
+    static MAKE_MODULE_RESULT_VARIANT_A1(ResolveItemLeafIntoIndex, const String&, sLeaf);
 
     // Determine if item is actionable
     static Bool IsItemActionable(const TreeIndex& treeIndex);
@@ -80,8 +80,8 @@ public:
 
     // Generate character actions
     static Bool GenerateItemCharacterActions(const TreeIndex& treeIndex,
-        const IndexedString& sCharacterID,
-        const IndexedString& sWeaponSet,
+        const String& sCharacterID,
+        const String& sWeaponSet,
         CharacterActionArray& vActions);
 
     // Check "better" quality
@@ -97,7 +97,7 @@ public:
     static MAKE_MODULE_RESULT_VARIANT_A1(IsItemShield, const TreeIndex&, treeIndex);
 
     // Get action types
-    static IndexedStringArray GetActionTypes(const TreeIndex& treeIndex);
+    static StringArray GetActionTypes(const TreeIndex& treeIndex);
     static MAKE_MODULE_RESULT_VARIANT_A1(GetActionTypes, const TreeIndex&, treeIndex);
 
     // Get stat changes

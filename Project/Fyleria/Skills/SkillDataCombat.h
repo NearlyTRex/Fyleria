@@ -22,13 +22,13 @@ public:
     virtual void Clear();
 
     // Skill tree type
-    static IndexedString GetTreeType()
+    static String GetTreeType()
     {
-        return IndexedString(SkillTreeType(SkillTreeType::Combat)._to_string());
+        return String(SkillTreeType(SkillTreeType::Combat)._to_string());
     }
 
     // Create combat action
-    CharacterActionArray CreateCombatActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateCombatActions(const String& sCharacterID, const String& sWeaponSet) const;
 };
 
 // Typedef

@@ -4,7 +4,6 @@
 #ifndef _GECKO_RECIPE_ENTRY_H_
 #define _GECKO_RECIPE_ENTRY_H_
 
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"
@@ -28,16 +27,16 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ChanceToSucceed, Float);
 
     // Input type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputPotionName, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputIngredientName, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputWeaponName, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputArmorName, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputPotionName, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputIngredientName, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputWeaponName, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputArmorName, String);
 
     // Output type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputPotionName, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputIngredientName, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputWeaponName, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputArmorName, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputPotionName, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputIngredientName, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputWeaponName, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputArmorName, String);
 
     // Input amount
     MAKE_RAW_BASIC_TYPE_ACCESSORS(InputAmount, UByte);

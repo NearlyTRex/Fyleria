@@ -13,7 +13,7 @@ TreeIndex::TreeIndex()
 {
 }
 
-TreeIndex::TreeIndex(const IndexedString& sTree, const IndexedString& sBranch, const IndexedString& sLeaf)
+TreeIndex::TreeIndex(const String& sTree, const String& sBranch, const String& sLeaf)
     : SerializableToJson()
 {
     SetTree(sTree);
@@ -33,19 +33,19 @@ TreeIndex::TreeIndex(const String& jsonString)
     from_json(JsonParse(jsonString), *this);
 }
 
-IndexedString TreeIndex::GetTreeBranchType() const
+String TreeIndex::GetTreeBranchType() const
 {
     return (GetTree() + GetBranch());
 }
 
-IndexedString TreeIndex::GetTreeBranchLeafType() const
+String TreeIndex::GetTreeBranchLeafType() const
 {
     return (GetTree() + GetBranch() + GetLeaf());
 }
 
-IndexedStringArray TreeIndex::GetTypes() const
+StringArray TreeIndex::GetTypes() const
 {
-    IndexedStringArray vTypes = {
+    StringArray vTypes = {
         GetTree(),
         GetBranch(),
         GetLeaf()
@@ -85,16 +85,16 @@ Bool TreeIndex::operator!=(const TreeIndex& other) const
 
 void to_json(Json& jsonData, const TreeIndex& obj)
 {
-    SET_JSON_DATA_IF_NOT_DEFAULT(Tree, IndexedString(""));
-    SET_JSON_DATA_IF_NOT_DEFAULT(Branch, IndexedString(""));
-    SET_JSON_DATA_IF_NOT_DEFAULT(Leaf, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(Tree, "");
+    SET_JSON_DATA_IF_NOT_DEFAULT(Branch, "");
+    SET_JSON_DATA_IF_NOT_DEFAULT(Leaf, "");
 }
 
 void from_json(const Json& jsonData, TreeIndex& obj)
 {
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Tree, IndexedString, IndexedString(""));
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Branch, IndexedString, IndexedString(""));
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Leaf, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Tree, String, "");
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Branch, String, "");
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Leaf, String, "");
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(TreeIndex, TreeIndex);

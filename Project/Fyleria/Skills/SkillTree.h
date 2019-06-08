@@ -79,21 +79,21 @@ public:
     static MAKE_MODULE_RESULT_VARIANT(GetAllWeaponSkills);
 
     // Get matching skills
-    static TreeIndexArray GetAffinitySkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetAlchemySkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetBreakdownSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetCombatSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetCraftingSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetWeaponSkills(const IndexedString& sCharID, Bool bUniqueOnly = false);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetAffinitySkills, const IndexedString&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetAlchemySkills, const IndexedString&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetBreakdownSkills, const IndexedString&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetCombatSkills, const IndexedString&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetCraftingSkills, const IndexedString&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetWeaponSkills, const IndexedString&, sCharID, Bool, bUniqueOnly);
+    static TreeIndexArray GetAffinitySkills(const String& sCharID, Bool bUniqueOnly = false);
+    static TreeIndexArray GetAlchemySkills(const String& sCharID, Bool bUniqueOnly = false);
+    static TreeIndexArray GetBreakdownSkills(const String& sCharID, Bool bUniqueOnly = false);
+    static TreeIndexArray GetCombatSkills(const String& sCharID, Bool bUniqueOnly = false);
+    static TreeIndexArray GetCraftingSkills(const String& sCharID, Bool bUniqueOnly = false);
+    static TreeIndexArray GetWeaponSkills(const String& sCharID, Bool bUniqueOnly = false);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetAffinitySkills, const String&, sCharID, Bool, bUniqueOnly);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetAlchemySkills, const String&, sCharID, Bool, bUniqueOnly);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetBreakdownSkills, const String&, sCharID, Bool, bUniqueOnly);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetCombatSkills, const String&, sCharID, Bool, bUniqueOnly);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetCraftingSkills, const String&, sCharID, Bool, bUniqueOnly);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetWeaponSkills, const String&, sCharID, Bool, bUniqueOnly);
 
     // Get skill type
-    static IndexedString GetSkillType(const TreeIndex& treeIndex);
+    static String GetSkillType(const TreeIndex& treeIndex);
     static MAKE_MODULE_RESULT_VARIANT_A1(GetSkillType, const TreeIndex&, treeIndex);
 
     // Determine if base weapon skill
@@ -106,12 +106,12 @@ public:
 
     // Generate character actions
     static Bool GenerateSkillCharacterActions(const TreeIndex& treeIndex,
-        const IndexedString& sCharacterID,
-        const IndexedString& sWeaponSet,
+        const String& sCharacterID,
+        const String& sWeaponSet,
         CharacterActionArray& vActions);
 
     // Get stat changes
-    static void FillSkillStatChangeArrays(const IndexedString& sCharID,
+    static void FillSkillStatChangeArrays(const String& sCharID,
         TreeIndexArray& vPassives,
         TreeIndexArray& vActives,
         TreeIndexArray& vActionables,

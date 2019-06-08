@@ -4,7 +4,6 @@
 #ifndef _GECKO_CHARACTER_PARTY_ITEM_H_
 #define _GECKO_CHARACTER_PARTY_ITEM_H_
 
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Tree.h"
 #include "Utility/Enum.h"
@@ -21,7 +20,7 @@ public:
     CharacterPartyItem(const Json& jsonData);
 
     // Does the type match the given slot?
-    Bool DoesMatchSlot(const IndexedString& sSlot) const;
+    Bool DoesMatchSlot(const String& sSlot) const;
 
     // Can amount be added/removed?
     Bool CanAddAmount(UInt uAmount) const;
@@ -47,7 +46,7 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(EquipCount, UByte);
 
     // Applicable equipment slots
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(ApplicableEquipmentSlots, IndexedStringArray);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(ApplicableEquipmentSlots, StringArray);
 };
 
 // Typedef

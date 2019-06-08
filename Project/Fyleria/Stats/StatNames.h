@@ -5,13 +5,12 @@
 #define _GECKO_STAT_NAMES_H_
 
 #include "Utility/Types.h"
-#include "Utility/IndexedString.h"
 
 namespace Gecko
 {
 
 // Types
-typedef STDUnorderedSet<IndexedString, IndexedStringHasher> StatNameSetType;
+typedef STDUnorderedSet<String> StatNameSetType;
 typedef SafeObject<StatNameSetType> SafeStatNameSetType;
 
 // Stat names
@@ -29,26 +28,26 @@ SafeStatNameSetType& GetULongLongStatNames();
 SafeStatNameSetType& GetFloatStatNames();
 SafeStatNameSetType& GetDoubleStatNames();
 SafeStatNameSetType& GetLongDoubleStatNames();
-SafeStatNameSetType& GetIndexedStringStatNames();
-SafeStatNameSetType& GetIndexedStringArrayStatNames();
+SafeStatNameSetType& GetStringStatNames();
+SafeStatNameSetType& GetStringArrayStatNames();
 
 // Determine stat value types
-Bool IsStatBool(const IndexedString& sStat);
-Bool IsStatByte(const IndexedString& sStat);
-Bool IsStatShort(const IndexedString& sStat);
-Bool IsStatInt(const IndexedString& sStat);
-Bool IsStatLong(const IndexedString& sStat);
-Bool IsStatLongLong(const IndexedString& sStat);
-Bool IsStatUByte(const IndexedString& sStat);
-Bool IsStatUShort(const IndexedString& sStat);
-Bool IsStatUInt(const IndexedString& sStat);
-Bool IsStatULong(const IndexedString& sStat);
-Bool IsStatULongLong(const IndexedString& sStat);
-Bool IsStatFloat(const IndexedString& sStat);
-Bool IsStatDouble(const IndexedString& sStat);
-Bool IsStatLongDouble(const IndexedString& sStat);
-Bool IsStatIndexedString(const IndexedString& sStat);
-Bool IsStatIndexedStringArray(const IndexedString& sStat);
+Bool IsStatBool(const String& sStat);
+Bool IsStatByte(const String& sStat);
+Bool IsStatShort(const String& sStat);
+Bool IsStatInt(const String& sStat);
+Bool IsStatLong(const String& sStat);
+Bool IsStatLongLong(const String& sStat);
+Bool IsStatUByte(const String& sStat);
+Bool IsStatUShort(const String& sStat);
+Bool IsStatUInt(const String& sStat);
+Bool IsStatULong(const String& sStat);
+Bool IsStatULongLong(const String& sStat);
+Bool IsStatFloat(const String& sStat);
+Bool IsStatDouble(const String& sStat);
+Bool IsStatLongDouble(const String& sStat);
+Bool IsStatString(const String& sStat);
+Bool IsStatStringArray(const String& sStat);
 
 // Initialize all stat names
 void InitializeAllStatNames();

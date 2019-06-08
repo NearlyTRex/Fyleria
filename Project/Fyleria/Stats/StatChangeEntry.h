@@ -4,7 +4,6 @@
 #ifndef _GECKO_STAT_CHANGE_ENTRY_H_
 #define _GECKO_STAT_CHANGE_ENTRY_H_
 
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"
@@ -35,22 +34,22 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(FullFloat, Float);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(FullInt, Int);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(FullBool, Bool);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullString, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullString, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullFloatArray, FloatArray);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullIntArray, IntArray);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullBoolArray, BoolArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullStringArray, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FullStringArray, StringArray);
 
     // Operation type (Add, Multiply, etc)
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OperationType, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OperationType, String);
 
     // Stats to serve as source and destination
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceStatType, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationStatType, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceStatType, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationStatType, String);
 
     // Character IDs for applying
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceCharacterID, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationCharacterIDs, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceCharacterID, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationCharacterIDs, StringArray);
 };
 
 // Typedefs

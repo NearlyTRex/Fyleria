@@ -5,7 +5,7 @@
 #define _GECKO_CHARACTER_TYPES_H_
 
 // Internal includes
-#include "Utility/IndexedString.h"
+#include "Utility/Constants.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 
@@ -25,7 +25,7 @@ BETTER_ENUM(CharacterSegmentType, Int,
     Active
 );
 
-BETTER_ENUM(CharacterBasicStatType_IndexedString, Int,
+BETTER_ENUM(CharacterBasicStatType_String, Int,
     None,
     FirstName,
     LastName,
@@ -106,14 +106,14 @@ BETTER_ENUM(CharacterProgressStatType_Int, Int,
     CounterPoints
 );
 
-BETTER_ENUM(CharacterBattleStatType_IndexedString, Int,
+BETTER_ENUM(CharacterBattleStatType_String, Int,
     None,
     ActionSourceThisAction,
     MostRecentActionSource,
     CurrentWeaponSet
 );
 
-BETTER_ENUM(CharacterBattleStatType_IndexedStringArray, Int,
+BETTER_ENUM(CharacterBattleStatType_StringArray, Int,
     None,
     PreviousActionTypes,
     ActionTargetsThisAction,
@@ -386,21 +386,21 @@ BETTER_ENUM(CharacterActionRunType, Int,
     Field
 );
 
-IndexedString ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const IndexedString& sCharacterEquipmentType);
-IndexedString ConvertCharacterTargetTypeToCharacterPartyType(const IndexedString& sCharacterTargetType);
-IndexedString ConvertItemTypeToCharacterActionType(const IndexedString& sItemType);
-IndexedStringArray ConvertItemTypeToCharacterEquipTypes(const IndexedString& sItemType);
-IndexedString ConvertSkillWeaponBaseTypeToCharacterActionType(const IndexedString& sSkillWeaponBaseType);
-IndexedString ConvertSkillWeaponTypeToCharacterActionType(const IndexedString& sSkillWeaponType);
-IndexedString ConvertSkillWeaponTypeToCharacterProgressStatType(const IndexedString& sSkillWeaponType);
+String ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const String& sCharacterEquipmentType);
+String ConvertCharacterTargetTypeToCharacterPartyType(const String& sCharacterTargetType);
+String ConvertItemTypeToCharacterActionType(const String& sItemType);
+StringArray ConvertItemTypeToCharacterEquipTypes(const String& sItemType);
+String ConvertSkillWeaponBaseTypeToCharacterActionType(const String& sSkillWeaponBaseType);
+String ConvertSkillWeaponTypeToCharacterActionType(const String& sSkillWeaponType);
+String ConvertSkillWeaponTypeToCharacterProgressStatType(const String& sSkillWeaponType);
 
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterTreeIndexType);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterSegmentType);
-MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBasicStatType_IndexedString);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBasicStatType_String);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBasicStatType_Int);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterProgressStatType_Int);
-MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_IndexedString);
-MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_IndexedStringArray);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_String);
+MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_StringArray);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_Bool);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_Int);
 MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterBattleStatType_Float);
@@ -423,11 +423,11 @@ MAKE_ENUM_GETSTRINGARRAY_DECL(CharacterActionRunType);
 
 MAKE_ENUM_CONVERTERS_DECL(CharacterTreeIndexType);
 MAKE_ENUM_CONVERTERS_DECL(CharacterSegmentType);
-MAKE_ENUM_CONVERTERS_DECL(CharacterBasicStatType_IndexedString);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBasicStatType_String);
 MAKE_ENUM_CONVERTERS_DECL(CharacterBasicStatType_Int);
 MAKE_ENUM_CONVERTERS_DECL(CharacterProgressStatType_Int);
-MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_IndexedString);
-MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_IndexedStringArray);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_String);
+MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_StringArray);
 MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_Bool);
 MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_Int);
 MAKE_ENUM_CONVERTERS_DECL(CharacterBattleStatType_Float);

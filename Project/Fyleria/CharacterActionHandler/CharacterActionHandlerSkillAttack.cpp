@@ -21,13 +21,13 @@ CharacterActionHandlerSkillAttack::~CharacterActionHandlerSkillAttack()
 CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     const CharacterAction& action,
     const CharacterActionEntry& entry,
-    const IndexedString& sDestCharID) const
+    const String& sDestCharID) const
 {
     // Action result
     CharacterActionResult result;
 
     // Get character data
-    const IndexedString& sSourceCharID = action.GetSourceCharacterID();
+    const String& sSourceCharID = action.GetSourceCharacterID();
     const Character& sourceCharacter = CharacterManager::GetInstance()->GetCharacter(sSourceCharID);
     const Character& destCharacter = CharacterManager::GetInstance()->GetCharacter(sDestCharID);
     const CharacterBattleData& sourceBattleData = sourceCharacter.GetBattleDataActives();
@@ -53,7 +53,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     Float fSecondaryBlunt = 0;
     Float fSecondaryPierce = 0;
     Float fSecondarySlash = 0;
-    const IndexedString& sHandedness = sourceCharacter.GetBasicData().GetHandedness();
+    const String& sHandedness = sourceCharacter.GetBasicData().GetHandedness();
     if(bIsPrimaryHandAction && !bIsShield) { sourceBattleData.GetPrimaryWeaponRatings(sHandedness, fPrimaryBlunt, fPrimaryPierce, fPrimarySlash); }
     if(bIsPrimaryHandAction && bIsShield) { sourceBattleData.GetPrimaryShieldRatings(sHandedness, fPrimaryBlunt, fPrimaryPierce, fPrimarySlash); }
     if(bIsSecondaryHandAction && !bIsShield) { sourceBattleData.GetSecondaryWeaponRatings(sHandedness, fSecondaryBlunt, fSecondaryPierce, fSecondarySlash); }
@@ -98,7 +98,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     // Gather information about the actions requested
     Float fSourceAttackRating = 0;
     Float fDestDefendRating = 0;
-    for(const IndexedString& sActionType : entry.GetActionTypes())
+    for(const String& sActionType : entry.GetActionTypes())
     {
         const CharacterActionType eActionType = StringToCharacterActionType(sActionType);
         switch(eActionType)
@@ -190,7 +190,7 @@ Bool CharacterActionHandlerSkillAttack::Setup(CharacterAction& action)
     // Setup destination characters
     for(const CharacterActionEntry& entry : action.GetActionEntries())
     {
-        for(const IndexedString& sDestCharID : entry.GetDestinationCharacterIDs())
+        for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
         {
             HandleBattleActionDefendSetup(sDestCharID, action);
         }
@@ -212,7 +212,7 @@ Bool CharacterActionHandlerSkillAttack::Finish(CharacterAction& action)
     // Finish destination character actions
     for(const CharacterActionEntry& entry : action.GetActionEntries())
     {
-        for(const IndexedString& sDestCharID : entry.GetDestinationCharacterIDs())
+        for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
         {
             HandleBattleActionFinished(sDestCharID, action);
         }
@@ -235,11 +235,11 @@ Bool CharacterActionHandlerSkillAttack::GenerateResult(CharacterAction& action)
     for(CharacterActionEntry& entry : action.GetActionEntries())
     {
         // Generate result
-        if(entry.DoesMatchActionType(IndexedString("WeaponBasePierce")) ||
-           entry.DoesMatchActionType(IndexedString("WeaponBaseBlunt")) ||
-           entry.DoesMatchActionType(IndexedString("WeaponBaseSlash")))
+        if(entry.DoesMatchActionType(String("WeaponBasePierce")) ||
+           entry.DoesMatchActionType(String("WeaponBaseBlunt")) ||
+           entry.DoesMatchActionType(String("WeaponBaseSlash")))
         {
-            for(const IndexedString& sDestCharID : entry.GetDestinationCharacterIDs())
+            for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
             {
                 CharacterActionResult result = GetSkillAttackResult(action, entry, sDestCharID);
                 entry.GetResults().insert({sDestCharID, result});

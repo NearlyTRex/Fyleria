@@ -23,13 +23,13 @@ public:
     virtual void Clear();
 
     // Item tree type
-    static IndexedString GetTreeType()
+    static String GetTreeType()
     {
-        return IndexedString(ItemTreeType(ItemTreeType::Weapon)._to_string());
+        return String(ItemTreeType(ItemTreeType::Weapon)._to_string());
     }
 
     // Create weapon action
-    CharacterActionArray CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateWeaponActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Stat percents
     MAKE_RAW_BASIC_TYPE_ACCESSORS(BluntAttackPercent, Float);

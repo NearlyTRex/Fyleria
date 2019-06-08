@@ -52,10 +52,11 @@ Bool CharacterParty::IsPartyAbleToFight() const
 
 Bool CharacterParty::IsPartyFull() const
 {
-    return GetNextAvailableTargetType().IsNone();
+    String sNoneType = (+CharacterResolvedTargetType::None)._to_string();
+    return (GetNextAvailableTargetType() == sNoneType);
 }
 
-Bool CharacterParty::IsMemberPresent(const IndexedString& sCharacterID) const
+Bool CharacterParty::IsMemberPresent(const String& sCharacterID) const
 {
     for(auto& member : GetMembers())
     {
@@ -67,21 +68,21 @@ Bool CharacterParty::IsMemberPresent(const IndexedString& sCharacterID) const
     return false;
 }
 
-Bool CharacterParty::IsTargetTypeAvailable(const IndexedString& sCharacterTargetType) const
+Bool CharacterParty::IsTargetTypeAvailable(const String& sCharacterTargetType) const
 {
-    const IndexedStringArray& vTargetTypes = GetAvailableTargetTypes();
+    const StringArray& vTargetTypes = GetAvailableTargetTypes();
     auto iLocation = STDFindData(vTargetTypes.begin(), vTargetTypes.end(), sCharacterTargetType);
     return (iLocation != vTargetTypes.end());
 }
 
-Bool CharacterParty::IsTargetTypeTaken(const IndexedString& sCharacterTargetType) const
+Bool CharacterParty::IsTargetTypeTaken(const String& sCharacterTargetType) const
 {
-    const IndexedStringArray& vTargetTypes = GetTakenTargetTypes();
+    const StringArray& vTargetTypes = GetTakenTargetTypes();
     auto iLocation = STDFindData(vTargetTypes.begin(), vTargetTypes.end(), sCharacterTargetType);
     return (iLocation != vTargetTypes.end());
 }
 
-Bool CharacterParty::AddMember(const IndexedString& sCharacterID)
+Bool CharacterParty::AddMember(const String& sCharacterID)
 {
     // Check if party is full
     if(IsPartyFull())
@@ -107,7 +108,7 @@ Bool CharacterParty::AddMember(const IndexedString& sCharacterID)
     return true;
 }
 
-Bool CharacterParty::RemoveMember(const IndexedString& sCharacterID)
+Bool CharacterParty::RemoveMember(const String& sCharacterID)
 {
     // Check if member exists first
     if(!IsMemberPresent(sCharacterID))
@@ -124,7 +125,7 @@ Bool CharacterParty::RemoveMember(const IndexedString& sCharacterID)
     return true;
 }
 
-Bool CharacterParty::MoveMember(const IndexedString& sCharacterID, const IndexedString& sCharacterTargetType)
+Bool CharacterParty::MoveMember(const String& sCharacterID, const String& sCharacterTargetType)
 {
     // Check if member exists first
     if(!IsMemberPresent(sCharacterID))
@@ -148,7 +149,7 @@ Bool CharacterParty::MoveMember(const IndexedString& sCharacterID, const Indexed
     return true;
 }
 
-Bool CharacterParty::SwapMembers(const IndexedString& sFirstCharacterID, const IndexedString& sSecondCharacterID)
+Bool CharacterParty::SwapMembers(const String& sFirstCharacterID, const String& sSecondCharacterID)
 {
     // Check if members exists first
     if(!IsMemberPresent(sFirstCharacterID) || !IsMemberPresent(sSecondCharacterID))
@@ -162,35 +163,35 @@ Bool CharacterParty::SwapMembers(const IndexedString& sFirstCharacterID, const I
     // Swap target types
     CharacterPartyMember& firstMember = GetMemberByID(sFirstCharacterID);
     CharacterPartyMember& secondMember = GetMemberByID(sSecondCharacterID);
-    IndexedString sFirstTargetType = firstMember.GetCharacterTargetType();
-    IndexedString sSecondTargetType = secondMember.GetCharacterTargetType();
+    String sFirstTargetType = firstMember.GetCharacterTargetType();
+    String sSecondTargetType = secondMember.GetCharacterTargetType();
     firstMember.SetCharacterTargetType(sSecondTargetType);
     secondMember.SetCharacterTargetType(sFirstTargetType);
     return true;
 }
 
-IndexedString CharacterParty::GetNextAvailableTargetType() const
+String CharacterParty::GetNextAvailableTargetType() const
 {
-    for(const IndexedString& sTarget : GetAvailableTargetTypes())
+    for(const String& sTarget : GetAvailableTargetTypes())
     {
         return sTarget;
     }
-    return IndexedString("None");
+    return (+CharacterResolvedTargetType::None)._to_string();
 }
 
-Bool CharacterParty::UseTargetType(const IndexedString& sCharacterTargetType)
+Bool CharacterParty::UseTargetType(const String& sCharacterTargetType)
 {
     if(!IsTargetTypeAvailable(sCharacterTargetType))
     {
         return false;
     }
 
-    RemoveVectorElement<IndexedString>(GetAvailableTargetTypes(), sCharacterTargetType);
+    RemoveVectorElement<String>(GetAvailableTargetTypes(), sCharacterTargetType);
     GetTakenTargetTypes().push_back(sCharacterTargetType);
     return true;
 }
 
-Bool CharacterParty::FreeTargetType(const IndexedString& sCharacterTargetType)
+Bool CharacterParty::FreeTargetType(const String& sCharacterTargetType)
 {
     if(!IsTargetTypeTaken(sCharacterTargetType))
     {
@@ -198,16 +199,16 @@ Bool CharacterParty::FreeTargetType(const IndexedString& sCharacterTargetType)
     }
 
     GetAvailableTargetTypes().push_back(sCharacterTargetType);
-    RemoveVectorElement<IndexedString>(GetTakenTargetTypes(), sCharacterTargetType);
+    RemoveVectorElement<String>(GetTakenTargetTypes(), sCharacterTargetType);
     return true;
 }
 
-const CharacterPartyMember& CharacterParty::GetMemberByID(const IndexedString& sCharacterID) const
+const CharacterPartyMember& CharacterParty::GetMemberByID(const String& sCharacterID) const
 {
     return GetMembers().at(sCharacterID);
 }
 
-const CharacterPartyMember& CharacterParty::GetMemberByTargetType(const IndexedString& sCharacterTargetType) const
+const CharacterPartyMember& CharacterParty::GetMemberByTargetType(const String& sCharacterTargetType) const
 {
     for (auto& member : GetMembers())
     {
@@ -216,22 +217,22 @@ const CharacterPartyMember& CharacterParty::GetMemberByTargetType(const IndexedS
             return member.second;
         }
     }
-    throw RuntimeError("No character matching character target type '" + sCharacterTargetType.Get() + "' was found");
+    throw RuntimeError("No character matching character target type '" + sCharacterTargetType + "' was found");
 }
 
-CharacterPartyMember& CharacterParty::GetMemberByID(const IndexedString& sCharacterID)
+CharacterPartyMember& CharacterParty::GetMemberByID(const String& sCharacterID)
 {
     return const_cast<CharacterPartyMember&>(static_cast<const CharacterParty&>(*this).GetMemberByID(sCharacterID));
 }
 
-CharacterPartyMember& CharacterParty::GetMemberByTargetType(const IndexedString& sCharacterTargetType)
+CharacterPartyMember& CharacterParty::GetMemberByTargetType(const String& sCharacterTargetType)
 {
     return const_cast<CharacterPartyMember&>(static_cast<const CharacterParty&>(*this).GetMemberByTargetType(sCharacterTargetType));
 }
 
-IndexedStringArray CharacterParty::GetMemberCharacterIDs() const
+StringArray CharacterParty::GetMemberCharacterIDs() const
 {
-    IndexedStringArray vMemberCharacterIDs;
+    StringArray vMemberCharacterIDs;
     for(auto& member : GetMembers())
     {
         vMemberCharacterIDs.push_back(member.first);
@@ -239,7 +240,7 @@ IndexedStringArray CharacterParty::GetMemberCharacterIDs() const
     return vMemberCharacterIDs;
 }
 
-Bool CharacterParty::GetCharacterIDsFromTargetType(const IndexedString& sCharacterTargetType, IndexedStringArray& vCharacterIDs) const
+Bool CharacterParty::GetCharacterIDsFromTargetType(const String& sCharacterTargetType, StringArray& vCharacterIDs) const
 {
     // Check if requesting something that cannot be resolved
     CharacterTargetType eTargetType = StringToCharacterTargetType(sCharacterTargetType);
@@ -260,7 +261,7 @@ Bool CharacterParty::GetCharacterIDsFromTargetType(const IndexedString& sCharact
     }
 
     // Check if requesting for all allies/enemies
-    IndexedStringArray vAllMemberCharacterIDs = GetMemberCharacterIDs();
+    StringArray vAllMemberCharacterIDs = GetMemberCharacterIDs();
     CharacterPartyType ePartyType = StringToCharacterPartyType(GetPartyType());
     if((ePartyType == +CharacterPartyType::Ally && eTargetType == +CharacterTargetType::AllAllies) ||
        (ePartyType == +CharacterPartyType::Enemy && eTargetType == +CharacterTargetType::AllEnemies))
@@ -279,7 +280,7 @@ Bool CharacterParty::GetCharacterIDsFromTargetType(const IndexedString& sCharact
     return false;
 }
 
-UInt CharacterParty::GetStatusMemberCount(const IndexedString& sStatus) const
+UInt CharacterParty::GetStatusMemberCount(const String& sStatus) const
 {
     UInt uCount = 0;
     const CharacterStatusType eStatusType = StringToCharacterStatusTypeOrNone(sStatus);
@@ -302,7 +303,7 @@ UInt CharacterParty::GetStatusMemberCount(const IndexedString& sStatus) const
     return uCount;
 }
 
-Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd)
+Bool CharacterParty::AddRandomItems(const StringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd)
 {
     // Notify user
     LOG_FORMAT_STATEMENT(
@@ -329,7 +330,7 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
     // Take a look at each tree type
     Bool bAtLeastOneAdded = false;
     TreeIndexArray vAddedRandomTreeIndices;
-    for(const IndexedString& sTreeType : vTreeTypes)
+    for(const String& sTreeType : vTreeTypes)
     {
         // Only do a certain amount of random pulls
         const ItemTreeType eItemTreeType = StringToItemTreeTypeOrNone(sTreeType);
@@ -375,7 +376,7 @@ Bool CharacterParty::AddRandomItems(const IndexedStringArray& vTreeTypes, Int iN
     return bAtLeastOneAdded;
 }
 
-Bool CharacterParty::AddItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
+Bool CharacterParty::AddItemByLeaf(const String& sLeaf, UInt uAmount)
 {
     TreeIndex treeIndex = ItemTree::ResolveItemLeafIntoIndex(sLeaf);
     return AddItemByTreeIndex(treeIndex, uAmount);
@@ -395,7 +396,7 @@ Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount
         return false;
     }
 
-    IndexedString sLeaf = treeIndex.GetLeaf();
+    String sLeaf = treeIndex.GetLeaf();
     if(GetItems().count(sLeaf) > 0)
     {
         CharacterPartyItem& item = GetItems().at(sLeaf);
@@ -412,8 +413,8 @@ Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount
     }
     else
     {
-        IndexedString sItemType = ItemTree::RetrieveItemType(treeIndex);
-        IndexedStringArray vEquipTypes = ConvertItemTypeToCharacterEquipTypes(sItemType);
+        String sItemType = ItemTree::RetrieveItemType(treeIndex);
+        StringArray vEquipTypes = ConvertItemTypeToCharacterEquipTypes(sItemType);
         CharacterPartyItem newItem;
         newItem.SetItemTreeIndex(treeIndex);
         newItem.SetItemAmount(uAmount);
@@ -432,7 +433,7 @@ Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount
     }
 }
 
-Bool CharacterParty::RemoveItemByLeaf(const IndexedString& sLeaf, UInt uAmount)
+Bool CharacterParty::RemoveItemByLeaf(const String& sLeaf, UInt uAmount)
 {
     TreeIndex treeIndex = ItemTree::ResolveItemLeafIntoIndex(sLeaf);
     return RemoveItemByTreeIndex(treeIndex, uAmount);
@@ -452,7 +453,7 @@ Bool CharacterParty::RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmo
         return false;
     }
 
-    IndexedString sLeaf = treeIndex.GetLeaf();
+    String sLeaf = treeIndex.GetLeaf();
     if(GetItems().count(sLeaf) == 0)
     {
         LOG_FORMAT_STATEMENT("Item '%s' could not be removed from party '%s' because it was not present\n",
@@ -478,7 +479,7 @@ Bool CharacterParty::RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmo
     return false;
 }
 
-const CharacterPartyItem& CharacterParty::GetItemByLeaf(const IndexedString& sLeaf) const
+const CharacterPartyItem& CharacterParty::GetItemByLeaf(const String& sLeaf) const
 {
     return GetItems().at(sLeaf);
 }
@@ -488,7 +489,7 @@ const CharacterPartyItem& CharacterParty::GetItemByTreeIndex(const TreeIndex& tr
     return GetItems().at(treeIndex.GetLeaf());
 }
 
-CharacterPartyItem& CharacterParty::GetItemByLeaf(const IndexedString& sLeaf)
+CharacterPartyItem& CharacterParty::GetItemByLeaf(const String& sLeaf)
 {
     return const_cast<CharacterPartyItem&>(static_cast<const CharacterParty&>(*this).GetItemByLeaf(sLeaf));
 }
@@ -498,7 +499,7 @@ CharacterPartyItem& CharacterParty::GetItemByTreeIndex(const TreeIndex& treeInde
     return const_cast<CharacterPartyItem&>(static_cast<const CharacterParty&>(*this).GetItemByTreeIndex(treeIndex));
 }
 
-TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterID, const IndexedString& sSlot) const
+TreeIndex CharacterParty::GetBestUnequippedItem(const String& sCharacterID, const String& sSlot) const
 {
     // Check character
     TreeIndex bestItem;
@@ -513,9 +514,9 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterI
         sSlot.c_str(),
         sCharacterID.c_str(),
         GetPartyID().c_str());
-    const IndexedString sWeaponSet = ConvertCharacterEquipmentTypeToCharacterWeaponSetType(sSlot);
+    const String sWeaponSet = ConvertCharacterEquipmentTypeToCharacterWeaponSetType(sSlot);
     UInt uShieldCount = 0;
-    if(!sWeaponSet.IsNone())
+    if(sWeaponSet != (+CharacterWeaponSetType::None)._to_string())
     {
         uShieldCount = GetMemberByID(sCharacterID).GetEquippedShieldCount(sWeaponSet);
     }
@@ -562,7 +563,7 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const IndexedString& sCharacterI
     return bestItem;
 }
 
-Bool CharacterParty::EquipItem(const IndexedString& sCharacterID, const IndexedString& sLeaf, const IndexedString& sSlot)
+Bool CharacterParty::EquipItem(const String& sCharacterID, const String& sLeaf, const String& sSlot)
 {
     // Get the item and character
     CharacterPartyItem& item = GetItemByLeaf(sLeaf);
@@ -606,7 +607,7 @@ Bool CharacterParty::EquipItem(const IndexedString& sCharacterID, const IndexedS
     return true;
 }
 
-Bool CharacterParty::UnequipItem(const IndexedString& sCharacterID, const IndexedString& sLeaf, const IndexedString& sSlot)
+Bool CharacterParty::UnequipItem(const String& sCharacterID, const String& sLeaf, const String& sSlot)
 {
     // Get the item and character
     CharacterPartyItem& item = GetItemByLeaf(sLeaf);
@@ -650,13 +651,13 @@ Bool CharacterParty::UnequipItem(const IndexedString& sCharacterID, const Indexe
     return true;
 }
 
-Bool CharacterParty::EquipBestItems(const IndexedString& sCharacterID)
+Bool CharacterParty::EquipBestItems(const String& sCharacterID)
 {
     // First unequip all that character's items
     UnequipAllItems(sCharacterID);
 
     // Get the best available item for each equipment slot
-    for(const IndexedString& sEquipType : CharacterEquipmentType::_names())
+    for(const String& sEquipType : CharacterEquipmentType::_names())
     {
         // Get best item for this slot
         TreeIndex bestItemForSlot = GetBestUnequippedItem(sCharacterID, sEquipType);
@@ -683,7 +684,7 @@ Bool CharacterParty::EquipBestItemsForAllMembers()
     return true;
 }
 
-Bool CharacterParty::UnequipAllItems(const IndexedString& sCharacterID)
+Bool CharacterParty::UnequipAllItems(const String& sCharacterID)
 {
     // Get the member
     CharacterPartyMember& member = GetMemberByID(sCharacterID);
@@ -724,13 +725,13 @@ String CharacterParty::GetDescription() const
 {
     String sDescription;
 #if DEBUG
-    sDescription += "Party ID: " + GetPartyID().Get() + "\n";
-    sDescription += "Party Type: " + GetPartyType().Get() + "\n";
+    sDescription += "Party ID: " + GetPartyID() + "\n";
+    sDescription += "Party Type: " + GetPartyType() + "\n";
     sDescription += "Play Time: " + ConvertGameTimeToString(GetPlayTime()) + "\n";
     sDescription += "Members: \n";
     for(auto& member: GetMembers())
     {
-        sDescription += "\t" + member.first.Get() + "\n";
+        sDescription += "\t" + member.first + "\n";
     }
 #endif
     return sDescription;
@@ -790,10 +791,10 @@ void CharacterParty::SetPlayTime(ULongLong uTime)
 void to_json(Json& jsonData, const CharacterParty& obj)
 {
     // Party ID
-    SET_JSON_DATA_IF_NOT_DEFAULT(PartyID, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(PartyID, "");
 
     // Party type
-    SET_JSON_DATA_IF_NOT_DEFAULT(PartyType, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(PartyType, "");
 
     // Map of members
     SET_JSON_DATA_IF_NOT_EMPTY(Members);
@@ -814,10 +815,10 @@ void to_json(Json& jsonData, const CharacterParty& obj)
 void from_json(const Json& jsonData, CharacterParty& obj)
 {
     // Party ID
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PartyID, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PartyID, String, "");
 
     // Party type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PartyType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PartyType, String, "");
 
     // Map of members
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Members, CharacterParty::CharacterPartyMemberMapType, CharacterParty::CharacterPartyMemberMapType());
@@ -826,10 +827,10 @@ void from_json(const Json& jsonData, CharacterParty& obj)
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Items, CharacterParty::CharacterPartyItemMapType, CharacterParty::CharacterPartyItemMapType());
 
     // Arrays of available target types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AvailableTargetTypes, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AvailableTargetTypes, StringArray, StringArray());
 
     // Array of taken target types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(TakenTargetTypes, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(TakenTargetTypes, StringArray, StringArray());
 
     // Play time
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PlayTime, ULongLong, 0);

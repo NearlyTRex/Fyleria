@@ -651,19 +651,19 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     if(!sPartyToDisplay.empty())
     {
         CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyToDisplay);
-        sPartyDetails_PartyID = party.GetPartyID().Get();
-        sPartyDetails_PartyType = party.GetPartyType().Get();
+        sPartyDetails_PartyID = party.GetPartyID();
+        sPartyDetails_PartyType = party.GetPartyType();
         sPartyDetails_PlayTime = STDToString(party.GetPlayTime());
-        sPartyDetails_TakenTargetTypes = ConcatStringVector(party.GetTakenTargetTypes()).Get();
-        sPartyDetails_AvailableTargetTypes = ConcatStringVector(party.GetAvailableTargetTypes()).Get();
+        sPartyDetails_TakenTargetTypes = ConcatStringVector(party.GetTakenTargetTypes());
+        sPartyDetails_AvailableTargetTypes = ConcatStringVector(party.GetAvailableTargetTypes());
         sPartyDetails_Members = Json(party.GetMembers()).dump(4);
         sPartyDetails_Items = Json(party.GetItems()).dump(4);
         sPartyDetails_Description = party.GetDescription();
     }
 
     // Get current parties
-    String sCurrentParty_Ally = CharacterPartyManager::GetInstance()->GetCurrentAllyPartyID().Get();
-    String sCurrentParty_Enemy = CharacterPartyManager::GetInstance()->GetCurrentEnemyPartyID().Get();
+    String sCurrentParty_Ally = CharacterPartyManager::GetInstance()->GetCurrentAllyPartyID();
+    String sCurrentParty_Enemy = CharacterPartyManager::GetInstance()->GetCurrentEnemyPartyID();
 
     // Set page content
     String sPage = GetPageTemplate();

@@ -22,18 +22,18 @@ StatChangeEntry::StatChangeEntry()
     SetFullFloat(0);
     SetFullInt(0);
     SetFullBool(false);
-    SetFullString(IndexedString(""));
+    SetFullString("");
     SetFullFloatArray({});
     SetFullIntArray({});
     SetFullBoolArray({});
     SetFullStringArray({});
 
     // Operation type (Add, Multiply, etc)
-    SetOperationType(IndexedString("None"));
+    SetOperationType("");
 
     // Stats to serve as source and destination
-    SetSourceStatType(IndexedString("None"));
-    SetDestinationStatType(IndexedString("None"));
+    SetSourceStatType("");
+    SetDestinationStatType("");
 }
 
 StatChangeEntry::StatChangeEntry(const Json& jsonData)
@@ -57,21 +57,21 @@ void to_json(Json& jsonData, const StatChangeEntry& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(FullFloat, 0);
     SET_JSON_DATA_IF_NOT_DEFAULT(FullInt, 0);
     SET_JSON_DATA_IF_NOT_DEFAULT(FullBool, false);
-    SET_JSON_DATA_IF_NOT_DEFAULT(FullString, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(FullString, "");
     SET_JSON_DATA_IF_NOT_EMPTY(FullFloatArray);
     SET_JSON_DATA_IF_NOT_EMPTY(FullIntArray);
     SET_JSON_DATA_IF_NOT_EMPTY(FullBoolArray);
     SET_JSON_DATA_IF_NOT_EMPTY(FullStringArray);
 
     // Operation type (Add, Multiply, etc)
-    SET_JSON_DATA_IF_NOT_DEFAULT(OperationType, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(OperationType, "");
 
     // Stats to serve as source and destination
-    SET_JSON_DATA_IF_NOT_DEFAULT(SourceStatType, IndexedString("None"));
-    SET_JSON_DATA_IF_NOT_DEFAULT(DestinationStatType, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(SourceStatType, "");
+    SET_JSON_DATA_IF_NOT_DEFAULT(DestinationStatType, "");
 
     // Character IDs for applying
-    SET_JSON_DATA_IF_NOT_DEFAULT(SourceCharacterID, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(SourceCharacterID, "");
     SET_JSON_DATA_IF_NOT_EMPTY(DestinationCharacterIDs);
 }
 
@@ -91,22 +91,22 @@ void from_json(const Json& jsonData, StatChangeEntry& obj)
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullFloat, Float, 0);
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullInt, Int, 0);
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullBool, Bool, false);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullString, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullString, String, "");
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullFloatArray, FloatArray, FloatArray());
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullIntArray, IntArray, IntArray());
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullBoolArray, BoolArray, BoolArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullStringArray, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullStringArray, StringArray, StringArray());
 
     // Operation type (Add, Multiply, etc)
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OperationType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OperationType, String, "");
 
     // Stats to serve as source and destination
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceStatType, IndexedString, IndexedString("None"));
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationStatType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceStatType, String, "");
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationStatType, String, "");
 
     // Character IDs for applying
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceCharacterID, IndexedString, IndexedString(""));
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationCharacterIDs, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceCharacterID, String, "");
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationCharacterIDs, StringArray, StringArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChangeEntry, StatChangeEntry);

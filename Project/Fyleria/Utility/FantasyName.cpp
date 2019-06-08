@@ -13,9 +13,9 @@ String GenerateRandomFantasyName(const String& sPattern)
     return generator.toString();
 }
 
-IndexedString GetRandomNamePattern()
+String GetRandomNamePattern()
 {
-    const IndexedStringArray vNamePatterns = {
+    const StringArray vNamePatterns = {
         GetMiddleEarthNamePattern(),
         GetJapaneseNameConstrainedPattern(),
         GetJapaneseNameDiversePattern(),
@@ -35,29 +35,29 @@ IndexedString GetRandomNamePattern()
         GetFantasyKJYNamePattern(),
         GetFantasySENamePattern()
     };
-    return GetRandomVectorValue<IndexedString>(vNamePatterns);
+    return GetRandomVectorValue<String>(vNamePatterns);
 }
 
-IndexedString GetCapitalizationToken() { return IndexedString("!"); }
-IndexedString GetReverseToken() { return IndexedString("~"); }
-IndexedString GetMiddleEarthNamePattern() { return IndexedString(MIDDLE_EARTH); }
-IndexedString GetJapaneseNameConstrainedPattern() { return IndexedString(JAPANESE_NAMES_CONSTRAINED); }
-IndexedString GetJapaneseNameDiversePattern() { return IndexedString(JAPANESE_NAMES_DIVERSE); }
-IndexedString GetChineseNamePattern() { return IndexedString(CHINESE_NAMES); }
-IndexedString GetGreekNamePattern() { return IndexedString(GREEK_NAMES); }
-IndexedString GetHawaiianName1Pattern() { return IndexedString(HAWAIIAN_NAMES_1); }
-IndexedString GetHawaiianName2Pattern() { return IndexedString(HAWAIIAN_NAMES_2); }
-IndexedString GetOldLatinPlaceNamePattern() { return IndexedString(OLD_LATIN_PLACE_NAMES); }
-IndexedString GetDragonPernNamePattern() { return IndexedString(DRAGONS_PERN); }
-IndexedString GetDragonRiderNamePattern() { return IndexedString(DRAGON_RIDERS); }
-IndexedString GetPokemonNamePattern() { return IndexedString(POKEMON); }
-IndexedString GetFantasyVowelsRNamePattern() { return IndexedString(FANTASY_VOWELS_R); }
-IndexedString GetFantasySANamePattern() { return IndexedString(FANTASY_S_A); }
-IndexedString GetFantasyHLNamePattern() { return IndexedString(FANTASY_H_L); }
-IndexedString GetFantasyNLNamePattern() { return IndexedString(FANTASY_N_L); }
-IndexedString GetFantasyKNNamePattern() { return IndexedString(FANTASY_K_N); }
-IndexedString GetFantasyJGZNamePattern() { return IndexedString(FANTASY_J_G_Z); }
-IndexedString GetFantasyKJYNamePattern() { return IndexedString(FANTASY_K_J_Y); }
-IndexedString GetFantasySENamePattern() { return IndexedString(FANTASY_S_E); }
+String GetCapitalizationToken() { return String("!"); }
+String GetReverseToken() { return String("~"); }
+String GetMiddleEarthNamePattern() { return String(MIDDLE_EARTH); }
+String GetJapaneseNameConstrainedPattern() { return String(JAPANESE_NAMES_CONSTRAINED); }
+String GetJapaneseNameDiversePattern() { return String(JAPANESE_NAMES_DIVERSE); }
+String GetChineseNamePattern() { return String(CHINESE_NAMES); }
+String GetGreekNamePattern() { return String(GREEK_NAMES); }
+String GetHawaiianName1Pattern() { return String(HAWAIIAN_NAMES_1); }
+String GetHawaiianName2Pattern() { return String(HAWAIIAN_NAMES_2); }
+String GetOldLatinPlaceNamePattern() { return String(OLD_LATIN_PLACE_NAMES); }
+String GetDragonPernNamePattern() { return String(DRAGONS_PERN); }
+String GetDragonRiderNamePattern() { return String(DRAGON_RIDERS); }
+String GetPokemonNamePattern() { return String(POKEMON); }
+String GetFantasyVowelsRNamePattern() { return String(FANTASY_VOWELS_R); }
+String GetFantasySANamePattern() { return String(FANTASY_S_A); }
+String GetFantasyHLNamePattern() { return String(FANTASY_H_L); }
+String GetFantasyNLNamePattern() { return String(FANTASY_N_L); }
+String GetFantasyKNNamePattern() { return String(FANTASY_K_N); }
+String GetFantasyJGZNamePattern() { return String(FANTASY_J_G_Z); }
+String GetFantasyKJYNamePattern() { return String(FANTASY_K_J_Y); }
+String GetFantasySENamePattern() { return String(FANTASY_S_E); }
 
 };

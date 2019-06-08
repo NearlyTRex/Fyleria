@@ -137,18 +137,18 @@ StringArray Get##type##Names()                                                  
 }
 
 #define MAKE_ENUM_CONVERTERS_DECL(type)                                             \
-type StringTo##type(const IndexedString& sType);                                    \
-type StringTo##type##OrNone(const IndexedString& sType);                            \
-Bool IsValid##type(const IndexedString& sType);
+type StringTo##type(const String& sType);                                           \
+type StringTo##type##OrNone(const String& sType);                                   \
+Bool IsValid##type(const String& sType);
 
 #define MAKE_ENUM_CONVERTERS_IMPL(type)                                             \
-type StringTo##type(const IndexedString& sType)                                     \
+type StringTo##type(const String& sType)                                            \
 {                                                                                   \
     ASSERT_ERROR(type::_is_valid(sType.c_str()),                                    \
         "Type '%s' was not a valid enum string for type", sType.c_str());           \
     return type::_from_string(sType.c_str());                                       \
 }                                                                                   \
-type StringTo##type##OrNone(const IndexedString& sType)                             \
+type StringTo##type##OrNone(const String& sType)                                    \
 {                                                                                   \
     if(type::_is_valid(sType.c_str()))                                              \
     {                                                                               \
@@ -156,7 +156,7 @@ type StringTo##type##OrNone(const IndexedString& sType)                         
     }                                                                               \
     return +type::None;                                                             \
 }                                                                                   \
-Bool IsValid##type(const IndexedString& sType)                                      \
+Bool IsValid##type(const String& sType)                                             \
 {                                                                                   \
     return type::_is_valid(sType.c_str());                                          \
 }
@@ -211,19 +211,19 @@ void Set##name(const type& varValue) { m_Data[#name] = varValue; }
 type Get##name() const                                                              \
 {                                                                                   \
     type var##name = type();                                                        \
-    GetStatValue<type>(GetStats(), IndexedString(#name), var##name);                \
+    GetStatValue<type>(GetStats(), String(#name), var##name);                       \
     return var##name;                                                               \
 }                                                                                   \
 void Set##name(const type& var##name)                                               \
 {                                                                                   \
-    SetStatValue<type>(GetStats(), IndexedString(#name), var##name);                \
+    SetStatValue<type>(GetStats(), String(#name), var##name);                       \
 }
 
 #define RESET_STAT_TYPE_VALUES(base, type)                                          \
 {                                                                                   \
     for (auto& eType : base##_##type::_values())                                    \
     {                                                                               \
-        SetStatValue<type>(GetStats(), IndexedString(eType._to_string()), type());  \
+        SetStatValue<type>(GetStats(), String(eType._to_string()), type());         \
     }                                                                               \
 }
 
@@ -232,7 +232,7 @@ void Set##name(const type& var##name)                                           
     for (auto& eType : base##_##type::_values())                                    \
     {                                                                               \
         type varStatValue = type();                                                 \
-        IndexedString varStatName = IndexedString(eType._to_string());              \
+        String varStatName = String(eType._to_string());                            \
         if (GetStatValue<type>(obj.GetStats(), varStatName, varStatValue))          \
         {                                                                           \
             jsonData[eType._to_string()] = varStatValue;                            \
@@ -245,7 +245,7 @@ void Set##name(const type& var##name)                                           
     for (auto& eType : base##_##type::_values())                                    \
     {                                                                               \
         type varStatValue = jsonData[eType._to_string()];                           \
-        IndexedString varStatName = IndexedString(eType._to_string());              \
+        String varStatName = String(eType._to_string());                            \
         SetStatValue<type>(obj.GetStats(), varStatName, varStatValue);              \
     }                                                                               \
 }
@@ -253,7 +253,7 @@ void Set##name(const type& var##name)                                           
 //=====================================================================================
 
 #define MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(type)                                                                   \
-Bool Get##type##StatValue(const IndexedString& sSegment, const IndexedString& sStat, type& varValue) const          \
+Bool Get##type##StatValue(const String& sSegment, const String& sStat, type& varValue) const                        \
 {                                                                                                                   \
     const CharacterBasicData& basicData = GetBasicData();                                                           \
     const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                   \
@@ -262,7 +262,7 @@ Bool Get##type##StatValue(const IndexedString& sSegment, const IndexedString& sS
             progressData.Get##type##StatValue(sStat, varValue) ||                                                   \
             battleData.Get##type##StatValue(sStat, varValue));                                                      \
 }                                                                                                                   \
-Bool Set##type##StatValue(const IndexedString& sSegment, const IndexedString& sStat, const type& varValue)          \
+Bool Set##type##StatValue(const String& sSegment, const String& sStat, const type& varValue)                        \
 {                                                                                                                   \
     CharacterBasicData& basicData = GetBasicData();                                                                 \
     CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                         \

@@ -12,7 +12,6 @@
 // Internal includes
 #include "Utility/Types.h"
 #include "Utility/Enum.h"
-#include "Utility/IndexedString.h"
 #include "Utility/Singleton.h"
 
 namespace Gecko

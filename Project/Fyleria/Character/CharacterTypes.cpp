@@ -9,11 +9,11 @@
 namespace Gecko
 {
 
-IndexedString ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const IndexedString& sCharacterEquipmentType)
+String ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const String& sCharacterEquipmentType)
 {
-    if(!sCharacterEquipmentType.IsValid())
+    if(sCharacterEquipmentType.empty())
     {
-        return IndexedString("None");
+        return (+CharacterWeaponSetType::None)._to_string();
     }
 
     const CharacterEquipmentType eCharacterEquipmentType = StringToCharacterEquipmentTypeOrNone(sCharacterEquipmentType);
@@ -21,20 +21,20 @@ IndexedString ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const Indexe
     {
         case CharacterEquipmentType::Weapon1Left:
         case CharacterEquipmentType::Weapon1Right:
-            return IndexedString("WeaponSet1");
+            return (+CharacterWeaponSetType::WeaponSet1)._to_string();
         case CharacterEquipmentType::Weapon2Left:
         case CharacterEquipmentType::Weapon2Right:
-            return IndexedString("WeaponSet2");
+            return (+CharacterWeaponSetType::WeaponSet2)._to_string();
         default:
-            return IndexedString("None");
+            return (+CharacterWeaponSetType::None)._to_string();
     }
 }
 
-IndexedString ConvertCharacterTargetTypeToCharacterPartyType(const IndexedString& sCharacterTargetType)
+String ConvertCharacterTargetTypeToCharacterPartyType(const String& sCharacterTargetType)
 {
-    if(!sCharacterTargetType.IsValid())
+    if(sCharacterTargetType.empty())
     {
-        return IndexedString("None");
+        return (+CharacterPartyType::None)._to_string();
     }
 
     const CharacterTargetType eCharacterTargetType = StringToCharacterTargetTypeOrNone(sCharacterTargetType);
@@ -47,7 +47,7 @@ IndexedString ConvertCharacterTargetTypeToCharacterPartyType(const IndexedString
         case CharacterTargetType::Ally4:
         case CharacterTargetType::Ally5:
         case CharacterTargetType::Ally6:
-            return IndexedString("Ally");
+            return (+CharacterPartyType::Ally)._to_string();
         case CharacterTargetType::AllEnemies:
         case CharacterTargetType::Enemy1:
         case CharacterTargetType::Enemy2:
@@ -55,17 +55,17 @@ IndexedString ConvertCharacterTargetTypeToCharacterPartyType(const IndexedString
         case CharacterTargetType::Enemy4:
         case CharacterTargetType::Enemy5:
         case CharacterTargetType::Enemy6:
-            return IndexedString("Enemy");
+            return (+CharacterPartyType::Enemy)._to_string();
         default:
-            return IndexedString("None");
+            return (+CharacterPartyType::None)._to_string();
     }
 }
 
-IndexedString ConvertItemTypeToCharacterActionType(const IndexedString& sItemType)
+String ConvertItemTypeToCharacterActionType(const String& sItemType)
 {
-    if(!sItemType.IsValid())
+    if(sItemType.empty())
     {
-        return IndexedString("None");
+        return (+CharacterActionType::None)._to_string();
     }
 
     const ItemType eItemType = StringToItemTypeOrNone(sItemType);
@@ -73,22 +73,22 @@ IndexedString ConvertItemTypeToCharacterActionType(const IndexedString& sItemTyp
     {
         case ItemType::WeaponPierce:
         case ItemType::ArmorShieldPierce:
-            return IndexedString("WeaponBasePierce");
+            return (+CharacterActionType::WeaponBasePierce)._to_string();
         case ItemType::WeaponBlunt:
         case ItemType::ArmorShieldBlunt:
-            return IndexedString("WeaponBaseBlunt");
+            return (+CharacterActionType::WeaponBaseBlunt)._to_string();
         case ItemType::WeaponSlash:
         case ItemType::ArmorShieldSlash:
-            return IndexedString("WeaponBaseSlash");
+            return (+CharacterActionType::WeaponBaseSlash)._to_string();
         default:
-            return IndexedString("None");
+            return (+CharacterActionType::None)._to_string();
     }
 }
 
-IndexedStringArray ConvertItemTypeToCharacterEquipTypes(const IndexedString& sItemType)
+StringArray ConvertItemTypeToCharacterEquipTypes(const String& sItemType)
 {
-    IndexedStringArray vEquipTypes;
-    if(!sItemType.IsValid())
+    StringArray vEquipTypes;
+    if(sItemType.empty())
     {
         return vEquipTypes;
     }
@@ -103,32 +103,32 @@ IndexedStringArray ConvertItemTypeToCharacterEquipTypes(const IndexedString& sIt
         case ItemType::ArmorShieldPierce:
         case ItemType::ArmorShieldBlunt:
         case ItemType::ArmorShieldSlash:
-            vEquipTypes.push_back(IndexedString("Weapon1Left"));
-            vEquipTypes.push_back(IndexedString("Weapon1Right"));
-            vEquipTypes.push_back(IndexedString("Weapon2Left"));
-            vEquipTypes.push_back(IndexedString("Weapon2Right"));
+            vEquipTypes.push_back((+CharacterEquipmentType::Weapon1Left)._to_string());
+            vEquipTypes.push_back((+CharacterEquipmentType::Weapon1Right)._to_string());
+            vEquipTypes.push_back((+CharacterEquipmentType::Weapon2Left)._to_string());
+            vEquipTypes.push_back((+CharacterEquipmentType::Weapon2Right)._to_string());
             break;
         case ItemType::ArmorChest:
-            vEquipTypes.push_back(IndexedString("Chest"));
+            vEquipTypes.push_back((+CharacterEquipmentType::Chest)._to_string());
             break;
         case ItemType::ArmorFeet:
-            vEquipTypes.push_back(IndexedString("Feet"));
+            vEquipTypes.push_back((+CharacterEquipmentType::Feet)._to_string());
             break;
         case ItemType::ArmorFinger:
-            vEquipTypes.push_back(IndexedString("LeftFingers"));
-            vEquipTypes.push_back(IndexedString("RightFingers"));
+            vEquipTypes.push_back((+CharacterEquipmentType::LeftFingers)._to_string());
+            vEquipTypes.push_back((+CharacterEquipmentType::RightFingers)._to_string());
             break;
         case ItemType::ArmorHands:
-            vEquipTypes.push_back(IndexedString("Hands"));
+            vEquipTypes.push_back((+CharacterEquipmentType::Hands)._to_string());
             break;
         case ItemType::ArmorHead:
-            vEquipTypes.push_back(IndexedString("Head"));
+            vEquipTypes.push_back((+CharacterEquipmentType::Head)._to_string());
             break;
         case ItemType::ArmorLegs:
-            vEquipTypes.push_back(IndexedString("Legs"));
+            vEquipTypes.push_back((+CharacterEquipmentType::Legs)._to_string());
             break;
         case ItemType::ArmorNeck:
-            vEquipTypes.push_back(IndexedString("Neck"));
+            vEquipTypes.push_back((+CharacterEquipmentType::Neck)._to_string());
             break;
         default:
             break;
@@ -136,160 +136,160 @@ IndexedStringArray ConvertItemTypeToCharacterEquipTypes(const IndexedString& sIt
     return vEquipTypes;
 }
 
-IndexedString ConvertSkillWeaponBaseTypeToCharacterActionType(const IndexedString& sSkillWeaponBaseType)
+String ConvertSkillWeaponBaseTypeToCharacterActionType(const String& sSkillWeaponBaseType)
 {
-    if(!sSkillWeaponBaseType.IsValid())
+    if(sSkillWeaponBaseType.empty())
     {
-        return IndexedString("None");
+        return (+CharacterActionType::None)._to_string();
     }
 
     const SkillWeaponBaseType eSkillWeaponBaseType = StringToSkillWeaponBaseTypeOrNone(sSkillWeaponBaseType);
     switch(eSkillWeaponBaseType)
     {
         case SkillWeaponBaseType::Slash:
-            return IndexedString("WeaponBaseSlash");
+            return (+CharacterActionType::WeaponBaseSlash)._to_string();
         case SkillWeaponBaseType::Blunt:
-            return IndexedString("WeaponBaseBlunt");
+            return (+CharacterActionType::WeaponBaseBlunt)._to_string();
         case SkillWeaponBaseType::Pierce:
-            return IndexedString("WeaponBasePierce");
+            return (+CharacterActionType::WeaponBasePierce)._to_string();
         default:
-            return IndexedString("None");
+            return (+CharacterActionType::None)._to_string();
     }
 }
 
-IndexedString ConvertSkillWeaponTypeToCharacterActionType(const IndexedString& sSkillWeaponType)
+String ConvertSkillWeaponTypeToCharacterActionType(const String& sSkillWeaponType)
 {
-    if(!sSkillWeaponType.IsValid())
+    if(sSkillWeaponType.empty())
     {
-        return IndexedString("None");
+        return (+CharacterActionType::None)._to_string();
     }
 
     const SkillWeaponType eSkillWeaponType = StringToSkillWeaponTypeOrNone(sSkillWeaponType);
     switch(eSkillWeaponType)
     {
         case SkillWeaponType::Slash:
-            return IndexedString("WeaponSlash");
+            return (+CharacterActionType::WeaponSlash)._to_string();
         case SkillWeaponType::Sever:
-            return IndexedString("WeaponSever");
+            return (+CharacterActionType::WeaponSever)._to_string();
         case SkillWeaponType::Slice:
-            return IndexedString("WeaponSlice");
+            return (+CharacterActionType::WeaponSlice)._to_string();
         case SkillWeaponType::Slit:
-            return IndexedString("WeaponSlit");
+            return (+CharacterActionType::WeaponSlit)._to_string();
         case SkillWeaponType::Cleave:
-            return IndexedString("WeaponCleave");
+            return (+CharacterActionType::WeaponCleave)._to_string();
         case SkillWeaponType::Decapitate:
-            return IndexedString("WeaponDecapitate");
+            return (+CharacterActionType::WeaponDecapitate)._to_string();
         case SkillWeaponType::Parry:
-            return IndexedString("WeaponParry");
+            return (+CharacterActionType::WeaponParry)._to_string();
         case SkillWeaponType::Riposte:
-            return IndexedString("WeaponRiposte");
+            return (+CharacterActionType::WeaponRiposte)._to_string();
         case SkillWeaponType::Bash:
-            return IndexedString("WeaponBash");
+            return (+CharacterActionType::WeaponBash)._to_string();
         case SkillWeaponType::Smash:
-            return IndexedString("WeaponSmash");
+            return (+CharacterActionType::WeaponSmash)._to_string();
         case SkillWeaponType::Impact:
-            return IndexedString("WeaponImpact");
+            return (+CharacterActionType::WeaponImpact)._to_string();
         case SkillWeaponType::Crush:
-            return IndexedString("WeaponCrush");
+            return (+CharacterActionType::WeaponCrush)._to_string();
         case SkillWeaponType::Break:
-            return IndexedString("WeaponBreak");
+            return (+CharacterActionType::WeaponBreak)._to_string();
         case SkillWeaponType::Crack:
-            return IndexedString("WeaponCrack");
+            return (+CharacterActionType::WeaponCrack)._to_string();
         case SkillWeaponType::Block:
-            return IndexedString("WeaponBlock");
+            return (+CharacterActionType::WeaponBlock)._to_string();
         case SkillWeaponType::Rush:
-            return IndexedString("WeaponRush");
+            return (+CharacterActionType::WeaponRush)._to_string();
         case SkillWeaponType::Pierce:
-            return IndexedString("WeaponPierce");
+            return (+CharacterActionType::WeaponPierce)._to_string();
         case SkillWeaponType::Drill:
-            return IndexedString("WeaponDrill");
+            return (+CharacterActionType::WeaponDrill)._to_string();
         case SkillWeaponType::Shoot:
-            return IndexedString("WeaponShoot");
+            return (+CharacterActionType::WeaponShoot)._to_string();
         case SkillWeaponType::Impale:
-            return IndexedString("WeaponImpale");
+            return (+CharacterActionType::WeaponImpale)._to_string();
         case SkillWeaponType::StealthStrike:
-            return IndexedString("WeaponStealthStrike");
+            return (+CharacterActionType::WeaponStealthStrike)._to_string();
         case SkillWeaponType::CriticalShot:
-            return IndexedString("WeaponCriticalShot");
+            return (+CharacterActionType::WeaponCriticalShot)._to_string();
         case SkillWeaponType::Dodge:
-            return IndexedString("WeaponDodge");
+            return (+CharacterActionType::WeaponDodge)._to_string();
         case SkillWeaponType::Counter:
-            return IndexedString("WeaponCounter");
+            return (+CharacterActionType::WeaponCounter)._to_string();
         default:
-            return IndexedString("None");
+            return (+CharacterActionType::None)._to_string();
     }
 }
 
-IndexedString ConvertSkillWeaponTypeToCharacterProgressStatType(const IndexedString& sSkillWeaponType)
+String ConvertSkillWeaponTypeToCharacterProgressStatType(const String& sSkillWeaponType)
 {
-    if(!sSkillWeaponType.IsValid())
+    if(sSkillWeaponType.empty())
     {
-        return IndexedString("None");
+        return (+CharacterProgressStatType_Int::None)._to_string();
     }
 
     const SkillWeaponType eSkillWeaponType = StringToSkillWeaponTypeOrNone(sSkillWeaponType);
     switch(eSkillWeaponType)
     {
         case SkillWeaponType::Slash:
-            return IndexedString("SlashPoints");
+            return (+CharacterProgressStatType_Int::SlashPoints)._to_string();
         case SkillWeaponType::Sever:
-            return IndexedString("SeverPoints");
+            return (+CharacterProgressStatType_Int::SeverPoints)._to_string();
         case SkillWeaponType::Slice:
-            return IndexedString("SlicePoints");
+            return (+CharacterProgressStatType_Int::SlicePoints)._to_string();
         case SkillWeaponType::Slit:
-            return IndexedString("SlitPoints");
+            return (+CharacterProgressStatType_Int::SlitPoints)._to_string();
         case SkillWeaponType::Cleave:
-            return IndexedString("CleavePoints");
+            return (+CharacterProgressStatType_Int::CleavePoints)._to_string();
         case SkillWeaponType::Decapitate:
-            return IndexedString("DecapitatePoints");
+            return (+CharacterProgressStatType_Int::DecapitatePoints)._to_string();
         case SkillWeaponType::Parry:
-            return IndexedString("ParryPoints");
+            return (+CharacterProgressStatType_Int::ParryPoints)._to_string();
         case SkillWeaponType::Riposte:
-            return IndexedString("RipostePoints");
+            return (+CharacterProgressStatType_Int::RipostePoints)._to_string();
         case SkillWeaponType::Bash:
-            return IndexedString("BashPoints");
+            return (+CharacterProgressStatType_Int::BashPoints)._to_string();
         case SkillWeaponType::Smash:
-            return IndexedString("SmashPoints");
+            return (+CharacterProgressStatType_Int::SmashPoints)._to_string();
         case SkillWeaponType::Impact:
-            return IndexedString("ImpactPoints");
+            return (+CharacterProgressStatType_Int::ImpactPoints)._to_string();
         case SkillWeaponType::Crush:
-            return IndexedString("CrushPoints");
+            return (+CharacterProgressStatType_Int::CrushPoints)._to_string();
         case SkillWeaponType::Break:
-            return IndexedString("BreakPoints");
+            return (+CharacterProgressStatType_Int::BreakPoints)._to_string();
         case SkillWeaponType::Crack:
-            return IndexedString("CrackPoints");
+            return (+CharacterProgressStatType_Int::CrackPoints)._to_string();
         case SkillWeaponType::Block:
-            return IndexedString("BlockPoints");
+            return (+CharacterProgressStatType_Int::BlockPoints)._to_string();
         case SkillWeaponType::Rush:
-            return IndexedString("RushPoints");
+            return (+CharacterProgressStatType_Int::RushPoints)._to_string();
         case SkillWeaponType::Pierce:
-            return IndexedString("PiercePoints");
+            return (+CharacterProgressStatType_Int::PiercePoints)._to_string();
         case SkillWeaponType::Drill:
-            return IndexedString("DrillPoints");
+            return (+CharacterProgressStatType_Int::DrillPoints)._to_string();
         case SkillWeaponType::Shoot:
-            return IndexedString("ShootPoints");
+            return (+CharacterProgressStatType_Int::ShootPoints)._to_string();
         case SkillWeaponType::Impale:
-            return IndexedString("ImpalePoints");
+            return (+CharacterProgressStatType_Int::ImpalePoints)._to_string();
         case SkillWeaponType::StealthStrike:
-            return IndexedString("StealthStrikePoints");
+            return (+CharacterProgressStatType_Int::StealthStrikePoints)._to_string();
         case SkillWeaponType::CriticalShot:
-            return IndexedString("CriticalShotPoints");
+            return (+CharacterProgressStatType_Int::CriticalShotPoints)._to_string();
         case SkillWeaponType::Dodge:
-            return IndexedString("DodgePoints");
+            return (+CharacterProgressStatType_Int::DodgePoints)._to_string();
         case SkillWeaponType::Counter:
-            return IndexedString("CounterPoints");
+            return (+CharacterProgressStatType_Int::CounterPoints)._to_string();
         default:
-            return IndexedString("None");
+            return (+CharacterProgressStatType_Int::None)._to_string();
     }
 }
 
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTreeIndexType);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterSegmentType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBasicStatType_IndexedString);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBasicStatType_String);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBasicStatType_Int);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterProgressStatType_Int);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_IndexedString);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_IndexedStringArray);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_String);
+MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_StringArray);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_Bool);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_Int);
 MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_Float);
@@ -312,11 +312,11 @@ MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterActionRunType);
 
 MAKE_ENUM_CONVERTERS_IMPL(CharacterTreeIndexType);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterSegmentType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBasicStatType_IndexedString);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBasicStatType_String);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterBasicStatType_Int);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterProgressStatType_Int);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_IndexedString);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_IndexedStringArray);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_String);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_StringArray);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Bool);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Int);
 MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Float);

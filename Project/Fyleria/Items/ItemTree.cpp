@@ -28,39 +28,39 @@ namespace Gecko
 void ItemTree::LoadItemTreesIntoMemory()
 {
     // Armor
-    ItemTreeArmor::GetInstance()->AddBranch(IndexedString("Chest"), IndexedString(ConfigManager::GetInstance()->GetItemArmorChestFile()));
-    ItemTreeArmor::GetInstance()->AddBranch(IndexedString("Feet"), IndexedString(ConfigManager::GetInstance()->GetItemArmorFeetFile()));
-    ItemTreeArmor::GetInstance()->AddBranch(IndexedString("Finger"), IndexedString(ConfigManager::GetInstance()->GetItemArmorFingerFile()));
-    ItemTreeArmor::GetInstance()->AddBranch(IndexedString("Hands"), IndexedString(ConfigManager::GetInstance()->GetItemArmorHandsFile()));
-    ItemTreeArmor::GetInstance()->AddBranch(IndexedString("Head"), IndexedString(ConfigManager::GetInstance()->GetItemArmorHeadFile()));
-    ItemTreeArmor::GetInstance()->AddBranch(IndexedString("Neck"), IndexedString(ConfigManager::GetInstance()->GetItemArmorNeckFile()));
-    ItemTreeArmor::GetInstance()->AddBranch(IndexedString("Legs"), IndexedString(ConfigManager::GetInstance()->GetItemArmorLegsFile()));
-    ItemTreeArmor::GetInstance()->AddBranch(IndexedString("Shield"), IndexedString(ConfigManager::GetInstance()->GetItemArmorShieldFile()));
+    ItemTreeArmor::GetInstance()->AddBranch(String("Chest"), String(ConfigManager::GetInstance()->GetItemArmorChestFile()));
+    ItemTreeArmor::GetInstance()->AddBranch(String("Feet"), String(ConfigManager::GetInstance()->GetItemArmorFeetFile()));
+    ItemTreeArmor::GetInstance()->AddBranch(String("Finger"), String(ConfigManager::GetInstance()->GetItemArmorFingerFile()));
+    ItemTreeArmor::GetInstance()->AddBranch(String("Hands"), String(ConfigManager::GetInstance()->GetItemArmorHandsFile()));
+    ItemTreeArmor::GetInstance()->AddBranch(String("Head"), String(ConfigManager::GetInstance()->GetItemArmorHeadFile()));
+    ItemTreeArmor::GetInstance()->AddBranch(String("Neck"), String(ConfigManager::GetInstance()->GetItemArmorNeckFile()));
+    ItemTreeArmor::GetInstance()->AddBranch(String("Legs"), String(ConfigManager::GetInstance()->GetItemArmorLegsFile()));
+    ItemTreeArmor::GetInstance()->AddBranch(String("Shield"), String(ConfigManager::GetInstance()->GetItemArmorShieldFile()));
 
     // Ingredient
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Bar"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientBarFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Cloth"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientClothFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Crystal"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientCrystalFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Leather"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientLeatherFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Mail"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientMailFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Plate"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientPlateFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Scale"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientScaleFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Screw"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientScrewFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Sheet"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientSheetFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Stud"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientStudFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch(IndexedString("Thread"), IndexedString(ConfigManager::GetInstance()->GetItemIngredientThreadFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Bar"), String(ConfigManager::GetInstance()->GetItemIngredientBarFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Cloth"), String(ConfigManager::GetInstance()->GetItemIngredientClothFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Crystal"), String(ConfigManager::GetInstance()->GetItemIngredientCrystalFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Leather"), String(ConfigManager::GetInstance()->GetItemIngredientLeatherFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Mail"), String(ConfigManager::GetInstance()->GetItemIngredientMailFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Plate"), String(ConfigManager::GetInstance()->GetItemIngredientPlateFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Scale"), String(ConfigManager::GetInstance()->GetItemIngredientScaleFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Screw"), String(ConfigManager::GetInstance()->GetItemIngredientScrewFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Sheet"), String(ConfigManager::GetInstance()->GetItemIngredientSheetFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Stud"), String(ConfigManager::GetInstance()->GetItemIngredientStudFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch(String("Thread"), String(ConfigManager::GetInstance()->GetItemIngredientThreadFile()));
 
     // Potion
-    ItemTreePotion::GetInstance()->AddBranch(IndexedString("Energy"), IndexedString(ConfigManager::GetInstance()->GetItemPotionEnergyFile()));
-    ItemTreePotion::GetInstance()->AddBranch(IndexedString("Heal"), IndexedString(ConfigManager::GetInstance()->GetItemPotionHealFile()));
-    ItemTreePotion::GetInstance()->AddBranch(IndexedString("Magic"), IndexedString(ConfigManager::GetInstance()->GetItemPotionMagicFile()));
-    ItemTreePotion::GetInstance()->AddBranch(IndexedString("Speed"), IndexedString(ConfigManager::GetInstance()->GetItemPotionSpeedFile()));
+    ItemTreePotion::GetInstance()->AddBranch(String("Energy"), String(ConfigManager::GetInstance()->GetItemPotionEnergyFile()));
+    ItemTreePotion::GetInstance()->AddBranch(String("Heal"), String(ConfigManager::GetInstance()->GetItemPotionHealFile()));
+    ItemTreePotion::GetInstance()->AddBranch(String("Magic"), String(ConfigManager::GetInstance()->GetItemPotionMagicFile()));
+    ItemTreePotion::GetInstance()->AddBranch(String("Speed"), String(ConfigManager::GetInstance()->GetItemPotionSpeedFile()));
 
     // Weapon
-    ItemTreeWeapon::GetInstance()->AddBranch(IndexedString("Blunt"), IndexedString(ConfigManager::GetInstance()->GetItemWeaponBluntFile()));
-    ItemTreeWeapon::GetInstance()->AddBranch(IndexedString("Mage"), IndexedString(ConfigManager::GetInstance()->GetItemWeaponMageFile()));
-    ItemTreeWeapon::GetInstance()->AddBranch(IndexedString("Pierce"), IndexedString(ConfigManager::GetInstance()->GetItemWeaponPierceFile()));
-    ItemTreeWeapon::GetInstance()->AddBranch(IndexedString("Slash"), IndexedString(ConfigManager::GetInstance()->GetItemWeaponSlashFile()));
+    ItemTreeWeapon::GetInstance()->AddBranch(String("Blunt"), String(ConfigManager::GetInstance()->GetItemWeaponBluntFile()));
+    ItemTreeWeapon::GetInstance()->AddBranch(String("Mage"), String(ConfigManager::GetInstance()->GetItemWeaponMageFile()));
+    ItemTreeWeapon::GetInstance()->AddBranch(String("Pierce"), String(ConfigManager::GetInstance()->GetItemWeaponPierceFile()));
+    ItemTreeWeapon::GetInstance()->AddBranch(String("Slash"), String(ConfigManager::GetInstance()->GetItemWeaponSlashFile()));
 
     // Post process item data
     POSTPROCESS_ITEMS(Armor);
@@ -97,7 +97,7 @@ void ItemTree::UnloadItemTreesFromMemory()
             change.SetSourceTargetType(character_target);                                                       \
             change.SetDestinationTargetType(character_target);                                                  \
             change.SetChanceToApply(1.0);                                                                       \
-            CharacterManager::GetInstance()->ApplyStatChange(IndexedString("Base"), change, bAll, bOne, true);  \
+            CharacterManager::GetInstance()->ApplyStatChange(String("Base"), change, bAll, bOne, true);  \
         }                                                                                                       \
     }                                                                                                           \
 }
@@ -112,13 +112,13 @@ void ItemTree::VerifyItemTrees()
     generator.RandomizeAll();
 
     // Generate a character and party
-    const IndexedString sCharacterID("CharacterID");
-    const IndexedString sCharacterPartyID("CharacterPartyID");
-    const IndexedString sCharacterPartyType("Ally");
+    const String sCharacterID("CharacterID");
+    const String sCharacterPartyID("CharacterPartyID");
+    const String sCharacterPartyType("Ally");
     CharacterManager::GetInstance()->GenerateCharacter(sCharacterID, generator);
     CharacterPartyManager::GetInstance()->CreateParty(sCharacterPartyID, sCharacterPartyType, true);
     CharacterPartyManager::GetInstance()->GetPartyByID(sCharacterPartyID).AddMember(sCharacterID);
-    const IndexedString sCharacterTargetType = CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetCharacterTargetType();
+    const String sCharacterTargetType = CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetCharacterTargetType();
 
     // Apply all stat changes
     VERIFY_APPLY_STATCHANGES(Armor, sCharacterTargetType);
@@ -182,7 +182,7 @@ const ItemDataWeapon& ItemTree::RetrieveItemDataWeapon(const TreeIndex& treeInde
     return ItemTreeWeapon::GetInstance()->GetLeaf(treeIndex);
 }
 
-IndexedString ItemTree::RetrieveItemType(const TreeIndex& treeIndex)
+String ItemTree::RetrieveItemType(const TreeIndex& treeIndex)
 {
     if(DoesItemDataArmorExist(treeIndex))
     {
@@ -200,12 +200,12 @@ IndexedString ItemTree::RetrieveItemType(const TreeIndex& treeIndex)
     {
         return RetrieveItemDataWeapon(treeIndex).GetItemType();
     }
-    return IndexedString("None");
+    return (+ItemTreeType::None)._to_string();
 }
 
 #define ADD_ITEM_LEAVES(tree, branch)                                           \
 {                                                                               \
-    IndexedString sBranchName(#branch);                                         \
+    String sBranchName(#branch);                                         \
     auto vLeaves = ItemTree##tree::GetInstance()->GetAllLeaves(sBranchName);    \
     vFinal.insert(vFinal.end(), vLeaves.begin(), vLeaves.end());                \
 }
@@ -261,7 +261,7 @@ TreeIndexArray ItemTree::GetAllWeaponItems()
     return vFinal;
 }
 
-TreeIndexArray ItemTree::GetAllEquippedItems(const IndexedString& sCharID)
+TreeIndexArray ItemTree::GetAllEquippedItems(const String& sCharID)
 {
     TreeIndexArray vFinal;
     if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharID))
@@ -277,37 +277,37 @@ TreeIndexArray ItemTree::GetAllEquippedItems(const IndexedString& sCharID)
     return vFinal;
 }
 
-TreeIndex ItemTree::ResolveItemLeafIntoIndex(const IndexedString& sLeaf)
+TreeIndex ItemTree::ResolveItemLeafIntoIndex(const String& sLeaf)
 {
     // Branch name
-    IndexedString sBranch;
+    String sBranch;
 
     // Check armor
     sBranch = ItemTreeArmor::GetInstance()->GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
-        return TreeIndex(IndexedString("Armor"), sBranch, sLeaf);
+        return TreeIndex(String("Armor"), sBranch, sLeaf);
     }
 
     // Check weapon
     sBranch = ItemTreeWeapon::GetInstance()->GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
-        return TreeIndex(IndexedString("Weapon"), sBranch, sLeaf);
+        return TreeIndex(String("Weapon"), sBranch, sLeaf);
     }
 
     // Check potion
     sBranch = ItemTreePotion::GetInstance()->GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
-        return TreeIndex(IndexedString("Potion"), sBranch, sLeaf);
+        return TreeIndex(String("Potion"), sBranch, sLeaf);
     }
 
     // Check ingredient
     sBranch = ItemTreeIngredient::GetInstance()->GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
-        return TreeIndex(IndexedString("Ingredient"), sBranch, sLeaf);
+        return TreeIndex(String("Ingredient"), sBranch, sLeaf);
     }
 
     // Nothing found
@@ -332,8 +332,8 @@ Bool ItemTree::IsItemActionable(const TreeIndex& treeIndex)
 }
 
 Bool ItemTree::GenerateItemCharacterActions(const TreeIndex& treeIndex,
-    const IndexedString& sCharacterID,
-    const IndexedString& sWeaponSet,
+    const String& sCharacterID,
+    const String& sWeaponSet,
     CharacterActionArray& vActions)
 {
     if(DoesItemDataArmorExist(treeIndex))
@@ -419,9 +419,9 @@ Bool ItemTree::IsItemShield(const TreeIndex& treeIndex)
     return false;
 }
 
-IndexedStringArray ItemTree::GetActionTypes(const TreeIndex& treeIndex)
+StringArray ItemTree::GetActionTypes(const TreeIndex& treeIndex)
 {
-    IndexedStringArray vActionTypes;
+    StringArray vActionTypes;
     if(DoesItemDataArmorExist(treeIndex))
     {
         const ItemDataArmor& item = RetrieveItemDataArmor(treeIndex);
@@ -446,12 +446,12 @@ void ItemTree::FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
     TreeIndexArray& vActionables)
 {
     // Use a set to make sure that we do not include duplicates
-    STDUnorderedSet<IndexedString, IndexedStringHasher> tAlreadyUsed;
+    STDUnorderedSet<String> tAlreadyUsed;
 
     // Split them into separate lists
     for(const TreeIndex& treeIndex : vItemDataArray)
     {
-        IndexedString sIndexKey = treeIndex.GetTreeBranchLeafType();
+        String sIndexKey = treeIndex.GetTreeBranchLeafType();
         Bool bIsActionable = IsItemActionable(treeIndex);
         Bool bIsAlreadyUsed = (tAlreadyUsed.count(sIndexKey) == 1);
         if(bIsActionable && !bIsAlreadyUsed)

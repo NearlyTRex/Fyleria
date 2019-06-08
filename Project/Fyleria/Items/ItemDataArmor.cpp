@@ -32,7 +32,7 @@ void ItemDataArmor::Clear()
     SetStatChanges({});
 }
 
-CharacterActionArray ItemDataArmor::CreateArmorActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray ItemDataArmor::CreateArmorActions(const String& sCharacterID, const String& sWeaponSet) const
 {
     CharacterActionArray vNewActions;
     return vNewActions;

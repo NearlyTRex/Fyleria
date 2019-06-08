@@ -4,7 +4,6 @@
 #ifndef _GECKO_CHARACTER_PARTY_EQUIPPED_ITEM_H_
 #define _GECKO_CHARACTER_PARTY_EQUIPPED_ITEM_H_
 
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Tree.h"
 #include "Utility/Enum.h"
@@ -26,7 +25,7 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
 
     // Item slot
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemSlot, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemSlot, String);
 };
 
 // Typedef

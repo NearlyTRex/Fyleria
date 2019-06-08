@@ -4,7 +4,6 @@
 #ifndef _GECKO_UTILITY_TREEINDEX_H_
 #define _GECKO_UTILITY_TREEINDEX_H_
 
-#include "Utility/IndexedString.h"
 #include "Utility/Serializable.h"
 
 namespace Gecko
@@ -16,14 +15,14 @@ public:
 
     // Constructors
     TreeIndex();
-    TreeIndex(const IndexedString& sTree, const IndexedString& sBranch, const IndexedString& sLeaf);
+    TreeIndex(const String& sTree, const String& sBranch, const String& sLeaf);
     explicit TreeIndex(const Json& jsonData);
     explicit TreeIndex(const String& jsonString);
 
     // Composite types
-    IndexedString GetTreeBranchType() const;
-    IndexedString GetTreeBranchLeafType() const;
-    IndexedStringArray GetTypes() const;
+    String GetTreeBranchType() const;
+    String GetTreeBranchLeafType() const;
+    StringArray GetTypes() const;
 
     // Compatibility
     Bool empty() const;
@@ -36,13 +35,13 @@ public:
     Bool operator!=(const TreeIndex& other) const;
 
     // Tree name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Tree, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Tree, String);
 
     // Branch name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Branch, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Branch, String);
 
     // Leaf name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Leaf, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Leaf, String);
 };
 
 // Typedef

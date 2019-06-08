@@ -61,34 +61,34 @@ void Character::RegenerateCharacterData(
 #endif
 }
 
-IndexedString Character::GetCharacterID() const
+String Character::GetCharacterID() const
 {
     return GetBasicData().GetCharacterID();
 }
 
-IndexedString Character::GetPartyID() const
+String Character::GetPartyID() const
 {
     return GetBasicData().GetPartyID();
 }
 
-IndexedString Character::GetCharacterTargetType() const
+String Character::GetCharacterTargetType() const
 {
-    IndexedString sCharacterID = GetCharacterID();
-    IndexedString sPartyID = GetPartyID();
+    String sCharacterID = GetCharacterID();
+    String sPartyID = GetPartyID();
     const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetCharacterTargetType();
 }
 
-IndexedString Character::GetCurrentWeaponSet() const
+String Character::GetCurrentWeaponSet() const
 {
     return GetBattleDataBase().GetCurrentWeaponSet();
 }
 
 const CharacterPartyEquippedItemArray& Character::GetEquippedItems() const
 {
-    IndexedString sCharacterID = GetCharacterID();
-    IndexedString sPartyID = GetPartyID();
+    String sCharacterID = GetCharacterID();
+    String sPartyID = GetPartyID();
     const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetEquippedItems();
@@ -99,22 +99,22 @@ const CharacterActionArray& Character::GetAvailableActions() const
     return GetActionData().GetAvailableActions();
 }
 
-const TreeIndexArray& Character::GetPassiveChanges(const IndexedString& sTreeIndexType) const
+const TreeIndexArray& Character::GetPassiveChanges(const String& sTreeIndexType) const
 {
     return GetStatChangeData().GetPassiveChanges(sTreeIndexType);
 }
 
-const TreeIndexArray& Character::GetActiveChanges(const IndexedString& sTreeIndexType) const
+const TreeIndexArray& Character::GetActiveChanges(const String& sTreeIndexType) const
 {
     return GetStatChangeData().GetActiveChanges(sTreeIndexType);
 }
 
-const TreeIndexArray& Character::GetActionableChanges(const IndexedString& sTreeIndexType) const
+const TreeIndexArray& Character::GetActionableChanges(const String& sTreeIndexType) const
 {
     return GetStatChangeData().GetActionableChanges(sTreeIndexType);
 }
 
-const CharacterProgressData& Character::GetProgressDataSegment(const IndexedString& sSegment) const
+const CharacterProgressData& Character::GetProgressDataSegment(const String& sSegment) const
 {
     CharacterSegmentType eSegmentType = StringToCharacterSegmentType(sSegment);
     switch(eSegmentType)
@@ -124,15 +124,15 @@ const CharacterProgressData& Character::GetProgressDataSegment(const IndexedStri
         case CharacterSegmentType::Active: return GetProgressDataActives();
         default: break;
     }
-    throw RuntimeError("Invalid or unknown segment requested: " + sSegment.Get());
+    throw RuntimeError("Invalid or unknown segment requested: " + sSegment);
 }
 
-CharacterProgressData& Character::GetProgressDataSegment(const IndexedString& sSegment)
+CharacterProgressData& Character::GetProgressDataSegment(const String& sSegment)
 {
     return const_cast<CharacterProgressData&>(static_cast<const Character&>(*this).GetProgressDataSegment(sSegment));
 }
 
-const CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& sSegment) const
+const CharacterBattleData& Character::GetBattleDataSegment(const String& sSegment) const
 {
     CharacterSegmentType eSegmentType = StringToCharacterSegmentType(sSegment);
     switch(eSegmentType)
@@ -142,10 +142,10 @@ const CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& 
         case CharacterSegmentType::Active: return GetBattleDataActives();
         default: break;
     }
-    throw RuntimeError("Invalid or unknown segment requested: " + sSegment.Get());
+    throw RuntimeError("Invalid or unknown segment requested: " + sSegment);
 }
 
-CharacterBattleData& Character::GetBattleDataSegment(const IndexedString& sSegment)
+CharacterBattleData& Character::GetBattleDataSegment(const String& sSegment)
 {
     return const_cast<CharacterBattleData&>(static_cast<const Character&>(*this).GetBattleDataSegment(sSegment));
 }
@@ -163,7 +163,7 @@ Bool Character::operator!=(const Character& other) const
 void Character::UpdateEquipmentRatings()
 {
     // Update equipment ratings
-    GetBattleDataBase().UpdateEquipmentRatings(GetCharacterID(), IndexedString("Base"));
+    GetBattleDataBase().UpdateEquipmentRatings(GetCharacterID(), String("Base"));
 }
 
 void Character::UpdateAvailableChanges()
@@ -193,15 +193,15 @@ void Character::UpdateSkillRankings()
 void Character::ApplyPassiveChanges()
 {
     // Data sources should come from base but apply to passive
-    const IndexedString sSourceSegment("Base");
-    const IndexedString sDestSegment("Passive");
+    const String sSourceSegment("Base");
+    const String sDestSegment("Passive");
 
     // Copy base data into passive to start with
     SetProgressDataPassives(GetProgressDataBase());
     SetBattleDataPassives(GetBattleDataBase());
 
     // Apply passives
-    for(const IndexedString& sTreeIndexType : CharacterTreeIndexType::_names())
+    for(const String& sTreeIndexType : CharacterTreeIndexType::_names())
     {
         for(const TreeIndex& treeIndex : GetStatChangeData().GetPassiveChanges(sTreeIndexType))
         {
@@ -222,15 +222,15 @@ void Character::ApplyPassiveChanges()
 void Character::ApplyActiveChanges(const CharacterAction& action)
 {
     // Data sources should come from passive but apply to active
-    const IndexedString sSourceSegment("Passive");
-    const IndexedString sDestSegment("Active");
+    const String sSourceSegment("Passive");
+    const String sDestSegment("Active");
 
     // Copy passive data into active to start with
     SetProgressDataActives(GetProgressDataPassives());
     SetBattleDataActives(GetBattleDataPassives());
 
     // Apply actives
-    for(const IndexedString& sTreeIndexType : CharacterTreeIndexType::_names())
+    for(const String& sTreeIndexType : CharacterTreeIndexType::_names())
     {
         for(const TreeIndex& treeIndex : GetStatChangeData().GetActiveChanges(sTreeIndexType))
         {

@@ -21,7 +21,7 @@ CharacterActionEntry::CharacterActionEntry(const String& jsonString)
 {
 }
 
-Bool CharacterActionEntry::DoesMatchActionType(const IndexedString& sType) const
+Bool CharacterActionEntry::DoesMatchActionType(const String& sType) const
 {
     return STDFindData(GetActionTypes().begin(), GetActionTypes().end(), sType) != GetActionTypes().end();
 }

@@ -26,7 +26,7 @@ Bool ConfigManager::LoadConfig(const String& sName, const String& sFile)
 
     // Read json data into config object
     Json jsonData;
-    if(!ReadJsonFile(IndexedString(sFile), jsonData))
+    if(!ReadJsonFile(String(sFile), jsonData))
     {
         return false;
     }

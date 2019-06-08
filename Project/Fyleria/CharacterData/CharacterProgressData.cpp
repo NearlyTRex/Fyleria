@@ -60,7 +60,7 @@ void CharacterProgressData::ApplyActionCost(const CharacterAction& action)
     if(iTotalAPCost > 0)
     {
         // Get matching stat type
-        IndexedString sMatchingStatType;
+        String sMatchingStatType;
         if(SkillTree::DoesSkillDataWeaponExist(action.GetSkillTreeIndex()))
         {
             const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(action.GetSkillTreeIndex());
@@ -68,7 +68,7 @@ void CharacterProgressData::ApplyActionCost(const CharacterAction& action)
         }
 
         // Set new AP value
-        if(sMatchingStatType != IndexedString("None"))
+        if(sMatchingStatType != (+CharacterProgressStatType_Int::None)._to_string())
         {
             Int iAPValue = 0;
             if(!GetIntStatValue(sMatchingStatType, iAPValue))
@@ -90,7 +90,7 @@ void CharacterProgressData::ApplyActionCost(const CharacterAction& action)
     }
 }
 
-void CharacterProgressData::UpdateAvailableAP(const IndexedString& sCharacterID)
+void CharacterProgressData::UpdateAvailableAP(const String& sCharacterID)
 {
     // Action point count type
     struct ActionPointCountEntry
@@ -107,7 +107,7 @@ void CharacterProgressData::UpdateAvailableAP(const IndexedString& sCharacterID)
     }
 
     // Populate a table of the highest amount of action points
-    STDUnorderedMap<IndexedString, ActionPointCountEntry, IndexedStringHasher> tHighestActionPointCounts;
+    STDUnorderedMap<String, ActionPointCountEntry> tHighestActionPointCounts;
     for(const TreeIndex& treeIndex : vWeaponSkills)
     {
         // Skill based action points
@@ -115,7 +115,7 @@ void CharacterProgressData::UpdateAvailableAP(const IndexedString& sCharacterID)
         {
             // Get skill information
             const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(treeIndex);
-            IndexedString sKey = treeIndex.GetTreeBranchType();
+            String sKey = treeIndex.GetTreeBranchType();
             Int iActionPoints = skillDataWeapon.GetActionPoints();
 
             // Update or add new information
@@ -146,8 +146,8 @@ void CharacterProgressData::UpdateAvailableAP(const IndexedString& sCharacterID)
         {
             // Update AP in each area
             const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(skillIndex);
-            const IndexedString sMatchingStatType = ConvertSkillWeaponTypeToCharacterProgressStatType(skillDataWeapon.GetSkillType());
-            if(sMatchingStatType != IndexedString("None"))
+            const String sMatchingStatType = ConvertSkillWeaponTypeToCharacterProgressStatType(skillDataWeapon.GetSkillType());
+            if(sMatchingStatType != (+CharacterProgressStatType_Int::None)._to_string())
             {
                 SetIntStatValue(sMatchingStatType, iActionPoints);
             }

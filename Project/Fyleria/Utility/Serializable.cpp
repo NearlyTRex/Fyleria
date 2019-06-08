@@ -56,32 +56,32 @@ FixedUnsigned8Array SerializableToJson::ToMsgPack() const
     return JsonToMsgPack(m_Data);
 }
 
-Bool SerializableToJson::FromFile(const IndexedString& sFilename)
+Bool SerializableToJson::FromFile(const String& sFilename)
 {
     return ReadJsonFile(sFilename, m_Data);
 }
 
-Bool SerializableToJson::FromCBORFile(const IndexedString& sFilename)
+Bool SerializableToJson::FromCBORFile(const String& sFilename)
 {
     return ReadCBORFile(sFilename, m_Data);
 }
 
-Bool SerializableToJson::FromMsgPackFile(const IndexedString& sFilename)
+Bool SerializableToJson::FromMsgPackFile(const String& sFilename)
 {
     return ReadMsgPackFile(sFilename, m_Data);
 }
 
-Bool SerializableToJson::ToFile(const IndexedString& sFilename) const
+Bool SerializableToJson::ToFile(const String& sFilename) const
 {
     return WriteJsonFile(sFilename, m_Data);
 }
 
-Bool SerializableToJson::ToCBORFile(const IndexedString& sFilename) const
+Bool SerializableToJson::ToCBORFile(const String& sFilename) const
 {
     return WriteCBORFile(sFilename, m_Data);
 }
 
-Bool SerializableToJson::ToMsgPackFile(const IndexedString& sFilename) const
+Bool SerializableToJson::ToMsgPackFile(const String& sFilename) const
 {
     return WriteMsgPackFile(sFilename, m_Data);
 }

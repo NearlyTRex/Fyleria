@@ -5,7 +5,6 @@
 #define _GECKO_STAT_TYPE_H_
 
 #include "Utility/Types.h"
-#include "Utility/IndexedString.h"
 
 namespace Gecko
 {
@@ -34,11 +33,11 @@ private:
 };
 
 // Typedefs
-typedef STDMap<IndexedString, StatType> StatTypeMap;
+typedef STDMap<String, StatType> StatTypeMap;
 
 // Helper functions
 template <class T>
-Bool SetStatValue(StatTypeMap& tStatMap, const IndexedString& sStatName, const T& inValue)
+Bool SetStatValue(StatTypeMap& tStatMap, const String& sStatName, const T& inValue)
 {
     if (tStatMap.find(sStatName) == tStatMap.end())
     {
@@ -48,7 +47,7 @@ Bool SetStatValue(StatTypeMap& tStatMap, const IndexedString& sStatName, const T
     return true;
 }
 template <class T>
-Bool GetStatValue(const StatTypeMap& tStatMap, const IndexedString& sStatName, T& outValue)
+Bool GetStatValue(const StatTypeMap& tStatMap, const String& sStatName, T& outValue)
 {
     if (tStatMap.find(sStatName) == tStatMap.end())
     {

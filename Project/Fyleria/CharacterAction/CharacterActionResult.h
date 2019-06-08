@@ -4,7 +4,6 @@
 #ifndef _GECKO_CHARACTER_ACTION_RESULT_H_
 #define _GECKO_CHARACTER_ACTION_RESULT_H_
 
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Tree.h"
 #include "Utility/Enum.h"

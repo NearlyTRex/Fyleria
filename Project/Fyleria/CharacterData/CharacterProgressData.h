@@ -32,7 +32,7 @@ public:
     void ApplyActionCost(const CharacterAction& action);
 
     // Update available AP
-    void UpdateAvailableAP(const IndexedString& sCharacterID);
+    void UpdateAvailableAP(const String& sCharacterID);
 
     // Stat names
     static void InitAllStatNames();

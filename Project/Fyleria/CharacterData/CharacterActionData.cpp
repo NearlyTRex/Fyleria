@@ -22,7 +22,7 @@ void CharacterActionData::Clear()
     GetAvailableActions().clear();
 }
 
-void CharacterActionData::UpdateAvailableActions(const IndexedString& sCharacterID)
+void CharacterActionData::UpdateAvailableActions(const String& sCharacterID)
 {
     // Get character
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
@@ -32,10 +32,10 @@ void CharacterActionData::UpdateAvailableActions(const IndexedString& sCharacter
     vAvailableActions.clear();
 
     // Look at each type of tree index
-    for(const IndexedString& sIndexTreeType : CharacterTreeIndexType::_names())
+    for(const String& sIndexTreeType : CharacterTreeIndexType::_names())
     {
         // Skip invalid tree types
-        if(sIndexTreeType.IsNone())
+        if(sIndexTreeType == (+CharacterTreeIndexType::None)._to_string())
         {
             continue;
         }
@@ -44,10 +44,10 @@ void CharacterActionData::UpdateAvailableActions(const IndexedString& sCharacter
         for(const TreeIndex& treeIndex : character.GetActionableChanges(sIndexTreeType))
         {
             // Look at each weapon set
-            for(const IndexedString& sWeaponSet : CharacterWeaponSetType::_names())
+            for(const String& sWeaponSet : CharacterWeaponSetType::_names())
             {
                 // Skip invalid weapon sets
-                if(sWeaponSet.IsNone())
+                if(sWeaponSet == (+CharacterWeaponSetType::None)._to_string())
                 {
                     continue;
                 }

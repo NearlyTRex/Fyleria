@@ -33,8 +33,8 @@ void Battle::Clear()
     SetActionCount(0);
 
     // Party IDs
-    SetEnemyPartyID(IndexedString(""));
-    SetAllyPartyID(IndexedString(""));
+    SetEnemyPartyID("");
+    SetAllyPartyID("");
 }
 
 void Battle::Start()
@@ -62,7 +62,7 @@ void Battle::AdvanceRound()
     ClearAllActions();
 }
 
-Bool Battle::IsBattleOver(const IndexedString& sPartyID) const
+Bool Battle::IsBattleOver(const String& sPartyID) const
 {
     const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
     return party.IsPartyAbleToFight();
@@ -184,8 +184,8 @@ void to_json(Json& jsonData, const Battle& obj)
     SET_JSON_DATA_IF_NOT_DEFAULT(ActionCount, 0);
 
     // Party names
-    SET_JSON_DATA_IF_NOT_DEFAULT(EnemyPartyID, IndexedString(""));
-    SET_JSON_DATA_IF_NOT_DEFAULT(AllyPartyID, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(EnemyPartyID, "");
+    SET_JSON_DATA_IF_NOT_DEFAULT(AllyPartyID, "");
 }
 
 void from_json(const Json& jsonData, Battle& obj)
@@ -205,8 +205,8 @@ void from_json(const Json& jsonData, Battle& obj)
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionCount, Int, 0);
 
     // Party IDs
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(EnemyPartyID, IndexedString, IndexedString(""));
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AllyPartyID, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(EnemyPartyID, String, "");
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AllyPartyID, String, "");
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Battle, Battle);

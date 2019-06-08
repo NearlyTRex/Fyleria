@@ -16,7 +16,7 @@ class CharacterManager : public Singleton<CharacterManager>
 public:
 
     // Types
-    typedef STDUnorderedMap<IndexedString, Character, IndexedStringHasher> CharacterMappingType;
+    typedef STDUnorderedMap<String, Character> CharacterMappingType;
 
     // Constructors
     CharacterManager();
@@ -27,106 +27,106 @@ public:
 
     // Load a character from a file
     // This will overwrite any existing matching data
-    void LoadCharacterFromFile(const IndexedString& sFilename, const IndexedString& sType);
+    void LoadCharacterFromFile(const String& sFilename, const String& sType);
 
     // Save a character to file
-    void SaveCharacterToFile(const IndexedString& sCharacterID, const IndexedString& sFilename, const IndexedString& sType);
+    void SaveCharacterToFile(const String& sCharacterID, const String& sFilename, const String& sType);
 
     // Create a character
-    void CreateCharacter(const IndexedString& sCharacterID);
+    void CreateCharacter(const String& sCharacterID);
 
     // Unload a character
-    void UnloadCharacter(const IndexedString& sCharacterID);
+    void UnloadCharacter(const String& sCharacterID);
 
     // Does a character exist
-    Bool DoesCharacterExist(const IndexedString& sCharacterID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesCharacterExist, const IndexedString&, sCharacterID);
+    Bool DoesCharacterExist(const String& sCharacterID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesCharacterExist, const String&, sCharacterID);
 
     // Generate a character
-    void GenerateCharacter(const IndexedString& sCharacterID, const CharacterGenerator& generator);
+    void GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator);
 
     // Check if character ID is valid
-    Bool IsValidCharacterID(const IndexedString& sCharacterID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsValidCharacterID, const IndexedString&, sCharacterID);
+    Bool IsValidCharacterID(const String& sCharacterID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsValidCharacterID, const String&, sCharacterID);
 
     // Get character
-    const Character& GetCharacter(const IndexedString& sCharacterID) const;
-    Character& GetCharacter(const IndexedString& sCharacterID);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetCharacter, const IndexedString&, sCharacterID);
+    const Character& GetCharacter(const String& sCharacterID) const;
+    Character& GetCharacter(const String& sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetCharacter, const String&, sCharacterID);
 
     // Apply a stat change
     void ApplyStatChange(
-        const IndexedString& sSegment,
+        const String& sSegment,
         const StatChange& change,
         Bool& bAllChangesApplied,
         Bool& bAtLeastOneChange,
         Bool bApplyAllEntries = false);
 
     // Apply a stat change entry
-    Bool ApplyStatChangeEntry(const IndexedString& sSegment, const StatChangeEntry& entry);
+    Bool ApplyStatChangeEntry(const String& sSegment, const StatChangeEntry& entry);
 
     // Apply a stat change entry bool operation
     Bool ApplyStatChangeEntryOperation(
-        const IndexedString& sSegment,
-        const IndexedString& sCharacterID,
-        const IndexedString& sOperation,
-        const IndexedString& sStat,
+        const String& sSegment,
+        const String& sCharacterID,
+        const String& sOperation,
+        const String& sStat,
         Bool bValue);
 
     // Apply a stat change entry int operation
     Bool ApplyStatChangeEntryOperation(
-        const IndexedString& sSegment,
-        const IndexedString& sCharacterID,
-        const IndexedString& sOperation,
-        const IndexedString& sStat,
+        const String& sSegment,
+        const String& sCharacterID,
+        const String& sOperation,
+        const String& sStat,
         Int iValue);
 
     // Apply a stat change entry float operation
     Bool ApplyStatChangeEntryOperation(
-        const IndexedString& sSegment,
-        const IndexedString& sCharacterID,
-        const IndexedString& sOperation,
-        const IndexedString& sStat,
+        const String& sSegment,
+        const String& sCharacterID,
+        const String& sOperation,
+        const String& sStat,
         Float fValue);
 
     // Apply a stat change entry string operation
     Bool ApplyStatChangeEntryOperation(
-        const IndexedString& sSegment,
-        const IndexedString& sCharacterID,
-        const IndexedString& sOperation,
-        const IndexedString& sStat,
-        const IndexedString& sValue);
+        const String& sSegment,
+        const String& sCharacterID,
+        const String& sOperation,
+        const String& sStat,
+        const String& sValue);
 
     // Apply a stat change entry string array operation
     Bool ApplyStatChangeEntryOperation(
-        const IndexedString& sSegment,
-        const IndexedString& sCharacterID,
-        const IndexedString& sOperation,
-        const IndexedString& sStat,
-        const IndexedStringArray& sValue);
+        const String& sSegment,
+        const String& sCharacterID,
+        const String& sOperation,
+        const String& sStat,
+        const StringArray& sValue);
 
     // Determine if stat change entry uses a delta from source to destination characters
     Bool DoesStatChangeEntryUseDelta(const StatChangeEntry& changeEntry) const;
 
     // Get delta changed values from stat change entry
     Bool GetDeltaStatChangeEntryValues(
-        const IndexedString& sSegment,
-        const IndexedString& sCharacterID,
+        const String& sSegment,
+        const String& sCharacterID,
         const StatChangeEntry& changeEntry,
         BoolArray& vBoolValues,
         IntArray& vIntValues,
         FloatArray& vFloatValues,
-        IndexedStringArray& vStringValues) const;
+        StringArray& vStringValues) const;
 
     // Get fully changed values from stat change entry
     Bool GetFullStatChangeEntryValues(
-        const IndexedString& sSegment,
-        const IndexedString& sCharacterID,
+        const String& sSegment,
+        const String& sCharacterID,
         const StatChangeEntry& changeEntry,
         BoolArray& vBoolValues,
         IntArray& vIntValues,
         FloatArray& vFloatValues,
-        IndexedStringArray& vStringValues) const;
+        StringArray& vStringValues) const;
 
     // Characters
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Characters, CharacterMappingType);

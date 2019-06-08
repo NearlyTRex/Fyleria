@@ -5,7 +5,6 @@
 #define _GECKO_SAVE_TYPES_H_
 
 // Internal includes
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 

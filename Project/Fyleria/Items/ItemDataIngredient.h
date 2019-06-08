@@ -23,9 +23,9 @@ public:
     virtual void Clear();
 
     // Item tree type
-    static IndexedString GetTreeType()
+    static String GetTreeType()
     {
-        return IndexedString(ItemTreeType(ItemTreeType::Ingredient)._to_string());
+        return String(ItemTreeType(ItemTreeType::Ingredient)._to_string());
     }
 
     // Stat changes

@@ -25,19 +25,19 @@ void SkillData::Clear()
     SetRunTypes({});
 
     // Data class
-    SetDataClass(IndexedString(""));
+    SetDataClass("");
 
     // Skill rank
     SetSkillRank(0);
 
     // Skill name
-    SetSkillName(IndexedString(""));
+    SetSkillName("");
 
     // Skill description
-    SetSkillDescription(IndexedString(""));
+    SetSkillDescription("");
 
     // Skill type
-    SetSkillType(IndexedString("None"));
+    SetSkillType("");
 
     // Skill costs
     SetSkillCostAP(0);
@@ -103,43 +103,43 @@ Bool SkillData::DoesHaveOnlyDefendRequirements() const
 }
 
 Bool SkillData::GetIntersectingRequirementTypes(
-    const IndexedStringArray& vPrimaryActionTypes,
-    const IndexedStringArray& vSecondaryActionTypes,
-    IndexedStringArray& vPrimaryAttackIntersections,
-    IndexedStringArray& vPrimaryDefendIntersections,
-    IndexedStringArray& vSecondaryAttackIntersections,
-    IndexedStringArray& vSecondaryDefendIntersections) const
+    const StringArray& vPrimaryActionTypes,
+    const StringArray& vSecondaryActionTypes,
+    StringArray& vPrimaryAttackIntersections,
+    StringArray& vPrimaryDefendIntersections,
+    StringArray& vSecondaryAttackIntersections,
+    StringArray& vSecondaryDefendIntersections) const
 {
     // Get intersections
     for(const StatChange& change : GetStatChanges())
     {
         if(change.DoesHaveAttackRequirements() && !vPrimaryActionTypes.empty())
         {
-            IndexedStringArray vIntersect = change.GetIntersectingAttackRequirements(vPrimaryActionTypes);
+            StringArray vIntersect = change.GetIntersectingAttackRequirements(vPrimaryActionTypes);
             vPrimaryAttackIntersections.insert(vPrimaryAttackIntersections.end(), vIntersect.begin(), vIntersect.end());
         }
         if(change.DoesHaveAttackRequirements() && !vSecondaryActionTypes.empty())
         {
-            IndexedStringArray vIntersect = change.GetIntersectingAttackRequirements(vSecondaryActionTypes);
+            StringArray vIntersect = change.GetIntersectingAttackRequirements(vSecondaryActionTypes);
             vSecondaryAttackIntersections.insert(vSecondaryAttackIntersections.end(), vIntersect.begin(), vIntersect.end());
         }
         if(change.DoesHaveDefendRequirements() && !vPrimaryActionTypes.empty())
         {
-            IndexedStringArray vIntersect = change.GetIntersectingDefendRequirements(vPrimaryActionTypes);
+            StringArray vIntersect = change.GetIntersectingDefendRequirements(vPrimaryActionTypes);
             vPrimaryDefendIntersections.insert(vPrimaryDefendIntersections.end(), vIntersect.begin(), vIntersect.end());
         }
         if(change.DoesHaveDefendRequirements() && !vSecondaryActionTypes.empty())
         {
-            IndexedStringArray vIntersect = change.GetIntersectingDefendRequirements(vSecondaryActionTypes);
+            StringArray vIntersect = change.GetIntersectingDefendRequirements(vSecondaryActionTypes);
             vSecondaryDefendIntersections.insert(vSecondaryDefendIntersections.end(), vIntersect.begin(), vIntersect.end());
         }
     }
 
     // Remove duplicates
-    RemoveVectorDuplicates<IndexedString>(vPrimaryAttackIntersections);
-    RemoveVectorDuplicates<IndexedString>(vPrimaryDefendIntersections);
-    RemoveVectorDuplicates<IndexedString>(vSecondaryAttackIntersections);
-    RemoveVectorDuplicates<IndexedString>(vSecondaryDefendIntersections);
+    RemoveVectorDuplicates<String>(vPrimaryAttackIntersections);
+    RemoveVectorDuplicates<String>(vPrimaryDefendIntersections);
+    RemoveVectorDuplicates<String>(vSecondaryAttackIntersections);
+    RemoveVectorDuplicates<String>(vSecondaryDefendIntersections);
 
     // Return true if at least one of them is not empty
     return (
@@ -150,7 +150,7 @@ Bool SkillData::GetIntersectingRequirementTypes(
     );
 }
 
-Bool SkillData::DoesMeetActionRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+Bool SkillData::DoesMeetActionRequirements(const String& sCharacterID, const String& sWeaponSet) const
 {
     // Check character
     if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
@@ -166,8 +166,8 @@ Bool SkillData::DoesMeetActionRequirements(const IndexedString& sCharacterID, co
     // Get action types
     TreeIndex primaryItemIndex;
     TreeIndex secondaryItemIndex;
-    IndexedStringArray vPrimaryActionTypes;
-    IndexedStringArray vSecondaryActionTypes;
+    StringArray vPrimaryActionTypes;
+    StringArray vSecondaryActionTypes;
     if(!partyMember.GetHandInfoByWeaponSet(sWeaponSet,
         primaryItemIndex,
         secondaryItemIndex,
@@ -196,7 +196,7 @@ Bool SkillData::DoesMeetActionRequirements(const IndexedString& sCharacterID, co
     return false;
 }
 
-CharacterActionArray SkillData::CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray SkillData::CreateBaseActions(const String& sCharacterID, const String& sWeaponSet) const
 {
     // Check character
     CharacterActionArray vNewActions;
@@ -230,19 +230,19 @@ void to_json(Json& jsonData, const SkillData& obj)
     SET_JSON_DATA_IF_NOT_EMPTY(RunTypes);
 
     // Data class
-    SET_JSON_DATA_IF_NOT_DEFAULT(DataClass, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(DataClass, "");
 
     // Skill rank
     SET_JSON_DATA_IF_NOT_DEFAULT(SkillRank, 0);
 
     // Skill name
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillName, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(SkillName, "");
 
     // Skill description
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillDescription, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(SkillDescription, "");
 
     // Skill type
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillType, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(SkillType, "");
 
     // Skill costs
     SET_JSON_DATA_IF_NOT_DEFAULT(SkillCostAP, 0);
@@ -258,22 +258,22 @@ void to_json(Json& jsonData, const SkillData& obj)
 void from_json(const Json& jsonData, SkillData& obj)
 {
     // Run types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunTypes, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunTypes, StringArray, StringArray());
 
     // Data class
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DataClass, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DataClass, String, "");
 
     // Skill rank
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillRank, Int, 0);
 
     // Skill name
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillName, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillName, String, "");
 
     // Skill description
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillDescription, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillDescription, String, "");
 
     // Skill type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillType, String, "");
 
     // Skill costs
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillCostAP, Int, 0);

@@ -30,7 +30,7 @@ UInt CharacterPartyMember::GetEquippedItemTypeCount(const TreeIndex& index) cons
     return STDCountData(vEquippedItemIndices.begin(), vEquippedItemIndices.end(), index);
 }
 
-UInt CharacterPartyMember::GetEquippedWeaponCount(const IndexedString& sWeaponSet) const
+UInt CharacterPartyMember::GetEquippedWeaponCount(const String& sWeaponSet) const
 {
     UInt uWeapon1Count = 0;
     UInt uWeapon2Count = 0;
@@ -60,7 +60,7 @@ UInt CharacterPartyMember::GetEquippedWeaponCount(const IndexedString& sWeaponSe
     return 0;
 }
 
-UInt CharacterPartyMember::GetEquippedShieldCount(const IndexedString& sWeaponSet) const
+UInt CharacterPartyMember::GetEquippedShieldCount(const String& sWeaponSet) const
 {
     UInt uShield1Count = 0;
     UInt uShield2Count = 0;
@@ -143,7 +143,7 @@ Bool CharacterPartyMember::CanRemoveEquippedItem(const TreeIndex& index) const
     }
 }
 
-Bool CharacterPartyMember::AddEquippedItem(const TreeIndex& index, const IndexedString& sEquipSlot)
+Bool CharacterPartyMember::AddEquippedItem(const TreeIndex& index, const String& sEquipSlot)
 {
     // Check if it can be added
     if(!CanAddEquippedItem(index))
@@ -159,7 +159,7 @@ Bool CharacterPartyMember::AddEquippedItem(const TreeIndex& index, const Indexed
     return true;
 }
 
-Bool CharacterPartyMember::RemoveEquippedItem(const TreeIndex& index, const IndexedString& sEquipSlot)
+Bool CharacterPartyMember::RemoveEquippedItem(const TreeIndex& index, const String& sEquipSlot)
 {
     // Check if it can be removed
     if(!CanRemoveEquippedItem(index))
@@ -175,11 +175,11 @@ Bool CharacterPartyMember::RemoveEquippedItem(const TreeIndex& index, const Inde
     return true;
 }
 
-Bool CharacterPartyMember::GetHandInfoByWeaponSet(const IndexedString& sWeaponSet,
+Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
     TreeIndex& primaryItemIndex,
     TreeIndex& secondaryItemIndex,
-    IndexedStringArray& vPrimaryActionTypes,
-    IndexedStringArray& vSecondaryActionTypes) const
+    StringArray& vPrimaryActionTypes,
+    StringArray& vSecondaryActionTypes) const
 {
     // Get weapon set
     const CharacterWeaponSetType eWeaponSetType = StringToCharacterWeaponSetType(sWeaponSet);
@@ -257,10 +257,10 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const IndexedString& sWeaponSe
 void to_json(Json& jsonData, const CharacterPartyMember& obj)
 {
     // Character ID
-    SET_JSON_DATA_IF_NOT_DEFAULT(CharacterID, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(CharacterID, "");
 
     // Character target type
-    SET_JSON_DATA_IF_NOT_DEFAULT(CharacterTargetType, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(CharacterTargetType, "");
 
     // Equipped items
     SET_JSON_DATA_IF_NOT_EMPTY(EquippedItems);
@@ -269,10 +269,10 @@ void to_json(Json& jsonData, const CharacterPartyMember& obj)
 void from_json(const Json& jsonData, CharacterPartyMember& obj)
 {
     // Character ID
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterID, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterID, String, "");
 
     // Character target type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterTargetType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterTargetType, String, "");
 
     // Equipped items
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(EquippedItems, CharacterPartyEquippedItemArray, CharacterPartyEquippedItemArray());

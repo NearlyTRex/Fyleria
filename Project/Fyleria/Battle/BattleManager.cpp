@@ -11,7 +11,7 @@ BattleManager::BattleManager()
 {
 }
 
-void BattleManager::CreateBattle(const IndexedString& sBattleName)
+void BattleManager::CreateBattle(const String& sBattleName)
 {
     // Create a new battle
     ASSERT_ERROR(!DoesBattleExist(sBattleName), "Battle '%s' was already registered", sBattleName.c_str());
@@ -19,21 +19,21 @@ void BattleManager::CreateBattle(const IndexedString& sBattleName)
     GetBattles().insert({sBattleName, newBattle});
 }
 
-void BattleManager::UnloadBattle(const IndexedString& sBattleName)
+void BattleManager::UnloadBattle(const String& sBattleName)
 {
     // Unload battle
     ASSERT_ERROR(DoesBattleExist(sBattleName), "Battle '%s' was not registered", sBattleName.c_str());
     GetBattles().erase(sBattleName);
 }
 
-Bool BattleManager::DoesBattleExist(const IndexedString& sBattleName) const
+Bool BattleManager::DoesBattleExist(const String& sBattleName) const
 {
     // Check if battle exists
     auto iSearch = GetBattles().find(sBattleName);
     return (iSearch != GetBattles().end());
 }
 
-const Battle& BattleManager::GetBattle(const IndexedString& sBattleName) const
+const Battle& BattleManager::GetBattle(const String& sBattleName) const
 {
     // Get battle
     ASSERT_ERROR(DoesBattleExist(sBattleName), "Battle '%s' was not registered", sBattleName.c_str());
@@ -41,7 +41,7 @@ const Battle& BattleManager::GetBattle(const IndexedString& sBattleName) const
     return iSearch->second;
 }
 
-Battle& BattleManager::GetBattle(const IndexedString& sBattleName)
+Battle& BattleManager::GetBattle(const String& sBattleName)
 {
     // Get battle
     return const_cast<Battle&>(static_cast<const BattleManager&>(*this).GetBattle(sBattleName));

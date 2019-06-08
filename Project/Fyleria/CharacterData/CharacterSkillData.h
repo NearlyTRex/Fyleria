@@ -6,6 +6,7 @@
 
 #include "Character/CharacterTypes.h"
 #include "Skills/SkillTypes.h"
+#include "Utility/Json.h"
 
 namespace Gecko
 {
@@ -16,9 +17,9 @@ public:
 
     // Types
     typedef BoostAny CharacterSkillFunctionType;
-    typedef STDUnorderedMap<IndexedString, CharacterSkillFunctionType, IndexedStringHasher> CharacterSkillFunctionNodeType;
-    typedef STDUnorderedMap<IndexedString, CharacterSkillFunctionNodeType, IndexedStringHasher> CharacterSkillFunctionMapType;
-    typedef STDUnorderedMap<IndexedString, UInt, IndexedStringHasher> CharacterSkillUseTrackingMapType;
+    typedef STDUnorderedMap<String, CharacterSkillFunctionType> CharacterSkillFunctionNodeType;
+    typedef STDUnorderedMap<String, CharacterSkillFunctionNodeType> CharacterSkillFunctionMapType;
+    typedef STDUnorderedMap<String, UInt> CharacterSkillUseTrackingMapType;
 
     // Constructors
     CharacterSkillData();
@@ -38,21 +39,21 @@ public:
     void UpdateUsedSkills();
 
     // Update skill ranking
-    Bool UpdateSkillRanking(const IndexedString& sSkillType);
+    Bool UpdateSkillRanking(const String& sSkillType);
 
     // Add skill use
-    void AddSkillUse(const IndexedString& sSkillType, UInt uNum);
+    void AddSkillUse(const String& sSkillType, UInt uNum);
 
     // Get number of skill uses
-    UInt GetSkillUseCount(const IndexedString& sSkillType) const;
+    UInt GetSkillUseCount(const String& sSkillType) const;
 
     // Get skill Rank/current functions
-    const CharacterSkillFunctionNodeType& GetSkillFunctions(const IndexedString& sSkillType) const;
-    const CharacterSkillFunctionType& GetSkillFunction(const IndexedString& sSkillType, const IndexedString& sNodeType) const;
-    UByteGetFunction GetSkillGetRankFunction(const IndexedString& sSkillType) const;
-    UByteSetFunction GetSkillSetRankFunction(const IndexedString& sSkillType) const;
-    UByteGetFunction GetSkillGetCurrentFunction(const IndexedString& sSkillType) const;
-    UByteSetFunction GetSkillSetCurrentFunction(const IndexedString& sSkillType) const;
+    const CharacterSkillFunctionNodeType& GetSkillFunctions(const String& sSkillType) const;
+    const CharacterSkillFunctionType& GetSkillFunction(const String& sSkillType, const String& sNodeType) const;
+    UByteGetFunction GetSkillGetRankFunction(const String& sSkillType) const;
+    UByteSetFunction GetSkillSetRankFunction(const String& sSkillType) const;
+    UByteGetFunction GetSkillGetCurrentFunction(const String& sSkillType) const;
+    UByteSetFunction GetSkillSetCurrentFunction(const String& sSkillType) const;
 
     // Skill map
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillFunctionMap, CharacterSkillFunctionMapType);

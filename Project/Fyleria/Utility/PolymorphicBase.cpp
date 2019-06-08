@@ -9,10 +9,10 @@ namespace Gecko
 PolymorphicBase::PolymorphicBase()
 {
     // Type name
-    SetTypeName(IndexedString("TypedBase"));
+    SetTypeName(String("TypedBase"));
 }
 
-PolymorphicBase::PolymorphicBase(const IndexedString& sName)
+PolymorphicBase::PolymorphicBase(const String& sName)
 {
     // Type name
     SetTypeName(sName);
@@ -26,13 +26,13 @@ PolymorphicBase::PolymorphicBase(const Json& jsonData)
 void to_json(Json& jsonData, const PolymorphicBase& obj)
 {
     // Type name
-    SET_JSON_DATA_IF_NOT_DEFAULT(TypeName, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(TypeName, "");
 }
 
 void from_json(const Json& jsonData, PolymorphicBase& obj)
 {
     // Type name
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(TypeName, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(TypeName, String, "");
 }
 
 };

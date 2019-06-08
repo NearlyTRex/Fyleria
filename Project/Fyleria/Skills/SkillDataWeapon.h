@@ -22,16 +22,16 @@ public:
     virtual void Clear();
 
     // Skill tree type
-    static IndexedString GetTreeType()
+    static String GetTreeType()
     {
-        return IndexedString(SkillTreeType(SkillTreeType::Weapon)._to_string());
+        return String(SkillTreeType(SkillTreeType::Weapon)._to_string());
     }
 
     // Create weapon actions
-    CharacterActionArray CreateWeaponActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const;
+    CharacterActionArray CreateWeaponActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Weapon base type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WeaponBaseType, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WeaponBaseType, String);
 
     // Amount of action points available
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ActionPoints, UByte);

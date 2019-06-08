@@ -23,16 +23,16 @@ void ItemData::Clear()
     SetRunTypes({});
 
     // Data class
-    SetDataClass(IndexedString(""));
+    SetDataClass("");
 
     // Item name
-    SetItemName(IndexedString(""));
+    SetItemName("");
 
     // Item description
-    SetItemDescription(IndexedString(""));
+    SetItemDescription("");
 
     // Item type
-    SetItemType(IndexedString("None"));
+    SetItemType("");
 
     // Action types
     SetActionTypes({});
@@ -64,7 +64,7 @@ Bool ItemData::IsActionable() const
     return true;
 }
 
-Bool ItemData::DoesMeetActionRequirements(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+Bool ItemData::DoesMeetActionRequirements(const String& sCharacterID, const String& sWeaponSet) const
 {
     // Check character
     if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
@@ -87,7 +87,7 @@ Bool ItemData::DoesMeetActionRequirements(const IndexedString& sCharacterID, con
     return false;
 }
 
-CharacterActionArray ItemData::CreateBaseActions(const IndexedString& sCharacterID, const IndexedString& sWeaponSet) const
+CharacterActionArray ItemData::CreateBaseActions(const String& sCharacterID, const String& sWeaponSet) const
 {
     // Check character
     CharacterActionArray vNewActions;
@@ -119,16 +119,16 @@ void to_json(Json& jsonData, const ItemData& obj)
     SET_JSON_DATA_IF_NOT_EMPTY(RunTypes);
 
     // Data class
-    SET_JSON_DATA_IF_NOT_DEFAULT(DataClass, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(DataClass, "");
 
     // Item name
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemName, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(ItemName, "");
 
     // Item description
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemDescription, IndexedString(""));
+    SET_JSON_DATA_IF_NOT_DEFAULT(ItemDescription, "");
 
     // Item type
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemType, IndexedString("None"));
+    SET_JSON_DATA_IF_NOT_DEFAULT(ItemType, "");
 
     // Item index
     SET_JSON_DATA_IF_NOT_DEFAULT(ItemTreeIndex, TreeIndex());
@@ -143,25 +143,25 @@ void to_json(Json& jsonData, const ItemData& obj)
 void from_json(const Json& jsonData, ItemData& obj)
 {
     // Run types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunTypes, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunTypes, StringArray, StringArray());
 
     // Data class
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DataClass, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DataClass, String, "");
 
     // Item name
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemName, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemName, String, "");
 
     // Item description
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemDescription, IndexedString, IndexedString(""));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemDescription, String, "");
 
     // Item type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemType, IndexedString, IndexedString("None"));
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemType, String, "");
 
     // Item index
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
 
     // Action types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionTypes, IndexedStringArray, IndexedStringArray());
+    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionTypes, StringArray, StringArray());
 
     // Stat changes
     SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());

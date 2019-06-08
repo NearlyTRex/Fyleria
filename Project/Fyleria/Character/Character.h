@@ -39,19 +39,19 @@ public:
     );
 
     // Get character ID
-    IndexedString GetCharacterID() const;
+    String GetCharacterID() const;
     MAKE_MODULE_RESULT_VARIANT(GetCharacterID);
 
     // Get party ID
-    IndexedString GetPartyID() const;
+    String GetPartyID() const;
     MAKE_MODULE_RESULT_VARIANT(GetPartyID);
 
     // Get character target type
-    IndexedString GetCharacterTargetType() const;
+    String GetCharacterTargetType() const;
     MAKE_MODULE_RESULT_VARIANT(GetCharacterTargetType);
 
     // Get current weapon set
-    IndexedString GetCurrentWeaponSet() const;
+    String GetCurrentWeaponSet() const;
     MAKE_MODULE_RESULT_VARIANT(GetCurrentWeaponSet);
 
     // Get equipped items
@@ -63,33 +63,33 @@ public:
     MAKE_MODULE_RESULT_VARIANT(GetAvailableActions);
 
     // Get passive changes
-    const TreeIndexArray& GetPassiveChanges(const IndexedString& sTreeIndexType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetPassiveChanges, const IndexedString&, sTreeIndexType);
+    const TreeIndexArray& GetPassiveChanges(const String& sTreeIndexType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(GetPassiveChanges, const String&, sTreeIndexType);
 
     // Get active changes
-    const TreeIndexArray& GetActiveChanges(const IndexedString& sTreeIndexType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetActiveChanges, const IndexedString&, sTreeIndexType);
+    const TreeIndexArray& GetActiveChanges(const String& sTreeIndexType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(GetActiveChanges, const String&, sTreeIndexType);
 
     // Get actionable changes
-    const TreeIndexArray& GetActionableChanges(const IndexedString& sTreeIndexType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetActionableChanges, const IndexedString&, sTreeIndexType);
+    const TreeIndexArray& GetActionableChanges(const String& sTreeIndexType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(GetActionableChanges, const String&, sTreeIndexType);
 
     // Get progress data segment
-    const CharacterProgressData& GetProgressDataSegment(const IndexedString& sSegment) const;
-    CharacterProgressData& GetProgressDataSegment(const IndexedString& sSegment);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetProgressDataSegment, const IndexedString&, sSegment);
+    const CharacterProgressData& GetProgressDataSegment(const String& sSegment) const;
+    CharacterProgressData& GetProgressDataSegment(const String& sSegment);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetProgressDataSegment, const String&, sSegment);
 
     // Get battle data segment
-    const CharacterBattleData& GetBattleDataSegment(const IndexedString& sSegment) const;
-    CharacterBattleData& GetBattleDataSegment(const IndexedString& sSegment);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetBattleDataSegment, const IndexedString&, sSegment);
+    const CharacterBattleData& GetBattleDataSegment(const String& sSegment) const;
+    CharacterBattleData& GetBattleDataSegment(const String& sSegment);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetBattleDataSegment, const String&, sSegment);
 
     // Stat values
     MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(Bool);
     MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(Int);
     MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(Float);
-    MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(IndexedString);
-    MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(IndexedStringArray);
+    MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(String);
+    MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(StringArray);
 
     // Update equipment ratings
     // This pulls equipment and current attack/defense percents and fills

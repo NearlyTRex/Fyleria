@@ -6,7 +6,6 @@
 
 #include "CharacterAction/CharacterActionEntry.h"
 #include "Module/ModuleResultManager.h"
-#include "Utility/IndexedString.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"
@@ -25,15 +24,15 @@ public:
     explicit CharacterAction(const String& jsonString);
 
     // Get array of character IDs
-    IndexedStringArray GetAllCharacterIDs() const;
+    StringArray GetAllCharacterIDs() const;
     MAKE_MODULE_RESULT_VARIANT(GetAllCharacterIDs);
 
     // Get array of action types from all entries
-    IndexedStringArray GetAllActionTypes() const;
+    StringArray GetAllActionTypes() const;
     MAKE_MODULE_RESULT_VARIANT(GetAllActionTypes);
 
     // Get array of destination target types from all entries
-    IndexedStringArray GetAllDestinationTargetTypes() const;
+    StringArray GetAllDestinationTargetTypes() const;
     MAKE_MODULE_RESULT_VARIANT(GetAllDestinationTargetTypes);
 
     // Are all character IDs valid
@@ -45,7 +44,7 @@ public:
     MAKE_MODULE_RESULT_VARIANT(PrepareCharacterIDs);
 
     // Run type
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(RunType, IndexedString);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(RunType, String);
 
     // Order
     MAKE_RAW_BASIC_TYPE_ACCESSORS(Order, Short);
@@ -57,13 +56,13 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(CostEP, UByte);
 
     // Applicable weapon set
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(WeaponSet, IndexedString);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(WeaponSet, String);
 
     // Action entries
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionEntries, CharacterActionEntryArray);
 
     // Previous action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PreviousActionTypes, IndexedStringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PreviousActionTypes, StringArray);
 
     // Skill
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
@@ -73,10 +72,10 @@ public:
     MAKE_RAW_BASIC_TYPE_ACCESSORS(ItemAmount, UByte);
 
     // Targets
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceTargetType, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceTargetType, String);
 
     // Characters
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceCharacterID, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceCharacterID, String);
 };
 
 // Typedef

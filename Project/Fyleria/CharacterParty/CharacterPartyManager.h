@@ -15,7 +15,7 @@ class CharacterPartyManager : public Singleton<CharacterPartyManager>
 public:
 
     // Types
-    typedef STDUnorderedMap<IndexedString, CharacterParty, IndexedStringHasher> CharacterPartyMappingType;
+    typedef STDUnorderedMap<String, CharacterParty> CharacterPartyMappingType;
 
     // Constructors
     CharacterPartyManager();
@@ -26,34 +26,34 @@ public:
 
     // Load a party from a file
     // This will overwrite any existing matching data
-    void LoadPartyFromFile(const IndexedString& sFilename, const IndexedString& sType);
+    void LoadPartyFromFile(const String& sFilename, const String& sType);
 
     // Save a party to file
-    void SavePartyToFile(const IndexedString& sPartyID, const IndexedString& sFilename, const IndexedString& sType);
+    void SavePartyToFile(const String& sPartyID, const String& sFilename, const String& sType);
 
     // Create a party
-    void CreateParty(const IndexedString& sPartyID, const IndexedString& sPartyType, Bool bSetAsCurrent = false);
+    void CreateParty(const String& sPartyID, const String& sPartyType, Bool bSetAsCurrent = false);
 
     // Unload party
-    void UnloadParty(const IndexedString& sPartyID);
+    void UnloadParty(const String& sPartyID);
 
     // Determine if party exists
-    Bool DoesPartyExist(const IndexedString& sPartyID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesPartyExist, const IndexedString&, sPartyID);
+    Bool DoesPartyExist(const String& sPartyID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesPartyExist, const String&, sPartyID);
 
     // Check if party ID is valid
-    Bool IsValidPartyID(const IndexedString& sPartyID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsValidPartyID, const IndexedString&, sPartyID);
+    Bool IsValidPartyID(const String& sPartyID) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsValidPartyID, const String&, sPartyID);
 
     // Get party by ID
-    const CharacterParty& GetPartyByID(const IndexedString& sPartyID) const;
-    CharacterParty& GetPartyByID(const IndexedString& sPartyID);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetPartyByID, const IndexedString&, sPartyID);
+    const CharacterParty& GetPartyByID(const String& sPartyID) const;
+    CharacterParty& GetPartyByID(const String& sPartyID);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetPartyByID, const String&, sPartyID);
 
     // Get party by type
-    const CharacterParty& GetPartyByType(const IndexedString& sPartyType) const;
-    CharacterParty& GetPartyByType(const IndexedString& sPartyType);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetPartyByType, const IndexedString&, sPartyType);
+    const CharacterParty& GetPartyByType(const String& sPartyType) const;
+    CharacterParty& GetPartyByType(const String& sPartyType);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetPartyByType, const String&, sPartyType);
 
     // Get current ally party
     const CharacterParty& GetCurrentAllyParty() const;
@@ -69,8 +69,8 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Parties, CharacterPartyMappingType);
 
     // Current ally/enemy party
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentAllyPartyID, IndexedString);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentEnemyPartyID, IndexedString);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentAllyPartyID, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentEnemyPartyID, String);
 };
 
 };

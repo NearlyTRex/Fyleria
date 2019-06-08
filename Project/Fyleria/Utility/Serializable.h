@@ -31,12 +31,12 @@ public:
     virtual FixedUnsigned8Array ToMsgPack() const;
 
     // Serialization from/to file
-    virtual Bool FromFile(const IndexedString& sFilename);
-    virtual Bool FromCBORFile(const IndexedString& sFilename);
-    virtual Bool FromMsgPackFile(const IndexedString& sFilename);
-    virtual Bool ToFile(const IndexedString& sFilename) const;
-    virtual Bool ToCBORFile(const IndexedString& sFilename) const;
-    virtual Bool ToMsgPackFile(const IndexedString& sFilename) const;
+    virtual Bool FromFile(const String& sFilename);
+    virtual Bool FromCBORFile(const String& sFilename);
+    virtual Bool FromMsgPackFile(const String& sFilename);
+    virtual Bool ToFile(const String& sFilename) const;
+    virtual Bool ToCBORFile(const String& sFilename) const;
+    virtual Bool ToMsgPackFile(const String& sFilename) const;
 
     // Reseting internal data
     virtual void Reset();
