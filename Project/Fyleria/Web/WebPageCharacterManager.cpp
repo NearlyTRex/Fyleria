@@ -4,6 +4,7 @@
 #include "Web/WebPageCharacterManager.h"
 #include "Character/CharacterTypes.h"
 #include "Utility/Constants.h"
+#include "Utility/Converters.h"
 
 namespace Gecko
 {
@@ -21,7 +22,7 @@ WebPageCharacterManager::WebPageCharacterManager()
     <script type="text/javascript" src="/lib/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <div class="container">
-    <form action="%submit_url%" method="post">
+    <form action="%sSubmit_Url%" method="post">
         <div class="form-group row">
             <div class="col"><hr></div>
             <div class="col-auto">Controls</div>
@@ -29,83 +30,78 @@ WebPageCharacterManager::WebPageCharacterManager()
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load From JSON</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadCharacterFromJson_charID" placeholder="Character Identifier" value="%loadCharacterFromJson_charID%"/>
-            </div>
-            <div class="col-sm-4">
-                <textarea style="resize: none;" class="form-control" rows="3" name="loadCharacterFromJson_textarea" placeholder="Raw character json">%loadCharacterFromJson_textarea%</textarea>
+            <div class="col-sm-8">
+                <textarea style="resize: none;" class="form-control" rows="3" name="sLoadCharacterFromJson_Textarea" placeholder="Raw character json">%sLoadCharacterFromJson_Textarea%</textarea>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="loadCharacterFromJson_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="load_character_from_json">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Load From File</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadCharacterFromFile_charID" placeholder="Character Identifier" value="%loadCharacterFromFile_charID%"/>
-            </div>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="loadCharacterFromFile_filename" placeholder="Filename" value="%loadCharacterFromFile_filename%"/>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="sLoadCharacterFromFile_Filename" placeholder="Filename" value="%sLoadCharacterFromFile_Filename%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="loadCharacterFromFile_submit">Run</button>
+                <select class="form-control" name="sLoadCharacterFromFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %sOptionList_FileType%
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="load_character_from_file">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Save To File</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="saveCharacterToFile_charID" placeholder="Character Identifier" value="%saveCharacterToFile_charID%"/>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="sSaveCharacterToFile_CharID" placeholder="Character Identifier" value="%sSaveCharacterToFile_CharID%"/>
             </div>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="saveCharacterToFile_filename" placeholder="Filename" value="%saveCharacterToFile_filename%"/>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="sSaveCharacterToFile_Filename" placeholder="Filename" value="%sSaveCharacterToFile_Filename%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="saveCharacterToFile_submit">Run</button>
+                <select class="form-control" name="sSaveCharacterToFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %sOptionList_FileType%
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="save_character_to_file">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Unload Character</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="unloadCharacter_charID" placeholder="Character Identifier" value="%unloadCharacter_charID%"/>
+                <input type="text" class="form-control" name="sUnloadCharacter_CharID" placeholder="Character Identifier" value="%sUnloadCharacter_CharID%"/>
             </div>
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unloadCharacter_submit">Run</button>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Delete Character</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="deleteCharacter_charID" placeholder="Character Identifier" value="%deleteCharacter_charID%"/>
-            </div>
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="deleteCharacter_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="unload_character">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Generate Character</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="generateCharacter_charID" placeholder="Character Identifier" value="%generateCharacter_charID%"/>
+                <input type="text" class="form-control" name="sGenerateCharacter_CharID" placeholder="Character Identifier" value="%sGenerateCharacter_CharID%"/>
             </div>
             <div class="col-sm-4">
-                <textarea style="resize: none;" class="form-control" rows="3" name="generateCharacter_textarea" placeholder="Raw character generator json">%generateCharacter_textarea%</textarea>
+                <textarea style="resize: none;" class="form-control" rows="3" name="sGenerateCharacter_Textarea" placeholder="Raw character generator json">%sGenerateCharacter_Textarea%</textarea>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="generateCharacter_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="generate_character">Run</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Create Character</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="createCharacter_charID" placeholder="Character Identifier" value="%createCharacter_charID%"/>
+                <input type="text" class="form-control" name="sCreateCharacter_CharID" placeholder="Character Identifier" value="%sCreateCharacter_CharID%"/>
             </div>
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="createCharacter_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="create_character">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -113,7 +109,7 @@ WebPageCharacterManager::WebPageCharacterManager()
             <div class="col-sm-6">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="saveCharacter_submit">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="save_character">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -123,41 +119,41 @@ WebPageCharacterManager::WebPageCharacterManager()
         </div>
         <div class="form-group row">
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="characterDetails_charID" placeholder="Character Identifier" readonly="readonly" value="%characterDetails_charID%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_CharID" placeholder="Character Identifier" readonly="readonly" value="%sCharacterDetails_CharID%"/>
             </div>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="characterDetails_fname" placeholder="First Name" value="%characterDetails_fname%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_First_Name" placeholder="First Name" value="%sCharacterDetails_First_Name%"/>
             </div>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="characterDetails_lname" placeholder="Last Name" value="%characterDetails_lname%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Last_Name" placeholder="Last Name" value="%sCharacterDetails_Last_Name%"/>
             </div>
             <div class="col-sm-3">
-                <input type="text" class="form-control" name="characterDetails_age" placeholder="Age" value="%characterDetails_age%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Age" placeholder="Age" value="%sCharacterDetails_Age%"/>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-3">
-                <select class="form-control" name="characterDetails_gender">
+                <select class="form-control" name="sCharacterDetails_Gender">
                     <option value="" disabled="disabled">Gender...</option>
-                    %optionList_gender%
+                    %sOptionList_Gender%
                 </select>
             </div>
             <div class="col-sm-3">
-                <select class="form-control" name="characterDetails_hair">
+                <select class="form-control" name="sCharacterDetails_Hair">
                     <option value="" disabled="disabled">Hair...</option>
-                    %optionList_hair%
+                    %sOptionList_Hair%
                 </select>
             </div>
             <div class="col-sm-3">
-                <select class="form-control" name="characterDetails_eyes">
+                <select class="form-control" name="sCharacterDetails_Eyes">
                     <option value="" disabled="disabled">Eyes...</option>
-                    %optionList_eyes%
+                    %sOptionList_Eyes%
                 </select>
             </div>
             <div class="col-sm-3">
-                <select class="form-control" name="characterDetails_handed">
+                <select class="form-control" name="sCharacterDetails_Handed">
                     <option value="" disabled="disabled">Handedness...</option>
-                    %optionList_handed%
+                    %sOptionList_Handed%
                 </select>
             </div>
             <div class="col-sm-4">
@@ -165,784 +161,789 @@ WebPageCharacterManager::WebPageCharacterManager()
         </div>
         <div class="form-group row">
             <div class="col-sm-3">
-                <select class="form-control" name="characterDetails_powerset">
+                <select class="form-control" name="sCharacterDetails_PowerSet">
                     <option value="" disabled="disabled">Power Set...</option>
-                    %optionList_powerset%
+                    %sOptionList_PowerSet%
                 </select>
             </div>
             <div class="col-sm-3">
-                <select class="form-control" name="characterDetails_baserace">
+                <select class="form-control" name="sCharacterDetails_BaseRace">
                     <option value="" disabled="disabled">Base Race...</option>
-                    %optionList_baserace%
+                    %sOptionList_BaseRace%
                 </select>
             </div>
             <div class="col-sm-3">
-                <select class="form-control" name="characterDetails_transformedrace">
+                <select class="form-control" name="sCharacterDetails_TransformedRace">
                     <option value="" disabled="disabled">Transformed Race...</option>
-                    %optionList_transformedrace%
+                    %sOptionList_TransformedRace%
                 </select>
             </div>
             <div class="col-sm-3">
-                <select class="form-control" name="characterDetails_currentweaponset">
+                <select class="form-control" name="sCharacterDetails_CurrentWeaponSet">
                     <option value="" disabled="disabled">Weapon Set...</option>
-                    %optionList_currentweaponset%
+                    %sOptionList_CurrentWeaponSet%
                 </select>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Weapon 1 Left</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_weapon1left" readonly="readonly" value="%characterDetails_weapon1left%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Weapon1Left" readonly="readonly" value="%sCharacterDetails_Weapon1Left%"/>
             </div>
             <label class="col-sm-2 col-form-label">Weapon 1 Right</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_weapon1right" readonly="readonly" value="%characterDetails_weapon1right%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Weapon1Right" readonly="readonly" value="%sCharacterDetails_Weapon1Right%"/>
             </div>
             <label class="col-sm-2 col-form-label">Neck</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_neck" readonly="readonly" value="%characterDetails_neck%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Neck" readonly="readonly" value="%sCharacterDetails_Neck%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Weapon 2 Left</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_weapon2left" readonly="readonly" value="%characterDetails_weapon2left%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Weapon2Left" readonly="readonly" value="%sCharacterDetails_Weapon2Left%"/>
             </div>
             <label class="col-sm-2 col-form-label">Weapon 2 Right</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_weapon2right" readonly="readonly" value="%characterDetails_weapon2right%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Weapon2Right" readonly="readonly" value="%sCharacterDetails_Weapon2Right%"/>
             </div>
             <label class="col-sm-2 col-form-label">Head</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_head" readonly="readonly" value="%characterDetails_head%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Head" readonly="readonly" value="%sCharacterDetails_Head%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Left Fingers</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_leftfingers" readonly="readonly" value="%characterDetails_leftfingers%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_LeftFingers" readonly="readonly" value="%sCharacterDetails_LeftFingers%"/>
             </div>
             <label class="col-sm-2 col-form-label">Right Fingers</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_rightfingers" readonly="readonly" value="%characterDetails_rightfingers%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_RightFingers" readonly="readonly" value="%sCharacterDetails_RightFingers%"/>
             </div>
             <label class="col-sm-2 col-form-label">Hands</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_hands" readonly="readonly" value="%characterDetails_hands%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Hands" readonly="readonly" value="%sCharacterDetails_Hands%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Feet</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_feet" readonly="readonly" value="%characterDetails_feet%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Feet" readonly="readonly" value="%sCharacterDetails_Feet%"/>
             </div>
             <label class="col-sm-2 col-form-label">Legs</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_legs" readonly="readonly" value="%characterDetails_legs%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Legs" readonly="readonly" value="%sCharacterDetails_Legs%"/>
             </div>
             <label class="col-sm-2 col-form-label">Chest</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_chest" readonly="readonly" value="%characterDetails_chest%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Chest" readonly="readonly" value="%sCharacterDetails_Chest%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Health</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_hpcur" placeholder="Cur" value="%characterDetails_hpcur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_HP_Current" placeholder="Cur" value="%sCharacterDetails_HP_Current%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_hpmax" placeholder="Max" value="%characterDetails_hpmax%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_HP_Max" placeholder="Max" value="%sCharacterDetails_HP_Max%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_hpregen" placeholder="Reg" value="%characterDetails_hpregen%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_HP_Regen" placeholder="Reg" value="%sCharacterDetails_HP_Regen%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_hpdelta" placeholder="Delta" value="%characterDetails_hpdelta%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_HP_Delta" placeholder="Delta" value="%sCharacterDetails_HP_Delta%"/>
             </div>
             <label class="col-sm-1 col-form-label">Blunt</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_batk" placeholder="Atk" value="%characterDetails_batk%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Blunt_Attack" placeholder="Atk" value="%sCharacterDetails_Blunt_Attack%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_bdef" placeholder="Def" value="%characterDetails_bdef%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Blunt_Defense" placeholder="Def" value="%sCharacterDetails_Blunt_Defense%"/>
             </div>
             <label class="col-sm-1 col-form-label">Pierce</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_patk" placeholder="Atk" value="%characterDetails_patk%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_Attack" placeholder="Atk" value="%sCharacterDetails_Pierce_Attack%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_pdef" placeholder="Def" value="%characterDetails_pdef%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_Defense" placeholder="Def" value="%sCharacterDetails_Pierce_Defense%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Magic</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_mpcur" placeholder="Cur" value="%characterDetails_mpcur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_MP_Current" placeholder="Cur" value="%sCharacterDetails_MP_Current%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_mpmax" placeholder="Max" value="%characterDetails_mpmax%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_MP_Max" placeholder="Max" value="%sCharacterDetails_MP_Max%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_mpregen" placeholder="Reg" value="%characterDetails_mpregen%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_MP_Regen" placeholder="Reg" value="%sCharacterDetails_MP_Regen%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_mpdelta" placeholder="Delta" value="%characterDetails_mpdelta%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_MP_Delta" placeholder="Delta" value="%sCharacterDetails_MP_Delta%"/>
             </div>
             <label class="col-sm-1 col-form-label">Magic</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_matk" placeholder="Atk" value="%characterDetails_matk%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Magic_Attack" placeholder="Atk" value="%sCharacterDetails_Magic_Attack%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_mdef" placeholder="Def" value="%characterDetails_mdef%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Magic_Defense" placeholder="Def" value="%sCharacterDetails_Magic_Defense%"/>
             </div>
             <label class="col-sm-1 col-form-label">Energy</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_eatk" placeholder="Atk" value="%characterDetails_eatk%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Energy_Attack" placeholder="Atk" value="%sCharacterDetails_Energy_Attack%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_edef" placeholder="Def" value="%characterDetails_edef%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Energy_Defense" placeholder="Def" value="%sCharacterDetails_Energy_Defense%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Energy</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_epcur" placeholder="Cur" value="%characterDetails_epcur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_EP_Current" placeholder="Cur" value="%sCharacterDetails_EP_Current%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_epmax" placeholder="Max" value="%characterDetails_epmax%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_EP_Max" placeholder="Max" value="%sCharacterDetails_EP_Max%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_epregen" placeholder="Reg" value="%characterDetails_epregen%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_EP_Regen" placeholder="Reg" value="%sCharacterDetails_EP_Regen%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_epdelta" placeholder="Delta" value="%characterDetails_epdelta%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_EP_Delta" placeholder="Delta" value="%sCharacterDetails_EP_Delta%"/>
             </div>
             <label class="col-sm-1 col-form-label">Slash</label>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_satk" placeholder="Atk" value="%characterDetails_satk%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_Attack" placeholder="Atk" value="%sCharacterDetails_Slash_Attack%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_sdef" placeholder="Def" value="%characterDetails_sdef%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_Defense" placeholder="Def" value="%sCharacterDetails_Slash_Defense%"/>
             </div>
             <label class="col-sm-1 col-form-label">Speed</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_speed" placeholder="Speed" value="%characterDetails_speed%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Speed" placeholder="Speed" value="%sCharacterDetails_Speed%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Slash</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_slash_cur" placeholder="Current" value="%characterDetails_slash_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_Current" placeholder="Current" value="%sCharacterDetails_Slash_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_slash_rank" placeholder="Rank" value="%characterDetails_slash_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_Rank" placeholder="Rank" value="%sCharacterDetails_Slash_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_slash_ap" placeholder="AP" value="%characterDetails_slash_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_ActionPoints" placeholder="AP" value="%sCharacterDetails_Slash_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Sever</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_sever_cur" placeholder="Current" value="%characterDetails_sever_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Sever_Current" placeholder="Current" value="%sCharacterDetails_Sever_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_sever_rank" placeholder="Rank" value="%characterDetails_sever_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Sever_Rank" placeholder="Rank" value="%sCharacterDetails_Sever_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_sever_ap" placeholder="AP" value="%characterDetails_sever_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Sever_ActionPoints" placeholder="AP" value="%sCharacterDetails_Sever_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Slice</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_slice_cur" placeholder="Current" value="%characterDetails_slice_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slice_Current" placeholder="Current" value="%sCharacterDetails_Slice_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_slice_rank" placeholder="Rank" value="%characterDetails_slice_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slice_Rank" placeholder="Rank" value="%sCharacterDetails_Slice_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_slice_ap" placeholder="AP" value="%characterDetails_slice_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slice_ActionPoints" placeholder="AP" value="%sCharacterDetails_Slice_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Slit</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_slit_cur" placeholder="Current" value="%characterDetails_slit_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slit_Current" placeholder="Current" value="%sCharacterDetails_Slit_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_slit_rank" placeholder="Rank" value="%characterDetails_slit_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slit_Rank" placeholder="Rank" value="%sCharacterDetails_Slit_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_slit_ap" placeholder="AP" value="%characterDetails_slit_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Slit_ActionPoints" placeholder="AP" value="%sCharacterDetails_Slit_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Cleave</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_cleave_cur" placeholder="Current" value="%characterDetails_cleave_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Cleave_Current" placeholder="Current" value="%sCharacterDetails_Cleave_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_cleave_rank" placeholder="Rank" value="%characterDetails_cleave_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Cleave_Rank" placeholder="Rank" value="%sCharacterDetails_Cleave_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_cleave_ap" placeholder="AP" value="%characterDetails_cleave_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Cleave_ActionPoints" placeholder="AP" value="%sCharacterDetails_Cleave_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Decapitate</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_decapitate_cur" placeholder="Current" value="%characterDetails_decapitate_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Decapitate_Current" placeholder="Current" value="%sCharacterDetails_Decapitate_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_decapitate_rank" placeholder="Rank" value="%characterDetails_decapitate_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Decapitate_Rank" placeholder="Rank" value="%sCharacterDetails_Decapitate_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_decapitate_ap" placeholder="AP" value="%characterDetails_decapitate_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Decapitate_ActionPoints" placeholder="AP" value="%sCharacterDetails_Decapitate_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Parry</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_parry_cur" placeholder="Current" value="%characterDetails_parry_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Parry_Current" placeholder="Current" value="%sCharacterDetails_Parry_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_parry_rank" placeholder="Rank" value="%characterDetails_parry_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Parry_Rank" placeholder="Rank" value="%sCharacterDetails_Parry_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_parry_ap" placeholder="AP" value="%characterDetails_parry_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Parry_ActionPoints" placeholder="AP" value="%sCharacterDetails_Parry_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Riposte</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_riposte_cur" placeholder="Current" value="%characterDetails_riposte_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Riposte_Current" placeholder="Current" value="%sCharacterDetails_Riposte_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_riposte_rank" placeholder="Rank" value="%characterDetails_riposte_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Riposte_Rank" placeholder="Rank" value="%sCharacterDetails_Riposte_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_riposte_ap" placeholder="AP" value="%characterDetails_riposte_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Riposte_ActionPoints" placeholder="AP" value="%sCharacterDetails_Riposte_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Bash</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_bash_cur" placeholder="Current" value="%characterDetails_bash_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Bash_Current" placeholder="Current" value="%sCharacterDetails_Bash_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_bash_rank" placeholder="Rank" value="%characterDetails_bash_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Bash_Rank" placeholder="Rank" value="%sCharacterDetails_Bash_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_bash_ap" placeholder="AP" value="%characterDetails_bash_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Bash_ActionPoints" placeholder="AP" value="%sCharacterDetails_Bash_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Smash</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_smash_cur" placeholder="Current" value="%characterDetails_smash_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Smash_Current" placeholder="Current" value="%sCharacterDetails_Smash_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_smash_rank" placeholder="Rank" value="%characterDetails_smash_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Smash_Rank" placeholder="Rank" value="%sCharacterDetails_Smash_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_smash_ap" placeholder="AP" value="%characterDetails_smash_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Smash_ActionPoints" placeholder="AP" value="%sCharacterDetails_Smash_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Crush</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_crush_cur" placeholder="Current" value="%characterDetails_crush_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Crush_Current" placeholder="Current" value="%sCharacterDetails_Crush_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_crush_rank" placeholder="Rank" value="%characterDetails_crush_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Crush_Rank" placeholder="Rank" value="%sCharacterDetails_Crush_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_crush_ap" placeholder="AP" value="%characterDetails_crush_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Crush_ActionPoints" placeholder="AP" value="%sCharacterDetails_Crush_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Impact</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_impact_cur" placeholder="Current" value="%characterDetails_impact_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Impact_Current" placeholder="Current" value="%sCharacterDetails_Impact_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_impact_rank" placeholder="Rank" value="%characterDetails_impact_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Impact_Rank" placeholder="Rank" value="%sCharacterDetails_Impact_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_impact_ap" placeholder="AP" value="%characterDetails_impact_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Impact_ActionPoints" placeholder="AP" value="%sCharacterDetails_Impact_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Break</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_break_cur" placeholder="Current" value="%characterDetails_break_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Break_Current" placeholder="Current" value="%sCharacterDetails_Break_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_break_rank" placeholder="Rank" value="%characterDetails_break_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Break_Rank" placeholder="Rank" value="%sCharacterDetails_Break_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_break_ap" placeholder="AP" value="%characterDetails_break_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Break_ActionPoints" placeholder="AP" value="%sCharacterDetails_Break_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Crack</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_crack_cur" placeholder="Current" value="%characterDetails_crack_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Crack_Current" placeholder="Current" value="%sCharacterDetails_Crack_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_crack_rank" placeholder="Rank" value="%characterDetails_crack_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Crack_Rank" placeholder="Rank" value="%sCharacterDetails_Crack_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_crack_ap" placeholder="AP" value="%characterDetails_crack_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Crack_ActionPoints" placeholder="AP" value="%sCharacterDetails_Crack_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Block</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_block_cur" placeholder="Current" value="%characterDetails_block_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Block_Current" placeholder="Current" value="%sCharacterDetails_Block_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_block_rank" placeholder="Rank" value="%characterDetails_block_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Block_Rank" placeholder="Rank" value="%sCharacterDetails_Block_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_block_ap" placeholder="AP" value="%characterDetails_block_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Block_ActionPoints" placeholder="AP" value="%sCharacterDetails_Block_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Rush</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_rush_cur" placeholder="Current" value="%characterDetails_rush_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Rush_Current" placeholder="Current" value="%sCharacterDetails_Rush_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_rush_rank" placeholder="Rank" value="%characterDetails_rush_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Rush_Rank" placeholder="Rank" value="%sCharacterDetails_Rush_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_rush_ap" placeholder="AP" value="%characterDetails_rush_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Rush_ActionPoints" placeholder="AP" value="%sCharacterDetails_Rush_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Pierce</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_pierce_cur" placeholder="Current" value="%characterDetails_pierce_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_Current" placeholder="Current" value="%sCharacterDetails_Pierce_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_pierce_rank" placeholder="Rank" value="%characterDetails_pierce_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_Rank" placeholder="Rank" value="%sCharacterDetails_Pierce_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_pierce_ap" placeholder="AP" value="%characterDetails_pierce_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_ActionPoints" placeholder="AP" value="%sCharacterDetails_Pierce_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Drill</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_drill_cur" placeholder="Current" value="%characterDetails_drill_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Drill_Current" placeholder="Current" value="%sCharacterDetails_Drill_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_drill_rank" placeholder="Rank" value="%characterDetails_drill_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Drill_Rank" placeholder="Rank" value="%sCharacterDetails_Drill_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_drill_ap" placeholder="AP" value="%characterDetails_drill_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Drill_ActionPoints" placeholder="AP" value="%sCharacterDetails_Drill_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Shoot</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_shoot_cur" placeholder="Current" value="%characterDetails_shoot_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Shoot_Current" placeholder="Current" value="%sCharacterDetails_Shoot_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_shoot_rank" placeholder="Rank" value="%characterDetails_shoot_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Shoot_Rank" placeholder="Rank" value="%sCharacterDetails_Shoot_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_shoot_ap" placeholder="AP" value="%characterDetails_shoot_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Shoot_ActionPoints" placeholder="AP" value="%sCharacterDetails_Shoot_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Impale</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_impale_cur" placeholder="Current" value="%characterDetails_impale_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Impale_Current" placeholder="Current" value="%sCharacterDetails_Impale_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_impale_rank" placeholder="Rank" value="%characterDetails_impale_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Impale_Rank" placeholder="Rank" value="%sCharacterDetails_Impale_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_impale_ap" placeholder="AP" value="%characterDetails_impale_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Impale_ActionPoints" placeholder="AP" value="%sCharacterDetails_Impale_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Stealth Strike</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_sstrike_cur" placeholder="Current" value="%characterDetails_sstrike_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_StealthStrike_Current" placeholder="Current" value="%sCharacterDetails_StealthStrike_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_sstrike_rank" placeholder="Rank" value="%characterDetails_sstrike_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_StealthStrike_Rank" placeholder="Rank" value="%sCharacterDetails_StealthStrike_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_sstrike_ap" placeholder="AP" value="%characterDetails_sstrike_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_StealthStrike_ActionPoints" placeholder="AP" value="%sCharacterDetails_StealthStrike_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Critical Shot</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_cshot_cur" placeholder="Current" value="%characterDetails_cshot_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_CriticalShot_Current" placeholder="Current" value="%sCharacterDetails_CriticalShot_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_cshot_rank" placeholder="Rank" value="%characterDetails_cshot_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_CriticalShot_Rank" placeholder="Rank" value="%sCharacterDetails_CriticalShot_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_cshot_ap" placeholder="AP" value="%characterDetails_cshot_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_CriticalShot_ActionPoints" placeholder="AP" value="%sCharacterDetails_CriticalShot_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-1 col-form-label">Dodge</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_dodge_cur" placeholder="Current" value="%characterDetails_dodge_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Dodge_Current" placeholder="Current" value="%sCharacterDetails_Dodge_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_dodge_rank" placeholder="Rank" value="%characterDetails_dodge_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Dodge_Rank" placeholder="Rank" value="%sCharacterDetails_Dodge_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_dodge_ap" placeholder="AP" value="%characterDetails_dodge_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Dodge_ActionPoints" placeholder="AP" value="%sCharacterDetails_Dodge_ActionPoints%"/>
             </div>
             <label class="col-sm-1 col-form-label">Counter</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_counter_cur" placeholder="Current" value="%characterDetails_counter_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Counter_Current" placeholder="Current" value="%sCharacterDetails_Counter_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_counter_rank" placeholder="Rank" value="%characterDetails_counter_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Counter_Rank" placeholder="Rank" value="%sCharacterDetails_Counter_Rank%"/>
             </div>
             <div class="col-sm-1">
-                <input type="text" class="form-control" name="characterDetails_counter_ap" placeholder="AP" value="%characterDetails_counter_ap%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Counter_ActionPoints" placeholder="AP" value="%sCharacterDetails_Counter_ActionPoints%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Barbarian</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_barbarian_cur" placeholder="Current" value="%characterDetails_barbarian_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Barbarian_Current" placeholder="Current" value="%sCharacterDetails_Barbarian_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_barbarian_rank" placeholder="Rank" value="%characterDetails_barbarian_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Barbarian_Rank" placeholder="Rank" value="%sCharacterDetails_Barbarian_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Mage</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_mage_cur" placeholder="Current" value="%characterDetails_mage_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Mage_Current" placeholder="Current" value="%sCharacterDetails_Mage_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_mage_rank" placeholder="Rank" value="%characterDetails_mage_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Mage_Rank" placeholder="Rank" value="%sCharacterDetails_Mage_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Rogue</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_rogue_cur" placeholder="Current" value="%characterDetails_rogue_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Rogue_Current" placeholder="Current" value="%sCharacterDetails_Rogue_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_rogue_rank" placeholder="Rank" value="%characterDetails_rogue_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Rogue_Rank" placeholder="Rank" value="%sCharacterDetails_Rogue_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Blademaster</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_blademaster_cur" placeholder="Current" value="%characterDetails_blademaster_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Blademaster_Current" placeholder="Current" value="%sCharacterDetails_Blademaster_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_blademaster_rank" placeholder="Rank" value="%characterDetails_blademaster_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Blademaster_Rank" placeholder="Rank" value="%sCharacterDetails_Blademaster_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Avatar</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_avatar_cur" placeholder="Current" value="%characterDetails_avatar_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Avatar_Current" placeholder="Current" value="%sCharacterDetails_Avatar_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_avatar_rank" placeholder="Rank" value="%characterDetails_avatar_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Avatar_Rank" placeholder="Rank" value="%sCharacterDetails_Avatar_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Ambidextrous</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_ambidext_cur" placeholder="Current" value="%characterDetails_ambidext_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Ambidext_Current" placeholder="Current" value="%sCharacterDetails_Ambidext_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_ambidext_rank" placeholder="Rank" value="%characterDetails_ambidext_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Ambidext_Rank" placeholder="Rank" value="%sCharacterDetails_Ambidext_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Focused</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_focused_cur" placeholder="Current" value="%characterDetails_focused_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Focused_Current" placeholder="Current" value="%sCharacterDetails_Focused_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_focused_rank" placeholder="Rank" value="%characterDetails_focused_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Focused_Rank" placeholder="Rank" value="%sCharacterDetails_Focused_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Stalwart</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_stalwart_cur" placeholder="Current" value="%characterDetails_stalwart_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Stalwart_Current" placeholder="Current" value="%sCharacterDetails_Stalwart_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_stalwart_rank" placeholder="Rank" value="%characterDetails_stalwart_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Stalwart_Rank" placeholder="Rank" value="%sCharacterDetails_Stalwart_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Healer</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_healer_cur" placeholder="Current" value="%characterDetails_healer_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Healer_Current" placeholder="Current" value="%sCharacterDetails_Healer_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_healer_rank" placeholder="Rank" value="%characterDetails_healer_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Healer_Rank" placeholder="Rank" value="%sCharacterDetails_Healer_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Alchemist</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_alchemist_cur" placeholder="Current" value="%characterDetails_alchemist_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Alchemist_Current" placeholder="Current" value="%sCharacterDetails_Alchemist_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_alchemist_rank" placeholder="Rank" value="%characterDetails_alchemist_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Alchemist_Rank" placeholder="Rank" value="%sCharacterDetails_Alchemist_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Energist</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_energist_cur" placeholder="Current" value="%characterDetails_energist_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Energist_Current" placeholder="Current" value="%sCharacterDetails_Energist_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_energist_rank" placeholder="Rank" value="%characterDetails_energist_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Energist_Rank" placeholder="Rank" value="%sCharacterDetails_Energist_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Chemist</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_chemist_cur" placeholder="Current" value="%characterDetails_chemist_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Chemist_Current" placeholder="Current" value="%sCharacterDetails_Chemist_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_chemist_rank" placeholder="Rank" value="%characterDetails_chemist_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Chemist_Rank" placeholder="Rank" value="%sCharacterDetails_Chemist_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Hammersmith</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_hammersmith_cur" placeholder="Current" value="%characterDetails_hammersmith_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Hammersmith_Current" placeholder="Current" value="%sCharacterDetails_Hammersmith_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_hammersmith_rank" placeholder="Rank" value="%characterDetails_hammersmith_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Hammersmith_Rank" placeholder="Rank" value="%sCharacterDetails_Hammersmith_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Spellsmith</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_spellsmith_cur" placeholder="Current" value="%characterDetails_spellsmith_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Spellsmith_Current" placeholder="Current" value="%sCharacterDetails_Spellsmith_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_spellsmith_rank" placeholder="Rank" value="%characterDetails_spellsmith_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Spellsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Spellsmith_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Bowsmith</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_bowsmith_cur" placeholder="Current" value="%characterDetails_bowsmith_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Bowsmith_Current" placeholder="Current" value="%sCharacterDetails_Bowsmith_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_bowsmith_rank" placeholder="Rank" value="%characterDetails_bowsmith_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Bowsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Bowsmith_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Swordsmith</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_swordsmith_cur" placeholder="Current" value="%characterDetails_swordsmith_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Swordsmith_Current" placeholder="Current" value="%sCharacterDetails_Swordsmith_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_swordsmith_rank" placeholder="Rank" value="%characterDetails_swordsmith_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Swordsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Swordsmith_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Weaver</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_weaver_cur" placeholder="Current" value="%characterDetails_weaver_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Weaver_Current" placeholder="Current" value="%sCharacterDetails_Weaver_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_weaver_rank" placeholder="Rank" value="%characterDetails_weaver_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Weaver_Rank" placeholder="Rank" value="%sCharacterDetails_Weaver_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Tanner</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_tanner_cur" placeholder="Current" value="%characterDetails_tanner_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Tanner_Current" placeholder="Current" value="%sCharacterDetails_Tanner_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_tanner_rank" placeholder="Rank" value="%characterDetails_tanner_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Tanner_Rank" placeholder="Rank" value="%sCharacterDetails_Tanner_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Scalesmith</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_scalesmith_cur" placeholder="Current" value="%characterDetails_scalesmith_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Scalesmith_Current" placeholder="Current" value="%sCharacterDetails_Scalesmith_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_scalesmith_rank" placeholder="Rank" value="%characterDetails_scalesmith_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Scalesmith_Rank" placeholder="Rank" value="%sCharacterDetails_Scalesmith_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Platesmith</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_platesmith_cur" placeholder="Current" value="%characterDetails_platesmith_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Platesmith_Current" placeholder="Current" value="%sCharacterDetails_Platesmith_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_platesmith_rank" placeholder="Rank" value="%characterDetails_platesmith_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Platesmith_Rank" placeholder="Rank" value="%sCharacterDetails_Platesmith_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Goldsmith</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_goldsmith_cur" placeholder="Current" value="%characterDetails_goldsmith_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Goldsmith_Current" placeholder="Current" value="%sCharacterDetails_Goldsmith_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_goldsmith_rank" placeholder="Rank" value="%characterDetails_goldsmith_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Goldsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Goldsmith_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Shieldsmith</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_shieldsmith_cur" placeholder="Current" value="%characterDetails_shieldsmith_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Shieldsmith_Current" placeholder="Current" value="%sCharacterDetails_Shieldsmith_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_shieldsmith_rank" placeholder="Rank" value="%characterDetails_shieldsmith_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Shieldsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Shieldsmith_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Hammerbane</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_hammerbane_cur" placeholder="Current" value="%characterDetails_hammerbane_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Hammerbane_Current" placeholder="Current" value="%sCharacterDetails_Hammerbane_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_hammerbane_rank" placeholder="Rank" value="%characterDetails_hammerbane_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Hammerbane_Rank" placeholder="Rank" value="%sCharacterDetails_Hammerbane_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Spellbane</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_spellbane_cur" placeholder="Current" value="%characterDetails_spellbane_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Spellbane_Current" placeholder="Current" value="%sCharacterDetails_Spellbane_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_spellbane_rank" placeholder="Rank" value="%characterDetails_spellbane_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Spellbane_Rank" placeholder="Rank" value="%sCharacterDetails_Spellbane_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Bowbane</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_bowbane_cur" placeholder="Current" value="%characterDetails_bowbane_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Bowbane_Current" placeholder="Current" value="%sCharacterDetails_Bowbane_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_bowbane_rank" placeholder="Rank" value="%characterDetails_bowbane_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Bowbane_Rank" placeholder="Rank" value="%sCharacterDetails_Bowbane_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Swordbane</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_swordbane_cur" placeholder="Current" value="%characterDetails_swordbane_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Swordbane_Current" placeholder="Current" value="%sCharacterDetails_Swordbane_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_swordbane_rank" placeholder="Rank" value="%characterDetails_swordbane_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Swordbane_Rank" placeholder="Rank" value="%sCharacterDetails_Swordbane_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Threadbare</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_threadbare_cur" placeholder="Current" value="%characterDetails_threadbare_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Threadbare_Current" placeholder="Current" value="%sCharacterDetails_Threadbare_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_threadbare_rank" placeholder="Rank" value="%characterDetails_threadbare_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Threadbare_Rank" placeholder="Rank" value="%sCharacterDetails_Threadbare_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Stud Remover</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_studremover_cur" placeholder="Current" value="%characterDetails_studremover_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Studremover_Current" placeholder="Current" value="%sCharacterDetails_Studremover_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_studremover_rank" placeholder="Rank" value="%characterDetails_studremover_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Studremover_Rank" placeholder="Rank" value="%sCharacterDetails_Studremover_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Scalebane</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_scalebane_cur" placeholder="Current" value="%characterDetails_scalebane_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Scalebane_Current" placeholder="Current" value="%sCharacterDetails_Scalebane_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_scalebane_rank" placeholder="Rank" value="%characterDetails_scalebane_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Scalebane_Rank" placeholder="Rank" value="%sCharacterDetails_Scalebane_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Platebane</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_platebane_cur" placeholder="Current" value="%characterDetails_platebane_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Platebane_Current" placeholder="Current" value="%sCharacterDetails_Platebane_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_platebane_rank" placeholder="Rank" value="%characterDetails_platebane_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Platebane_Rank" placeholder="Rank" value="%sCharacterDetails_Platebane_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Goldbane</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_goldbane_cur" placeholder="Current" value="%characterDetails_goldbane_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Goldbane_Current" placeholder="Current" value="%sCharacterDetails_Goldbane_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_goldbane_rank" placeholder="Rank" value="%characterDetails_goldbane_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Goldbane_Rank" placeholder="Rank" value="%sCharacterDetails_Goldbane_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Shieldbane</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_shieldbane_cur" placeholder="Current" value="%characterDetails_shieldbane_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Shieldbane_Current" placeholder="Current" value="%sCharacterDetails_Shieldbane_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_shieldbane_rank" placeholder="Rank" value="%characterDetails_shieldbane_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Shieldbane_Rank" placeholder="Rank" value="%sCharacterDetails_Shieldbane_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Holy</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_holy_cur" placeholder="Current" value="%characterDetails_holy_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Holy_Current" placeholder="Current" value="%sCharacterDetails_Holy_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_holy_rank" placeholder="Rank" value="%characterDetails_holy_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Holy_Rank" placeholder="Rank" value="%sCharacterDetails_Holy_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Fire</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_fire_cur" placeholder="Current" value="%characterDetails_fire_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Fire_Current" placeholder="Current" value="%sCharacterDetails_Fire_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_fire_rank" placeholder="Rank" value="%characterDetails_fire_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Fire_Rank" placeholder="Rank" value="%sCharacterDetails_Fire_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Ice</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_ice_cur" placeholder="Current" value="%characterDetails_ice_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Ice_Current" placeholder="Current" value="%sCharacterDetails_Ice_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_ice_rank" placeholder="Rank" value="%characterDetails_ice_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Ice_Rank" placeholder="Rank" value="%sCharacterDetails_Ice_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Shock</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_shock_cur" placeholder="Current" value="%characterDetails_shock_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Shock_Current" placeholder="Current" value="%sCharacterDetails_Shock_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_shock_rank" placeholder="Rank" value="%characterDetails_shock_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Shock_Rank" placeholder="Rank" value="%sCharacterDetails_Shock_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Dark</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_dark_cur" placeholder="Current" value="%characterDetails_dark_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Dark_Current" placeholder="Current" value="%sCharacterDetails_Dark_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_dark_rank" placeholder="Rank" value="%characterDetails_dark_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Dark_Rank" placeholder="Rank" value="%sCharacterDetails_Dark_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Light</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_light_cur" placeholder="Current" value="%characterDetails_light_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Light_Current" placeholder="Current" value="%sCharacterDetails_Light_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_light_rank" placeholder="Rank" value="%characterDetails_light_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Light_Rank" placeholder="Rank" value="%sCharacterDetails_Light_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Force</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_force_cur" placeholder="Current" value="%characterDetails_force_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Force_Current" placeholder="Current" value="%sCharacterDetails_Force_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_force_rank" placeholder="Rank" value="%characterDetails_force_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Force_Rank" placeholder="Rank" value="%sCharacterDetails_Force_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Mind</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_mind_cur" placeholder="Current" value="%characterDetails_mind_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Mind_Current" placeholder="Current" value="%sCharacterDetails_Mind_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_mind_rank" placeholder="Rank" value="%characterDetails_mind_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Mind_Rank" placeholder="Rank" value="%sCharacterDetails_Mind_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Earth</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_earth_cur" placeholder="Current" value="%characterDetails_earth_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Earth_Current" placeholder="Current" value="%sCharacterDetails_Earth_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_earth_rank" placeholder="Rank" value="%characterDetails_earth_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Earth_Rank" placeholder="Rank" value="%sCharacterDetails_Earth_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Blood</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_blood_cur" placeholder="Current" value="%characterDetails_blood_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Blood_Current" placeholder="Current" value="%sCharacterDetails_Blood_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_blood_rank" placeholder="Rank" value="%characterDetails_blood_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Blood_Rank" placeholder="Rank" value="%sCharacterDetails_Blood_Rank%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Flesh</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_flesh_cur" placeholder="Current" value="%characterDetails_flesh_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Flesh_Current" placeholder="Current" value="%sCharacterDetails_Flesh_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_flesh_rank" placeholder="Rank" value="%characterDetails_flesh_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Flesh_Rank" placeholder="Rank" value="%sCharacterDetails_Flesh_Rank%"/>
             </div>
             <label class="col-sm-2 col-form-label">Wind</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_wind_cur" placeholder="Current" value="%characterDetails_wind_cur%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Wind_Current" placeholder="Current" value="%sCharacterDetails_Wind_Current%"/>
             </div>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="characterDetails_wind_rank" placeholder="Rank" value="%characterDetails_wind_rank%"/>
+                <input type="text" class="form-control" name="sCharacterDetails_Wind_Rank" placeholder="Rank" value="%sCharacterDetails_Wind_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <textarea style="resize: none;" class="form-control" rows="3" name="sCharacterDetails_RawJson" placeholder="Raw character json" readonly="readonly">%sCharacterDetails_RawJson%</textarea>
             </div>
         </div>
     </form>
@@ -966,228 +967,231 @@ void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
     MAKE_HTML_OPTION_LIST_STRING(CharacterBaseRaceType);
     MAKE_HTML_OPTION_LIST_STRING(CharacterTransformedRaceType);
     MAKE_HTML_OPTION_LIST_STRING(CharacterWeaponSetType);
+    MAKE_HTML_OPTION_LIST_STRING(FileType);
+
+
 
     // Set page content
     String sPage = GetPageTemplate();
-    BoostReplaceAll(sPage, "%submit_url%", WEB_PAGE_TOOL_CHARACTER_MANAGER);
-    BoostReplaceAll(sPage, "%optionList_gender%", sOptionList_CharacterGenderType);
-    BoostReplaceAll(sPage, "%optionList_hair%", sOptionList_CharacterHairType);
-    BoostReplaceAll(sPage, "%optionList_eyes%", sOptionList_CharacterEyeType);
-    BoostReplaceAll(sPage, "%optionList_handed%", sOptionList_CharacterHandednessType);
-    BoostReplaceAll(sPage, "%optionList_powerset%", sOptionList_CharacterPowerSetType);
-    BoostReplaceAll(sPage, "%optionList_baserace%", sOptionList_CharacterBaseRaceType);
-    BoostReplaceAll(sPage, "%optionList_transformedrace%", sOptionList_CharacterTransformedRaceType);
-    BoostReplaceAll(sPage, "%optionList_currentweaponset%", sOptionList_CharacterWeaponSetType);
-    BoostReplaceAll(sPage, "%createCharacter_charID%", "");
-    BoostReplaceAll(sPage, "%deleteCharacter_charID%", "");
-    BoostReplaceAll(sPage, "%generateCharacter_charID%", "");
-    BoostReplaceAll(sPage, "%generateCharacter_textarea%", "");
-    BoostReplaceAll(sPage, "%loadCharacterFromFile_charID%", "");
-    BoostReplaceAll(sPage, "%loadCharacterFromFile_filename%", "");
-    BoostReplaceAll(sPage, "%loadCharacterFromJson_charID%", "");
-    BoostReplaceAll(sPage, "%loadCharacterFromJson_textarea%", "");
-    BoostReplaceAll(sPage, "%saveCharacterToFile_charID%", "");
-    BoostReplaceAll(sPage, "%saveCharacterToFile_filename%", "");
-    BoostReplaceAll(sPage, "%unloadCharacter_charID%", "");
-    BoostReplaceAll(sPage, "%characterDetails_charID%", "");
-    BoostReplaceAll(sPage, "%characterDetails_fname%", "");
-    BoostReplaceAll(sPage, "%characterDetails_lname%", "");
-    BoostReplaceAll(sPage, "%characterDetails_age%", "");
-    BoostReplaceAll(sPage, "%characterDetails_batk%", "");
-    BoostReplaceAll(sPage, "%characterDetails_bdef%", "");
-    BoostReplaceAll(sPage, "%characterDetails_eatk%", "");
-    BoostReplaceAll(sPage, "%characterDetails_edef%", "");
-    BoostReplaceAll(sPage, "%characterDetails_matk%", "");
-    BoostReplaceAll(sPage, "%characterDetails_mdef%", "");
-    BoostReplaceAll(sPage, "%characterDetails_patk%", "");
-    BoostReplaceAll(sPage, "%characterDetails_pdef%", "");
-    BoostReplaceAll(sPage, "%characterDetails_satk%", "");
-    BoostReplaceAll(sPage, "%characterDetails_sdef%", "");
-    BoostReplaceAll(sPage, "%characterDetails_hpcur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_hpmax%", "");
-    BoostReplaceAll(sPage, "%characterDetails_hpregen%", "");
-    BoostReplaceAll(sPage, "%characterDetails_hpdelta%", "");
-    BoostReplaceAll(sPage, "%characterDetails_mpcur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_mpmax%", "");
-    BoostReplaceAll(sPage, "%characterDetails_mpregen%", "");
-    BoostReplaceAll(sPage, "%characterDetails_mpdelta%", "");
-    BoostReplaceAll(sPage, "%characterDetails_epcur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_epmax%", "");
-    BoostReplaceAll(sPage, "%characterDetails_epregen%", "");
-    BoostReplaceAll(sPage, "%characterDetails_epdelta%", "");
-    BoostReplaceAll(sPage, "%characterDetails_speed%", "");
-    BoostReplaceAll(sPage, "%characterDetails_chest%", "");
-    BoostReplaceAll(sPage, "%characterDetails_feet%", "");
-    BoostReplaceAll(sPage, "%characterDetails_hands%", "");
-    BoostReplaceAll(sPage, "%characterDetails_head%", "");
-    BoostReplaceAll(sPage, "%characterDetails_legs%", "");
-    BoostReplaceAll(sPage, "%characterDetails_neck%", "");
-    BoostReplaceAll(sPage, "%characterDetails_leftfingers%", "");
-    BoostReplaceAll(sPage, "%characterDetails_rightfingers%", "");
-    BoostReplaceAll(sPage, "%characterDetails_weapon1left%", "");
-    BoostReplaceAll(sPage, "%characterDetails_weapon1right%", "");
-    BoostReplaceAll(sPage, "%characterDetails_weapon2left%", "");
-    BoostReplaceAll(sPage, "%characterDetails_weapon2right%", "");
-    BoostReplaceAll(sPage, "%characterDetails_bash_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_block_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_break_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_cleave_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_counter_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_crack_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_crush_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_cshot_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_decapitate_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_dodge_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_drill_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_impact_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_impale_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_parry_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_pierce_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_riposte_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_rush_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_sever_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_shoot_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_slash_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_slice_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_slit_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_smash_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_sstrike_ap%", "");
-    BoostReplaceAll(sPage, "%characterDetails_alchemist_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_alchemist_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_ambidext_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_ambidext_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_avatar_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_avatar_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_barbarian_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_barbarian_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_bash_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_bash_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_blademaster_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_blademaster_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_block_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_block_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_blood_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_blood_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_bowbane_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_bowbane_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_bowsmith_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_bowsmith_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_break_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_break_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_chemist_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_chemist_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_cleave_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_cleave_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_counter_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_counter_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_crack_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_crack_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_crush_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_crush_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_cshot_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_cshot_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_dark_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_dark_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_decapitate_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_decapitate_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_dodge_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_dodge_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_drill_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_drill_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_earth_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_earth_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_energist_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_energist_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_fire_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_fire_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_flesh_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_flesh_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_focused_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_focused_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_force_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_force_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_goldbane_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_goldbane_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_goldsmith_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_goldsmith_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_hammerbane_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_hammerbane_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_hammersmith_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_hammersmith_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_healer_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_healer_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_holy_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_holy_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_ice_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_ice_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_impact_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_impact_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_impale_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_impale_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_light_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_light_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_mage_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_mage_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_mind_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_mind_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_parry_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_parry_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_pierce_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_pierce_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_platebane_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_platebane_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_platesmith_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_platesmith_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_riposte_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_riposte_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_rogue_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_rogue_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_rush_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_rush_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_scalebane_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_scalebane_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_scalesmith_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_scalesmith_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_sever_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_sever_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_shieldbane_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_shieldbane_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_shieldsmith_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_shieldsmith_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_shock_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_shock_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_shoot_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_shoot_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_slash_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_slash_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_slice_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_slice_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_slit_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_slit_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_smash_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_smash_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_spellbane_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_spellbane_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_spellsmith_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_spellsmith_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_sstrike_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_sstrike_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_stalwart_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_stalwart_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_studremover_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_studremover_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_swordbane_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_swordbane_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_swordsmith_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_swordsmith_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_tanner_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_tanner_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_threadbare_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_threadbare_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_weaver_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_weaver_rank%", "");
-    BoostReplaceAll(sPage, "%characterDetails_wind_cur%", "");
-    BoostReplaceAll(sPage, "%characterDetails_wind_rank%", "");
+    BoostReplaceAll(sPage, "%sSubmit_Url%", WEB_PAGE_TOOL_CHARACTER_MANAGER);
+    BoostReplaceAll(sPage, "%sOptionList_Gender%", sOptionList_CharacterGenderType);
+    BoostReplaceAll(sPage, "%sOptionList_Hair%", sOptionList_CharacterHairType);
+    BoostReplaceAll(sPage, "%sOptionList_Eyes%", sOptionList_CharacterEyeType);
+    BoostReplaceAll(sPage, "%sOptionList_Handed%", sOptionList_CharacterHandednessType);
+    BoostReplaceAll(sPage, "%sOptionList_PowerSet%", sOptionList_CharacterPowerSetType);
+    BoostReplaceAll(sPage, "%sOptionList_BaseRace%", sOptionList_CharacterBaseRaceType);
+    BoostReplaceAll(sPage, "%sOptionList_TransformedRace%", sOptionList_CharacterTransformedRaceType);
+    BoostReplaceAll(sPage, "%sOptionList_CurrentWeaponSet%", sOptionList_CharacterWeaponSetType);
+    BoostReplaceAll(sPage, "%sOptionList_FileType%", sOptionList_FileType);
+    BoostReplaceAll(sPage, "%sCreateCharacter_CharID%", "");
+    BoostReplaceAll(sPage, "%sDeleteCharacter_CharID%", "");
+    BoostReplaceAll(sPage, "%sGenerateCharacter_CharID%", "");
+    BoostReplaceAll(sPage, "%sGenerateCharacter_Textarea%", "");
+    BoostReplaceAll(sPage, "%sLoadCharacterFromFile_Filename%", "");
+    BoostReplaceAll(sPage, "%sLoadCharacterFromJson_Textarea%", "");
+    BoostReplaceAll(sPage, "%sSaveCharacterToFile_CharID%", "");
+    BoostReplaceAll(sPage, "%sSaveCharacterToFile_Filename%", "");
+    BoostReplaceAll(sPage, "%sUnloadCharacter_CharID%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_CharID%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_First_Name%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Last_Name%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Age%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Blunt_Attack%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Blunt_Defense%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Energy_Attack%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Energy_Defense%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Magic_Attack%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Magic_Defense%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Pierce_Attack%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Pierce_Defense%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slash_Attack%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slash_Defense%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_HP_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_HP_Max%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_HP_Regen%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_HP_Delta%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_MP_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_MP_Max%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_MP_Regen%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_MP_Delta%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_EP_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_EP_Max%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_EP_Regen%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_EP_Delta%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Speed%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Chest%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Feet%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Hands%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Head%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Legs%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Neck%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_LeftFingers%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_RightFingers%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Weapon1Left%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Weapon1Right%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Weapon2Left%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Weapon2Right%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Bash_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Block_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Break_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Cleave_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Counter_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Crack_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Crush_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_CriticalShot_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Decapitate_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Dodge_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Drill_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Impact_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Impale_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Parry_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Pierce_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Riposte_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Rush_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Sever_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Shoot_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slash_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slice_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slit_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Smash_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_StealthStrike_ActionPoints%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Alchemist_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Alchemist_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Ambidext_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Ambidext_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Avatar_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Avatar_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Barbarian_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Barbarian_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Bash_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Bash_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Blademaster_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Blademaster_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Block_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Block_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Blood_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Blood_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Bowbane_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Bowbane_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Bowsmith_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Bowsmith_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Break_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Break_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Chemist_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Chemist_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Cleave_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Cleave_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Counter_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Counter_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Crack_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Crack_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Crush_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Crush_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_CriticalShot_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_CriticalShot_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Dark_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Dark_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Decapitate_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Decapitate_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Dodge_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Dodge_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Drill_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Drill_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Earth_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Earth_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Energist_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Energist_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Fire_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Fire_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Flesh_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Flesh_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Focused_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Focused_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Force_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Force_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Goldbane_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Goldbane_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Goldsmith_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Goldsmith_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Hammerbane_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Hammerbane_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Hammersmith_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Hammersmith_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Healer_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Healer_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Holy_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Holy_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Ice_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Ice_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Impact_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Impact_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Impale_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Impale_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Light_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Light_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Mage_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Mage_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Mind_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Mind_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Parry_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Parry_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Pierce_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Pierce_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Platebane_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Platebane_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Platesmith_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Platesmith_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Riposte_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Riposte_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Rogue_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Rogue_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Rush_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Rush_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Scalebane_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Scalebane_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Scalesmith_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Scalesmith_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Sever_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Sever_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Shieldbane_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Shieldbane_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Shieldsmith_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Shieldsmith_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Shock_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Shock_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Shoot_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Shoot_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slash_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slash_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slice_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slice_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slit_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Slit_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Smash_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Smash_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Spellbane_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Spellbane_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Spellsmith_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Spellsmith_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_StealthStrike_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_StealthStrike_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Stalwart_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Stalwart_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Studremover_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Studremover_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Swordbane_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Swordbane_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Swordsmith_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Swordsmith_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Tanner_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Tanner_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Threadbare_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Threadbare_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Weaver_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Weaver_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Wind_Current%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_Wind_Rank%", "");
+    BoostReplaceAll(sPage, "%sCharacterDetails_RawJson%", "");
     SetPageContent(sPage);
 }
 

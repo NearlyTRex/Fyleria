@@ -6,6 +6,7 @@
 #include "Saves/SaveTypes.h"
 #include "Utility/Enum.h"
 #include "Utility/Constants.h"
+#include "Utility/Converters.h"
 #include "Utility/Templates.h"
 
 namespace Gecko
@@ -44,29 +45,50 @@ WebPageSaveManager::WebPageSaveManager()
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Collect Save Data</label>
+            <label class="col-sm-2 col-form-label">Collect Save Data</label>
             <div class="col-sm-2">
-                <select class="form-control" name="sCollectSaveData_SaveSlotType">
+                <select class="form-control" name="sCollectSaveDataSingle_SaveSlotType">
                     <option value="" disabled="disabled">Save Slot Type...</option>
                     %sOptionList_SaveSlotType%
                 </select>
             </div>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="sCollectSaveData_PartyID" placeholder="Party Identifier" value="%sCollectSaveData_PartyID%"/>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="sCollectSaveDataSingle_PartyID" placeholder="Party Identifier" value="%sCollectSaveDataSingle_PartyID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="collect_save_data">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="collect_save_data_single">Run</button>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Disperse Save Data</label>
+            <label class="col-sm-2 col-form-label">Collect Save Data</label>
+            <div class="col-sm-2">
+                <select class="form-control" name="sCollectSaveDataMultiple_SaveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    %sOptionList_SaveSlotType%
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCollectSaveDataMultiple_PartyIDs" placeholder="Party Identifiers" value="%sCollectSaveDataMultiple_PartyIDs%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCollectSaveDataMultiple_Description" placeholder="Description" value="%sCollectSaveDataMultiple_Description%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCollectSaveDataMultiple_PlayTime" placeholder="Playtime" value="%sCollectSaveDataMultiple_PlayTime%"/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="collect_save_data_multiple">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Disperse Save Data</label>
             <div class="col-sm-2">
                 <select class="form-control" name="sDisperseSaveData_SaveSlotType">
                     <option value="" disabled="disabled">Save Slot Type...</option>
                     %sOptionList_SaveSlotType%
                 </select>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="disperse_save_data">Run</button>
@@ -109,14 +131,14 @@ WebPageSaveManager::WebPageSaveManager()
                     %sOptionList_SaveSlotType%
                 </select>
             </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sLoadFromFile_Filename" placeholder="Filename" value="%sLoadFromFile_Filename%"/>
+            </div>
             <div class="col-sm-2">
                 <select class="form-control" name="sLoadFromFile_FileType">
                     <option value="" disabled="disabled">File Type...</option>
                     %sOptionList_FileType%
                 </select>
-            </div>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="sLoadFromFile_Filename" placeholder="Filename" value="%sLoadFromFile_Filename%"/>
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="load_from_file">Run</button>
@@ -130,14 +152,14 @@ WebPageSaveManager::WebPageSaveManager()
                     %sOptionList_SaveSlotType%
                 </select>
             </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sSaveToFile_Filename" placeholder="Filename" value="%sSaveToFile_Filename%"/>
+            </div>
             <div class="col-sm-2">
                 <select class="form-control" name="sSaveToFile_FileType">
                     <option value="" disabled="disabled">File Type...</option>
                     %sOptionList_FileType%
                 </select>
-            </div>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" name="sSaveToFile_Filename" placeholder="Filename" value="%sSaveToFile_Filename%"/>
             </div>
             <div class="col-sm-2">
                 <button type="submit" class="btn btn-primary form-control" name="action" value="save_to_file">Run</button>
@@ -203,8 +225,12 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
 
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
-    String sCollectSaveData_SaveSlotType = GetMapDataOrDefault(tParams, "sCollectSaveData_SaveSlotType", "");
-    String sCollectSaveData_PartyID = GetMapDataOrDefault(tParams, "sCollectSaveData_PartyID", "");
+    String sCollectSaveDataSingle_SaveSlotType = GetMapDataOrDefault(tParams, "sCollectSaveDataSingle_SaveSlotType", "");
+    String sCollectSaveDataSingle_PartyID = GetMapDataOrDefault(tParams, "sCollectSaveDataSingle_PartyID", "");
+    String sCollectSaveDataMultiple_SaveSlotType = GetMapDataOrDefault(tParams, "sCollectSaveDataMultiple_SaveSlotType", "");
+    String sCollectSaveDataMultiple_PartyIDs = GetMapDataOrDefault(tParams, "sCollectSaveDataMultiple_PartyIDs", "");
+    String sCollectSaveDataMultiple_Description = GetMapDataOrDefault(tParams, "sCollectSaveDataMultiple_Description", "");
+    String sCollectSaveDataMultiple_PlayTime = GetMapDataOrDefault(tParams, "sCollectSaveDataMultiple_PlayTime", "");
     String sDisperseSaveData_SaveSlotType = GetMapDataOrDefault(tParams, "sDisperseSaveData_SaveSlotType", "");
     String sLoadSave_SaveSlotType = GetMapDataOrDefault(tParams, "sLoadSave_SaveSlotType", "");
     String sLoadSave_Textarea = GetMapDataOrDefault(tParams, "sLoadSave_Textarea", "");
@@ -233,11 +259,21 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     {
         SaveManager::GetInstance()->InitializeAllSaveSlots();
     }
-    else if(sAction == "collect_save_data")
+    else if(sAction == "collect_save_data_single")
     {
         SaveManager::GetInstance()->CollectSaveData(
-            StringToSaveSlotType(sCollectSaveData_SaveSlotType)._to_integral(),
-            sCollectSaveData_PartyID
+            StringToSaveSlotType(sCollectSaveDataSingle_SaveSlotType)._to_integral(),
+            sCollectSaveDataSingle_PartyID
+        );
+    }
+    else if(sAction == "collect_save_data_multiple")
+    {
+        StringArray vPartyIDs = ConvertStringToTokenArray(sCollectSaveDataMultiple_PartyIDs, ", ");
+        SaveManager::GetInstance()->CollectSaveData(
+            StringToSaveSlotType(sCollectSaveDataMultiple_SaveSlotType)._to_integral(),
+            vPartyIDs,
+            sCollectSaveDataMultiple_Description,
+            BoostLexicalCast<ULong>(sCollectSaveDataMultiple_PlayTime)
         );
     }
     else if(sAction == "disperse_save_data")
@@ -299,7 +335,10 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     BoostReplaceAll(sPage, "%sSubmit_Url%", WEB_PAGE_TOOL_SAVE_MANAGER);
     BoostReplaceAll(sPage, "%sOptionList_SaveSlotType%", sOptionList_SaveSlotType);
     BoostReplaceAll(sPage, "%sOptionList_FileType%", sOptionList_FileType);
-    BoostReplaceAll(sPage, "%sCollectSaveData_PartyID%", sCollectSaveData_PartyID);
+    BoostReplaceAll(sPage, "%sCollectSaveDataSingle_PartyID%", sCollectSaveDataSingle_PartyID);
+    BoostReplaceAll(sPage, "%sCollectSaveDataMultiple_PartyIDs%", sCollectSaveDataMultiple_PartyIDs);
+    BoostReplaceAll(sPage, "%sCollectSaveDataMultiple_Description%", sCollectSaveDataMultiple_Description);
+    BoostReplaceAll(sPage, "%sCollectSaveDataMultiple_PlayTime%", sCollectSaveDataMultiple_PlayTime);
     BoostReplaceAll(sPage, "%sLoadSave_Textarea%", sLoadSave_Textarea);
     BoostReplaceAll(sPage, "%sLoadFromFile_Filename%", sLoadFromFile_Filename);
     BoostReplaceAll(sPage, "%sSaveToFile_Filename%", sSaveToFile_Filename);
