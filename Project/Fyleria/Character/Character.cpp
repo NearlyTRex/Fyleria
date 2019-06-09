@@ -269,47 +269,47 @@ void Character::ClearActiveChanges()
 void to_json(Json& jsonData, const Character& obj)
 {
     // Segmented progress data
-    SET_JSON_DATA_IF_NOT_DEFAULT(ProgressDataBase, CharacterProgressData());
-    SET_JSON_DATA_IF_NOT_DEFAULT(ProgressDataPassives, CharacterProgressData());
+    SET_JSON_DATA_VIA_ASSIGNMENT(ProgressDataBase);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ProgressDataPassives);
 
     // Segmented battle data
-    SET_JSON_DATA_IF_NOT_DEFAULT(BattleDataBase, CharacterBattleData());
-    SET_JSON_DATA_IF_NOT_DEFAULT(BattleDataPassives, CharacterBattleData());
+    SET_JSON_DATA_VIA_ASSIGNMENT(BattleDataBase);
+    SET_JSON_DATA_VIA_ASSIGNMENT(BattleDataPassives);
 
     // Basic data
-    SET_JSON_DATA_IF_NOT_DEFAULT(BasicData, CharacterBasicData());
+    SET_JSON_DATA_VIA_ASSIGNMENT(BasicData);
 
     // Action data
-    SET_JSON_DATA_IF_NOT_DEFAULT(ActionData, CharacterActionData());
+    SET_JSON_DATA_VIA_ASSIGNMENT(ActionData);
 
     // Skill data
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillData, CharacterSkillData());
+    SET_JSON_DATA_VIA_ASSIGNMENT(SkillData);
 
     // Stat change data
-    SET_JSON_DATA_IF_NOT_DEFAULT(StatChangeData, CharacterStatChangeData());
+    SET_JSON_DATA_VIA_ASSIGNMENT(StatChangeData);
 }
 
 void from_json(const Json& jsonData, Character& obj)
 {
     // Segmented progress data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ProgressDataBase, CharacterProgressData, CharacterProgressData());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ProgressDataPassives, CharacterProgressData, CharacterProgressData());
+    SET_OBJ_DATA(ProgressDataBase, CharacterProgressData, CharacterProgressData());
+    SET_OBJ_DATA(ProgressDataPassives, CharacterProgressData, CharacterProgressData());
 
     // Segmented battle data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BattleDataBase, CharacterBattleData, CharacterBattleData());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BattleDataPassives, CharacterBattleData, CharacterBattleData());
+    SET_OBJ_DATA(BattleDataBase, CharacterBattleData, CharacterBattleData());
+    SET_OBJ_DATA(BattleDataPassives, CharacterBattleData, CharacterBattleData());
 
     // Basic data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BasicData, CharacterBasicData, CharacterBasicData());
+    SET_OBJ_DATA(BasicData, CharacterBasicData, CharacterBasicData());
 
     // Action data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionData, CharacterActionData, CharacterActionData());
+    SET_OBJ_DATA(ActionData, CharacterActionData, CharacterActionData());
 
     // Skill data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillData, CharacterSkillData, CharacterSkillData());
+    SET_OBJ_DATA(SkillData, CharacterSkillData, CharacterSkillData());
 
     // Stat change data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChangeData, CharacterStatChangeData, CharacterStatChangeData());
+    SET_OBJ_DATA(StatChangeData, CharacterStatChangeData, CharacterStatChangeData());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Character, Character);

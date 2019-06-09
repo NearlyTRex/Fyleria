@@ -210,31 +210,31 @@ Bool CharacterStatChangeData::operator!=(const CharacterStatChangeData& other) c
 void to_json(Json& jsonData, const CharacterStatChangeData& obj)
 {
     // Passive data
-    SET_JSON_DATA_IF_NOT_EMPTY(PassiveSkillDataArray);
-    SET_JSON_DATA_IF_NOT_EMPTY(PassiveItemDataArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(PassiveSkillDataArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(PassiveItemDataArray);
 
     // Active data
-    SET_JSON_DATA_IF_NOT_EMPTY(ActiveSkillDataArray);
-    SET_JSON_DATA_IF_NOT_EMPTY(ActiveItemDataArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ActiveSkillDataArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ActiveItemDataArray);
 
     // Actionable data
-    SET_JSON_DATA_IF_NOT_EMPTY(ActionableSkillDataArray);
-    SET_JSON_DATA_IF_NOT_EMPTY(ActionableItemDataArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ActionableSkillDataArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ActionableItemDataArray);
 }
 
 void from_json(const Json& jsonData, CharacterStatChangeData& obj)
 {
     // Passive data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PassiveSkillDataArray, TreeIndexArray, TreeIndexArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PassiveItemDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA(PassiveSkillDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA(PassiveItemDataArray, TreeIndexArray, TreeIndexArray());
 
     // Active data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActiveSkillDataArray, TreeIndexArray, TreeIndexArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActiveItemDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA(ActiveSkillDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA(ActiveItemDataArray, TreeIndexArray, TreeIndexArray());
 
     // Actionable data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionableSkillDataArray, TreeIndexArray, TreeIndexArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionableItemDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA(ActionableSkillDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA(ActionableItemDataArray, TreeIndexArray, TreeIndexArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterStatChangeData, CharacterStatChangeData);

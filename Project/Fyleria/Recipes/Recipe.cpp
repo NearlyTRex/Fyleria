@@ -30,25 +30,25 @@ void Recipe::Clear()
 void to_json(Json& jsonData, const Recipe& obj)
 {
     // Chance to success
-    SET_JSON_DATA_IF_NOT_DEFAULT(ChanceToSucceed, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ChanceToSucceed);
 
     // Ingredients
-    SET_JSON_DATA_IF_NOT_EMPTY(Ingredients);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Ingredients);
 
     // Results
-    SET_JSON_DATA_IF_NOT_EMPTY(Results);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Results);
 }
 
 void from_json(const Json& jsonData, Recipe& obj)
 {
     // Chance to success
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ChanceToSucceed, Float, 0);
+    SET_OBJ_DATA(ChanceToSucceed, Float, 0);
 
     // Ingredients
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Ingredients, RecipeEntryArray, RecipeEntryArray());
+    SET_OBJ_DATA(Ingredients, RecipeEntryArray, RecipeEntryArray());
 
     // Results
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Results, RecipeEntryArray, RecipeEntryArray());
+    SET_OBJ_DATA(Results, RecipeEntryArray, RecipeEntryArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Recipe, Recipe);

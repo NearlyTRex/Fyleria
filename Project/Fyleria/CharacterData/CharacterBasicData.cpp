@@ -45,7 +45,7 @@ Bool CharacterBasicData::operator!=(const CharacterBasicData& other) const
 void to_json(Json& jsonData, const CharacterBasicData& obj)
 {
     // Character ID
-    SET_JSON_DATA_IF_NOT_DEFAULT(CharacterID, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(CharacterID);
 
     // Stat values
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBasicStatType, String);
@@ -55,7 +55,7 @@ void to_json(Json& jsonData, const CharacterBasicData& obj)
 void from_json(const Json& jsonData, CharacterBasicData& obj)
 {
     // Character ID
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterID, String, "");
+    SET_OBJ_DATA(CharacterID, String, "");
 
     // Stat values
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBasicStatType, String);

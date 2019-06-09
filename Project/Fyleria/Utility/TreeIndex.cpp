@@ -85,16 +85,16 @@ Bool TreeIndex::operator!=(const TreeIndex& other) const
 
 void to_json(Json& jsonData, const TreeIndex& obj)
 {
-    SET_JSON_DATA_IF_NOT_DEFAULT(Tree, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(Branch, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(Leaf, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(Tree);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Branch);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Leaf);
 }
 
 void from_json(const Json& jsonData, TreeIndex& obj)
 {
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Tree, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Branch, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Leaf, String, "");
+    SET_OBJ_DATA(Tree, String, "");
+    SET_OBJ_DATA(Branch, String, "");
+    SET_OBJ_DATA(Leaf, String, "");
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(TreeIndex, TreeIndex);

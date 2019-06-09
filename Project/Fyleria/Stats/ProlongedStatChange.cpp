@@ -16,7 +16,7 @@ ProlongedStatChange::ProlongedStatChange(const Json& jsonData)
 {
 }
 
-MAKE_JSON_BASIC_TYPE_CONVERTERS_IMPL(ProlongedStatChange);
+MAKE_JSON_OBJ_TYPE_CONVERTERS_IMPL(ProlongedStatChange);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ProlongedStatChange, ProlongedStatChange);
 
 };

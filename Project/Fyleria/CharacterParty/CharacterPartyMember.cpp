@@ -257,25 +257,25 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
 void to_json(Json& jsonData, const CharacterPartyMember& obj)
 {
     // Character ID
-    SET_JSON_DATA_IF_NOT_DEFAULT(CharacterID, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(CharacterID);
 
     // Character target type
-    SET_JSON_DATA_IF_NOT_DEFAULT(CharacterTargetType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(CharacterTargetType);
 
     // Equipped items
-    SET_JSON_DATA_IF_NOT_EMPTY(EquippedItems);
+    SET_JSON_DATA_VIA_ASSIGNMENT(EquippedItems);
 }
 
 void from_json(const Json& jsonData, CharacterPartyMember& obj)
 {
     // Character ID
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterID, String, "");
+    SET_OBJ_DATA(CharacterID, String, "");
 
     // Character target type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CharacterTargetType, String, "");
+    SET_OBJ_DATA(CharacterTargetType, String, "");
 
     // Equipped items
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(EquippedItems, CharacterPartyEquippedItemArray, CharacterPartyEquippedItemArray());
+    SET_OBJ_DATA(EquippedItems, CharacterPartyEquippedItemArray, CharacterPartyEquippedItemArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyMember, CharacterPartyMember);

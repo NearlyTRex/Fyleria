@@ -42,49 +42,49 @@ void RecipeEntry::Clear()
 void to_json(Json& jsonData, const RecipeEntry& obj)
 {
     // Chance to success
-    SET_JSON_DATA_IF_NOT_DEFAULT(ChanceToSucceed, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ChanceToSucceed);
 
     // Input type
-    SET_JSON_DATA_IF_NOT_DEFAULT(InputPotionName, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(InputIngredientName, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(InputWeaponName, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(InputArmorName, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(InputPotionName);
+    SET_JSON_DATA_VIA_ASSIGNMENT(InputIngredientName);
+    SET_JSON_DATA_VIA_ASSIGNMENT(InputWeaponName);
+    SET_JSON_DATA_VIA_ASSIGNMENT(InputArmorName);
 
     // Output type
-    SET_JSON_DATA_IF_NOT_DEFAULT(OutputPotionName, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(OutputIngredientName, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(OutputWeaponName, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(OutputArmorName, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(OutputPotionName);
+    SET_JSON_DATA_VIA_ASSIGNMENT(OutputIngredientName);
+    SET_JSON_DATA_VIA_ASSIGNMENT(OutputWeaponName);
+    SET_JSON_DATA_VIA_ASSIGNMENT(OutputArmorName);
 
     // Input amount
-    SET_JSON_DATA_IF_NOT_DEFAULT(InputAmount, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(InputAmount);
 
     // Output amount
-    SET_JSON_DATA_IF_NOT_DEFAULT(OutputAmount, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(OutputAmount);
 }
 
 void from_json(const Json& jsonData, RecipeEntry& obj)
 {
     // Chance to success
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ChanceToSucceed, Float, 0);
+    SET_OBJ_DATA(ChanceToSucceed, Float, 0);
 
     // Input type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputPotionName, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputIngredientName, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputWeaponName, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputArmorName, String, "");
+    SET_OBJ_DATA(InputPotionName, String, "");
+    SET_OBJ_DATA(InputIngredientName, String, "");
+    SET_OBJ_DATA(InputWeaponName, String, "");
+    SET_OBJ_DATA(InputArmorName, String, "");
 
     // Output type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputPotionName, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputIngredientName, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputWeaponName, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputArmorName, String, "");
+    SET_OBJ_DATA(OutputPotionName, String, "");
+    SET_OBJ_DATA(OutputIngredientName, String, "");
+    SET_OBJ_DATA(OutputWeaponName, String, "");
+    SET_OBJ_DATA(OutputArmorName, String, "");
 
     // Input amount
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(InputAmount, Int, 0);
+    SET_OBJ_DATA(InputAmount, Int, 0);
 
     // Output amount
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OutputAmount, Int, 0);
+    SET_OBJ_DATA(OutputAmount, Int, 0);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(RecipeEntry, RecipeEntry);

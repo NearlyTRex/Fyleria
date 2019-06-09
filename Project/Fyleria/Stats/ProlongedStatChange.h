@@ -36,7 +36,7 @@ public:
 MAKE_TYPE_TYPEDEFS(ProlongedStatChange);
 
 // JSON Converters
-MAKE_JSON_BASIC_TYPE_CONVERTERS_DECL(ProlongedStatChange);
+MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(ProlongedStatChange);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(ProlongedStatChange, ProlongedStatChange);
 
 };

@@ -44,69 +44,69 @@ StatChangeEntry::StatChangeEntry(const Json& jsonData)
 void to_json(Json& jsonData, const StatChangeEntry& obj)
 {
     // Applicable round or attack number
-    SET_JSON_DATA_IF_NOT_DEFAULT(Round, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(Attack, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(Defend, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Round);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Attack);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Defend);
 
     // Delta amounts
-    SET_JSON_DATA_IF_NOT_DEFAULT(DeltaFloat, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(DeltaInt, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(DeltaFloat);
+    SET_JSON_DATA_VIA_ASSIGNMENT(DeltaInt);
 
     // Full amounts
-    SET_JSON_DATA_IF_NOT_DEFAULT(FullPercent, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(FullFloat, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(FullInt, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(FullBool, false);
-    SET_JSON_DATA_IF_NOT_DEFAULT(FullString, "");
-    SET_JSON_DATA_IF_NOT_EMPTY(FullFloatArray);
-    SET_JSON_DATA_IF_NOT_EMPTY(FullIntArray);
-    SET_JSON_DATA_IF_NOT_EMPTY(FullBoolArray);
-    SET_JSON_DATA_IF_NOT_EMPTY(FullStringArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(FullPercent);
+    SET_JSON_DATA_VIA_ASSIGNMENT(FullFloat);
+    SET_JSON_DATA_VIA_ASSIGNMENT(FullInt);
+    SET_JSON_DATA_VIA_ASSIGNMENT(FullBool);
+    SET_JSON_DATA_VIA_ASSIGNMENT(FullString);
+    SET_JSON_DATA_VIA_ASSIGNMENT(FullFloatArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(FullIntArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(FullBoolArray);
+    SET_JSON_DATA_VIA_ASSIGNMENT(FullStringArray);
 
     // Operation type (Add, Multiply, etc)
-    SET_JSON_DATA_IF_NOT_DEFAULT(OperationType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(OperationType);
 
     // Stats to serve as source and destination
-    SET_JSON_DATA_IF_NOT_DEFAULT(SourceStatType, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(DestinationStatType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(SourceStatType);
+    SET_JSON_DATA_VIA_ASSIGNMENT(DestinationStatType);
 
     // Character IDs for applying
-    SET_JSON_DATA_IF_NOT_DEFAULT(SourceCharacterID, "");
-    SET_JSON_DATA_IF_NOT_EMPTY(DestinationCharacterIDs);
+    SET_JSON_DATA_VIA_ASSIGNMENT(SourceCharacterID);
+    SET_JSON_DATA_VIA_ASSIGNMENT(DestinationCharacterIDs);
 }
 
 void from_json(const Json& jsonData, StatChangeEntry& obj)
 {
     // Applicable round or attack number
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Round, Int, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Attack, Int, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Defend, Int, 0);
+    SET_OBJ_DATA(Round, Int, 0);
+    SET_OBJ_DATA(Attack, Int, 0);
+    SET_OBJ_DATA(Defend, Int, 0);
 
     // Delta amounts
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DeltaFloat, Float, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DeltaInt, Int, 0);
+    SET_OBJ_DATA(DeltaFloat, Float, 0);
+    SET_OBJ_DATA(DeltaInt, Int, 0);
 
     // Full amounts
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullPercent, Float, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullFloat, Float, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullInt, Int, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullBool, Bool, false);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullString, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullFloatArray, FloatArray, FloatArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullIntArray, IntArray, IntArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullBoolArray, BoolArray, BoolArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(FullStringArray, StringArray, StringArray());
+    SET_OBJ_DATA(FullPercent, Float, 0);
+    SET_OBJ_DATA(FullFloat, Float, 0);
+    SET_OBJ_DATA(FullInt, Int, 0);
+    SET_OBJ_DATA(FullBool, Bool, false);
+    SET_OBJ_DATA(FullString, String, "");
+    SET_OBJ_DATA(FullFloatArray, FloatArray, FloatArray());
+    SET_OBJ_DATA(FullIntArray, IntArray, IntArray());
+    SET_OBJ_DATA(FullBoolArray, BoolArray, BoolArray());
+    SET_OBJ_DATA(FullStringArray, StringArray, StringArray());
 
     // Operation type (Add, Multiply, etc)
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(OperationType, String, "");
+    SET_OBJ_DATA(OperationType, String, "");
 
     // Stats to serve as source and destination
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceStatType, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationStatType, String, "");
+    SET_OBJ_DATA(SourceStatType, String, "");
+    SET_OBJ_DATA(DestinationStatType, String, "");
 
     // Character IDs for applying
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceCharacterID, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationCharacterIDs, StringArray, StringArray());
+    SET_OBJ_DATA(SourceCharacterID, String, "");
+    SET_OBJ_DATA(DestinationCharacterIDs, StringArray, StringArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChangeEntry, StatChangeEntry);

@@ -35,13 +35,13 @@ CharacterActionArray ItemDataPotion::CreatePotionActions(const String& sCharacte
 void to_json(Json& jsonData, const ItemDataPotion& obj)
 {
     // Stat changes
-    SET_JSON_DATA_IF_NOT_EMPTY(StatChanges);
+    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemDataPotion& obj)
 {
     // Stat changes
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
+    SET_OBJ_DATA(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataPotion, ItemDataPotion);

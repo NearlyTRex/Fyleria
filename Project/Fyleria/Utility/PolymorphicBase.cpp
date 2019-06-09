@@ -26,13 +26,13 @@ PolymorphicBase::PolymorphicBase(const Json& jsonData)
 void to_json(Json& jsonData, const PolymorphicBase& obj)
 {
     // Type name
-    SET_JSON_DATA_IF_NOT_DEFAULT(TypeName, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(TypeName);
 }
 
 void from_json(const Json& jsonData, PolymorphicBase& obj)
 {
     // Type name
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(TypeName, String, "");
+    SET_OBJ_DATA(TypeName, String, "");
 }
 
 };

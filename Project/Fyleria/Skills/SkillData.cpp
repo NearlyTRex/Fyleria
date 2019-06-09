@@ -227,63 +227,63 @@ CharacterActionArray SkillData::CreateBaseActions(const String& sCharacterID, co
 void to_json(Json& jsonData, const SkillData& obj)
 {
     // Run types
-    SET_JSON_DATA_IF_NOT_EMPTY(RunTypes);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RunTypes);
 
     // Data class
-    SET_JSON_DATA_IF_NOT_DEFAULT(DataClass, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(DataClass);
 
     // Skill rank
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillRank, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(SkillRank);
 
     // Skill name
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillName, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(SkillName);
 
     // Skill description
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillDescription, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(SkillDescription);
 
     // Skill type
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(SkillType);
 
     // Skill costs
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillCostAP, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillCostHP, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(SkillCostAP);
+    SET_JSON_DATA_VIA_ASSIGNMENT(SkillCostHP);
 
     // Skill index
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillTreeIndex, TreeIndex());
+    SET_JSON_DATA_VIA_ASSIGNMENT(SkillTreeIndex);
 
     // Stat changes
-    SET_JSON_DATA_IF_NOT_EMPTY(StatChanges);
+    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
 }
 
 void from_json(const Json& jsonData, SkillData& obj)
 {
     // Run types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunTypes, StringArray, StringArray());
+    SET_OBJ_DATA(RunTypes, StringArray, StringArray());
 
     // Data class
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DataClass, String, "");
+    SET_OBJ_DATA(DataClass, String, "");
 
     // Skill rank
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillRank, Int, 0);
+    SET_OBJ_DATA(SkillRank, Int, 0);
 
     // Skill name
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillName, String, "");
+    SET_OBJ_DATA(SkillName, String, "");
 
     // Skill description
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillDescription, String, "");
+    SET_OBJ_DATA(SkillDescription, String, "");
 
     // Skill type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillType, String, "");
+    SET_OBJ_DATA(SkillType, String, "");
 
     // Skill costs
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillCostAP, Int, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillCostHP, Int, 0);
+    SET_OBJ_DATA(SkillCostAP, Int, 0);
+    SET_OBJ_DATA(SkillCostHP, Int, 0);
 
     // Skill index
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(SkillTreeIndex, TreeIndex, TreeIndex());
 
     // Stat changes
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
+    SET_OBJ_DATA(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 };

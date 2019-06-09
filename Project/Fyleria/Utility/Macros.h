@@ -29,31 +29,17 @@ String Get##name() const                                                        
 
 //=====================================================================================
 
-#define SET_JSON_DATA_IF_NOT_DEFAULT(name, value_default)                           \
+#define SET_JSON_DATA_VIA_TO_JSON(name)                                             \
 {                                                                                   \
-    if(obj.Get##name() != value_default)                                            \
-    {                                                                               \
-        jsonData[#name] = obj.Get##name();                                          \
-    }                                                                               \
-    else                                                                            \
-    {                                                                               \
-        jsonData[#name] = value_default;                                            \
-    }                                                                               \
+    to_json(jsonData[#name], obj.Get##name());                                      \
 }
 
-#define SET_JSON_DATA_IF_NOT_EMPTY(name)                                            \
+#define SET_JSON_DATA_VIA_ASSIGNMENT(name)                                          \
 {                                                                                   \
-    if(!obj.Get##name().empty())                                                    \
-    {                                                                               \
-        jsonData[#name] = obj.Get##name();                                          \
-    }                                                                               \
-    else                                                                            \
-    {                                                                               \
-        jsonData[#name] = JsonArray();                                              \
-    }                                                                               \
+    jsonData[#name] = obj.Get##name();                                              \
 }
 
-#define SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(name, value_type, value_default)          \
+#define SET_OBJ_DATA(name, value_type, value_default)                               \
 {                                                                                   \
     if(jsonData.find(#name) != jsonData.end())                                      \
     {                                                                               \
@@ -83,6 +69,20 @@ void to_json(Json& jsonData, const type& obj);                                  
 void from_json(const Json& jsonData, type& obj);
 
 #define MAKE_JSON_BASIC_TYPE_CONVERTERS_IMPL(type)                                  \
+void to_json(Json& jsonData, const type& obj)                                       \
+{                                                                                   \
+    jsonData = obj;                                                                 \
+}                                                                                   \
+void from_json(const Json& jsonData, type& obj)                                     \
+{                                                                                   \
+    obj = jsonData;                                                                 \
+}
+
+#define MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(type)                                    \
+void to_json(Json& jsonData, const type& obj);                                      \
+void from_json(const Json& jsonData, type& obj);
+
+#define MAKE_JSON_OBJ_TYPE_CONVERTERS_IMPL(type)                                    \
 void to_json(Json& jsonData, const type& obj)                                       \
 {                                                                                   \
     jsonData = obj.ToJson();                                                        \

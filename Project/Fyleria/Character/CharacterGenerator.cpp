@@ -189,7 +189,7 @@ void CharacterGenerator::RandomizeAll()
     RandomizeScoring();
 }
 
-MAKE_JSON_BASIC_TYPE_CONVERTERS_IMPL(CharacterGenerator);
+MAKE_JSON_OBJ_TYPE_CONVERTERS_IMPL(CharacterGenerator);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterGenerator, CharacterGenerator);
 
 };

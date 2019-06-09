@@ -41,25 +41,25 @@ CharacterActionArray ItemDataArmor::CreateArmorActions(const String& sCharacterI
 void to_json(Json& jsonData, const ItemDataArmor& obj)
 {
     // Stat percents
-    SET_JSON_DATA_IF_NOT_DEFAULT(BluntDefendPercent, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(PierceDefendPercent, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(SlashDefendPercent, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(MagicDefendPercent, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(BluntDefendPercent);
+    SET_JSON_DATA_VIA_ASSIGNMENT(PierceDefendPercent);
+    SET_JSON_DATA_VIA_ASSIGNMENT(SlashDefendPercent);
+    SET_JSON_DATA_VIA_ASSIGNMENT(MagicDefendPercent);
 
     // Stat changes
-    SET_JSON_DATA_IF_NOT_EMPTY(StatChanges);
+    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemDataArmor& obj)
 {
     // Stat percents
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BluntDefendPercent, Float, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PierceDefendPercent, Float, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SlashDefendPercent, Float, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(MagicDefendPercent, Float, 0);
+    SET_OBJ_DATA(BluntDefendPercent, Float, 0);
+    SET_OBJ_DATA(PierceDefendPercent, Float, 0);
+    SET_OBJ_DATA(SlashDefendPercent, Float, 0);
+    SET_OBJ_DATA(MagicDefendPercent, Float, 0);
 
     // Stat changes
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
+    SET_OBJ_DATA(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataArmor, ItemDataArmor);

@@ -149,19 +149,19 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const String& sCharact
 void to_json(Json& jsonData, const SkillDataWeapon& obj)
 {
     // Weapon base type
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponBaseType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(WeaponBaseType);
 
     // Amount of action points available
-    SET_JSON_DATA_IF_NOT_DEFAULT(ActionPoints, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ActionPoints);
 }
 
 void from_json(const Json& jsonData, SkillDataWeapon& obj)
 {
     // Weapon base type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(WeaponBaseType, String, "");
+    SET_OBJ_DATA(WeaponBaseType, String, "");
 
     // Amount of action points available
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionPoints, Int, 0);
+    SET_OBJ_DATA(ActionPoints, Int, 0);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(SkillDataWeapon, SkillDataWeapon);

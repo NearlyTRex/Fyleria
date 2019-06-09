@@ -447,101 +447,101 @@ Bool StatChange::operator<(const StatChange& other) const
 void to_json(Json& jsonData, const StatChange& obj)
 {
     // ID
-    SET_JSON_DATA_IF_NOT_DEFAULT(ID, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ID);
 
     // Relevant skill data
-    SET_JSON_DATA_IF_NOT_DEFAULT(SkillTreeIndex, TreeIndex());
+    SET_JSON_DATA_VIA_TO_JSON(SkillTreeIndex);
 
     // Relevant item data
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemTreeIndex, TreeIndex());
+    SET_JSON_DATA_VIA_TO_JSON(ItemTreeIndex);
 
     // Percent chance to apply this change
-    SET_JSON_DATA_IF_NOT_DEFAULT(ChanceToApply, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ChanceToApply);
 
     // Amount of rounds to apply this change (0 is indefinite)
-    SET_JSON_DATA_IF_NOT_DEFAULT(RoundAmount, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RoundAmount);
 
     // Amount of attacks to apply this change (0 is indefinite)
-    SET_JSON_DATA_IF_NOT_DEFAULT(AttackAmount, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(AttackAmount);
 
     // Amount of defends to apply this change (0 is indefinite)
-    SET_JSON_DATA_IF_NOT_DEFAULT(DefendAmount, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(DefendAmount);
 
     // Required items or attack types
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredItemEquippedTypesOR);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredItemEquippedTypesAND);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredItemUsedTypesOR);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredItemUsedTypesAND);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredAttackTypesOR);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredAttackTypesAND);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredDefendTypesOR);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredDefendTypesAND);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredPreviousAttackTypesOR);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredPreviousAttackTypesAND);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredPreviousDefendTypesOR);
-    SET_JSON_DATA_IF_NOT_EMPTY(RequiredPreviousDefendTypesAND);
-    SET_JSON_DATA_IF_NOT_DEFAULT(RequiredEquippedWeaponCount, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(RequiredEquippedShieldCount, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredItemEquippedTypesOR);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredItemEquippedTypesAND);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredItemUsedTypesOR);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredItemUsedTypesAND);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredAttackTypesOR);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredAttackTypesAND);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredDefendTypesOR);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredDefendTypesAND);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredPreviousAttackTypesOR);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredPreviousAttackTypesAND);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredPreviousDefendTypesOR);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredPreviousDefendTypesAND);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredEquippedWeaponCount);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RequiredEquippedShieldCount);
 
     // Whether destination target is the same as the source target
-    SET_JSON_DATA_IF_NOT_DEFAULT(DestinationIsSource, false);
+    SET_JSON_DATA_VIA_ASSIGNMENT(DestinationIsSource);
 
     // Source and destination targets
-    SET_JSON_DATA_IF_NOT_DEFAULT(SourceTargetType, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(DestinationTargetType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(SourceTargetType);
+    SET_JSON_DATA_VIA_ASSIGNMENT(DestinationTargetType);
 
     // Stat change list
-    SET_JSON_DATA_IF_NOT_EMPTY(StatChangeEntries);
+    SET_JSON_DATA_VIA_ASSIGNMENT(StatChangeEntries);
 }
 
 void from_json(const Json& jsonData, StatChange& obj)
 {
     // ID
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ID, ULongLong, 0);
+    SET_OBJ_DATA(ID, ULongLong, 0);
 
     // Relevant skill data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(SkillTreeIndex, TreeIndex, TreeIndex());
 
     // Relevant item data
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(ItemTreeIndex, TreeIndex, TreeIndex());
 
     // Percent chance to apply this change
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ChanceToApply, Int, 0);
+    SET_OBJ_DATA(ChanceToApply, Int, 0);
 
     // Amount of rounds to apply this change (0 is indefinite)
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RoundAmount, Int, 0);
+    SET_OBJ_DATA(RoundAmount, Int, 0);
 
     // Amount of attacks to apply this change (0 is indefinite)
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AttackAmount, Int, 0);
+    SET_OBJ_DATA(AttackAmount, Int, 0);
 
     // Amount of defends to apply this change (0 is indefinite)
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DefendAmount, Int, 0);
+    SET_OBJ_DATA(DefendAmount, Int, 0);
 
     // Required items or attack types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredItemEquippedTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredItemEquippedTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredItemUsedTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredItemUsedTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredAttackTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredAttackTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredDefendTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredDefendTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredPreviousAttackTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredPreviousAttackTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredPreviousDefendTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredPreviousDefendTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredEquippedWeaponCount, Int, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RequiredEquippedShieldCount, Int, 0);
+    SET_OBJ_DATA(RequiredItemEquippedTypesOR, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredItemEquippedTypesAND, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredItemUsedTypesOR, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredItemUsedTypesAND, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredAttackTypesOR, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredAttackTypesAND, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredDefendTypesOR, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredDefendTypesAND, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredPreviousAttackTypesOR, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredPreviousAttackTypesAND, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredPreviousDefendTypesOR, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredPreviousDefendTypesAND, StringArray, StringArray());
+    SET_OBJ_DATA(RequiredEquippedWeaponCount, Int, 0);
+    SET_OBJ_DATA(RequiredEquippedShieldCount, Int, 0);
 
     // Whether destination target is the same as the source target
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationIsSource, Bool, false);
+    SET_OBJ_DATA(DestinationIsSource, Bool, false);
 
     // Source and destination targets
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceTargetType, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DestinationTargetType, String, "");
+    SET_OBJ_DATA(SourceTargetType, String, "");
+    SET_OBJ_DATA(DestinationTargetType, String, "");
 
     // Stat change entry list
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChangeEntries, StatChangeEntryArray, StatChangeEntryArray());
+    SET_OBJ_DATA(StatChangeEntries, StatChangeEntryArray, StatChangeEntryArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChange, StatChange);

@@ -170,43 +170,43 @@ Bool Battle::AreAllActionsFinished() const
 void to_json(Json& jsonData, const Battle& obj)
 {
     // Battle status
-    SET_JSON_DATA_IF_NOT_DEFAULT(IsBattleStarted, false);
-    SET_JSON_DATA_IF_NOT_DEFAULT(IsBattleFinished, false);
-    SET_JSON_DATA_IF_NOT_DEFAULT(IsBattleManuallyWon, false);
-    SET_JSON_DATA_IF_NOT_DEFAULT(IsBattleManuallyLost, false);
+    SET_JSON_DATA_VIA_ASSIGNMENT(IsBattleStarted);
+    SET_JSON_DATA_VIA_ASSIGNMENT(IsBattleFinished);
+    SET_JSON_DATA_VIA_ASSIGNMENT(IsBattleManuallyWon);
+    SET_JSON_DATA_VIA_ASSIGNMENT(IsBattleManuallyLost);
 
     // Current action/round
-    SET_JSON_DATA_IF_NOT_DEFAULT(CurrentActionIndex, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(CurrentRoundIndex, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(CurrentActionIndex);
+    SET_JSON_DATA_VIA_ASSIGNMENT(CurrentRoundIndex);
 
     // Actions
-    SET_JSON_DATA_IF_NOT_EMPTY(Actions);
-    SET_JSON_DATA_IF_NOT_DEFAULT(ActionCount, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Actions);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ActionCount);
 
     // Party names
-    SET_JSON_DATA_IF_NOT_DEFAULT(EnemyPartyID, "");
-    SET_JSON_DATA_IF_NOT_DEFAULT(AllyPartyID, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(EnemyPartyID);
+    SET_JSON_DATA_VIA_ASSIGNMENT(AllyPartyID);
 }
 
 void from_json(const Json& jsonData, Battle& obj)
 {
     // Battle status
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(IsBattleStarted, Bool, false);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(IsBattleFinished, Bool, false);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(IsBattleManuallyWon, Bool, false);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(IsBattleManuallyLost, Bool, false);
+    SET_OBJ_DATA(IsBattleStarted, Bool, false);
+    SET_OBJ_DATA(IsBattleFinished, Bool, false);
+    SET_OBJ_DATA(IsBattleManuallyWon, Bool, false);
+    SET_OBJ_DATA(IsBattleManuallyLost, Bool, false);
 
     // Current action/round
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CurrentActionIndex, Int, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CurrentRoundIndex, Int, 0);
+    SET_OBJ_DATA(CurrentActionIndex, Int, 0);
+    SET_OBJ_DATA(CurrentRoundIndex, Int, 0);
 
     // Actions
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Actions, CharacterActionArray, CharacterActionArray());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionCount, Int, 0);
+    SET_OBJ_DATA(Actions, CharacterActionArray, CharacterActionArray());
+    SET_OBJ_DATA(ActionCount, Int, 0);
 
     // Party IDs
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(EnemyPartyID, String, "");
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AllyPartyID, String, "");
+    SET_OBJ_DATA(EnemyPartyID, String, "");
+    SET_OBJ_DATA(AllyPartyID, String, "");
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Battle, Battle);

@@ -791,49 +791,49 @@ void CharacterParty::SetPlayTime(ULongLong uTime)
 void to_json(Json& jsonData, const CharacterParty& obj)
 {
     // Party ID
-    SET_JSON_DATA_IF_NOT_DEFAULT(PartyID, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(PartyID);
 
     // Party type
-    SET_JSON_DATA_IF_NOT_DEFAULT(PartyType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(PartyType);
 
     // Map of members
-    SET_JSON_DATA_IF_NOT_EMPTY(Members);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Members);
 
     // Map of items
-    SET_JSON_DATA_IF_NOT_EMPTY(Items);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Items);
 
     // Arrays of available target types
-    SET_JSON_DATA_IF_NOT_EMPTY(AvailableTargetTypes);
+    SET_JSON_DATA_VIA_ASSIGNMENT(AvailableTargetTypes);
 
     // Array of taken target types
-    SET_JSON_DATA_IF_NOT_EMPTY(TakenTargetTypes);
+    SET_JSON_DATA_VIA_ASSIGNMENT(TakenTargetTypes);
 
     // Play time
-    SET_JSON_DATA_IF_NOT_DEFAULT(PlayTime, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(PlayTime);
 }
 
 void from_json(const Json& jsonData, CharacterParty& obj)
 {
     // Party ID
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PartyID, String, "");
+    SET_OBJ_DATA(PartyID, String, "");
 
     // Party type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PartyType, String, "");
+    SET_OBJ_DATA(PartyType, String, "");
 
     // Map of members
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Members, CharacterParty::CharacterPartyMemberMapType, CharacterParty::CharacterPartyMemberMapType());
+    SET_OBJ_DATA(Members, CharacterParty::CharacterPartyMemberMapType, CharacterParty::CharacterPartyMemberMapType());
 
     // Map of items
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Items, CharacterParty::CharacterPartyItemMapType, CharacterParty::CharacterPartyItemMapType());
+    SET_OBJ_DATA(Items, CharacterParty::CharacterPartyItemMapType, CharacterParty::CharacterPartyItemMapType());
 
     // Arrays of available target types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AvailableTargetTypes, StringArray, StringArray());
+    SET_OBJ_DATA(AvailableTargetTypes, StringArray, StringArray());
 
     // Array of taken target types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(TakenTargetTypes, StringArray, StringArray());
+    SET_OBJ_DATA(TakenTargetTypes, StringArray, StringArray());
 
     // Play time
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PlayTime, ULongLong, 0);
+    SET_OBJ_DATA(PlayTime, ULongLong, 0);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterParty, CharacterParty);

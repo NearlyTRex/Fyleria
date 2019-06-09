@@ -29,13 +29,13 @@ void SkillDataAlchemy::Clear()
 void to_json(Json& jsonData, const SkillDataAlchemy& obj)
 {
     // Recipes
-    SET_JSON_DATA_IF_NOT_EMPTY(Recipes);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Recipes);
 }
 
 void from_json(const Json& jsonData, SkillDataAlchemy& obj)
 {
     // Recipes
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Recipes, RecipeArray, RecipeArray());
+    SET_OBJ_DATA(Recipes, RecipeArray, RecipeArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(SkillDataAlchemy, SkillDataAlchemy);

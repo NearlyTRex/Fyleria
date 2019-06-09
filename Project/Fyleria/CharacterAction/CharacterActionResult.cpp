@@ -31,7 +31,7 @@ Bool CharacterActionResult::operator!=(const CharacterActionResult& other) const
     return not operator==(other);
 }
 
-MAKE_JSON_BASIC_TYPE_CONVERTERS_IMPL(CharacterActionResult);
+MAKE_JSON_OBJ_TYPE_CONVERTERS_IMPL(CharacterActionResult);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterActionResult, CharacterActionResult);
 
 };

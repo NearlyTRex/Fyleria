@@ -40,23 +40,23 @@ CharacterActionArray ItemDataWeapon::CreateWeaponActions(const String& sCharacte
 void to_json(Json& jsonData, const ItemDataWeapon& obj)
 {
     // Stat percents
-    SET_JSON_DATA_IF_NOT_DEFAULT(BluntAttackPercent, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(PierceAttackPercent, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(SlashAttackPercent, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(BluntAttackPercent);
+    SET_JSON_DATA_VIA_ASSIGNMENT(PierceAttackPercent);
+    SET_JSON_DATA_VIA_ASSIGNMENT(SlashAttackPercent);
 
     // Stat changes
-    SET_JSON_DATA_IF_NOT_EMPTY(StatChanges);
+    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemDataWeapon& obj)
 {
     // Stat percents
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(BluntAttackPercent, Float, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PierceAttackPercent, Float, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SlashAttackPercent, Float, 0);
+    SET_OBJ_DATA(BluntAttackPercent, Float, 0);
+    SET_OBJ_DATA(PierceAttackPercent, Float, 0);
+    SET_OBJ_DATA(SlashAttackPercent, Float, 0);
 
     // Stat changes
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
+    SET_OBJ_DATA(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataWeapon, ItemDataWeapon);

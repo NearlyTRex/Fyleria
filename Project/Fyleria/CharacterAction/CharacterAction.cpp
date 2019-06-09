@@ -119,75 +119,75 @@ Bool CharacterAction::PrepareCharacterIDs()
 void to_json(Json& jsonData, const CharacterAction& obj)
 {
     // Run type
-    SET_JSON_DATA_IF_NOT_DEFAULT(RunType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(RunType);
 
     // Order
-    SET_JSON_DATA_IF_NOT_DEFAULT(Order, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(Order);
 
     // Cost
-    SET_JSON_DATA_IF_NOT_DEFAULT(CostAP, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(CostHP, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(CostMP, 0);
-    SET_JSON_DATA_IF_NOT_DEFAULT(CostEP, 0);
+    SET_JSON_DATA_VIA_ASSIGNMENT(CostAP);
+    SET_JSON_DATA_VIA_ASSIGNMENT(CostHP);
+    SET_JSON_DATA_VIA_ASSIGNMENT(CostMP);
+    SET_JSON_DATA_VIA_ASSIGNMENT(CostEP);
 
     // Applicable weapon set
-    SET_JSON_DATA_IF_NOT_DEFAULT(WeaponSet, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(WeaponSet);
 
     // Action entries
-    SET_JSON_DATA_IF_NOT_EMPTY(ActionEntries);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ActionEntries);
 
     // Previous action types
-    SET_JSON_DATA_IF_NOT_EMPTY(PreviousActionTypes);
+    SET_JSON_DATA_VIA_ASSIGNMENT(PreviousActionTypes);
 
     // Skill
-    SET_JSON_DATA_IF_NOT_EMPTY(SkillTreeIndex);
+    SET_JSON_DATA_VIA_TO_JSON(SkillTreeIndex);
 
     // Item
-    SET_JSON_DATA_IF_NOT_EMPTY(ItemTreeIndex);
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemAmount, 0);
+    SET_JSON_DATA_VIA_TO_JSON(ItemTreeIndex);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ItemAmount);
 
     // Targets
-    SET_JSON_DATA_IF_NOT_DEFAULT(SourceTargetType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(SourceTargetType);
 
     // Characters
-    SET_JSON_DATA_IF_NOT_DEFAULT(SourceCharacterID, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(SourceCharacterID);
 }
 
 void from_json(const Json& jsonData, CharacterAction& obj)
 {
     // Run type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunType, String, "");
+    SET_OBJ_DATA(RunType, String, "");
 
     // Order
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(Order, Int, 0);
+    SET_OBJ_DATA(Order, Int, 0);
 
     // Cost
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CostAP, Int, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CostHP, Int, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CostMP, Int, 0);
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(CostEP, Int, 0);
+    SET_OBJ_DATA(CostAP, Int, 0);
+    SET_OBJ_DATA(CostHP, Int, 0);
+    SET_OBJ_DATA(CostMP, Int, 0);
+    SET_OBJ_DATA(CostEP, Int, 0);
 
     // Applicable weapon set
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(WeaponSet, String, "");
+    SET_OBJ_DATA(WeaponSet, String, "");
 
     // Action entries
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionEntries, CharacterActionEntryArray, CharacterActionEntryArray());
+    SET_OBJ_DATA(ActionEntries, CharacterActionEntryArray, CharacterActionEntryArray());
 
     // Previous action types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(PreviousActionTypes, StringArray, StringArray());
+    SET_OBJ_DATA(PreviousActionTypes, StringArray, StringArray());
 
     // Skill
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SkillTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(SkillTreeIndex, TreeIndex, TreeIndex());
 
     // Item
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemAmount, Int, 0);
+    SET_OBJ_DATA(ItemTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(ItemAmount, Int, 0);
 
     // Targets
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceTargetType, String, "");
+    SET_OBJ_DATA(SourceTargetType, String, "");
 
     // Characters
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(SourceCharacterID, String, "");
+    SET_OBJ_DATA(SourceCharacterID, String, "");
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterAction, CharacterAction);

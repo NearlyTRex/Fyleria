@@ -110,7 +110,7 @@ public:
 MAKE_TYPE_TYPEDEFS(CharacterGenerator);
 
 // JSON Converters
-MAKE_JSON_BASIC_TYPE_CONVERTERS_DECL(CharacterGenerator);
+MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(CharacterGenerator);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterGenerator, CharacterGenerator);
 
 };

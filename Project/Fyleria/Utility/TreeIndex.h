@@ -16,8 +16,8 @@ public:
     // Constructors
     TreeIndex();
     TreeIndex(const String& sTree, const String& sBranch, const String& sLeaf);
-    explicit TreeIndex(const Json& jsonData);
-    explicit TreeIndex(const String& jsonString);
+    TreeIndex(const Json& jsonData);
+    TreeIndex(const String& jsonString);
 
     // Composite types
     String GetTreeBranchType() const;

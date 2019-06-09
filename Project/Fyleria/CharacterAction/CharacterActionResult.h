@@ -48,7 +48,7 @@ public:
 MAKE_TYPE_TYPEDEFS(CharacterActionResult);
 
 // JSON Converters
-MAKE_JSON_BASIC_TYPE_CONVERTERS_DECL(CharacterActionResult);
+MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(CharacterActionResult);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterActionResult, CharacterActionResult);
 
 };

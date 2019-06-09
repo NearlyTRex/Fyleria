@@ -116,55 +116,55 @@ CharacterActionArray ItemData::CreateBaseActions(const String& sCharacterID, con
 void to_json(Json& jsonData, const ItemData& obj)
 {
     // Run types
-    SET_JSON_DATA_IF_NOT_EMPTY(RunTypes);
+    SET_JSON_DATA_VIA_ASSIGNMENT(RunTypes);
 
     // Data class
-    SET_JSON_DATA_IF_NOT_DEFAULT(DataClass, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(DataClass);
 
     // Item name
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemName, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(ItemName);
 
     // Item description
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemDescription, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(ItemDescription);
 
     // Item type
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemType, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(ItemType);
 
     // Item index
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemTreeIndex, TreeIndex());
+    SET_JSON_DATA_VIA_TO_JSON(ItemTreeIndex);
 
     // Action types
-    SET_JSON_DATA_IF_NOT_EMPTY(ActionTypes);
+    SET_JSON_DATA_VIA_ASSIGNMENT(ActionTypes);
 
     // Stat changes
-    SET_JSON_DATA_IF_NOT_EMPTY(StatChanges);
+    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemData& obj)
 {
     // Run types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(RunTypes, StringArray, StringArray());
+    SET_OBJ_DATA(RunTypes, StringArray, StringArray());
 
     // Data class
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(DataClass, String, "");
+    SET_OBJ_DATA(DataClass, String, "");
 
     // Item name
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemName, String, "");
+    SET_OBJ_DATA(ItemName, String, "");
 
     // Item description
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemDescription, String, "");
+    SET_OBJ_DATA(ItemDescription, String, "");
 
     // Item type
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemType, String, "");
+    SET_OBJ_DATA(ItemType, String, "");
 
     // Item index
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(ItemTreeIndex, TreeIndex, TreeIndex());
 
     // Action types
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ActionTypes, StringArray, StringArray());
+    SET_OBJ_DATA(ActionTypes, StringArray, StringArray());
 
     // Stat changes
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(StatChanges, StatChangeArray, StatChangeArray());
+    SET_OBJ_DATA(StatChanges, StatChangeArray, StatChangeArray());
 }
 
 };

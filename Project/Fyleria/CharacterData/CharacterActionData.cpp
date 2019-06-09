@@ -83,13 +83,13 @@ Bool CharacterActionData::operator!=(const CharacterActionData& other) const
 void to_json(Json& jsonData, const CharacterActionData& obj)
 {
     // List of character actions
-    SET_JSON_DATA_IF_NOT_EMPTY(AvailableActions);
+    SET_JSON_DATA_VIA_ASSIGNMENT(AvailableActions);
 }
 
 void from_json(const Json& jsonData, CharacterActionData& obj)
 {
     // List of character actions
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(AvailableActions, CharacterActionArray, CharacterActionArray());
+    SET_OBJ_DATA(AvailableActions, CharacterActionArray, CharacterActionArray());
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterActionData, CharacterActionData);

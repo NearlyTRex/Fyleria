@@ -18,19 +18,19 @@ CharacterPartyEquippedItem::CharacterPartyEquippedItem(const Json& jsonData)
 void to_json(Json& jsonData, const CharacterPartyEquippedItem& obj)
 {
     // Item tree index
-    SET_JSON_DATA_IF_NOT_EMPTY(ItemTreeIndex);
+    SET_JSON_DATA_VIA_TO_JSON(ItemTreeIndex);
 
     // Item slot
-    SET_JSON_DATA_IF_NOT_DEFAULT(ItemSlot, "");
+    SET_JSON_DATA_VIA_ASSIGNMENT(ItemSlot);
 }
 
 void from_json(const Json& jsonData, CharacterPartyEquippedItem& obj)
 {
     // Item tree index
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(ItemTreeIndex, TreeIndex, TreeIndex());
 
     // Item slot
-    SET_OBJ_DATA_FROM_JSON_OR_DEFAULT(ItemSlot, String, "");
+    SET_OBJ_DATA(ItemSlot, String, "");
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyEquippedItem, CharacterPartyEquippedItem);
