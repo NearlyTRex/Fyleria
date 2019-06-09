@@ -122,7 +122,7 @@ UByte ConvertHexStringToByte(const String& sString)
     return static_cast<UByte>(iVal);
 }
 
-StringArray ConvertStringToTokenList(const String& sString, const String& sChars)
+StringArray ConvertStringToTokenArray(const String& sString, const String& sChars)
 {
     StringArray vTokens;
     BoostCharSeparator<Byte> charSeparator(sChars.c_str());
@@ -137,10 +137,10 @@ StringArray ConvertStringToTokenList(const String& sString, const String& sChars
 StringMap ConvertQueryStringToStringMap(const String& sQuery)
 {
     StringMap tMap;
-    StringArray vQuerySegments = ConvertStringToTokenList(ConvertToUrlDecodedString(sQuery), "&");
+    StringArray vQuerySegments = ConvertStringToTokenArray(ConvertToUrlDecodedString(sQuery), "&");
     for(auto& sSegment : vQuerySegments)
     {
-        StringArray vParts = ConvertStringToTokenList(sSegment, "=");
+        StringArray vParts = ConvertStringToTokenArray(sSegment, "=");
         if(vParts.size() == 2)
         {
             tMap.insert({vParts[0], vParts[1]});
