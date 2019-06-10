@@ -1520,8 +1520,9 @@ void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
     // Display character
     if(!sCharacterToDisplay.empty())
     {
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(sDisplayCharacter_CharID);
+        const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterToDisplay);
         sCharacterDetails_CharID = character.GetCharacterID();
+        sCharacterDetails_RawJson = Json(character).dump(4);
     }
 
     // Set page content
