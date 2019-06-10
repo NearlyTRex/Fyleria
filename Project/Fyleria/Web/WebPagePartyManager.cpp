@@ -416,7 +416,6 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     MAKE_HTML_OPTION_LIST_STRING(FileType);
 
     // Get fields
-    using namespace std::string_literals;
     String sAction = GetMapDataOrDefault(tParams, "action", "");
     String sLoadPartyFromJson_Textarea = GetMapDataOrDefault(tParams, "sLoadPartyFromJson_Textarea", "");
     String sLoadPartyFromFile_Filename = GetMapDataOrDefault(tParams, "sLoadPartyFromFile_Filename", "");
@@ -650,7 +649,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     // Display party
     if(!sPartyToDisplay.empty())
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyToDisplay);
+        const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyToDisplay);
         sPartyDetails_PartyID = party.GetPartyID();
         sPartyDetails_PartyType = party.GetPartyType();
         sPartyDetails_PlayTime = STDToString(party.GetPlayTime());
