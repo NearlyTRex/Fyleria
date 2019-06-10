@@ -19,6 +19,11 @@ CharacterGenerator::CharacterGenerator(const Json& jsonData)
 {
 }
 
+CharacterGenerator::CharacterGenerator(const String& jsonString)
+    : SerializableToJson(JsonParse(jsonString))
+{
+}
+
 CharacterBasicData CharacterGenerator::GenerateBasicData(const String& sCharacterID) const
 {
     // Create basic data

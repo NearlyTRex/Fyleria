@@ -20,7 +20,8 @@ public:
 
     // Constructors
     CharacterGenerator();
-    CharacterGenerator(const Json& jsonData);
+    explicit CharacterGenerator(const Json& jsonData);
+    explicit CharacterGenerator(const String& jsonString);
 
     // Generate character data
     CharacterBasicData GenerateBasicData(const String& sCharacterID) const;
