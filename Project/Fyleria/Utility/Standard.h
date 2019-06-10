@@ -31,6 +31,7 @@
 // Standard defines
 #define STDCout std::cout
 #define STDEndl std::endl
+#define STDStringLiterals std::string_literals
 #define STDHash std::hash
 #define STDPair std::pair
 #define STDVector std::vector
