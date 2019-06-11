@@ -33,18 +33,14 @@ private:
 };
 
 // Typedefs
-typedef STDMap<String, StatType> StatTypeMap;
+typedef STDUnorderedMap<String, StatType> StatTypeMap;
 
 // Helper functions
 template <class T>
 Bool SetStatValue(StatTypeMap& tStatMap, const String& sStatName, const T& inValue)
 {
-    if (tStatMap.find(sStatName) == tStatMap.end())
-    {
-        return false;
-    }
-    tStatMap.at(sStatName).SetDataValue(inValue);
-    return true;
+    auto result = tStatMap.insert_or_assign(sStatName, StatType(inValue));
+    return (result.first != tStatMap.end());
 }
 template <class T>
 Bool GetStatValue(const StatTypeMap& tStatMap, const String& sStatName, T& outValue)
