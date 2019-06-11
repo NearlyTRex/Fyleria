@@ -133,7 +133,7 @@ void CharacterGenerator::RandomizeBasics()
     SetFirstNamePattern(sRandomNamePattern);
     SetLastNamePattern(sRandomNamePattern);
     SetAgeStart(GetRandomIntValue<Int>(1, INT_MAX));
-    SetAgeEnd(GetRandomIntValue<Int>(GetAgeEnd() + 1, INT_MAX));
+    SetAgeEnd(GetRandomIntValue<Int>(GetAgeStart() + 1, INT_MAX));
     SetUseRandomName(true);
     SetUseRandomAge(true);
     SetUseRandomGender(true);
