@@ -146,10 +146,10 @@ WebPageCharacterManager::WebPageCharacterManager()
                 <input type="text" class="form-control" name="sCharacterDetails_CharID" placeholder="Character Identifier" readonly="readonly" value="%sCharacterDetails_CharID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="sCharacterDetails_PartyID" placeholder="Party Identifier" readonly="readonly" value="%sCharacterDetails_PartyID%"/>
+                <input type="text" class="form-control" placeholder="Party Identifier" readonly="readonly" value="%sCharacterDetails_PartyID%"/>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control" name="sCharacterDetails_CharTargetType" placeholder="Character Target Type" readonly="readonly" value="%sCharacterDetails_CharTargetType%"/>
+                <input type="text" class="form-control" placeholder="Character Target Type" readonly="readonly" value="%sCharacterDetails_CharTargetType%"/>
             </div>
         </div>
         <div class="form-group row">
@@ -220,57 +220,57 @@ WebPageCharacterManager::WebPageCharacterManager()
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Weapon 1 Left</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Weapon1Left" readonly="readonly" value="%sCharacterDetails_Weapon1Left%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Weapon1Left%"/>
             </div>
             <label class="col-sm-2 col-form-label">Weapon 1 Right</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Weapon1Right" readonly="readonly" value="%sCharacterDetails_Weapon1Right%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Weapon1Right%"/>
             </div>
             <label class="col-sm-2 col-form-label">Neck</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Neck" readonly="readonly" value="%sCharacterDetails_Neck%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Neck%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Weapon 2 Left</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Weapon2Left" readonly="readonly" value="%sCharacterDetails_Weapon2Left%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Weapon2Left%"/>
             </div>
             <label class="col-sm-2 col-form-label">Weapon 2 Right</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Weapon2Right" readonly="readonly" value="%sCharacterDetails_Weapon2Right%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Weapon2Right%"/>
             </div>
             <label class="col-sm-2 col-form-label">Head</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Head" readonly="readonly" value="%sCharacterDetails_Head%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Head%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Left Fingers</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_LeftFingers" readonly="readonly" value="%sCharacterDetails_LeftFingers%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_LeftFingers%"/>
             </div>
             <label class="col-sm-2 col-form-label">Right Fingers</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_RightFingers" readonly="readonly" value="%sCharacterDetails_RightFingers%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_RightFingers%"/>
             </div>
             <label class="col-sm-2 col-form-label">Hands</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Hands" readonly="readonly" value="%sCharacterDetails_Hands%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Hands%"/>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Feet</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Feet" readonly="readonly" value="%sCharacterDetails_Feet%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Feet%"/>
             </div>
             <label class="col-sm-2 col-form-label">Legs</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Legs" readonly="readonly" value="%sCharacterDetails_Legs%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Legs%"/>
             </div>
             <label class="col-sm-2 col-form-label">Chest</label>
             <div class="col-sm-2">
-                <input type="text" class="form-control" name="sCharacterDetails_Chest" readonly="readonly" value="%sCharacterDetails_Chest%"/>
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Chest%"/>
             </div>
         </div>
         <div class="form-group row">
@@ -975,27 +975,27 @@ WebPageCharacterManager::WebPageCharacterManager()
         </div>
         <div class="form-group row">
             <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" name="sCharacterDetails_AvailableActions" placeholder="Available Actions" readonly="readonly">%sCharacterDetails_AvailableActions%</textarea>
+                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Available Actions" readonly="readonly">%sCharacterDetails_AvailableActions%</textarea>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" name="sCharacterDetails_PassiveChanges" placeholder="Passive Changes" readonly="readonly">%sCharacterDetails_PassiveChanges%</textarea>
+                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Passive Changes" readonly="readonly">%sCharacterDetails_PassiveChanges%</textarea>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" name="sCharacterDetails_ActiveChanges" placeholder="Active Changes" readonly="readonly">%sCharacterDetails_ActiveChanges%</textarea>
+                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Active Changes" readonly="readonly">%sCharacterDetails_ActiveChanges%</textarea>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" name="sCharacterDetails_ActionableChanges" placeholder="Actionable Changes" readonly="readonly">%sCharacterDetails_ActionableChanges%</textarea>
+                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Actionable Changes" readonly="readonly">%sCharacterDetails_ActionableChanges%</textarea>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" name="sCharacterDetails_RawJson" placeholder="Raw character json" readonly="readonly">%sCharacterDetails_RawJson%</textarea>
+                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Raw character json" readonly="readonly">%sCharacterDetails_RawJson%</textarea>
             </div>
         </div>
     </form>
@@ -1521,6 +1521,202 @@ void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
     if(!sCharacterToDisplay.empty())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterToDisplay);
+        const CharacterBasicData& basicData = character.GetBasicData();
+        sCharacterDetails_First_Name = basicData.GetFirstName();
+        sCharacterDetails_Last_Name = basicData.GetLastName();
+        sCharacterDetails_Gender = basicData.GetGender();
+        sCharacterDetails_Hair = basicData.GetHair();
+        sCharacterDetails_Eyes = basicData.GetEyes();
+        sCharacterDetails_Handedness = basicData.GetHandedness();
+        sCharacterDetails_BaseRace = basicData.GetBaseRace();
+        sCharacterDetails_TransformedRace = basicData.GetTransformedRace();
+        sCharacterDetails_PowerSet = basicData.GetPowerSet();
+        sCharacterDetails_Age = STDToString(basicData.GetAge());
+        const CharacterProgressData& progressData = character.GetProgressDataBase();
+        sCharacterDetails_HP_Current = STDToString(progressData.GetHealthPointsCurrent());
+        sCharacterDetails_MP_Current = STDToString(progressData.GetMagicPointsCurrent());
+        sCharacterDetails_EP_Current = STDToString(progressData.GetEnergyPointsCurrent());
+        sCharacterDetails_HP_Max = STDToString(progressData.GetHealthPointsMax());
+        sCharacterDetails_MP_Max = STDToString(progressData.GetMagicPointsMax());
+        sCharacterDetails_EP_Max = STDToString(progressData.GetEnergyPointsMax());
+        sCharacterDetails_HP_Regen = STDToString(progressData.GetHealthRegen());
+        sCharacterDetails_MP_Regen = STDToString(progressData.GetMagicRegen());
+        sCharacterDetails_EP_Regen = STDToString(progressData.GetEnergyRegen());
+        sCharacterDetails_HP_Delta = STDToString(progressData.GetHealthCostDelta());
+        sCharacterDetails_MP_Delta = STDToString(progressData.GetMagicCostDelta());
+        sCharacterDetails_EP_Delta = STDToString(progressData.GetEnergyCostDelta());
+        sCharacterDetails_Speed = STDToString(progressData.GetSpeed());
+        sCharacterDetails_Blunt_Attack = STDToString(progressData.GetBluntAttack());
+        sCharacterDetails_Blunt_Defense = STDToString(progressData.GetBluntDefense());
+        sCharacterDetails_Magic_Attack = STDToString(progressData.GetMagicAttack());
+        sCharacterDetails_Magic_Defense = STDToString(progressData.GetMagicDefense());
+        sCharacterDetails_Pierce_Attack = STDToString(progressData.GetPierceAttack());
+        sCharacterDetails_Pierce_Defense = STDToString(progressData.GetPierceDefense());
+        sCharacterDetails_Slash_Attack = STDToString(progressData.GetSlashAttack());
+        sCharacterDetails_Slash_Defense = STDToString(progressData.GetSlashDefense());
+        sCharacterDetails_Energy_Attack = STDToString(progressData.GetEnergyAttack());
+        sCharacterDetails_Energy_Defense = STDToString(progressData.GetEnergyDefense());
+        sCharacterDetails_Slash_ActionPoints = STDToString(progressData.GetSlashPoints());
+        sCharacterDetails_Sever_ActionPoints = STDToString(progressData.GetSeverPoints());
+        sCharacterDetails_Slice_ActionPoints = STDToString(progressData.GetSlicePoints());
+        sCharacterDetails_Slit_ActionPoints = STDToString(progressData.GetSlitPoints());
+        sCharacterDetails_Cleave_ActionPoints = STDToString(progressData.GetCleavePoints());
+        sCharacterDetails_Decapitate_ActionPoints = STDToString(progressData.GetDecapitatePoints());
+        sCharacterDetails_Parry_ActionPoints = STDToString(progressData.GetParryPoints());
+        sCharacterDetails_Riposte_ActionPoints = STDToString(progressData.GetRipostePoints());
+        sCharacterDetails_Bash_ActionPoints = STDToString(progressData.GetBashPoints());
+        sCharacterDetails_Smash_ActionPoints = STDToString(progressData.GetSmashPoints());
+        sCharacterDetails_Impact_ActionPoints = STDToString(progressData.GetImpactPoints());
+        sCharacterDetails_Crush_ActionPoints = STDToString(progressData.GetCrushPoints());
+        sCharacterDetails_Break_ActionPoints = STDToString(progressData.GetBreakPoints());
+        sCharacterDetails_Crack_ActionPoints = STDToString(progressData.GetCrackPoints());
+        sCharacterDetails_Block_ActionPoints = STDToString(progressData.GetBlockPoints());
+        sCharacterDetails_Rush_ActionPoints = STDToString(progressData.GetRushPoints());
+        sCharacterDetails_Pierce_ActionPoints = STDToString(progressData.GetPiercePoints());
+        sCharacterDetails_Drill_ActionPoints = STDToString(progressData.GetDrillPoints());
+        sCharacterDetails_Shoot_ActionPoints = STDToString(progressData.GetShootPoints());
+        sCharacterDetails_Impale_ActionPoints = STDToString(progressData.GetImpalePoints());
+        sCharacterDetails_StealthStrike_ActionPoints = STDToString(progressData.GetStealthStrikePoints());
+        sCharacterDetails_CriticalShot_ActionPoints = STDToString(progressData.GetCriticalShotPoints());
+        sCharacterDetails_Dodge_ActionPoints = STDToString(progressData.GetDodgePoints());
+        sCharacterDetails_Counter_ActionPoints = STDToString(progressData.GetCounterPoints());
+        const CharacterSkillData& skillData = character.GetSkillData();
+        sCharacterDetails_Barbarian_Current = STDToString(skillData.GetBarbarianCurrent());
+        sCharacterDetails_Barbarian_Rank = STDToString(skillData.GetBarbarianRank());
+        sCharacterDetails_Mage_Current = STDToString(skillData.GetMageCurrent());
+        sCharacterDetails_Mage_Rank = STDToString(skillData.GetMageRank());
+        sCharacterDetails_Rogue_Current = STDToString(skillData.GetRogueCurrent());
+        sCharacterDetails_Rogue_Rank = STDToString(skillData.GetRogueRank());
+        sCharacterDetails_Blademaster_Current = STDToString(skillData.GetBlademasterCurrent());
+        sCharacterDetails_Blademaster_Rank = STDToString(skillData.GetBlademasterRank());
+        sCharacterDetails_Avatar_Current = STDToString(skillData.GetAvatarCurrent());
+        sCharacterDetails_Avatar_Rank = STDToString(skillData.GetAvatarRank());
+        sCharacterDetails_Ambidext_Current = STDToString(skillData.GetAmbidextrousCurrent());
+        sCharacterDetails_Ambidext_Rank = STDToString(skillData.GetAmbidextrousRank());
+        sCharacterDetails_Focused_Current = STDToString(skillData.GetFocusedCurrent());
+        sCharacterDetails_Focused_Rank = STDToString(skillData.GetFocusedRank());
+        sCharacterDetails_Stalwart_Current = STDToString(skillData.GetStalwartCurrent());
+        sCharacterDetails_Stalwart_Rank = STDToString(skillData.GetStalwartRank());
+        sCharacterDetails_Slash_Current = STDToString(skillData.GetSlashCurrent());
+        sCharacterDetails_Slash_Rank = STDToString(skillData.GetSlashRank());
+        sCharacterDetails_Sever_Current = STDToString(skillData.GetSeverCurrent());
+        sCharacterDetails_Sever_Rank = STDToString(skillData.GetSeverRank());
+        sCharacterDetails_Slice_Current = STDToString(skillData.GetSliceCurrent());
+        sCharacterDetails_Slice_Rank = STDToString(skillData.GetSliceRank());
+        sCharacterDetails_Slit_Current = STDToString(skillData.GetSlitCurrent());
+        sCharacterDetails_Slit_Rank = STDToString(skillData.GetSlitRank());
+        sCharacterDetails_Cleave_Current = STDToString(skillData.GetCleaveCurrent());
+        sCharacterDetails_Cleave_Rank = STDToString(skillData.GetCleaveRank());
+        sCharacterDetails_Decapitate_Current = STDToString(skillData.GetDecapitateCurrent());
+        sCharacterDetails_Decapitate_Rank = STDToString(skillData.GetDecapitateRank());
+        sCharacterDetails_Parry_Current = STDToString(skillData.GetParryCurrent());
+        sCharacterDetails_Parry_Rank = STDToString(skillData.GetParryRank());
+        sCharacterDetails_Riposte_Current = STDToString(skillData.GetRiposteCurrent());
+        sCharacterDetails_Riposte_Rank = STDToString(skillData.GetRiposteRank());
+        sCharacterDetails_Bash_Current = STDToString(skillData.GetBashCurrent());
+        sCharacterDetails_Bash_Rank = STDToString(skillData.GetBashRank());
+        sCharacterDetails_Smash_Current = STDToString(skillData.GetSmashCurrent());
+        sCharacterDetails_Smash_Rank = STDToString(skillData.GetSmashRank());
+        sCharacterDetails_Crush_Current = STDToString(skillData.GetCrushCurrent());
+        sCharacterDetails_Crush_Rank = STDToString(skillData.GetCrushRank());
+        sCharacterDetails_Impact_Current = STDToString(skillData.GetImpactCurrent());
+        sCharacterDetails_Impact_Rank = STDToString(skillData.GetImpactRank());
+        sCharacterDetails_Break_Current = STDToString(skillData.GetBreakCurrent());
+        sCharacterDetails_Break_Rank = STDToString(skillData.GetBreakRank());
+        sCharacterDetails_Crack_Current = STDToString(skillData.GetCrackCurrent());
+        sCharacterDetails_Crack_Rank = STDToString(skillData.GetCrackRank());
+        sCharacterDetails_Block_Current = STDToString(skillData.GetBlockCurrent());
+        sCharacterDetails_Block_Rank = STDToString(skillData.GetBlockRank());
+        sCharacterDetails_Rush_Current = STDToString(skillData.GetRushCurrent());
+        sCharacterDetails_Rush_Rank = STDToString(skillData.GetRushRank());
+        sCharacterDetails_Pierce_Current = STDToString(skillData.GetPierceCurrent());
+        sCharacterDetails_Pierce_Rank = STDToString(skillData.GetPierceRank());
+        sCharacterDetails_Drill_Current = STDToString(skillData.GetDrillCurrent());
+        sCharacterDetails_Drill_Rank = STDToString(skillData.GetDrillRank());
+        sCharacterDetails_Shoot_Current = STDToString(skillData.GetShootCurrent());
+        sCharacterDetails_Shoot_Rank = STDToString(skillData.GetShootRank());
+        sCharacterDetails_Impale_Current = STDToString(skillData.GetImpaleCurrent());
+        sCharacterDetails_Impale_Rank = STDToString(skillData.GetImpaleRank());
+        sCharacterDetails_StealthStrike_Current = STDToString(skillData.GetStealthStrikeCurrent());
+        sCharacterDetails_StealthStrike_Rank = STDToString(skillData.GetStealthStrikeRank());
+        sCharacterDetails_CriticalShot_Current = STDToString(skillData.GetCriticalShotCurrent());
+        sCharacterDetails_CriticalShot_Rank = STDToString(skillData.GetCriticalShotRank());
+        sCharacterDetails_Dodge_Current = STDToString(skillData.GetDodgeCurrent());
+        sCharacterDetails_Dodge_Rank = STDToString(skillData.GetDodgeRank());
+        sCharacterDetails_Counter_Current = STDToString(skillData.GetCounterCurrent());
+        sCharacterDetails_Counter_Rank = STDToString(skillData.GetCounterRank());
+        sCharacterDetails_Healer_Current = STDToString(skillData.GetHealerCurrent());
+        sCharacterDetails_Healer_Rank = STDToString(skillData.GetHealerRank());
+        sCharacterDetails_Alchemist_Current = STDToString(skillData.GetAlchemistCurrent());
+        sCharacterDetails_Alchemist_Rank = STDToString(skillData.GetAlchemistRank());
+        sCharacterDetails_Energist_Current = STDToString(skillData.GetEnergistCurrent());
+        sCharacterDetails_Energist_Rank = STDToString(skillData.GetEnergistRank());
+        sCharacterDetails_Chemist_Current = STDToString(skillData.GetChemistCurrent());
+        sCharacterDetails_Chemist_Rank = STDToString(skillData.GetChemistRank());
+        sCharacterDetails_Hammersmith_Current = STDToString(skillData.GetHammersmithCurrent());
+        sCharacterDetails_Hammersmith_Rank = STDToString(skillData.GetHammersmithRank());
+        sCharacterDetails_Spellsmith_Current = STDToString(skillData.GetSpellsmithCurrent());
+        sCharacterDetails_Spellsmith_Rank = STDToString(skillData.GetSpellsmithRank());
+        sCharacterDetails_Bowsmith_Current = STDToString(skillData.GetBowsmithCurrent());
+        sCharacterDetails_Bowsmith_Rank = STDToString(skillData.GetBowsmithRank());
+        sCharacterDetails_Swordsmith_Current = STDToString(skillData.GetSwordsmithCurrent());
+        sCharacterDetails_Swordsmith_Rank = STDToString(skillData.GetSwordsmithRank());
+        sCharacterDetails_Weaver_Current = STDToString(skillData.GetWeaverCurrent());
+        sCharacterDetails_Weaver_Rank = STDToString(skillData.GetWeaverRank());
+        sCharacterDetails_Tanner_Current = STDToString(skillData.GetTannerCurrent());
+        sCharacterDetails_Tanner_Rank = STDToString(skillData.GetTannerRank());
+        sCharacterDetails_Scalesmith_Current = STDToString(skillData.GetScalesmithCurrent());
+        sCharacterDetails_Scalesmith_Rank = STDToString(skillData.GetScalesmithRank());
+        sCharacterDetails_Platesmith_Current = STDToString(skillData.GetPlatesmithCurrent());
+        sCharacterDetails_Platesmith_Rank = STDToString(skillData.GetPlatesmithRank());
+        sCharacterDetails_Goldsmith_Current = STDToString(skillData.GetGoldsmithCurrent());
+        sCharacterDetails_Goldsmith_Rank = STDToString(skillData.GetGoldsmithRank());
+        sCharacterDetails_Shieldsmith_Current = STDToString(skillData.GetShieldsmithCurrent());
+        sCharacterDetails_Shieldsmith_Rank = STDToString(skillData.GetShieldsmithRank());
+        sCharacterDetails_Hammerbane_Current = STDToString(skillData.GetHammerbaneCurrent());
+        sCharacterDetails_Hammerbane_Rank = STDToString(skillData.GetHammerbaneRank());
+        sCharacterDetails_Spellbane_Current = STDToString(skillData.GetSpellbaneCurrent());
+        sCharacterDetails_Spellbane_Rank = STDToString(skillData.GetSpellbaneRank());
+        sCharacterDetails_Bowbane_Current = STDToString(skillData.GetBowbaneCurrent());
+        sCharacterDetails_Bowbane_Rank = STDToString(skillData.GetBowbaneRank());
+        sCharacterDetails_Swordbane_Current = STDToString(skillData.GetSwordbaneCurrent());
+        sCharacterDetails_Swordbane_Rank = STDToString(skillData.GetSwordbaneRank());
+        sCharacterDetails_Threadbare_Current = STDToString(skillData.GetThreadbareCurrent());
+        sCharacterDetails_Threadbare_Rank = STDToString(skillData.GetThreadbareRank());
+        sCharacterDetails_Studremover_Current = STDToString(skillData.GetStudRemoverCurrent());
+        sCharacterDetails_Studremover_Rank = STDToString(skillData.GetStudRemoverRank());
+        sCharacterDetails_Scalebane_Current = STDToString(skillData.GetScalebaneCurrent());
+        sCharacterDetails_Scalebane_Rank = STDToString(skillData.GetScalebaneRank());
+        sCharacterDetails_Platebane_Current = STDToString(skillData.GetPlatebaneCurrent());
+        sCharacterDetails_Platebane_Rank = STDToString(skillData.GetPlatebaneRank());
+        sCharacterDetails_Goldbane_Current = STDToString(skillData.GetGoldbaneCurrent());
+        sCharacterDetails_Goldbane_Rank = STDToString(skillData.GetGoldbaneRank());
+        sCharacterDetails_Shieldbane_Current = STDToString(skillData.GetShieldbaneCurrent());
+        sCharacterDetails_Shieldbane_Rank = STDToString(skillData.GetShieldbaneRank());
+        sCharacterDetails_Holy_Current = STDToString(skillData.GetHolyCurrent());
+        sCharacterDetails_Holy_Rank = STDToString(skillData.GetHolyRank());
+        sCharacterDetails_Fire_Current = STDToString(skillData.GetFireCurrent());
+        sCharacterDetails_Fire_Rank = STDToString(skillData.GetFireRank());
+        sCharacterDetails_Ice_Current = STDToString(skillData.GetIceCurrent());
+        sCharacterDetails_Ice_Rank = STDToString(skillData.GetIceRank());
+        sCharacterDetails_Shock_Current = STDToString(skillData.GetShockCurrent());
+        sCharacterDetails_Shock_Rank = STDToString(skillData.GetShockRank());
+        sCharacterDetails_Dark_Current = STDToString(skillData.GetDarkCurrent());
+        sCharacterDetails_Dark_Rank = STDToString(skillData.GetDarkRank());
+        sCharacterDetails_Light_Current = STDToString(skillData.GetLightCurrent());
+        sCharacterDetails_Light_Rank = STDToString(skillData.GetLightRank());
+        sCharacterDetails_Force_Current = STDToString(skillData.GetForceCurrent());
+        sCharacterDetails_Force_Rank = STDToString(skillData.GetForceRank());
+        sCharacterDetails_Mind_Current = STDToString(skillData.GetMindCurrent());
+        sCharacterDetails_Mind_Rank = STDToString(skillData.GetMindRank());
+        sCharacterDetails_Earth_Current = STDToString(skillData.GetEarthCurrent());
+        sCharacterDetails_Earth_Rank = STDToString(skillData.GetEarthRank());
+        sCharacterDetails_Blood_Current = STDToString(skillData.GetBloodCurrent());
+        sCharacterDetails_Blood_Rank = STDToString(skillData.GetBloodRank());
+        sCharacterDetails_Flesh_Current = STDToString(skillData.GetFleshCurrent());
+        sCharacterDetails_Flesh_Rank = STDToString(skillData.GetFleshRank());
+        sCharacterDetails_Wind_Current = STDToString(skillData.GetWindCurrent());
+        sCharacterDetails_Wind_Rank = STDToString(skillData.GetWindRank());
         sCharacterDetails_CharID = character.GetCharacterID();
         sCharacterDetails_RawJson = Json(character).dump(4);
     }
