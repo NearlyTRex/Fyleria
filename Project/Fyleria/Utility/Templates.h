@@ -80,20 +80,28 @@ Bool DoesChanceSucceed(T varChance)
 template <typename T>
 T GetRandomIntValue(T varMin, T varMax)
 {
-    RandomDevice device;
-    RandomGenerator gen(device());
-    STDUniformIntDistribution<T> dis(varMin, varMax);
-    return dis(gen);
+    if(varMin < varMax)
+    {
+        RandomDevice device;
+        RandomGenerator gen(device());
+        STDUniformIntDistribution<T> dis(varMin, varMax);
+        return dis(gen);
+    }
+    return varMin;
 }
 
 // Random real value
 template <typename T>
 T GetRandomRealValue(T varMin, T varMax)
 {
-    RandomDevice device;
-    RandomGenerator gen(device());
-    STDUniformRealDistribution<T> dis(varMin, varMax);
-    return dis(gen);
+    if(varMin < varMax)
+    {
+        RandomDevice device;
+        RandomGenerator gen(device());
+        STDUniformRealDistribution<T> dis(varMin, varMax);
+        return dis(gen);
+    }
+    return varMin;
 }
 
 // Random vector value
