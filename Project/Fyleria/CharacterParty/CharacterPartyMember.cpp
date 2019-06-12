@@ -257,13 +257,13 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
 void to_json(Json& jsonData, const CharacterPartyMember& obj)
 {
     // Character ID
-    SET_JSON_DATA_VIA_ASSIGNMENT(CharacterID);
+    SET_JSON_DATA(CharacterID);
 
     // Character target type
-    SET_JSON_DATA_VIA_ASSIGNMENT(CharacterTargetType);
+    SET_JSON_DATA(CharacterTargetType);
 
     // Equipped items
-    SET_JSON_DATA_VIA_ASSIGNMENT(EquippedItems);
+    SET_JSON_DATA(EquippedItems);
 }
 
 void from_json(const Json& jsonData, CharacterPartyMember& obj)

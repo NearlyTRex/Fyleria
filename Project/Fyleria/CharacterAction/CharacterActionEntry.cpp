@@ -37,6 +37,7 @@ Bool CharacterActionEntry::operator!=(const CharacterActionEntry& other) const
 }
 
 MAKE_JSON_OBJ_TYPE_CONVERTERS_IMPL(CharacterActionEntry);
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterActionEntryArray);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterActionEntry, CharacterActionEntry);
 
 };

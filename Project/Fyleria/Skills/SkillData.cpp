@@ -227,32 +227,32 @@ CharacterActionArray SkillData::CreateBaseActions(const String& sCharacterID, co
 void to_json(Json& jsonData, const SkillData& obj)
 {
     // Run types
-    SET_JSON_DATA_VIA_ASSIGNMENT(RunTypes);
+    SET_JSON_DATA(RunTypes);
 
     // Data class
-    SET_JSON_DATA_VIA_ASSIGNMENT(DataClass);
+    SET_JSON_DATA(DataClass);
 
     // Skill rank
-    SET_JSON_DATA_VIA_ASSIGNMENT(SkillRank);
+    SET_JSON_DATA(SkillRank);
 
     // Skill name
-    SET_JSON_DATA_VIA_ASSIGNMENT(SkillName);
+    SET_JSON_DATA(SkillName);
 
     // Skill description
-    SET_JSON_DATA_VIA_ASSIGNMENT(SkillDescription);
+    SET_JSON_DATA(SkillDescription);
 
     // Skill type
-    SET_JSON_DATA_VIA_ASSIGNMENT(SkillType);
+    SET_JSON_DATA(SkillType);
 
     // Skill costs
-    SET_JSON_DATA_VIA_ASSIGNMENT(SkillCostAP);
-    SET_JSON_DATA_VIA_ASSIGNMENT(SkillCostHP);
+    SET_JSON_DATA(SkillCostAP);
+    SET_JSON_DATA(SkillCostHP);
 
     // Skill index
-    SET_JSON_DATA_VIA_ASSIGNMENT(SkillTreeIndex);
+    SET_JSON_DATA(SkillTreeIndex);
 
     // Stat changes
-    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
+    SET_JSON_DATA(StatChanges);
 }
 
 void from_json(const Json& jsonData, SkillData& obj)

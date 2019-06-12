@@ -116,28 +116,28 @@ CharacterActionArray ItemData::CreateBaseActions(const String& sCharacterID, con
 void to_json(Json& jsonData, const ItemData& obj)
 {
     // Run types
-    SET_JSON_DATA_VIA_ASSIGNMENT(RunTypes);
+    SET_JSON_DATA(RunTypes);
 
     // Data class
-    SET_JSON_DATA_VIA_ASSIGNMENT(DataClass);
+    SET_JSON_DATA(DataClass);
 
     // Item name
-    SET_JSON_DATA_VIA_ASSIGNMENT(ItemName);
+    SET_JSON_DATA(ItemName);
 
     // Item description
-    SET_JSON_DATA_VIA_ASSIGNMENT(ItemDescription);
+    SET_JSON_DATA(ItemDescription);
 
     // Item type
-    SET_JSON_DATA_VIA_ASSIGNMENT(ItemType);
+    SET_JSON_DATA(ItemType);
 
     // Item index
-    SET_JSON_DATA_VIA_TO_JSON(ItemTreeIndex);
+    SET_JSON_DATA(ItemTreeIndex);
 
     // Action types
-    SET_JSON_DATA_VIA_ASSIGNMENT(ActionTypes);
+    SET_JSON_DATA(ActionTypes);
 
     // Stat changes
-    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
+    SET_JSON_DATA(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemData& obj)

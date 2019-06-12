@@ -35,7 +35,7 @@ CharacterActionArray ItemDataPotion::CreatePotionActions(const String& sCharacte
 void to_json(Json& jsonData, const ItemDataPotion& obj)
 {
     // Stat changes
-    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
+    SET_JSON_DATA(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemDataPotion& obj)

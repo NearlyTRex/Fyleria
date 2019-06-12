@@ -42,25 +42,25 @@ void RecipeEntry::Clear()
 void to_json(Json& jsonData, const RecipeEntry& obj)
 {
     // Chance to success
-    SET_JSON_DATA_VIA_ASSIGNMENT(ChanceToSucceed);
+    SET_JSON_DATA(ChanceToSucceed);
 
     // Input type
-    SET_JSON_DATA_VIA_ASSIGNMENT(InputPotionName);
-    SET_JSON_DATA_VIA_ASSIGNMENT(InputIngredientName);
-    SET_JSON_DATA_VIA_ASSIGNMENT(InputWeaponName);
-    SET_JSON_DATA_VIA_ASSIGNMENT(InputArmorName);
+    SET_JSON_DATA(InputPotionName);
+    SET_JSON_DATA(InputIngredientName);
+    SET_JSON_DATA(InputWeaponName);
+    SET_JSON_DATA(InputArmorName);
 
     // Output type
-    SET_JSON_DATA_VIA_ASSIGNMENT(OutputPotionName);
-    SET_JSON_DATA_VIA_ASSIGNMENT(OutputIngredientName);
-    SET_JSON_DATA_VIA_ASSIGNMENT(OutputWeaponName);
-    SET_JSON_DATA_VIA_ASSIGNMENT(OutputArmorName);
+    SET_JSON_DATA(OutputPotionName);
+    SET_JSON_DATA(OutputIngredientName);
+    SET_JSON_DATA(OutputWeaponName);
+    SET_JSON_DATA(OutputArmorName);
 
     // Input amount
-    SET_JSON_DATA_VIA_ASSIGNMENT(InputAmount);
+    SET_JSON_DATA(InputAmount);
 
     // Output amount
-    SET_JSON_DATA_VIA_ASSIGNMENT(OutputAmount);
+    SET_JSON_DATA(OutputAmount);
 }
 
 void from_json(const Json& jsonData, RecipeEntry& obj)
@@ -87,6 +87,7 @@ void from_json(const Json& jsonData, RecipeEntry& obj)
     SET_OBJ_DATA(OutputAmount, Int, 0);
 }
 
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(RecipeEntryArray);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(RecipeEntry, RecipeEntry);
 
 };

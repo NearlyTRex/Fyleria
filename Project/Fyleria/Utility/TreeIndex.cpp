@@ -85,9 +85,9 @@ Bool TreeIndex::operator!=(const TreeIndex& other) const
 
 void to_json(Json& jsonData, const TreeIndex& obj)
 {
-    SET_JSON_DATA_VIA_ASSIGNMENT(Tree);
-    SET_JSON_DATA_VIA_ASSIGNMENT(Branch);
-    SET_JSON_DATA_VIA_ASSIGNMENT(Leaf);
+    SET_JSON_DATA(Tree);
+    SET_JSON_DATA(Branch);
+    SET_JSON_DATA(Leaf);
 }
 
 void from_json(const Json& jsonData, TreeIndex& obj)
@@ -97,6 +97,7 @@ void from_json(const Json& jsonData, TreeIndex& obj)
     SET_OBJ_DATA(Leaf, String, "");
 }
 
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(TreeIndexArray);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(TreeIndex, TreeIndex);
 
 };

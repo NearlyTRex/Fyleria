@@ -91,16 +91,16 @@ Bool CharacterPartyItem::UnequipAmount(UInt uAmount)
 void to_json(Json& jsonData, const CharacterPartyItem& obj)
 {
     // Item tree index
-    SET_JSON_DATA_VIA_TO_JSON(ItemTreeIndex);
+    SET_JSON_DATA(ItemTreeIndex);
 
     // Item amount
-    SET_JSON_DATA_VIA_ASSIGNMENT(ItemAmount);
+    SET_JSON_DATA(ItemAmount);
 
     // Number of equips (must be less than or equal to the amount of the item)
-    SET_JSON_DATA_VIA_ASSIGNMENT(EquipCount);
+    SET_JSON_DATA(EquipCount);
 
     // Applicable equipment slots
-    SET_JSON_DATA_VIA_ASSIGNMENT(ApplicableEquipmentSlots);
+    SET_JSON_DATA(ApplicableEquipmentSlots);
 }
 
 void from_json(const Json& jsonData, CharacterPartyItem& obj)

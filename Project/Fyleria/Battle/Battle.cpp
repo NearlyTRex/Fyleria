@@ -170,22 +170,22 @@ Bool Battle::AreAllActionsFinished() const
 void to_json(Json& jsonData, const Battle& obj)
 {
     // Battle status
-    SET_JSON_DATA_VIA_ASSIGNMENT(IsBattleStarted);
-    SET_JSON_DATA_VIA_ASSIGNMENT(IsBattleFinished);
-    SET_JSON_DATA_VIA_ASSIGNMENT(IsBattleManuallyWon);
-    SET_JSON_DATA_VIA_ASSIGNMENT(IsBattleManuallyLost);
+    SET_JSON_DATA(IsBattleStarted);
+    SET_JSON_DATA(IsBattleFinished);
+    SET_JSON_DATA(IsBattleManuallyWon);
+    SET_JSON_DATA(IsBattleManuallyLost);
 
     // Current action/round
-    SET_JSON_DATA_VIA_ASSIGNMENT(CurrentActionIndex);
-    SET_JSON_DATA_VIA_ASSIGNMENT(CurrentRoundIndex);
+    SET_JSON_DATA(CurrentActionIndex);
+    SET_JSON_DATA(CurrentRoundIndex);
 
     // Actions
-    SET_JSON_DATA_VIA_ASSIGNMENT(Actions);
-    SET_JSON_DATA_VIA_ASSIGNMENT(ActionCount);
+    SET_JSON_DATA(Actions);
+    SET_JSON_DATA(ActionCount);
 
     // Party names
-    SET_JSON_DATA_VIA_ASSIGNMENT(EnemyPartyID);
-    SET_JSON_DATA_VIA_ASSIGNMENT(AllyPartyID);
+    SET_JSON_DATA(EnemyPartyID);
+    SET_JSON_DATA(AllyPartyID);
 }
 
 void from_json(const Json& jsonData, Battle& obj)

@@ -29,14 +29,9 @@ String Get##name() const                                                        
 
 //=====================================================================================
 
-#define SET_JSON_DATA_VIA_TO_JSON(name)                                             \
+#define SET_JSON_DATA(name)                                                         \
 {                                                                                   \
     to_json(jsonData[#name], obj.Get##name());                                      \
-}
-
-#define SET_JSON_DATA_VIA_ASSIGNMENT(name)                                          \
-{                                                                                   \
-    jsonData[#name] = obj.Get##name();                                              \
 }
 
 #define SET_OBJ_DATA(name, value_type, value_default)                               \
@@ -90,6 +85,54 @@ void to_json(Json& jsonData, const type& obj)                                   
 void from_json(const Json& jsonData, type& obj)                                     \
 {                                                                                   \
     obj.FromJson(jsonData);                                                         \
+}
+
+#define MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(type)                               \
+void to_json(Json& jsonData, const type& obj);                                      \
+void from_json(const Json& jsonData, type& obj);
+
+#define MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(type)                               \
+void to_json(Json& vJsonData, const type& vObj)                                     \
+{                                                                                   \
+    for(auto it = vObj.begin(); it != vObj.end(); it++)                             \
+    {                                                                               \
+        Json jsonData;                                                              \
+        to_json(jsonData, *it);                                                     \
+        vJsonData.push_back(jsonData);                                              \
+    }                                                                               \
+}                                                                                   \
+void from_json(const Json& vJsonData, type& vObj)                                   \
+{                                                                                   \
+    for(auto it = vJsonData.begin(); it != vJsonData.end(); it++)                   \
+    {                                                                               \
+        type::value_type obj;                                                       \
+        from_json(*it, obj);                                                        \
+        vObj.push_back(obj);                                                        \
+    }                                                                               \
+}
+
+#define MAKE_JSON_MAP_TYPE_CONVERTERS_DECL(type)                                    \
+void to_json(Json& jsonData, const type& obj);                                      \
+void from_json(const Json& jsonData, type& obj);
+
+#define MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(type)                                    \
+void to_json(Json& tJsonData, const type& tObj)                                     \
+{                                                                                   \
+    for(auto it = tObj.begin(); it != tObj.end(); it++)                             \
+    {                                                                               \
+        Json jsonData;                                                              \
+        to_json(jsonData, it->second);                                              \
+        tJsonData[it->first] = jsonData;                                            \
+    }                                                                               \
+}                                                                                   \
+void from_json(const Json& tJsonData, type& tObj)                                   \
+{                                                                                   \
+    for(auto it = tJsonData.begin(); it != tJsonData.end(); it++)                   \
+    {                                                                               \
+        type::mapped_type obj;                                                      \
+        from_json(it.value(), obj);                                                 \
+        tObj[it.key()] = obj;                                                       \
+    }                                                                               \
 }
 
 #define MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(name, type)                          \

@@ -92,7 +92,7 @@ typedef STDVector<UByte> UByteArray;
 typedef STDVector<UShort> UShortArray;
 typedef STDVector<UInt> UIntArray;
 typedef STDVector<ULong> ULongArray;
-typedef STDVector<ULongLong> ULongULongArray;
+typedef STDVector<ULongLong> ULongLongArray;
 typedef STDVector<Float> FloatArray;
 typedef STDVector<Double> DoubleArray;
 typedef STDVector<LongDouble> LongDoubleArray;

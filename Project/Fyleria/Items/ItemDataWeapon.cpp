@@ -40,12 +40,12 @@ CharacterActionArray ItemDataWeapon::CreateWeaponActions(const String& sCharacte
 void to_json(Json& jsonData, const ItemDataWeapon& obj)
 {
     // Stat percents
-    SET_JSON_DATA_VIA_ASSIGNMENT(BluntAttackPercent);
-    SET_JSON_DATA_VIA_ASSIGNMENT(PierceAttackPercent);
-    SET_JSON_DATA_VIA_ASSIGNMENT(SlashAttackPercent);
+    SET_JSON_DATA(BluntAttackPercent);
+    SET_JSON_DATA(PierceAttackPercent);
+    SET_JSON_DATA(SlashAttackPercent);
 
     // Stat changes
-    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
+    SET_JSON_DATA(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemDataWeapon& obj)

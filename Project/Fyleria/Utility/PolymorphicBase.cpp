@@ -26,7 +26,7 @@ PolymorphicBase::PolymorphicBase(const Json& jsonData)
 void to_json(Json& jsonData, const PolymorphicBase& obj)
 {
     // Type name
-    SET_JSON_DATA_VIA_ASSIGNMENT(TypeName);
+    SET_JSON_DATA(TypeName);
 }
 
 void from_json(const Json& jsonData, PolymorphicBase& obj)

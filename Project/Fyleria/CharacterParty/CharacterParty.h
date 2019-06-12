@@ -218,6 +218,8 @@ MAKE_TYPE_TYPEDEFS(CharacterParty);
 // JSON Converters
 void to_json(Json& jsonData, const CharacterParty& obj);
 void from_json(const Json& jsonData, CharacterParty& obj);
+MAKE_JSON_MAP_TYPE_CONVERTERS_DECL(CharacterParty::CharacterPartyMemberMapType);
+MAKE_JSON_MAP_TYPE_CONVERTERS_DECL(CharacterParty::CharacterPartyItemMapType);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterParty, CharacterParty);
 
 };

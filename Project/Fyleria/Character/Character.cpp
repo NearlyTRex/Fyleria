@@ -269,24 +269,24 @@ void Character::ClearActiveChanges()
 void to_json(Json& jsonData, const Character& obj)
 {
     // Segmented progress data
-    SET_JSON_DATA_VIA_ASSIGNMENT(ProgressDataBase);
-    SET_JSON_DATA_VIA_ASSIGNMENT(ProgressDataPassives);
+    SET_JSON_DATA(ProgressDataBase);
+    SET_JSON_DATA(ProgressDataPassives);
 
     // Segmented battle data
-    SET_JSON_DATA_VIA_ASSIGNMENT(BattleDataBase);
-    SET_JSON_DATA_VIA_ASSIGNMENT(BattleDataPassives);
+    SET_JSON_DATA(BattleDataBase);
+    SET_JSON_DATA(BattleDataPassives);
 
     // Basic data
-    SET_JSON_DATA_VIA_ASSIGNMENT(BasicData);
+    SET_JSON_DATA(BasicData);
 
     // Action data
-    SET_JSON_DATA_VIA_ASSIGNMENT(ActionData);
+    SET_JSON_DATA(ActionData);
 
     // Skill data
-    SET_JSON_DATA_VIA_ASSIGNMENT(SkillData);
+    SET_JSON_DATA(SkillData);
 
     // Stat change data
-    SET_JSON_DATA_VIA_ASSIGNMENT(StatChangeData);
+    SET_JSON_DATA(StatChangeData);
 }
 
 void from_json(const Json& jsonData, Character& obj)

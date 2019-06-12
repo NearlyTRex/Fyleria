@@ -41,9 +41,6 @@ public:
     // Reseting internal data
     virtual void Reset();
 
-    // Type casts
-    virtual operator Json() const;
-
     // Other information
     virtual void Clear();
     virtual Bool IsEmpty() const;

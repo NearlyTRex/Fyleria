@@ -29,7 +29,7 @@ void ItemDataIngredient::Clear()
 void to_json(Json& jsonData, const ItemDataIngredient& obj)
 {
     // Stat changes
-    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
+    SET_JSON_DATA(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemDataIngredient& obj)

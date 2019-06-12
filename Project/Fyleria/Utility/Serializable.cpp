@@ -90,11 +90,6 @@ void SerializableToJson::Reset()
 {
 }
 
-SerializableToJson::operator Json() const
-{
-    return m_Data;
-}
-
 void SerializableToJson::Clear()
 {
     m_Data.clear();

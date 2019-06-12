@@ -41,13 +41,13 @@ CharacterActionArray ItemDataArmor::CreateArmorActions(const String& sCharacterI
 void to_json(Json& jsonData, const ItemDataArmor& obj)
 {
     // Stat percents
-    SET_JSON_DATA_VIA_ASSIGNMENT(BluntDefendPercent);
-    SET_JSON_DATA_VIA_ASSIGNMENT(PierceDefendPercent);
-    SET_JSON_DATA_VIA_ASSIGNMENT(SlashDefendPercent);
-    SET_JSON_DATA_VIA_ASSIGNMENT(MagicDefendPercent);
+    SET_JSON_DATA(BluntDefendPercent);
+    SET_JSON_DATA(PierceDefendPercent);
+    SET_JSON_DATA(SlashDefendPercent);
+    SET_JSON_DATA(MagicDefendPercent);
 
     // Stat changes
-    SET_JSON_DATA_VIA_ASSIGNMENT(StatChanges);
+    SET_JSON_DATA(StatChanges);
 }
 
 void from_json(const Json& jsonData, ItemDataArmor& obj)

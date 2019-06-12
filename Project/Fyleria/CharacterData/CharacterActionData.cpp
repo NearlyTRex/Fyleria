@@ -83,7 +83,7 @@ Bool CharacterActionData::operator!=(const CharacterActionData& other) const
 void to_json(Json& jsonData, const CharacterActionData& obj)
 {
     // List of character actions
-    SET_JSON_DATA_VIA_ASSIGNMENT(AvailableActions);
+    SET_JSON_DATA(AvailableActions);
 }
 
 void from_json(const Json& jsonData, CharacterActionData& obj)

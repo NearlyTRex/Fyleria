@@ -55,6 +55,7 @@ MAKE_TYPE_TYPEDEFS(CharacterActionEntry);
 
 // JSON Converters
 MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(CharacterActionEntry);
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(CharacterActionEntryArray);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterActionEntry, CharacterActionEntry);
 
 };

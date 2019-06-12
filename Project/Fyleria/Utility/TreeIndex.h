@@ -50,6 +50,7 @@ MAKE_TYPE_TYPEDEFS(TreeIndex);
 // JSON Converters
 void to_json(Json& jsonData, const TreeIndex& obj);
 void from_json(const Json& jsonData, TreeIndex& obj);
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(TreeIndexArray);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(TreeIndex, TreeIndex);
 
 };

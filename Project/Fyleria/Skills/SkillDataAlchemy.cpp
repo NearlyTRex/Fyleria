@@ -29,7 +29,7 @@ void SkillDataAlchemy::Clear()
 void to_json(Json& jsonData, const SkillDataAlchemy& obj)
 {
     // Recipes
-    SET_JSON_DATA_VIA_ASSIGNMENT(Recipes);
+    SET_JSON_DATA(Recipes);
 }
 
 void from_json(const Json& jsonData, SkillDataAlchemy& obj)

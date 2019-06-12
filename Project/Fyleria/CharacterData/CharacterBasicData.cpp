@@ -45,7 +45,7 @@ Bool CharacterBasicData::operator!=(const CharacterBasicData& other) const
 void to_json(Json& jsonData, const CharacterBasicData& obj)
 {
     // Character ID
-    SET_JSON_DATA_VIA_ASSIGNMENT(CharacterID);
+    SET_JSON_DATA(CharacterID);
 
     // Stat values
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBasicStatType, String);

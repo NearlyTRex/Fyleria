@@ -791,25 +791,25 @@ void CharacterParty::SetPlayTime(ULongLong uTime)
 void to_json(Json& jsonData, const CharacterParty& obj)
 {
     // Party ID
-    SET_JSON_DATA_VIA_ASSIGNMENT(PartyID);
+    SET_JSON_DATA(PartyID);
 
     // Party type
-    SET_JSON_DATA_VIA_ASSIGNMENT(PartyType);
+    SET_JSON_DATA(PartyType);
 
     // Map of members
-    SET_JSON_DATA_VIA_ASSIGNMENT(Members);
+    SET_JSON_DATA(Members);
 
     // Map of items
-    SET_JSON_DATA_VIA_ASSIGNMENT(Items);
+    SET_JSON_DATA(Items);
 
     // Arrays of available target types
-    SET_JSON_DATA_VIA_ASSIGNMENT(AvailableTargetTypes);
+    SET_JSON_DATA(AvailableTargetTypes);
 
     // Array of taken target types
-    SET_JSON_DATA_VIA_ASSIGNMENT(TakenTargetTypes);
+    SET_JSON_DATA(TakenTargetTypes);
 
     // Play time
-    SET_JSON_DATA_VIA_ASSIGNMENT(PlayTime);
+    SET_JSON_DATA(PlayTime);
 }
 
 void from_json(const Json& jsonData, CharacterParty& obj)
@@ -836,6 +836,8 @@ void from_json(const Json& jsonData, CharacterParty& obj)
     SET_OBJ_DATA(PlayTime, ULongLong, 0);
 }
 
+MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(CharacterParty::CharacterPartyMemberMapType);
+MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(CharacterParty::CharacterPartyItemMapType);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterParty, CharacterParty);
 
 };

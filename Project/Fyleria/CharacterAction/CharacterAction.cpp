@@ -119,38 +119,38 @@ Bool CharacterAction::PrepareCharacterIDs()
 void to_json(Json& jsonData, const CharacterAction& obj)
 {
     // Run type
-    SET_JSON_DATA_VIA_ASSIGNMENT(RunType);
+    SET_JSON_DATA(RunType);
 
     // Order
-    SET_JSON_DATA_VIA_ASSIGNMENT(Order);
+    SET_JSON_DATA(Order);
 
     // Cost
-    SET_JSON_DATA_VIA_ASSIGNMENT(CostAP);
-    SET_JSON_DATA_VIA_ASSIGNMENT(CostHP);
-    SET_JSON_DATA_VIA_ASSIGNMENT(CostMP);
-    SET_JSON_DATA_VIA_ASSIGNMENT(CostEP);
+    SET_JSON_DATA(CostAP);
+    SET_JSON_DATA(CostHP);
+    SET_JSON_DATA(CostMP);
+    SET_JSON_DATA(CostEP);
 
     // Applicable weapon set
-    SET_JSON_DATA_VIA_ASSIGNMENT(WeaponSet);
+    SET_JSON_DATA(WeaponSet);
 
     // Action entries
-    SET_JSON_DATA_VIA_ASSIGNMENT(ActionEntries);
+    SET_JSON_DATA(ActionEntries);
 
     // Previous action types
-    SET_JSON_DATA_VIA_ASSIGNMENT(PreviousActionTypes);
+    SET_JSON_DATA(PreviousActionTypes);
 
     // Skill
-    SET_JSON_DATA_VIA_TO_JSON(SkillTreeIndex);
+    SET_JSON_DATA(SkillTreeIndex);
 
     // Item
-    SET_JSON_DATA_VIA_TO_JSON(ItemTreeIndex);
-    SET_JSON_DATA_VIA_ASSIGNMENT(ItemAmount);
+    SET_JSON_DATA(ItemTreeIndex);
+    SET_JSON_DATA(ItemAmount);
 
     // Targets
-    SET_JSON_DATA_VIA_ASSIGNMENT(SourceTargetType);
+    SET_JSON_DATA(SourceTargetType);
 
     // Characters
-    SET_JSON_DATA_VIA_ASSIGNMENT(SourceCharacterID);
+    SET_JSON_DATA(SourceCharacterID);
 }
 
 void from_json(const Json& jsonData, CharacterAction& obj)
@@ -190,6 +190,7 @@ void from_json(const Json& jsonData, CharacterAction& obj)
     SET_OBJ_DATA(SourceCharacterID, String, "");
 }
 
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterActionArray);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterAction, CharacterAction);
 
 };

@@ -210,16 +210,16 @@ Bool CharacterStatChangeData::operator!=(const CharacterStatChangeData& other) c
 void to_json(Json& jsonData, const CharacterStatChangeData& obj)
 {
     // Passive data
-    SET_JSON_DATA_VIA_ASSIGNMENT(PassiveSkillDataArray);
-    SET_JSON_DATA_VIA_ASSIGNMENT(PassiveItemDataArray);
+    SET_JSON_DATA(PassiveSkillDataArray);
+    SET_JSON_DATA(PassiveItemDataArray);
 
     // Active data
-    SET_JSON_DATA_VIA_ASSIGNMENT(ActiveSkillDataArray);
-    SET_JSON_DATA_VIA_ASSIGNMENT(ActiveItemDataArray);
+    SET_JSON_DATA(ActiveSkillDataArray);
+    SET_JSON_DATA(ActiveItemDataArray);
 
     // Actionable data
-    SET_JSON_DATA_VIA_ASSIGNMENT(ActionableSkillDataArray);
-    SET_JSON_DATA_VIA_ASSIGNMENT(ActionableItemDataArray);
+    SET_JSON_DATA(ActionableSkillDataArray);
+    SET_JSON_DATA(ActionableItemDataArray);
 }
 
 void from_json(const Json& jsonData, CharacterStatChangeData& obj)

@@ -44,35 +44,35 @@ StatChangeEntry::StatChangeEntry(const Json& jsonData)
 void to_json(Json& jsonData, const StatChangeEntry& obj)
 {
     // Applicable round or attack number
-    SET_JSON_DATA_VIA_ASSIGNMENT(Round);
-    SET_JSON_DATA_VIA_ASSIGNMENT(Attack);
-    SET_JSON_DATA_VIA_ASSIGNMENT(Defend);
+    SET_JSON_DATA(Round);
+    SET_JSON_DATA(Attack);
+    SET_JSON_DATA(Defend);
 
     // Delta amounts
-    SET_JSON_DATA_VIA_ASSIGNMENT(DeltaFloat);
-    SET_JSON_DATA_VIA_ASSIGNMENT(DeltaInt);
+    SET_JSON_DATA(DeltaFloat);
+    SET_JSON_DATA(DeltaInt);
 
     // Full amounts
-    SET_JSON_DATA_VIA_ASSIGNMENT(FullPercent);
-    SET_JSON_DATA_VIA_ASSIGNMENT(FullFloat);
-    SET_JSON_DATA_VIA_ASSIGNMENT(FullInt);
-    SET_JSON_DATA_VIA_ASSIGNMENT(FullBool);
-    SET_JSON_DATA_VIA_ASSIGNMENT(FullString);
-    SET_JSON_DATA_VIA_ASSIGNMENT(FullFloatArray);
-    SET_JSON_DATA_VIA_ASSIGNMENT(FullIntArray);
-    SET_JSON_DATA_VIA_ASSIGNMENT(FullBoolArray);
-    SET_JSON_DATA_VIA_ASSIGNMENT(FullStringArray);
+    SET_JSON_DATA(FullPercent);
+    SET_JSON_DATA(FullFloat);
+    SET_JSON_DATA(FullInt);
+    SET_JSON_DATA(FullBool);
+    SET_JSON_DATA(FullString);
+    SET_JSON_DATA(FullFloatArray);
+    SET_JSON_DATA(FullIntArray);
+    SET_JSON_DATA(FullBoolArray);
+    SET_JSON_DATA(FullStringArray);
 
     // Operation type (Add, Multiply, etc)
-    SET_JSON_DATA_VIA_ASSIGNMENT(OperationType);
+    SET_JSON_DATA(OperationType);
 
     // Stats to serve as source and destination
-    SET_JSON_DATA_VIA_ASSIGNMENT(SourceStatType);
-    SET_JSON_DATA_VIA_ASSIGNMENT(DestinationStatType);
+    SET_JSON_DATA(SourceStatType);
+    SET_JSON_DATA(DestinationStatType);
 
     // Character IDs for applying
-    SET_JSON_DATA_VIA_ASSIGNMENT(SourceCharacterID);
-    SET_JSON_DATA_VIA_ASSIGNMENT(DestinationCharacterIDs);
+    SET_JSON_DATA(SourceCharacterID);
+    SET_JSON_DATA(DestinationCharacterIDs);
 }
 
 void from_json(const Json& jsonData, StatChangeEntry& obj)
@@ -109,6 +109,7 @@ void from_json(const Json& jsonData, StatChangeEntry& obj)
     SET_OBJ_DATA(DestinationCharacterIDs, StringArray, StringArray());
 }
 
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(StatChangeEntryArray);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChangeEntry, StatChangeEntry);
 
 };
