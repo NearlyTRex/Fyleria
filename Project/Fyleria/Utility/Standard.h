@@ -8,6 +8,7 @@
 #include <atomic>
 #include <iostream>
 #include <iomanip>
+#include <functional>
 #include <algorithm>
 #include <string>
 #include <sstream>
@@ -40,6 +41,7 @@
 #define STDSet std::set
 #define STDUnorderedSet std::unordered_set
 #define STDList std::list
+#define STDFunction std::function
 #define STDSharedPtr std::shared_ptr
 #define STDUniquePtr std::unique_ptr
 #define STDMakeSharedPtr std::make_shared

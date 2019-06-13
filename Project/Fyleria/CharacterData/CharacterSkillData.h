@@ -16,9 +16,10 @@ class CharacterSkillData
 public:
 
     // Types
-    typedef BoostAny CharacterSkillFunctionType;
-    typedef STDUnorderedMap<String, CharacterSkillFunctionType> CharacterSkillFunctionNodeType;
-    typedef STDUnorderedMap<String, CharacterSkillFunctionNodeType> CharacterSkillFunctionMapType;
+    typedef STDUnorderedMap<String, UByteGetFunction> CharacterSkillGetFunctionNodeType;
+    typedef STDUnorderedMap<String, UByteSetFunction> CharacterSkillSetFunctionNodeType;
+    typedef STDUnorderedMap<String, CharacterSkillGetFunctionNodeType> CharacterSkillGetFunctionMapType;
+    typedef STDUnorderedMap<String, CharacterSkillSetFunctionNodeType> CharacterSkillSetFunctionMapType;
     typedef STDUnorderedMap<String, UInt> CharacterSkillUseTrackingMapType;
 
     // Constructors
@@ -47,16 +48,15 @@ public:
     // Get number of skill uses
     UInt GetSkillUseCount(const String& sSkillType) const;
 
-    // Get skill Rank/current functions
-    const CharacterSkillFunctionNodeType& GetSkillFunctions(const String& sSkillType) const;
-    const CharacterSkillFunctionType& GetSkillFunction(const String& sSkillType, const String& sNodeType) const;
+    // Get skill rank/current functions
     UByteGetFunction GetSkillGetRankFunction(const String& sSkillType) const;
     UByteSetFunction GetSkillSetRankFunction(const String& sSkillType) const;
     UByteGetFunction GetSkillGetCurrentFunction(const String& sSkillType) const;
     UByteSetFunction GetSkillSetCurrentFunction(const String& sSkillType) const;
 
     // Skill map
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillFunctionMap, CharacterSkillFunctionMapType);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillGetFunctionMap, CharacterSkillGetFunctionMapType);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillSetFunctionMap, CharacterSkillSetFunctionMapType);
 
     // Skill use tracking
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillUseTrackingMap, CharacterSkillUseTrackingMapType);

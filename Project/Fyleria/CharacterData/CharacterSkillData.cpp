@@ -16,18 +16,28 @@ CharacterSkillData::CharacterSkillData(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
-#define SET_SKILL_FUNCTION_NODE(name)                                                               \
-{                                                                                                   \
-    CharacterSkillFunctionNodeType node;                                                            \
-    node[String("GetRank")] = BoostBind(&CharacterSkillData::Get##name##Rank, this);         \
-    node[String("SetRank")] = BoostBind(&CharacterSkillData::Set##name##Rank, this);         \
-    node[String("GetCurrent")] = BoostBind(&CharacterSkillData::Get##name##Current, this);   \
-    node[String("SetCurrent")] = BoostBind(&CharacterSkillData::Set##name##Current, this);   \
-    GetSkillFunctionMap()[String(#name)] = node;                                             \
+#define SET_SKILL_FUNCTION_NODE(name)                                                           \
+{                                                                                               \
+    CharacterSkillGetFunctionNodeType nodeGet;                                                  \
+    CharacterSkillSetFunctionNodeType nodeSet;                                                  \
+    UByteGetFunction fnGetRank = [this]() { return this->Get##name##Rank(); };                  \
+    UByteGetFunction fnGetCurrent = [this]() { return this->Get##name##Current(); };            \
+    UByteSetFunction fnSetRank = [this](auto a) { this->Set##name##Rank(a); };                  \
+    UByteSetFunction fnSetCurrent = [this](auto a) { this->Set##name##Current(a); };            \
+    nodeGet["GetRank"] = fnGetRank;                                                             \
+    nodeGet["GetCurrent"] = fnGetCurrent;                                                       \
+    nodeSet["SetRank"] = fnSetRank;                                                             \
+    nodeSet["SetCurrent"] = fnSetCurrent;                                                       \
+    GetSkillGetFunctionMap().insert({String(#name), nodeGet});                                  \
+    GetSkillSetFunctionMap().insert({String(#name), nodeSet});                                  \
 }
 
 void CharacterSkillData::SetupSkillFunctions()
 {
+    // Clear existing maps
+    GetSkillGetFunctionMap().clear();
+    GetSkillSetFunctionMap().clear();
+
     // Combat Skills
     SET_SKILL_FUNCTION_NODE(Barbarian);
     SET_SKILL_FUNCTION_NODE(Mage);
@@ -111,6 +121,7 @@ void CharacterSkillData::SetupSkillFunctions()
 
 void CharacterSkillData::Clear()
 {
+    SetupSkillFunctions();
     SetAllSkillCurrentValues(0);
     SetAllSkillRankValues(0);
     SetSkillUseTrackingMap({});
@@ -120,7 +131,11 @@ void CharacterSkillData::Clear()
 {                                                                       \
     for(auto&& sSkillType : type::_names())                             \
     {                                                                   \
-        GetSkillSet##skill##Function(String(sSkillType))(value); \
+        if(sSkillType == (+type::None)._to_string())                    \
+        {                                                               \
+            continue;                                                   \
+        }                                                               \
+        GetSkillSet##skill##Function(String(sSkillType))(value);        \
     }                                                                   \
 }
 
@@ -151,7 +166,7 @@ void CharacterSkillData::UpdateUsedSkills()
     {
         const String& sSkillType = it->first;
         UInt uUseCount = it->second;
-        if(sSkillType == "None" || uUseCount == 0)
+        if(sSkillType.empty() || sSkillType == "None" || uUseCount == 0)
         {
             continue;
         }
@@ -162,6 +177,11 @@ void CharacterSkillData::UpdateUsedSkills()
 
 Bool CharacterSkillData::UpdateSkillRanking(const String& sSkillType)
 {
+    if(sSkillType.empty() || sSkillType == "None")
+    {
+        return false;
+    }
+
     auto GetRank = GetSkillGetRankFunction(sSkillType);
     auto SetRank = GetSkillSetRankFunction(sSkillType);
     auto GetCurrent = GetSkillGetCurrentFunction(sSkillType);
@@ -207,37 +227,24 @@ UInt CharacterSkillData::GetSkillUseCount(const String& sSkillType) const
     return 0;
 }
 
-const CharacterSkillData::CharacterSkillFunctionNodeType& CharacterSkillData::GetSkillFunctions(
-    const String& sSkillType) const
-{
-    return GetSkillFunctionMap().at(sSkillType);
-}
-
-const CharacterSkillData::CharacterSkillFunctionType& CharacterSkillData::GetSkillFunction(
-    const String& sSkillType,
-    const String& sNodeType) const
-{
-    return GetSkillFunctions(sSkillType).at(sNodeType);
-}
-
 UByteGetFunction CharacterSkillData::GetSkillGetRankFunction(const String& sSkillType) const
 {
-    return BoostAnyCast<UByteGetFunction>(GetSkillFunction(sSkillType, String("GetRank")));
+    return GetSkillGetFunctionMap().at(sSkillType).at("GetRank");
 }
 
 UByteSetFunction CharacterSkillData::GetSkillSetRankFunction(const String& sSkillType) const
 {
-    return BoostAnyCast<UByteSetFunction>(GetSkillFunction(sSkillType, String("SetRank")));
+    return GetSkillSetFunctionMap().at(sSkillType).at("SetRank");
 }
 
 UByteGetFunction CharacterSkillData::GetSkillGetCurrentFunction(const String& sSkillType) const
 {
-    return BoostAnyCast<UByteGetFunction>(GetSkillFunction(sSkillType, String("GetCurrent")));
+    return GetSkillGetFunctionMap().at(sSkillType).at("GetCurrent");
 }
 
 UByteSetFunction CharacterSkillData::GetSkillSetCurrentFunction(const String& sSkillType) const
 {
-    return BoostAnyCast<UByteSetFunction>(GetSkillFunction(sSkillType, String("SetCurrent")));
+    return GetSkillSetFunctionMap().at(sSkillType).at("SetCurrent");
 }
 
 Bool CharacterSkillData::operator==(const CharacterSkillData& other) const
