@@ -45,12 +45,20 @@ Bool SetStatValue(StatTypeMap& tStatMap, const String& sStatName, const T& inVal
 template <class T>
 Bool GetStatValue(const StatTypeMap& tStatMap, const String& sStatName, T& outValue)
 {
-    if (tStatMap.find(sStatName) == tStatMap.end())
+    if(tStatMap.find(sStatName) == tStatMap.end())
     {
         return false;
     }
-    outValue = BoostAnyCast<T>(tStatMap.at(sStatName).GetDataValue());
-    return true;
+    try
+    {
+        outValue = BoostAnyCast<T>(tStatMap.at(sStatName).GetDataValue());
+        return true;
+    }
+    catch(BoostBadAnyCast&)
+    {
+        return false;
+    }
+    return false;
 }
 
 };
