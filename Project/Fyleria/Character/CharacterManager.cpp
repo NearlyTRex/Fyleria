@@ -46,6 +46,7 @@ void CharacterManager::CreateCharacter(const String& sCharacterID)
     // Create a new character
     ASSERT_ERROR(!DoesCharacterExist(sCharacterID), "Character with ID '%s' was already registered", sCharacterID.c_str());
     Character newCharacter;
+    newCharacter.Clear();
     newCharacter.GetBasicData().SetCharacterID(sCharacterID);
     GetCharacters().insert({sCharacterID, newCharacter});
 }
