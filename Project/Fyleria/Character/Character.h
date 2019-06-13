@@ -29,6 +29,9 @@ public:
     explicit Character(const Json& jsonData);
     explicit Character(const String& jsonString);
 
+    // Clear all data
+    void Clear();
+
     // Regenerate character data
     void RegenerateCharacterData(
         Bool bUpdateSkillRankings = true,

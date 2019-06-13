@@ -28,6 +28,31 @@ Character::Character(const String& jsonString)
     from_json(JsonParse(jsonString), *this);
 }
 
+void Character::Clear()
+{
+    // Progress data
+    GetProgressDataBase().Clear();
+    GetProgressDataPassives().Clear();
+    GetProgressDataActives().Clear();
+
+    // Battle data
+    GetBattleDataBase().Clear();
+    GetBattleDataPassives().Clear();
+    GetBattleDataActives().Clear();
+
+    // Basic data
+    GetBasicData().Clear();
+
+    // Action data
+    GetActionData().Clear();
+
+    // Skill data
+    GetSkillData().Clear();
+
+    // Stat change data
+    GetStatChangeData().Clear();
+}
+
 void Character::RegenerateCharacterData(
     Bool bUpdateSkillRankings /*= true*/,
     Bool bUpdateEquipmentRatings /*= true*/,
