@@ -85,10 +85,12 @@ void CharacterManager::GenerateCharacter(const String& sCharacterID, const Chara
     Character& newCharacter = GetCharacter(sCharacterID);
     newCharacter.SetBasicData(generator.GenerateBasicData(sCharacterID));
     newCharacter.SetProgressDataBase(generator.GenerateProgressData());
+    newCharacter.SetSkillData(generator.GenerateSkillData());
+    newCharacter.RegenerateCharacterData();
 
     // Display the new character
 #ifdef DEBUG
-    Json jsonData = newCharacter;
+    Json jsonData(newCharacter);
     String sJsonString = jsonData.dump(4);
     LOG_FORMAT_STATEMENT("Completed generating character (CharacterID = '%s'):\n%s\n",
         sCharacterID.c_str(),
