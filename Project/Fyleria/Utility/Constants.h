@@ -42,6 +42,12 @@
 // Skill rank upgrade amount
 #define SKILL_RANK_UPGRADE_AMOUNT                   10
 
+// Defaults for generators
+#define DEFAULT_MAX_AGE                             100
+#define DEFAULT_MAX_METER                           200
+#define DEFAULT_MAX_SCORING                         200
+#define DEFAULT_MAX_RANK                            20
+
 // Web pages
 #define WEB_PAGE_TOOL_BASE                          "/tools"
 #define WEB_PAGE_TOOL_CHARACTER_MANAGER             "/tools/character_manager.html"
