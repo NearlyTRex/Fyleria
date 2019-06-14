@@ -219,6 +219,7 @@ String CharacterGenerator::GeneratePowerSet() const
 
 void CharacterGenerator::RandomizeBasics()
 {
+    // Basics
     String sRandomNamePattern = GetRandomNamePattern();
     SetFirstNamePattern(sRandomNamePattern);
     SetLastNamePattern(sRandomNamePattern);
@@ -237,6 +238,7 @@ void CharacterGenerator::RandomizeBasics()
 
 void CharacterGenerator::RandomizeMeters()
 {
+    // Meters
     SetHPStart(GetRandomIntValue<Int>(1, DEFAULT_MAX_METER));
     SetHPEnd(GetRandomIntValue<Int>(GetHPStart() + 1, DEFAULT_MAX_METER));
     SetMPStart(GetRandomIntValue<Int>(1, DEFAULT_MAX_METER));
@@ -255,6 +257,7 @@ void CharacterGenerator::RandomizeMeters()
 
 void CharacterGenerator::RandomizeScoring()
 {
+    // Attack and Defense Scoring
     SetBluntATKStart(GetRandomIntValue<Int>(1, DEFAULT_MAX_SCORING));
     SetBluntATKEnd(GetRandomIntValue<Int>(GetBluntATKStart() + 1, DEFAULT_MAX_SCORING));
     SetBluntDEFStart(GetRandomIntValue<Int>(1, DEFAULT_MAX_SCORING));
@@ -279,6 +282,153 @@ void CharacterGenerator::RandomizeScoring()
 
 void CharacterGenerator::RandomizeRanks()
 {
+    // Combat Skills
+    SetBarbarianRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetBarbarianRankEnd(GetRandomIntValue<UByte>(GetBarbarianRankStart() + 1, DEFAULT_MAX_RANK));
+    SetMageRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetMageRankEnd(GetRandomIntValue<UByte>(GetMageRankStart() + 1, DEFAULT_MAX_RANK));
+    SetRogueRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetRogueRankEnd(GetRandomIntValue<UByte>(GetRogueRankStart() + 1, DEFAULT_MAX_RANK));
+    SetBlademasterRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetBlademasterRankEnd(GetRandomIntValue<UByte>(GetBlademasterRankStart() + 1, DEFAULT_MAX_RANK));
+    SetAvatarRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetAvatarRankEnd(GetRandomIntValue<UByte>(GetAvatarRankStart() + 1, DEFAULT_MAX_RANK));
+    SetAmbidextrousRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetAmbidextrousRankEnd(GetRandomIntValue<UByte>(GetAmbidextrousRankStart() + 1, DEFAULT_MAX_RANK));
+    SetFocusedRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetFocusedRankEnd(GetRandomIntValue<UByte>(GetFocusedRankStart() + 1, DEFAULT_MAX_RANK));
+    SetStalwartRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetStalwartRankEnd(GetRandomIntValue<UByte>(GetStalwartRankStart() + 1, DEFAULT_MAX_RANK));
+
+    // Weapon Skills
+    SetSlashRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetSlashRankEnd(GetRandomIntValue<UByte>(GetSlashRankStart() + 1, DEFAULT_MAX_RANK));
+    SetSeverRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetSeverRankEnd(GetRandomIntValue<UByte>(GetSeverRankStart() + 1, DEFAULT_MAX_RANK));
+    SetSliceRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetSliceRankEnd(GetRandomIntValue<UByte>(GetSliceRankStart() + 1, DEFAULT_MAX_RANK));
+    SetSlitRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetSlitRankEnd(GetRandomIntValue<UByte>(GetSlitRankStart() + 1, DEFAULT_MAX_RANK));
+    SetCleaveRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetCleaveRankEnd(GetRandomIntValue<UByte>(GetCleaveRankStart() + 1, DEFAULT_MAX_RANK));
+    SetDecapitateRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetDecapitateRankEnd(GetRandomIntValue<UByte>(GetDecapitateRankStart() + 1, DEFAULT_MAX_RANK));
+    SetParryRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetParryRankEnd(GetRandomIntValue<UByte>(GetParryRankStart() + 1, DEFAULT_MAX_RANK));
+    SetRiposteRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetRiposteRankEnd(GetRandomIntValue<UByte>(GetRiposteRankStart() + 1, DEFAULT_MAX_RANK));
+    SetBashRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetBashRankEnd(GetRandomIntValue<UByte>(GetBashRankStart() + 1, DEFAULT_MAX_RANK));
+    SetSmashRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetSmashRankEnd(GetRandomIntValue<UByte>(GetSmashRankStart() + 1, DEFAULT_MAX_RANK));
+    SetCrushRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetCrushRankEnd(GetRandomIntValue<UByte>(GetCrushRankStart() + 1, DEFAULT_MAX_RANK));
+    SetImpactRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetImpactRankEnd(GetRandomIntValue<UByte>(GetImpactRankStart() + 1, DEFAULT_MAX_RANK));
+    SetBreakRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetBreakRankEnd(GetRandomIntValue<UByte>(GetBreakRankStart() + 1, DEFAULT_MAX_RANK));
+    SetCrackRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetCrackRankEnd(GetRandomIntValue<UByte>(GetCrackRankStart() + 1, DEFAULT_MAX_RANK));
+    SetBlockRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetBlockRankEnd(GetRandomIntValue<UByte>(GetBlockRankStart() + 1, DEFAULT_MAX_RANK));
+    SetRushRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetRushRankEnd(GetRandomIntValue<UByte>(GetRushRankStart() + 1, DEFAULT_MAX_RANK));
+    SetPierceRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetPierceRankEnd(GetRandomIntValue<UByte>(GetPierceRankStart() + 1, DEFAULT_MAX_RANK));
+    SetDrillRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetDrillRankEnd(GetRandomIntValue<UByte>(GetDrillRankStart() + 1, DEFAULT_MAX_RANK));
+    SetShootRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetShootRankEnd(GetRandomIntValue<UByte>(GetShootRankStart() + 1, DEFAULT_MAX_RANK));
+    SetImpaleRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetImpaleRankEnd(GetRandomIntValue<UByte>(GetImpaleRankStart() + 1, DEFAULT_MAX_RANK));
+    SetStealthStrikeRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetStealthStrikeRankEnd(GetRandomIntValue<UByte>(GetStealthStrikeRankStart() + 1, DEFAULT_MAX_RANK));
+    SetCriticalShotRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetCriticalShotRankEnd(GetRandomIntValue<UByte>(GetCriticalShotRankStart() + 1, DEFAULT_MAX_RANK));
+    SetDodgeRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetDodgeRankEnd(GetRandomIntValue<UByte>(GetDodgeRankStart() + 1, DEFAULT_MAX_RANK));
+    SetCounterRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetCounterRankEnd(GetRandomIntValue<UByte>(GetCounterRankStart() + 1, DEFAULT_MAX_RANK));
+
+    // Alchemy Skills
+    SetHealerRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetHealerRankEnd(GetRandomIntValue<UByte>(GetHealerRankStart() + 1, DEFAULT_MAX_RANK));
+    SetAlchemistRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetAlchemistRankEnd(GetRandomIntValue<UByte>(GetAlchemistRankStart() + 1, DEFAULT_MAX_RANK));
+    SetEnergistRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetEnergistRankEnd(GetRandomIntValue<UByte>(GetEnergistRankStart() + 1, DEFAULT_MAX_RANK));
+    SetChemistRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetChemistRankEnd(GetRandomIntValue<UByte>(GetChemistRankStart() + 1, DEFAULT_MAX_RANK));
+
+    // Crafting Skills
+    SetHammersmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetHammersmithRankEnd(GetRandomIntValue<UByte>(GetHammersmithRankStart() + 1, DEFAULT_MAX_RANK));
+    SetSpellsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetSpellsmithRankEnd(GetRandomIntValue<UByte>(GetSpellsmithRankStart() + 1, DEFAULT_MAX_RANK));
+    SetBowsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetBowsmithRankEnd(GetRandomIntValue<UByte>(GetBowsmithRankStart() + 1, DEFAULT_MAX_RANK));
+    SetSwordsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetSwordsmithRankEnd(GetRandomIntValue<UByte>(GetSwordsmithRankStart() + 1, DEFAULT_MAX_RANK));
+    SetWeaverRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetWeaverRankEnd(GetRandomIntValue<UByte>(GetWeaverRankStart() + 1, DEFAULT_MAX_RANK));
+    SetTannerRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetTannerRankEnd(GetRandomIntValue<UByte>(GetTannerRankStart() + 1, DEFAULT_MAX_RANK));
+    SetScalesmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetScalesmithRankEnd(GetRandomIntValue<UByte>(GetScalesmithRankStart() + 1, DEFAULT_MAX_RANK));
+    SetPlatesmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetPlatesmithRankEnd(GetRandomIntValue<UByte>(GetPlatesmithRankStart() + 1, DEFAULT_MAX_RANK));
+    SetGoldsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetGoldsmithRankEnd(GetRandomIntValue<UByte>(GetGoldsmithRankStart() + 1, DEFAULT_MAX_RANK));
+    SetShieldsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetShieldsmithRankEnd(GetRandomIntValue<UByte>(GetShieldsmithRankStart() + 1, DEFAULT_MAX_RANK));
+
+    // Breakdown Skills
+    SetHammerbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetHammerbaneRankEnd(GetRandomIntValue<UByte>(GetHammerbaneRankStart() + 1, DEFAULT_MAX_RANK));
+    SetSpellbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetSpellbaneRankEnd(GetRandomIntValue<UByte>(GetSpellbaneRankStart() + 1, DEFAULT_MAX_RANK));
+    SetBowbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetBowbaneRankEnd(GetRandomIntValue<UByte>(GetBowbaneRankStart() + 1, DEFAULT_MAX_RANK));
+    SetSwordbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetSwordbaneRankEnd(GetRandomIntValue<UByte>(GetSwordbaneRankStart() + 1, DEFAULT_MAX_RANK));
+    SetThreadbareRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetThreadbareRankEnd(GetRandomIntValue<UByte>(GetThreadbareRankStart() + 1, DEFAULT_MAX_RANK));
+    SetStudRemoverRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetStudRemoverRankEnd(GetRandomIntValue<UByte>(GetStudRemoverRankStart() + 1, DEFAULT_MAX_RANK));
+    SetScalebaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetScalebaneRankEnd(GetRandomIntValue<UByte>(GetScalebaneRankStart() + 1, DEFAULT_MAX_RANK));
+    SetPlatebaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetPlatebaneRankEnd(GetRandomIntValue<UByte>(GetPlatebaneRankStart() + 1, DEFAULT_MAX_RANK));
+    SetGoldbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetGoldbaneRankEnd(GetRandomIntValue<UByte>(GetGoldbaneRankStart() + 1, DEFAULT_MAX_RANK));
+    SetShieldbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetShieldbaneRankEnd(GetRandomIntValue<UByte>(GetShieldbaneRankStart() + 1, DEFAULT_MAX_RANK));
+
+    // Affinity Skills
+    SetHolyRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetHolyRankEnd(GetRandomIntValue<UByte>(GetHolyRankStart() + 1, DEFAULT_MAX_RANK));
+    SetFireRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetFireRankEnd(GetRandomIntValue<UByte>(GetFireRankStart() + 1, DEFAULT_MAX_RANK));
+    SetIceRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetIceRankEnd(GetRandomIntValue<UByte>(GetIceRankStart() + 1, DEFAULT_MAX_RANK));
+    SetShockRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetShockRankEnd(GetRandomIntValue<UByte>(GetShockRankStart() + 1, DEFAULT_MAX_RANK));
+    SetDarkRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetDarkRankEnd(GetRandomIntValue<UByte>(GetDarkRankStart() + 1, DEFAULT_MAX_RANK));
+    SetLightRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetLightRankEnd(GetRandomIntValue<UByte>(GetLightRankStart() + 1, DEFAULT_MAX_RANK));
+    SetForceRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetForceRankEnd(GetRandomIntValue<UByte>(GetForceRankStart() + 1, DEFAULT_MAX_RANK));
+    SetMindRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetMindRankEnd(GetRandomIntValue<UByte>(GetMindRankStart() + 1, DEFAULT_MAX_RANK));
+    SetEarthRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetEarthRankEnd(GetRandomIntValue<UByte>(GetEarthRankStart() + 1, DEFAULT_MAX_RANK));
+    SetBloodRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetBloodRankEnd(GetRandomIntValue<UByte>(GetBloodRankStart() + 1, DEFAULT_MAX_RANK));
+    SetFleshRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetFleshRankEnd(GetRandomIntValue<UByte>(GetFleshRankStart() + 1, DEFAULT_MAX_RANK));
+    SetWindRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
+    SetWindRankEnd(GetRandomIntValue<UByte>(GetWindRankStart() + 1, DEFAULT_MAX_RANK));
 }
 
 void CharacterGenerator::RandomizeAll()
