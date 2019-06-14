@@ -244,9 +244,13 @@ void Set##name(const type& varValue) { m_Data[#name] = varValue; }
 
 #define INITIALIZE_STAT_TYPE_NAMES(base, type)                                      \
 {                                                                                   \
-    for (auto& eType : base##_##type::_values())                                    \
+    for(auto& sType : base##_##type::_names())                                      \
     {                                                                               \
-        Get##type##StatNames()->insert(eType._to_string());                         \
+        if(sType == (+base##_##type::None)._to_string())                            \
+        {                                                                           \
+            continue;                                                               \
+        }                                                                           \
+        Get##type##StatNames()->insert(sType);                                      \
     }                                                                               \
 }
 
@@ -264,31 +268,43 @@ void Set##name(const type& var##name)                                           
 
 #define RESET_STAT_TYPE_VALUES(base, type)                                          \
 {                                                                                   \
-    for (auto& eType : base##_##type::_values())                                    \
+    for(auto& sType : base##_##type::_names())                                      \
     {                                                                               \
-        SetStatValue<type>(GetStats(), String(eType._to_string()), type());         \
+        if(sType == (+base##_##type::None)._to_string())                            \
+        {                                                                           \
+            continue;                                                               \
+        }                                                                           \
+        SetStatValue<type>(GetStats(), sType, type());                              \
     }                                                                               \
 }
 
 #define SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(base, type)                           \
 {                                                                                   \
-    for (auto& eType : base##_##type::_values())                                    \
+    for(auto& sType : base##_##type::_names())                                      \
     {                                                                               \
-        type varStatValue = type();                                                 \
-        String varStatName = String(eType._to_string());                            \
-        if (GetStatValue<type>(obj.GetStats(), varStatName, varStatValue))          \
+        if(sType == (+base##_##type::None)._to_string())                            \
         {                                                                           \
-            jsonData[eType._to_string()] = varStatValue;                            \
+            continue;                                                               \
+        }                                                                           \
+        type varStatValue = type();                                                 \
+        String varStatName = sType;                                                 \
+        if(GetStatValue<type>(obj.GetStats(), varStatName, varStatValue))           \
+        {                                                                           \
+            jsonData[sType] = varStatValue;                                         \
         }                                                                           \
     }                                                                               \
 }
 
 #define SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(base, type)                           \
 {                                                                                   \
-    for (auto& eType : base##_##type::_values())                                    \
+    for(auto& sType : base##_##type::_names())                                      \
     {                                                                               \
-        type varStatValue = jsonData[eType._to_string()];                           \
-        String varStatName = String(eType._to_string());                            \
+        if(sType == (+base##_##type::None)._to_string())                            \
+        {                                                                           \
+            continue;                                                               \
+        }                                                                           \
+        type varStatValue = jsonData[sType];                                        \
+        String varStatName = sType;                                                 \
         SetStatValue<type>(obj.GetStats(), varStatName, varStatValue);              \
     }                                                                               \
 }
