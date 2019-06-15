@@ -138,6 +138,16 @@ WebPageCharacterManager::WebPageCharacterManager()
         </div>
         <div class="form-group row">
             <div class="col"><hr></div>
+            <div class="col-auto">Character List</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly">%sAllCharacterIDs%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col"><hr></div>
             <div class="col-auto">Character Details</div>
             <div class="col"><hr></div>
         </div>
@@ -974,28 +984,51 @@ WebPageCharacterManager::WebPageCharacterManager()
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Available Actions" readonly="readonly">%sCharacterDetails_AvailableActions%</textarea>
+            <label class="col-sm-2 col-form-label">Available Actions</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_AvailableActions%</textarea>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Passive Changes" readonly="readonly">%sCharacterDetails_PassiveChanges%</textarea>
+            <label class="col-sm-2 col-form-label">Skill Passive Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_SkillPassiveChanges%</textarea>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Active Changes" readonly="readonly">%sCharacterDetails_ActiveChanges%</textarea>
+            <label class="col-sm-2 col-form-label">Item Passive Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_ItemPassiveChanges%</textarea>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Actionable Changes" readonly="readonly">%sCharacterDetails_ActionableChanges%</textarea>
+            <label class="col-sm-2 col-form-label">Skill Active Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_SkillActiveChanges%</textarea>
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-12">
-                <textarea style="resize: none;" class="form-control" rows="3" placeholder="Raw character json" readonly="readonly">%sCharacterDetails_RawJson%</textarea>
+            <label class="col-sm-2 col-form-label">Item Active Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_ItemActiveChanges%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Skill Actionable Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_SkillActionableChanges%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Item Actionable Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_ItemActionableChanges%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Raw Character Json</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="8" readonly="readonly">%sCharacterDetails_RawJson%</textarea>
             </div>
         </div>
     </form>
@@ -1247,9 +1280,12 @@ void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
     String sCharacterDetails_Weapon2Left;
     String sCharacterDetails_Weapon2Right;
     String sCharacterDetails_AvailableActions;
-    String sCharacterDetails_PassiveChanges;
-    String sCharacterDetails_ActiveChanges;
-    String sCharacterDetails_ActionableChanges;
+    String sCharacterDetails_SkillPassiveChanges;
+    String sCharacterDetails_ItemPassiveChanges;
+    String sCharacterDetails_SkillActiveChanges;
+    String sCharacterDetails_ItemActiveChanges;
+    String sCharacterDetails_SkillActionableChanges;
+    String sCharacterDetails_ItemActionableChanges;
     String sCharacterDetails_RawJson;
 
     // Character to display
@@ -1517,9 +1553,14 @@ void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
         sCharacterToDisplay = sCharacterDetails_CharID;
     }
 
+    // Get all character IDs
+    String sAllCharacterIDs = ConcatStringVector(CharacterManager::GetInstance()->GetAllCharacterIDs());
+
     // Display character
     if(!sCharacterToDisplay.empty())
     {
+        const String sSkillTreeIndexType = (+CharacterTreeIndexType::Skill)._to_string();
+        const String sItemTreeIndexType = (+CharacterTreeIndexType::Item)._to_string();
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterToDisplay);
         const CharacterBasicData& basicData = character.GetBasicData();
         sCharacterDetails_First_Name = basicData.GetFirstName();
@@ -1718,7 +1759,14 @@ void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
         sCharacterDetails_Wind_Current = STDToString(skillData.GetWindCurrent());
         sCharacterDetails_Wind_Rank = STDToString(skillData.GetWindRank());
         sCharacterDetails_CharID = character.GetCharacterID();
-        sCharacterDetails_RawJson = Json(character).dump(4);
+        sCharacterDetails_AvailableActions = Json(character.GetAvailableActions()).dump();
+        sCharacterDetails_SkillPassiveChanges = Json(character.GetPassiveChanges(sSkillTreeIndexType)).dump();
+        sCharacterDetails_ItemPassiveChanges = Json(character.GetPassiveChanges(sItemTreeIndexType)).dump();
+        sCharacterDetails_SkillActiveChanges = Json(character.GetActiveChanges(sSkillTreeIndexType)).dump();
+        sCharacterDetails_ItemActiveChanges = Json(character.GetActiveChanges(sItemTreeIndexType)).dump();
+        sCharacterDetails_SkillActionableChanges = Json(character.GetActionableChanges(sSkillTreeIndexType)).dump();
+        sCharacterDetails_ItemActionableChanges = Json(character.GetActionableChanges(sItemTreeIndexType)).dump();
+        sCharacterDetails_RawJson = Json(character).dump();
     }
 
     // Set page content
@@ -1743,6 +1791,7 @@ void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
     BoostReplaceAll(sPage, "%sGenerateRandomCharacter_CharID%", sGenerateRandomCharacter_CharID);
     BoostReplaceAll(sPage, "%sCreateCharacter_CharID%", sCreateCharacter_CharID);
     BoostReplaceAll(sPage, "%sDisplayCharacter_CharID%", sDisplayCharacter_CharID);
+    BoostReplaceAll(sPage, "%sAllCharacterIDs%", sAllCharacterIDs);
     BoostReplaceAll(sPage, "%sCharacterDetails_CharID%", sCharacterDetails_CharID);
     BoostReplaceAll(sPage, "%sCharacterDetails_PartyID%", sCharacterDetails_PartyID);
     BoostReplaceAll(sPage, "%sCharacterDetails_CharTargetType%", sCharacterDetails_CharTargetType);
@@ -1945,9 +1994,12 @@ void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
     BoostReplaceAll(sPage, "%sCharacterDetails_Wind_Current%", sCharacterDetails_Wind_Current);
     BoostReplaceAll(sPage, "%sCharacterDetails_Wind_Rank%", sCharacterDetails_Wind_Rank);
     BoostReplaceAll(sPage, "%sCharacterDetails_AvailableActions%", sCharacterDetails_AvailableActions);
-    BoostReplaceAll(sPage, "%sCharacterDetails_PassiveChanges%", sCharacterDetails_PassiveChanges);
-    BoostReplaceAll(sPage, "%sCharacterDetails_ActiveChanges%", sCharacterDetails_ActiveChanges);
-    BoostReplaceAll(sPage, "%sCharacterDetails_ActionableChanges%", sCharacterDetails_ActionableChanges);
+    BoostReplaceAll(sPage, "%sCharacterDetails_SkillPassiveChanges%", sCharacterDetails_SkillPassiveChanges);
+    BoostReplaceAll(sPage, "%sCharacterDetails_ItemPassiveChanges%", sCharacterDetails_ItemPassiveChanges);
+    BoostReplaceAll(sPage, "%sCharacterDetails_SkillActiveChanges%", sCharacterDetails_SkillActiveChanges);
+    BoostReplaceAll(sPage, "%sCharacterDetails_ItemActiveChanges%", sCharacterDetails_ItemActiveChanges);
+    BoostReplaceAll(sPage, "%sCharacterDetails_SkillActionableChanges%", sCharacterDetails_SkillActionableChanges);
+    BoostReplaceAll(sPage, "%sCharacterDetails_ItemActionableChanges%", sCharacterDetails_ItemActionableChanges);
     BoostReplaceAll(sPage, "%sCharacterDetails_RawJson%", sCharacterDetails_RawJson);
     SetPageContent(sPage);
 }

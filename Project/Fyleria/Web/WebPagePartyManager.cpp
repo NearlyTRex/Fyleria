@@ -336,6 +336,12 @@ WebPagePartyManager::WebPagePartyManager()
             <div class="col"><hr></div>
         </div>
         <div class="form-group row">
+            <label class="col-sm-2 col-form-label">All Parties</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly">%sAllPartyIDs%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-2 col-form-label">Current Ally Party</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" readonly="readonly" value="%sCurrentParty_Ally%"/>
@@ -646,6 +652,13 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
         sPartyToDisplay = sDisplayParty_PartyID;
     }
 
+    // Get all party ids
+    String sAllPartyIDs = ConcatStringVector(CharacterPartyManager::GetInstance()->GetAllPartyIDs());
+
+    // Get current parties
+    String sCurrentParty_Ally = CharacterPartyManager::GetInstance()->GetCurrentAllyPartyID();
+    String sCurrentParty_Enemy = CharacterPartyManager::GetInstance()->GetCurrentEnemyPartyID();
+
     // Display party
     if(!sPartyToDisplay.empty())
     {
@@ -659,10 +672,6 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
         sPartyDetails_Items = Json(party.GetItems()).dump(4);
         sPartyDetails_Description = party.GetDescription();
     }
-
-    // Get current parties
-    String sCurrentParty_Ally = CharacterPartyManager::GetInstance()->GetCurrentAllyPartyID();
-    String sCurrentParty_Enemy = CharacterPartyManager::GetInstance()->GetCurrentEnemyPartyID();
 
     // Set page content
     String sPage = GetPageTemplate();
@@ -711,6 +720,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     BoostReplaceAll(sPage, "%sEquipBestItemsAllMembers_PartyID%", sEquipBestItemsAllMembers_PartyID);
     BoostReplaceAll(sPage, "%sUnequipBestItemsAllMembers_PartyID%", sUnequipBestItemsAllMembers_PartyID);
     BoostReplaceAll(sPage, "%sDisplayParty_PartyID%", sDisplayParty_PartyID);
+    BoostReplaceAll(sPage, "%sAllPartyIDs%", sAllPartyIDs);
     BoostReplaceAll(sPage, "%sCurrentParty_Ally%", sCurrentParty_Ally);
     BoostReplaceAll(sPage, "%sCurrentParty_Enemy%", sCurrentParty_Enemy);
     BoostReplaceAll(sPage, "%sPartyDetails_PartyID%", sPartyDetails_PartyID);
