@@ -41,7 +41,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     const Float fDestChanceToBlockCriticalHit = destBattleData.GetChanceToBlockCriticalHit();
 
     // Get hand info
-    const CharacterHandType eHandType = StringToCharacterHandType(entry.GetHandType());
+    const CharacterHandType eHandType = GetEnumFromStringOrNone<CharacterHandType>(entry.GetHandType());
     Bool bIsPrimaryHandAction = (eHandType == +CharacterHandType::Primary);
     Bool bIsSecondaryHandAction = (eHandType == +CharacterHandType::Secondary);
     Bool bIsShield = entry.GetIsHandTypeShield();
@@ -100,7 +100,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     Float fDestDefendRating = 0;
     for(const String& sActionType : entry.GetActionTypes())
     {
-        const CharacterActionType eActionType = StringToCharacterActionType(sActionType);
+        const CharacterActionType eActionType = GetEnumFromStringOrNone<CharacterActionType>(sActionType);
         switch(eActionType)
         {
             case CharacterActionType::WeaponBasePierce:
@@ -235,9 +235,9 @@ Bool CharacterActionHandlerSkillAttack::GenerateResult(CharacterAction& action)
     for(CharacterActionEntry& entry : action.GetActionEntries())
     {
         // Generate result
-        if(entry.DoesMatchActionType(String("WeaponBasePierce")) ||
-           entry.DoesMatchActionType(String("WeaponBaseBlunt")) ||
-           entry.DoesMatchActionType(String("WeaponBaseSlash")))
+        if(entry.DoesMatchActionType((+CharacterActionType::WeaponBasePierce)._to_string()) ||
+           entry.DoesMatchActionType((+CharacterActionType::WeaponBaseBlunt)._to_string()) ||
+           entry.DoesMatchActionType((+CharacterActionType::WeaponBaseSlash)._to_string()))
         {
             for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
             {

@@ -165,47 +165,6 @@ STDVector<type> Get##name##ArrayFromJsonString(const String& jsonString)        
 
 //=====================================================================================
 
-#define MAKE_ENUM_GETSTRINGARRAY_DECL(type)                                         \
-StringArray Get##type##Names();
-
-#define MAKE_ENUM_GETSTRINGARRAY_IMPL(type)                                         \
-StringArray Get##type##Names()                                                      \
-{                                                                                   \
-    StringArray vTypeNames;                                                         \
-    for (const char* name : type::_names())                                         \
-    {                                                                               \
-        vTypeNames.push_back(name);                                                 \
-    }                                                                               \
-    return vTypeNames;                                                              \
-}
-
-#define MAKE_ENUM_CONVERTERS_DECL(type)                                             \
-type StringTo##type(const String& sType);                                           \
-type StringTo##type##OrNone(const String& sType);                                   \
-Bool IsValid##type(const String& sType);
-
-#define MAKE_ENUM_CONVERTERS_IMPL(type)                                             \
-type StringTo##type(const String& sType)                                            \
-{                                                                                   \
-    ASSERT_ERROR(type::_is_valid(sType.c_str()),                                    \
-        "Type '%s' was not a valid enum string for type", sType.c_str());           \
-    return type::_from_string(sType.c_str());                                       \
-}                                                                                   \
-type StringTo##type##OrNone(const String& sType)                                    \
-{                                                                                   \
-    if(type::_is_valid(sType.c_str()))                                              \
-    {                                                                               \
-        return type::_from_string(sType.c_str());                                   \
-    }                                                                               \
-    return +type::None;                                                             \
-}                                                                                   \
-Bool IsValid##type(const String& sType)                                             \
-{                                                                                   \
-    return type::_is_valid(sType.c_str());                                          \
-}
-
-//=====================================================================================
-
 #define MAKE_RAW_BASIC_TYPE_ACCESSORS(name, type)                                   \
 type m_var##name = type();                                                          \
 type Get##name() const { return m_var##name; }                                      \
@@ -270,7 +229,7 @@ void Set##name(const type& var##name)                                           
 {                                                                                   \
     for(auto& sType : base##_##type::_names())                                      \
     {                                                                               \
-        if(sType == (+base##_##type::None)._to_string())                            \
+        if(IsNoneTypeForEnum<base##_##type>(sType))                                 \
         {                                                                           \
             continue;                                                               \
         }                                                                           \
@@ -282,7 +241,7 @@ void Set##name(const type& var##name)                                           
 {                                                                                   \
     for(auto& sType : base##_##type::_names())                                      \
     {                                                                               \
-        if(sType == (+base##_##type::None)._to_string())                            \
+        if(IsNoneTypeForEnum<base##_##type>(sType))                                 \
         {                                                                           \
             continue;                                                               \
         }                                                                           \
@@ -299,7 +258,7 @@ void Set##name(const type& var##name)                                           
 {                                                                                   \
     for(auto& sType : base##_##type::_names())                                      \
     {                                                                               \
-        if(sType == (+base##_##type::None)._to_string())                            \
+        if(IsNoneTypeForEnum<base##_##type>(sType))                                 \
         {                                                                           \
             continue;                                                               \
         }                                                                           \
@@ -368,9 +327,9 @@ void method##_StoreResult(const String& sResultID, at1 av1, at2 av2, at3 av3, at
 #define MAKE_HTML_OPTION_LIST_STRING(type)                                                          \
 String sOptionList_##type;                                                                          \
 {                                                                                                   \
-    for(auto& sTypeName : Get##type##Names())                                                       \
+    for(auto& sTypeName : GetEnumNames<type>())                                                     \
     {                                                                                               \
-        if(sTypeName == "None")                                                                     \
+        if(IsNoneTypeForEnum<type>(sTypeName))                                                      \
         {                                                                                           \
             continue;                                                                               \
         }                                                                                           \

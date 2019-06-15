@@ -13,10 +13,10 @@ String ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const String& sChar
 {
     if(sCharacterEquipmentType.empty())
     {
-        return (+CharacterWeaponSetType::None)._to_string();
+        return GetNoneTypeForEnum<CharacterEquipmentType>();
     }
 
-    const CharacterEquipmentType eCharacterEquipmentType = StringToCharacterEquipmentTypeOrNone(sCharacterEquipmentType);
+    const CharacterEquipmentType eCharacterEquipmentType = GetEnumFromStringOrNone<CharacterEquipmentType>(sCharacterEquipmentType);
     switch(eCharacterEquipmentType)
     {
         case CharacterEquipmentType::Weapon1Left:
@@ -26,7 +26,7 @@ String ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const String& sChar
         case CharacterEquipmentType::Weapon2Right:
             return (+CharacterWeaponSetType::WeaponSet2)._to_string();
         default:
-            return (+CharacterWeaponSetType::None)._to_string();
+            return GetNoneTypeForEnum<CharacterWeaponSetType>();
     }
 }
 
@@ -34,10 +34,10 @@ String ConvertCharacterTargetTypeToCharacterPartyType(const String& sCharacterTa
 {
     if(sCharacterTargetType.empty())
     {
-        return (+CharacterPartyType::None)._to_string();
+        return GetNoneTypeForEnum<CharacterTargetType>();
     }
 
-    const CharacterTargetType eCharacterTargetType = StringToCharacterTargetTypeOrNone(sCharacterTargetType);
+    const CharacterTargetType eCharacterTargetType = GetEnumFromStringOrNone<CharacterTargetType>(sCharacterTargetType);
     switch(eCharacterTargetType)
     {
         case CharacterTargetType::AllAllies:
@@ -57,7 +57,7 @@ String ConvertCharacterTargetTypeToCharacterPartyType(const String& sCharacterTa
         case CharacterTargetType::Enemy6:
             return (+CharacterPartyType::Enemy)._to_string();
         default:
-            return (+CharacterPartyType::None)._to_string();
+            return GetNoneTypeForEnum<CharacterPartyType>();
     }
 }
 
@@ -65,10 +65,10 @@ String ConvertItemTypeToCharacterActionType(const String& sItemType)
 {
     if(sItemType.empty())
     {
-        return (+CharacterActionType::None)._to_string();
+        return GetNoneTypeForEnum<CharacterActionType>();
     }
 
-    const ItemType eItemType = StringToItemTypeOrNone(sItemType);
+    const ItemType eItemType = GetEnumFromStringOrNone<ItemType>(sItemType);
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -81,7 +81,7 @@ String ConvertItemTypeToCharacterActionType(const String& sItemType)
         case ItemType::ArmorShieldSlash:
             return (+CharacterActionType::WeaponBaseSlash)._to_string();
         default:
-            return (+CharacterActionType::None)._to_string();
+            return GetNoneTypeForEnum<CharacterActionType>();
     }
 }
 
@@ -93,7 +93,7 @@ StringArray ConvertItemTypeToCharacterEquipTypes(const String& sItemType)
         return vEquipTypes;
     }
 
-    const ItemType eItemType = StringToItemTypeOrNone(sItemType);
+    const ItemType eItemType = GetEnumFromStringOrNone<ItemType>(sItemType);
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -140,10 +140,10 @@ String ConvertSkillWeaponBaseTypeToCharacterActionType(const String& sSkillWeapo
 {
     if(sSkillWeaponBaseType.empty())
     {
-        return (+CharacterActionType::None)._to_string();
+        return GetNoneTypeForEnum<CharacterActionType>();
     }
 
-    const SkillWeaponBaseType eSkillWeaponBaseType = StringToSkillWeaponBaseTypeOrNone(sSkillWeaponBaseType);
+    const SkillWeaponBaseType eSkillWeaponBaseType = GetEnumFromStringOrNone<SkillWeaponBaseType>(sSkillWeaponBaseType);
     switch(eSkillWeaponBaseType)
     {
         case SkillWeaponBaseType::Slash:
@@ -153,7 +153,7 @@ String ConvertSkillWeaponBaseTypeToCharacterActionType(const String& sSkillWeapo
         case SkillWeaponBaseType::Pierce:
             return (+CharacterActionType::WeaponBasePierce)._to_string();
         default:
-            return (+CharacterActionType::None)._to_string();
+            return GetNoneTypeForEnum<CharacterActionType>();
     }
 }
 
@@ -161,10 +161,10 @@ String ConvertSkillWeaponTypeToCharacterActionType(const String& sSkillWeaponTyp
 {
     if(sSkillWeaponType.empty())
     {
-        return (+CharacterActionType::None)._to_string();
+        return GetNoneTypeForEnum<CharacterActionType>();
     }
 
-    const SkillWeaponType eSkillWeaponType = StringToSkillWeaponTypeOrNone(sSkillWeaponType);
+    const SkillWeaponType eSkillWeaponType = GetEnumFromStringOrNone<SkillWeaponType>(sSkillWeaponType);
     switch(eSkillWeaponType)
     {
         case SkillWeaponType::Slash:
@@ -216,7 +216,7 @@ String ConvertSkillWeaponTypeToCharacterActionType(const String& sSkillWeaponTyp
         case SkillWeaponType::Counter:
             return (+CharacterActionType::WeaponCounter)._to_string();
         default:
-            return (+CharacterActionType::None)._to_string();
+            return GetNoneTypeForEnum<CharacterActionType>();
     }
 }
 
@@ -224,10 +224,10 @@ String ConvertSkillWeaponTypeToCharacterProgressStatType(const String& sSkillWea
 {
     if(sSkillWeaponType.empty())
     {
-        return (+CharacterProgressStatType_Int::None)._to_string();
+        return GetNoneTypeForEnum<CharacterProgressStatType_Int>();
     }
 
-    const SkillWeaponType eSkillWeaponType = StringToSkillWeaponTypeOrNone(sSkillWeaponType);
+    const SkillWeaponType eSkillWeaponType = GetEnumFromStringOrNone<SkillWeaponType>(sSkillWeaponType);
     switch(eSkillWeaponType)
     {
         case SkillWeaponType::Slash:
@@ -279,62 +279,8 @@ String ConvertSkillWeaponTypeToCharacterProgressStatType(const String& sSkillWea
         case SkillWeaponType::Counter:
             return (+CharacterProgressStatType_Int::CounterPoints)._to_string();
         default:
-            return (+CharacterProgressStatType_Int::None)._to_string();
+            return GetNoneTypeForEnum<CharacterProgressStatType_Int>();
     }
 }
-
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTreeIndexType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterSegmentType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBasicStatType_String);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBasicStatType_Int);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterProgressStatType_Int);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_String);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_StringArray);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_Bool);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_Int);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBattleStatType_Float);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterStatusType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterBaseRaceType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTransformedRaceType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterPowerSetType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterWeaponSetType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterGenderType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterHairType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterEyeType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterHandednessType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterHandType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterEquipmentType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterTargetType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterResolvedTargetType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterPartyType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterActionType);
-MAKE_ENUM_GETSTRINGARRAY_IMPL(CharacterActionRunType);
-
-MAKE_ENUM_CONVERTERS_IMPL(CharacterTreeIndexType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterSegmentType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBasicStatType_String);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBasicStatType_Int);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterProgressStatType_Int);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_String);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_StringArray);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Bool);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Int);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Float);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterStatusType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterBaseRaceType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterTransformedRaceType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterPowerSetType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterWeaponSetType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterGenderType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterHairType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterEyeType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterHandednessType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterHandType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterEquipmentType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterTargetType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterResolvedTargetType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterPartyType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterActionType);
-MAKE_ENUM_CONVERTERS_IMPL(CharacterActionRunType);
 
 };

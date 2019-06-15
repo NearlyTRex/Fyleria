@@ -160,6 +160,12 @@ Bool SkillData::DoesMeetActionRequirements(const String& sCharacterID, const Str
 
     // Get character
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    if(character.GetPartyID().empty())
+    {
+        return false;
+    }
+
+    // Get party
     const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 

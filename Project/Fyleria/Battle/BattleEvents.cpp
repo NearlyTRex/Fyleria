@@ -73,7 +73,10 @@ void HandleBattleFullyCompleted(const String& sCharacterID)
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const StringArray vSegments = {String("Base"), String("Passive")};
+    const StringArray vSegments = {
+        (+CharacterSegmentType::Base)._to_string(),
+        (+CharacterSegmentType::Passive)._to_string()
+    };
     for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
@@ -93,7 +96,10 @@ void HandleBattleRoundAdvanced(const String& sCharacterID)
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const StringArray vSegments = {String("Base"), String("Passive")};
+    const StringArray vSegments = {
+        (+CharacterSegmentType::Base)._to_string(),
+        (+CharacterSegmentType::Passive)._to_string()
+    };
     for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
@@ -122,7 +128,10 @@ void HandleBattleGivingDamage(const String& sCharacterID, Int iAmount)
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const StringArray vSegments = {String("Base"), String("Passive")};
+    const StringArray vSegments = {
+        (+CharacterSegmentType::Base)._to_string(),
+        (+CharacterSegmentType::Passive)._to_string()
+    };
     for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
@@ -154,7 +163,10 @@ void HandleBattleTakingDamage(const String& sCharacterID, Int iAmount)
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const StringArray vSegments = {String("Base"), String("Passive")};
+    const StringArray vSegments = {
+        (+CharacterSegmentType::Base)._to_string(),
+        (+CharacterSegmentType::Passive)._to_string()
+    };
     for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
@@ -185,7 +197,10 @@ void HandleBattleChoosingTargets(const String& sCharacterID, const StringArray& 
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const StringArray vSegments = {String("Base"), String("Passive")};
+    const StringArray vSegments = {
+        (+CharacterSegmentType::Base)._to_string(),
+        (+CharacterSegmentType::Passive)._to_string()
+    };
     for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
@@ -207,7 +222,10 @@ void HandleBattleBecomingTarget(const String& sCharacterID, const String& sSourc
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const StringArray vSegments = {String("Base"), String("Passive")};
+    const StringArray vSegments = {
+        (+CharacterSegmentType::Base)._to_string(),
+        (+CharacterSegmentType::Passive)._to_string()
+    };
     for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
@@ -227,7 +245,10 @@ void HandleBattleActionAttackSetup(const String& sCharacterID, const CharacterAc
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const StringArray vSegments = {String("Base"), String("Passive")};
+    const StringArray vSegments = {
+        (+CharacterSegmentType::Base)._to_string(),
+        (+CharacterSegmentType::Passive)._to_string()
+    };
     for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
@@ -248,7 +269,10 @@ void HandleBattleActionDefendSetup(const String& sCharacterID, const CharacterAc
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const StringArray vSegments = {String("Base"), String("Passive")};
+    const StringArray vSegments = {
+        (+CharacterSegmentType::Base)._to_string(),
+        (+CharacterSegmentType::Passive)._to_string()
+    };
     for(const String& sSegment : vSegments)
     {
         // Get appropriate segments
@@ -278,7 +302,10 @@ void HandleBattleActionFinished(const String& sCharacterID, const CharacterActio
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
-    const StringArray vSegments = {String("Base"), String("Passive")};
+    const StringArray vSegments = {
+        (+CharacterSegmentType::Base)._to_string(),
+        (+CharacterSegmentType::Passive)._to_string()
+    };
     for(const String& sSegment : vSegments)
     {
         // Get appropriate segments

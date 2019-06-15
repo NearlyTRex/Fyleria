@@ -262,7 +262,7 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     else if(sAction == "collect_save_data_single")
     {
         SaveManager::GetInstance()->CollectSaveData(
-            StringToSaveSlotType(sCollectSaveDataSingle_SaveSlotType)._to_integral(),
+            GetEnumFromString<SaveSlotType>(sCollectSaveDataSingle_SaveSlotType)._to_integral(),
             sCollectSaveDataSingle_PartyID
         );
     }
@@ -270,7 +270,7 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     {
         StringArray vPartyIDs = ConvertStringToTokenArray(sCollectSaveDataMultiple_PartyIDs, ", ");
         SaveManager::GetInstance()->CollectSaveData(
-            StringToSaveSlotType(sCollectSaveDataMultiple_SaveSlotType)._to_integral(),
+            GetEnumFromString<SaveSlotType>(sCollectSaveDataMultiple_SaveSlotType)._to_integral(),
             vPartyIDs,
             sCollectSaveDataMultiple_Description,
             BoostLexicalCast<ULong>(sCollectSaveDataMultiple_PlayTime)
@@ -279,26 +279,26 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     else if(sAction == "disperse_save_data")
     {
         SaveManager::GetInstance()->DisperseSaveData(
-            StringToSaveSlotType(sDisperseSaveData_SaveSlotType)._to_integral()
+            GetEnumFromString<SaveSlotType>(sDisperseSaveData_SaveSlotType)._to_integral()
         );
     }
     else if(sAction == "load_save")
     {
         SaveManager::GetInstance()->LoadSave(
-            StringToSaveSlotType(sLoadSave_SaveSlotType)._to_integral(),
+            GetEnumFromString<SaveSlotType>(sLoadSave_SaveSlotType)._to_integral(),
             Save(sLoadSave_Textarea)
         );
     }
     else if(sAction == "unload_save")
     {
         SaveManager::GetInstance()->UnloadSave(
-            StringToSaveSlotType(sUnloadSave_SaveSlotType)._to_integral()
+            GetEnumFromString<SaveSlotType>(sUnloadSave_SaveSlotType)._to_integral()
         );
     }
     else if(sAction == "load_from_file")
     {
         SaveManager::GetInstance()->LoadFromFile(
-            StringToSaveSlotType(sLoadFromFile_SaveSlotType)._to_integral(),
+            GetEnumFromString<SaveSlotType>(sLoadFromFile_SaveSlotType)._to_integral(),
             sLoadFromFile_Filename,
             sLoadFromFile_FileType
         );
@@ -306,7 +306,7 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     else if(sAction == "save_to_file")
     {
         SaveManager::GetInstance()->SaveToFile(
-            StringToSaveSlotType(sSaveToFile_SaveSlotType)._to_integral(),
+            GetEnumFromString<SaveSlotType>(sSaveToFile_SaveSlotType)._to_integral(),
             sSaveToFile_Filename,
             sSaveToFile_FileType
         );

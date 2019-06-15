@@ -49,6 +49,12 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const String& sCharact
 
     // Get character
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    if(character.GetPartyID().empty())
+    {
+        return vNewActions;
+    }
+
+    // Get party
     const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
@@ -83,11 +89,13 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const String& sCharact
     }
 
     // Get item types
-    String sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
-    String sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
-    String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
-    String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
-    String sActionNoneType = (+CharacterActionType::None)._to_string();
+    const String sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
+    const String sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
+    const String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
+    const String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
+    const String sActionNoneType = GetNoneTypeForEnum<CharacterActionType>();
+    const String sHandPrimaryType = (+CharacterHandType::Primary)._to_string();
+    const String sHandSecondaryType = (+CharacterHandType::Secondary)._to_string();
     if(sPrimaryItemActionType == sActionNoneType && sSecondaryItemActionType == sActionNoneType)
     {
         return vNewActions;
@@ -113,7 +121,7 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const String& sCharact
         {
             ActionCombination newCombination;
             newCombination.vActionTypes = {sPrimaryItemActionType, sActionType};
-            newCombination.sHandType = String("Primary");
+            newCombination.sHandType = sHandPrimaryType;
             vCombinations.push_back(newCombination);
         }
     }
@@ -125,7 +133,7 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const String& sCharact
         {
             ActionCombination newCombination;
             newCombination.vActionTypes = {sSecondaryItemActionType, sActionType};
-            newCombination.sHandType = String("Secondary");
+            newCombination.sHandType = sHandSecondaryType;
             vCombinations.push_back(newCombination);
         }
     }

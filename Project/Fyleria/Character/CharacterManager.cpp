@@ -360,7 +360,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     Character& character = GetCharacter(sCharacterID);
 
     // Apply new value
-    const OperationType eOperationType = StringToOperationType(sOperation);
+    const OperationType eOperationType = GetEnumFromString<OperationType>(sOperation);
     switch(eOperationType)
     {
         case OperationType::Set:
@@ -393,7 +393,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     }
 
     // Apply new value
-    const OperationType eOperationType = StringToOperationType(sOperation);
+    const OperationType eOperationType = GetEnumFromString<OperationType>(sOperation);
     switch(eOperationType)
     {
         case OperationType::Add:
@@ -467,7 +467,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     }
 
     // Apply new value
-    const OperationType eOperationType = StringToOperationType(sOperation);
+    const OperationType eOperationType = GetEnumFromString<OperationType>(sOperation);
     switch(eOperationType)
     {
         case OperationType::Add:
@@ -541,7 +541,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     }
 
     // Apply new value
-    const OperationType eOperationType = StringToOperationType(sOperation);
+    const OperationType eOperationType = GetEnumFromString<OperationType>(sOperation);
     switch(eOperationType)
     {
         case OperationType::Add:
@@ -574,7 +574,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     Character& character = GetCharacter(sCharacterID);
 
     // Apply new value
-    const OperationType eOperationType = StringToOperationType(sOperation);
+    const OperationType eOperationType = GetEnumFromString<OperationType>(sOperation);
     switch(eOperationType)
     {
         case OperationType::Set:

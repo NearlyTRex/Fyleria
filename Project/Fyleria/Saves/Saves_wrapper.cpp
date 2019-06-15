@@ -64,6 +64,9 @@ PYBIND11_EMBEDDED_MODULE(GeckoSaves, m)
         WRAPPING_ADD_METHOD_SIMPLE(GetAllSaves_StoreResult, Gecko::SaveManager)
     ;
 
+    // SaveTypes.h
+    WRAPPING_STANDALONE_METHOD_FUNC(GetSaveSlotTypeNames, GetEnumNames<Gecko::SaveSlotType>, Gecko);
+
     // Local
     WRAPPING_STANDALONE_METHOD_POLICY(GetSaveManager, Gecko, PyBindReturnCopy);
 }

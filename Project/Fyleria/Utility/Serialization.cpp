@@ -119,7 +119,7 @@ Bool RemoveMsgPackHeader(FixedUnsigned8Array& vBytes)
 
 Bool ReadSerializedFile(const String& sFilename, const String& sType, Json& jsonData)
 {
-    const FileType eFileType = StringToFileType(sType);
+    const FileType eFileType = GetEnumFromString<FileType>(sType);
     switch (eFileType)
     {
         case FileType::TextJson:
@@ -207,7 +207,7 @@ Bool ReadMsgPackFile(const String& sFilename, Json& jsonData)
 
 Bool WriteSerializedFile(const String& sFilename, const String& sType, const Json& jsonData)
 {
-    const FileType eFileType = StringToFileType(sType);
+    const FileType eFileType = GetEnumFromString<FileType>(sType);
     switch (eFileType)
     {
         case FileType::TextJson:

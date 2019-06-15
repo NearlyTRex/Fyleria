@@ -68,7 +68,7 @@ void CharacterProgressData::ApplyActionCost(const CharacterAction& action)
         }
 
         // Set new AP value
-        if(sMatchingStatType != (+CharacterProgressStatType_Int::None)._to_string())
+        if(!IsNoneTypeForEnum<CharacterProgressStatType_Int>(sMatchingStatType))
         {
             Int iAPValue = 0;
             if(!GetIntStatValue(sMatchingStatType, iAPValue))
@@ -147,7 +147,7 @@ void CharacterProgressData::UpdateAvailableAP(const String& sCharacterID)
             // Update AP in each area
             const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(skillIndex);
             const String sMatchingStatType = ConvertSkillWeaponTypeToCharacterProgressStatType(skillDataWeapon.GetSkillType());
-            if(sMatchingStatType != (+CharacterProgressStatType_Int::None)._to_string())
+            if(!IsNoneTypeForEnum<CharacterProgressStatType_Int>(sMatchingStatType))
             {
                 SetIntStatValue(sMatchingStatType, iActionPoints);
             }

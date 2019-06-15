@@ -38,8 +38,10 @@ public:
     void UnloadParty(const String& sPartyID);
 
     // Determine if party exists
-    Bool DoesPartyExist(const String& sPartyID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesPartyExist, const String&, sPartyID);
+    Bool DoesPartyExistByID(const String& sPartyID) const;
+    Bool DoesPartyExistByType(const String& sPartyType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesPartyExistByID, const String&, sPartyID);
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesPartyExistByType, const String&, sPartyType);
 
     // Check if party ID is valid
     Bool IsValidPartyID(const String& sPartyID) const;

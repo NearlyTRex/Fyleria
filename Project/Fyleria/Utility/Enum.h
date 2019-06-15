@@ -8,6 +8,7 @@
 #include <enum.h>
 
 // Internal includes
+#include "Utility/Assert.h"
 #include "Utility/Macros.h"
 #include "Utility/Types.h"
 
@@ -37,13 +38,52 @@ BETTER_ENUM(FileType, Int,
     BinaryMsgPack
 );
 
-MAKE_ENUM_GETSTRINGARRAY_DECL(OperationType);
-MAKE_ENUM_GETSTRINGARRAY_DECL(ComparisonType);
-MAKE_ENUM_GETSTRINGARRAY_DECL(FileType);
+template <typename T>
+StringArray GetEnumNames()
+{
+    StringArray vTypeNames;
+    for (const char* name : T::_names())
+    {
+        vTypeNames.push_back(name);
+    }
+    return vTypeNames;
+}
 
-MAKE_ENUM_CONVERTERS_DECL(OperationType);
-MAKE_ENUM_CONVERTERS_DECL(ComparisonType);
-MAKE_ENUM_CONVERTERS_DECL(FileType);
+template <typename T>
+T GetEnumFromString(const String& sType)
+{
+    ASSERT_ERROR(T::_is_valid(sType.c_str()),
+        "Type '%s' was not a valid enum string for type", sType.c_str());
+    return T::_from_string(sType.c_str());
+}
+
+template <typename T>
+T GetEnumFromStringOrNone(const String& sType)
+{
+    if(T::_is_valid(sType.c_str()))
+    {
+        return T::_from_string(sType.c_str());
+    }
+    return +T::None;
+}
+
+template <typename T>
+Bool IsValidEnumString(const String& sType)
+{
+    return T::_is_valid(sType.c_str());
+}
+
+template <typename T>
+Bool IsNoneTypeForEnum(const String& sType)
+{
+    return (sType == (+T::None)._to_string());
+}
+
+template <typename T>
+String GetNoneTypeForEnum()
+{
+    return (+T::None)._to_string();
+}
 
 };
 

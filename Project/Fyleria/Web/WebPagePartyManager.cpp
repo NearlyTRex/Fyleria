@@ -508,7 +508,7 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
     }
     else if(sAction == "set_current_party")
     {
-        const CharacterPartyType ePartyType = StringToCharacterPartyType(sSetCurrentParty_PartyType);
+        const CharacterPartyType ePartyType = GetEnumFromString<CharacterPartyType>(sSetCurrentParty_PartyType);
         switch(ePartyType)
         {
             case CharacterPartyType::Ally:

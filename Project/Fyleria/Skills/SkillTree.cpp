@@ -29,84 +29,84 @@ namespace Gecko
 void SkillTree::LoadSkillTreesIntoMemory()
 {
     // Affinity
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Blood"), String(ConfigManager::GetInstance()->GetSkillAffinityBloodFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Dark"), String(ConfigManager::GetInstance()->GetSkillAffinityDarkFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Earth"), String(ConfigManager::GetInstance()->GetSkillAffinityEarthFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Fire"), String(ConfigManager::GetInstance()->GetSkillAffinityFireFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Flesh"), String(ConfigManager::GetInstance()->GetSkillAffinityFleshFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Force"), String(ConfigManager::GetInstance()->GetSkillAffinityForceFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Holy"), String(ConfigManager::GetInstance()->GetSkillAffinityHolyFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Ice"), String(ConfigManager::GetInstance()->GetSkillAffinityIceFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Light"), String(ConfigManager::GetInstance()->GetSkillAffinityLightFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Mind"), String(ConfigManager::GetInstance()->GetSkillAffinityMindFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Shock"), String(ConfigManager::GetInstance()->GetSkillAffinityShockFile()));
-    SkillTreeAffinity::GetInstance()->AddBranch(String("Wind"), String(ConfigManager::GetInstance()->GetSkillAffinityWindFile()));
+    SkillTreeAffinity::GetInstance()->AddBranch("Blood", ConfigManager::GetInstance()->GetSkillAffinityBloodFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Dark", ConfigManager::GetInstance()->GetSkillAffinityDarkFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Earth", ConfigManager::GetInstance()->GetSkillAffinityEarthFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Fire", ConfigManager::GetInstance()->GetSkillAffinityFireFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Flesh", ConfigManager::GetInstance()->GetSkillAffinityFleshFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Force", ConfigManager::GetInstance()->GetSkillAffinityForceFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Holy", ConfigManager::GetInstance()->GetSkillAffinityHolyFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Ice", ConfigManager::GetInstance()->GetSkillAffinityIceFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Light", ConfigManager::GetInstance()->GetSkillAffinityLightFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Mind", ConfigManager::GetInstance()->GetSkillAffinityMindFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Shock", ConfigManager::GetInstance()->GetSkillAffinityShockFile());
+    SkillTreeAffinity::GetInstance()->AddBranch("Wind", ConfigManager::GetInstance()->GetSkillAffinityWindFile());
 
     // Alchemy
-    SkillTreeAlchemy::GetInstance()->AddBranch(String("Alchemist"), String(ConfigManager::GetInstance()->GetSkillAlchemyAlchemistFile()));
-    SkillTreeAlchemy::GetInstance()->AddBranch(String("Chemist"), String(ConfigManager::GetInstance()->GetSkillAlchemyChemistFile()));
-    SkillTreeAlchemy::GetInstance()->AddBranch(String("Energist"), String(ConfigManager::GetInstance()->GetSkillAlchemyEnergistFile()));
-    SkillTreeAlchemy::GetInstance()->AddBranch(String("Healer"), String(ConfigManager::GetInstance()->GetSkillAlchemyHealerFile()));
+    SkillTreeAlchemy::GetInstance()->AddBranch("Alchemist", ConfigManager::GetInstance()->GetSkillAlchemyAlchemistFile());
+    SkillTreeAlchemy::GetInstance()->AddBranch("Chemist", ConfigManager::GetInstance()->GetSkillAlchemyChemistFile());
+    SkillTreeAlchemy::GetInstance()->AddBranch("Energist", ConfigManager::GetInstance()->GetSkillAlchemyEnergistFile());
+    SkillTreeAlchemy::GetInstance()->AddBranch("Healer", ConfigManager::GetInstance()->GetSkillAlchemyHealerFile());
 
     // Breakdown
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("Bowbane"), String(ConfigManager::GetInstance()->GetSkillBreakdownBowbaneFile()));
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("Goldbane"), String(ConfigManager::GetInstance()->GetSkillBreakdownGoldbaneFile()));
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("Hammerbane"), String(ConfigManager::GetInstance()->GetSkillBreakdownHammerbaneFile()));
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("Platebane"), String(ConfigManager::GetInstance()->GetSkillBreakdownPlatebaneFile()));
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("Scalebane"), String(ConfigManager::GetInstance()->GetSkillBreakdownScalebaneFile()));
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("Shieldbane"), String(ConfigManager::GetInstance()->GetSkillBreakdownShieldbaneFile()));
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("Spellbane"), String(ConfigManager::GetInstance()->GetSkillBreakdownSpellbaneFile()));
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("StudRemover"), String(ConfigManager::GetInstance()->GetSkillBreakdownStudRemoverFile()));
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("Swordbane"), String(ConfigManager::GetInstance()->GetSkillBreakdownSwordbaneFile()));
-    SkillTreeBreakdown::GetInstance()->AddBranch(String("Threadbare"), String(ConfigManager::GetInstance()->GetSkillBreakdownThreadbareFile()));
+    SkillTreeBreakdown::GetInstance()->AddBranch("Bowbane", ConfigManager::GetInstance()->GetSkillBreakdownBowbaneFile());
+    SkillTreeBreakdown::GetInstance()->AddBranch("Goldbane", ConfigManager::GetInstance()->GetSkillBreakdownGoldbaneFile());
+    SkillTreeBreakdown::GetInstance()->AddBranch("Hammerbane", ConfigManager::GetInstance()->GetSkillBreakdownHammerbaneFile());
+    SkillTreeBreakdown::GetInstance()->AddBranch("Platebane", ConfigManager::GetInstance()->GetSkillBreakdownPlatebaneFile());
+    SkillTreeBreakdown::GetInstance()->AddBranch("Scalebane", ConfigManager::GetInstance()->GetSkillBreakdownScalebaneFile());
+    SkillTreeBreakdown::GetInstance()->AddBranch("Shieldbane", ConfigManager::GetInstance()->GetSkillBreakdownShieldbaneFile());
+    SkillTreeBreakdown::GetInstance()->AddBranch("Spellbane", ConfigManager::GetInstance()->GetSkillBreakdownSpellbaneFile());
+    SkillTreeBreakdown::GetInstance()->AddBranch("StudRemover", ConfigManager::GetInstance()->GetSkillBreakdownStudRemoverFile());
+    SkillTreeBreakdown::GetInstance()->AddBranch("Swordbane", ConfigManager::GetInstance()->GetSkillBreakdownSwordbaneFile());
+    SkillTreeBreakdown::GetInstance()->AddBranch("Threadbare", ConfigManager::GetInstance()->GetSkillBreakdownThreadbareFile());
 
     // Combat
-    SkillTreeCombat::GetInstance()->AddBranch(String("Ambidextrous"), String(ConfigManager::GetInstance()->GetSkillCombatAmbidextrousFile()));
-    SkillTreeCombat::GetInstance()->AddBranch(String("Avatar"), String(ConfigManager::GetInstance()->GetSkillCombatAvatarFile()));
-    SkillTreeCombat::GetInstance()->AddBranch(String("Barbarian"), String(ConfigManager::GetInstance()->GetSkillCombatBarbarianFile()));
-    SkillTreeCombat::GetInstance()->AddBranch(String("Blademaster"), String(ConfigManager::GetInstance()->GetSkillCombatBlademasterFile()));
-    SkillTreeCombat::GetInstance()->AddBranch(String("Focused"), String(ConfigManager::GetInstance()->GetSkillCombatFocusedFile()));
-    SkillTreeCombat::GetInstance()->AddBranch(String("Mage"), String(ConfigManager::GetInstance()->GetSkillCombatMageFile()));
-    SkillTreeCombat::GetInstance()->AddBranch(String("Rogue"), String(ConfigManager::GetInstance()->GetSkillCombatRogueFile()));
-    SkillTreeCombat::GetInstance()->AddBranch(String("Stalwart"), String(ConfigManager::GetInstance()->GetSkillCombatStalwartFile()));
+    SkillTreeCombat::GetInstance()->AddBranch("Ambidextrous", ConfigManager::GetInstance()->GetSkillCombatAmbidextrousFile());
+    SkillTreeCombat::GetInstance()->AddBranch("Avatar", ConfigManager::GetInstance()->GetSkillCombatAvatarFile());
+    SkillTreeCombat::GetInstance()->AddBranch("Barbarian", ConfigManager::GetInstance()->GetSkillCombatBarbarianFile());
+    SkillTreeCombat::GetInstance()->AddBranch("Blademaster", ConfigManager::GetInstance()->GetSkillCombatBlademasterFile());
+    SkillTreeCombat::GetInstance()->AddBranch("Focused", ConfigManager::GetInstance()->GetSkillCombatFocusedFile());
+    SkillTreeCombat::GetInstance()->AddBranch("Mage", ConfigManager::GetInstance()->GetSkillCombatMageFile());
+    SkillTreeCombat::GetInstance()->AddBranch("Rogue", ConfigManager::GetInstance()->GetSkillCombatRogueFile());
+    SkillTreeCombat::GetInstance()->AddBranch("Stalwart", ConfigManager::GetInstance()->GetSkillCombatStalwartFile());
 
     // Crafting
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Bowsmith"), String(ConfigManager::GetInstance()->GetSkillCraftingBowsmithFile()));
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Goldsmith"), String(ConfigManager::GetInstance()->GetSkillCraftingGoldsmithFile()));
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Hammersmith"), String(ConfigManager::GetInstance()->GetSkillCraftingHammersmithFile()));
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Platesmith"), String(ConfigManager::GetInstance()->GetSkillCraftingPlatesmithFile()));
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Scalesmith"), String(ConfigManager::GetInstance()->GetSkillCraftingScalesmithFile()));
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Shieldsmith"), String(ConfigManager::GetInstance()->GetSkillCraftingShieldsmithFile()));
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Spellsmith"), String(ConfigManager::GetInstance()->GetSkillCraftingSpellsmithFile()));
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Swordsmith"), String(ConfigManager::GetInstance()->GetSkillCraftingSwordsmithFile()));
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Tanner"), String(ConfigManager::GetInstance()->GetSkillCraftingTannerFile()));
-    SkillTreeCrafting::GetInstance()->AddBranch(String("Weaver"), String(ConfigManager::GetInstance()->GetSkillCraftingWeaverFile()));
+    SkillTreeCrafting::GetInstance()->AddBranch("Bowsmith", ConfigManager::GetInstance()->GetSkillCraftingBowsmithFile());
+    SkillTreeCrafting::GetInstance()->AddBranch("Goldsmith", ConfigManager::GetInstance()->GetSkillCraftingGoldsmithFile());
+    SkillTreeCrafting::GetInstance()->AddBranch("Hammersmith", ConfigManager::GetInstance()->GetSkillCraftingHammersmithFile());
+    SkillTreeCrafting::GetInstance()->AddBranch("Platesmith", ConfigManager::GetInstance()->GetSkillCraftingPlatesmithFile());
+    SkillTreeCrafting::GetInstance()->AddBranch("Scalesmith", ConfigManager::GetInstance()->GetSkillCraftingScalesmithFile());
+    SkillTreeCrafting::GetInstance()->AddBranch("Shieldsmith", ConfigManager::GetInstance()->GetSkillCraftingShieldsmithFile());
+    SkillTreeCrafting::GetInstance()->AddBranch("Spellsmith", ConfigManager::GetInstance()->GetSkillCraftingSpellsmithFile());
+    SkillTreeCrafting::GetInstance()->AddBranch("Swordsmith", ConfigManager::GetInstance()->GetSkillCraftingSwordsmithFile());
+    SkillTreeCrafting::GetInstance()->AddBranch("Tanner", ConfigManager::GetInstance()->GetSkillCraftingTannerFile());
+    SkillTreeCrafting::GetInstance()->AddBranch("Weaver", ConfigManager::GetInstance()->GetSkillCraftingWeaverFile());
 
     // Weapon
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Bash"), String(ConfigManager::GetInstance()->GetSkillWeaponBashFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Block"), String(ConfigManager::GetInstance()->GetSkillWeaponBlockFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Break"), String(ConfigManager::GetInstance()->GetSkillWeaponBreakFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Cleave"), String(ConfigManager::GetInstance()->GetSkillWeaponCleaveFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Counter"), String(ConfigManager::GetInstance()->GetSkillWeaponCounterFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Crack"), String(ConfigManager::GetInstance()->GetSkillWeaponCrackFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("CriticalShot"), String(ConfigManager::GetInstance()->GetSkillWeaponCriticalShotFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Crush"), String(ConfigManager::GetInstance()->GetSkillWeaponCrushFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Decapitate"), String(ConfigManager::GetInstance()->GetSkillWeaponDecapitateFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Dodge"), String(ConfigManager::GetInstance()->GetSkillWeaponDodgeFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Drill"), String(ConfigManager::GetInstance()->GetSkillWeaponDrillFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Impact"), String(ConfigManager::GetInstance()->GetSkillWeaponImpactFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Impale"), String(ConfigManager::GetInstance()->GetSkillWeaponImpaleFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Parry"), String(ConfigManager::GetInstance()->GetSkillWeaponParryFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Pierce"), String(ConfigManager::GetInstance()->GetSkillWeaponPierceFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Riposte"), String(ConfigManager::GetInstance()->GetSkillWeaponRiposteFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Rush"), String(ConfigManager::GetInstance()->GetSkillWeaponRushFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Sever"), String(ConfigManager::GetInstance()->GetSkillWeaponSeverFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Shoot"), String(ConfigManager::GetInstance()->GetSkillWeaponShootFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Slash"), String(ConfigManager::GetInstance()->GetSkillWeaponSlashFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Slice"), String(ConfigManager::GetInstance()->GetSkillWeaponSliceFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Slit"), String(ConfigManager::GetInstance()->GetSkillWeaponSlitFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("Smash"), String(ConfigManager::GetInstance()->GetSkillWeaponSmashFile()));
-    SkillTreeWeapon::GetInstance()->AddBranch(String("StealthStrike"), String(ConfigManager::GetInstance()->GetSkillWeaponStealthStrikeFile()));
+    SkillTreeWeapon::GetInstance()->AddBranch("Bash", ConfigManager::GetInstance()->GetSkillWeaponBashFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Block", ConfigManager::GetInstance()->GetSkillWeaponBlockFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Break", ConfigManager::GetInstance()->GetSkillWeaponBreakFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Cleave", ConfigManager::GetInstance()->GetSkillWeaponCleaveFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Counter", ConfigManager::GetInstance()->GetSkillWeaponCounterFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Crack", ConfigManager::GetInstance()->GetSkillWeaponCrackFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("CriticalShot", ConfigManager::GetInstance()->GetSkillWeaponCriticalShotFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Crush", ConfigManager::GetInstance()->GetSkillWeaponCrushFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Decapitate", ConfigManager::GetInstance()->GetSkillWeaponDecapitateFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Dodge", ConfigManager::GetInstance()->GetSkillWeaponDodgeFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Drill", ConfigManager::GetInstance()->GetSkillWeaponDrillFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Impact", ConfigManager::GetInstance()->GetSkillWeaponImpactFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Impale", ConfigManager::GetInstance()->GetSkillWeaponImpaleFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Parry", ConfigManager::GetInstance()->GetSkillWeaponParryFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Pierce", ConfigManager::GetInstance()->GetSkillWeaponPierceFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Riposte", ConfigManager::GetInstance()->GetSkillWeaponRiposteFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Rush", ConfigManager::GetInstance()->GetSkillWeaponRushFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Sever", ConfigManager::GetInstance()->GetSkillWeaponSeverFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Shoot", ConfigManager::GetInstance()->GetSkillWeaponShootFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Slash", ConfigManager::GetInstance()->GetSkillWeaponSlashFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Slice", ConfigManager::GetInstance()->GetSkillWeaponSliceFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Slit", ConfigManager::GetInstance()->GetSkillWeaponSlitFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("Smash", ConfigManager::GetInstance()->GetSkillWeaponSmashFile());
+    SkillTreeWeapon::GetInstance()->AddBranch("StealthStrike", ConfigManager::GetInstance()->GetSkillWeaponStealthStrikeFile());
 
     // Post process skill data
     POSTPROCESS_SKILLS(Affinity);
@@ -130,6 +130,7 @@ void SkillTree::UnloadSkillTreesFromMemory()
 
 #define VERIFY_APPLY_STATCHANGES(tree, character_target)                                                        \
 {                                                                                                               \
+    String sBaseType = (+CharacterSegmentType::Base)._to_string();                                              \
     for(const TreeIndex& treeIndex : GetAll##tree##Skills())                                                    \
     {                                                                                                           \
         SkillData##tree& skillData = SkillTree##tree::GetInstance()->GetLeaf(treeIndex);                        \
@@ -149,7 +150,7 @@ void SkillTree::UnloadSkillTreesFromMemory()
             change.SetSourceTargetType(character_target);                                                       \
             change.SetDestinationTargetType(character_target);                                                  \
             change.SetChanceToApply(1.0);                                                                       \
-            CharacterManager::GetInstance()->ApplyStatChange(String("Base"), change, bAll, bOne, true);  \
+            CharacterManager::GetInstance()->ApplyStatChange(sBaseType, change, bAll, bOne, true);              \
         }                                                                                                       \
     }                                                                                                           \
 }
@@ -248,15 +249,15 @@ const SkillDataWeapon& SkillTree::RetrieveSkillDataWeapon(const TreeIndex& treeI
 
 #define ADD_ALL_SKILL_LEAVES(tree, branch)                                      \
 {                                                                               \
-    String sBranchName(#branch);                                         \
+    String sBranchName(#branch);                                                \
     auto vLeaves = SkillTree##tree::GetInstance()->GetAllLeaves(sBranchName);   \
     vFinal.insert(vFinal.end(), vLeaves.begin(), vLeaves.end());                \
 }
 
 #define ADD_SKILL_LEAVES_PROGRESS(tree, branch)                                                                             \
 {                                                                                                                           \
-    String sBranchName(#branch);                                                                                     \
-    String sRankBase("Rank");                                                                                        \
+    String sBranchName(#branch);                                                                                            \
+    String sRankBase("Rank");                                                                                               \
     Int iLeafNumber = character.GetSkillData().Get##branch##Rank();                                                         \
     auto vLeaves = SkillTree##tree::GetInstance()->GetLeavesUnderNumber(sBranchName, sRankBase, iLeafNumber, bUniqueOnly);  \
     vFinal.insert(vFinal.end(), vLeaves.begin(), vLeaves.end());                                                            \
@@ -520,7 +521,7 @@ String SkillTree::GetSkillType(const TreeIndex& treeIndex)
     {
         return RetrieveSkillDataWeapon(treeIndex).GetSkillType();
     }
-    return (+SkillTreeType::None)._to_string();
+    return GetNoneTypeForEnum<SkillTreeType>();
 }
 
 Bool SkillTree::IsBaseWeaponSkill(const TreeIndex& treeIndex)
@@ -532,7 +533,7 @@ Bool SkillTree::IsBaseWeaponSkill(const TreeIndex& treeIndex)
             skillData.GetSkillCostAP() == 0 &&
             skillData.GetActionPoints() == 0 &&
             !skillData.GetWeaponBaseType().empty() &&
-            skillData.GetWeaponBaseType() != (+SkillWeaponBaseType::None)._to_string()
+            !IsNoneTypeForEnum<SkillWeaponBaseType>(skillData.GetWeaponBaseType())
         );
     }
     return false;

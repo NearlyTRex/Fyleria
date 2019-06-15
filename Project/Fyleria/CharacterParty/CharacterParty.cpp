@@ -52,7 +52,7 @@ Bool CharacterParty::IsPartyAbleToFight() const
 
 Bool CharacterParty::IsPartyFull() const
 {
-    String sNoneType = (+CharacterResolvedTargetType::None)._to_string();
+    String sNoneType = GetNoneTypeForEnum<CharacterResolvedTargetType>();
     return (GetNextAvailableTargetType() == sNoneType);
 }
 
@@ -176,7 +176,7 @@ String CharacterParty::GetNextAvailableTargetType() const
     {
         return sTarget;
     }
-    return (+CharacterResolvedTargetType::None)._to_string();
+    return GetNoneTypeForEnum<CharacterResolvedTargetType>();
 }
 
 Bool CharacterParty::UseTargetType(const String& sCharacterTargetType)
@@ -243,7 +243,7 @@ StringArray CharacterParty::GetMemberCharacterIDs() const
 Bool CharacterParty::GetCharacterIDsFromTargetType(const String& sCharacterTargetType, StringArray& vCharacterIDs) const
 {
     // Check if requesting something that cannot be resolved
-    CharacterTargetType eTargetType = StringToCharacterTargetType(sCharacterTargetType);
+    CharacterTargetType eTargetType = GetEnumFromString<CharacterTargetType>(sCharacterTargetType);
     switch(eTargetType)
     {
         case CharacterTargetType::Self:
@@ -262,7 +262,7 @@ Bool CharacterParty::GetCharacterIDsFromTargetType(const String& sCharacterTarge
 
     // Check if requesting for all allies/enemies
     StringArray vAllMemberCharacterIDs = GetMemberCharacterIDs();
-    CharacterPartyType ePartyType = StringToCharacterPartyType(GetPartyType());
+    CharacterPartyType ePartyType = GetEnumFromString<CharacterPartyType>(GetPartyType());
     if((ePartyType == +CharacterPartyType::Ally && eTargetType == +CharacterTargetType::AllAllies) ||
        (ePartyType == +CharacterPartyType::Enemy && eTargetType == +CharacterTargetType::AllEnemies))
     {
@@ -283,7 +283,7 @@ Bool CharacterParty::GetCharacterIDsFromTargetType(const String& sCharacterTarge
 UInt CharacterParty::GetStatusMemberCount(const String& sStatus) const
 {
     UInt uCount = 0;
-    const CharacterStatusType eStatusType = StringToCharacterStatusTypeOrNone(sStatus);
+    const CharacterStatusType eStatusType = GetEnumFromStringOrNone<CharacterStatusType>(sStatus);
     for(auto& member : GetMembers())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(member.first);
@@ -333,7 +333,7 @@ Bool CharacterParty::AddRandomItems(const StringArray& vTreeTypes, Int iNumRando
     for(const String& sTreeType : vTreeTypes)
     {
         // Only do a certain amount of random pulls
-        const ItemTreeType eItemTreeType = StringToItemTreeTypeOrNone(sTreeType);
+        const ItemTreeType eItemTreeType = GetEnumFromStringOrNone<ItemTreeType>(sTreeType);
         for(Int i = 0; i < iNumRandomItems; i++)
         {
             // Get the random item
@@ -516,7 +516,7 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const String& sCharacterID, cons
         GetPartyID().c_str());
     const String sWeaponSet = ConvertCharacterEquipmentTypeToCharacterWeaponSetType(sSlot);
     UInt uShieldCount = 0;
-    if(sWeaponSet != (+CharacterWeaponSetType::None)._to_string())
+    if(!IsNoneTypeForEnum<CharacterWeaponSetType>(sWeaponSet))
     {
         uShieldCount = GetMemberByID(sCharacterID).GetEquippedShieldCount(sWeaponSet);
     }

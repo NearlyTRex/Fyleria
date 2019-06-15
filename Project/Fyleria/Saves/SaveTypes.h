@@ -20,10 +20,6 @@ BETTER_ENUM(SaveSlotType, Int,
     Slot5
 );
 
-MAKE_ENUM_GETSTRINGARRAY_DECL(SaveSlotType);
-
-MAKE_ENUM_CONVERTERS_DECL(SaveSlotType);
-
 };
 
 #endif

@@ -64,9 +64,9 @@ void CharacterBattleData::AdvanceRound(const String& sCharacterID, const String&
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
 
     // Apply regeneration
-    Bool bCanRegenHP = CanRegenerateFromStat(String("HealthRegen"));
-    Bool bCanRegenMP = CanRegenerateFromStat(String("MagicRegen"));
-    Bool bCanRegenEP = CanRegenerateFromStat(String("EnergyRegen"));
+    Bool bCanRegenHP = CanRegenerateFromStat((+CharacterProgressStatType_Int::HealthRegen)._to_string());
+    Bool bCanRegenMP = CanRegenerateFromStat((+CharacterProgressStatType_Int::MagicRegen)._to_string());
+    Bool bCanRegenEP = CanRegenerateFromStat((+CharacterProgressStatType_Int::EnergyRegen)._to_string());
     if(bCanRegenHP || bCanRegenMP || bCanRegenEP)
     {
         progressData.ApplyRegeneration(bCanRegenHP, bCanRegenMP, bCanRegenEP);
@@ -102,9 +102,9 @@ void CharacterBattleData::FinishBattle(const String& sCharacterID, const String&
     ApplyNewStatus(sCharacterID, sProgressSegment);
 
     // Apply regeneration
-    Bool bCanRegenHP = CanRegenerateFromStat(String("HealthRegen"));
-    Bool bCanRegenMP = CanRegenerateFromStat(String("MagicRegen"));
-    Bool bCanRegenEP = CanRegenerateFromStat(String("EnergyRegen"));
+    Bool bCanRegenHP = CanRegenerateFromStat((+CharacterProgressStatType_Int::HealthRegen)._to_string());
+    Bool bCanRegenMP = CanRegenerateFromStat((+CharacterProgressStatType_Int::MagicRegen)._to_string());
+    Bool bCanRegenEP = CanRegenerateFromStat((+CharacterProgressStatType_Int::EnergyRegen)._to_string());
     if(bCanRegenHP || bCanRegenMP || bCanRegenEP)
     {
         progressData.ApplyRegeneration(bCanRegenHP, bCanRegenMP, bCanRegenEP);
@@ -117,7 +117,7 @@ void CharacterBattleData::FinishBattle(const String& sCharacterID, const String&
 
 Bool CharacterBattleData::CanRegenerateFromStat(const String& sRegenStat) const
 {
-    const CharacterProgressStatType_Int eProgressType = StringToCharacterProgressStatType_Int(sRegenStat);
+    const CharacterProgressStatType_Int eProgressType = GetEnumFromString<CharacterProgressStatType_Int>(sRegenStat);
     switch(eProgressType)
     {
         case CharacterProgressStatType_Int::HealthRegen:
@@ -134,14 +134,29 @@ Bool CharacterBattleData::CanRegenerateFromStat(const String& sRegenStat) const
 
 void CharacterBattleData::UpdateEquipmentRatings(const String& sCharacterID, const String& sProgressSegment)
 {
-    // Get character info
+    // Get character
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
-    const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
-    const String& sWeaponSet = character.GetCurrentWeaponSet();
-    const CharacterPartyEquippedItemArray& vEquippedItems = character.GetEquippedItems();
+    if(character.GetPartyID().empty())
+    {
+        return;
+    }
 
-    // Get weapon set
-    const CharacterWeaponSetType eWeaponSetType = StringToCharacterWeaponSetType(sWeaponSet);
+    // Get equipped items
+    const CharacterPartyEquippedItemArray vEquippedItems = character.GetEquippedItems();
+    if(vEquippedItems.empty())
+    {
+        return;
+    }
+
+    // Get current weapon set
+    const String& sWeaponSet = character.GetCurrentWeaponSet();
+    if(sWeaponSet.empty())
+    {
+        return;
+    }
+
+    // Get weapon set info
+    const CharacterWeaponSetType eWeaponSetType = GetEnumFromStringOrNone<CharacterWeaponSetType>(sWeaponSet);
     const Bool bIsWeaponSetSelected1 = (eWeaponSetType == +CharacterWeaponSetType::WeaponSet1);
     const Bool bIsWeaponSetSelected2 = (eWeaponSetType == +CharacterWeaponSetType::WeaponSet2);
 
@@ -166,8 +181,8 @@ void CharacterBattleData::UpdateEquipmentRatings(const String& sCharacterID, con
     Float fWeaponRight_SlashAttackPercent = 0;
     for(auto&& equippedItem : vEquippedItems)
     {
-        const ItemTreeType eItemTreeType = StringToItemTreeType(equippedItem.GetItemTreeIndex().GetTree());
-        const CharacterEquipmentType eEquipType = StringToCharacterEquipmentType(equippedItem.GetItemSlot());
+        const ItemTreeType eItemTreeType = GetEnumFromString<ItemTreeType>(equippedItem.GetItemTreeIndex().GetTree());
+        const CharacterEquipmentType eEquipType = GetEnumFromString<CharacterEquipmentType>(equippedItem.GetItemSlot());
         const Bool bValidEquipLeft =
             (bIsWeaponSetSelected1 && (eEquipType == +CharacterEquipmentType::Weapon1Left)) ||
             (bIsWeaponSetSelected2 && (eEquipType == +CharacterEquipmentType::Weapon2Left));
@@ -226,6 +241,7 @@ void CharacterBattleData::UpdateEquipmentRatings(const String& sCharacterID, con
     }
 
     // Fill out equipment ratings
+    const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
     SetEquippedWeaponLeftBluntRating(fWeaponLeft_BluntAttackPercent * progressData.GetBluntAttack());
     SetEquippedWeaponLeftPierceRating(fWeaponLeft_PierceAttackPercent * progressData.GetPierceAttack());
     SetEquippedWeaponLeftSlashRating(fWeaponLeft_SlashAttackPercent * progressData.GetSlashAttack());
@@ -250,7 +266,7 @@ StringArray CharacterBattleData::ResolveTargetPlaceholder(const String& sSelfTar
     const String& sPlaceholderTargetType) const
 {
     StringArray vTargets;
-    const CharacterTargetType eTargetType = StringToCharacterTargetType(sPlaceholderTargetType);
+    const CharacterTargetType eTargetType = GetEnumFromString<CharacterTargetType>(sPlaceholderTargetType);
     switch(eTargetType)
     {
         case CharacterTargetType::Self:
@@ -291,7 +307,7 @@ Bool CharacterBattleData::GetPrimaryWeaponRatings(const String& sHandedness,
     Float& fPrimaryPierce,
     Float& fPrimarySlash) const
 {
-    const CharacterHandednessType eType = StringToCharacterHandednessType(sHandedness);
+    const CharacterHandednessType eType = GetEnumFromString<CharacterHandednessType>(sHandedness);
     switch(eType)
     {
         case CharacterHandednessType::LeftHanded:
@@ -315,7 +331,7 @@ Bool CharacterBattleData::GetSecondaryWeaponRatings(const String& sHandedness,
     Float& fSecondaryPierce,
     Float& fSecondarySlash) const
 {
-    const CharacterHandednessType eType = StringToCharacterHandednessType(sHandedness);
+    const CharacterHandednessType eType = GetEnumFromString<CharacterHandednessType>(sHandedness);
     switch(eType)
     {
         case CharacterHandednessType::LeftHanded:
@@ -339,7 +355,7 @@ Bool CharacterBattleData::GetPrimaryShieldRatings(const String& sHandedness,
     Float& fPrimaryPierce,
     Float& fPrimarySlash) const
 {
-    const CharacterHandednessType eType = StringToCharacterHandednessType(sHandedness);
+    const CharacterHandednessType eType = GetEnumFromString<CharacterHandednessType>(sHandedness);
     switch(eType)
     {
         case CharacterHandednessType::LeftHanded:
@@ -363,7 +379,7 @@ Bool CharacterBattleData::GetSecondaryShieldRatings(const String& sHandedness,
     Float& fSecondaryPierce,
     Float& fSecondarySlash) const
 {
-    const CharacterHandednessType eType = StringToCharacterHandednessType(sHandedness);
+    const CharacterHandednessType eType = GetEnumFromString<CharacterHandednessType>(sHandedness);
     switch(eType)
     {
         case CharacterHandednessType::LeftHanded:

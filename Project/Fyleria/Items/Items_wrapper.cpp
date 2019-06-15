@@ -112,6 +112,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoItems, m)
     ;
 
     // ItemTypes.h
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemTreeTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemTypeNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetItemTreeTypeNames, GetEnumNames<Gecko::ItemTreeType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetItemTypeNames, GetEnumNames<Gecko::ItemType>, Gecko);
 }

@@ -166,6 +166,12 @@ Bool StatChange::DoesMeetItemEquippedRequirements(const String& sCharacterID, co
 
     // Get character
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    if(character.GetPartyID().empty())
+    {
+        return false;
+    }
+
+    // Get party
     const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
@@ -401,8 +407,14 @@ Bool StatChange::GetResolvedCharacterArrays(StringArray& vSourceCharIDs, StringA
     String sDestTargetType = GetDestinationTargetType();
     String sSourcePartyType = ConvertCharacterTargetTypeToCharacterPartyType(sSourceTargetType);
     String sDestPartyType = ConvertCharacterTargetTypeToCharacterPartyType(sDestTargetType);
-    CharacterPartyManager::GetInstance()->GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
-    CharacterPartyManager::GetInstance()->GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
+    if(CharacterPartyManager::GetInstance()->DoesPartyExistByType(sSourcePartyType))
+    {
+        CharacterPartyManager::GetInstance()->GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
+    }
+    if(CharacterPartyManager::GetInstance()->DoesPartyExistByType(sDestPartyType))
+    {
+        CharacterPartyManager::GetInstance()->GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
+    }
     return (!vSourceCharIDs.empty() || !vDestCharIDs.empty());
 }
 
@@ -549,7 +561,7 @@ MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChange, StatChange);
 
 const StatChangeArray& GetStatChangesFromTreeIndex(const String& sTreeIndexType, const TreeIndex& treeIndex)
 {
-    const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
+    const CharacterTreeIndexType eTreeIndexType = GetEnumFromString<CharacterTreeIndexType>(sTreeIndexType);
     switch(eTreeIndexType)
     {
         case CharacterTreeIndexType::Skill:
@@ -564,7 +576,7 @@ const StatChangeArray& GetStatChangesFromTreeIndex(const String& sTreeIndexType,
 
 const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeIndex)
 {
-    const SkillTreeType eSkillTreeType = StringToSkillTreeTypeOrNone(treeIndex.GetTree());
+    const SkillTreeType eSkillTreeType = GetEnumFromStringOrNone<SkillTreeType>(treeIndex.GetTree());
     switch(eSkillTreeType)
     {
         case SkillTreeType::Affinity:
@@ -587,7 +599,7 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeInd
 
 const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeIndex)
 {
-    const ItemTreeType eItemTreeType = StringToItemTreeTypeOrNone(treeIndex.GetTree());
+    const ItemTreeType eItemTreeType = GetEnumFromStringOrNone<ItemTreeType>(treeIndex.GetTree());
     switch(eItemTreeType)
     {
         case ItemTreeType::Armor:

@@ -148,12 +148,12 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
     ;
 
     // SkillTypes.h
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillTreeTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillWeaponBaseTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillWeaponTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillAlchemyTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillBreakdownTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillCombatTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillCraftingTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillAffinityTypeNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetSkillTreeTypeNames, GetEnumNames<Gecko::SkillTreeType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetSkillWeaponBaseTypeNames, GetEnumNames<Gecko::SkillWeaponBaseType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetSkillWeaponTypeNames, GetEnumNames<Gecko::SkillWeaponType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetSkillAlchemyTypeNames, GetEnumNames<Gecko::SkillAlchemyType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetSkillBreakdownTypeNames, GetEnumNames<Gecko::SkillBreakdownType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetSkillCombatTypeNames, GetEnumNames<Gecko::SkillCombatType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetSkillCraftingTypeNames, GetEnumNames<Gecko::SkillCraftingType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetSkillAffinityTypeNames, GetEnumNames<Gecko::SkillAffinityType>, Gecko);
 }

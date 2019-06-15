@@ -35,7 +35,7 @@ void CharacterActionData::UpdateAvailableActions(const String& sCharacterID)
     for(const String& sIndexTreeType : CharacterTreeIndexType::_names())
     {
         // Skip invalid tree types
-        if(sIndexTreeType == (+CharacterTreeIndexType::None)._to_string())
+        if(IsNoneTypeForEnum<CharacterTreeIndexType>(sIndexTreeType))
         {
             continue;
         }
@@ -47,7 +47,7 @@ void CharacterActionData::UpdateAvailableActions(const String& sCharacterID)
             for(const String& sWeaponSet : CharacterWeaponSetType::_names())
             {
                 // Skip invalid weapon sets
-                if(sWeaponSet == (+CharacterWeaponSetType::None)._to_string())
+                if(IsNoneTypeForEnum<CharacterWeaponSetType>(sWeaponSet))
                 {
                     continue;
                 }

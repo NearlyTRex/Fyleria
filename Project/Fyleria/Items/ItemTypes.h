@@ -54,12 +54,6 @@ BETTER_ENUM(ItemType, Int,
     ArmorShieldSlash
 );
 
-MAKE_ENUM_GETSTRINGARRAY_DECL(ItemTreeType);
-MAKE_ENUM_GETSTRINGARRAY_DECL(ItemType);
-
-MAKE_ENUM_CONVERTERS_DECL(ItemTreeType);
-MAKE_ENUM_CONVERTERS_DECL(ItemType);
-
 };
 
 #endif

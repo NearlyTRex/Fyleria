@@ -58,7 +58,7 @@ public:
     MAKE_MODULE_RESULT_VARIANT(GetCurrentWeaponSet);
 
     // Get equipped items
-    const CharacterPartyEquippedItemArray& GetEquippedItems() const;
+    CharacterPartyEquippedItemArray GetEquippedItems() const;
     MAKE_MODULE_RESULT_VARIANT(GetEquippedItems);
 
     // Get available actions

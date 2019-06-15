@@ -170,7 +170,7 @@ void SaveManager::SaveToFile(UByte uSlot, const String& sFile, const String& sTy
 {
     // Save to file based on the file type
     Bool bSuccess = false;
-    const FileType eFileType = StringToFileType(sType);
+    const FileType eFileType = GetEnumFromString<FileType>(sType);
     switch(eFileType)
     {
         case FileType::TextJson:
@@ -194,7 +194,7 @@ void SaveManager::LoadFromFile(UByte uSlot, const String& sFile, const String& s
 {
     // Load from file based on the file type
     Bool bSuccess = false;
-    const FileType eFileType = StringToFileType(sType);
+    const FileType eFileType = GetEnumFromString<FileType>(sType);
     switch(eFileType)
     {
         case FileType::TextJson:
@@ -224,13 +224,13 @@ void SaveManager::SaveAllToDirectory(const String& sDirectory, const String& sBa
     }
 
     // Save each slot into a save file
-    for(auto& sSlotName : GetSaveSlotTypeNames())
+    for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {
-        if(sSlotName == (+SaveSlotType::None)._to_string())
+        if(IsNoneTypeForEnum<SaveSlotType>(sSlotName))
         {
             continue;
         }
-        SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
+        SaveSlotType eSlotType = GetEnumFromString<SaveSlotType>(sSlotName);
         String sPath = JoinPaths(sDirectory, sBase + sSlotName + String(".") + sExt);
         SaveToFile(eSlotType._to_integral(), String(sPath), sType);
     }
@@ -242,13 +242,13 @@ void SaveManager::LoadAllFromDirectory(const String& sDirectory, const String& s
     String sSavePath = GetCanonicalPath(sDirectory);
 
     // Load each slot from a save file
-    for(auto& sSlotName : GetSaveSlotTypeNames())
+    for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {
-        if(sSlotName == (+SaveSlotType::None)._to_string())
+        if(IsNoneTypeForEnum<SaveSlotType>(sSlotName))
         {
             continue;
         }
-        SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
+        SaveSlotType eSlotType = GetEnumFromString<SaveSlotType>(sSlotName);
         String sPath = JoinPaths(sSavePath, sBase + sSlotName + String(".") + sExt);
         if(DoesPathExist(sPath))
         {
@@ -263,13 +263,13 @@ void SaveManager::InitializeAllSaveSlots()
     UnloadAllSaves();
 
     // Create a save for all slots
-    for(auto& sSlotName : GetSaveSlotTypeNames())
+    for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {
-        if(sSlotName == (+SaveSlotType::None)._to_string())
+        if(IsNoneTypeForEnum<SaveSlotType>(sSlotName))
         {
             continue;
         }
-        SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
+        SaveSlotType eSlotType = GetEnumFromString<SaveSlotType>(sSlotName);
         CreateSave(eSlotType._to_integral());
     }
 }
@@ -277,13 +277,13 @@ void SaveManager::InitializeAllSaveSlots()
 void SaveManager::InitializeEmptySaveSlots()
 {
     // Create a save for empty slots
-    for(auto& sSlotName : GetSaveSlotTypeNames())
+    for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {
-        if(sSlotName == (+SaveSlotType::None)._to_string())
+        if(IsNoneTypeForEnum<SaveSlotType>(sSlotName))
         {
             continue;
         }
-        SaveSlotType eSlotType = StringToSaveSlotType(sSlotName);
+        SaveSlotType eSlotType = GetEnumFromString<SaveSlotType>(sSlotName);
         if (!DoesSaveExist(eSlotType._to_integral()))
         {
             CreateSave(eSlotType._to_integral());

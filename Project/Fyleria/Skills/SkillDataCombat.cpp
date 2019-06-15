@@ -37,6 +37,12 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const String& sCharact
 
     // Get character
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    if(character.GetPartyID().empty())
+    {
+        return vNewActions;
+    }
+
+    // Get party
     const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
@@ -55,11 +61,13 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const String& sCharact
     }
 
     // Get item types
-    String sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
-    String sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
-    String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
-    String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
-    String sActionNoneType = (+CharacterActionType::None)._to_string();
+    const String sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
+    const String sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
+    const String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
+    const String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
+    const String sActionNoneType = GetNoneTypeForEnum<CharacterActionType>();
+    const String sHandPrimaryType = (+CharacterHandType::Primary)._to_string();
+    const String sHandSecondaryType = (+CharacterHandType::Secondary)._to_string();
     if(sPrimaryItemActionType == sActionNoneType && sSecondaryItemActionType == sActionNoneType)
     {
         return vNewActions;
@@ -77,13 +85,13 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const String& sCharact
             // Create primary entry
             CharacterActionEntry newEntryPrimary;
             newEntryPrimary.SetActionTypes({sPrimaryItemActionType});
-            newEntryPrimary.SetHandType(String("Primary"));
+            newEntryPrimary.SetHandType(sHandPrimaryType);
             newAction.GetActionEntries().push_back(newEntryPrimary);
 
             // Create secondary entry
             CharacterActionEntry newEntrySecondary;
             newEntrySecondary.SetActionTypes({sSecondaryItemActionType});
-            newEntrySecondary.SetHandType(String("Secondary"));
+            newEntrySecondary.SetHandType(sHandSecondaryType);
             newAction.GetActionEntries().push_back(newEntrySecondary);
         }
 
@@ -96,8 +104,8 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const String& sCharact
             // Create entry
             CharacterActionEntry newEntry;
             Bool bUsePrimary = (sPrimaryItemActionType != sActionNoneType);
-            String sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
-            String sHandTypeToUse = (bUsePrimary) ? String("Primary") : String("Secondary");
+            const String sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
+            const String sHandTypeToUse = (bUsePrimary) ? sHandPrimaryType : sHandSecondaryType;
             newEntry.SetActionTypes({sActionTypeToUse});
             newEntry.SetHandType(sHandTypeToUse);
             newAction.GetActionEntries().push_back(newEntry);
@@ -112,8 +120,8 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(const String& sCharact
             // Create entry
             CharacterActionEntry newEntry;
             Bool bUsePrimary = (sPrimaryItemActionType != sActionNoneType && ItemTree::IsItemShield(primaryItemIndex));
-            String sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
-            String sHandTypeToUse = (bUsePrimary) ? String("Primary") : String("Secondary");
+            const String sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
+            const String sHandTypeToUse = (bUsePrimary) ? sHandPrimaryType : sHandSecondaryType;
             newEntry.SetActionTypes({sActionTypeToUse});
             newEntry.SetHandType(sHandTypeToUse);
             newEntry.SetIsHandTypeShield(true);

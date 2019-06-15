@@ -22,53 +22,53 @@ String GetAllTypeNames()
     Json jsonData;
 
     // CharacterTypes.h
-    jsonData["CharacterTreeIndexType"] = GetCharacterTreeIndexTypeNames();
-    jsonData["CharacterSegmentType"] = GetCharacterSegmentTypeNames();
-    jsonData["CharacterBasicStatType_String"] = GetCharacterBasicStatType_StringNames();
-    jsonData["CharacterBasicStatType_Int"] = GetCharacterBasicStatType_IntNames();
-    jsonData["CharacterProgressStatType_Int"] = GetCharacterProgressStatType_IntNames();
-    jsonData["CharacterBattleStatType_String"] = GetCharacterBattleStatType_StringNames();
-    jsonData["CharacterBattleStatType_StringArray"] = GetCharacterBattleStatType_StringArrayNames();
-    jsonData["CharacterBattleStatType_Bool"] = GetCharacterBattleStatType_BoolNames();
-    jsonData["CharacterBattleStatType_Int"] = GetCharacterBattleStatType_IntNames();
-    jsonData["CharacterBattleStatType_Float"] = GetCharacterBattleStatType_FloatNames();
-    jsonData["CharacterStatusType"] = GetCharacterStatusTypeNames();
-    jsonData["CharacterBaseRaceType"] = GetCharacterBaseRaceTypeNames();
-    jsonData["CharacterTransformedRaceType"] = GetCharacterTransformedRaceTypeNames();
-    jsonData["CharacterPowerSetType"] = GetCharacterPowerSetTypeNames();
-    jsonData["CharacterWeaponSetType"] = GetCharacterWeaponSetTypeNames();
-    jsonData["CharacterGenderType"] = GetCharacterGenderTypeNames();
-    jsonData["CharacterHairType"] = GetCharacterHairTypeNames();
-    jsonData["CharacterEyeType"] = GetCharacterEyeTypeNames();
-    jsonData["CharacterHandednessType"] = GetCharacterHandednessTypeNames();
-    jsonData["CharacterHandType"] = GetCharacterHandTypeNames();
-    jsonData["CharacterEquipmentType"] = GetCharacterEquipmentTypeNames();
-    jsonData["CharacterTargetType"] = GetCharacterTargetTypeNames();
-    jsonData["CharacterResolvedTargetType"] = GetCharacterResolvedTargetTypeNames();
-    jsonData["CharacterPartyType"] = GetCharacterPartyTypeNames();
-    jsonData["CharacterActionType"] = GetCharacterActionTypeNames();
+    jsonData["CharacterTreeIndexType"] = GetEnumNames<CharacterTreeIndexType>();
+    jsonData["CharacterSegmentType"] = GetEnumNames<CharacterSegmentType>();
+    jsonData["CharacterBasicStatType_String"] = GetEnumNames<CharacterBasicStatType_String>();
+    jsonData["CharacterBasicStatType_Int"] = GetEnumNames<CharacterBasicStatType_Int>();
+    jsonData["CharacterProgressStatType_Int"] = GetEnumNames<CharacterProgressStatType_Int>();
+    jsonData["CharacterBattleStatType_String"] = GetEnumNames<CharacterBattleStatType_String>();
+    jsonData["CharacterBattleStatType_StringArray"] = GetEnumNames<CharacterBattleStatType_StringArray>();
+    jsonData["CharacterBattleStatType_Bool"] = GetEnumNames<CharacterBattleStatType_Bool>();
+    jsonData["CharacterBattleStatType_Int"] = GetEnumNames<CharacterBattleStatType_Int>();
+    jsonData["CharacterBattleStatType_Float"] = GetEnumNames<CharacterBattleStatType_Float>();
+    jsonData["CharacterStatusType"] = GetEnumNames<CharacterStatusType>();
+    jsonData["CharacterBaseRaceType"] = GetEnumNames<CharacterBaseRaceType>();
+    jsonData["CharacterTransformedRaceType"] = GetEnumNames<CharacterTransformedRaceType>();
+    jsonData["CharacterPowerSetType"] = GetEnumNames<CharacterPowerSetType>();
+    jsonData["CharacterWeaponSetType"] = GetEnumNames<CharacterWeaponSetType>();
+    jsonData["CharacterGenderType"] = GetEnumNames<CharacterGenderType>();
+    jsonData["CharacterHairType"] = GetEnumNames<CharacterHairType>();
+    jsonData["CharacterEyeType"] = GetEnumNames<CharacterEyeType>();
+    jsonData["CharacterHandednessType"] = GetEnumNames<CharacterHandednessType>();
+    jsonData["CharacterHandType"] = GetEnumNames<CharacterHandType>();
+    jsonData["CharacterEquipmentType"] = GetEnumNames<CharacterEquipmentType>();
+    jsonData["CharacterTargetType"] = GetEnumNames<CharacterTargetType>();
+    jsonData["CharacterResolvedTargetType"] = GetEnumNames<CharacterResolvedTargetType>();
+    jsonData["CharacterPartyType"] = GetEnumNames<CharacterPartyType>();
+    jsonData["CharacterActionType"] = GetEnumNames<CharacterActionType>();
 
     // SaveTypes.h
-    jsonData["SaveSlotType"] = GetSaveSlotTypeNames();
+    jsonData["SaveSlotType"] = GetEnumNames<SaveSlotType>();
 
     // SkillTypes.h
-    jsonData["SkillTreeType"] = GetSkillTreeTypeNames();
-    jsonData["SkillWeaponBaseType"] = GetSkillWeaponBaseTypeNames();
-    jsonData["SkillWeaponType"] = GetSkillWeaponTypeNames();
-    jsonData["SkillAlchemyType"] = GetSkillAlchemyTypeNames();
-    jsonData["SkillBreakdownType"] = GetSkillBreakdownTypeNames();
-    jsonData["SkillCombatType"] = GetSkillCombatTypeNames();
-    jsonData["SkillCraftingType"] = GetSkillCraftingTypeNames();
-    jsonData["SkillAffinityType"] = GetSkillAffinityTypeNames();
+    jsonData["SkillTreeType"] = GetEnumNames<SkillTreeType>();
+    jsonData["SkillWeaponBaseType"] = GetEnumNames<SkillWeaponBaseType>();
+    jsonData["SkillWeaponType"] = GetEnumNames<SkillWeaponType>();
+    jsonData["SkillAlchemyType"] = GetEnumNames<SkillAlchemyType>();
+    jsonData["SkillBreakdownType"] = GetEnumNames<SkillBreakdownType>();
+    jsonData["SkillCombatType"] = GetEnumNames<SkillCombatType>();
+    jsonData["SkillCraftingType"] = GetEnumNames<SkillCraftingType>();
+    jsonData["SkillAffinityType"] = GetEnumNames<SkillAffinityType>();
 
     // ItemTypes.h
-    jsonData["ItemTreeType"] = GetItemTreeTypeNames();
-    jsonData["ItemType"] = GetItemTypeNames();
+    jsonData["ItemTreeType"] = GetEnumNames<ItemTreeType>();
+    jsonData["ItemType"] = GetEnumNames<ItemType>();
 
     // TypesEnum.h
-    jsonData["OperationType"] = GetOperationTypeNames();
-    jsonData["ComparisonType"] = GetComparisonTypeNames();
-    jsonData["FileType"] = GetFileTypeNames();
+    jsonData["OperationType"] = GetEnumNames<OperationType>();
+    jsonData["ComparisonType"] = GetEnumNames<ComparisonType>();
+    jsonData["FileType"] = GetEnumNames<FileType>();
     return jsonData.dump();
 }
 
@@ -139,9 +139,9 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(WriteBinaryFile, Gecko);
 
     // Enum.h
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetOperationTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetComparisonTypeNames, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetFileTypeNames, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetOperationTypeNames, GetEnumNames<Gecko::OperationType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetComparisonTypeNames, GetEnumNames<Gecko::ComparisonType>, Gecko);
+    WRAPPING_STANDALONE_METHOD_FUNC(GetFileTypeNames, GetEnumNames<Gecko::FileType>, Gecko);
 
     // Templates.h
     WRAPPING_STANDALONE_METHOD_FUNC(PrintStringVector, PrintStringVector<Gecko::String>, Gecko);

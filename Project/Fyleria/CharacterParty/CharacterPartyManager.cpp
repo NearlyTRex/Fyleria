@@ -20,7 +20,7 @@ void CharacterPartyManager::LoadParty(const CharacterParty& party)
     const String& sPartyID = party.GetPartyID();
     const String& sPartyType = party.GetPartyType();
     ASSERT_ERROR(IsValidPartyID(sPartyID), "Party ID '%s' was not valid", sPartyID.c_str());
-    ASSERT_ERROR(IsValidCharacterPartyType(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
+    ASSERT_ERROR(IsValidEnumString<CharacterPartyType>(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
     GetParties().insert({sPartyID, party});
 }
 
@@ -44,8 +44,8 @@ void CharacterPartyManager::SavePartyToFile(const String& sPartyID, const String
 void CharacterPartyManager::CreateParty(const String& sPartyID, const String& sPartyType, Bool bSetAsCurrent /*= false*/)
 {
     // Create a new party
-    ASSERT_ERROR(!DoesPartyExist(sPartyID), "Party '%s' was already registered", sPartyID.c_str());
-    ASSERT_ERROR(IsValidCharacterPartyType(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
+    ASSERT_ERROR(!DoesPartyExistByID(sPartyID), "Party '%s' was already registered", sPartyID.c_str());
+    ASSERT_ERROR(IsValidEnumString<CharacterPartyType>(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
     StringArray vAvailableTargetTypes;
     for(UInt i = 1; i <= MAX_TEAM_CHARACTER_AMOUNT; i++)
     {
@@ -61,7 +61,7 @@ void CharacterPartyManager::CreateParty(const String& sPartyID, const String& sP
     // Set as current ally/enemy
     if(bSetAsCurrent)
     {
-        const CharacterPartyType ePartyType = StringToCharacterPartyType(sPartyType);
+        const CharacterPartyType ePartyType = GetEnumFromString<CharacterPartyType>(sPartyType);
         switch(ePartyType)
         {
             case CharacterPartyType::Ally:
@@ -79,7 +79,7 @@ void CharacterPartyManager::CreateParty(const String& sPartyID, const String& sP
 void CharacterPartyManager::UnloadParty(const String& sPartyID)
 {
     // Unload party
-    ASSERT_ERROR(DoesPartyExist(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
+    ASSERT_ERROR(DoesPartyExistByID(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
     GetParties().erase(sPartyID);
     if(sPartyID == GetCurrentAllyPartyID())
     {
@@ -91,11 +91,24 @@ void CharacterPartyManager::UnloadParty(const String& sPartyID)
     }
 }
 
-Bool CharacterPartyManager::DoesPartyExist(const String& sPartyID) const
+Bool CharacterPartyManager::DoesPartyExistByID(const String& sPartyID) const
 {
     // Check if party exists
     auto iSearch = GetParties().find(sPartyID);
     return (iSearch != GetParties().end());
+}
+
+Bool CharacterPartyManager::DoesPartyExistByType(const String& sPartyType) const
+{
+    // Check if party exists
+    for(auto it = GetParties().begin(); it != GetParties().end(); it++)
+    {
+        if(sPartyType == it->second.GetPartyType())
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 Bool CharacterPartyManager::IsValidPartyID(const String& sPartyID) const
@@ -107,7 +120,7 @@ Bool CharacterPartyManager::IsValidPartyID(const String& sPartyID) const
 const CharacterParty& CharacterPartyManager::GetPartyByID(const String& sPartyID) const
 {
     // Get party
-    ASSERT_ERROR(DoesPartyExist(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
+    ASSERT_ERROR(DoesPartyExistByID(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
     auto iSearch = GetParties().find(sPartyID);
     if(iSearch != GetParties().end())
     {
@@ -125,7 +138,7 @@ CharacterParty& CharacterPartyManager::GetPartyByID(const String& sPartyID)
 const CharacterParty& CharacterPartyManager::GetPartyByType(const String& sPartyType) const
 {
     // Get party
-    const CharacterPartyType ePartyType = StringToCharacterPartyType(sPartyType);
+    const CharacterPartyType ePartyType = GetEnumFromString<CharacterPartyType>(sPartyType);
     switch(ePartyType)
     {
         case CharacterPartyType::Ally:

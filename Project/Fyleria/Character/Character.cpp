@@ -10,6 +10,7 @@
 #include "Items/ItemTypes.h"
 #include "Utility/Constants.h"
 #include "Utility/Errors.h"
+#include "Utility/Enum.h"
 
 namespace Gecko
 {
@@ -100,6 +101,11 @@ String Character::GetCharacterTargetType() const
 {
     String sCharacterID = GetCharacterID();
     String sPartyID = GetPartyID();
+    if(sPartyID.empty())
+    {
+        return GetNoneTypeForEnum<CharacterResolvedTargetType>();
+    }
+
     const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetCharacterTargetType();
@@ -110,10 +116,15 @@ String Character::GetCurrentWeaponSet() const
     return GetBattleDataBase().GetCurrentWeaponSet();
 }
 
-const CharacterPartyEquippedItemArray& Character::GetEquippedItems() const
+CharacterPartyEquippedItemArray Character::GetEquippedItems() const
 {
     String sCharacterID = GetCharacterID();
     String sPartyID = GetPartyID();
+    if(sPartyID.empty())
+    {
+        return CharacterPartyEquippedItemArray();
+    }
+
     const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetEquippedItems();
@@ -141,7 +152,7 @@ const TreeIndexArray& Character::GetActionableChanges(const String& sTreeIndexTy
 
 const CharacterProgressData& Character::GetProgressDataSegment(const String& sSegment) const
 {
-    CharacterSegmentType eSegmentType = StringToCharacterSegmentType(sSegment);
+    CharacterSegmentType eSegmentType = GetEnumFromString<CharacterSegmentType>(sSegment);
     switch(eSegmentType)
     {
         case CharacterSegmentType::Base: return GetProgressDataBase();
@@ -159,7 +170,7 @@ CharacterProgressData& Character::GetProgressDataSegment(const String& sSegment)
 
 const CharacterBattleData& Character::GetBattleDataSegment(const String& sSegment) const
 {
-    CharacterSegmentType eSegmentType = StringToCharacterSegmentType(sSegment);
+    CharacterSegmentType eSegmentType = GetEnumFromString<CharacterSegmentType>(sSegment);
     switch(eSegmentType)
     {
         case CharacterSegmentType::Base: return GetBattleDataBase();
@@ -188,7 +199,7 @@ Bool Character::operator!=(const Character& other) const
 void Character::UpdateEquipmentRatings()
 {
     // Update equipment ratings
-    GetBattleDataBase().UpdateEquipmentRatings(GetCharacterID(), String("Base"));
+    GetBattleDataBase().UpdateEquipmentRatings(GetCharacterID(), (+CharacterSegmentType::Base)._to_string());
 }
 
 void Character::UpdateAvailableChanges()
@@ -228,6 +239,10 @@ void Character::ApplyPassiveChanges()
     // Apply passives
     for(const String& sTreeIndexType : CharacterTreeIndexType::_names())
     {
+        if(IsNoneTypeForEnum<CharacterTreeIndexType>(sTreeIndexType))
+        {
+            continue;
+        }
         for(const TreeIndex& treeIndex : GetStatChangeData().GetPassiveChanges(sTreeIndexType))
         {
             for(StatChange change : GetStatChangesFromTreeIndex(sTreeIndexType, treeIndex))
@@ -257,6 +272,10 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
     // Apply actives
     for(const String& sTreeIndexType : CharacterTreeIndexType::_names())
     {
+        if(IsNoneTypeForEnum<CharacterTreeIndexType>(sTreeIndexType))
+        {
+            continue;
+        }
         for(const TreeIndex& treeIndex : GetStatChangeData().GetActiveChanges(sTreeIndexType))
         {
             for(const StatChange& change : GetStatChangesFromTreeIndex(sTreeIndexType, treeIndex))

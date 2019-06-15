@@ -63,7 +63,7 @@ void CharacterStatChangeData::UpdateAvailableChanges(const String& sCharacterID)
 
 const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const String& sTreeIndexType) const
 {
-    const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
+    const CharacterTreeIndexType eTreeIndexType = GetEnumFromString<CharacterTreeIndexType>(sTreeIndexType);
     switch(eTreeIndexType)
     {
         case CharacterTreeIndexType::Skill:
@@ -78,7 +78,7 @@ const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const String& s
 
 const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const String& sTreeIndexType) const
 {
-    const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
+    const CharacterTreeIndexType eTreeIndexType = GetEnumFromString<CharacterTreeIndexType>(sTreeIndexType);
     switch(eTreeIndexType)
     {
         case CharacterTreeIndexType::Skill:
@@ -93,7 +93,7 @@ const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const String& sT
 
 const TreeIndexArray& CharacterStatChangeData::GetActionableChanges(const String& sTreeIndexType) const
 {
-    const CharacterTreeIndexType eTreeIndexType = StringToCharacterTreeIndexType(sTreeIndexType);
+    const CharacterTreeIndexType eTreeIndexType = GetEnumFromString<CharacterTreeIndexType>(sTreeIndexType);
     switch(eTreeIndexType)
     {
         case CharacterTreeIndexType::Skill:

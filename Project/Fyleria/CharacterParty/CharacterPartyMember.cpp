@@ -41,14 +41,14 @@ UInt CharacterPartyMember::GetEquippedWeaponCount(const String& sWeaponSet) cons
             continue;
         }
 
-        const CharacterEquipmentType eEquipType = StringToCharacterEquipmentType(progressItem.GetItemSlot());
+        const CharacterEquipmentType eEquipType = GetEnumFromString<CharacterEquipmentType>(progressItem.GetItemSlot());
         uWeapon1Count += (eEquipType == +CharacterEquipmentType::Weapon1Left) ? 1 : 0;
         uWeapon1Count += (eEquipType == +CharacterEquipmentType::Weapon1Right) ? 1 : 0;
         uWeapon2Count += (eEquipType == +CharacterEquipmentType::Weapon2Left) ? 1 : 0;
         uWeapon2Count += (eEquipType == +CharacterEquipmentType::Weapon2Right) ? 1 : 0;
     }
 
-    const CharacterWeaponSetType eWeaponSetType = StringToCharacterWeaponSetType(sWeaponSet);
+    const CharacterWeaponSetType eWeaponSetType = GetEnumFromString<CharacterWeaponSetType>(sWeaponSet);
     if(eWeaponSetType == +CharacterWeaponSetType::WeaponSet1)
     {
         return uWeapon1Count;
@@ -71,14 +71,14 @@ UInt CharacterPartyMember::GetEquippedShieldCount(const String& sWeaponSet) cons
             continue;
         }
 
-        const CharacterEquipmentType eEquipType = StringToCharacterEquipmentType(progressItem.GetItemSlot());
+        const CharacterEquipmentType eEquipType = GetEnumFromString<CharacterEquipmentType>(progressItem.GetItemSlot());
         uShield1Count += (eEquipType == +CharacterEquipmentType::Weapon1Left) ? 1 : 0;
         uShield1Count += (eEquipType == +CharacterEquipmentType::Weapon1Right) ? 1 : 0;
         uShield2Count += (eEquipType == +CharacterEquipmentType::Weapon2Left) ? 1 : 0;
         uShield2Count += (eEquipType == +CharacterEquipmentType::Weapon2Right) ? 1 : 0;
     }
 
-    const CharacterWeaponSetType eWeaponSetType = StringToCharacterWeaponSetType(sWeaponSet);
+    const CharacterWeaponSetType eWeaponSetType = GetEnumFromString<CharacterWeaponSetType>(sWeaponSet);
     if(eWeaponSetType == +CharacterWeaponSetType::WeaponSet1)
     {
         return uShield1Count;
@@ -93,7 +93,7 @@ UInt CharacterPartyMember::GetEquippedShieldCount(const String& sWeaponSet) cons
 Bool CharacterPartyMember::CanAddEquippedItem(const TreeIndex& index) const
 {
     const UInt uItemCount = GetEquippedItemTypeCount(index);
-    const ItemType eItemType = StringToItemType(ItemTree::RetrieveItemType(index));
+    const ItemType eItemType = GetEnumFromString<ItemType>(ItemTree::RetrieveItemType(index));
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -120,7 +120,7 @@ Bool CharacterPartyMember::CanAddEquippedItem(const TreeIndex& index) const
 Bool CharacterPartyMember::CanRemoveEquippedItem(const TreeIndex& index) const
 {
     const UInt uItemCount = GetEquippedItemTypeCount(index);
-    const ItemType eItemType = StringToItemType(ItemTree::RetrieveItemType(index));
+    const ItemType eItemType = GetEnumFromString<ItemType>(ItemTree::RetrieveItemType(index));
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -182,7 +182,7 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
     StringArray& vSecondaryActionTypes) const
 {
     // Get weapon set
-    const CharacterWeaponSetType eWeaponSetType = StringToCharacterWeaponSetType(sWeaponSet);
+    const CharacterWeaponSetType eWeaponSetType = GetEnumFromString<CharacterWeaponSetType>(sWeaponSet);
     const Bool bIsWeaponSetSelected1 = (eWeaponSetType == +CharacterWeaponSetType::WeaponSet1);
     const Bool bIsWeaponSetSelected2 = (eWeaponSetType == +CharacterWeaponSetType::WeaponSet2);
 
@@ -191,8 +191,8 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
     TreeIndex itemIndexRight;
     for(auto&& progressItem : GetEquippedItems())
     {
-        const ItemTreeType eItemTreeType = StringToItemTreeType(progressItem.GetItemTreeIndex().GetTree());
-        const CharacterEquipmentType eEquipType = StringToCharacterEquipmentType(progressItem.GetItemSlot());
+        const ItemTreeType eItemTreeType = GetEnumFromString<ItemTreeType>(progressItem.GetItemTreeIndex().GetTree());
+        const CharacterEquipmentType eEquipType = GetEnumFromString<CharacterEquipmentType>(progressItem.GetItemSlot());
         const Bool bValidEquipLeft =
             (bIsWeaponSetSelected1 && (eEquipType == +CharacterEquipmentType::Weapon1Left)) ||
             (bIsWeaponSetSelected2 && (eEquipType == +CharacterEquipmentType::Weapon2Left));
@@ -233,7 +233,7 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
 
     // Translate left/right to primary/secondary
     const Character& character = CharacterManager::GetInstance()->GetCharacter(GetCharacterID());
-    const CharacterHandednessType eHandedness = StringToCharacterHandednessType(character.GetBasicData().GetHandedness());
+    const CharacterHandednessType eHandedness = GetEnumFromString<CharacterHandednessType>(character.GetBasicData().GetHandedness());
     switch(eHandedness)
     {
         case CharacterHandednessType::LeftHanded:
