@@ -122,6 +122,16 @@ Character& CharacterManager::GetCharacter(const String& sCharacterID)
     return const_cast<Character&>(static_cast<const CharacterManager&>(*this).GetCharacter(sCharacterID));
 }
 
+StringArray CharacterManager::GetAllCharacterIDs() const
+{
+    StringArray vAllCharacters;
+    for(auto it = GetCharacters().begin(); it != GetCharacters().end(); it++)
+    {
+        vAllCharacters.push_back(it->first);
+    }
+    return vAllCharacters;
+}
+
 void CharacterManager::ApplyStatChange(
     const String& sSegment,
     const StatChange& change,

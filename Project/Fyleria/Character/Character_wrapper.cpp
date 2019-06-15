@@ -169,6 +169,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
         WRAPPING_ADD_METHOD_SIMPLE(IsValidCharacterID, Gecko::CharacterManager)
         WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetCharacter, Gecko::CharacterManager, PyBindReturnCopy, const Gecko::String&)
         WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetCharacter, Gecko::CharacterManager, PyBindReturnRefInternal, const Gecko::String&)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllCharacterIDs, Gecko::CharacterManager)
         WRAPPING_ADD_METHOD_SIMPLE(ApplyStatChange, Gecko::CharacterManager)
         WRAPPING_ADD_METHOD_SIMPLE(ApplyStatChangeEntry, Gecko::CharacterManager)
         WRAPPING_ADD_METHOD_OVERLOADED(ApplyStatChangeEntryOperation, Gecko::CharacterManager, const Gecko::String&, const Gecko::String&, const Gecko::String&, const Gecko::String&, Gecko::Float)
@@ -182,6 +183,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
         WRAPPING_ADD_METHOD_SIMPLE(DoesCharacterExist_StoreResult, Gecko::CharacterManager)
         WRAPPING_ADD_METHOD_SIMPLE(IsValidCharacterID_StoreResult, Gecko::CharacterManager)
         WRAPPING_ADD_METHOD_SIMPLE(GetCharacter_StoreResult, Gecko::CharacterManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllCharacterIDs_StoreResult, Gecko::CharacterManager)
     ;
 
     // CharacterTypes.h

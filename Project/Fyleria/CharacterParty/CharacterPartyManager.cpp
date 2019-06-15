@@ -177,4 +177,14 @@ CharacterParty& CharacterPartyManager::GetCurrentEnemyParty()
     return GetPartyByID(GetCurrentEnemyPartyID());
 }
 
+StringArray CharacterPartyManager::GetAllPartyIDs() const
+{
+    StringArray vAllParties;
+    for(auto it = GetParties().begin(); it != GetParties().end(); it++)
+    {
+        vAllParties.push_back(it->first);
+    }
+    return vAllParties;
+}
+
 };

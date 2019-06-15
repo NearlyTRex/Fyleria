@@ -188,6 +188,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
         WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetCurrentAllyParty, Gecko::CharacterPartyManager, PyBindReturnRefInternal, )
         WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetCurrentEnemyParty, Gecko::CharacterPartyManager, PyBindReturnCopy, )
         WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetCurrentEnemyParty, Gecko::CharacterPartyManager, PyBindReturnRefInternal, )
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllPartyIDs, Gecko::CharacterPartyManager)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentAllyPartyID, Gecko::CharacterPartyManager)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentEnemyPartyID, Gecko::CharacterPartyManager)
         WRAPPING_ADD_METHOD_SIMPLE(DoesPartyExistByID_StoreResult, Gecko::CharacterPartyManager)
@@ -197,6 +198,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
         WRAPPING_ADD_METHOD_SIMPLE(GetPartyByType_StoreResult, Gecko::CharacterPartyManager)
         WRAPPING_ADD_METHOD_SIMPLE(GetCurrentAllyParty_StoreResult, Gecko::CharacterPartyManager)
         WRAPPING_ADD_METHOD_SIMPLE(GetCurrentEnemyParty_StoreResult, Gecko::CharacterPartyManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetAllPartyIDs_StoreResult, Gecko::CharacterPartyManager)
     ;
 
     // Local

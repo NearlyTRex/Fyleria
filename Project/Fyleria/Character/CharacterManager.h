@@ -54,6 +54,10 @@ public:
     Character& GetCharacter(const String& sCharacterID);
     MAKE_MODULE_RESULT_VARIANT_A1(GetCharacter, const String&, sCharacterID);
 
+    // Get all character IDs
+    StringArray GetAllCharacterIDs() const;
+    MAKE_MODULE_RESULT_VARIANT(GetAllCharacterIDs);
+
     // Apply a stat change
     void ApplyStatChange(
         const String& sSegment,

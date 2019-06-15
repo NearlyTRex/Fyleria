@@ -67,6 +67,10 @@ public:
     CharacterParty& GetCurrentEnemyParty();
     MAKE_MODULE_RESULT_VARIANT(GetCurrentEnemyParty);
 
+    // Get all party IDs
+    StringArray GetAllPartyIDs() const;
+    MAKE_MODULE_RESULT_VARIANT(GetAllPartyIDs);
+
     // Parties
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(Parties, CharacterPartyMappingType);
 
