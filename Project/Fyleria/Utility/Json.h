@@ -26,6 +26,8 @@ typedef nlohmann::json Json;
 
 // Json container types
 typedef STDVector<Json> JsonArray;
+typedef STDMap<Int, Json> JsonIntMap;
+typedef STDMap<String, Json> JsonStringMap;
 
 // Json converters
 MAKE_JSON_BASIC_TYPE_CONVERTERS_DECL(Bool);
