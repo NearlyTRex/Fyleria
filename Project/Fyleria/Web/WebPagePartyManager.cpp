@@ -29,6 +29,11 @@ WebPagePartyManager::WebPagePartyManager()
     <form action="%sSubmit_Url%" method="post">
         <div class="form-group row">
             <div class="col"><hr></div>
+            <div class="col-auto"><a href="/">Home</a></div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <div class="col"><hr></div>
             <div class="col-auto">Controls</div>
             <div class="col"><hr></div>
         </div>
