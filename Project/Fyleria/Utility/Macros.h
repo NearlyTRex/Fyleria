@@ -94,7 +94,7 @@ void from_json(const Json& jsonData, type& obj);
 #define MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(type)                               \
 void to_json(Json& vJsonData, const type& vObj)                                     \
 {                                                                                   \
-    vJsonData = JsonArray();                                                        \
+    vJsonData = STDVector<Json>();                                                  \
     for(auto it = vObj.begin(); it != vObj.end(); it++)                             \
     {                                                                               \
         Json jsonData;                                                              \
@@ -119,7 +119,7 @@ void from_json(const Json& jsonData, type& obj);
 #define MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(type)                                    \
 void to_json(Json& tJsonData, const type& tObj)                                     \
 {                                                                                   \
-    tJsonData = JsonIntMap();                                                       \
+    tJsonData = STDMap<type::key_type, Json>();                                     \
     for(auto it = tObj.begin(); it != tObj.end(); it++)                             \
     {                                                                               \
         Json jsonData;                                                              \
@@ -272,24 +272,42 @@ void Set##name(const type& var##name)                                           
 
 //=====================================================================================
 
-#define MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(type)                                                                   \
-Bool Get##type##StatValue(const String& sSegment, const String& sStat, type& varValue) const                        \
-{                                                                                                                   \
-    const CharacterBasicData& basicData = GetBasicData();                                                           \
-    const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                   \
-    const CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                         \
-    return (basicData.Get##type##StatValue(sStat, varValue) ||                                                      \
-            progressData.Get##type##StatValue(sStat, varValue) ||                                                   \
-            battleData.Get##type##StatValue(sStat, varValue));                                                      \
-}                                                                                                                   \
-Bool Set##type##StatValue(const String& sSegment, const String& sStat, const type& varValue)                        \
-{                                                                                                                   \
-    CharacterBasicData& basicData = GetBasicData();                                                                 \
-    CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                         \
-    CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                               \
-    return (basicData.Set##type##StatValue(sStat, varValue) ||                                                      \
-            progressData.Set##type##StatValue(sStat, varValue) ||                                                   \
-            battleData.Set##type##StatValue(sStat, varValue));                                                      \
+#define MAKE_EQUIPPED_ITEM_METHOD(type)                                                                         \
+TreeIndex GetEquipped##type##Item() const                                                                       \
+{                                                                                                               \
+    auto vEquippedItems = GetEquippedItems();                                                                   \
+    if(vEquippedItems.empty())                                                                                  \
+    {                                                                                                           \
+        return TreeIndex();                                                                                     \
+    }                                                                                                           \
+    for(auto it = vEquippedItems.begin(); it != vEquippedItems.end(); it++)                                     \
+    {                                                                                                           \
+        if(it->GetItemSlot() == (+CharacterEquipmentType::type)._to_string())                                   \
+        {                                                                                                       \
+            return it->GetItemTreeIndex();                                                                      \
+        }                                                                                                       \
+    }                                                                                                           \
+    return TreeIndex();                                                                                         \
+}
+
+#define MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(type)                                                               \
+Bool Get##type##StatValue(const String& sSegment, const String& sStat, type& varValue) const                    \
+{                                                                                                               \
+    const CharacterBasicData& basicData = GetBasicData();                                                       \
+    const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                               \
+    const CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                     \
+    return (basicData.Get##type##StatValue(sStat, varValue) ||                                                  \
+            progressData.Get##type##StatValue(sStat, varValue) ||                                               \
+            battleData.Get##type##StatValue(sStat, varValue));                                                  \
+}                                                                                                               \
+Bool Set##type##StatValue(const String& sSegment, const String& sStat, const type& varValue)                    \
+{                                                                                                               \
+    CharacterBasicData& basicData = GetBasicData();                                                             \
+    CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                     \
+    CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                           \
+    return (basicData.Set##type##StatValue(sStat, varValue) ||                                                  \
+            progressData.Set##type##StatValue(sStat, varValue) ||                                               \
+            battleData.Set##type##StatValue(sStat, varValue));                                                  \
 }
 
 //=====================================================================================
