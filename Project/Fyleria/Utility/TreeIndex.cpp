@@ -11,6 +11,9 @@ namespace Gecko
 TreeIndex::TreeIndex()
     : SerializableToJson()
 {
+    SetTree("");
+    SetBranch("");
+    SetLeaf("");
 }
 
 TreeIndex::TreeIndex(const String& sTree, const String& sBranch, const String& sLeaf)
