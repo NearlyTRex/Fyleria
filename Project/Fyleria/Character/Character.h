@@ -61,6 +61,20 @@ public:
     CharacterPartyEquippedItemArray GetEquippedItems() const;
     MAKE_MODULE_RESULT_VARIANT(GetEquippedItems);
 
+    // Get individual equipped items by type
+    MAKE_EQUIPPED_ITEM_METHOD(Chest);
+    MAKE_EQUIPPED_ITEM_METHOD(Feet);
+    MAKE_EQUIPPED_ITEM_METHOD(Hands);
+    MAKE_EQUIPPED_ITEM_METHOD(Head);
+    MAKE_EQUIPPED_ITEM_METHOD(Legs);
+    MAKE_EQUIPPED_ITEM_METHOD(Neck);
+    MAKE_EQUIPPED_ITEM_METHOD(LeftFingers);
+    MAKE_EQUIPPED_ITEM_METHOD(RightFingers);
+    MAKE_EQUIPPED_ITEM_METHOD(Weapon1Left);
+    MAKE_EQUIPPED_ITEM_METHOD(Weapon1Right);
+    MAKE_EQUIPPED_ITEM_METHOD(Weapon2Left);
+    MAKE_EQUIPPED_ITEM_METHOD(Weapon2Right);
+
     // Get available actions
     const CharacterActionArray& GetAvailableActions() const;
     MAKE_MODULE_RESULT_VARIANT(GetAvailableActions);
