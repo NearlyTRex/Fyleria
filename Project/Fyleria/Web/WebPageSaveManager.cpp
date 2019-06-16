@@ -207,6 +207,41 @@ WebPageSaveManager::WebPageSaveManager()
                 <button type="submit" class="btn btn-primary form-control" name="action" value="load_all_from_dir">Run</button>
             </div>
         </div>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto">Save List</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 1</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly">%sSaveData_Slot1%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 2</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly">%sSaveData_Slot2%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 3</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly">%sSaveData_Slot3%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 4</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly">%sSaveData_Slot4%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 5</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly">%sSaveData_Slot5%</textarea>
+            </div>
+        </div>
     </form>
 </div>
 </html>
@@ -262,7 +297,7 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     else if(sAction == "collect_save_data_single")
     {
         SaveManager::GetInstance()->CollectSaveData(
-            GetEnumFromString<SaveSlotType>(sCollectSaveDataSingle_SaveSlotType)._to_integral(),
+            sCollectSaveDataSingle_SaveSlotType,
             sCollectSaveDataSingle_PartyID
         );
     }
@@ -270,7 +305,7 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     {
         StringArray vPartyIDs = ConvertStringToTokenArray(sCollectSaveDataMultiple_PartyIDs, ", ");
         SaveManager::GetInstance()->CollectSaveData(
-            GetEnumFromString<SaveSlotType>(sCollectSaveDataMultiple_SaveSlotType)._to_integral(),
+            sCollectSaveDataMultiple_SaveSlotType,
             vPartyIDs,
             sCollectSaveDataMultiple_Description,
             BoostLexicalCast<ULong>(sCollectSaveDataMultiple_PlayTime)
@@ -279,26 +314,26 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     else if(sAction == "disperse_save_data")
     {
         SaveManager::GetInstance()->DisperseSaveData(
-            GetEnumFromString<SaveSlotType>(sDisperseSaveData_SaveSlotType)._to_integral()
+            sDisperseSaveData_SaveSlotType
         );
     }
     else if(sAction == "load_save")
     {
         SaveManager::GetInstance()->LoadSave(
-            GetEnumFromString<SaveSlotType>(sLoadSave_SaveSlotType)._to_integral(),
+            sLoadSave_SaveSlotType,
             Save(sLoadSave_Textarea)
         );
     }
     else if(sAction == "unload_save")
     {
         SaveManager::GetInstance()->UnloadSave(
-            GetEnumFromString<SaveSlotType>(sUnloadSave_SaveSlotType)._to_integral()
+            sUnloadSave_SaveSlotType
         );
     }
     else if(sAction == "load_from_file")
     {
         SaveManager::GetInstance()->LoadFromFile(
-            GetEnumFromString<SaveSlotType>(sLoadFromFile_SaveSlotType)._to_integral(),
+            sLoadFromFile_SaveSlotType,
             sLoadFromFile_Filename,
             sLoadFromFile_FileType
         );
@@ -306,7 +341,7 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     else if(sAction == "save_to_file")
     {
         SaveManager::GetInstance()->SaveToFile(
-            GetEnumFromString<SaveSlotType>(sSaveToFile_SaveSlotType)._to_integral(),
+            sSaveToFile_SaveSlotType,
             sSaveToFile_Filename,
             sSaveToFile_FileType
         );
@@ -348,6 +383,13 @@ void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
     BoostReplaceAll(sPage, "%sLoadAllFromDir_Directory%", sLoadAllFromDir_Directory);
     BoostReplaceAll(sPage, "%sLoadAllFromDir_Basename%", sLoadAllFromDir_Basename);
     BoostReplaceAll(sPage, "%sLoadAllFromDir_Extension%", sLoadAllFromDir_Extension);
+    for(auto& sSlotName : GetEnumNames<SaveSlotType>())
+    {
+        String sSaveDataKey = String("%sSaveData_") + sSlotName + String("%");
+        String sSaveDataVal = (SaveManager::GetInstance()->DoesSaveExist(sSlotName)) ?
+            Json(SaveManager::GetInstance()->GetSave(sSlotName)).dump() : "";
+        BoostReplaceAll(sPage, sSaveDataKey, sSaveDataVal);
+    }
     SetPageContent(sPage);
 }
 
