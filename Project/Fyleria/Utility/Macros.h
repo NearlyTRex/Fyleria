@@ -94,6 +94,7 @@ void from_json(const Json& jsonData, type& obj);
 #define MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(type)                               \
 void to_json(Json& vJsonData, const type& vObj)                                     \
 {                                                                                   \
+    vJsonData = JsonArray();                                                        \
     for(auto it = vObj.begin(); it != vObj.end(); it++)                             \
     {                                                                               \
         Json jsonData;                                                              \
@@ -118,6 +119,7 @@ void from_json(const Json& jsonData, type& obj);
 #define MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(type)                                    \
 void to_json(Json& tJsonData, const type& tObj)                                     \
 {                                                                                   \
+    tJsonData = JsonIntMap();                                                       \
     for(auto it = tObj.begin(); it != tObj.end(); it++)                             \
     {                                                                               \
         Json jsonData;                                                              \
@@ -144,22 +146,22 @@ STDVector<type> Get##name##ArrayFromJsonString(const String& jsonString);
 #define MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(name, type)                          \
 String Convert##name##ToJsonString(const type& obj)                                 \
 {                                                                                   \
-    Json jsonData = obj;                                                            \
+    Json jsonData(obj);                                                             \
     return jsonData.dump();                                                         \
 }                                                                                   \
 String Convert##name##ArrayToJsonString(const STDVector<type>& vObjs)               \
 {                                                                                   \
-    Json jsonData = vObjs;                                                          \
+    Json jsonData(vObjs);                                                           \
     return jsonData.dump();                                                         \
 }                                                                                   \
 type Get##name##FromJsonString(const String& jsonString)                            \
 {                                                                                   \
-    Json jsonData = JsonParse(jsonString);                                          \
+    Json jsonData(JsonParse(jsonString));                                           \
     return jsonData.get<type>();                                                    \
 }                                                                                   \
 STDVector<type> Get##name##ArrayFromJsonString(const String& jsonString)            \
 {                                                                                   \
-    Json jsonData = JsonParse(jsonString);                                          \
+    Json jsonData(JsonParse(jsonString));                                           \
     return jsonData.get<STDVector<type>>();                                         \
 }
 
