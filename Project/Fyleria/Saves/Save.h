@@ -26,7 +26,7 @@ public:
     void Clear();
 
     // Slot
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Slot, UByte);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(Slot, String);
 
     // Time
     MAKE_JSON_BASIC_TYPE_ACCESSORS(Time, ULong);

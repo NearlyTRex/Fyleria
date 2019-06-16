@@ -16,33 +16,33 @@ class SaveManager : public Singleton<SaveManager>
 public:
 
     // Types
-    typedef STDUnorderedMap<UByte, Save> SaveMappingType;
+    typedef STDUnorderedMap<String, Save> SaveMappingType;
 
     // Constructors
     SaveManager();
 
     // Load save
-    void LoadSave(UByte uSlot, const Save& save);
+    void LoadSave(const String& sSlot, const Save& save);
 
     // Create save
-    void CreateSave(UByte uSlot);
+    void CreateSave(const String& sSlot);
 
     // Unload save
-    void UnloadSave(UByte uSlot);
+    void UnloadSave(const String& sSlot);
 
     // Unload all saves
     void UnloadAllSaves();
 
     // Does save exist
-    Bool DoesSaveExist(UByte uSlot) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesSaveExist, UByte, uSlot);
+    Bool DoesSaveExist(const String& sSlot) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesSaveExist, const String&, sSlot);
 
     // Get save capacity
     UByte GetSaveCapacity() const;
     MAKE_MODULE_RESULT_VARIANT(GetSaveCapacity);
 
     // Get list of all available save slots
-    UByteArray GetAllAvailableSaveSlots() const;
+    StringArray GetAllAvailableSaveSlots() const;
     MAKE_MODULE_RESULT_VARIANT(GetAllAvailableSaveSlots);
 
     // Get list of all descriptions from save slots
@@ -55,26 +55,26 @@ public:
     MAKE_MODULE_RESULT_VARIANT(IsSaveCapacityReached);
 
     // Get save
-    const Save& GetSave(UByte uSlot) const;
-    Save& GetSave(UByte uSlot);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetSave, UByte, uSlot);
+    const Save& GetSave(const String& sSlot) const;
+    Save& GetSave(const String& sSlot);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetSave, const String&, sSlot);
 
     // Get all saves
     SaveArray GetAllSaves() const;
     MAKE_MODULE_RESULT_VARIANT(GetAllSaves);
 
     // Collect data and create a save
-    void CollectSaveData(UByte uSlot, const String& sPartyID);
-    void CollectSaveData(UByte uSlot, const StringArray& vPartyIDs, const String& sDescription, ULong uPlayTime);
+    void CollectSaveData(const String& sSlot, const String& sPartyID);
+    void CollectSaveData(const String& sSlot, const StringArray& vPartyIDs, const String& sDescription, ULong uPlayTime);
 
     // Disperse save data
-    void DisperseSaveData(UByte uSlot);
+    void DisperseSaveData(const String& sSlot);
 
     // Save to file
-    void SaveToFile(UByte uSlot, const String& sFile, const String& sType);
+    void SaveToFile(const String& sSlot, const String& sFile, const String& sType);
 
     // Load to file
-    void LoadFromFile(UByte uSlot, const String& sFile, const String& sType);
+    void LoadFromFile(const String& sSlot, const String& sFile, const String& sType);
 
     // Save all to the given directory
     void SaveAllToDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType);

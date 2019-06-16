@@ -13,27 +13,27 @@ SaveManager::SaveManager()
 {
 }
 
-void SaveManager::LoadSave(UByte uSlot, const Save& save)
+void SaveManager::LoadSave(const String& sSlot, const Save& save)
 {
     // Load a save
-    GetSaves().insert({uSlot, save});
-    GetSaves().at(uSlot).SetSlot(uSlot);
+    GetSaves().insert({sSlot, save});
+    GetSaves().at(sSlot).SetSlot(sSlot);
 }
 
-void SaveManager::CreateSave(UByte uSlot)
+void SaveManager::CreateSave(const String& sSlot)
 {
     // Create a new save
-    ASSERT_ERROR(!DoesSaveExist(uSlot), "Save slot '%u' was already registered", uSlot);
+    ASSERT_ERROR(!DoesSaveExist(sSlot), "Save slot '%s' was already registered", sSlot.c_str());
     Save newSave;
-    newSave.SetSlot(uSlot);
-    GetSaves().insert({uSlot, newSave});
+    newSave.SetSlot(sSlot);
+    GetSaves().insert({sSlot, newSave});
 }
 
-void SaveManager::UnloadSave(UByte uSlot)
+void SaveManager::UnloadSave(const String& sSlot)
 {
     // Unload save
-    ASSERT_ERROR(DoesSaveExist(uSlot), "Save slot '%u' was not registered", uSlot);
-    GetSaves().erase(uSlot);
+    ASSERT_ERROR(DoesSaveExist(sSlot), "Save slot '%s' was not registered", sSlot.c_str());
+    GetSaves().erase(sSlot);
 }
 
 void SaveManager::UnloadAllSaves()
@@ -42,10 +42,10 @@ void SaveManager::UnloadAllSaves()
     GetSaves().clear();
 }
 
-Bool SaveManager::DoesSaveExist(UByte uSlot) const
+Bool SaveManager::DoesSaveExist(const String& sSlot) const
 {
     // Check if save exists
-    auto iSearch = GetSaves().find(uSlot);
+    auto iSearch = GetSaves().find(sSlot);
     return (iSearch != GetSaves().end());
 }
 
@@ -55,15 +55,15 @@ UByte SaveManager::GetSaveCapacity() const
     return MAX_SAVE_SLOT;
 }
 
-UByteArray SaveManager::GetAllAvailableSaveSlots() const
+StringArray SaveManager::GetAllAvailableSaveSlots() const
 {
     // Get a list of all slots that are not used
-    UByteArray vSlots;
-    for(Int i = 0; i < GetSaveCapacity(); i++)
+    StringArray vSlots;
+    for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {
-        if(!DoesSaveExist(i))
+        if(!DoesSaveExist(sSlotName))
         {
-            vSlots.push_back(i);
+            vSlots.push_back(sSlotName);
         }
     }
     return vSlots;
@@ -73,9 +73,9 @@ StringArray SaveManager::GetAllSaveDescriptions() const
 {
     // Get all save descriptions
     StringArray vDescriptions;
-    for(Int i = 0; i < GetSaveCapacity(); i++)
+    for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {
-        vDescriptions.push_back(DoesSaveExist(i) ? GetSave(i).GetDescription() : "");
+        vDescriptions.push_back(DoesSaveExist(sSlotName) ? GetSave(sSlotName).GetDescription() : "");
     }
     return vDescriptions;
 }
@@ -83,41 +83,41 @@ StringArray SaveManager::GetAllSaveDescriptions() const
 Bool SaveManager::IsSaveCapacityReached() const
 {
     // Get whether save capacity is reached
-    STDVector<UByte> vAvailableSlots = GetAllAvailableSaveSlots();
+    StringArray vAvailableSlots = GetAllAvailableSaveSlots();
     return vAvailableSlots.empty();
 }
 
-const Save& SaveManager::GetSave(UByte uSlot) const
+const Save& SaveManager::GetSave(const String& sSlot) const
 {
     // Get save
-    ASSERT_ERROR(DoesSaveExist(uSlot), "Save slot '%u' was not registered", uSlot);
-    auto iSearch = GetSaves().find(uSlot);
+    ASSERT_ERROR(DoesSaveExist(sSlot), "Save slot '%s' was not registered", sSlot.c_str());
+    auto iSearch = GetSaves().find(sSlot);
     return iSearch->second;
 }
 
-Save& SaveManager::GetSave(UByte uSlot)
+Save& SaveManager::GetSave(const String& sSlot)
 {
     // Get save
-    return const_cast<Save&>(static_cast<const SaveManager&>(*this).GetSave(uSlot));
+    return const_cast<Save&>(static_cast<const SaveManager&>(*this).GetSave(sSlot));
 }
 
 SaveArray SaveManager::GetAllSaves() const
 {
     SaveArray vSaves;
-    for(Int i = 0; i < GetSaveCapacity(); i++)
+    for(auto it = GetSaves().begin(); it != GetSaves().end(); it++)
     {
-        vSaves.push_back(GetSave(i));
+        vSaves.push_back(it->second);
     }
     return vSaves;
 }
 
-void SaveManager::CollectSaveData(UByte uSlot, const String& sPartyID)
+void SaveManager::CollectSaveData(const String& sSlot, const String& sPartyID)
 {
     const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
-    CollectSaveData(uSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
+    CollectSaveData(sSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
 }
 
-void SaveManager::CollectSaveData(UByte uSlot, const StringArray& vPartyIDs, const String& sDescription, ULong uPlayTime)
+void SaveManager::CollectSaveData(const String& sSlot, const StringArray& vPartyIDs, const String& sDescription, ULong uPlayTime)
 {
     // Get parties and attached characters
     CharacterPartyArray vParties;
@@ -138,20 +138,20 @@ void SaveManager::CollectSaveData(UByte uSlot, const StringArray& vPartyIDs, con
 
     // Create save from this
     Save newSave;
-    newSave.SetSlot(uSlot);
+    newSave.SetSlot(sSlot);
     newSave.SetTime(uPlayTime);
     newSave.SetParties(vParties);
     newSave.SetCharacters(vCharacters);
     newSave.SetDescription(sDescription);
 
     // Load save into manager, potentially overwriting an existing save
-    LoadSave(uSlot, newSave);
+    LoadSave(sSlot, newSave);
 }
 
-void SaveManager::DisperseSaveData(UByte uSlot)
+void SaveManager::DisperseSaveData(const String& sSlot)
 {
     // Get save from slot
-    const Save& save = GetSave(uSlot);
+    const Save& save = GetSave(sSlot);
 
     // Load characters
     for(const Character& character : save.GetCharacters())
@@ -166,7 +166,7 @@ void SaveManager::DisperseSaveData(UByte uSlot)
     }
 }
 
-void SaveManager::SaveToFile(UByte uSlot, const String& sFile, const String& sType)
+void SaveManager::SaveToFile(const String& sSlot, const String& sFile, const String& sType)
 {
     // Save to file based on the file type
     Bool bSuccess = false;
@@ -174,15 +174,15 @@ void SaveManager::SaveToFile(UByte uSlot, const String& sFile, const String& sTy
     switch(eFileType)
     {
         case FileType::TextJson:
-            bSuccess = GetSave(uSlot).ToFile(sFile);
+            bSuccess = GetSave(sSlot).ToFile(sFile);
             ASSERT_ERROR(bSuccess, "Saving to Json file '%s' failed", sFile.c_str());
             break;
         case FileType::BinaryCBOR:
-            bSuccess = GetSave(uSlot).ToCBORFile(sFile);
+            bSuccess = GetSave(sSlot).ToCBORFile(sFile);
             ASSERT_ERROR(bSuccess, "Saving to CBOR file '%s' failed", sFile.c_str());
             break;
         case FileType::BinaryMsgPack:
-            bSuccess = GetSave(uSlot).ToMsgPackFile(sFile);
+            bSuccess = GetSave(sSlot).ToMsgPackFile(sFile);
             ASSERT_ERROR(bSuccess, "Saving to MsgPack file '%s' failed", sFile.c_str());
             break;
         default:
@@ -190,7 +190,7 @@ void SaveManager::SaveToFile(UByte uSlot, const String& sFile, const String& sTy
     }
 }
 
-void SaveManager::LoadFromFile(UByte uSlot, const String& sFile, const String& sType)
+void SaveManager::LoadFromFile(const String& sSlot, const String& sFile, const String& sType)
 {
     // Load from file based on the file type
     Bool bSuccess = false;
@@ -198,15 +198,15 @@ void SaveManager::LoadFromFile(UByte uSlot, const String& sFile, const String& s
     switch(eFileType)
     {
         case FileType::TextJson:
-            bSuccess = GetSave(uSlot).FromFile(sFile);
+            bSuccess = GetSave(sSlot).FromFile(sFile);
             ASSERT_ERROR(bSuccess, "Loading from Json file '%s' failed", sFile.c_str());
             break;
         case FileType::BinaryCBOR:
-            bSuccess = GetSave(uSlot).FromCBORFile(sFile);
+            bSuccess = GetSave(sSlot).FromCBORFile(sFile);
             ASSERT_ERROR(bSuccess, "Loading from CBOR file '%s' failed", sFile.c_str());
             break;
         case FileType::BinaryMsgPack:
-            bSuccess = GetSave(uSlot).FromMsgPackFile(sFile);
+            bSuccess = GetSave(sSlot).FromMsgPackFile(sFile);
             ASSERT_ERROR(bSuccess, "Loading from MsgPack file '%s' failed", sFile.c_str());
             break;
         default:
@@ -230,9 +230,8 @@ void SaveManager::SaveAllToDirectory(const String& sDirectory, const String& sBa
         {
             continue;
         }
-        SaveSlotType eSlotType = GetEnumFromString<SaveSlotType>(sSlotName);
         String sPath = JoinPaths(sDirectory, sBase + sSlotName + String(".") + sExt);
-        SaveToFile(eSlotType._to_integral(), String(sPath), sType);
+        SaveToFile(sSlotName, String(sPath), sType);
     }
 }
 
@@ -248,11 +247,10 @@ void SaveManager::LoadAllFromDirectory(const String& sDirectory, const String& s
         {
             continue;
         }
-        SaveSlotType eSlotType = GetEnumFromString<SaveSlotType>(sSlotName);
         String sPath = JoinPaths(sSavePath, sBase + sSlotName + String(".") + sExt);
         if(DoesPathExist(sPath))
         {
-            LoadFromFile(eSlotType._to_integral(), String(sPath), sType);
+            LoadFromFile(sSlotName, String(sPath), sType);
         }
     }
 }
@@ -269,8 +267,7 @@ void SaveManager::InitializeAllSaveSlots()
         {
             continue;
         }
-        SaveSlotType eSlotType = GetEnumFromString<SaveSlotType>(sSlotName);
-        CreateSave(eSlotType._to_integral());
+        CreateSave(sSlotName);
     }
 }
 
@@ -283,10 +280,9 @@ void SaveManager::InitializeEmptySaveSlots()
         {
             continue;
         }
-        SaveSlotType eSlotType = GetEnumFromString<SaveSlotType>(sSlotName);
-        if (!DoesSaveExist(eSlotType._to_integral()))
+        if (!DoesSaveExist(sSlotName))
         {
-            CreateSave(eSlotType._to_integral());
+            CreateSave(sSlotName);
         }
     }
 }

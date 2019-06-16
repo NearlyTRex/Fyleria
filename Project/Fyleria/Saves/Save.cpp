@@ -25,7 +25,7 @@ Save::Save(const String& jsonString)
 void Save::Clear()
 {
     // Slot
-    SetSlot(0);
+    SetSlot("");
 
     // Time
     SetTime(0);
