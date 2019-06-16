@@ -6,6 +6,7 @@
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Items/ItemTypes.h"
 #include "Utility/Constants.h"
+#include "Utility/Converters.h"
 #include "Utility/Enum.h"
 #include "Utility/Templates.h"
 
@@ -670,11 +671,11 @@ void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
         const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyToDisplay);
         sPartyDetails_PartyID = party.GetPartyID();
         sPartyDetails_PartyType = party.GetPartyType();
-        sPartyDetails_PlayTime = STDToString(party.GetPlayTime());
+        sPartyDetails_PlayTime = ConvertGameTimeToString(party.GetPlayTime());
         sPartyDetails_TakenTargetTypes = ConcatStringVector(party.GetTakenTargetTypes());
         sPartyDetails_AvailableTargetTypes = ConcatStringVector(party.GetAvailableTargetTypes());
-        sPartyDetails_Members = Json(party.GetMembers()).dump(4);
-        sPartyDetails_Items = Json(party.GetItems()).dump(4);
+        sPartyDetails_Members = Json(party.GetMembers()).dump();
+        sPartyDetails_Items = Json(party.GetItems()).dump();
         sPartyDetails_Description = party.GetDescription();
     }
 
