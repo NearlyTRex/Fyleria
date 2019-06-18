@@ -41,6 +41,10 @@ StatChangeEntry::StatChangeEntry(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+StatChangeEntry::~StatChangeEntry()
+{
+}
+
 void to_json(Json& jsonData, const StatChangeEntry& obj)
 {
     // Applicable round or attack number

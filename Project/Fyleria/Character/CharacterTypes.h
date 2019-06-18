@@ -35,7 +35,8 @@ BETTER_ENUM(CharacterBasicStatType_String, Int,
     Handedness,
     BaseRace,
     TransformedRace,
-    PowerSet
+    PowerSet,
+    WeaponSet
 );
 
 BETTER_ENUM(CharacterBasicStatType_Int, Int,
@@ -109,8 +110,7 @@ BETTER_ENUM(CharacterProgressStatType_Int, Int,
 BETTER_ENUM(CharacterBattleStatType_String, Int,
     None,
     ActionSourceThisAction,
-    MostRecentActionSource,
-    CurrentWeaponSet
+    MostRecentActionSource
 );
 
 BETTER_ENUM(CharacterBattleStatType_StringArray, Int,

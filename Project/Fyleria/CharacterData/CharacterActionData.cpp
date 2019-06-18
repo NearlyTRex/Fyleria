@@ -16,6 +16,10 @@ CharacterActionData::CharacterActionData(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+CharacterActionData::~CharacterActionData()
+{
+}
+
 void CharacterActionData::Clear()
 {
     // List of character actions

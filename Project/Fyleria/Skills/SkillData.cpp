@@ -19,6 +19,10 @@ SkillData::SkillData(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+SkillData::~SkillData()
+{
+}
+
 void SkillData::Clear()
 {
     // Run types

@@ -17,6 +17,10 @@ ItemDataIngredient::ItemDataIngredient(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+ItemDataIngredient::~ItemDataIngredient()
+{
+}
+
 void ItemDataIngredient::Clear()
 {
     // Base clear

@@ -22,6 +22,9 @@ public:
     explicit CharacterActionResult(const Json& jsonData);
     explicit CharacterActionResult(const String& jsonString);
 
+    // Destructor
+    virtual ~CharacterActionResult();
+
     // Final skill damage
     MAKE_JSON_BASIC_TYPE_ACCESSORS(FinalDamage, Int);
 

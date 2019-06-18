@@ -17,6 +17,10 @@ ItemDataPotion::ItemDataPotion(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+ItemDataPotion::~ItemDataPotion()
+{
+}
+
 void ItemDataPotion::Clear()
 {
     // Base clear

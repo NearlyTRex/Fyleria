@@ -20,6 +20,9 @@ public:
     RecipeEntry();
     RecipeEntry(const Json& jsonData);
 
+    // Destructor
+    virtual ~RecipeEntry();
+
     // Clear all data
     void Clear();
 

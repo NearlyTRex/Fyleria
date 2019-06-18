@@ -19,6 +19,9 @@ public:
     ItemDataWeapon();
     ItemDataWeapon(const Json& jsonData);
 
+    // Destructor
+    virtual ~ItemDataWeapon();
+
     // Clear all data
     virtual void Clear();
 

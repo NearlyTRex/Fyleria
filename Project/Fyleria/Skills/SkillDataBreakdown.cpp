@@ -17,6 +17,10 @@ SkillDataBreakdown::SkillDataBreakdown(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+SkillDataBreakdown::~SkillDataBreakdown()
+{
+}
+
 void SkillDataBreakdown::Clear()
 {
     // Base clear

@@ -17,6 +17,10 @@ ItemDataArmor::ItemDataArmor(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+ItemDataArmor::~ItemDataArmor()
+{
+}
+
 void ItemDataArmor::Clear()
 {
     // Base clear

@@ -22,6 +22,10 @@ Save::Save(const String& jsonString)
 {
 }
 
+Save::~Save()
+{
+}
+
 void Save::Clear()
 {
     // Slot

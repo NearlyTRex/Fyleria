@@ -22,6 +22,10 @@ CharacterBattleData::CharacterBattleData(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+CharacterBattleData::~CharacterBattleData()
+{
+}
+
 void CharacterBattleData::Clear()
 {
     // Clear stat values
@@ -149,7 +153,7 @@ void CharacterBattleData::UpdateEquipmentRatings(const String& sCharacterID, con
     }
 
     // Get current weapon set
-    const String& sWeaponSet = character.GetCurrentWeaponSet();
+    const String& sWeaponSet = character.GetWeaponSet();
     if(sWeaponSet.empty())
     {
         return;

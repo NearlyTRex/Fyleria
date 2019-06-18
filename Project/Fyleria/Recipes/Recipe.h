@@ -21,6 +21,9 @@ public:
     Recipe();
     Recipe(const Json& jsonData);
 
+    // Destructor
+    virtual ~Recipe();
+
     // Clear all data
     void Clear();
 

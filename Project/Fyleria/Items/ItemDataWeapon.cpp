@@ -17,6 +17,10 @@ ItemDataWeapon::ItemDataWeapon(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+ItemDataWeapon::~ItemDataWeapon()
+{
+}
+
 void ItemDataWeapon::Clear()
 {
     // Base clear

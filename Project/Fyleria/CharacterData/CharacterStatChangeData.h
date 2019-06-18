@@ -22,6 +22,9 @@ public:
     CharacterStatChangeData();
     CharacterStatChangeData(const Json& jsonData);
 
+    // Destructor
+    virtual ~CharacterStatChangeData();
+
     // Clear all data
     void Clear();
 

@@ -53,9 +53,9 @@ public:
     String GetCharacterTargetType() const;
     MAKE_MODULE_RESULT_VARIANT(GetCharacterTargetType);
 
-    // Get current weapon set
-    String GetCurrentWeaponSet() const;
-    MAKE_MODULE_RESULT_VARIANT(GetCurrentWeaponSet);
+    // Get weapon set
+    String GetWeaponSet() const;
+    MAKE_MODULE_RESULT_VARIANT(GetWeaponSet);
 
     // Get equipped items
     CharacterPartyEquippedItemArray GetEquippedItems() const;

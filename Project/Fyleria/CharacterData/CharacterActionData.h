@@ -18,6 +18,9 @@ public:
     CharacterActionData();
     CharacterActionData(const Json& jsonData);
 
+    // Destructor
+    virtual ~CharacterActionData();
+
     // Clear all data
     void Clear();
 

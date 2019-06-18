@@ -21,6 +21,10 @@ CharacterActionResult::CharacterActionResult(const String& jsonString)
 {
 }
 
+CharacterActionResult::~CharacterActionResult()
+{
+}
+
 Bool CharacterActionResult::operator==(const CharacterActionResult& other) const
 {
     return (Json(*this) == Json(other));

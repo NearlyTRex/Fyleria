@@ -18,6 +18,9 @@ public:
     SerializableToJson();
     SerializableToJson(const Json& jsonData);
 
+    // Destructor
+    virtual ~SerializableToJson();
+
     // Serialization from/to json
     virtual void FromJson(const Json& jsonData);
     virtual void FromJsonString(const String& sJsonString);

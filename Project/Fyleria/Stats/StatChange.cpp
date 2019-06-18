@@ -24,6 +24,10 @@ StatChange::StatChange(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+StatChange::~StatChange()
+{
+}
+
 void StatChange::Clear()
 {
     // Relevant skill data

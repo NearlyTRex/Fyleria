@@ -17,6 +17,10 @@ SkillDataCrafting::SkillDataCrafting(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+SkillDataCrafting::~SkillDataCrafting()
+{
+}
+
 void SkillDataCrafting::Clear()
 {
     // Base clear

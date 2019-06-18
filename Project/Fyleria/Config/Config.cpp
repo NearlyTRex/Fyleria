@@ -21,6 +21,10 @@ Config::Config(const String& jsonString)
 {
 }
 
+Config::~Config()
+{
+}
+
 MAKE_JSON_OBJ_TYPE_CONVERTERS_IMPL(Config);
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Config, Config);
 

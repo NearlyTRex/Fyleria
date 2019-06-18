@@ -422,7 +422,8 @@ Bool CustomHttpHandler::SendResultsToUser(HttpResponseWriter& response, const St
     // Get results size
     LOG_STATEMENT("Calling DLL_GetModuleResultSize");
     unsigned int uResultsLen = DLL_GetModuleResultSize(sResultsID.c_str());
-    char sResultsStr[uResultsLen + 1] = {0};
+    char sResultsStr[uResultsLen + 1];
+    STDFillData(sResultsStr, sResultsStr + uResultsLen + 1, 0);
     if (!uResultsLen)
     {
         String sMessage = (BoostFormatString("The result size of '%1%' was zero.") % uResultsLen).str();

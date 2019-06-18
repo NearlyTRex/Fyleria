@@ -26,6 +26,9 @@ public:
     CharacterSkillData();
     CharacterSkillData(const Json& jsonData);
 
+    // Destructor
+    virtual ~CharacterSkillData();
+
     // Setup skill functions
     void SetupSkillFunctions();
 

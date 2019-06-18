@@ -15,6 +15,10 @@ CharacterBasicData::CharacterBasicData(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+CharacterBasicData::~CharacterBasicData()
+{
+}
+
 void CharacterBasicData::Clear()
 {
     // Clear character ID

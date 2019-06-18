@@ -24,6 +24,10 @@ CharacterAction::CharacterAction(const String& jsonString)
 {
 }
 
+CharacterAction::~CharacterAction()
+{
+}
+
 StringArray CharacterAction::GetAllCharacterIDs() const
 {
     StringArray vAllCharacterIDs;

@@ -22,6 +22,9 @@ public:
     explicit Save(const Json& jsonData);
     explicit Save(const String& jsonString);
 
+    // Destructor
+    virtual ~Save();
+
     // Clear all data
     void Clear();
 

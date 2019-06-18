@@ -18,6 +18,10 @@ CharacterProgressData::CharacterProgressData(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+CharacterProgressData::~CharacterProgressData()
+{
+}
+
 void CharacterProgressData::Clear()
 {
     // Clear stat values

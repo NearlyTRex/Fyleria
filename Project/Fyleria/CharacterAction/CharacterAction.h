@@ -23,6 +23,9 @@ public:
     explicit CharacterAction(const Json& jsonData);
     explicit CharacterAction(const String& jsonString);
 
+    // Destructor
+    virtual ~CharacterAction();
+
     // Get array of character IDs
     StringArray GetAllCharacterIDs() const;
     MAKE_MODULE_RESULT_VARIANT(GetAllCharacterIDs);

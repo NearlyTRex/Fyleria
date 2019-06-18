@@ -18,6 +18,9 @@ public:
     CharacterBattleData();
     CharacterBattleData(const Json& jsonData);
 
+    // Destructor
+    virtual ~CharacterBattleData();
+
     // Clear all data
     void Clear();
 
@@ -70,7 +73,6 @@ public:
     // String stats
     MAKE_STAT_TYPE_ACCESSORS(ActionSourceThisAction, String);
     MAKE_STAT_TYPE_ACCESSORS(MostRecentActionSource, String);
-    MAKE_STAT_TYPE_ACCESSORS(CurrentWeaponSet, String);
 
     // StringArray stats
     MAKE_STAT_TYPE_ACCESSORS(PreviousActionTypes, StringArray);

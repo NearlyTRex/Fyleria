@@ -30,7 +30,6 @@ appFyleria_linkoptions = {
 if os.host() == "linux" then
     table.insert(appFyleria_buildoptions, "-Wall")
     table.insert(appFyleria_buildoptions, "-Wfatal-errors")
-    table.insert(appFyleria_buildoptions, "-std=c++17")
 end
 
 -- Libs

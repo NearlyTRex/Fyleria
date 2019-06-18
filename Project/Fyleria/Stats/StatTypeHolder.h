@@ -22,6 +22,9 @@ public:
     // Constructor
     StatTypeHolder();
 
+    // Destructor
+    virtual ~StatTypeHolder();
+
     // Get stat values
     Bool GetBoolStatValue(const String& sStat, Bool& bValue) const;
     Bool GetByteStatValue(const String& sStat, Byte& iValue) const;

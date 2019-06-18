@@ -24,6 +24,9 @@ public:
     explicit CharacterActionEntry(const Json& jsonData);
     explicit CharacterActionEntry(const String& jsonString);
 
+    // Destructor
+    virtual ~CharacterActionEntry();
+
     // Determine if action type is a match
     Bool DoesMatchActionType(const String& sType) const;
 

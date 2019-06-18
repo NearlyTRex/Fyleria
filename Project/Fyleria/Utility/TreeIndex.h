@@ -19,6 +19,9 @@ public:
     TreeIndex(const Json& jsonData);
     TreeIndex(const String& jsonString);
 
+    // Destructor
+    virtual ~TreeIndex();
+
     // Composite types
     String GetTreeBranchType() const;
     String GetTreeBranchLeafType() const;

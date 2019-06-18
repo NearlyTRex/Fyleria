@@ -16,6 +16,10 @@ CharacterSkillData::CharacterSkillData(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+CharacterSkillData::~CharacterSkillData()
+{
+}
+
 #define SET_SKILL_FUNCTION_NODE(name)                                                           \
 {                                                                                               \
     CharacterSkillGetFunctionNodeType nodeGet;                                                  \

@@ -19,6 +19,9 @@ public:
     SkillDataAlchemy();
     SkillDataAlchemy(const Json& jsonData);
 
+    // Destructor
+    virtual ~SkillDataAlchemy();
+
     // Clear all data
     virtual void Clear();
 

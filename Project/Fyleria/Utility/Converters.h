@@ -19,6 +19,9 @@ String ConvertWideStringToString(const WString& sWideString);
 // Convert game time to string
 String ConvertGameTimeToString(ULongLong uTime);
 
+// Convert string to simple case string
+String ConvertToSimpleCaseString(const String& sString);
+
 // Convert to url encoded string
 String ConvertToUrlEncodedString(const String& sString);
 

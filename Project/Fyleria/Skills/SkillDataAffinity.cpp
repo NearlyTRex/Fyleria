@@ -17,6 +17,10 @@ SkillDataAffinity::SkillDataAffinity(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+SkillDataAffinity::~SkillDataAffinity()
+{
+}
+
 void SkillDataAffinity::Clear()
 {
     // Base clear

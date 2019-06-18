@@ -19,6 +19,9 @@ public:
     ItemDataArmor();
     ItemDataArmor(const Json& jsonData);
 
+    // Destructor
+    virtual ~ItemDataArmor();
+
     // Clear all data
     virtual void Clear();
 

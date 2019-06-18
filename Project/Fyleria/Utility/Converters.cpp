@@ -55,6 +55,33 @@ String ConvertGameTimeToString(ULongLong uTime)
     return ssOutput.str();
 }
 
+String ConvertToSimpleCaseString(const String& sString)
+{
+    StringStream sStrString;
+    bool bNewWord = true;
+    for(const auto byte : sString)
+    {
+        bNewWord = bNewWord || STDIsSpace(byte);
+        if(STDIsAlphaNumeric(byte))
+        {
+            if (bNewWord)
+            {
+                sStrString << static_cast<Byte>(STDToUpper(byte));
+                bNewWord = false;
+            }
+            else
+            {
+                sStrString << static_cast<Byte>(STDToLower(byte));
+            }
+        }
+        else
+        {
+            sStrString << byte;
+        }
+    }
+    return sStrString.str();
+}
+
 String ConvertToUrlEncodedString(const String& sString)
 {
     OutputStringStream sStrStream;

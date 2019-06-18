@@ -16,6 +16,10 @@ SerializableToJson::SerializableToJson(const Json& jsonData)
 {
 }
 
+SerializableToJson::~SerializableToJson()
+{
+}
+
 void SerializableToJson::FromJson(const Json& jsonData)
 {
     m_Data = jsonData;

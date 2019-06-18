@@ -20,6 +20,10 @@ CharacterStatChangeData::CharacterStatChangeData(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+CharacterStatChangeData::~CharacterStatChangeData()
+{
+}
+
 void CharacterStatChangeData::Clear()
 {
     // Passive data

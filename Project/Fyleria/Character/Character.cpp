@@ -111,9 +111,9 @@ String Character::GetCharacterTargetType() const
     return characterPartyMember.GetCharacterTargetType();
 }
 
-String Character::GetCurrentWeaponSet() const
+String Character::GetWeaponSet() const
 {
-    return GetBattleDataBase().GetCurrentWeaponSet();
+    return GetBasicData().GetWeaponSet();
 }
 
 CharacterPartyEquippedItemArray Character::GetEquippedItems() const
@@ -281,7 +281,7 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
             for(const StatChange& change : GetStatChangesFromTreeIndex(sTreeIndexType, treeIndex))
             {
                 // Ignore active changes that do not meet requirements
-                if(!change.DoesMeetActiveRequirements(GetCharacterID(), GetCharacterTargetType(), GetCurrentWeaponSet(), action))
+                if(!change.DoesMeetActiveRequirements(GetCharacterID(), GetCharacterTargetType(), GetWeaponSet(), action))
                 {
                     continue;
                 }

@@ -20,6 +20,10 @@ SkillDataCombat::SkillDataCombat(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+SkillDataCombat::~SkillDataCombat()
+{
+}
+
 void SkillDataCombat::Clear()
 {
     // Base clear

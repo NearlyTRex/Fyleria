@@ -33,6 +33,10 @@
 #define STDCout std::cout
 #define STDEndl std::endl
 #define STDStringLiterals std::string_literals
+#define STDIsSpace std::isspace
+#define STDIsAlphaNumeric std::isalpha
+#define STDToUpper std::toupper
+#define STDToLower std::tolower
 #define STDHash std::hash
 #define STDPair std::pair
 #define STDVector std::vector

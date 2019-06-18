@@ -18,6 +18,9 @@ public:
     SkillDataAffinity();
     SkillDataAffinity(const Json& jsonData);
 
+    // Destructor
+    virtual ~SkillDataAffinity();
+
     // Clear all data
     virtual void Clear();
 

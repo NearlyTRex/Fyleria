@@ -20,6 +20,10 @@ SkillDataWeapon::SkillDataWeapon(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+SkillDataWeapon::~SkillDataWeapon()
+{
+}
+
 void SkillDataWeapon::Clear()
 {
     // Base clear

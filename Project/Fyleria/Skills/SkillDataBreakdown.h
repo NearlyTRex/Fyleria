@@ -19,6 +19,9 @@ public:
     SkillDataBreakdown();
     SkillDataBreakdown(const Json& jsonData);
 
+    // Destructor
+    virtual ~SkillDataBreakdown();
+
     // Clear all data
     virtual void Clear();
 

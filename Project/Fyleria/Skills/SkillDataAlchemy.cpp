@@ -17,6 +17,10 @@ SkillDataAlchemy::SkillDataAlchemy(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+SkillDataAlchemy::~SkillDataAlchemy()
+{
+}
+
 void SkillDataAlchemy::Clear()
 {
     // Base clear

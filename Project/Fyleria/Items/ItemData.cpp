@@ -17,6 +17,10 @@ ItemData::ItemData(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+ItemData::~ItemData()
+{
+}
+
 void ItemData::Clear()
 {
     // Run types

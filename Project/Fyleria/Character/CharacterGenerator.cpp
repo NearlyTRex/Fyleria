@@ -24,6 +24,10 @@ CharacterGenerator::CharacterGenerator(const String& jsonString)
 {
 }
 
+CharacterGenerator::~CharacterGenerator()
+{
+}
+
 CharacterBasicData CharacterGenerator::GenerateBasicData(const String& sCharacterID) const
 {
     // Create basic data
@@ -44,6 +48,7 @@ CharacterBasicData CharacterGenerator::GenerateBasicData(const String& sCharacte
     basicData.SetBaseRace(GenerateBaseRace());
     basicData.SetTransformedRace(GenerateTransformedRace());
     basicData.SetPowerSet(GeneratePowerSet());
+    basicData.SetWeaponSet(GenerateWeaponSet());
     return basicData;
 }
 
@@ -217,6 +222,11 @@ String CharacterGenerator::GeneratePowerSet() const
     return String(GetUseRandomPowerSet() ? GetRandomEnumValue<CharacterPowerSetType>() : GetPowerSet());
 }
 
+String CharacterGenerator::GenerateWeaponSet() const
+{
+    return String(GetUseRandomWeaponSet() ? GetRandomEnumValue<CharacterWeaponSetType>() : GetWeaponSet());
+}
+
 void CharacterGenerator::RandomizeBasics()
 {
     // Basics
@@ -234,6 +244,7 @@ void CharacterGenerator::RandomizeBasics()
     SetUseRandomBaseRace(true);
     SetUseRandomTransformedRace(true);
     SetUseRandomPowerSet(true);
+    SetUseRandomWeaponSet(true);
 }
 
 void CharacterGenerator::RandomizeMeters()

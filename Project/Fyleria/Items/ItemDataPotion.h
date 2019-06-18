@@ -19,6 +19,9 @@ public:
     ItemDataPotion();
     ItemDataPotion(const Json& jsonData);
 
+    // Destructor
+    virtual ~ItemDataPotion();
+
     // Clear all data
     virtual void Clear();
 

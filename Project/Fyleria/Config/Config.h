@@ -20,6 +20,9 @@ public:
     explicit Config(const Json& jsonData);
     explicit Config(const String& jsonString);
 
+    // Destructor
+    virtual ~Config();
+
     // Item file locations
     MAKE_JSON_BASIC_TYPE_ACCESSORS(ItemArmorChestFile, String);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(ItemArmorFeetFile, String);

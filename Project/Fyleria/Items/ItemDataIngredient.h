@@ -19,6 +19,9 @@ public:
     ItemDataIngredient();
     ItemDataIngredient(const Json& jsonData);
 
+    // Destructor
+    virtual ~ItemDataIngredient();
+
     // Clear all data
     virtual void Clear();
 

@@ -20,6 +20,9 @@ public:
     ItemData();
     ItemData(const Json& jsonData);
 
+    // Destructor
+    virtual ~ItemData();
+
     // Clear all data
     virtual void Clear();
 

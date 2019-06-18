@@ -316,7 +316,8 @@ Json WebsocketServer::HandleModuleFunctionCall(WebsocketConnectionHandlePtr pHan
 
         LOG_STATEMENT("Calling DLL_GetModuleResultSize");
         unsigned int uResultsLen = DLL_GetModuleResultSize(sInputResultsId.c_str());
-        char sResultsStr[uResultsLen + 1] = {0};
+        char sResultsStr[uResultsLen + 1];
+        STDFillData(sResultsStr, sResultsStr + uResultsLen + 1, 0);
 
         LOG_STATEMENT("Calling DLL_GetModuleResults");
         return_value = DLL_GetModuleResults(sInputResultsId.c_str(), sResultsStr, uResultsLen);
@@ -373,7 +374,8 @@ Json WebsocketServer::HandleModuleFunctionCall(WebsocketConnectionHandlePtr pHan
 
         LOG_STATEMENT("Calling DLL_GetModuleResultSize");
         unsigned int uResultsLen = DLL_GetModuleResultSize(sInputResultsId.c_str());
-        char sResultsStr[uResultsLen + 1] = {0};
+        char sResultsStr[uResultsLen + 1];
+        STDFillData(sResultsStr, sResultsStr + uResultsLen + 1, 0);
 
         LOG_STATEMENT("Calling DLL_GetModuleResults");
         return_value = DLL_GetModuleResults(sInputResultsId.c_str(), sResultsStr, uResultsLen);
@@ -481,7 +483,8 @@ Json WebsocketServer::HandleModuleFunctionCall(WebsocketConnectionHandlePtr pHan
 
         LOG_STATEMENT("Calling DLL_GetModuleResultSize");
         unsigned int uResultsLen = DLL_GetModuleResultSize(sInputResultsId.c_str());
-        char sResultsStr[uResultsLen + 1] = {0};
+        char sResultsStr[uResultsLen + 1];
+        STDFillData(sResultsStr, sResultsStr + uResultsLen + 1, 0);
 
         LOG_STATEMENT("Calling DLL_GetModuleResults");
         bool return_value = DLL_GetModuleResults(sInputResultsId.c_str(), sResultsStr, uResultsLen);

@@ -39,8 +39,16 @@ typedef STDUnorderedMap<String, StatType> StatTypeMap;
 template <class T>
 Bool SetStatValue(StatTypeMap& tStatMap, const String& sStatName, const T& inValue)
 {
-    auto result = tStatMap.insert_or_assign(sStatName, StatType(inValue));
-    return (result.first != tStatMap.end());
+    if(tStatMap.find(sStatName) == tStatMap.end())
+    {
+        auto result = tStatMap.insert({sStatName, StatType(inValue)});
+        return (result.first != tStatMap.end());
+    }
+    else
+    {
+        tStatMap.at(sStatName).SetDataValue(StatType(inValue));
+        return true;
+    }
 }
 template <class T>
 Bool GetStatValue(const StatTypeMap& tStatMap, const String& sStatName, T& outValue)

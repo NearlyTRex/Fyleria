@@ -15,6 +15,10 @@ RecipeEntry::RecipeEntry(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+RecipeEntry::~RecipeEntry()
+{
+}
+
 void RecipeEntry::Clear()
 {
     // Chance to success

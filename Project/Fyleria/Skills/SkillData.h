@@ -21,6 +21,9 @@ public:
     SkillData();
     SkillData(const Json& jsonData);
 
+    // Destructor
+    virtual ~SkillData();
+
     // Clear all data
     virtual void Clear();
 

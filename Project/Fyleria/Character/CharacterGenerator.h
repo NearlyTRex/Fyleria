@@ -24,6 +24,9 @@ public:
     explicit CharacterGenerator(const Json& jsonData);
     explicit CharacterGenerator(const String& jsonString);
 
+    // Destructor
+    virtual ~CharacterGenerator();
+
     // Generate character data
     CharacterBasicData GenerateBasicData(const String& sCharacterID) const;
     CharacterProgressData GenerateProgressData() const;
@@ -38,6 +41,7 @@ public:
     String GenerateBaseRace() const;
     String GenerateTransformedRace() const;
     String GeneratePowerSet() const;
+    String GenerateWeaponSet() const;
 
     // Randomization
     void RandomizeBasics();
@@ -61,6 +65,7 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(BaseRace, String);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(TransformedRace, String);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(PowerSet, String);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(WeaponSet, String);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomName, Bool);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomAge, Bool);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomGender, Bool);
@@ -70,6 +75,7 @@ public:
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomBaseRace, Bool);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomTransformedRace, Bool);
     MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomPowerSet, Bool);
+    MAKE_JSON_BASIC_TYPE_ACCESSORS(UseRandomWeaponSet, Bool);
 
     // Meters
     MAKE_JSON_BASIC_TYPE_ACCESSORS(HPStart, Int);

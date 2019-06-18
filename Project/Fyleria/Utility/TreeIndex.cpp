@@ -36,6 +36,10 @@ TreeIndex::TreeIndex(const String& jsonString)
     from_json(JsonParse(jsonString), *this);
 }
 
+TreeIndex::~TreeIndex()
+{
+}
+
 String TreeIndex::GetTreeBranchType() const
 {
     return (GetTree() + GetBranch());

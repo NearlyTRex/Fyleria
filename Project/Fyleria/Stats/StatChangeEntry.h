@@ -20,6 +20,9 @@ public:
     StatChangeEntry();
     StatChangeEntry(const Json& jsonData);
 
+    // Destructor
+    virtual ~StatChangeEntry();
+
     // Applicable round or attack number
     MAKE_RAW_BASIC_TYPE_ACCESSORS(Round, Short);
     MAKE_RAW_BASIC_TYPE_ACCESSORS(Attack, Short);

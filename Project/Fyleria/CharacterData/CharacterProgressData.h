@@ -19,6 +19,9 @@ public:
     CharacterProgressData();
     CharacterProgressData(const Json& jsonData);
 
+    // Destructor
+    virtual ~CharacterProgressData();
+
     // Clear all data
     void Clear();
 

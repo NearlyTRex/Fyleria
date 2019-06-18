@@ -18,6 +18,9 @@ public:
     SkillDataCombat();
     SkillDataCombat(const Json& jsonData);
 
+    // Destructor
+    virtual ~SkillDataCombat();
+
     // Clear all data
     virtual void Clear();
 

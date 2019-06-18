@@ -15,6 +15,10 @@ Recipe::Recipe(const Json& jsonData)
     from_json(jsonData, *this);
 }
 
+Recipe::~Recipe()
+{
+}
+
 void Recipe::Clear()
 {
     // Chance to success

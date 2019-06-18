@@ -19,6 +19,9 @@ public:
     SkillDataCrafting();
     SkillDataCrafting(const Json& jsonData);
 
+    // Destructor
+    virtual ~SkillDataCrafting();
+
     // Clear all data
     virtual void Clear();
 

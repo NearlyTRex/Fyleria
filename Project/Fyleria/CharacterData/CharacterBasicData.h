@@ -19,6 +19,9 @@ public:
     CharacterBasicData();
     CharacterBasicData(const Json& jsonData);
 
+    // Destructor
+    virtual ~CharacterBasicData();
+
     // Clear all data
     void Clear();
 
@@ -41,6 +44,7 @@ public:
     MAKE_STAT_TYPE_ACCESSORS(BaseRace, String);
     MAKE_STAT_TYPE_ACCESSORS(TransformedRace, String);
     MAKE_STAT_TYPE_ACCESSORS(PowerSet, String);
+    MAKE_STAT_TYPE_ACCESSORS(WeaponSet, String);
 
     // Int stats
     MAKE_STAT_TYPE_ACCESSORS(Age, Int);

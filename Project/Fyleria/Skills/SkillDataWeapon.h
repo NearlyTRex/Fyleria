@@ -18,6 +18,9 @@ public:
     SkillDataWeapon();
     SkillDataWeapon(const Json& jsonData);
 
+    // Destructor
+    virtual ~SkillDataWeapon();
+
     // Clear all data
     virtual void Clear();
 

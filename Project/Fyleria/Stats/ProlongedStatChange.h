@@ -19,6 +19,9 @@ public:
     ProlongedStatChange();
     ProlongedStatChange(const Json& jsonData);
 
+    // Destructor
+    virtual ~ProlongedStatChange();
+
     // Relevant stat change
     MAKE_JSON_BASIC_TYPE_ACCESSORS(StatChangeEntry, StatChangeEntry);
 

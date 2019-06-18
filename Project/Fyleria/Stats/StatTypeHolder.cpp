@@ -10,6 +10,10 @@ StatTypeHolder::StatTypeHolder()
 {
 }
 
+StatTypeHolder::~StatTypeHolder()
+{
+}
+
 Bool StatTypeHolder::GetBoolStatValue(const String& sStat, Bool& bValue) const
 {
     return GetStatValue<Bool>(GetStats(), sStat, bValue);

@@ -24,6 +24,9 @@ public:
     StatChange();
     StatChange(const Json& jsonData);
 
+    // Destructor
+    virtual ~StatChange();
+
     // Clear all data
     void Clear();
 

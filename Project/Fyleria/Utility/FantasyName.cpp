@@ -3,6 +3,7 @@
 
 #include "Utility/FantasyName.h"
 #include "Utility/Templates.h"
+#include "Utility/Converters.h"
 
 namespace Gecko
 {
@@ -10,7 +11,7 @@ namespace Gecko
 String GenerateRandomFantasyName(const String& sPattern)
 {
     FantasyNameGenerator generator(sPattern);
-    return generator.toString();
+    return ConvertToSimpleCaseString(generator.toString());
 }
 
 String GetRandomNamePattern()
