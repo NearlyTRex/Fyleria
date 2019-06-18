@@ -1,6 +1,31 @@
 #ifndef _PYTHON3_EXTRA_PYCONFIG_H_
 #define _PYTHON3_EXTRA_PYCONFIG_H_
 
+// Python path
+#ifndef PYTHONPATH
+    #define PYTHONPATH ""
+#endif
+
+// Prefix
+#ifndef PREFIX
+    #define PREFIX ""
+#endif
+
+// Executable prefix
+#ifndef EXEC_PREFIX
+    #define EXEC_PREFIX ""
+#endif
+
+// Version
+#ifndef VERSION
+    #define VERSION ""
+#endif
+
+// Vpath
+#ifndef VPATH
+    #define VPATH ""
+#endif
+
 // Include the correct pyconfig.h
 #if defined(_MSC_VER) || defined(__MINGW32__) || defined(__MINGW64__)
     #include "../orig/PC/pyconfig.h"
@@ -15,4 +40,3 @@
 #endif
 
 #endif
-

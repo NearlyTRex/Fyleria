@@ -16,12 +16,7 @@ libPython3_includedirs = {
 -- Defines
 libPython3_defines = {
     "Py_NO_ENABLE_SHARED",
-    "Py_BUILD_CORE",
-    "PYTHONPATH=\"\"",
-    "PREFIX=\"\"",
-    "EXEC_PREFIX=\"\"",
-    "VERSION=\"\"",
-    "VPATH=\"\""
+    "Py_BUILD_CORE"
 }
 libPython3_debugdefines = {
     "NDEBUG"
