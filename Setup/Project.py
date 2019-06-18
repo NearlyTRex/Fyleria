@@ -110,14 +110,9 @@ def BuildProject(system_info, program_options):
     # Inform user
     Utility.LogStatement("Building project")
 
-    # Flags
+    # Premake flags
     premake_file_flag = "--file=Project/premake5.lua"
     premake_verbose_flag = "--verbose=1" if program_options.verbose else ""
-    make_verbose_flag = "verbose=1"
-    make_debug32_flag = "config=debug32" if (system_info.is_32bits and program_options.configuration == "debug") else ""
-    make_debug64_flag = "config=debug64" if (system_info.is_64bits and program_options.configuration == "debug") else ""
-    make_release32_flag = "config=release32" if (system_info.is_32bits and program_options.configuration == "release") else ""
-    make_release64_flag = "config=release64" if (system_info.is_64bits and program_options.configuration == "release") else ""
 
     # Create project files
     Utility.RunSubprocess(subprocess_args=[
@@ -132,13 +127,23 @@ def BuildProject(system_info, program_options):
         Utility.LogStatement("Changing directory to " + system_info.build_path)
         os.chdir(system_info.build_path)
 
-    # Build project
-    Utility.RunLiveSubprocess(subprocess_args=[
-        system_info.make_bin,
-        make_debug32_flag,
-        make_debug64_flag,
-        make_release32_flag,
-        make_release64_flag,
-        make_verbose_flag
-    ], verbose_output=program_options.verbose)
+    # Makefile build type
+    if program_options.build_type.startswith("gmake"):
+
+        # Make flags
+        make_verbose_flag = "verbose=1"
+        make_debug32_flag = "config=debug32" if (system_info.is_32bits and program_options.configuration == "debug") else ""
+        make_debug64_flag = "config=debug64" if (system_info.is_64bits and program_options.configuration == "debug") else ""
+        make_release32_flag = "config=release32" if (system_info.is_32bits and program_options.configuration == "release") else ""
+        make_release64_flag = "config=release64" if (system_info.is_64bits and program_options.configuration == "release") else ""
+
+        # Run make
+        Utility.RunLiveSubprocess(subprocess_args=[
+            system_info.make_bin,
+            make_debug32_flag,
+            make_debug64_flag,
+            make_release32_flag,
+            make_release64_flag,
+            make_verbose_flag
+        ], verbose_output=program_options.verbose)
 ###########################################################################
