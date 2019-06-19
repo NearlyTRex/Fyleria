@@ -23,7 +23,7 @@ public:
     virtual ~SkillDataAlchemy();
 
     // Clear all data
-    virtual void Clear();
+    virtual void Clear() override;
 
     // Skill tree type
     static String GetTreeType()

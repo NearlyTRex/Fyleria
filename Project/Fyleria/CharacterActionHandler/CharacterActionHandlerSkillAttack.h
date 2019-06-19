@@ -26,10 +26,10 @@ public:
         const String& sDestCharID) const;
 
     // Stages for running the action
-    virtual Bool Setup(CharacterAction& action);
-    virtual Bool Finish(CharacterAction& action);
-    virtual Bool GenerateResult(CharacterAction& action);
-    virtual Bool ApplyResult(CharacterAction& action);
+    virtual Bool Setup(CharacterAction& action) override;
+    virtual Bool Finish(CharacterAction& action) override;
+    virtual Bool GenerateResult(CharacterAction& action) override;
+    virtual Bool ApplyResult(CharacterAction& action) override;
 };
 
 // Typedef

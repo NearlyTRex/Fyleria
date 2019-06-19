@@ -23,7 +23,7 @@ public:
     virtual ~SkillDataCrafting();
 
     // Clear all data
-    virtual void Clear();
+    virtual void Clear() override;
 
     // Skill tree type
     static String GetTreeType()

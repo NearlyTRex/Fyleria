@@ -26,7 +26,7 @@ public:
     virtual ~Save();
 
     // Clear all data
-    void Clear();
+    virtual void Clear() override;
 
     // Slot
     MAKE_JSON_BASIC_TYPE_ACCESSORS(Slot, String);

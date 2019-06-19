@@ -138,7 +138,7 @@ public:
     CustomHttpHandler(const String& sWebRoot);
 
     // Request handler
-    void onRequest(const HttpRequest& request, HttpResponseWriter response);
+    void onRequest(const HttpRequest& request, HttpResponseWriter response) override;
 
 private:
 

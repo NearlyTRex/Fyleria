@@ -20,7 +20,7 @@ public:
     virtual ~WebPagePartyManager();
 
     // Update page content
-    virtual void UpdatePageContent(const ParameterMapType& tParams);
+    virtual void UpdatePageContent(const ParameterMapType& tParams) override;
 };
 
 // Typedefs

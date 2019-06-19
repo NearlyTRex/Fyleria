@@ -23,7 +23,7 @@ public:
     virtual ~ItemDataIngredient();
 
     // Clear all data
-    virtual void Clear();
+    virtual void Clear() override;
 
     // Item tree type
     static String GetTreeType()
