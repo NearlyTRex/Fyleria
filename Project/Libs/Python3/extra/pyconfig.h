@@ -16,14 +16,14 @@
     #define EXEC_PREFIX ""
 #endif
 
-// Version
-#ifndef VERSION
-    #define VERSION ""
-#endif
-
-// Vpath
+// Virtual path
 #ifndef VPATH
     #define VPATH ""
+#endif
+
+// Version
+#ifndef VERSION
+    #define VERSION "3.8.0"
 #endif
 
 // Include the correct pyconfig.h
