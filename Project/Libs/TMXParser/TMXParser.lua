@@ -16,6 +16,8 @@ libTMXParser_libs = {
 
 -- Sources
 libTMXParser_sources = {
+    libTMXParser_srcdir .. "base64/base64.cpp",
+    libTMXParser_srcdir .. "miniz.c",
     libTMXParser_srcdir .. "TmxColor.cpp",
     libTMXParser_srcdir .. "TmxEllipse.cpp",
     libTMXParser_srcdir .. "TmxGroupLayer.cpp",
