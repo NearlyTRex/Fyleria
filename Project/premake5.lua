@@ -22,6 +22,7 @@ require "utility"
 workspace "all"
     startproject "Fyleria"
     location(GetBuildLocation())
+    toolset(GetBuildToolset())
     configurations { "Debug32", "Release32", "Debug64", "Release64" }
 filter "configurations:*32"
     architecture "x86"
@@ -72,7 +73,7 @@ filter "configurations:Release*"
 
 -- Assert
 project "Assert"
-kind "StaticLib"
+kind "SharedLib"
 language "C++"
 pic "On"
     includedirs(libAssert_includedirs)
@@ -86,7 +87,7 @@ filter "configurations:Release*"
 
 -- BackwardCPP
 project "BackwardCPP"
-kind "StaticLib"
+kind "SharedLib"
 language "C++"
 pic "On"
     includedirs(libBackwardCPP_includedirs)
@@ -96,7 +97,7 @@ pic "On"
 
 -- Boost
 project "Boost"
-kind "StaticLib"
+kind "SharedLib"
 language "C++"
 pic "On"
     includedirs(libBoost_includedirs)
@@ -106,7 +107,7 @@ pic "On"
 
 -- FantasyName
 project "FantasyName"
-kind "StaticLib"
+kind "SharedLib"
 language "C++"
 pic "On"
     includedirs(libFantasyName_includedirs)
@@ -121,7 +122,7 @@ filter "configurations:Release*"
 
 -- MicroPather
 project "MicroPather"
-kind "StaticLib"
+kind "SharedLib"
 language "C++"
 pic "On"
     includedirs(libMicroPather_includedirs)
@@ -135,7 +136,7 @@ filter "configurations:Release*"
 
 -- Pistache
 project "Pistache"
-kind "StaticLib"
+kind "SharedLib"
 language "C++"
 pic "On"
     includedirs(libPistache_includedirs)
@@ -146,7 +147,7 @@ pic "On"
 
 -- Python3
 project "Python3"
-kind "StaticLib"
+kind "SharedLib"
 language "C"
 pic "On"
     includedirs(libPython3_includedirs)
@@ -163,7 +164,7 @@ filter "configurations:Release*"
 
 -- TinyXML2
 project "TinyXML2"
-kind "StaticLib"
+kind "SharedLib"
 language "C++"
 pic "On"
     includedirs(libTinyXML2_includedirs)
@@ -173,7 +174,7 @@ pic "On"
 
 -- TMXParser
 project "TMXParser"
-kind "StaticLib"
+kind "SharedLib"
 language "C++"
 pic "On"
     includedirs(libTMXParser_includedirs)
@@ -185,7 +186,7 @@ pic "On"
 
 -- Zlib
 project "Zlib"
-kind "StaticLib"
+kind "SharedLib"
 language "C"
 pic "On"
     includedirs(libZlib_includedirs)

@@ -66,6 +66,15 @@ function GetSystemArchitecture()
     return os_name .. "_" .. arch_name
 end
 
+-- Get build toolset
+function GetBuildToolset()
+    if os.host() == "linux" then
+        return "clang"
+    elseif os.host() == "windows" then
+        return "msc"
+    end
+end
+
 -- Get build location
 function GetBuildLocation()
     return "Build_" .. os.host()
