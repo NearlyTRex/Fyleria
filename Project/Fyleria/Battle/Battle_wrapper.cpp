@@ -9,9 +9,18 @@
 
 namespace Gecko
 {
-
-SafePtr<BattleManager>& GetBattleManager() { return BattleManager::GetInstance(); }
-
+    auto fnCreateBattle = MAKE_MANAGER_VOID_LAMBDA_A1(BattleManager, CreateBattle, const String&);
+    auto fnUnloadBattle = MAKE_MANAGER_VOID_LAMBDA_A1(BattleManager, UnloadBattle, const String&);
+    auto fnDoesBattleExist = MAKE_MANAGER_RETURN_LAMBDA_A1(BattleManager, DoesBattleExist, Bool, const String&);
+    auto fnDoesBattleExist_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(BattleManager, DoesBattleExist_StoreResult, const String&, const String&);
+    auto fnGetBattle1 = MAKE_MANAGER_RETURN_LAMBDA_A1(BattleManager, GetBattle, const Battle&, const String&);
+    auto fnGetBattle2 = MAKE_MANAGER_RETURN_LAMBDA_A1(BattleManager, GetBattle, Battle&, const String&);
+    auto fnGetBattle_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(BattleManager, GetBattle_StoreResult, const String&, const String&);
+    auto fnGetCurrentBattle1 = MAKE_MANAGER_RETURN_LAMBDA(BattleManager, GetCurrentBattle, const Battle&);
+    auto fnGetCurrentBattle2 = MAKE_MANAGER_RETURN_LAMBDA(BattleManager, GetCurrentBattle, Battle&);
+    auto fnGetCurrentBattle_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(BattleManager, GetCurrentBattle_StoreResult, const String&);
+    auto fnGetCurrentBattleID = MAKE_MANAGER_RETURN_LAMBDA(BattleManager, GetCurrentBattleID, String&);
+    auto fnSetCurrentBattleID = MAKE_MANAGER_VOID_LAMBDA_A1(BattleManager, SetCurrentBattleID, const String&);
 };
 
 PYBIND11_EMBEDDED_MODULE(GeckoBattle, m)
@@ -77,20 +86,16 @@ PYBIND11_EMBEDDED_MODULE(GeckoBattle, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleActionFinished, Gecko);
 
     // BattleManager.h
-    PyBindClass<Gecko::BattleManager>(m, "BattleManager")
-        WRAPPING_ADD_METHOD_SIMPLE(CreateBattle, Gecko::BattleManager)
-        WRAPPING_ADD_METHOD_SIMPLE(UnloadBattle, Gecko::BattleManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesBattleExist, Gecko::BattleManager)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentBattleID, Gecko::BattleManager)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetBattle, Gecko::BattleManager, PyBindReturnCopy, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetBattle, Gecko::BattleManager, PyBindReturnRefInternal, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetCurrentBattle, Gecko::BattleManager, PyBindReturnCopy, )
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetCurrentBattle, Gecko::BattleManager, PyBindReturnRefInternal, )
-        WRAPPING_ADD_METHOD_SIMPLE(DoesBattleExist_StoreResult, Gecko::BattleManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetBattle_StoreResult, Gecko::BattleManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetCurrentBattle_StoreResult, Gecko::BattleManager)
-    ;
-
-    // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetBattleManager, Gecko, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA(CreateBattle, Gecko::fnCreateBattle);
+    WRAPPING_STANDALONE_LAMBDA(UnloadBattle, Gecko::fnUnloadBattle);
+    WRAPPING_STANDALONE_LAMBDA(DoesBattleExist, Gecko::fnDoesBattleExist);
+    WRAPPING_STANDALONE_LAMBDA(DoesBattleExist_StoreResult, Gecko::fnDoesBattleExist_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetBattle1, Gecko::fnGetBattle1, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetBattle2, Gecko::fnGetBattle2, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(GetBattle_StoreResult, Gecko::fnGetBattle_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentBattle1, Gecko::fnGetCurrentBattle1, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentBattle2, Gecko::fnGetCurrentBattle2, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(GetCurrentBattle_StoreResult, Gecko::fnGetCurrentBattle_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(GetCurrentBattleID, Gecko::fnGetCurrentBattleID);
+    WRAPPING_STANDALONE_LAMBDA(SetCurrentBattleID, Gecko::fnSetCurrentBattleID);
 }

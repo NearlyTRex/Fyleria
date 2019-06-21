@@ -10,9 +10,23 @@
 
 namespace Gecko
 {
-
-SafePtr<CharacterManager>& GetCharacterManager() { return CharacterManager::GetInstance(); }
-
+    auto fnLoadCharacter = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterManager, LoadCharacter, const Character&);
+    auto fnLoadCharacterFromFile = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterManager, LoadCharacterFromFile, const String&, const String&);
+    auto fnSaveCharacterToFile = MAKE_MANAGER_VOID_LAMBDA_A3(CharacterManager, SaveCharacterToFile, const String&, const String&, const String&);
+    auto fnCreateCharacter = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterManager, CreateCharacter, const String&);
+    auto fnUnloadCharacter = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterManager, UnloadCharacter, const String&);
+    auto fnDoesCharacterExist = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterManager, DoesCharacterExist, Bool, const String&);
+    auto fnDoesCharacterExist_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterManager, DoesCharacterExist_StoreResult, const String&, const String&);
+    auto fnGenerateCharacter = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterManager, GenerateCharacter, const String&, const CharacterGenerator&);
+    auto fnIsValidCharacterID = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterManager, IsValidCharacterID, Bool, const String&);
+    auto fnIsValidCharacterID_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterManager, IsValidCharacterID_StoreResult, const String&, const String&);
+    auto fnGetCharacter1 = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterManager, GetCharacter, const Character&, const String&);
+    auto fnGetCharacter2 = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterManager, GetCharacter, Character&, const String&);
+    auto fnGetCharacter_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterManager, GetCharacter_StoreResult, const String&, const String&);
+    auto fnGetAllCharacterIDs = MAKE_MANAGER_RETURN_LAMBDA(CharacterManager, GetAllCharacterIDs, StringArray);
+    auto fnGetAllCharacterIDs_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterManager, GetAllCharacterIDs_StoreResult, const String&);
+    auto fnApplyStatChangeEntry = MAKE_MANAGER_RETURN_LAMBDA_A2(CharacterManager, ApplyStatChangeEntry, Bool, const String&, const StatChangeEntry&);
+    auto fnDoesStatChangeEntryUseDelta = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterManager, DoesStatChangeEntryUseDelta, Bool, const StatChangeEntry&);
 };
 
 PYBIND11_MAKE_OPAQUE(Gecko::CharacterGeneratorArray);
@@ -158,33 +172,23 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterArrayFromJsonString, Gecko);
 
     // CharacterManager.h
-    PyBindClass<Gecko::CharacterManager>(m, "CharacterManager")
-        WRAPPING_ADD_METHOD_SIMPLE(LoadCharacter, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(LoadCharacterFromFile, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(SaveCharacterToFile, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(CreateCharacter, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(UnloadCharacter, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesCharacterExist, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GenerateCharacter, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsValidCharacterID, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetCharacter, Gecko::CharacterManager, PyBindReturnCopy, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetCharacter, Gecko::CharacterManager, PyBindReturnRefInternal, const Gecko::String&)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllCharacterIDs, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(ApplyStatChange, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(ApplyStatChangeEntry, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_OVERLOADED(ApplyStatChangeEntryOperation, Gecko::CharacterManager, const Gecko::String&, const Gecko::String&, const Gecko::String&, const Gecko::String&, Gecko::Float)
-        WRAPPING_ADD_METHOD_OVERLOADED(ApplyStatChangeEntryOperation, Gecko::CharacterManager, const Gecko::String&, const Gecko::String&, const Gecko::String&, const Gecko::String&, Gecko::Int)
-        WRAPPING_ADD_METHOD_OVERLOADED(ApplyStatChangeEntryOperation, Gecko::CharacterManager, const Gecko::String&, const Gecko::String&, const Gecko::String&, const Gecko::String&, Gecko::Bool)
-        WRAPPING_ADD_METHOD_OVERLOADED(ApplyStatChangeEntryOperation, Gecko::CharacterManager, const Gecko::String&, const Gecko::String&, const Gecko::String&, const Gecko::String&, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED(ApplyStatChangeEntryOperation, Gecko::CharacterManager, const Gecko::String&, const Gecko::String&, const Gecko::String&, const Gecko::String&, const Gecko::StringArray&)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesStatChangeEntryUseDelta, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetDeltaStatChangeEntryValues, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetFullStatChangeEntryValues, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesCharacterExist_StoreResult, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsValidCharacterID_StoreResult, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetCharacter_StoreResult, Gecko::CharacterManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllCharacterIDs_StoreResult, Gecko::CharacterManager)
-    ;
+    WRAPPING_STANDALONE_LAMBDA(LoadCharacter, Gecko::fnLoadCharacter);
+    WRAPPING_STANDALONE_LAMBDA(LoadCharacterFromFile, Gecko::fnLoadCharacterFromFile);
+    WRAPPING_STANDALONE_LAMBDA(SaveCharacterToFile, Gecko::fnSaveCharacterToFile);
+    WRAPPING_STANDALONE_LAMBDA(CreateCharacter, Gecko::fnCreateCharacter);
+    WRAPPING_STANDALONE_LAMBDA(UnloadCharacter, Gecko::fnUnloadCharacter);
+    WRAPPING_STANDALONE_LAMBDA(DoesCharacterExist, Gecko::fnDoesCharacterExist);
+    WRAPPING_STANDALONE_LAMBDA(DoesCharacterExist_StoreResult, Gecko::fnDoesCharacterExist_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(GenerateCharacter, Gecko::fnGenerateCharacter);
+    WRAPPING_STANDALONE_LAMBDA(IsValidCharacterID, Gecko::fnIsValidCharacterID);
+    WRAPPING_STANDALONE_LAMBDA(IsValidCharacterID_StoreResult, Gecko::fnIsValidCharacterID_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCharacter, Gecko::fnGetCharacter1, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCharacter, Gecko::fnGetCharacter2, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(GetCharacter_StoreResult, Gecko::fnGetCharacter_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(GetAllCharacterIDs, Gecko::fnGetAllCharacterIDs);
+    WRAPPING_STANDALONE_LAMBDA(GetAllCharacterIDs_StoreResult, Gecko::fnGetAllCharacterIDs_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(ApplyStatChangeEntry, Gecko::fnApplyStatChangeEntry);
+    WRAPPING_STANDALONE_LAMBDA(DoesStatChangeEntryUseDelta, Gecko::fnDoesStatChangeEntryUseDelta);
 
     // CharacterTypes.h
     WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterEquipmentTypeToCharacterWeaponSetType, Gecko);
@@ -217,7 +221,4 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
     WRAPPING_STANDALONE_METHOD_FUNC(GetCharacterTargetTypeNames, GetEnumNames<Gecko::CharacterTargetType>, Gecko);
     WRAPPING_STANDALONE_METHOD_FUNC(GetCharacterPartyTypeNames, GetEnumNames<Gecko::CharacterPartyType>, Gecko);
     WRAPPING_STANDALONE_METHOD_FUNC(GetCharacterActionTypeNames, GetEnumNames<Gecko::CharacterActionType>, Gecko);
-
-    // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetCharacterManager, Gecko, PyBindReturnCopy);
 }

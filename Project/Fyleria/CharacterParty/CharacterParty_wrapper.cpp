@@ -11,10 +11,36 @@
 
 namespace Gecko
 {
-
-SafePtr<CharacterPartyManager>& GetCharacterPartyManager() { return CharacterPartyManager::GetInstance(); }
-
-};
+    auto fnLoadParty = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterPartyManager, LoadParty, const CharacterParty&);
+    auto fnLoadPartyFromFile = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterPartyManager, LoadPartyFromFile, const String&, const String&);
+    auto fnSavePartyToFile = MAKE_MANAGER_VOID_LAMBDA_A3(CharacterPartyManager, SavePartyToFile, const String&, const String&, const String&);
+    auto fnCreateParty = MAKE_MANAGER_VOID_LAMBDA_A3(CharacterPartyManager, CreateParty, const String&, const String&, Bool);
+    auto fnUnloadParty = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterPartyManager, UnloadParty, const String&);
+    auto fnDoesPartyExistByID = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterPartyManager, DoesPartyExistByID, Bool, const String&);
+    auto fnDoesPartyExistByType = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterPartyManager, DoesPartyExistByType, Bool, const String&);
+    auto fnDoesPartyExistByID_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterPartyManager, DoesPartyExistByID_StoreResult, const String&, const String&);
+    auto fnDoesPartyExistByType_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterPartyManager, DoesPartyExistByType_StoreResult, const String&, const String&);
+    auto fnIsValidPartyID = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterPartyManager, IsValidPartyID, Bool, const String&);
+    auto fnIsValidPartyID_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterPartyManager, IsValidPartyID_StoreResult, const String&, const String&);
+    auto fnGetPartyByID1 = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterPartyManager, GetPartyByID, const CharacterParty&, const String&);
+    auto fnGetPartyByID2 = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterPartyManager, GetPartyByID, CharacterParty&, const String&);
+    auto fnGetPartyByID_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterPartyManager, GetPartyByID_StoreResult, const String&, const String&);
+    auto fnGetPartyByType1 = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterPartyManager, GetPartyByType, const CharacterParty&, const String&);
+    auto fnGetPartyByType2 = MAKE_MANAGER_RETURN_LAMBDA_A1(CharacterPartyManager, GetPartyByType, CharacterParty&, const String&);
+    auto fnGetPartyByType_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterPartyManager, GetPartyByType_StoreResult, const String&, const String&);
+    auto fnGetCurrentAllyParty1 = MAKE_MANAGER_RETURN_LAMBDA(CharacterPartyManager, GetCurrentAllyParty, const CharacterParty&);
+    auto fnGetCurrentAllyParty2 = MAKE_MANAGER_RETURN_LAMBDA(CharacterPartyManager, GetCurrentAllyParty, CharacterParty&);
+    auto fnGetCurrentAllyParty_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterPartyManager, GetCurrentAllyParty_StoreResult, const String&);
+    auto fnGetCurrentEnemyParty1 = MAKE_MANAGER_RETURN_LAMBDA(CharacterPartyManager, GetCurrentEnemyParty, const CharacterParty&);
+    auto fnGetCurrentEnemyParty2 = MAKE_MANAGER_RETURN_LAMBDA(CharacterPartyManager, GetCurrentEnemyParty, CharacterParty&);
+    auto fnGetCurrentEnemyParty_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterPartyManager, GetCurrentEnemyParty_StoreResult, const String&);
+    auto fnGetAllPartyIDs = MAKE_MANAGER_RETURN_LAMBDA(CharacterPartyManager, GetAllPartyIDs, StringArray);
+    auto fnGetAllPartyIDs_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterPartyManager, GetAllPartyIDs_StoreResult, const String&);
+    auto fnGetCurrentAllyPartyID = MAKE_MANAGER_RETURN_LAMBDA(CharacterPartyManager, GetCurrentAllyPartyID, String&);
+    auto fnSetCurrentAllyPartyID = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterPartyManager, SetCurrentAllyPartyID, const String&);
+    auto fnGetCurrentEnemyPartyID = MAKE_MANAGER_RETURN_LAMBDA(CharacterPartyManager, GetCurrentEnemyPartyID, String&);
+    auto fnSetCurrentEnemyPartyID = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterPartyManager, SetCurrentEnemyPartyID, const String&);
+}
 
 PYBIND11_MAKE_OPAQUE(Gecko::CharacterPartyItemArray);
 PYBIND11_MAKE_OPAQUE(Gecko::CharacterPartyArray);
@@ -171,36 +197,33 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyMemberArrayFromJsonString, Gecko);
 
     // CharacterPartyManager.h
-    PyBindClass<Gecko::CharacterPartyManager>(m, "CharacterPartyManager")
-        WRAPPING_ADD_METHOD_SIMPLE(LoadParty, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(LoadPartyFromFile, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(SavePartyToFile, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(CreateParty, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(UnloadParty, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesPartyExistByID, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesPartyExistByType, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsValidPartyID, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetPartyByID, Gecko::CharacterPartyManager, PyBindReturnCopy, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetPartyByID, Gecko::CharacterPartyManager, PyBindReturnRefInternal, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetPartyByType, Gecko::CharacterPartyManager, PyBindReturnCopy, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetPartyByType, Gecko::CharacterPartyManager, PyBindReturnRefInternal, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetCurrentAllyParty, Gecko::CharacterPartyManager, PyBindReturnCopy, )
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetCurrentAllyParty, Gecko::CharacterPartyManager, PyBindReturnRefInternal, )
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetCurrentEnemyParty, Gecko::CharacterPartyManager, PyBindReturnCopy, )
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetCurrentEnemyParty, Gecko::CharacterPartyManager, PyBindReturnRefInternal, )
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllPartyIDs, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentAllyPartyID, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentEnemyPartyID, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesPartyExistByID_StoreResult, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesPartyExistByType_StoreResult, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsValidPartyID_StoreResult, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetPartyByID_StoreResult, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetPartyByType_StoreResult, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetCurrentAllyParty_StoreResult, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetCurrentEnemyParty_StoreResult, Gecko::CharacterPartyManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllPartyIDs_StoreResult, Gecko::CharacterPartyManager)
-    ;
-
-    // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetCharacterPartyManager, Gecko, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA(LoadParty, Gecko::fnLoadParty);
+    WRAPPING_STANDALONE_LAMBDA(LoadPartyFromFile, Gecko::fnLoadPartyFromFile);
+    WRAPPING_STANDALONE_LAMBDA(SavePartyToFile, Gecko::fnSavePartyToFile);
+    WRAPPING_STANDALONE_LAMBDA(CreateParty, Gecko::fnCreateParty);
+    WRAPPING_STANDALONE_LAMBDA(UnloadParty, Gecko::fnUnloadParty);
+    WRAPPING_STANDALONE_LAMBDA(DoesPartyExistByID, Gecko::fnDoesPartyExistByID);
+    WRAPPING_STANDALONE_LAMBDA(DoesPartyExistByType, Gecko::fnDoesPartyExistByType);
+    WRAPPING_STANDALONE_LAMBDA(DoesPartyExistByID_StoreResult, Gecko::fnDoesPartyExistByID_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(DoesPartyExistByType_StoreResult, Gecko::fnDoesPartyExistByType_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(IsValidPartyID, Gecko::fnIsValidPartyID);
+    WRAPPING_STANDALONE_LAMBDA(IsValidPartyID_StoreResult, Gecko::fnIsValidPartyID_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetPartyByID, Gecko::fnGetPartyByID1, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetPartyByID, Gecko::fnGetPartyByID2, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(GetPartyByID_StoreResult, Gecko::fnGetPartyByID_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetPartyByType, Gecko::fnGetPartyByType1, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetPartyByType, Gecko::fnGetPartyByType2, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(GetPartyByType_StoreResult, Gecko::fnGetPartyByType_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentAllyParty, Gecko::fnGetCurrentAllyParty1, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentAllyParty, Gecko::fnGetCurrentAllyParty2, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(GetCurrentAllyParty_StoreResult, Gecko::fnGetCurrentAllyParty_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentEnemyParty, Gecko::fnGetCurrentEnemyParty1, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentEnemyParty, Gecko::fnGetCurrentEnemyParty2, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(GetCurrentEnemyParty_StoreResult, Gecko::fnGetCurrentEnemyParty_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(GetAllPartyIDs, Gecko::fnGetAllPartyIDs);
+    WRAPPING_STANDALONE_LAMBDA(GetAllPartyIDs_StoreResult, Gecko::fnGetAllPartyIDs_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentAllyPartyID, Gecko::fnGetCurrentAllyPartyID, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(SetCurrentAllyPartyID, Gecko::fnSetCurrentAllyPartyID);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentEnemyPartyID, Gecko::fnGetCurrentEnemyPartyID, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(SetCurrentEnemyPartyID, Gecko::fnSetCurrentEnemyPartyID);
 }
