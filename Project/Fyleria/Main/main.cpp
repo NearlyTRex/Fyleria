@@ -153,7 +153,6 @@ int main(int iArgCount, char** vArgList)
     if(!sScriptToRun.empty())
     {
         Gecko::RunGameScript(sScriptToRun.c_str());
-        return EXIT_SUCCESS;
     }
 
     // Launch server
