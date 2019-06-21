@@ -48,6 +48,9 @@
 #define DEFAULT_MAX_SCORING                         200
 #define DEFAULT_MAX_RANK                            20
 
+// Web server
+#define WEB_SERVER_MAX_PAYLOAD_SIZE                 16384
+
 // Web pages
 #define WEB_PAGE_TOOL_BASE                          "/tools"
 #define WEB_PAGE_TOOL_CHARACTER_MANAGER             "/tools/character_manager.html"
