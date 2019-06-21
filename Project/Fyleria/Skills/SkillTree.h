@@ -43,12 +43,12 @@ public:
     static Bool DoesSkillDataCombatExist(const TreeIndex& treeIndex);
     static Bool DoesSkillDataCraftingExist(const TreeIndex& treeIndex);
     static Bool DoesSkillDataWeaponExist(const TreeIndex& treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataAffinityExist, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataAlchemyExist, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataBreakdownExist, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataCombatExist, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataCraftingExist, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataWeaponExist, const TreeIndex&, treeIndex);
+    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataAffinityExist, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataAlchemyExist, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataBreakdownExist, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataCombatExist, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataCraftingExist, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(DoesSkillDataWeaponExist, const TreeIndex&);
 
     // Retrieve skill data
     static const SkillDataAffinity& RetrieveSkillDataAffinity(const TreeIndex& treeIndex);
@@ -57,12 +57,12 @@ public:
     static const SkillDataCombat& RetrieveSkillDataCombat(const TreeIndex& treeIndex);
     static const SkillDataCrafting& RetrieveSkillDataCrafting(const TreeIndex& treeIndex);
     static const SkillDataWeapon& RetrieveSkillDataWeapon(const TreeIndex& treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataAffinity, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataAlchemy, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataBreakdown, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataCombat, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataCrafting, const TreeIndex&, treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataWeapon, const TreeIndex&, treeIndex);
+    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataAffinity, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataAlchemy, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataBreakdown, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataCombat, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataCrafting, const TreeIndex&);
+    static MAKE_MODULE_RESULT_VARIANT_A1(RetrieveSkillDataWeapon, const TreeIndex&);
 
     // Get all skills
     static TreeIndexArray GetAllAffinitySkills();
@@ -85,24 +85,24 @@ public:
     static TreeIndexArray GetCombatSkills(const String& sCharID, Bool bUniqueOnly = false);
     static TreeIndexArray GetCraftingSkills(const String& sCharID, Bool bUniqueOnly = false);
     static TreeIndexArray GetWeaponSkills(const String& sCharID, Bool bUniqueOnly = false);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetAffinitySkills, const String&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetAlchemySkills, const String&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetBreakdownSkills, const String&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetCombatSkills, const String&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetCraftingSkills, const String&, sCharID, Bool, bUniqueOnly);
-    static MAKE_MODULE_RESULT_VARIANT_A2(GetWeaponSkills, const String&, sCharID, Bool, bUniqueOnly);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetAffinitySkills, const String&, Bool);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetAlchemySkills, const String&, Bool);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetBreakdownSkills, const String&, Bool);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetCombatSkills, const String&, Bool);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetCraftingSkills, const String&, Bool);
+    static MAKE_MODULE_RESULT_VARIANT_A2(GetWeaponSkills, const String&, Bool);
 
     // Get skill type
     static String GetSkillType(const TreeIndex& treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(GetSkillType, const TreeIndex&, treeIndex);
+    static MAKE_MODULE_RESULT_VARIANT_A1(GetSkillType, const TreeIndex&);
 
     // Determine if base weapon skill
     static Bool IsBaseWeaponSkill(const TreeIndex& treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(IsBaseWeaponSkill, const TreeIndex&, treeIndex);
+    static MAKE_MODULE_RESULT_VARIANT_A1(IsBaseWeaponSkill, const TreeIndex&);
 
     // Determine if skill is actionable
     static Bool IsSkillActionable(const TreeIndex& treeIndex);
-    static MAKE_MODULE_RESULT_VARIANT_A1(IsSkillActionable, const TreeIndex&, treeIndex);
+    static MAKE_MODULE_RESULT_VARIANT_A1(IsSkillActionable, const TreeIndex&);
 
     // Generate character actions
     static Bool GenerateSkillCharacterActions(const TreeIndex& treeIndex,

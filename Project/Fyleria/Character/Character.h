@@ -81,25 +81,25 @@ public:
 
     // Get passive changes
     const TreeIndexArray& GetPassiveChanges(const String& sTreeIndexType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetPassiveChanges, const String&, sTreeIndexType);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetPassiveChanges, const String&);
 
     // Get active changes
     const TreeIndexArray& GetActiveChanges(const String& sTreeIndexType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetActiveChanges, const String&, sTreeIndexType);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetActiveChanges, const String&);
 
     // Get actionable changes
     const TreeIndexArray& GetActionableChanges(const String& sTreeIndexType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetActionableChanges, const String&, sTreeIndexType);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetActionableChanges, const String&);
 
     // Get progress data segment
     const CharacterProgressData& GetProgressDataSegment(const String& sSegment) const;
     CharacterProgressData& GetProgressDataSegment(const String& sSegment);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetProgressDataSegment, const String&, sSegment);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetProgressDataSegment, const String&);
 
     // Get battle data segment
     const CharacterBattleData& GetBattleDataSegment(const String& sSegment) const;
     CharacterBattleData& GetBattleDataSegment(const String& sSegment);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetBattleDataSegment, const String&, sSegment);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetBattleDataSegment, const String&);
 
     // Stat values
     MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(Bool);

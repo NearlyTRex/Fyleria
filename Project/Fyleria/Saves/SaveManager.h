@@ -35,7 +35,7 @@ public:
 
     // Does save exist
     Bool DoesSaveExist(const String& sSlot) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesSaveExist, const String&, sSlot);
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesSaveExist, const String&);
 
     // Get save capacity
     UByte GetSaveCapacity() const;
@@ -57,7 +57,7 @@ public:
     // Get save
     const Save& GetSave(const String& sSlot) const;
     Save& GetSave(const String& sSlot);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetSave, const String&, sSlot);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetSave, const String&);
 
     // Get all saves
     SaveArray GetAllSaves() const;

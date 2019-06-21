@@ -33,7 +33,7 @@ public:
 
     // Determine if battle is over
     Bool IsBattleOver(const String& sPartyID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsBattleOver, const String&, sPartyID);
+    MAKE_MODULE_RESULT_VARIANT_A1(IsBattleOver, const String&);
 
     // Determine if battle is won
     Bool IsBattleWon() const;
@@ -45,7 +45,7 @@ public:
 
     // Determine if action is skill attack
     Bool IsSkillAttackAction(const CharacterAction& action) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsSkillAttackAction, const CharacterAction&, action);
+    MAKE_MODULE_RESULT_VARIANT_A1(IsSkillAttackAction, const CharacterAction&);
 
     // Adding and processing actions that are chosen by the player
     void AddAction(const CharacterAction& action);
@@ -62,7 +62,7 @@ public:
     // Get action
     const CharacterAction& GetAction(Int iIndex) const;
     CharacterAction& GetAction(Int iIndex);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetAction, Int, iIndex);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetAction, Int);
 
     // Get current action
     const CharacterAction& GetCurrentAction() const;

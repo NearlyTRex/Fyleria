@@ -38,31 +38,31 @@ public:
 
     // Determine if member is present
     Bool IsMemberPresent(const String& sCharacterID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsMemberPresent, const String&, sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(IsMemberPresent, const String&);
 
     // Determine if target type is available
     Bool IsTargetTypeAvailable(const String& sCharacterTargetType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsTargetTypeAvailable, const String&, sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A1(IsTargetTypeAvailable, const String&);
 
     // Determine if target type is taken
     Bool IsTargetTypeTaken(const String& sCharacterTargetType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsTargetTypeTaken, const String&, sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A1(IsTargetTypeTaken, const String&);
 
     // Add member
     Bool AddMember(const String& sCharacterID);
-    MAKE_MODULE_RESULT_VARIANT_A1(AddMember, const String&, sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(AddMember, const String&);
 
     // Remove member
     Bool RemoveMember(const String& sCharacterID);
-    MAKE_MODULE_RESULT_VARIANT_A1(RemoveMember, const String&, sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(RemoveMember, const String&);
 
     // Move member to the given target type
     Bool MoveMember(const String& sCharacterID, const String& sCharacterTargetType);
-    MAKE_MODULE_RESULT_VARIANT_A2(MoveMember, const String&, sCharacterID, const String&, sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A2(MoveMember, const String&, const String&);
 
     // Swap target types between members
     Bool SwapMembers(const String& sFirstCharacterID, const String& sSecondCharacterID);
-    MAKE_MODULE_RESULT_VARIANT_A2(SwapMembers, const String&, sFirstCharacterID, const String&, sSecondCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A2(SwapMembers, const String&, const String&);
 
     // Get next available target type
     String GetNextAvailableTargetType() const;
@@ -70,21 +70,21 @@ public:
 
     // Use target types
     Bool UseTargetType(const String& sCharacterTargetType);
-    MAKE_MODULE_RESULT_VARIANT_A1(UseTargetType, const String&, sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A1(UseTargetType, const String&);
 
     // Free target type
     Bool FreeTargetType(const String& sCharacterTargetType);
-    MAKE_MODULE_RESULT_VARIANT_A1(FreeTargetType, const String&, sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A1(FreeTargetType, const String&);
 
     // Get member by ID
     const CharacterPartyMember& GetMemberByID(const String& sCharacterID) const;
     CharacterPartyMember& GetMemberByID(const String& sCharacterID);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetMemberByID, const String&, sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetMemberByID, const String&);
 
     // Get member by target type
     const CharacterPartyMember& GetMemberByTargetType(const String& sCharacterTargetType) const;
     CharacterPartyMember& GetMemberByTargetType(const String& sCharacterTargetType);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetMemberByTargetType, const String&, sCharacterTargetType);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetMemberByTargetType, const String&);
 
     // Get member character IDs
     StringArray GetMemberCharacterIDs() const;
@@ -92,57 +92,57 @@ public:
 
     // Get character IDs from target type
     Bool GetCharacterIDsFromTargetType(const String& sCharacterTargetType, StringArray& vCharacterIDs) const;
-    MAKE_MODULE_RESULT_VARIANT_A2(GetCharacterIDsFromTargetType, const String&, sCharacterTargetType, StringArray&, vCharacterIDs);
+    MAKE_MODULE_RESULT_VARIANT_A2(GetCharacterIDsFromTargetType, const String&, StringArray&);
 
     // Check member status
     UInt GetStatusMemberCount(const String& sStatus) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetStatusMemberCount, const String&, sStatus);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetStatusMemberCount, const String&);
 
     // Add random items
     Bool AddRandomItems(const StringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd);
-    MAKE_MODULE_RESULT_VARIANT_A4(AddRandomItems, const StringArray&, vTreeTypes, Int, iNumRandomItems, Int, iAmountStart, Int, iAmountEnd);
+    MAKE_MODULE_RESULT_VARIANT_A4(AddRandomItems, const StringArray&, Int, Int, Int);
 
     // Add item by leaf
     Bool AddItemByLeaf(const String& sLeaf, UInt uAmount);
-    MAKE_MODULE_RESULT_VARIANT_A2(AddItemByLeaf, const String&, sLeaf, UInt, uAmount);
+    MAKE_MODULE_RESULT_VARIANT_A2(AddItemByLeaf, const String&, UInt);
 
     // Add item by tree index
     Bool AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount);
-    MAKE_MODULE_RESULT_VARIANT_A2(AddItemByTreeIndex, const TreeIndex&, treeIndex, UInt, uAmount);
+    MAKE_MODULE_RESULT_VARIANT_A2(AddItemByTreeIndex, const TreeIndex&, UInt);
 
     // Remove item by leaf
     Bool RemoveItemByLeaf(const String& sLeaf, UInt uAmount);
-    MAKE_MODULE_RESULT_VARIANT_A2(RemoveItemByLeaf, const String&, sLeaf, UInt, uAmount);
+    MAKE_MODULE_RESULT_VARIANT_A2(RemoveItemByLeaf, const String&, UInt);
 
     // Remove item by tree index
     Bool RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount);
-    MAKE_MODULE_RESULT_VARIANT_A2(RemoveItemByTreeIndex, const TreeIndex&, treeIndex, UInt, uAmount);
+    MAKE_MODULE_RESULT_VARIANT_A2(RemoveItemByTreeIndex, const TreeIndex&, UInt);
 
     // Get item by leaf
     const CharacterPartyItem& GetItemByLeaf(const String& sLeaf) const;
     CharacterPartyItem& GetItemByLeaf(const String& sLeaf);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetItemByLeaf, const String&, sLeaf);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetItemByLeaf, const String&);
 
     // Get item by tree index
     const CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& treeIndex) const;
     CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& treeIndex);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetItemByTreeIndex, const TreeIndex&, treeIndex);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetItemByTreeIndex, const TreeIndex&);
 
     // Get best unequipped item for the given slot
     TreeIndex GetBestUnequippedItem(const String& sCharacterID, const String& sSlot) const;
-    MAKE_MODULE_RESULT_VARIANT_A2(GetBestUnequippedItem, const String&, sCharacterID, const String&, sSlot);
+    MAKE_MODULE_RESULT_VARIANT_A2(GetBestUnequippedItem, const String&, const String&);
 
     // Equip item
     Bool EquipItem(const String& sCharacterID, const String& sLeaf, const String& sSlot);
-    MAKE_MODULE_RESULT_VARIANT_A3(EquipItem, const String&, sCharacterID, const String&, sLeaf, const String&, sSlot);
+    MAKE_MODULE_RESULT_VARIANT_A3(EquipItem, const String&, const String&, const String&);
 
     // Unequip item
     Bool UnequipItem(const String& sCharacterID, const String& sLeaf, const String& sSlot);
-    MAKE_MODULE_RESULT_VARIANT_A3(UnequipItem, const String&, sCharacterID, const String&, sLeaf, const String&, sSlot);
+    MAKE_MODULE_RESULT_VARIANT_A3(UnequipItem, const String&, const String&, const String&);
 
     // Equip best items for the given member
     Bool EquipBestItems(const String& sCharacterID);
-    MAKE_MODULE_RESULT_VARIANT_A1(EquipBestItems, const String&, sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(EquipBestItems, const String&);
 
     // Equip best items for all members
     Bool EquipBestItemsForAllMembers();
@@ -150,7 +150,7 @@ public:
 
     // Unequip all items for the given member
     Bool UnequipAllItems(const String& sCharacterID);
-    MAKE_MODULE_RESULT_VARIANT_A1(UnequipAllItems, const String&, sCharacterID);
+    MAKE_MODULE_RESULT_VARIANT_A1(UnequipAllItems, const String&);
 
     // Unequip all items for all members
     Bool UnequipAllItemsForAllMembers();

@@ -28,12 +28,12 @@ public:
 
     // Determine if battle exists
     Bool DoesBattleExist(const String& sBattleName) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesBattleExist, const String&, sBattleName);
+    MAKE_MODULE_RESULT_VARIANT_A1(DoesBattleExist, const String&);
 
     // Get battle
     const Battle& GetBattle(const String& sPartyName) const;
     Battle& GetBattle(const String& sPartyName);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetBattle, const String&, sPartyName);
+    MAKE_MODULE_RESULT_VARIANT_A1(GetBattle, const String&);
 
     // Get current battle
     const Battle& GetCurrentBattle() const;
