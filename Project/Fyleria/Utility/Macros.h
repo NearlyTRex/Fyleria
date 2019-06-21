@@ -318,29 +318,61 @@ void method##_StoreResult(const String& sResultID)                              
     ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method()).dump());                          \
 }
 
-#define MAKE_MODULE_RESULT_VARIANT_A1(method, at1, av1)                                                         \
+#define MAKE_MODULE_RESULT_VARIANT_A1(method, at1)                                                              \
 void method##_StoreResult(const String& sResultID, at1 av1)                                                     \
 {                                                                                                               \
     ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1)).dump());                       \
 }
 
-#define MAKE_MODULE_RESULT_VARIANT_A2(method, at1, av1, at2, av2)                                               \
+#define MAKE_MODULE_RESULT_VARIANT_A2(method, at1, at2)                                                         \
 void method##_StoreResult(const String& sResultID, at1 av1, at2 av2)                                            \
 {                                                                                                               \
     ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2)).dump());                  \
 }
 
-#define MAKE_MODULE_RESULT_VARIANT_A3(method, at1, av1, at2, av2, at3, av3)                                     \
+#define MAKE_MODULE_RESULT_VARIANT_A3(method, at1, at2, at3)                                                    \
 void method##_StoreResult(const String& sResultID, at1 av1, at2 av2, at3 av3)                                   \
 {                                                                                                               \
     ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2, av3)).dump());             \
 }
 
-#define MAKE_MODULE_RESULT_VARIANT_A4(method, at1, av1, at2, av2, at3, av3, at4, av4)                           \
+#define MAKE_MODULE_RESULT_VARIANT_A4(method, at1, at2, at3, at4)                                               \
 void method##_StoreResult(const String& sResultID, at1 av1, at2 av2, at3 av3, at4 av4)                          \
 {                                                                                                               \
     ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2, av3, av4)).dump());        \
 }
+
+//=====================================================================================
+
+#define MAKE_MANAGER_RETURN_LAMBDA(manager, method, return_type)                                                        \
+[]() -> return_type { return manager::GetInstance()->method(); }
+
+#define MAKE_MANAGER_RETURN_LAMBDA_A1(manager, method, return_type, at1)                                                \
+[](at1 av1) -> return_type { return manager::GetInstance()->method(av1); }
+
+#define MAKE_MANAGER_RETURN_LAMBDA_A2(manager, method, return_type, at1, at2)                                           \
+[](at1 av1, at2 av2) -> return_type { return manager::GetInstance()->method(av1, av2); }
+
+#define MAKE_MANAGER_RETURN_LAMBDA_A3(manager, method, return_type, at1, at2, at3)                                      \
+[](at1 av1, at2 av2, at3 av3) -> return_type { return manager::GetInstance()->method(av1, av2, av3); }
+
+#define MAKE_MANAGER_RETURN_LAMBDA_A4(manager, method, return_type, at1, at2, at3, at4)                                 \
+[](at1 av1, at2 av2, at3 av3, at4 av4) -> return_type { return manager::GetInstance()->method(av1, av2, av3, av4); }
+
+#define MAKE_MANAGER_VOID_LAMBDA(manager, method)                                                                       \
+[]() { manager::GetInstance()->method(); }
+
+#define MAKE_MANAGER_VOID_LAMBDA_A1(manager, method, at1)                                                               \
+[](at1 av1) { manager::GetInstance()->method(av1); }
+
+#define MAKE_MANAGER_VOID_LAMBDA_A2(manager, method, at1, at2)                                                          \
+[](at1 av1, at2 av2) { manager::GetInstance()->method(av1, av2); }
+
+#define MAKE_MANAGER_VOID_LAMBDA_A3(manager, method, at1, at2, at3)                                                     \
+[](at1 av1, at2 av2, at3 av3) { manager::GetInstance()->method(av1, av2, av3); }
+
+#define MAKE_MANAGER_VOID_LAMBDA_A4(manager, method, at1, at2, at3, at4)                                                \
+[](at1 av1, at2 av2, at3 av3, at4 av4) { manager::GetInstance()->method(av1, av2, av3, av4); }
 
 //=====================================================================================
 
@@ -376,6 +408,15 @@ String sOptionList_##type;                                                      
 
 #define WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(name, base)                                                    \
 .def_property(#name, PyBindOverloadCast<>(&base::Get##name, PyBindConst), &base::Set##name)
+
+#define WRAPPING_STANDALONE_LAMBDA(name, lambda)                                                            \
+m.def(#name, lambda)
+
+#define WRAPPING_STANDALONE_LAMBDA_POLICY(name, lambda, policy)                                             \
+m.def(#name, lambda, policy)
+
+#define WRAPPING_STANDALONE_LAMBDA_ARGS(name, lambda, ...)                                                  \
+m.def(#name, lambda, __VA_ARGS__)
 
 #define WRAPPING_STANDALONE_METHOD_SIMPLE(name, base)                                                       \
 m.def(#name, &base::name)
