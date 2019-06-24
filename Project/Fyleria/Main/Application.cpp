@@ -1,82 +1,124 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-// External includes
-#include <QtWidgets/QApplication>
-#include <QtWebEngineWidgets/QWebEngineView>
-#include <QtWebEngineWidgets/QWebEngineSettings>
-
 // Internal includes
+#include "Main/Application.h"
+#include "Window/MainWindow.h"
 #include "Config/ConfigManager.h"
+#include "Items/ItemTree.h"
+#include "Skills/SkillTree.h"
+#include "Interface/Interface.h"
+#include "Web/WebServer.h"
+#include "Stats/StatNames.h"
 #include "Utility/Constants.h"
+#include "Utility/Logging.h"
+#include "Utility/Filesystem.h"
 
 namespace Gecko
 {
 
-int StartApplication(int iArgCount, char** vArgList, const char* sUrl)
+Application::Application()
 {
-    // Create application
-    QApplication app(iArgCount, vArgList);
+}
 
-    // Set attributes
-    QCoreApplication::setApplicationName(APPLICATION_NAME_SHORT);
-    QCoreApplication::setApplicationVersion(APPLICATION_VERSION);
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::JavascriptCanOpenWindows, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::JavascriptCanAccessClipboard, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::FullScreenSupportEnabled, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, false);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::WebGLEnabled, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::Accelerated2dCanvasEnabled, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::AllowWindowActivationFromJavaScript, true);
-    QWebEngineSettings::defaultSettings()->setAttribute(QWebEngineSettings::ShowScrollBars,
-        ConfigManager::GetInstance()->GetEnableScrollbars());
+Application::~Application()
+{
+}
 
-    // Create view
-    QWebEngineView view;
-
-    // Set context menu policy
-    if(ConfigManager::GetInstance()->GetEnableContextMenu())
+void Application::Run()
+{
+    // Initialize
+    if(!Initialize())
     {
-        view.setContextMenuPolicy(Qt::DefaultContextMenu);
-    }
-    else
-    {
-        view.setContextMenuPolicy(Qt::NoContextMenu);
+        return;
     }
 
-    // Set window state
-    if(ConfigManager::GetInstance()->GetStartFullscreen())
+    // Main loop
+    do
     {
-        view.setWindowState(Qt::WindowFullScreen);
+        MainWindow::GetInstance()->RunMainLoopIteration(true);
     }
-    else if(ConfigManager::GetInstance()->GetStartMaximized())
+    while(MainWindow::GetInstance()->IsShuttingDown() == false);
+
+    // Finalize
+    Finalize();
+}
+
+Bool Application::Initialize()
+{
+    // Initialize module
+    if(!DLL_InitModule())
     {
-        view.setWindowState(Qt::WindowMaximized);
+        ERROR_STATEMENT("Unable to initialize module");
+        return false;
     }
 
-    // Resize window
-    view.resize(
-        ConfigManager::GetInstance()->GetScreenWidth(),
-        ConfigManager::GetInstance()->GetScreenHeight());
+    // Initialize stat names
+    LOG_STATEMENT("Initializing stat names...");
+    InitializeAllStatNames();
+    LOG_STATEMENT("Finished initializing stat names");
 
-    // Set url
-    view.setUrl(QUrl(sUrl));
+    // Load trees into memory
+    LOG_STATEMENT("Loading trees into memory...");
+    SkillTree::LoadSkillTreesIntoMemory();
+    ItemTree::LoadItemTreesIntoMemory();
+    LOG_STATEMENT("Finished loading trees into memory");
 
-    // Show window
-    view.show();
+    // Get configuration data
+    String sStartUrl = ConfigManager::GetInstance()->GetWebUrl();
+    String sWebHostname = ConfigManager::GetInstance()->GetWebHostname();
+    String sWebFolder = ConfigManager::GetInstance()->GetWebFolder();
+    Int iWebPort = ConfigManager::GetInstance()->GetWebPort();
+    Int iServerThreads = ConfigManager::GetInstance()->GetServerThreads();
+    Int iScreenWidth = ConfigManager::GetInstance()->GetScreenWidth();
+    Int iScreenHeight = ConfigManager::GetInstance()->GetScreenHeight();
 
-    // Enter application main loop
-    return app.exec();
+    // Start server
+    LOG_STATEMENT("Starting server");
+    WebServer::GetInstance()->SetHostname(sWebHostname);
+    WebServer::GetInstance()->SetWebRoot(sWebFolder);
+    WebServer::GetInstance()->SetPort(iWebPort);
+    WebServer::GetInstance()->SetThreadCount(iServerThreads);
+    WebServer::GetInstance()->Reset();
+    WebServer::GetInstance()->Start();
+    LOG_STATEMENT("Finished starting server");
+
+    // Initialize window
+    LOG_STATEMENT("Initializing window");
+    if(!MainWindow::GetInstance()->Init(APPLICATION_NAME_SHORT, iScreenWidth, iScreenHeight, true))
+    {
+        ERROR_STATEMENT("Unable to initialize window");
+        return false;
+    }
+    LOG_STATEMENT("Finished initializing window");
+
+    // Setup window
+    LOG_FORMAT_STATEMENT("Navigating to %s\n", sStartUrl.c_str());
+    MainWindow::GetInstance()->Navigate(sStartUrl);
+    LOG_STATEMENT("Finished navigating");
+    return true;
+}
+
+Bool Application::Finalize()
+{
+    // Stop server
+    LOG_STATEMENT("Stopping server");
+    WebServer::GetInstance()->Stop();
+    LOG_STATEMENT("Finished stopping server");
+
+    // Unload trees from memory
+    LOG_STATEMENT("Unloading trees from memory...");
+    SkillTree::UnloadSkillTreesFromMemory();
+    ItemTree::UnloadItemTreesFromMemory();
+    LOG_STATEMENT("Finished unloading trees from memory");
+
+    // Finalize module
+    if(!DLL_FinalizeModule())
+    {
+        ERROR_STATEMENT("Unable to finalize module");
+        return false;
+    }
+    return true;
 }
 
 };

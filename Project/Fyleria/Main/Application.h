@@ -4,11 +4,33 @@
 #ifndef _GECKO_APPLICATION_H_
 #define _GECKO_APPLICATION_H_
 
+// Internal includes
+#include "Utility/Types.h"
+
 namespace Gecko
 {
 
-// Start application
-int StartApplication(int iArgCount, char** vArgList, const char* sUrl);
+class Application
+{
+public:
+
+    // Constructor
+    Application();
+
+    // Destructor
+    virtual ~Application();
+
+    // Run application
+    void Run();
+
+private:
+
+    // Initialize
+    Bool Initialize();
+
+    // Finalize
+    Bool Finalize();
+};
 
 };
 

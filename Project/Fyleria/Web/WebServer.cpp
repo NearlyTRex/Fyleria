@@ -28,7 +28,7 @@ void WebServer::Reset()
     ASSERT_ERROR(GetPort() > 0, "Port must be a positive integer");
     ASSERT_ERROR(GetThreadCount() > 0, "Thread count must be a positive integer");
     SetEndpoint(STDMakeSharedPtr<HttpEndpoint>(HttpAddress(GetHostname(), GetPort())));
-    if (GetEndpoint())
+    if(GetEndpoint())
     {
         auto options = HttpEndpoint::options()
             .threads(GetThreadCount())
@@ -41,7 +41,7 @@ void WebServer::Reset()
 void WebServer::Start()
 {
     // Check that endpoint exists
-    if (!GetEndpoint())
+    if(!GetEndpoint())
     {
         return;
     }
@@ -63,7 +63,7 @@ void WebServer::Start()
 void WebServer::Stop()
 {
     // Check that endpoint exists
-    if (!GetEndpoint())
+    if(!GetEndpoint())
     {
         return;
     }

@@ -14,7 +14,6 @@ require "Libs/PyBind/PyBind"
 require "Libs/Python3/Python3"
 require "Libs/TinyXML2/TinyXML2"
 require "Libs/TMXParser/TMXParser"
-require "Libs/Websocketpp/Websocketpp"
 require "Libs/Zlib/Zlib"
 require "utility"
 
@@ -41,6 +40,7 @@ kind "ConsoleApp"
 language "C++"
 pic "On"
     buildoptions(appFyleria_buildoptions)
+    linkoptions(appFyleria_linkoptions)
     includedirs(appFyleria_includedirs)
     includedirs(libAssert_includedirs)
     includedirs(libBackwardCPP_includedirs)
@@ -53,13 +53,11 @@ pic "On"
     includedirs(libPistache_includedirs)
     includedirs(libPyBind_includedirs)
     includedirs(libPython3_includedirs)
-    includedirs(libWebsocketpp_includedirs)
     includedirs(libZlib_includedirs)
     defines(appFyleria_defines)
     defines(libBackwardCPP_defines)
     defines(libBetterEnums_defines)
     defines(libPython3_defines)
-    defines(libWebsocketpp_defines)
     files(appFyleria_sources)
     links(appFyleria_libs)
     links(libBackwardCPP_libs)

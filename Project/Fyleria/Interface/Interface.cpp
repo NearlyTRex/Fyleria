@@ -35,9 +35,6 @@
 #include "Stats/Stats_wrapper.h"
 #include "Utility/Utility_wrapper.h"
 
-#include "Server/WebSockets.h"
-#include "Server/Rest.h"
-
 namespace Gecko
 {
 
