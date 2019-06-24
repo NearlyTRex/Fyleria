@@ -3,7 +3,7 @@
 
 #include "Window/MainWindow.h"
 #if defined(__linux__)
-    #include "Window/BrowserEngineLinux.h"
+    #include "Window/BrowserEngineWebKitGtk.h"
 #endif
 
 namespace Gecko
@@ -12,7 +12,7 @@ namespace Gecko
 MainWindow::MainWindow()
 {
 #if defined(__linux__)
-    SetBrowserEngine(STDMakeSharedPtr<BrowserEngineLinux>());
+    SetBrowserEngine(STDMakeSharedPtr<BrowserEngineWebKitGtk>());
 #endif
 }
 

@@ -1,22 +1,23 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-#include "Window/BrowserEngineLinux.h"
+// Internal includes
+#include "Window/BrowserEngineWebKitGtk.h"
 
 namespace Gecko
 {
 
-BrowserEngineLinux::BrowserEngineLinux()
+BrowserEngineWebKitGtk::BrowserEngineWebKitGtk()
     : m_pWindow(nullptr)
     , m_pWebview(nullptr)
 {
 }
 
-BrowserEngineLinux::~BrowserEngineLinux()
+BrowserEngineWebKitGtk::~BrowserEngineWebKitGtk()
 {
 }
 
-Bool BrowserEngineLinux::Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
+Bool BrowserEngineWebKitGtk::Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
     // Initialize gtk
     if(!gtk_init_check(0, nullptr))
@@ -49,7 +50,7 @@ Bool BrowserEngineLinux::Init(const String& sTitle, Int iWidth, Int iHeight, Boo
     auto fnDestroyHandler = +[](GtkWidget* pWidget, gpointer pArg)
     {
         // Get engine instance
-        auto* pEngine = static_cast<BrowserEngineLinux*>(pArg);
+        auto* pEngine = static_cast<BrowserEngineWebKitGtk*>(pArg);
         if(!pEngine)
         {
             return;
@@ -63,7 +64,7 @@ Bool BrowserEngineLinux::Init(const String& sTitle, Int iWidth, Int iHeight, Boo
     auto fnMessageHandler = +[](WebKitUserContentManager* pManager, WebKitJavascriptResult* pResult, gpointer pArg)
     {
         // Get engine instance
-        auto* pEngine = static_cast<BrowserEngineLinux*>(pArg);
+        auto* pEngine = static_cast<BrowserEngineWebKitGtk*>(pArg);
         if(!pEngine)
         {
             return;
@@ -144,18 +145,18 @@ Bool BrowserEngineLinux::Init(const String& sTitle, Int iWidth, Int iHeight, Boo
     return true;
 }
 
-void BrowserEngineLinux::Shutdown()
+void BrowserEngineWebKitGtk::Shutdown()
 {
     SetIsShuttingDown(true);
 }
 
-void BrowserEngineLinux::Navigate(const String& sUrl)
+void BrowserEngineWebKitGtk::Navigate(const String& sUrl)
 {
     // Navigate to the url
     webkit_web_view_load_uri(WEBKIT_WEB_VIEW(m_pWebview), sUrl.c_str());
 }
 
-void BrowserEngineLinux::InjectJavascript(const String& sScript)
+void BrowserEngineWebKitGtk::InjectJavascript(const String& sScript)
 {
     // Get manager
     WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(m_pWebview));
@@ -188,7 +189,7 @@ static void JavascriptFinishedHandler(GObject* pObject, GAsyncResult* pAsyncResu
     }
 
     // Get engine instance
-    auto* pEngine = static_cast<BrowserEngineLinux*>(pUserData);
+    auto* pEngine = static_cast<BrowserEngineWebKitGtk*>(pUserData);
     if(!pEngine)
     {
         return;
@@ -205,7 +206,7 @@ static void JavascriptFinishedHandler(GObject* pObject, GAsyncResult* pAsyncResu
     webkit_javascript_result_unref(pResult);
 }
 
-void BrowserEngineLinux::RunJavascript(const String& sScript)
+void BrowserEngineWebKitGtk::RunJavascript(const String& sScript)
 {
     // Run javascript
     if(GetRunResultJavascriptCallback())
@@ -228,13 +229,13 @@ void BrowserEngineLinux::RunJavascript(const String& sScript)
     }
 }
 
-void BrowserEngineLinux::RunMainLoopIteration(Bool bBlocking)
+void BrowserEngineWebKitGtk::RunMainLoopIteration(Bool bBlocking)
 {
     // Do one iteration
     gtk_main_iteration_do(bBlocking);
 }
 
-String BrowserEngineLinux::GetJavascriptResultString(WebKitJavascriptResult* pResult)
+String BrowserEngineWebKitGtk::GetJavascriptResultString(WebKitJavascriptResult* pResult)
 {
     // Output string
     String sResult;
@@ -264,6 +265,8 @@ String BrowserEngineLinux::GetJavascriptResultString(WebKitJavascriptResult* pRe
         {
             sResult = sJsString;
         }
+
+        // Free string
         g_free(sJsString);
     }
     else

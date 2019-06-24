@@ -16,16 +16,16 @@
 namespace Gecko
 {
 
-// Linux browser engine
-class BrowserEngineLinux : public BrowserEngine
+// WebKitGtk browser engine
+class BrowserEngineWebKitGtk : public BrowserEngine
 {
 public:
 
     // Constructor
-    BrowserEngineLinux();
+    BrowserEngineWebKitGtk();
 
     // Destructor
-    virtual ~BrowserEngineLinux();
+    virtual ~BrowserEngineWebKitGtk();
 
     // Initialize
     virtual Bool Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable) override;
