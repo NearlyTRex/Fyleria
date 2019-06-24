@@ -28,22 +28,22 @@ public:
     virtual ~BrowserEngineLinux();
 
     // Initialize
-    virtual Bool Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable);
+    virtual Bool Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable) override;
 
     // Shutdown
-    virtual void Shutdown();
+    virtual void Shutdown() override;
 
     // Navigate to url
-    virtual void Navigate(const String& sUrl);
+    virtual void Navigate(const String& sUrl) override;
 
     // Inject javascript
-    virtual void InjectJavascript(const String& sScript);
+    virtual void InjectJavascript(const String& sScript) override;
 
     // Run javascript
-    virtual void RunJavascript(const String& sScript);
+    virtual void RunJavascript(const String& sScript) override;
 
     // Run main loop iteration
-    virtual void RunMainLoopIteration(Bool bBlocking);
+    virtual void RunMainLoopIteration(Bool bBlocking) override;
 
     // Get javascript result string
     String GetJavascriptResultString(WebKitJavascriptResult* pResult);
