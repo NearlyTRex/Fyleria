@@ -3,6 +3,7 @@
 
 // Internal includes
 #include "Window/BrowserEngineWebKitGtk.h"
+#include "Utility/Filesystem.h"
 
 namespace Gecko
 {
@@ -156,6 +157,40 @@ void BrowserEngineWebKitGtk::Navigate(const String& sUrl)
     webkit_web_view_load_uri(WEBKIT_WEB_VIEW(m_pWebview), sUrl.c_str());
 }
 
+void BrowserEngineWebKitGtk::InjectStylesheet(const String& sStyle)
+{
+    // Get manager
+    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(m_pWebview));
+
+    // Create user stylesheet
+    WebKitUserStyleSheet* pUserStyleSheet = webkit_user_style_sheet_new(
+        sStyle.c_str(),
+        WEBKIT_USER_CONTENT_INJECT_TOP_FRAME,
+        WEBKIT_USER_STYLE_LEVEL_USER,
+        NULL,
+        NULL);
+
+    // Add stylesheet
+    webkit_user_content_manager_add_style_sheet(pManager, pUserStyleSheet);
+    webkit_user_style_sheet_unref(pUserStyleSheet);
+}
+
+void BrowserEngineWebKitGtk::InjectStylesheetFile(const String& sFile)
+{
+    // Inject file contents
+    String sFileContents = GetFileContents(GetCanonicalPath(sFile));
+    InjectStylesheet(sFileContents);
+}
+
+void BrowserEngineWebKitGtk::RemoveAllInjectedStylesheets()
+{
+    // Get manager
+    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(m_pWebview));
+
+    // Remove all injected style sheets
+    webkit_user_content_manager_remove_all_style_sheets(pManager);
+}
+
 void BrowserEngineWebKitGtk::InjectJavascript(const String& sScript)
 {
     // Get manager
@@ -171,6 +206,23 @@ void BrowserEngineWebKitGtk::InjectJavascript(const String& sScript)
 
     // Add script
     webkit_user_content_manager_add_script(pManager, pUserScript);
+    webkit_user_script_unref(pUserScript);
+}
+
+void BrowserEngineWebKitGtk::InjectJavascriptFile(const String& sFile)
+{
+    // Inject file contents
+    String sFileContents = GetFileContents(GetCanonicalPath(sFile));
+    InjectJavascript(sFileContents);
+}
+
+void BrowserEngineWebKitGtk::RemoveAllInjectedJavascript()
+{
+    // Get manager
+    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(m_pWebview));
+
+    // Remove all injected scripts
+    webkit_user_content_manager_remove_all_scripts(pManager);
 }
 
 static void JavascriptFinishedHandler(GObject* pObject, GAsyncResult* pAsyncResult, gpointer pUserData)
@@ -227,6 +279,10 @@ void BrowserEngineWebKitGtk::RunJavascript(const String& sScript)
             NULL,
             NULL);
     }
+}
+
+void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
+{
 }
 
 void BrowserEngineWebKitGtk::RunMainLoopIteration(Bool bBlocking)
