@@ -283,6 +283,8 @@ void BrowserEngineWebKitGtk::RunJavascript(const String& sScript)
 
 void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
 {
+    // Set document html
+    RunJavascript("document.open();document.write(\"" + sHtml + "\");document.close();");
 }
 
 void BrowserEngineWebKitGtk::RunMainLoopIteration(Bool bBlocking)
