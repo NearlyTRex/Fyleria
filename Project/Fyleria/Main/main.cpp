@@ -29,14 +29,10 @@ int main(int iArgCount, char** vArgList)
     Gecko::String sConfigDir;
     Gecko::String sDataDir;
     Gecko::String sCacheDir;
-    Gecko::String sPythonLibraryFile;
     Gecko::String sWebDir;
-    Gecko::String sWebHostname;
-    Gecko::String sWebGuiStartUrl;
+    Gecko::String sPythonLibraryFile;
     Gecko::Int iScreenWidth = 0;
     Gecko::Int iScreenHeight = 0;
-    Gecko::Int iWebPort = 0;
-    Gecko::Int iServerThreads = 0;
 
     // Setup allowed options
     BoostProgramOptionsDescription desc(Gecko::String(APPLICATION_NAME_LONG) + " " + Gecko::String(APPLICATION_VERSION));
@@ -47,13 +43,10 @@ int main(int iArgCount, char** vArgList)
         ("config-dir,c", BoostProgramOptionsValue(&sConfigDir)->default_value("Config"), "Config directory")
         ("data-dir,d", BoostProgramOptionsValue(&sDataDir)->default_value("Data"), "Data directory")
         ("cache-dir,e", BoostProgramOptionsValue(&sCacheDir)->default_value("Cache"), "Cache directory")
-        ("python-lib,l", BoostProgramOptionsValue(&sPythonLibraryFile)->default_value("PythonLib.zip"), "Python library")
         ("web-dir,b", BoostProgramOptionsValue(&sWebDir)->default_value("Web"), "Web directory")
-        ("web-port,r", BoostProgramOptionsValue(&iWebPort)->default_value(8080), "Web server port")
-        ("web-hostname,n", BoostProgramOptionsValue(&sWebHostname)->default_value("localhost"), "Web host name")
+        ("python-lib,l", BoostProgramOptionsValue(&sPythonLibraryFile)->default_value("PythonLib.zip"), "Python library")
         ("screen-width,x", BoostProgramOptionsValue(&iScreenWidth)->default_value(1024), "Screen width")
         ("screen-height,y", BoostProgramOptionsValue(&iScreenHeight)->default_value(768), "Screen height")
-        ("server-threads,t", BoostProgramOptionsValue(&iServerThreads)->default_value(1), "Number of server threads")
     ;
 
     // Parse command line
@@ -66,22 +59,15 @@ int main(int iArgCount, char** vArgList)
         return EXIT_SUCCESS;
     }
 
-    // Set web gui url
-    sWebGuiStartUrl = (BoostFormatString("http://%1%:%2%") % sWebHostname % iWebPort).str();
-
     // Set config data
     Gecko::ConfigManager::GetInstance()->SetUserConfigFile(sConfigFile);
     Gecko::ConfigManager::GetInstance()->SetUserConfigFolder(sConfigDir);
     Gecko::ConfigManager::GetInstance()->SetUserDataFolder(sDataDir);
     Gecko::ConfigManager::GetInstance()->SetUserCacheFolder(sCacheDir);
+    Gecko::ConfigManager::GetInstance()->SetUserWebFolder(sWebDir);
     Gecko::ConfigManager::GetInstance()->SetPythonLibraryFile(sPythonLibraryFile);
-    Gecko::ConfigManager::GetInstance()->SetWebFolder(sWebDir);
-    Gecko::ConfigManager::GetInstance()->SetWebHostname(sWebHostname);
-    Gecko::ConfigManager::GetInstance()->SetWebUrl(sWebGuiStartUrl);
-    Gecko::ConfigManager::GetInstance()->SetWebPort(iWebPort);
     Gecko::ConfigManager::GetInstance()->SetScreenWidth(iScreenWidth);
     Gecko::ConfigManager::GetInstance()->SetScreenHeight(iScreenHeight);
-    Gecko::ConfigManager::GetInstance()->SetServerThreads(iServerThreads);
 
     // Run application
     Gecko::Application app;

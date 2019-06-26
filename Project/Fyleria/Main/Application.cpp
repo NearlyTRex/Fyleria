@@ -7,12 +7,11 @@
 #include "Config/ConfigManager.h"
 #include "Items/ItemTree.h"
 #include "Skills/SkillTree.h"
-#include "Interface/Interface.h"
-#include "Web/WebServer.h"
 #include "Stats/StatNames.h"
 #include "Utility/Constants.h"
 #include "Utility/Logging.h"
 #include "Utility/Filesystem.h"
+#include "Utility/Python.h"
 
 namespace Gecko
 {
@@ -46,10 +45,21 @@ void Application::Run()
 
 Bool Application::Initialize()
 {
-    // Initialize module
-    if(!DLL_InitModule())
+    // Load config data
+    String sConfigFile = ConfigManager::GetInstance()->GetConstructedConfigFilename();
+    LOG_FORMAT_STATEMENT("Loading config file '%s'\n", sConfigFile.c_str());
+    ConfigManager::GetInstance()->SetCurrentConfigName("Default");
+    if(!ConfigManager::GetInstance()->LoadConfig("Default", sConfigFile))
     {
-        ERROR_STATEMENT("Unable to initialize module");
+        ERROR_FORMAT_STATEMENT("Could not load configuration file '%s'\n",
+            sConfigFile.c_str());
+        return false;
+    }
+
+    // Initialize python
+    if(!InitPython())
+    {
+        ERROR_STATEMENT("Unable to initialize python");
         return false;
     }
 
@@ -92,10 +102,10 @@ Bool Application::Finalize()
     ItemTree::UnloadItemTreesFromMemory();
     LOG_STATEMENT("Finished unloading trees from memory");
 
-    // Finalize module
-    if(!DLL_FinalizeModule())
+    // Finalize python
+    if(!FinalizePython())
     {
-        ERROR_STATEMENT("Unable to finalize module");
+        ERROR_STATEMENT("Unable to finalize python");
         return false;
     }
     return true;

@@ -12,6 +12,9 @@
 #include <pybind11/eval.h>
 #include <pybind11/embed.h>
 
+// Internal includes
+#include "Utility/Types.h"
+
 // PyBind defines
 #define PyBindInitializeInterpreter         pybind11::initialize_interpreter
 #define PyBindFinalizeInterpreter           pybind11::finalize_interpreter
@@ -43,5 +46,22 @@
 #define PyBindReturnAuto                    pybind11::return_value_policy::automatic
 #define PyBindReturnAutoRef                 pybind11::return_value_policy::automatic_reference
 #define PyBindMakeImplicitlyConvertible     pybind11::implicitly_convertible
+
+namespace Gecko
+{
+
+// Initialize python
+Bool InitPython();
+
+// Finalize python
+Bool FinalizePython();
+
+// Run python file
+Bool RunPythonFile(const String& sFile);
+
+// Run python command
+Bool RunPythonCommand(const String& sCommand);
+
+};
 
 #endif

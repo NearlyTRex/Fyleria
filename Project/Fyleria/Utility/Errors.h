@@ -21,16 +21,15 @@ namespace Gecko
 // or some wrong human input, or some lack of resource (no more memory, disk space
 // full, broken hardware, network connection failure).
 
-// Module Error
-// A module error is specifically designed for errors around the module (i.e. Python)
-// interface. Shared object / DLL errors also apply to this.
+// Python Error
+// A module error is specifically designed for errors around Python.
 
 // Error codes
 BETTER_ENUM(ErrorCode, Int,
     GeneralError,
     LogicError,
     RuntimeError,
-    ModuleError
+    PythonError
 );
 
 // General error
@@ -100,12 +99,12 @@ public:
     {}
 };
 
-// Module error
-class ModuleError : public GeneralError
+// Python error
+class PythonError : public GeneralError
 {
 public:
-    ModuleError(const String& message, const String& file = __FILE__, Int line = __LINE__)
-        : GeneralError(message, ErrorCode::ModuleError, file, line)
+    PythonError(const String& message, const String& file = __FILE__, Int line = __LINE__)
+        : GeneralError(message, ErrorCode::PythonError, file, line)
     {}
 };
 

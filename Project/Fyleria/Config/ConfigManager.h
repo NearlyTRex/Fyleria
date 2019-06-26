@@ -143,14 +143,10 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserConfigFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserDataFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserCacheFolder, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserWebFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PythonLibraryFile, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebFolder, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebHostname, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebUrl, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebPort, Int);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ScreenWidth, Int);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(ScreenHeight, Int);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ServerThreads, Int);
 
     // Configuration map
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(LoadedConfigs, ConfigMappingType);
