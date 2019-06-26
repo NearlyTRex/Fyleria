@@ -2,7 +2,6 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Character/CharacterTypes.h"
-#include "Module/ModuleResultManager.h"
 #include "Items/ItemTypes.h"
 #include "Skills/SkillTypes.h"
 #include "Saves/SaveTypes.h"
@@ -13,6 +12,7 @@
 #include "Utility/FantasyName.h"
 #include "Utility/Python.h"
 #include "Utility/Templates.h"
+#include "Utility/ResultManager.h"
 
 namespace Gecko
 {
@@ -173,6 +173,17 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetFantasyJGZNamePattern, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetFantasyKJYNamePattern, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetFantasySENamePattern, Gecko);
+
+    // ResultManager.h
+    PyBindClass<Gecko::ResultManager>(m, "ResultManager")
+        WRAPPING_ADD_METHOD_SIMPLE(StoreResult, Gecko::ResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(StoreCurrentResult, Gecko::ResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(GetResult, Gecko::ResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(DoesResultExist, Gecko::ResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(ClearResult, Gecko::ResultManager)
+        WRAPPING_ADD_METHOD_SIMPLE(ClearAllResults, Gecko::ResultManager)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentResultID, Gecko::ResultManager)
+    ;
 
     // Local
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllTypeNames, Gecko);

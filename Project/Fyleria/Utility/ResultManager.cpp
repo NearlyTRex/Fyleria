@@ -1,30 +1,30 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-#include "Module/ModuleResultManager.h"
+#include "Utility/ResultManager.h"
 
 namespace Gecko
 {
 
-ModuleResultManager::ModuleResultManager()
-    : Singleton<ModuleResultManager>()
+ResultManager::ResultManager()
+    : Singleton<ResultManager>()
 {
 }
 
-void ModuleResultManager::StoreResult(const String& sID, const String& sResult)
+void ResultManager::StoreResult(const String& sID, const String& sResult)
 {
-    GetModuleResults().insert({sID, sResult});
+    GetResults().insert({sID, sResult});
 }
 
-void ModuleResultManager::StoreCurrentResult(const String& sResult)
+void ResultManager::StoreCurrentResult(const String& sResult)
 {
     StoreResult(GetCurrentResultID(), sResult);
 }
 
-String ModuleResultManager::GetResult(const String& sID)
+String ResultManager::GetResult(const String& sID)
 {
-    auto iSearch = GetModuleResults().find(sID);
-    if(iSearch != GetModuleResults().end())
+    auto iSearch = GetResults().find(sID);
+    if(iSearch != GetResults().end())
     {
         return iSearch->second;
     }
@@ -34,20 +34,20 @@ String ModuleResultManager::GetResult(const String& sID)
     }
 }
 
-Bool ModuleResultManager::DoesResultExist(const String& sID)
+Bool ResultManager::DoesResultExist(const String& sID)
 {
-    auto iSearch = GetModuleResults().find(sID);
-    return (iSearch != GetModuleResults().end());
+    auto iSearch = GetResults().find(sID);
+    return (iSearch != GetResults().end());
 }
 
-void ModuleResultManager::ClearResult(const String& sID)
+void ResultManager::ClearResult(const String& sID)
 {
-    GetModuleResults().erase(sID);
+    GetResults().erase(sID);
 }
 
-void ModuleResultManager::ClearAllResults()
+void ResultManager::ClearAllResults()
 {
-    GetModuleResults().clear();
+    GetResults().clear();
 }
 
 };

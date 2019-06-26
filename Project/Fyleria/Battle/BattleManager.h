@@ -5,7 +5,7 @@
 #define _GECKO_BATTLE_MANAGER_H_
 
 #include "Battle/Battle.h"
-#include "Module/ModuleResultManager.h"
+#include "Utility/ResultManager.h"
 
 namespace Gecko
 {

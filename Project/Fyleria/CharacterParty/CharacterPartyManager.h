@@ -5,7 +5,7 @@
 #define _GECKO_CHARACTER_PARTY_MANAGER_H_
 
 #include "CharacterParty/CharacterParty.h"
-#include "Module/ModuleResultManager.h"
+#include "Utility/ResultManager.h"
 
 namespace Gecko
 {

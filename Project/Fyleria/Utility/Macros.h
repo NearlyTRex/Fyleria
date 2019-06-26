@@ -315,31 +315,31 @@ Bool Set##type##StatValue(const String& sSegment, const String& sStat, const typ
 #define MAKE_MODULE_RESULT_VARIANT(method)                                                                      \
 void method##_StoreResult(const String& sResultID)                                                              \
 {                                                                                                               \
-    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method()).dump());                          \
+    ResultManager::GetInstance()->StoreResult(sResultID, Json(method()).dump());                                \
 }
 
 #define MAKE_MODULE_RESULT_VARIANT_A1(method, at1)                                                              \
 void method##_StoreResult(const String& sResultID, at1 av1)                                                     \
 {                                                                                                               \
-    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1)).dump());                       \
+    ResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1)).dump());                             \
 }
 
 #define MAKE_MODULE_RESULT_VARIANT_A2(method, at1, at2)                                                         \
 void method##_StoreResult(const String& sResultID, at1 av1, at2 av2)                                            \
 {                                                                                                               \
-    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2)).dump());                  \
+    ResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2)).dump());                        \
 }
 
 #define MAKE_MODULE_RESULT_VARIANT_A3(method, at1, at2, at3)                                                    \
 void method##_StoreResult(const String& sResultID, at1 av1, at2 av2, at3 av3)                                   \
 {                                                                                                               \
-    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2, av3)).dump());             \
+    ResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2, av3)).dump());                   \
 }
 
 #define MAKE_MODULE_RESULT_VARIANT_A4(method, at1, at2, at3, at4)                                               \
 void method##_StoreResult(const String& sResultID, at1 av1, at2 av2, at3 av3, at4 av4)                          \
 {                                                                                                               \
-    ModuleResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2, av3, av4)).dump());        \
+    ResultManager::GetInstance()->StoreResult(sResultID, Json(method(av1, av2, av3, av4)).dump());              \
 }
 
 //=====================================================================================

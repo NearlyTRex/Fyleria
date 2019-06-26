@@ -5,7 +5,7 @@
 #define _GECKO_CHARACTER_ACTION_H_
 
 #include "CharacterAction/CharacterActionEntry.h"
-#include "Module/ModuleResultManager.h"
+#include "Utility/ResultManager.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"

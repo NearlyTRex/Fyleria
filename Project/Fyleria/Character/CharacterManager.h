@@ -6,7 +6,7 @@
 
 #include "Character/Character.h"
 #include "Character/CharacterGenerator.h"
-#include "Module/ModuleResultManager.h"
+#include "Utility/ResultManager.h"
 
 namespace Gecko
 {

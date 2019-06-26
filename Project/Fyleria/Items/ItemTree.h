@@ -5,7 +5,7 @@
 #define _GECKO_ITEM_TREE_H_
 
 #include "CharacterAction/CharacterAction.h"
-#include "Module/ModuleResultManager.h"
+#include "Utility/ResultManager.h"
 #include "Items/ItemDataArmor.h"
 #include "Items/ItemDataIngredient.h"
 #include "Items/ItemDataPotion.h"

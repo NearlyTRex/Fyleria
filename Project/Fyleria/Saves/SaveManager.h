@@ -5,7 +5,7 @@
 #define _GECKO_SAVE_MANAGER_H_
 
 #include "Saves/Save.h"
-#include "Module/ModuleResultManager.h"
+#include "Utility/ResultManager.h"
 #include "Utility/Singleton.h"
 
 namespace Gecko

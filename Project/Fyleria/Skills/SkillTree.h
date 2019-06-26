@@ -5,7 +5,7 @@
 #define _GECKO_SKILL_TREE_H_
 
 #include "CharacterAction/CharacterAction.h"
-#include "Module/ModuleResultManager.h"
+#include "Utility/ResultManager.h"
 #include "Skills/SkillDataAffinity.h"
 #include "Skills/SkillDataAlchemy.h"
 #include "Skills/SkillDataBreakdown.h"
