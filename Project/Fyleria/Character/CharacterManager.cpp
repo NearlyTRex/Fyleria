@@ -60,7 +60,7 @@ void CharacterManager::UnloadCharacter(const String& sCharacterID)
 
 Bool CharacterManager::DoesCharacterExist(const String& sCharacterID) const
 {
-    // Check if party exists
+    // Check if character exists
     auto iSearch = GetCharacters().find(sCharacterID);
     return (iSearch != GetCharacters().end());
 }
