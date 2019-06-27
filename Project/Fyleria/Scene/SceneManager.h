@@ -35,6 +35,13 @@ public:
     // Switch to scene
     void SwitchToScene(const String& sSceneID);
 
+    // Does scene exist
+    Bool DoesSceneExist(const String& sSceneID) const;
+
+    // Get scene
+    const Scene& GetScene(const String& sSceneID) const;
+    Scene& GetScene(const String& sSceneID);
+
     // Get current scene
     const Scene& GetCurrentScene() const;
     Scene& GetCurrentScene();

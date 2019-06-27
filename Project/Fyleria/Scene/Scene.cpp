@@ -15,16 +15,21 @@ Scene::~Scene()
 {
 }
 
-void Scene::Init()
+void Scene::Start()
 {
 }
 
-void Scene::Destroy()
+void Scene::Finish()
 {
 }
 
 void Scene::Update()
 {
+}
+
+void Scene::Input()
+{
+
 }
 
 };

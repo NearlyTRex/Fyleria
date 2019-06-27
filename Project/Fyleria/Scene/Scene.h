@@ -21,14 +21,17 @@ public:
     // Destructor
     virtual ~Scene();
 
-    // Init scene
-    virtual void Init();
+    // Start scene
+    virtual void Start();
 
-    // Destroy scene
-    virtual void Destroy();
+    // Finish scene
+    virtual void Finish();
 
     // Update scene
     virtual void Update();
+
+    // Handle scene input
+    virtual void Input();
 };
 
 // Typedef
