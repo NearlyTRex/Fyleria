@@ -48,25 +48,13 @@
 #define DEFAULT_MAX_SCORING                         200
 #define DEFAULT_MAX_RANK                            20
 
-// Web server
-#define WEB_SERVER_MAX_PAYLOAD_SIZE                 16384
+// Scenes
+#define FIRST_SCENE                                 "MainMenu"
+#define MAIN_MENU_SCENE                             "MainMenu"
 
-// Web pages
-#define WEB_PAGE_TOOL_BASE                          "/tools"
-#define WEB_PAGE_TOOL_CHARACTER_MANAGER             "/tools/character_manager.html"
-#define WEB_PAGE_TOOL_PARTY_MANAGER                 "/tools/party_manager.html"
-#define WEB_PAGE_TOOL_SAVE_MANAGER                  "/tools/save_manager.html"
-
-// Web endpoints
-#define WEB_ENDPOINT_DOES_MODULE_RESULT_EXIST       "/api/does_module_result_exist"
-#define WEB_ENDPOINT_GET_MODULE_RESULT_SIZE         "/api/get_module_result_size"
-#define WEB_ENDPOINT_GET_MODULE_RESULTS             "/api/get_module_results"
-#define WEB_ENDPOINT_RUN_MODULE_FILE                "/api/run_module_file"
-#define WEB_ENDPOINT_RUN_MODULE_FILE_RESULTS        "/api/run_module_file_results"
-#define WEB_ENDPOINT_RUN_MODULE_COMMAND             "/api/run_module_command"
-#define WEB_ENDPOINT_RUN_MODULE_COMMAND_RESULTS     "/api/run_module_command_results"
-#define WEB_ENDPOINT_SET_CURRENT_MODULE_RESULT_ID   "/api/set_current_module_result_id"
-#define WEB_ENDPOINT_CLEAR_MODULE_RESULTS           "/api/clear_module_results"
-#define WEB_ENDPOINT_CLEAR_ALL_MODULE_RESULTS       "/api/clear_all_module_results"
+// Templates
+#define TEMPLATE_TOOL_CHARACTER                     "templates/tools/character.html"
+#define TEMPLATE_TOOL_PARTY                         "templates/tools/party.html"
+#define TEMPLATE_TOOL_SAVE                          "templates/tools/save.html"
 
 #endif
