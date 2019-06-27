@@ -61,6 +61,11 @@ String JoinPaths(const String& sPath1, const String& sPath2)
     return (BoostFilesystemPath(sPath1) / BoostFilesystemPath(sPath2)).string();
 }
 
+String JoinPathsCanonical(const String& sPath1, const String& sPath2)
+{
+    return GetCanonicalPath(JoinPaths(sPath1, sPath2));
+}
+
 String GetFileContents(const String& sPath)
 {
     InputFile inputFile(sPath, STDInputFileStreamFlagInput | STDInputFileStreamFlagBinary);

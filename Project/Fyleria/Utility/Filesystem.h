@@ -43,6 +43,9 @@ String GetCanonicalPath(const String& sPath);
 // Join paths together
 String JoinPaths(const String& sPath1, const String& sPath2);
 
+// Join paths together and get canonical result
+String JoinPathsCanonical(const String& sPath1, const String& sPath2);
+
 // Get file contents
 String GetFileContents(const String& sPath);
 
