@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Character Tool</title>
+</head>
+<div class="container">
+    <form>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto"><a href="/">Home</a></div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto">Controls</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Load From JSON</label>
+            <div class="col-sm-8">
+                <textarea style="resize: none;" class="form-control" rows="3" name="sLoadCharacterFromJson_Textarea" placeholder="Raw character json">%sLoadCharacterFromJson_Textarea%</textarea>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="load_character_from_json">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Load From File</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="sLoadCharacterFromFile_Filename" placeholder="Filename" value="%sLoadCharacterFromFile_Filename%"/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="sLoadCharacterFromFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %sOptionList_FileType%
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="load_character_from_file">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Save To File</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="sSaveCharacterToFile_CharID" placeholder="Character Identifier" value="%sSaveCharacterToFile_CharID%"/>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="sSaveCharacterToFile_Filename" placeholder="Filename" value="%sSaveCharacterToFile_Filename%"/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" name="sSaveCharacterToFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    %sOptionList_FileType%
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="save_character_to_file">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Unload Character</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sUnloadCharacter_CharID" placeholder="Character Identifier" value="%sUnloadCharacter_CharID%"/>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="unload_character">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Generate Character</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sGenerateCharacter_CharID" placeholder="Character Identifier" value="%sGenerateCharacter_CharID%"/>
+            </div>
+            <div class="col-sm-4">
+                <textarea style="resize: none;" class="form-control" rows="3" name="sGenerateCharacter_Textarea" placeholder="Raw character generator json">%sGenerateCharacter_Textarea%</textarea>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="generate_character">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Generate Random Character</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sGenerateRandomCharacter_CharID" placeholder="Character Identifier" value="%sGenerateRandomCharacter_CharID%"/>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="generate_random_character">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Create Character</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sCreateCharacter_CharID" placeholder="Character Identifier" value="%sCreateCharacter_CharID%"/>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="create_character">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Display Character</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sDisplayCharacter_CharID" placeholder="Character Identifier" value="%sDisplayCharacter_CharID%"/>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="display_character">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Save Character Changes</label>
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control" name="action" value="save_character">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto">Character List</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly">%sAllCharacterIDs%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto">Character Details</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sCharacterDetails_CharID" placeholder="Character Identifier" readonly="readonly" value="%sCharacterDetails_CharID%"/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Party Identifier" readonly="readonly" value="%sCharacterDetails_PartyID%"/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Character Target Type" readonly="readonly" value="%sCharacterDetails_CharTargetType%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sCharacterDetails_First_Name" placeholder="First Name" value="%sCharacterDetails_First_Name%"/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sCharacterDetails_Last_Name" placeholder="Last Name" value="%sCharacterDetails_Last_Name%"/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="sCharacterDetails_Age" placeholder="Age" value="%sCharacterDetails_Age%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <select class="form-control" name="sCharacterDetails_Gender">
+                    <option value="" disabled="disabled">Gender...</option>
+                    %sOptionList_Gender%
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control" name="sCharacterDetails_Hair">
+                    <option value="" disabled="disabled">Hair...</option>
+                    %sOptionList_Hair%
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control" name="sCharacterDetails_Eyes">
+                    <option value="" disabled="disabled">Eyes...</option>
+                    %sOptionList_Eyes%
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control" name="sCharacterDetails_Handedness">
+                    <option value="" disabled="disabled">Handedness...</option>
+                    %sOptionList_Handed%
+                </select>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-3">
+                <select class="form-control" name="sCharacterDetails_PowerSet">
+                    <option value="" disabled="disabled">Power Set...</option>
+                    %sOptionList_PowerSet%
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control" name="sCharacterDetails_BaseRace">
+                    <option value="" disabled="disabled">Base Race...</option>
+                    %sOptionList_BaseRace%
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control" name="sCharacterDetails_TransformedRace">
+                    <option value="" disabled="disabled">Transformed Race...</option>
+                    %sOptionList_TransformedRace%
+                </select>
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control" name="sCharacterDetails_CurrentWeaponSet">
+                    <option value="" disabled="disabled">Weapon Set...</option>
+                    %sOptionList_CurrentWeaponSet%
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Weapon 1 Left</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Weapon1Left%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Weapon 1 Right</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Weapon1Right%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Neck</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Neck%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Weapon 2 Left</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Weapon2Left%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Weapon 2 Right</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Weapon2Right%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Head</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Head%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Left Fingers</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_LeftFingers%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Right Fingers</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_RightFingers%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Hands</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Hands%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Feet</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Feet%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Legs</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Legs%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Chest</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" readonly="readonly" value="%sCharacterDetails_Chest%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Health</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_HP_Current" placeholder="Cur" value="%sCharacterDetails_HP_Current%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_HP_Max" placeholder="Max" value="%sCharacterDetails_HP_Max%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_HP_Regen" placeholder="Reg" value="%sCharacterDetails_HP_Regen%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_HP_Delta" placeholder="Delta" value="%sCharacterDetails_HP_Delta%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Blunt</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Blunt_Attack" placeholder="Atk" value="%sCharacterDetails_Blunt_Attack%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Blunt_Defense" placeholder="Def" value="%sCharacterDetails_Blunt_Defense%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Pierce</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_Attack" placeholder="Atk" value="%sCharacterDetails_Pierce_Attack%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_Defense" placeholder="Def" value="%sCharacterDetails_Pierce_Defense%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Magic</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_MP_Current" placeholder="Cur" value="%sCharacterDetails_MP_Current%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_MP_Max" placeholder="Max" value="%sCharacterDetails_MP_Max%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_MP_Regen" placeholder="Reg" value="%sCharacterDetails_MP_Regen%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_MP_Delta" placeholder="Delta" value="%sCharacterDetails_MP_Delta%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Magic</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Magic_Attack" placeholder="Atk" value="%sCharacterDetails_Magic_Attack%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Magic_Defense" placeholder="Def" value="%sCharacterDetails_Magic_Defense%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Energy</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Energy_Attack" placeholder="Atk" value="%sCharacterDetails_Energy_Attack%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Energy_Defense" placeholder="Def" value="%sCharacterDetails_Energy_Defense%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Energy</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_EP_Current" placeholder="Cur" value="%sCharacterDetails_EP_Current%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_EP_Max" placeholder="Max" value="%sCharacterDetails_EP_Max%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_EP_Regen" placeholder="Reg" value="%sCharacterDetails_EP_Regen%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_EP_Delta" placeholder="Delta" value="%sCharacterDetails_EP_Delta%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Slash</label>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_Attack" placeholder="Atk" value="%sCharacterDetails_Slash_Attack%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_Defense" placeholder="Def" value="%sCharacterDetails_Slash_Defense%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Speed</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Speed" placeholder="Speed" value="%sCharacterDetails_Speed%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Slash</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_Current" placeholder="Current" value="%sCharacterDetails_Slash_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_Rank" placeholder="Rank" value="%sCharacterDetails_Slash_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Slash_ActionPoints" placeholder="AP" value="%sCharacterDetails_Slash_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Sever</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Sever_Current" placeholder="Current" value="%sCharacterDetails_Sever_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Sever_Rank" placeholder="Rank" value="%sCharacterDetails_Sever_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Sever_ActionPoints" placeholder="AP" value="%sCharacterDetails_Sever_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Slice</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Slice_Current" placeholder="Current" value="%sCharacterDetails_Slice_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Slice_Rank" placeholder="Rank" value="%sCharacterDetails_Slice_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Slice_ActionPoints" placeholder="AP" value="%sCharacterDetails_Slice_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Slit</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Slit_Current" placeholder="Current" value="%sCharacterDetails_Slit_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Slit_Rank" placeholder="Rank" value="%sCharacterDetails_Slit_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Slit_ActionPoints" placeholder="AP" value="%sCharacterDetails_Slit_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Cleave</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Cleave_Current" placeholder="Current" value="%sCharacterDetails_Cleave_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Cleave_Rank" placeholder="Rank" value="%sCharacterDetails_Cleave_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Cleave_ActionPoints" placeholder="AP" value="%sCharacterDetails_Cleave_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Decapitate</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Decapitate_Current" placeholder="Current" value="%sCharacterDetails_Decapitate_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Decapitate_Rank" placeholder="Rank" value="%sCharacterDetails_Decapitate_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Decapitate_ActionPoints" placeholder="AP" value="%sCharacterDetails_Decapitate_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Parry</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Parry_Current" placeholder="Current" value="%sCharacterDetails_Parry_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Parry_Rank" placeholder="Rank" value="%sCharacterDetails_Parry_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Parry_ActionPoints" placeholder="AP" value="%sCharacterDetails_Parry_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Riposte</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Riposte_Current" placeholder="Current" value="%sCharacterDetails_Riposte_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Riposte_Rank" placeholder="Rank" value="%sCharacterDetails_Riposte_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Riposte_ActionPoints" placeholder="AP" value="%sCharacterDetails_Riposte_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Bash</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Bash_Current" placeholder="Current" value="%sCharacterDetails_Bash_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Bash_Rank" placeholder="Rank" value="%sCharacterDetails_Bash_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Bash_ActionPoints" placeholder="AP" value="%sCharacterDetails_Bash_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Smash</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Smash_Current" placeholder="Current" value="%sCharacterDetails_Smash_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Smash_Rank" placeholder="Rank" value="%sCharacterDetails_Smash_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Smash_ActionPoints" placeholder="AP" value="%sCharacterDetails_Smash_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Crush</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Crush_Current" placeholder="Current" value="%sCharacterDetails_Crush_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Crush_Rank" placeholder="Rank" value="%sCharacterDetails_Crush_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Crush_ActionPoints" placeholder="AP" value="%sCharacterDetails_Crush_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Impact</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Impact_Current" placeholder="Current" value="%sCharacterDetails_Impact_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Impact_Rank" placeholder="Rank" value="%sCharacterDetails_Impact_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Impact_ActionPoints" placeholder="AP" value="%sCharacterDetails_Impact_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Break</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Break_Current" placeholder="Current" value="%sCharacterDetails_Break_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Break_Rank" placeholder="Rank" value="%sCharacterDetails_Break_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Break_ActionPoints" placeholder="AP" value="%sCharacterDetails_Break_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Crack</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Crack_Current" placeholder="Current" value="%sCharacterDetails_Crack_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Crack_Rank" placeholder="Rank" value="%sCharacterDetails_Crack_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Crack_ActionPoints" placeholder="AP" value="%sCharacterDetails_Crack_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Block</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Block_Current" placeholder="Current" value="%sCharacterDetails_Block_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Block_Rank" placeholder="Rank" value="%sCharacterDetails_Block_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Block_ActionPoints" placeholder="AP" value="%sCharacterDetails_Block_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Rush</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Rush_Current" placeholder="Current" value="%sCharacterDetails_Rush_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Rush_Rank" placeholder="Rank" value="%sCharacterDetails_Rush_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Rush_ActionPoints" placeholder="AP" value="%sCharacterDetails_Rush_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Pierce</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_Current" placeholder="Current" value="%sCharacterDetails_Pierce_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_Rank" placeholder="Rank" value="%sCharacterDetails_Pierce_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Pierce_ActionPoints" placeholder="AP" value="%sCharacterDetails_Pierce_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Drill</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Drill_Current" placeholder="Current" value="%sCharacterDetails_Drill_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Drill_Rank" placeholder="Rank" value="%sCharacterDetails_Drill_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Drill_ActionPoints" placeholder="AP" value="%sCharacterDetails_Drill_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Shoot</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Shoot_Current" placeholder="Current" value="%sCharacterDetails_Shoot_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Shoot_Rank" placeholder="Rank" value="%sCharacterDetails_Shoot_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Shoot_ActionPoints" placeholder="AP" value="%sCharacterDetails_Shoot_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Impale</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Impale_Current" placeholder="Current" value="%sCharacterDetails_Impale_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Impale_Rank" placeholder="Rank" value="%sCharacterDetails_Impale_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Impale_ActionPoints" placeholder="AP" value="%sCharacterDetails_Impale_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Stealth Strike</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_StealthStrike_Current" placeholder="Current" value="%sCharacterDetails_StealthStrike_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_StealthStrike_Rank" placeholder="Rank" value="%sCharacterDetails_StealthStrike_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_StealthStrike_ActionPoints" placeholder="AP" value="%sCharacterDetails_StealthStrike_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Critical Shot</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_CriticalShot_Current" placeholder="Current" value="%sCharacterDetails_CriticalShot_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_CriticalShot_Rank" placeholder="Rank" value="%sCharacterDetails_CriticalShot_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_CriticalShot_ActionPoints" placeholder="AP" value="%sCharacterDetails_CriticalShot_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label">Dodge</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Dodge_Current" placeholder="Current" value="%sCharacterDetails_Dodge_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Dodge_Rank" placeholder="Rank" value="%sCharacterDetails_Dodge_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Dodge_ActionPoints" placeholder="AP" value="%sCharacterDetails_Dodge_ActionPoints%"/>
+            </div>
+            <label class="col-sm-1 col-form-label">Counter</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Counter_Current" placeholder="Current" value="%sCharacterDetails_Counter_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Counter_Rank" placeholder="Rank" value="%sCharacterDetails_Counter_Rank%"/>
+            </div>
+            <div class="col-sm-1">
+                <input type="text" class="form-control" name="sCharacterDetails_Counter_ActionPoints" placeholder="AP" value="%sCharacterDetails_Counter_ActionPoints%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Barbarian</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Barbarian_Current" placeholder="Current" value="%sCharacterDetails_Barbarian_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Barbarian_Rank" placeholder="Rank" value="%sCharacterDetails_Barbarian_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Mage</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Mage_Current" placeholder="Current" value="%sCharacterDetails_Mage_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Mage_Rank" placeholder="Rank" value="%sCharacterDetails_Mage_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Rogue</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Rogue_Current" placeholder="Current" value="%sCharacterDetails_Rogue_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Rogue_Rank" placeholder="Rank" value="%sCharacterDetails_Rogue_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Blademaster</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Blademaster_Current" placeholder="Current" value="%sCharacterDetails_Blademaster_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Blademaster_Rank" placeholder="Rank" value="%sCharacterDetails_Blademaster_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Avatar</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Avatar_Current" placeholder="Current" value="%sCharacterDetails_Avatar_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Avatar_Rank" placeholder="Rank" value="%sCharacterDetails_Avatar_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Ambidextrous</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Ambidext_Current" placeholder="Current" value="%sCharacterDetails_Ambidext_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Ambidext_Rank" placeholder="Rank" value="%sCharacterDetails_Ambidext_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Focused</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Focused_Current" placeholder="Current" value="%sCharacterDetails_Focused_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Focused_Rank" placeholder="Rank" value="%sCharacterDetails_Focused_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Stalwart</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Stalwart_Current" placeholder="Current" value="%sCharacterDetails_Stalwart_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Stalwart_Rank" placeholder="Rank" value="%sCharacterDetails_Stalwart_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Healer</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Healer_Current" placeholder="Current" value="%sCharacterDetails_Healer_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Healer_Rank" placeholder="Rank" value="%sCharacterDetails_Healer_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Alchemist</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Alchemist_Current" placeholder="Current" value="%sCharacterDetails_Alchemist_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Alchemist_Rank" placeholder="Rank" value="%sCharacterDetails_Alchemist_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Energist</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Energist_Current" placeholder="Current" value="%sCharacterDetails_Energist_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Energist_Rank" placeholder="Rank" value="%sCharacterDetails_Energist_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Chemist</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Chemist_Current" placeholder="Current" value="%sCharacterDetails_Chemist_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Chemist_Rank" placeholder="Rank" value="%sCharacterDetails_Chemist_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Hammersmith</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Hammersmith_Current" placeholder="Current" value="%sCharacterDetails_Hammersmith_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Hammersmith_Rank" placeholder="Rank" value="%sCharacterDetails_Hammersmith_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Spellsmith</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Spellsmith_Current" placeholder="Current" value="%sCharacterDetails_Spellsmith_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Spellsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Spellsmith_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Bowsmith</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Bowsmith_Current" placeholder="Current" value="%sCharacterDetails_Bowsmith_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Bowsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Bowsmith_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Swordsmith</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Swordsmith_Current" placeholder="Current" value="%sCharacterDetails_Swordsmith_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Swordsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Swordsmith_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Weaver</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Weaver_Current" placeholder="Current" value="%sCharacterDetails_Weaver_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Weaver_Rank" placeholder="Rank" value="%sCharacterDetails_Weaver_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Tanner</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Tanner_Current" placeholder="Current" value="%sCharacterDetails_Tanner_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Tanner_Rank" placeholder="Rank" value="%sCharacterDetails_Tanner_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Scalesmith</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Scalesmith_Current" placeholder="Current" value="%sCharacterDetails_Scalesmith_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Scalesmith_Rank" placeholder="Rank" value="%sCharacterDetails_Scalesmith_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Platesmith</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Platesmith_Current" placeholder="Current" value="%sCharacterDetails_Platesmith_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Platesmith_Rank" placeholder="Rank" value="%sCharacterDetails_Platesmith_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Goldsmith</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Goldsmith_Current" placeholder="Current" value="%sCharacterDetails_Goldsmith_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Goldsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Goldsmith_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Shieldsmith</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Shieldsmith_Current" placeholder="Current" value="%sCharacterDetails_Shieldsmith_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Shieldsmith_Rank" placeholder="Rank" value="%sCharacterDetails_Shieldsmith_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Hammerbane</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Hammerbane_Current" placeholder="Current" value="%sCharacterDetails_Hammerbane_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Hammerbane_Rank" placeholder="Rank" value="%sCharacterDetails_Hammerbane_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Spellbane</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Spellbane_Current" placeholder="Current" value="%sCharacterDetails_Spellbane_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Spellbane_Rank" placeholder="Rank" value="%sCharacterDetails_Spellbane_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Bowbane</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Bowbane_Current" placeholder="Current" value="%sCharacterDetails_Bowbane_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Bowbane_Rank" placeholder="Rank" value="%sCharacterDetails_Bowbane_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Swordbane</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Swordbane_Current" placeholder="Current" value="%sCharacterDetails_Swordbane_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Swordbane_Rank" placeholder="Rank" value="%sCharacterDetails_Swordbane_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Threadbare</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Threadbare_Current" placeholder="Current" value="%sCharacterDetails_Threadbare_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Threadbare_Rank" placeholder="Rank" value="%sCharacterDetails_Threadbare_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Stud Remover</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Studremover_Current" placeholder="Current" value="%sCharacterDetails_Studremover_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Studremover_Rank" placeholder="Rank" value="%sCharacterDetails_Studremover_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Scalebane</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Scalebane_Current" placeholder="Current" value="%sCharacterDetails_Scalebane_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Scalebane_Rank" placeholder="Rank" value="%sCharacterDetails_Scalebane_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Platebane</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Platebane_Current" placeholder="Current" value="%sCharacterDetails_Platebane_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Platebane_Rank" placeholder="Rank" value="%sCharacterDetails_Platebane_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Goldbane</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Goldbane_Current" placeholder="Current" value="%sCharacterDetails_Goldbane_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Goldbane_Rank" placeholder="Rank" value="%sCharacterDetails_Goldbane_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Shieldbane</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Shieldbane_Current" placeholder="Current" value="%sCharacterDetails_Shieldbane_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Shieldbane_Rank" placeholder="Rank" value="%sCharacterDetails_Shieldbane_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Holy</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Holy_Current" placeholder="Current" value="%sCharacterDetails_Holy_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Holy_Rank" placeholder="Rank" value="%sCharacterDetails_Holy_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Fire</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Fire_Current" placeholder="Current" value="%sCharacterDetails_Fire_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Fire_Rank" placeholder="Rank" value="%sCharacterDetails_Fire_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Ice</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Ice_Current" placeholder="Current" value="%sCharacterDetails_Ice_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Ice_Rank" placeholder="Rank" value="%sCharacterDetails_Ice_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Shock</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Shock_Current" placeholder="Current" value="%sCharacterDetails_Shock_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Shock_Rank" placeholder="Rank" value="%sCharacterDetails_Shock_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Dark</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Dark_Current" placeholder="Current" value="%sCharacterDetails_Dark_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Dark_Rank" placeholder="Rank" value="%sCharacterDetails_Dark_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Light</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Light_Current" placeholder="Current" value="%sCharacterDetails_Light_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Light_Rank" placeholder="Rank" value="%sCharacterDetails_Light_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Force</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Force_Current" placeholder="Current" value="%sCharacterDetails_Force_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Force_Rank" placeholder="Rank" value="%sCharacterDetails_Force_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Mind</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Mind_Current" placeholder="Current" value="%sCharacterDetails_Mind_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Mind_Rank" placeholder="Rank" value="%sCharacterDetails_Mind_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Earth</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Earth_Current" placeholder="Current" value="%sCharacterDetails_Earth_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Earth_Rank" placeholder="Rank" value="%sCharacterDetails_Earth_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Blood</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Blood_Current" placeholder="Current" value="%sCharacterDetails_Blood_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Blood_Rank" placeholder="Rank" value="%sCharacterDetails_Blood_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Flesh</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Flesh_Current" placeholder="Current" value="%sCharacterDetails_Flesh_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Flesh_Rank" placeholder="Rank" value="%sCharacterDetails_Flesh_Rank%"/>
+            </div>
+            <label class="col-sm-2 col-form-label">Wind</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Wind_Current" placeholder="Current" value="%sCharacterDetails_Wind_Current%"/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" name="sCharacterDetails_Wind_Rank" placeholder="Rank" value="%sCharacterDetails_Wind_Rank%"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Available Actions</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_AvailableActions%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Skill Passive Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_SkillPassiveChanges%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Item Passive Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_ItemPassiveChanges%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Skill Active Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_SkillActiveChanges%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Item Active Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_ItemActiveChanges%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Skill Actionable Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_SkillActionableChanges%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Item Actionable Changes</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly">%sCharacterDetails_ItemActionableChanges%</textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Raw Character Json</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="8" readonly="readonly">%sCharacterDetails_RawJson%</textarea>
+            </div>
+        </div>
+    </form>
+</div>
+</html>
