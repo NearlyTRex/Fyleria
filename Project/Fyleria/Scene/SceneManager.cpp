@@ -40,19 +40,18 @@ void SceneManager::SwitchToScene(const String& sSceneID)
         return;
     }
 
-    // Check if we already had a current scene
-    if(DoesSceneExist(GetCurrentSceneID()))
+    // Check if we already had a current scene and it's not the same scene
+    String sCurrentSceneID = GetCurrentSceneID();
+    if(DoesSceneExist(sCurrentSceneID) && (sCurrentSceneID != sSceneID))
     {
         // Finish it
-        LOG_FORMAT_STATEMENT("Finishing scene '%s'\n", GetCurrentSceneID().c_str());
+        LOG_FORMAT_STATEMENT("Finishing scene '%s'\n", sCurrentSceneID.c_str());
         GetCurrentScene().Finish();
     }
 
-    // Set the new scene ID
-    SetCurrentSceneID(sSceneID);
-
     // Start new scene
-    LOG_FORMAT_STATEMENT("Starting scene '%s'\n", GetCurrentSceneID().c_str());
+    LOG_FORMAT_STATEMENT("Starting scene '%s'\n", sSceneID.c_str());
+    SetCurrentSceneID(sSceneID);
     GetCurrentScene().Start();
 }
 
