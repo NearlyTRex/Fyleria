@@ -5,6 +5,8 @@
 #include "Main/Application.h"
 #include "Window/MainWindow.h"
 #include "Config/ConfigManager.h"
+#include "Scene/SceneManager.h"
+#include "Scene/SceneMainMenu.h"
 #include "Items/ItemTree.h"
 #include "Skills/SkillTree.h"
 #include "Stats/StatNames.h"
@@ -32,9 +34,17 @@ void Application::Run()
         return;
     }
 
+    // Start first scene
+    SceneManager::GetInstance()->SwitchToScene(FIRST_SCENE);
+
     // Main loop
     do
     {
+        // Handle scene
+        SceneManager::GetInstance()->GetCurrentScene()->Input();
+        SceneManager::GetInstance()->GetCurrentScene()->Update();
+
+        // Handle browser main loop
         MainWindow::GetInstance()->GetBrowserEngine()->RunMainLoopIteration(true);
     }
     while(MainWindow::GetInstance()->GetBrowserEngine()->GetIsShuttingDown() == false);
@@ -74,18 +84,35 @@ Bool Application::Initialize()
     ItemTree::LoadItemTreesIntoMemory();
     LOG_STATEMENT("Finished loading trees into memory");
 
-    // Get configuration data
-    Int iScreenWidth = ConfigManager::GetInstance()->GetScreenWidth();
-    Int iScreenHeight = ConfigManager::GetInstance()->GetScreenHeight();
+    // Add starting scenes
+    LOG_STATEMENT("Adding scenes");
+    SceneManager::GetInstance()->AddScene(MAIN_MENU_SCENE, STDMakeSharedPtr<SceneMainMenu>());
+    SceneManager::GetInstance()->SetCurrentSceneID(MAIN_MENU_SCENE);
+    LOG_STATEMENT("Finished adding scenes");
 
     // Initialize window
     LOG_STATEMENT("Initializing window");
+    Int iScreenWidth = ConfigManager::GetInstance()->GetScreenWidth();
+    Int iScreenHeight = ConfigManager::GetInstance()->GetScreenHeight();
     if(!MainWindow::GetInstance()->GetBrowserEngine()->Init(APPLICATION_NAME_SHORT, iScreenWidth, iScreenHeight, true))
     {
         ERROR_STATEMENT("Unable to initialize window");
         return false;
     }
     LOG_STATEMENT("Finished initializing window");
+
+    // Load web files
+    LOG_STATEMENT("Loading web files");
+    String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
+    String sBootstrapCss = JoinPathsCanonical(sWebDir, FILE_CSS_BOOTSTRAP);
+    String sBootstrapJs = JoinPathsCanonical(sWebDir, FILE_JS_BOOTSTRAP);
+    String sJqueryJs = JoinPathsCanonical(sWebDir, FILE_JS_JQUERY);
+    String sPhaserJs = JoinPathsCanonical(sWebDir, FILE_JS_PHASER);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(sBootstrapCss);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sBootstrapJs);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sJqueryJs);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sPhaserJs);
+    LOG_STATEMENT("Finished loading web files");
 
     // Setup window
     LOG_STATEMENT("Navigating to start page");

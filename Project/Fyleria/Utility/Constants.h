@@ -52,9 +52,15 @@
 #define FIRST_SCENE                                 "MainMenu"
 #define MAIN_MENU_SCENE                             "MainMenu"
 
-// Templates
-#define TEMPLATE_TOOL_CHARACTER                     "templates/tools/character.html"
-#define TEMPLATE_TOOL_PARTY                         "templates/tools/party.html"
-#define TEMPLATE_TOOL_SAVE                          "templates/tools/save.html"
+// Web js/css files
+#define FILE_CSS_BOOTSTRAP                          "lib/bootstrap/css/bootstrap.min.css"
+#define FILE_JS_BOOTSTRAP                           "lib/bootstrap/js/bootstrap.min.js"
+#define FILE_JS_JQUERY                              "lib/jquery/jquery.min.js"
+#define FILE_JS_PHASER                              "lib/phaser/phaser.min.js"
+
+// Web template files
+#define FILE_TEMPLATE_TOOL_CHARACTER                "templates/tools/character.html"
+#define FILE_TEMPLATE_TOOL_PARTY                    "templates/tools/party.html"
+#define FILE_TEMPLATE_TOOL_SAVE                     "templates/tools/save.html"
 
 #endif

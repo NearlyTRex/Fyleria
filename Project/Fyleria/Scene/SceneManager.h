@@ -18,7 +18,7 @@ class SceneManager : public Singleton<SceneManager>
 public:
 
     // Types
-    typedef STDUnorderedMap<String, Scene> SceneMappingType;
+    typedef STDUnorderedMap<String, SceneSharedPtr> SceneMappingType;
 
     // Constructor
     SceneManager();
@@ -27,7 +27,7 @@ public:
     virtual ~SceneManager();
 
     // Add scene
-    void AddScene(const String& sSceneID, const Scene& scene);
+    void AddScene(const String& sSceneID, const SceneSharedPtr& pScene);
 
     // Remove scene
     void RemoveScene(const String& sSceneID);
@@ -39,12 +39,12 @@ public:
     Bool DoesSceneExist(const String& sSceneID) const;
 
     // Get scene
-    const Scene& GetScene(const String& sSceneID) const;
-    Scene& GetScene(const String& sSceneID);
+    const SceneSharedPtr& GetScene(const String& sSceneID) const;
+    SceneSharedPtr& GetScene(const String& sSceneID);
 
     // Get current scene
-    const Scene& GetCurrentScene() const;
-    Scene& GetCurrentScene();
+    const SceneSharedPtr& GetCurrentScene() const;
+    SceneSharedPtr& GetCurrentScene();
 
     // Current scene
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentSceneID, String);

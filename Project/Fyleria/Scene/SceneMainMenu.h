@@ -19,6 +19,18 @@ public:
 
     // Destructor
     virtual ~SceneMainMenu();
+
+    // Start scene
+    virtual void Start() override;
+
+    // Finish scene
+    virtual void Finish() override;
+
+    // Update scene
+    virtual void Update() override;
+
+    // Handle scene input
+    virtual void Input() override;
 };
 
 // Typedef

@@ -16,4 +16,20 @@ SceneMainMenu::~SceneMainMenu()
 {
 }
 
+void SceneMainMenu::Start()
+{
+}
+
+void SceneMainMenu::Finish()
+{
+}
+
+void SceneMainMenu::Update()
+{
+}
+
+void SceneMainMenu::Input()
+{
+}
+
 };

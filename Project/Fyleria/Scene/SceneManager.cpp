@@ -17,11 +17,11 @@ SceneManager::~SceneManager()
 {
 }
 
-void SceneManager::AddScene(const String& sSceneID, const Scene& scene)
+void SceneManager::AddScene(const String& sSceneID, const SceneSharedPtr& pScene)
 {
     // Add scene
     LOG_FORMAT_STATEMENT("Adding scene '%s'\n", sSceneID.c_str());
-    GetScenes().insert({sSceneID, scene});
+    GetScenes().insert({sSceneID, pScene});
 }
 
 void SceneManager::RemoveScene(const String& sSceneID)
@@ -46,13 +46,13 @@ void SceneManager::SwitchToScene(const String& sSceneID)
     {
         // Finish it
         LOG_FORMAT_STATEMENT("Finishing scene '%s'\n", sCurrentSceneID.c_str());
-        GetCurrentScene().Finish();
+        GetCurrentScene()->Finish();
     }
 
     // Start new scene
     LOG_FORMAT_STATEMENT("Starting scene '%s'\n", sSceneID.c_str());
     SetCurrentSceneID(sSceneID);
-    GetCurrentScene().Start();
+    GetCurrentScene()->Start();
 }
 
 Bool SceneManager::DoesSceneExist(const String& sSceneID) const
@@ -62,7 +62,7 @@ Bool SceneManager::DoesSceneExist(const String& sSceneID) const
     return (iSearch != GetScenes().end());
 }
 
-const Scene& SceneManager::GetScene(const String& sSceneID) const
+const SceneSharedPtr& SceneManager::GetScene(const String& sSceneID) const
 {
     // Get scene
     auto iSearch = GetScenes().find(sSceneID);
@@ -73,13 +73,13 @@ const Scene& SceneManager::GetScene(const String& sSceneID) const
     throw RuntimeError("Invalid or unknown scene ID requested: " + sSceneID);
 }
 
-Scene& SceneManager::GetScene(const String& sSceneID)
+SceneSharedPtr& SceneManager::GetScene(const String& sSceneID)
 {
     // Get scene
-    return const_cast<Scene&>(static_cast<const SceneManager&>(*this).GetScene(sSceneID));
+    return const_cast<SceneSharedPtr&>(static_cast<const SceneManager&>(*this).GetScene(sSceneID));
 }
 
-const Scene& SceneManager::GetCurrentScene() const
+const SceneSharedPtr& SceneManager::GetCurrentScene() const
 {
     // Get current scene id
     String sCurrentSceneID = GetCurrentSceneID();
@@ -92,10 +92,10 @@ const Scene& SceneManager::GetCurrentScene() const
     return GetScene(sCurrentSceneID);
 }
 
-Scene& SceneManager::GetCurrentScene()
+SceneSharedPtr& SceneManager::GetCurrentScene()
 {
     // Get current scene
-    return const_cast<Scene&>(static_cast<const SceneManager&>(*this).GetCurrentScene());
+    return const_cast<SceneSharedPtr&>(static_cast<const SceneManager&>(*this).GetCurrentScene());
 }
 
 };
