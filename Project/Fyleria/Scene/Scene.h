@@ -22,16 +22,19 @@ public:
     virtual ~Scene();
 
     // Start scene
-    virtual void Start();
+    virtual void Start() = 0;
 
     // Finish scene
-    virtual void Finish();
+    virtual void Finish() = 0;
 
     // Update scene
-    virtual void Update();
+    virtual void Update() = 0;
 
     // Handle scene input
-    virtual void Input();
+    virtual void Input() = 0;
+
+    // Handle message received
+    virtual void OnMessageReceived(const String& sMessage) = 0;
 };
 
 // Typedef

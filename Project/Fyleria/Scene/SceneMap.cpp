@@ -3,6 +3,7 @@
 
 // Internal includes
 #include "Scene/SceneMap.h"
+#include "Window/MainWindow.h"
 
 namespace Gecko
 {
@@ -18,10 +19,14 @@ SceneMap::~SceneMap()
 
 void SceneMap::Start()
 {
+    // Register callbacks
+    SET_JAVASCRIPT_POST_CALLBACK(SceneMap, OnMessageReceived);
 }
 
 void SceneMap::Finish()
 {
+    // Clear callbacks
+    CLEAR_JAVASCRIPT_POST_CALLBACK();
 }
 
 void SceneMap::Update()
@@ -29,6 +34,10 @@ void SceneMap::Update()
 }
 
 void SceneMap::Input()
+{
+}
+
+void SceneMap::OnMessageReceived(const String& sMessage)
 {
 }
 

@@ -31,6 +31,9 @@ public:
 
     // Handle scene input
     virtual void Input() override;
+
+    // Handle message received
+    virtual void OnMessageReceived(const String& sMessage) override;
 };
 
 // Typedef

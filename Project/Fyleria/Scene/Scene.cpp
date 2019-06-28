@@ -29,7 +29,6 @@ void Scene::Update()
 
 void Scene::Input()
 {
-
 }
 
 };

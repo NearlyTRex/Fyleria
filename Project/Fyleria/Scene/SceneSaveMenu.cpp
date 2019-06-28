@@ -3,6 +3,7 @@
 
 // Internal includes
 #include "Scene/SceneSaveMenu.h"
+#include "Window/MainWindow.h"
 
 namespace Gecko
 {
@@ -18,10 +19,14 @@ SceneSaveMenu::~SceneSaveMenu()
 
 void SceneSaveMenu::Start()
 {
+    // Register callbacks
+    SET_JAVASCRIPT_POST_CALLBACK(SceneSaveMenu, OnMessageReceived);
 }
 
 void SceneSaveMenu::Finish()
 {
+    // Clear callbacks
+    CLEAR_JAVASCRIPT_POST_CALLBACK();
 }
 
 void SceneSaveMenu::Update()
@@ -29,6 +34,10 @@ void SceneSaveMenu::Update()
 }
 
 void SceneSaveMenu::Input()
+{
+}
+
+void SceneSaveMenu::OnMessageReceived(const String& sMessage)
 {
 }
 
