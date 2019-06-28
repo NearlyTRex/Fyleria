@@ -50,17 +50,41 @@
 
 // Scenes
 #define FIRST_SCENE                                 "MainMenu"
-#define MAIN_MENU_SCENE                             "MainMenu"
+#define SCENE_INTRO                                 "Intro"
+#define SCENE_LOADING                               "Loading"
+#define SCENE_MAIN_MENU                             "MainMenu"
+#define SCENE_STATUS_MENU                           "StatusMenu"
+#define SCENE_SAVE_MENU                             "SaveMenu"
+#define SCENE_CRAFTING_MENU                         "CraftingMenu"
+#define SCENE_MAP                                   "Map"
+#define SCENE_SHOP                                  "Shop"
+#define SCENE_BATTLE                                "Battle"
+#define SCENE_CHARACTER_CREATION                    "CharacterCreation"
+#define SCENE_CREDITS                               "Credits"
+#define SCENE_TOOL_MAIN                             "ToolMain"
+#define SCENE_TOOL_CHARACTER                        "ToolCharacter"
+#define SCENE_TOOL_PARTY                            "ToolParty"
+#define SCENE_TOOL_SAVE                             "ToolSave"
 
-// Web js/css files
-#define FILE_CSS_BOOTSTRAP                          "lib/bootstrap/css/bootstrap.min.css"
-#define FILE_JS_BOOTSTRAP                           "lib/bootstrap/js/bootstrap.min.js"
-#define FILE_JS_JQUERY                              "lib/jquery/jquery.min.js"
-#define FILE_JS_PHASER                              "lib/phaser/phaser.min.js"
-
-// Web template files
-#define FILE_TEMPLATE_TOOL_CHARACTER                "templates/tools/character.html"
-#define FILE_TEMPLATE_TOOL_PARTY                    "templates/tools/party.html"
-#define FILE_TEMPLATE_TOOL_SAVE                     "templates/tools/save.html"
+// Web files
+#define WEB_LIB_CSS_BOOTSTRAP                       "lib/bootstrap/css/bootstrap.min.css"
+#define WEB_LIB_JS_BOOTSTRAP                        "lib/bootstrap/js/bootstrap.min.js"
+#define WEB_LIB_JS_JQUERY                           "lib/jquery/jquery.min.js"
+#define WEB_LIB_JS_PHASER                           "lib/phaser/phaser.min.js"
+#define WEB_PAGE_SYSTEM_INTRO                       "pages/system_intro.html"
+#define WEB_PAGE_SYSTEM_LOADING                     "pages/system_loading.html"
+#define WEB_PAGE_SYSTEM_MAIN_MENU                   "pages/system_main_menu.html"
+#define WEB_PAGE_SYSTEM_STATUS_MENU                 "pages/system_status_menu.html"
+#define WEB_PAGE_SYSTEM_SAVE_MENU                   "pages/system_save_menu.html"
+#define WEB_PAGE_SYSTEM_CRAFTING_MENU               "pages/system_crafting_menu.html"
+#define WEB_PAGE_SYSTEM_MAP                         "pages/system_map.html"
+#define WEB_PAGE_SYSTEM_SHOP                        "pages/system_shop.html"
+#define WEB_PAGE_SYSTEM_BATTLE                      "pages/system_battle.html"
+#define WEB_PAGE_SYSTEM_CHARACTER_CREATION          "pages/system_character_creation.html"
+#define WEB_PAGE_SYSTEM_CREDITS                     "pages/system_credits.html"
+#define WEB_PAGE_TOOL_MAIN                          "pages/tool_main.html"
+#define WEB_PAGE_TOOL_CHARACTER                     "pages/tool_character.html"
+#define WEB_PAGE_TOOL_PARTY                         "pages/tool_party.html"
+#define WEB_PAGE_TOOL_SAVE                          "pages/tool_save.html"
 
 #endif

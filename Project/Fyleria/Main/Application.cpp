@@ -6,7 +6,6 @@
 #include "Window/MainWindow.h"
 #include "Config/ConfigManager.h"
 #include "Scene/SceneManager.h"
-#include "Scene/SceneMainMenu.h"
 #include "Items/ItemTree.h"
 #include "Skills/SkillTree.h"
 #include "Stats/StatNames.h"
@@ -84,12 +83,6 @@ Bool Application::Initialize()
     ItemTree::LoadItemTreesIntoMemory();
     LOG_STATEMENT("Finished loading trees into memory");
 
-    // Add starting scenes
-    LOG_STATEMENT("Adding scenes");
-    SceneManager::GetInstance()->AddScene(MAIN_MENU_SCENE, STDMakeSharedPtr<SceneMainMenu>());
-    SceneManager::GetInstance()->SetCurrentSceneID(MAIN_MENU_SCENE);
-    LOG_STATEMENT("Finished adding scenes");
-
     // Initialize window
     LOG_STATEMENT("Initializing window");
     Int iScreenWidth = ConfigManager::GetInstance()->GetScreenWidth();
@@ -104,10 +97,10 @@ Bool Application::Initialize()
     // Load web files
     LOG_STATEMENT("Loading web files");
     String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
-    String sBootstrapCss = JoinPathsCanonical(sWebDir, FILE_CSS_BOOTSTRAP);
-    String sBootstrapJs = JoinPathsCanonical(sWebDir, FILE_JS_BOOTSTRAP);
-    String sJqueryJs = JoinPathsCanonical(sWebDir, FILE_JS_JQUERY);
-    String sPhaserJs = JoinPathsCanonical(sWebDir, FILE_JS_PHASER);
+    String sBootstrapCss = JoinPathsCanonical(sWebDir, WEB_LIB_CSS_BOOTSTRAP);
+    String sBootstrapJs = JoinPathsCanonical(sWebDir, WEB_LIB_JS_BOOTSTRAP);
+    String sJqueryJs = JoinPathsCanonical(sWebDir, WEB_LIB_JS_JQUERY);
+    String sPhaserJs = JoinPathsCanonical(sWebDir, WEB_LIB_JS_PHASER);
     MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(sBootstrapCss);
     MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sBootstrapJs);
     MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sJqueryJs);

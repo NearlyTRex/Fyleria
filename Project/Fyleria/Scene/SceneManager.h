@@ -6,6 +6,21 @@
 
 // Internal includes
 #include "Scene/Scene.h"
+#include "Scene/SceneIntro.h"
+#include "Scene/SceneLoading.h"
+#include "Scene/SceneMainMenu.h"
+#include "Scene/SceneStatusMenu.h"
+#include "Scene/SceneSaveMenu.h"
+#include "Scene/SceneCraftingMenu.h"
+#include "Scene/SceneMap.h"
+#include "Scene/SceneShop.h"
+#include "Scene/SceneBattle.h"
+#include "Scene/SceneCharacterCreation.h"
+#include "Scene/SceneCredits.h"
+#include "Scene/SceneToolMain.h"
+#include "Scene/SceneToolCharacter.h"
+#include "Scene/SceneToolParty.h"
+#include "Scene/SceneToolSave.h"
 #include "Utility/Types.h"
 #include "Utility/Singleton.h"
 

@@ -3,6 +3,7 @@
 
 // Internal includes
 #include "Scene/SceneManager.h"
+#include "Utility/Constants.h"
 #include "Utility/Errors.h"
 #include "Utility/Logging.h"
 
@@ -11,6 +12,22 @@ namespace Gecko
 
 SceneManager::SceneManager()
 {
+    // Load scenes
+    AddScene(SCENE_INTRO, STDMakeSharedPtr<SceneIntro>());
+    AddScene(SCENE_LOADING, STDMakeSharedPtr<SceneLoading>());
+    AddScene(SCENE_MAIN_MENU, STDMakeSharedPtr<SceneMainMenu>());
+    AddScene(SCENE_STATUS_MENU, STDMakeSharedPtr<SceneStatusMenu>());
+    AddScene(SCENE_SAVE_MENU, STDMakeSharedPtr<SceneSaveMenu>());
+    AddScene(SCENE_CRAFTING_MENU, STDMakeSharedPtr<SceneCraftingMenu>());
+    AddScene(SCENE_MAP, STDMakeSharedPtr<SceneMap>());
+    AddScene(SCENE_SHOP, STDMakeSharedPtr<SceneShop>());
+    AddScene(SCENE_BATTLE, STDMakeSharedPtr<SceneBattle>());
+    AddScene(SCENE_CHARACTER_CREATION, STDMakeSharedPtr<SceneCharacterCreation>());
+    AddScene(SCENE_CREDITS, STDMakeSharedPtr<SceneCredits>());
+    AddScene(SCENE_TOOL_MAIN, STDMakeSharedPtr<SceneToolMain>());
+    AddScene(SCENE_TOOL_CHARACTER, STDMakeSharedPtr<SceneToolCharacter>());
+    AddScene(SCENE_TOOL_PARTY, STDMakeSharedPtr<SceneToolParty>());
+    AddScene(SCENE_TOOL_SAVE, STDMakeSharedPtr<SceneToolSave>());
 }
 
 SceneManager::~SceneManager()

@@ -19,7 +19,7 @@ WebPagePartyManager::WebPagePartyManager()
 {
     // Set template
     String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
-    String sTemplateFile = JoinPathsCanonical(sWebDir, FILE_TEMPLATE_TOOL_PARTY);
+    String sTemplateFile = JoinPathsCanonical(sWebDir, WEB_PAGE_TOOL_PARTY);
     String sTemplateContents = GetFileContents(sTemplateFile);
     SetPageTemplate(sTemplateContents);
 }
