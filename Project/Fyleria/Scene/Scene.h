@@ -45,13 +45,25 @@ protected:
     // Handle message or return false if it could not be handled
     virtual Bool HandleMessage(const String& sMessage);
 
+    // Process form
+    virtual void ProcessForm(const StringMap& tParameters);
+
+    // Run javascript
+    virtual void RunJavascript(const String& sScript);
+
+    // Set html content
+    virtual void SetHtmlContent(const String& sHtml);
+
     // Set callbacks
-    void SetPostCallback(const BrowserEngine::JavascriptCallback& fnCallback);
-    void SetRunResultCallback(const BrowserEngine::JavascriptCallback& fnCallback);
+    virtual void SetPostCallback(const BrowserEngine::JavascriptCallback& fnCallback);
+    virtual void SetRunResultCallback(const BrowserEngine::JavascriptCallback& fnCallback);
 
     // Clear callbacks
-    void ClearPostCallback();
-    void ClearRunResultCallback();
+    virtual void ClearPostCallback();
+    virtual void ClearRunResultCallback();
+
+    // Page content
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageContent, String);
 };
 
 // Typedef
