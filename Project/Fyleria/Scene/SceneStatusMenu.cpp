@@ -20,13 +20,13 @@ SceneStatusMenu::~SceneStatusMenu()
 void SceneStatusMenu::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneStatusMenu, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneStatusMenu, OnMessageReceived));
 }
 
 void SceneStatusMenu::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneStatusMenu::Update()

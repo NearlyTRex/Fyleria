@@ -20,13 +20,13 @@ SceneToolSave::~SceneToolSave()
 void SceneToolSave::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneToolSave, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolSave, OnMessageReceived));
 }
 
 void SceneToolSave::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneToolSave::Update()

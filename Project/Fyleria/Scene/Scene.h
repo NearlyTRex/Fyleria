@@ -5,6 +5,7 @@
 #define _GECKO_SCENE_H_
 
 // Internal includes
+#include "Window/BrowserEngine.h"
 #include "Utility/Types.h"
 #include "Utility/Macros.h"
 
@@ -33,8 +34,24 @@ public:
     // Handle scene input
     virtual void Input() = 0;
 
+protected:
+
     // Handle message received
     virtual void OnMessageReceived(const String& sMessage) = 0;
+
+    // Parse message and get the function and arguments
+    virtual Bool ParseMessage(const String& sMessage, String& sFunction, StringArray& vArgs);
+
+    // Handle message or return false if it could not be handled
+    virtual Bool HandleMessage(const String& sMessage);
+
+    // Set callbacks
+    void SetPostCallback(const BrowserEngine::JavascriptCallback& fnCallback);
+    void SetRunResultCallback(const BrowserEngine::JavascriptCallback& fnCallback);
+
+    // Clear callbacks
+    void ClearPostCallback();
+    void ClearRunResultCallback();
 };
 
 // Typedef

@@ -20,13 +20,13 @@ SceneLoading::~SceneLoading()
 void SceneLoading::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneLoading, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneLoading, OnMessageReceived));
 }
 
 void SceneLoading::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneLoading::Update()

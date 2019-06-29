@@ -20,13 +20,13 @@ SceneIntro::~SceneIntro()
 void SceneIntro::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneIntro, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneIntro, OnMessageReceived));
 }
 
 void SceneIntro::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneIntro::Update()

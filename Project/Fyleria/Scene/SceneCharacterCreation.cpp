@@ -20,13 +20,13 @@ SceneCharacterCreation::~SceneCharacterCreation()
 void SceneCharacterCreation::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneCharacterCreation, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneCharacterCreation, OnMessageReceived));
 }
 
 void SceneCharacterCreation::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneCharacterCreation::Update()

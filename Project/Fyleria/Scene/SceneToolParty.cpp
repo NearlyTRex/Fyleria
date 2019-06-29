@@ -20,13 +20,13 @@ SceneToolParty::~SceneToolParty()
 void SceneToolParty::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneToolParty, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolParty, OnMessageReceived));
 }
 
 void SceneToolParty::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneToolParty::Update()

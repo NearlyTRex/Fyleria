@@ -20,13 +20,13 @@ SceneMap::~SceneMap()
 void SceneMap::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneMap, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneMap, OnMessageReceived));
 }
 
 void SceneMap::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneMap::Update()

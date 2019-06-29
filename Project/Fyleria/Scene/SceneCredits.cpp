@@ -20,13 +20,13 @@ SceneCredits::~SceneCredits()
 void SceneCredits::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneCredits, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneCredits, OnMessageReceived));
 }
 
 void SceneCredits::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneCredits::Update()

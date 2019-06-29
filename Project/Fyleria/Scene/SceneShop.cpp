@@ -20,13 +20,13 @@ SceneShop::~SceneShop()
 void SceneShop::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneShop, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneShop, OnMessageReceived));
 }
 
 void SceneShop::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneShop::Update()

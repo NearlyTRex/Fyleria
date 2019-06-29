@@ -20,13 +20,13 @@ SceneToolMain::~SceneToolMain()
 void SceneToolMain::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneToolMain, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolMain, OnMessageReceived));
 }
 
 void SceneToolMain::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneToolMain::Update()

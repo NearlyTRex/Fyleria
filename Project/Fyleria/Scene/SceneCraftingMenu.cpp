@@ -20,13 +20,13 @@ SceneCraftingMenu::~SceneCraftingMenu()
 void SceneCraftingMenu::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneCraftingMenu, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneCraftingMenu, OnMessageReceived));
 }
 
 void SceneCraftingMenu::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneCraftingMenu::Update()

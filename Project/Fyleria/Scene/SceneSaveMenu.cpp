@@ -20,13 +20,13 @@ SceneSaveMenu::~SceneSaveMenu()
 void SceneSaveMenu::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneSaveMenu, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneSaveMenu, OnMessageReceived));
 }
 
 void SceneSaveMenu::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneSaveMenu::Update()

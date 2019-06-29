@@ -20,13 +20,13 @@ SceneToolCharacter::~SceneToolCharacter()
 void SceneToolCharacter::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneToolCharacter, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolCharacter, OnMessageReceived));
 }
 
 void SceneToolCharacter::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneToolCharacter::Update()

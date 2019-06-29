@@ -29,27 +29,8 @@ String Get##name() const                                                        
 
 //=====================================================================================
 
-#define SET_JAVASCRIPT_POST_CALLBACK(type, method)                                                  \
-{                                                                                                   \
-    auto fnCallback = STDBindFunc(&type::method, this, STDPlaceholder1);                            \
-    MainWindow::GetInstance()->GetBrowserEngine()->SetPostJavascriptCallback(fnCallback);           \
-}
-
-#define SET_JAVASCRIPT_RUN_RESULT_CALLBACK(type, method)                                            \
-{                                                                                                   \
-    auto fnCallback = STDBindFunc(&type::method, this, STDPlaceholder1);                            \
-    MainWindow::GetInstance()->GetBrowserEngine()->SetRunResultJavascriptCallback(fnCallback);      \
-}
-
-#define CLEAR_JAVASCRIPT_POST_CALLBACK()                                                            \
-{                                                                                                   \
-    MainWindow::GetInstance()->GetBrowserEngine()->SetPostJavascriptCallback(nullptr);              \
-}
-
-#define CLEAR_JAVASCRIPT_RUN_RESULT_CALLBACK()                                                      \
-{                                                                                                   \
-    MainWindow::GetInstance()->GetBrowserEngine()->SetRunResultJavascriptCallback(nullptr);         \
-}
+#define CREATE_JAVASCRIPT_CLASS_CALLBACK(type, method)                              \
+STDBindFunc(&type::method, this, STDPlaceholder1)
 
 //=====================================================================================
 

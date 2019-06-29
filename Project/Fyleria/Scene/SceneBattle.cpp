@@ -20,13 +20,13 @@ SceneBattle::~SceneBattle()
 void SceneBattle::Start()
 {
     // Register callbacks
-    SET_JAVASCRIPT_POST_CALLBACK(SceneBattle, OnMessageReceived);
+    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneBattle, OnMessageReceived));
 }
 
 void SceneBattle::Finish()
 {
     // Clear callbacks
-    CLEAR_JAVASCRIPT_POST_CALLBACK();
+    ClearPostCallback();
 }
 
 void SceneBattle::Update()
