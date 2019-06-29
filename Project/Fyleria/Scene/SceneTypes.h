@@ -14,8 +14,9 @@ namespace Gecko
 
 BETTER_ENUM(SceneMessageFunctionType, Int,
     None,
-    SwitchScene,
-    ReloadHtml
+    SwitchToScene,
+    ProcessForm,
+    ReloadPage
 );
 
 };
