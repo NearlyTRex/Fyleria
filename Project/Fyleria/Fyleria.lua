@@ -8,7 +8,6 @@ appFyleria_includedirs = {
 
 -- Defines
 appFyleria_defines = {
-    "NO_DLL",
 }
 appFyleria_debugdefines = {
     "DEBUG"
