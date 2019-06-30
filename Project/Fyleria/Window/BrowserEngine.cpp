@@ -28,21 +28,31 @@ String BrowserEngine::GetCommonJavascriptShortcuts()
     const String sReloadPageFunction = (+SceneMessageFunctionType::ReloadPage)._to_string();
 
     // Switch to scene shortcut
-    String sSwitchToSceneShortcut = "window.";
-    sSwitchToSceneShortcut += sSwitchToSceneFunction;
-    sSwitchToSceneShortcut += "=function(scene){";
-    sSwitchToSceneShortcut += "var p = {";
-    sSwitchToSceneShortcut += sFunctionKey;
-    sSwitchToSceneShortcut += ":\"";
-    sSwitchToSceneShortcut += sSwitchToSceneFunction;
-    sSwitchToSceneShortcut += "\",";
-    sSwitchToSceneShortcut += sArgsKey;
-    sSwitchToSceneShortcut += ":[scene]};";
+    String sSwitchToSceneShortcut = "(function(){window." + sSwitchToSceneFunction + "=function(s){";
+    sSwitchToSceneShortcut += "var p={" + sFunctionKey + ":\"" + sSwitchToSceneFunction + "\",";
+    sSwitchToSceneShortcut += sArgsKey + ":[s]};";
     sSwitchToSceneShortcut += "window.external.invoke(JSON.stringify(p));";
-    sSwitchToSceneShortcut += "};";
+    sSwitchToSceneShortcut += "};})();";
+
+    // Process form shortcut
+    String sProcessFormShortcut = "(function(){window." + sProcessFormFunction + "=function(s){";
+    sProcessFormShortcut += "var p={" + sFunctionKey + ":\"" + sProcessFormFunction + "\",";
+    sProcessFormShortcut += sArgsKey + ":[s]};";
+    sProcessFormShortcut += "window.external.invoke(JSON.stringify(p));";
+    sProcessFormShortcut += "};})();";
+
+    // Reload page shortcut
+    String sReloadPageShortcut = "(function(){window." + sReloadPageFunction + "=function(){";
+    sReloadPageShortcut += "var p={" + sFunctionKey + ":\"" + sReloadPageFunction + "\",";
+    sReloadPageShortcut += sArgsKey + ":[]};";
+    sReloadPageShortcut += "window.external.invoke(JSON.stringify(p));";
+    sReloadPageShortcut += "};})();";
 
     // Combine shortcuts
-    String sCombinedShortcuts = sSwitchToSceneShortcut;
+    String sCombinedShortcuts;
+    sCombinedShortcuts += sSwitchToSceneShortcut;
+    sCombinedShortcuts += sProcessFormShortcut;
+    sCombinedShortcuts += sReloadPageShortcut;
     return sCombinedShortcuts;
 }
 
