@@ -58,8 +58,15 @@ void SceneManager::SwitchToScene(const String& sSceneID)
         return;
     }
 
-    // Check if we already had a current scene and it's not the same scene
+    // Skip if we are already in this scene
     String sCurrentSceneID = GetCurrentSceneID();
+    if(sCurrentSceneID == sSceneID)
+    {
+        ERROR_FORMAT_STATEMENT("Already in scene '%s'\n", sSceneID.c_str());
+        return;
+    }
+
+    // Check if we already had a current scene and it's not the same scene
     if(DoesSceneExist(sCurrentSceneID) && (sCurrentSceneID != sSceneID))
     {
         // Finish it
