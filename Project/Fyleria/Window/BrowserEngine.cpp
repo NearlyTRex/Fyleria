@@ -24,7 +24,7 @@ String BrowserEngine::GetCommonJavascriptShortcuts()
 
     // Functions
     const String sSwitchToSceneFunction = (+SceneMessageFunctionType::SwitchToScene)._to_string();
-    const String sProcessFormFunction = (+SceneMessageFunctionType::ProcessForm)._to_string();
+    const String sSubmitFormFunction = (+SceneMessageFunctionType::SubmitForm)._to_string();
     const String sReloadPageFunction = (+SceneMessageFunctionType::ReloadPage)._to_string();
 
     // Switch to scene shortcut
@@ -34,12 +34,12 @@ String BrowserEngine::GetCommonJavascriptShortcuts()
     sSwitchToSceneShortcut += "window.external.invoke(JSON.stringify(p));";
     sSwitchToSceneShortcut += "};})();";
 
-    // Process form shortcut
-    String sProcessFormShortcut = "(function(){window." + sProcessFormFunction + "=function(s){";
-    sProcessFormShortcut += "var p={" + sFunctionKey + ":\"" + sProcessFormFunction + "\",";
-    sProcessFormShortcut += sArgsKey + ":[s]};";
-    sProcessFormShortcut += "window.external.invoke(JSON.stringify(p));";
-    sProcessFormShortcut += "};})();";
+    // Submit form shortcut
+    String sSubmitFormShortcut = "(function(){window." + sSubmitFormFunction + "=function(s){";
+    sSubmitFormShortcut += "var p={" + sFunctionKey + ":\"" + sSubmitFormFunction + "\",";
+    sSubmitFormShortcut += sArgsKey + ":[s]};";
+    sSubmitFormShortcut += "window.external.invoke(JSON.stringify(p));";
+    sSubmitFormShortcut += "};})();";
 
     // Reload page shortcut
     String sReloadPageShortcut = "(function(){window." + sReloadPageFunction + "=function(){";
@@ -51,7 +51,7 @@ String BrowserEngine::GetCommonJavascriptShortcuts()
     // Combine shortcuts
     String sCombinedShortcuts;
     sCombinedShortcuts += sSwitchToSceneShortcut;
-    sCombinedShortcuts += sProcessFormShortcut;
+    sCombinedShortcuts += sSubmitFormShortcut;
     sCombinedShortcuts += sReloadPageShortcut;
     return sCombinedShortcuts;
 }

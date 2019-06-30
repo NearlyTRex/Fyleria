@@ -40,7 +40,7 @@ BETTER_ENUM(SceneMessageKeyType, Int,
 BETTER_ENUM(SceneMessageFunctionType, Int,
     None,
     SwitchToScene,
-    ProcessForm,
+    SubmitForm,
     ReloadPage
 );
 

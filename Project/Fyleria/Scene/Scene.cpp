@@ -69,7 +69,7 @@ Bool Scene::HandleMessage(const String& sMessage)
         case SceneMessageFunctionType::SwitchToScene:
             SceneManager::GetInstance()->SwitchToScene(sArg1);
             return true;
-        case SceneMessageFunctionType::ProcessForm:
+        case SceneMessageFunctionType::SubmitForm:
             ProcessForm(ConvertQueryStringToStringMap(sArg1));
             SetHtmlContent(GetPageContent());
             return true;
