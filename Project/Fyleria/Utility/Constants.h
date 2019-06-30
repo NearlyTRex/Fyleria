@@ -20,14 +20,6 @@
 // Character limits
 #define MAX_TEAM_CHARACTER_AMOUNT                   6
 
-// Character index for team size of 6
-#define CHARACTER_INDEX_1                           0
-#define CHARACTER_INDEX_2                           1
-#define CHARACTER_INDEX_3                           2
-#define CHARACTER_INDEX_4                           3
-#define CHARACTER_INDEX_5                           4
-#define CHARACTER_INDEX_6                           5
-
 // Limits on equipped items
 #define HAND_SIZE_LIMIT                             4
 #define BODY_SIZE_LIMIT                             1
