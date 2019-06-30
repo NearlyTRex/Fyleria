@@ -12,6 +12,31 @@
 namespace Gecko
 {
 
+BETTER_ENUM(SceneType, Int,
+    None,
+    Intro,
+    Loading,
+    MainMenu,
+    StatusMenu,
+    SaveMenu,
+    CraftingMenu,
+    Map,
+    Shop,
+    Battle,
+    CharacterCreation,
+    Credits,
+    ToolMain,
+    ToolCharacter,
+    ToolParty,
+    ToolSave
+);
+
+BETTER_ENUM(SceneMessageKeyType, Int,
+    None,
+    Function,
+    Args
+);
+
 BETTER_ENUM(SceneMessageFunctionType, Int,
     None,
     SwitchToScene,

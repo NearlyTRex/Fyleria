@@ -39,6 +39,11 @@ void SceneToolParty::Input()
 
 void SceneToolParty::OnMessageReceived(const String& sMessage)
 {
+    // Handle common messages
+    if(Scene::HandleMessage(sMessage))
+    {
+        return;
+    }
 }
 
 };

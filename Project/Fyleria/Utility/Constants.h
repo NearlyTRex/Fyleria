@@ -48,24 +48,6 @@
 #define DEFAULT_MAX_SCORING                         200
 #define DEFAULT_MAX_RANK                            20
 
-// Scenes
-#define FIRST_SCENE                                 "MainMenu"
-#define SCENE_INTRO                                 "Intro"
-#define SCENE_LOADING                               "Loading"
-#define SCENE_MAIN_MENU                             "MainMenu"
-#define SCENE_STATUS_MENU                           "StatusMenu"
-#define SCENE_SAVE_MENU                             "SaveMenu"
-#define SCENE_CRAFTING_MENU                         "CraftingMenu"
-#define SCENE_MAP                                   "Map"
-#define SCENE_SHOP                                  "Shop"
-#define SCENE_BATTLE                                "Battle"
-#define SCENE_CHARACTER_CREATION                    "CharacterCreation"
-#define SCENE_CREDITS                               "Credits"
-#define SCENE_TOOL_MAIN                             "ToolMain"
-#define SCENE_TOOL_CHARACTER                        "ToolCharacter"
-#define SCENE_TOOL_PARTY                            "ToolParty"
-#define SCENE_TOOL_SAVE                             "ToolSave"
-
 // Web files
 #define WEB_LIB_CSS_BOOTSTRAP                       "lib/bootstrap/css/bootstrap.min.css"
 #define WEB_LIB_JS_BOOTSTRAP                        "lib/bootstrap/js/bootstrap.min.js"

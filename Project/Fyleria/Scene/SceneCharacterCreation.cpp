@@ -39,6 +39,11 @@ void SceneCharacterCreation::Input()
 
 void SceneCharacterCreation::OnMessageReceived(const String& sMessage)
 {
+    // Handle common messages
+    if(Scene::HandleMessage(sMessage))
+    {
+        return;
+    }
 }
 
 };

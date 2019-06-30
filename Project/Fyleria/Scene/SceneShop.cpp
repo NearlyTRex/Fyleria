@@ -39,6 +39,11 @@ void SceneShop::Input()
 
 void SceneShop::OnMessageReceived(const String& sMessage)
 {
+    // Handle common messages
+    if(Scene::HandleMessage(sMessage))
+    {
+        return;
+    }
 }
 
 };

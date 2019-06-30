@@ -62,6 +62,9 @@ public:
     // Run main loop iteration
     virtual void RunMainLoopIteration(Bool bBlocking) = 0;
 
+    // Get common javascript shortcuts
+    String GetCommonJavascriptShortcuts();
+
     // Shutting down
     MAKE_RAW_BASIC_TYPE_ACCESSORS(IsShuttingDown, Bool);
 

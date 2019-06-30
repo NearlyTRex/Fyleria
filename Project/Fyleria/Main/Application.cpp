@@ -6,6 +6,7 @@
 #include "Window/MainWindow.h"
 #include "Config/ConfigManager.h"
 #include "Scene/SceneManager.h"
+#include "Scene/SceneTypes.h"
 #include "Items/ItemTree.h"
 #include "Skills/SkillTree.h"
 #include "Stats/StatNames.h"
@@ -34,7 +35,7 @@ void Application::Run()
     }
 
     // Start first scene
-    SceneManager::GetInstance()->SwitchToScene(FIRST_SCENE);
+    SceneManager::GetInstance()->SwitchToScene((+SceneType::MainMenu)._to_string());
 
     // Main loop
     do
@@ -101,10 +102,12 @@ Bool Application::Initialize()
     String sBootstrapJs = JoinPathsCanonical(sWebDir, WEB_LIB_JS_BOOTSTRAP);
     String sJqueryJs = JoinPathsCanonical(sWebDir, WEB_LIB_JS_JQUERY);
     String sPhaserJs = JoinPathsCanonical(sWebDir, WEB_LIB_JS_PHASER);
+    String sShortcuts = MainWindow::GetInstance()->GetBrowserEngine()->GetCommonJavascriptShortcuts();
     MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(sBootstrapCss);
     MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sBootstrapJs);
     MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sJqueryJs);
     MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sPhaserJs);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascript(sShortcuts);
     LOG_STATEMENT("Finished loading web files");
 
     // Setup window

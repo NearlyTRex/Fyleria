@@ -3,6 +3,7 @@
 
 // Internal includes
 #include "Scene/SceneManager.h"
+#include "Scene/SceneTypes.h"
 #include "Utility/Constants.h"
 #include "Utility/Errors.h"
 #include "Utility/Logging.h"
@@ -13,21 +14,21 @@ namespace Gecko
 SceneManager::SceneManager()
 {
     // Load scenes
-    AddScene(SCENE_INTRO, STDMakeSharedPtr<SceneIntro>());
-    AddScene(SCENE_LOADING, STDMakeSharedPtr<SceneLoading>());
-    AddScene(SCENE_MAIN_MENU, STDMakeSharedPtr<SceneMainMenu>());
-    AddScene(SCENE_STATUS_MENU, STDMakeSharedPtr<SceneStatusMenu>());
-    AddScene(SCENE_SAVE_MENU, STDMakeSharedPtr<SceneSaveMenu>());
-    AddScene(SCENE_CRAFTING_MENU, STDMakeSharedPtr<SceneCraftingMenu>());
-    AddScene(SCENE_MAP, STDMakeSharedPtr<SceneMap>());
-    AddScene(SCENE_SHOP, STDMakeSharedPtr<SceneShop>());
-    AddScene(SCENE_BATTLE, STDMakeSharedPtr<SceneBattle>());
-    AddScene(SCENE_CHARACTER_CREATION, STDMakeSharedPtr<SceneCharacterCreation>());
-    AddScene(SCENE_CREDITS, STDMakeSharedPtr<SceneCredits>());
-    AddScene(SCENE_TOOL_MAIN, STDMakeSharedPtr<SceneToolMain>());
-    AddScene(SCENE_TOOL_CHARACTER, STDMakeSharedPtr<SceneToolCharacter>());
-    AddScene(SCENE_TOOL_PARTY, STDMakeSharedPtr<SceneToolParty>());
-    AddScene(SCENE_TOOL_SAVE, STDMakeSharedPtr<SceneToolSave>());
+    AddScene((+SceneType::Intro)._to_string(), STDMakeSharedPtr<SceneIntro>());
+    AddScene((+SceneType::Loading)._to_string(), STDMakeSharedPtr<SceneLoading>());
+    AddScene((+SceneType::MainMenu)._to_string(), STDMakeSharedPtr<SceneMainMenu>());
+    AddScene((+SceneType::StatusMenu)._to_string(), STDMakeSharedPtr<SceneStatusMenu>());
+    AddScene((+SceneType::SaveMenu)._to_string(), STDMakeSharedPtr<SceneSaveMenu>());
+    AddScene((+SceneType::CraftingMenu)._to_string(), STDMakeSharedPtr<SceneCraftingMenu>());
+    AddScene((+SceneType::Map)._to_string(), STDMakeSharedPtr<SceneMap>());
+    AddScene((+SceneType::Shop)._to_string(), STDMakeSharedPtr<SceneShop>());
+    AddScene((+SceneType::Battle)._to_string(), STDMakeSharedPtr<SceneBattle>());
+    AddScene((+SceneType::CharacterCreation)._to_string(), STDMakeSharedPtr<SceneCharacterCreation>());
+    AddScene((+SceneType::Credits)._to_string(), STDMakeSharedPtr<SceneCredits>());
+    AddScene((+SceneType::ToolMain)._to_string(), STDMakeSharedPtr<SceneToolMain>());
+    AddScene((+SceneType::ToolCharacter)._to_string(), STDMakeSharedPtr<SceneToolCharacter>());
+    AddScene((+SceneType::ToolParty)._to_string(), STDMakeSharedPtr<SceneToolParty>());
+    AddScene((+SceneType::ToolSave)._to_string(), STDMakeSharedPtr<SceneToolSave>());
 }
 
 SceneManager::~SceneManager()

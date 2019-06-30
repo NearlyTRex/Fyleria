@@ -39,6 +39,11 @@ void SceneMainMenu::Input()
 
 void SceneMainMenu::OnMessageReceived(const String& sMessage)
 {
+    // Handle common messages
+    if(Scene::HandleMessage(sMessage))
+    {
+        return;
+    }
 }
 
 };

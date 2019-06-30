@@ -25,21 +25,25 @@ Bool Scene::ParseMessage(const String& sMessage, String& sFunction, StringArray&
     // Parse json data
     Json jsonData = JsonParse(sMessage);
 
+    // Keys
+    const String sKeyFunction = (+SceneMessageKeyType::Function)._to_string();
+    const String sKeyArgs = (+SceneMessageKeyType::Args)._to_string();
+
     // Check function
-    if(!jsonData.at("function").is_string())
+    if(!jsonData.at(sKeyFunction).is_string())
     {
         return false;
     }
 
     // Check arguments
-    if(!jsonData.at("args").is_array())
+    if(!jsonData.at(sKeyArgs).is_array())
     {
         return false;
     }
 
     // Get function and arguments
-    sFunction = jsonData.at("function").get<String>();
-    vArgs = jsonData.at("args").get<StringArray>();
+    sFunction = jsonData.at(sKeyFunction).get<String>();
+    vArgs = jsonData.at(sKeyArgs).get<StringArray>();
     return true;
 }
 

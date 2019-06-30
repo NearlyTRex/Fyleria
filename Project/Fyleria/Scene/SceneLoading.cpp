@@ -39,6 +39,11 @@ void SceneLoading::Input()
 
 void SceneLoading::OnMessageReceived(const String& sMessage)
 {
+    // Handle common messages
+    if(Scene::HandleMessage(sMessage))
+    {
+        return;
+    }
 }
 
 };
