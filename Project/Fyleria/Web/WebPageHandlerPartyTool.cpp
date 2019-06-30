@@ -32,7 +32,7 @@ void WebPageHandlerPartyTool::Init()
     SetPageTemplate(sTemplateContents);
 }
 
-void WebPageHandlerPartyTool::UpdatePageContent(const ParameterMapType& tParams)
+void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
 {
     // Build option lists
     MAKE_HTML_OPTION_LIST_STRING(CharacterPartyType);

@@ -31,7 +31,7 @@ void WebPageHandlerSaveTool::Init()
     SetPageTemplate(sTemplateContents);
 }
 
-void WebPageHandlerSaveTool::UpdatePageContent(const ParameterMapType& tParams)
+void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
 {
     // Build option lists
     MAKE_HTML_OPTION_LIST_STRING(SaveSlotType);

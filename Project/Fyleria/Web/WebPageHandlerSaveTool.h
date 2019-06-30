@@ -23,7 +23,7 @@ public:
     virtual void Init() override;
 
     // Update page content
-    virtual void UpdatePageContent(const ParameterMapType& tParams) override;
+    virtual void UpdatePageContent(const StringMap& tParams) override;
 };
 
 // Typedefs

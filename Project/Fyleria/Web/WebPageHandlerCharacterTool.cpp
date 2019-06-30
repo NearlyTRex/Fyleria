@@ -30,7 +30,7 @@ void WebPageHandlerCharacterTool::Init()
     SetPageTemplate(sTemplateContents);
 }
 
-void WebPageHandlerCharacterTool::UpdatePageContent(const ParameterMapType& tParams)
+void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
 {
     // Build option lists
     MAKE_HTML_OPTION_LIST_STRING(CharacterGenderType);
