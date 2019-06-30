@@ -2,7 +2,7 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Config/ConfigManager.h"
-#include "Web/WebPagePartyManager.h"
+#include "Web/WebPageHandlerPartyTool.h"
 #include "Character/CharacterTypes.h"
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Items/ItemTypes.h"
@@ -14,8 +14,16 @@
 namespace Gecko
 {
 
-WebPagePartyManager::WebPagePartyManager()
-    : WebPage()
+WebPageHandlerPartyTool::WebPageHandlerPartyTool()
+    : WebPageHandler()
+{
+}
+
+WebPageHandlerPartyTool::~WebPageHandlerPartyTool()
+{
+}
+
+void WebPageHandlerPartyTool::Init()
 {
     // Set template
     String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
@@ -24,11 +32,7 @@ WebPagePartyManager::WebPagePartyManager()
     SetPageTemplate(sTemplateContents);
 }
 
-WebPagePartyManager::~WebPagePartyManager()
-{
-}
-
-void WebPagePartyManager::UpdatePageContent(const ParameterMapType& tParams)
+void WebPageHandlerPartyTool::UpdatePageContent(const ParameterMapType& tParams)
 {
     // Build option lists
     MAKE_HTML_OPTION_LIST_STRING(CharacterPartyType);

@@ -1,13 +1,13 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-#include "Web/WebPageManager.h"
+#include "Web/WebManager.h"
 
 namespace Gecko
 {
 
-WebPageManager::WebPageManager()
-    : Singleton<WebPageManager>()
+WebManager::WebManager()
+    : Singleton<WebManager>()
 {
 }
 

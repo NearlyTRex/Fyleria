@@ -2,7 +2,7 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Config/ConfigManager.h"
-#include "Web/WebPageSaveManager.h"
+#include "Web/WebPageHandlerSaveTool.h"
 #include "Saves/SaveManager.h"
 #include "Saves/SaveTypes.h"
 #include "Utility/Enum.h"
@@ -13,8 +13,16 @@
 namespace Gecko
 {
 
-WebPageSaveManager::WebPageSaveManager()
-    : WebPage()
+WebPageHandlerSaveTool::WebPageHandlerSaveTool()
+    : WebPageHandler()
+{
+}
+
+WebPageHandlerSaveTool::~WebPageHandlerSaveTool()
+{
+}
+
+void WebPageHandlerSaveTool::Init()
 {
     // Set template
     String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
@@ -23,11 +31,7 @@ WebPageSaveManager::WebPageSaveManager()
     SetPageTemplate(sTemplateContents);
 }
 
-WebPageSaveManager::~WebPageSaveManager()
-{
-}
-
-void WebPageSaveManager::UpdatePageContent(const ParameterMapType& tParams)
+void WebPageHandlerSaveTool::UpdatePageContent(const ParameterMapType& tParams)
 {
     // Build option lists
     MAKE_HTML_OPTION_LIST_STRING(SaveSlotType);

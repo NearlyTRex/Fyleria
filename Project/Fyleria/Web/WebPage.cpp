@@ -1,16 +1,16 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-#include "Web/WebPage.h"
+#include "Web/WebPageHandler.h"
 
 namespace Gecko
 {
 
-WebPage::WebPage()
+WebPageHandler::WebPageHandler()
 {
 }
 
-WebPage::~WebPage()
+WebPageHandler::~WebPageHandler()
 {
 }
 

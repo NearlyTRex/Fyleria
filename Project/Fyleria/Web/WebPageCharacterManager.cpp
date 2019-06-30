@@ -2,7 +2,7 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 #include "Config/ConfigManager.h"
-#include "Web/WebPageCharacterManager.h"
+#include "Web/WebPageHandlerCharacterTool.h"
 #include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
 #include "Utility/Constants.h"
@@ -12,8 +12,16 @@
 namespace Gecko
 {
 
-WebPageCharacterManager::WebPageCharacterManager()
-    : WebPage()
+WebPageHandlerCharacterTool::WebPageHandlerCharacterTool()
+    : WebPageHandler()
+{
+}
+
+WebPageHandlerCharacterTool::~WebPageHandlerCharacterTool()
+{
+}
+
+void WebPageHandlerCharacterTool::Init()
 {
     // Set template
     String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
@@ -22,11 +30,7 @@ WebPageCharacterManager::WebPageCharacterManager()
     SetPageTemplate(sTemplateContents);
 }
 
-WebPageCharacterManager::~WebPageCharacterManager()
-{
-}
-
-void WebPageCharacterManager::UpdatePageContent(const ParameterMapType& tParams)
+void WebPageHandlerCharacterTool::UpdatePageContent(const ParameterMapType& tParams)
 {
     // Build option lists
     MAKE_HTML_OPTION_LIST_STRING(CharacterGenderType);

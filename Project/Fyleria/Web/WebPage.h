@@ -1,8 +1,8 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-#ifndef _GECKO_WEB_PAGE_H_
-#define _GECKO_WEB_PAGE_H_
+#ifndef _GECKO_WEB_PAGE_HANDLER_H_
+#define _GECKO_WEB_PAGE_HANDLER_H_
 
 #include "Utility/Macros.h"
 #include "Utility/Tree.h"
@@ -14,21 +14,21 @@
 namespace Gecko
 {
 
-class WebPage
+class WebPageHandler
 {
 public:
 
-    // Types
-    typedef STDUnorderedMap<String, String> ParameterMapType;
-
     // Constructors
-    WebPage();
+    WebPageHandler();
 
     // Destructor
-    virtual ~WebPage();
+    virtual ~WebPageHandler();
+
+    // Initialize
+    virtual void Init() = 0;
 
     // Update page content
-    virtual void UpdatePageContent(const ParameterMapType& tParams) = 0;
+    virtual void UpdatePageContent(const StringMap& tParams) = 0;
 
     // Page content
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageContent, String);
@@ -38,7 +38,7 @@ public:
 };
 
 // Typedefs
-MAKE_TYPE_TYPEDEFS(WebPage);
+MAKE_TYPE_TYPEDEFS(WebPageHandler);
 
 };
 
