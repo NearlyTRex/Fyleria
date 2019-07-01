@@ -8,7 +8,9 @@
     <form>
         <div class="form-group row">
             <div class="col"><hr></div>
-            <div class="col-auto"><a href="/">Home</a></div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary form-control" onclick="SwitchToScene('ToolMain')">Home</button>
+            </div>
             <div class="col"><hr></div>
         </div>
         <div class="form-group row">
@@ -22,7 +24,7 @@
                 <textarea style="resize: none;" class="form-control" rows="3" name="sLoadCharacterFromJson_Textarea" placeholder="Raw character json">%sLoadCharacterFromJson_Textarea%</textarea>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="load_character_from_json">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="load_character_from_json" onclick="SubmitForm()">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -37,7 +39,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="load_character_from_file">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="load_character_from_file" onclick="SubmitForm()">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -55,7 +57,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="save_character_to_file">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="save_character_to_file" onclick="SubmitForm()">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -66,7 +68,7 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unload_character">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="unload_character" onclick="SubmitForm()">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -78,7 +80,7 @@
                 <textarea style="resize: none;" class="form-control" rows="3" name="sGenerateCharacter_Textarea" placeholder="Raw character generator json">%sGenerateCharacter_Textarea%</textarea>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="generate_character">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="generate_character" onclick="SubmitForm()">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -89,7 +91,7 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="generate_random_character">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="generate_random_character" onclick="SubmitForm()">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -100,7 +102,7 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="create_character">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="create_character" onclick="SubmitForm()">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -111,7 +113,7 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="display_character">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="display_character" onclick="SubmitForm()">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -119,7 +121,7 @@
             <div class="col-sm-6">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="save_character">Run</button>
+                <button type="submit" class="btn btn-primary form-control" name="action" value="save_character" onclick="SubmitForm()">Run</button>
             </div>
         </div>
         <div class="form-group row">
