@@ -16,19 +16,18 @@ namespace Gecko
 WebPageHandlerSaveTool::WebPageHandlerSaveTool()
     : WebPageHandler()
 {
-}
-
-WebPageHandlerSaveTool::~WebPageHandlerSaveTool()
-{
-}
-
-void WebPageHandlerSaveTool::Init()
-{
     // Set template
     String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
     String sTemplateFile = JoinPathsCanonical(sWebDir, WEB_PAGE_TOOL_SAVE);
     String sTemplateContents = GetFileContents(sTemplateFile);
     SetPageTemplate(sTemplateContents);
+
+    // Update page
+    UpdatePageContent({});
+}
+
+WebPageHandlerSaveTool::~WebPageHandlerSaveTool()
+{
 }
 
 void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)

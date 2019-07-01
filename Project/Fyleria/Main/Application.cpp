@@ -66,6 +66,11 @@ Bool Application::Initialize()
         return false;
     }
 
+    // Initialize scenes
+    LOG_STATEMENT("Initializing scenes...");
+    SceneManager::GetInstance()->Init();
+    LOG_STATEMENT("Finished initializing scenes");
+
     // Initialize python
     if(!InitPython())
     {
@@ -97,16 +102,11 @@ Bool Application::Initialize()
 
     // Load web files
     LOG_STATEMENT("Loading web files");
-    String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
-    String sBootstrapCss = JoinPathsCanonical(sWebDir, WEB_LIB_CSS_BOOTSTRAP);
-    String sBootstrapJs = JoinPathsCanonical(sWebDir, WEB_LIB_JS_BOOTSTRAP);
-    String sJqueryJs = JoinPathsCanonical(sWebDir, WEB_LIB_JS_JQUERY);
-    String sPhaserJs = JoinPathsCanonical(sWebDir, WEB_LIB_JS_PHASER);
     String sShortcuts = MainWindow::GetInstance()->GetBrowserEngine()->GetCommonJavascriptShortcuts();
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(sBootstrapCss);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sBootstrapJs);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sJqueryJs);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(sPhaserJs);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(WEB_LIB_CSS_BOOTSTRAP);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_LIB_JS_BOOTSTRAP);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_LIB_JS_JQUERY);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_LIB_JS_PHASER);
     MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascript(sShortcuts);
     LOG_STATEMENT("Finished loading web files");
 

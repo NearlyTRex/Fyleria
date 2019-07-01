@@ -8,15 +8,7 @@
 
 // Local includes
 #include "Main/Application.h"
-#include "Battle/BattleManager.h"
-#include "Character/CharacterManager.h"
-#include "CharacterParty/CharacterPartyManager.h"
 #include "Config/ConfigManager.h"
-#include "Saves/SaveManager.h"
-#include "Scene/SceneManager.h"
-#include "Utility/ResultManager.h"
-#include "Web/WebManager.h"
-#include "Window/MainWindow.h"
 #include "Utility/Constants.h"
 #include "Utility/Types.h"
 #include "Utility/Standard.h"
@@ -76,20 +68,6 @@ int main(int iArgCount, char** vArgList)
     Gecko::ConfigManager::GetInstance()->SetPythonLibraryFile(sPythonLibraryFile);
     Gecko::ConfigManager::GetInstance()->SetScreenWidth(iScreenWidth);
     Gecko::ConfigManager::GetInstance()->SetScreenHeight(iScreenHeight);
-
-    // Initialize other managers
-    Gecko::BattleManager::GetInstance();
-    Gecko::CharacterManager::GetInstance();
-    Gecko::SaveManager::GetInstance();
-    Gecko::SceneManager::GetInstance();
-    Gecko::ResultManager::GetInstance();
-    Gecko::WebManager::GetInstance();
-    Gecko::MainWindow::GetInstance();
-
-    // Initialize web page handlers
-    Gecko::WebManager::GetInstance()->GetCharacterToolHandler().Init();
-    Gecko::WebManager::GetInstance()->GetPartyToolHandler().Init();
-    Gecko::WebManager::GetInstance()->GetSaveToolHandler().Init();
 
     // Run application
     Gecko::Application app;

@@ -35,9 +35,9 @@ String BrowserEngine::GetCommonJavascriptShortcuts()
     sSwitchToSceneShortcut += "};})();";
 
     // Submit form shortcut
-    String sSubmitFormShortcut = "(function(){window." + sSubmitFormFunction + "=function(s){";
+    String sSubmitFormShortcut = "(function(){window." + sSubmitFormFunction + "=function(){";
     sSubmitFormShortcut += "var p={" + sFunctionKey + ":\"" + sSubmitFormFunction + "\",";
-    sSubmitFormShortcut += sArgsKey + ":[s]};";
+    sSubmitFormShortcut += sArgsKey + ":[$('form').serialize()]};";
     sSubmitFormShortcut += "window.external.invoke(JSON.stringify(p));";
     sSubmitFormShortcut += "};})();";
 

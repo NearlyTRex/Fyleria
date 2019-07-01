@@ -32,6 +32,8 @@ public:
     // Handle scene input
     virtual void Input() override;
 
+protected:
+
     // Handle message received
     virtual void OnMessageReceived(const String& sMessage) override;
 };

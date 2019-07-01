@@ -4,6 +4,7 @@
 // Internal includes
 #include "Scene/SceneSaveMenu.h"
 #include "Window/MainWindow.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -21,6 +22,9 @@ void SceneSaveMenu::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneSaveMenu, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromFile(WEB_PAGE_SYSTEM_SAVE_MENU);
 }
 
 void SceneSaveMenu::Finish()

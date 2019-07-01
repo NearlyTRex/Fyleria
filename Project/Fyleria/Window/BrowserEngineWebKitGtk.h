@@ -60,6 +60,9 @@ public:
     // Set html content
     virtual void SetHtmlContent(const String& sHtml) override;
 
+    // Set html content file
+    virtual void SetHtmlContentFile(const String& sFile) override;
+
     // Run main loop iteration
     virtual void RunMainLoopIteration(Bool bBlocking) override;
 

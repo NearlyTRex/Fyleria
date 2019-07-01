@@ -19,9 +19,6 @@ public:
     // Destructor
     virtual ~WebPageHandlerSaveTool();
 
-    // Initialize
-    virtual void Init() override;
-
     // Update page content
     virtual void UpdatePageContent(const StringMap& tParams) override;
 };

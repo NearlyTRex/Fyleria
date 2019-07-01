@@ -59,6 +59,9 @@ public:
     // Set html content
     virtual void SetHtmlContent(const String& sHtml) = 0;
 
+    // Set html content file
+    virtual void SetHtmlContentFile(const String& sFile) = 0;
+
     // Run main loop iteration
     virtual void RunMainLoopIteration(Bool bBlocking) = 0;
 

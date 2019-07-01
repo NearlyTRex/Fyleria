@@ -3,7 +3,7 @@
 
 // Internal includes
 #include "Scene/SceneToolCharacter.h"
-#include "Window/MainWindow.h"
+#include "Web/WebPageHandlerCharacterTool.h"
 
 namespace Gecko
 {
@@ -11,6 +11,8 @@ namespace Gecko
 SceneToolCharacter::SceneToolCharacter()
     : Scene()
 {
+    // Create handler
+    SetPageHandler(STDMakeSharedPtr<WebPageHandlerCharacterTool>());
 }
 
 SceneToolCharacter::~SceneToolCharacter()
@@ -21,6 +23,9 @@ void SceneToolCharacter::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolCharacter, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromHandler(GetPageHandler());
 }
 
 void SceneToolCharacter::Finish()

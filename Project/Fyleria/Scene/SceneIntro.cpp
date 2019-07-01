@@ -4,6 +4,7 @@
 // Internal includes
 #include "Scene/SceneIntro.h"
 #include "Window/MainWindow.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -21,6 +22,9 @@ void SceneIntro::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneIntro, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromFile(WEB_PAGE_SYSTEM_INTRO);
 }
 
 void SceneIntro::Finish()

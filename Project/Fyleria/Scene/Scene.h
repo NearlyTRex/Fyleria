@@ -6,6 +6,7 @@
 
 // Internal includes
 #include "Window/BrowserEngine.h"
+#include "Web/WebPageHandler.h"
 #include "Utility/Types.h"
 #include "Utility/Macros.h"
 
@@ -46,7 +47,13 @@ protected:
     virtual Bool HandleMessage(const String& sMessage);
 
     // Process form
-    virtual void ProcessForm(const StringMap& tParameters);
+    virtual void ProcessForm(const String& sParameters);
+
+    // Load html from file
+    virtual void LoadHtmlFromFile(const String& sFile);
+
+    // Load html from handler
+    virtual void LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler);
 
     // Run javascript
     virtual void RunJavascript(const String& sScript);
@@ -64,6 +71,9 @@ protected:
 
     // Page content
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageContent, String);
+
+    // Page handler
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageHandler, WebPageHandlerSharedPtr);
 };
 
 // Typedef

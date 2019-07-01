@@ -5,6 +5,7 @@
 #include "Scene/Scene.h"
 #include "Scene/SceneTypes.h"
 #include "Scene/SceneManager.h"
+#include "Config/ConfigManager.h"
 #include "Window/MainWindow.h"
 #include "Utility/Converters.h"
 #include "Utility/Json.h"
@@ -70,7 +71,7 @@ Bool Scene::HandleMessage(const String& sMessage)
             SceneManager::GetInstance()->SwitchToScene(sArg1);
             return true;
         case SceneMessageFunctionType::SubmitForm:
-            ProcessForm(ConvertQueryStringToStringMap(sArg1));
+            ProcessForm(sArg1);
             SetHtmlContent(GetPageContent());
             return true;
         case SceneMessageFunctionType::ReloadPage:
@@ -84,8 +85,34 @@ Bool Scene::HandleMessage(const String& sMessage)
     return false;
 }
 
-void Scene::ProcessForm(const StringMap& tParameters)
+void Scene::ProcessForm(const String& sParameters)
 {
+    // Process form data
+    if(GetPageHandler())
+    {
+        GetPageHandler()->UpdatePageContent(ConvertQueryStringToStringMap(sParameters));
+        SetPageContent(GetPageHandler()->GetPageContent());
+    }
+}
+
+void Scene::LoadHtmlFromFile(const String& sFile)
+{
+    // Load html file
+    String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
+    String sFileContents = GetFileContents(JoinPathsCanonical(sWebDir, sFile));
+    SetPageContent(sFileContents);
+    SetHtmlContent(sFileContents);
+}
+
+void Scene::LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler)
+{
+    // Load html from handler
+    if(pHandler)
+    {
+        String sHandlerContents = pHandler->GetPageContent();
+        SetPageContent(sHandlerContents);
+        SetHtmlContent(sHandlerContents);
+    }
 }
 
 void Scene::RunJavascript(const String& sScript)

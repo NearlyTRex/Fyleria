@@ -3,6 +3,7 @@
 
 // Internal includes
 #include "Window/BrowserEngineWebKitGtk.h"
+#include "Config/ConfigManager.h"
 #include "Utility/Filesystem.h"
 
 namespace Gecko
@@ -178,7 +179,8 @@ void BrowserEngineWebKitGtk::InjectStylesheet(const String& sStyle)
 void BrowserEngineWebKitGtk::InjectStylesheetFile(const String& sFile)
 {
     // Inject file contents
-    String sFileContents = GetFileContents(GetCanonicalPath(sFile));
+    String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
+    String sFileContents = GetFileContents(JoinPathsCanonical(sWebDir, sFile));
     InjectStylesheet(sFileContents);
 }
 
@@ -212,7 +214,8 @@ void BrowserEngineWebKitGtk::InjectJavascript(const String& sScript)
 void BrowserEngineWebKitGtk::InjectJavascriptFile(const String& sFile)
 {
     // Inject file contents
-    String sFileContents = GetFileContents(GetCanonicalPath(sFile));
+    String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
+    String sFileContents = GetFileContents(JoinPathsCanonical(sWebDir, sFile));
     InjectJavascript(sFileContents);
 }
 
@@ -284,7 +287,14 @@ void BrowserEngineWebKitGtk::RunJavascript(const String& sScript)
 void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
 {
     // Set document html
-    RunJavascript("document.open();document.write(\"" + sHtml + "\");document.close();");
+    RunJavascript("var h=`" + sHtml + "`;document.open();document.write(h);document.close();");
+}
+
+void BrowserEngineWebKitGtk::SetHtmlContentFile(const String& sFile)
+{
+    // Set document html
+    String sFileContents = GetFileContents(sFile);
+    SetHtmlContent(sFileContents);
 }
 
 void BrowserEngineWebKitGtk::RunMainLoopIteration(Bool bBlocking)

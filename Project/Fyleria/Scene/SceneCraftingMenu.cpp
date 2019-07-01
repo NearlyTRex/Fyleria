@@ -4,6 +4,7 @@
 // Internal includes
 #include "Scene/SceneCraftingMenu.h"
 #include "Window/MainWindow.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -21,6 +22,9 @@ void SceneCraftingMenu::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneCraftingMenu, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromFile(WEB_PAGE_SYSTEM_CRAFTING_MENU);
 }
 
 void SceneCraftingMenu::Finish()

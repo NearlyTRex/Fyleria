@@ -4,6 +4,7 @@
 // Internal includes
 #include "Scene/SceneShop.h"
 #include "Window/MainWindow.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -21,6 +22,9 @@ void SceneShop::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneShop, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromFile(WEB_PAGE_SYSTEM_SHOP);
 }
 
 void SceneShop::Finish()

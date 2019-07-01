@@ -15,19 +15,18 @@ namespace Gecko
 WebPageHandlerCharacterTool::WebPageHandlerCharacterTool()
     : WebPageHandler()
 {
-}
-
-WebPageHandlerCharacterTool::~WebPageHandlerCharacterTool()
-{
-}
-
-void WebPageHandlerCharacterTool::Init()
-{
     // Set template
     String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
     String sTemplateFile = JoinPathsCanonical(sWebDir, WEB_PAGE_TOOL_CHARACTER);
     String sTemplateContents = GetFileContents(sTemplateFile);
     SetPageTemplate(sTemplateContents);
+
+    // Update page
+    UpdatePageContent({});
+}
+
+WebPageHandlerCharacterTool::~WebPageHandlerCharacterTool()
+{
 }
 
 void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)

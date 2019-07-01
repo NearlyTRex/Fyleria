@@ -3,7 +3,7 @@
 
 // Internal includes
 #include "Scene/SceneToolSave.h"
-#include "Window/MainWindow.h"
+#include "Web/WebPageHandlerSaveTool.h"
 
 namespace Gecko
 {
@@ -11,6 +11,8 @@ namespace Gecko
 SceneToolSave::SceneToolSave()
     : Scene()
 {
+    // Create handler
+    SetPageHandler(STDMakeSharedPtr<WebPageHandlerSaveTool>());
 }
 
 SceneToolSave::~SceneToolSave()
@@ -21,6 +23,9 @@ void SceneToolSave::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolSave, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromHandler(GetPageHandler());
 }
 
 void SceneToolSave::Finish()

@@ -3,7 +3,7 @@
 
 // Internal includes
 #include "Scene/SceneToolParty.h"
-#include "Window/MainWindow.h"
+#include "Web/WebPageHandlerPartyTool.h"
 
 namespace Gecko
 {
@@ -11,6 +11,8 @@ namespace Gecko
 SceneToolParty::SceneToolParty()
     : Scene()
 {
+    // Create handler
+    SetPageHandler(STDMakeSharedPtr<WebPageHandlerPartyTool>());
 }
 
 SceneToolParty::~SceneToolParty()
@@ -21,6 +23,9 @@ void SceneToolParty::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolParty, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromHandler(GetPageHandler());
 }
 
 void SceneToolParty::Finish()

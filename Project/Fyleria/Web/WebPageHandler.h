@@ -24,9 +24,6 @@ public:
     // Destructor
     virtual ~WebPageHandler();
 
-    // Initialize
-    virtual void Init() = 0;
-
     // Update page content
     virtual void UpdatePageContent(const StringMap& tParams) = 0;
 

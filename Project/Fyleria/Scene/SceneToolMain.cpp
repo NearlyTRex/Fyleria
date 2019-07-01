@@ -4,6 +4,7 @@
 // Internal includes
 #include "Scene/SceneToolMain.h"
 #include "Window/MainWindow.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -21,6 +22,9 @@ void SceneToolMain::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolMain, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromFile(WEB_PAGE_TOOL_MAIN);
 }
 
 void SceneToolMain::Finish()

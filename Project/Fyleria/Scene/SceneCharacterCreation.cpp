@@ -4,6 +4,7 @@
 // Internal includes
 #include "Scene/SceneCharacterCreation.h"
 #include "Window/MainWindow.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -21,6 +22,9 @@ void SceneCharacterCreation::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneCharacterCreation, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromFile(WEB_PAGE_SYSTEM_CHARACTER_CREATION);
 }
 
 void SceneCharacterCreation::Finish()

@@ -41,6 +41,9 @@ public:
     // Destructor
     virtual ~SceneManager();
 
+    // Setup initial scenes
+    void Init();
+
     // Add scene
     void AddScene(const String& sSceneID, const SceneSharedPtr& pScene);
 

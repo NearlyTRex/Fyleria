@@ -6,6 +6,7 @@
 
 // Internal includes
 #include "Scene/Scene.h"
+#include "Web/WebPageHandlerPartyTool.h"
 
 namespace Gecko
 {
@@ -32,8 +33,13 @@ public:
     // Handle scene input
     virtual void Input() override;
 
+protected:
+
     // Handle message received
     virtual void OnMessageReceived(const String& sMessage) override;
+
+    // Web page handler
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebPageHandler, STDSharedPtr<WebPageHandlerPartyTool>);
 };
 
 // Typedef

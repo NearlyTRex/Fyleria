@@ -17,19 +17,18 @@ namespace Gecko
 WebPageHandlerPartyTool::WebPageHandlerPartyTool()
     : WebPageHandler()
 {
-}
-
-WebPageHandlerPartyTool::~WebPageHandlerPartyTool()
-{
-}
-
-void WebPageHandlerPartyTool::Init()
-{
     // Set template
     String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
     String sTemplateFile = JoinPathsCanonical(sWebDir, WEB_PAGE_TOOL_PARTY);
     String sTemplateContents = GetFileContents(sTemplateFile);
     SetPageTemplate(sTemplateContents);
+
+    // Update page
+    UpdatePageContent({});
+}
+
+WebPageHandlerPartyTool::~WebPageHandlerPartyTool()
+{
 }
 
 void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)

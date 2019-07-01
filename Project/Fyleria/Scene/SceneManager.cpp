@@ -13,7 +13,15 @@ namespace Gecko
 
 SceneManager::SceneManager()
 {
-    // Load scenes
+}
+
+SceneManager::~SceneManager()
+{
+}
+
+void SceneManager::Init()
+{
+    // Add initial scenes
     AddScene((+SceneType::Intro)._to_string(), STDMakeSharedPtr<SceneIntro>());
     AddScene((+SceneType::Loading)._to_string(), STDMakeSharedPtr<SceneLoading>());
     AddScene((+SceneType::MainMenu)._to_string(), STDMakeSharedPtr<SceneMainMenu>());
@@ -29,10 +37,6 @@ SceneManager::SceneManager()
     AddScene((+SceneType::ToolCharacter)._to_string(), STDMakeSharedPtr<SceneToolCharacter>());
     AddScene((+SceneType::ToolParty)._to_string(), STDMakeSharedPtr<SceneToolParty>());
     AddScene((+SceneType::ToolSave)._to_string(), STDMakeSharedPtr<SceneToolSave>());
-}
-
-SceneManager::~SceneManager()
-{
 }
 
 void SceneManager::AddScene(const String& sSceneID, const SceneSharedPtr& pScene)

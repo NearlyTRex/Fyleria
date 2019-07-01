@@ -4,6 +4,7 @@
 // Internal includes
 #include "Scene/SceneStatusMenu.h"
 #include "Window/MainWindow.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -21,6 +22,9 @@ void SceneStatusMenu::Start()
 {
     // Register callbacks
     SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneStatusMenu, OnMessageReceived));
+
+    // Load page content
+    LoadHtmlFromFile(WEB_PAGE_SYSTEM_STATUS_MENU);
 }
 
 void SceneStatusMenu::Finish()
