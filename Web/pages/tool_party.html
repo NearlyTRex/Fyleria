@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Party Tool</title>
-</head>
+<html>
+<body>
 <div class="container">
     <form>
         <div class="form-group row">
             <div class="col"><hr></div>
             <div class="col-auto">
-                <button type="button" class="btn btn-primary form-control" onclick="SwitchToScene('ToolMain')">Home</button>
+                <select class="form-control" onchange="SwitchToScene(value)">
+                    <option>Select Scene...</option>
+                    <option value="ToolMain">ToolMain</option>
+                </select>
             </div>
             <div class="col"><hr></div>
         </div>
@@ -390,4 +389,5 @@
         </div>
     </form>
 </div>
+</body>
 </html>
