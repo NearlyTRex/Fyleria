@@ -71,7 +71,7 @@ Bool Scene::HandleMessage(const String& sMessage)
             SceneManager::GetInstance()->SwitchToScene(sArg1);
             return true;
         case SceneMessageFunctionType::SubmitForm:
-            ProcessForm(sArg1);
+            ProcessForm(sArg1, sArg2);
             SetHtmlContent(GetPageContent());
             return true;
         case SceneMessageFunctionType::ReloadPage:
@@ -85,13 +85,34 @@ Bool Scene::HandleMessage(const String& sMessage)
     return false;
 }
 
-void Scene::ProcessForm(const String& sParameters)
+void Scene::ProcessForm(const String& sAction, const String& sParameters)
 {
-    // Process form data
+    // Check input data
+    if(sAction.empty() || sParameters.empty())
+    {
+        ERROR_STATEMENT("Invalid action or parameters");
+        return;
+    }
+
+    // Check page handler
     if(GetPageHandler())
     {
-        GetPageHandler()->UpdatePageContent(ConvertQueryStringToStringMap(sParameters));
-        SetPageContent(GetPageHandler()->GetPageContent());
+        try
+        {
+            // Get parameters
+            LOG_FORMAT_STATEMENT("Processing form\naction(%s)\nparams(%s)\n\n", sAction.c_str(), sParameters.c_str());
+            StringMap tParameters = ConvertQueryStringToStringMap(sParameters);
+            tParameters.insert({"action", sAction});
+
+            // Update page content
+            GetPageHandler()->UpdatePageContent(tParameters);
+            SetPageContent(GetPageHandler()->GetPageContent());
+        }
+        catch(STDException& e)
+        {
+            // Print exception
+            ERROR_FORMAT_STATEMENT("Caught exception: '%s'\n\n", e.what());
+        }
     }
 }
 

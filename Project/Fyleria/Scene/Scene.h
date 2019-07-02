@@ -47,7 +47,7 @@ protected:
     virtual Bool HandleMessage(const String& sMessage);
 
     // Process form
-    virtual void ProcessForm(const String& sParameters);
+    virtual void ProcessForm(const String& sAction, const String& sParameters);
 
     // Load html from file
     virtual void LoadHtmlFromFile(const String& sFile);
