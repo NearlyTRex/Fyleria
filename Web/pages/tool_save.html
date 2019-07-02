@@ -20,13 +20,13 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Initialize Empty Save Slots</label>
             <div class="col-sm-8">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="initalize_empty_save_slots" onclick="SubmitForm()">Initialize Save Slots</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('initalize_empty_save_slots')">Initialize Save Slots</button>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Initialize All Save Slots</label>
             <div class="col-sm-8">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="initalize_all_save_slots" onclick="SubmitForm()">Initialize Save Slots</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('initalize_all_save_slots')">Initialize Save Slots</button>
             </div>
         </div>
         <div class="form-group row">
@@ -41,7 +41,7 @@
                 <input type="text" class="form-control" name="sCollectSaveDataSingle_PartyID" placeholder="Party Identifier" value="%sCollectSaveDataSingle_PartyID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="collect_save_data_single" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('collect_save_data_single')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -62,7 +62,7 @@
                 <input type="text" class="form-control" name="sCollectSaveDataMultiple_PlayTime" placeholder="Playtime" value="%sCollectSaveDataMultiple_PlayTime%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="collect_save_data_multiple" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('collect_save_data_multiple')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -76,7 +76,7 @@
             <div class="col-sm-6">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="disperse_save_data" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('disperse_save_data')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -91,7 +91,7 @@
                 <textarea style="resize: none;" class="form-control" rows="3" name="sLoadSave_Textarea" placeholder="Raw save json">%sLoadSave_Textarea%</textarea>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="load_save" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('load_save')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -105,7 +105,7 @@
             <div class="col-sm-6">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unload_save" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('unload_save')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -126,7 +126,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="load_from_file" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('load_from_file')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -147,7 +147,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="save_to_file" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('save_to_file')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -168,7 +168,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="save_all_to_dir" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('save_all_to_dir')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -189,7 +189,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="load_all_from_dir" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('load_all_from_dir')">Run</button>
             </div>
         </div>
         <div class="form-group row">
