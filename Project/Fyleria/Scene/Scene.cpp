@@ -100,7 +100,7 @@ void Scene::ProcessForm(const String& sAction, const String& sParameters)
         try
         {
             // Get parameters
-            LOG_FORMAT_STATEMENT("Processing form\naction(%s)\nparams(%s)\n\n", sAction.c_str(), sParameters.c_str());
+            LOG_FORMAT_STATEMENT("Processing form action '%s'\n", sAction.c_str());
             StringMap tParameters = ConvertQueryStringToStringMap(sParameters);
             tParameters.insert({"action", sAction});
 
