@@ -23,7 +23,7 @@
                 <textarea style="resize: none;" class="form-control" rows="3" name="sLoadPartyFromJson_Textarea" placeholder="Raw party json">%sLoadPartyFromJson_Textarea%</textarea>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="load_party_from_json" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('load_party_from_json')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -38,7 +38,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="load_party_from_file" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('load_party_from_file')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -56,7 +56,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="save_party_to_file" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('save_party_to_file')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -67,7 +67,7 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unload_party" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('unload_party')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -84,7 +84,7 @@
             <div class="col-sm-2">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="set_current_party" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('set_current_party')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="create_party" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('create_party')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -117,7 +117,7 @@
                 <input type="text" class="form-control" name="sAddMember_CharID" placeholder="Character Identifier" value="%sAddMember_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="add_member" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('add_member')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -129,7 +129,7 @@
                 <input type="text" class="form-control" name="sRemoveMember_CharID" placeholder="Character Identifier" value="%sRemoveMember_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="remove_member" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('remove_member')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -147,7 +147,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="move_member" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('move_member')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -162,7 +162,7 @@
                 <input type="text" class="form-control" name="sSwapMember_Second_CharID" placeholder="Second Character Identifier" value="%sSwapMember_Second_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="swap_member" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('swap_member')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -177,7 +177,7 @@
                 <input type="text" class="form-control" name="sAddItem_ItemAmount" placeholder="Item Amount" value="%sAddItem_ItemAmount%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="add_item" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('add_item')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -198,7 +198,7 @@
                 <input type="text" class="form-control" name="sAddRandomItems_ItemAmount" placeholder="Item Amount" value="%sAddRandomItems_ItemAmount%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="add_random_items" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('add_random_items')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -213,7 +213,7 @@
                 <input type="text" class="form-control" name="sRemoveItem_ItemAmount" placeholder="Item Amount" value="%sRemoveItem_ItemAmount%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="remove_item" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('remove_item')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -234,7 +234,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="equip_item" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('equip_item')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -255,7 +255,7 @@
                 </select>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unequip_item" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('unequip_item')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -267,7 +267,7 @@
                 <input type="text" class="form-control" name="sEquipBestItems_CharID" placeholder="Character Identifier" value="%sEquipBestItems_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="equip_best_items" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('equip_best_items')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -279,7 +279,7 @@
                 <input type="text" class="form-control" name="sUnequipBestItems_CharID" placeholder="Character Identifier" value="%sUnequipBestItems_CharID%"/>
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unequip_best_items" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('unequip_best_items')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -290,7 +290,7 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="equip_best_items_all_members" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('equip_best_items_all_members')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -301,7 +301,7 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="unequip_best_items_all_members" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('unequip_best_items_all_members')">Run</button>
             </div>
         </div>
         <div class="form-group row">
@@ -312,7 +312,7 @@
             <div class="col-sm-4">
             </div>
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary form-control" name="action" value="display_party" onclick="SubmitForm()">Run</button>
+                <button type="submit" class="btn btn-primary form-control" onclick="SubmitForm('display_party')">Run</button>
             </div>
         </div>
         <div class="form-group row">
