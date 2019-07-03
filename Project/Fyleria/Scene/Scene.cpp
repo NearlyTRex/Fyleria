@@ -97,10 +97,12 @@ void Scene::ProcessForm(const String& sAction, const String& sParameters)
     // Check page handler
     if(GetPageHandler())
     {
+        // Notify user
+        LOG_FORMAT_STATEMENT("Processing form action '%s'\n", sAction.c_str());
+
         try
         {
             // Get parameters
-            LOG_FORMAT_STATEMENT("Processing form action '%s'\n", sAction.c_str());
             StringMap tParameters = ConvertQueryStringToStringMap(sParameters);
             tParameters.insert({"action", sAction});
 
@@ -111,8 +113,11 @@ void Scene::ProcessForm(const String& sAction, const String& sParameters)
         catch(STDException& e)
         {
             // Print exception
-            ERROR_FORMAT_STATEMENT("Caught exception: '%s'\n\n", e.what());
+            ERROR_FORMAT_STATEMENT("Caught exception: '%s'\n", e.what());
         }
+
+        // Notify user
+        LOG_FORMAT_STATEMENT("Processing of action '%s' completed\n", sAction.c_str());
     }
 }
 
