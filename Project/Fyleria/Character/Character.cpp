@@ -84,7 +84,7 @@ void Character::RegenerateCharacterData(
     Json jsonData = *this;
     LOG_FORMAT_STATEMENT("Completed regenerating character data (CharacterID = '%s'):\n%s\n",
         GetBasicData().GetCharacterID().c_str(),
-        jsonData.dump(4).c_str());
+        jsonData.dump().c_str());
 #endif
 }
 
