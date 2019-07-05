@@ -224,12 +224,12 @@ void Set##name(const type& varValue) { m_Data[#name] = varValue; }
 type Get##name() const                                                              \
 {                                                                                   \
     type var##name = type();                                                        \
-    GetStatValue<type>(GetStats(), String(#name), var##name);                       \
+    GetStatValue<type>(Get##type##Stats(), String(#name), var##name);               \
     return var##name;                                                               \
 }                                                                                   \
 void Set##name(const type& var##name)                                               \
 {                                                                                   \
-    SetStatValue<type>(GetStats(), String(#name), var##name);                       \
+    SetStatValue<type>(Get##type##Stats(), String(#name), var##name);               \
 }
 
 #define RESET_STAT_TYPE_VALUES(base, type)                                          \
@@ -240,38 +240,37 @@ void Set##name(const type& var##name)                                           
         {                                                                           \
             continue;                                                               \
         }                                                                           \
-        SetStatValue<type>(GetStats(), sType, type());                              \
+        SetStatValue<type>(Get##type##Stats(), sType, type());                      \
     }                                                                               \
 }
 
 #define SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(base, type)                           \
 {                                                                                   \
-    for(auto& sType : base##_##type::_names())                                      \
+    for(auto& sStatTypeName : base##_##type::_names())                              \
     {                                                                               \
-        if(IsNoneTypeForEnum<base##_##type>(sType))                                 \
+        if(IsNoneTypeForEnum<base##_##type>(sStatTypeName))                         \
         {                                                                           \
             continue;                                                               \
         }                                                                           \
         type varStatValue = type();                                                 \
-        String varStatName = sType;                                                 \
-        if(GetStatValue<type>(obj.GetStats(), varStatName, varStatValue))           \
+        if(GetStatValue<type>(obj.Get##type##Stats(), sStatTypeName, varStatValue)) \
         {                                                                           \
-            jsonData[sType] = varStatValue;                                         \
+            to_json(jsonData[sStatTypeName], varStatValue);                         \
         }                                                                           \
     }                                                                               \
 }
 
 #define SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(base, type)                           \
 {                                                                                   \
-    for(auto& sType : base##_##type::_names())                                      \
+    for(auto& sStatTypeName : base##_##type::_names())                              \
     {                                                                               \
-        if(IsNoneTypeForEnum<base##_##type>(sType))                                 \
+        if(IsNoneTypeForEnum<base##_##type>(sStatTypeName))                         \
         {                                                                           \
             continue;                                                               \
         }                                                                           \
-        type varStatValue = jsonData[sType];                                        \
-        String varStatName = sType;                                                 \
-        SetStatValue<type>(obj.GetStats(), varStatName, varStatValue);              \
+        type varStatValue = type();                                                 \
+        from_json(jsonData[sStatTypeName], varStatValue);                           \
+        SetStatValue<type>(obj.Get##type##Stats(), sStatTypeName, varStatValue);    \
     }                                                                               \
 }
 

@@ -9,6 +9,7 @@
 #include "Utility/Types.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
+#include "Utility/Errors.h"
 #include "Utility/Json.h"
 
 namespace Gecko
@@ -46,7 +47,14 @@ public:
     Bool SetStringArrayStatValue(const String& sStat, const StringArray& vValues);
 
     // Stat types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Stats, StatTypeMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(BoolStats, BoolStatTypeMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ByteStats, ByteStatTypeMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ShortStats, ShortStatTypeMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(IntStats, IntStatTypeMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FloatStats, FloatStatTypeMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DoubleStats, DoubleStatTypeMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StringStats, StringStatTypeMap);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StringArrayStats, StringArrayStatTypeMap);
 };
 
 };

@@ -28,6 +28,7 @@
 #include <codecvt>
 #include <mutex>
 #include <chrono>
+#include <type_traits>
 
 // Standard defines
 #define STDCout std::cout
@@ -65,6 +66,8 @@
 #define STDLess std::less
 #define STDMin std::min
 #define STDMax std::max
+#define STDIsSame std::is_same
+#define STDStaticAssert std:static_assert
 #define STDWStringConvert std::wstring_convert
 #define STDUTF8AndUTF16Conversion std::codecvt_utf8_utf16
 #define STDSetIntersection std::set_intersection
