@@ -40,13 +40,6 @@ appFyleria_libs = {
     "TMXParser",
     "Zlib"
 }
-if os.host() == "windows" then
-    table.insert(appFyleria_libs, "wsock32")
-    table.insert(appFyleria_libs, "ws2_32")
-else
-    table.insert(appFyleria_libs, "pthread")
-    table.insert(appFyleria_libs, "util")
-end
 
 -- Sources
 appFyleria_sources = {

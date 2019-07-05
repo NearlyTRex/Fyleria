@@ -36,9 +36,10 @@ libPython3_libs = {
     "Zlib"
 }
 if os.host() == "windows" then
+    table.insert(libPython3_libs, "shlwapi")
     table.insert(libPython3_libs, "version")
     table.insert(libPython3_libs, "ws2_32")
-    table.insert(libPython3_libs, "shlwapi")
+    table.insert(appFyleria_libs, "wsock32")
 elseif os.host() == "linux" then
     table.insert(libPython3_libs, "pthread")
     table.insert(libPython3_libs, "util")
