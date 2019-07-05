@@ -57,7 +57,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     String sCharacterDetails_PowerSet = GetMapDataOrDefault(tParams, "sCharacterDetails_PowerSet", "");
     String sCharacterDetails_BaseRace = GetMapDataOrDefault(tParams, "sCharacterDetails_BaseRace", "");
     String sCharacterDetails_TransformedRace = GetMapDataOrDefault(tParams, "sCharacterDetails_TransformedRace", "");
-    String sCharacterDetails_CurrentWeaponSet = GetMapDataOrDefault(tParams, "sCharacterDetails_CurrentWeaponSet", "");
+    String sCharacterDetails_WeaponSet = GetMapDataOrDefault(tParams, "sCharacterDetails_WeaponSet", "");
     String sCharacterDetails_HP_Current = GetMapDataOrDefault(tParams, "sCharacterDetails_HP_Current", "");
     String sCharacterDetails_HP_Max = GetMapDataOrDefault(tParams, "sCharacterDetails_HP_Max", "");
     String sCharacterDetails_HP_Regen = GetMapDataOrDefault(tParams, "sCharacterDetails_HP_Regen", "");
@@ -341,6 +341,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
         basicData.SetBaseRace(sCharacterDetails_BaseRace);
         basicData.SetTransformedRace(sCharacterDetails_TransformedRace);
         basicData.SetPowerSet(sCharacterDetails_PowerSet);
+        basicData.SetWeaponSet(sCharacterDetails_WeaponSet);
         basicData.SetAge(BoostLexicalCast<Int>(sCharacterDetails_Age));
         CharacterProgressData& progressData = character.GetProgressDataBase();
         progressData.SetHealthPointsCurrent(BoostLexicalCast<Int>(sCharacterDetails_HP_Current));
@@ -562,6 +563,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
         sCharacterDetails_BaseRace = basicData.GetBaseRace();
         sCharacterDetails_TransformedRace = basicData.GetTransformedRace();
         sCharacterDetails_PowerSet = basicData.GetPowerSet();
+        sCharacterDetails_WeaponSet = basicData.GetWeaponSet();
         sCharacterDetails_Age = STDToString(basicData.GetAge());
         const CharacterProgressData& progressData = character.GetProgressDataBase();
         sCharacterDetails_HP_Current = STDToString(progressData.GetHealthPointsCurrent());
@@ -767,7 +769,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterPowerSetType, sCharacterDetails_PowerSet);
     MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterBaseRaceType, sCharacterDetails_BaseRace);
     MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterTransformedRaceType, sCharacterDetails_TransformedRace);
-    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterWeaponSetType, sCharacterDetails_CurrentWeaponSet);
+    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterWeaponSetType, sCharacterDetails_WeaponSet);
     MAKE_DEFAULT_HTML_OPTION_LIST_STRING(FileType);
 
     // Set page content
@@ -779,7 +781,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_PowerSet%", sCharacterDetailsOptionList_CharacterPowerSetType);
     BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_BaseRace%", sCharacterDetailsOptionList_CharacterBaseRaceType);
     BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_TransformedRace%", sCharacterDetailsOptionList_CharacterTransformedRaceType);
-    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_CurrentWeaponSet%", sCharacterDetailsOptionList_CharacterWeaponSetType);
+    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_WeaponSet%", sCharacterDetailsOptionList_CharacterWeaponSetType);
     BoostReplaceAll(sPage, "%sOptionList_FileType%", sOptionList_FileType);
     BoostReplaceAll(sPage, "%sLoadCharacterFromJson_Textarea%", sLoadCharacterFromJson_Textarea);
     BoostReplaceAll(sPage, "%sLoadCharacterFromFile_Filename%", sLoadCharacterFromFile_Filename);
