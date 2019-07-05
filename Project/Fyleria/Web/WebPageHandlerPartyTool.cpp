@@ -34,13 +34,6 @@ WebPageHandlerPartyTool::~WebPageHandlerPartyTool()
 
 void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
 {
-    // Build option lists
-    MAKE_HTML_OPTION_LIST_STRING(CharacterPartyType);
-    MAKE_HTML_OPTION_LIST_STRING(CharacterResolvedTargetType);
-    MAKE_HTML_OPTION_LIST_STRING(CharacterEquipmentType);
-    MAKE_HTML_OPTION_LIST_STRING(ItemTreeType);
-    MAKE_HTML_OPTION_LIST_STRING(FileType);
-
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
     String sLoadPartyFromJson_Textarea = GetMapDataOrDefault(tParams, "sLoadPartyFromJson_Textarea", "");
@@ -292,6 +285,13 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
         sPartyDetails_Items = Json(party.GetItems()).dump();
         sPartyDetails_Description = party.GetDescription();
     }
+
+    // Build option lists
+    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(CharacterPartyType);
+    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(CharacterResolvedTargetType);
+    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(CharacterEquipmentType);
+    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(ItemTreeType);
+    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(FileType);
 
     // Set page content
     String sPage = GetPageTemplate();

@@ -32,17 +32,6 @@ WebPageHandlerCharacterTool::~WebPageHandlerCharacterTool()
 
 void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
 {
-    // Build option lists
-    MAKE_HTML_OPTION_LIST_STRING(CharacterGenderType);
-    MAKE_HTML_OPTION_LIST_STRING(CharacterHairType);
-    MAKE_HTML_OPTION_LIST_STRING(CharacterEyeType);
-    MAKE_HTML_OPTION_LIST_STRING(CharacterHandednessType);
-    MAKE_HTML_OPTION_LIST_STRING(CharacterPowerSetType);
-    MAKE_HTML_OPTION_LIST_STRING(CharacterBaseRaceType);
-    MAKE_HTML_OPTION_LIST_STRING(CharacterTransformedRaceType);
-    MAKE_HTML_OPTION_LIST_STRING(CharacterWeaponSetType);
-    MAKE_HTML_OPTION_LIST_STRING(FileType);
-
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
     String sLoadCharacterFromJson_Textarea = GetMapDataOrDefault(tParams, "sLoadCharacterFromJson_Textarea", "");
@@ -770,16 +759,27 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
         sCharacterDetails_RawJson = Json(character).dump();
     }
 
+    // Build option lists
+    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterGenderType, sCharacterDetails_Gender);
+    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterHairType, sCharacterDetails_Hair);
+    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterEyeType, sCharacterDetails_Eyes);
+    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterHandednessType, sCharacterDetails_Handedness);
+    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterPowerSetType, sCharacterDetails_PowerSet);
+    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterBaseRaceType, sCharacterDetails_BaseRace);
+    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterTransformedRaceType, sCharacterDetails_TransformedRace);
+    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterWeaponSetType, sCharacterDetails_CurrentWeaponSet);
+    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(FileType);
+
     // Set page content
     String sPage = GetPageTemplate();
-    BoostReplaceAll(sPage, "%sOptionList_Gender%", sOptionList_CharacterGenderType);
-    BoostReplaceAll(sPage, "%sOptionList_Hair%", sOptionList_CharacterHairType);
-    BoostReplaceAll(sPage, "%sOptionList_Eyes%", sOptionList_CharacterEyeType);
-    BoostReplaceAll(sPage, "%sOptionList_Handed%", sOptionList_CharacterHandednessType);
-    BoostReplaceAll(sPage, "%sOptionList_PowerSet%", sOptionList_CharacterPowerSetType);
-    BoostReplaceAll(sPage, "%sOptionList_BaseRace%", sOptionList_CharacterBaseRaceType);
-    BoostReplaceAll(sPage, "%sOptionList_TransformedRace%", sOptionList_CharacterTransformedRaceType);
-    BoostReplaceAll(sPage, "%sOptionList_CurrentWeaponSet%", sOptionList_CharacterWeaponSetType);
+    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_Gender%", sCharacterDetailsOptionList_CharacterGenderType);
+    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_Hair%", sCharacterDetailsOptionList_CharacterHairType);
+    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_Eyes%", sCharacterDetailsOptionList_CharacterEyeType);
+    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_Handed%", sCharacterDetailsOptionList_CharacterHandednessType);
+    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_PowerSet%", sCharacterDetailsOptionList_CharacterPowerSetType);
+    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_BaseRace%", sCharacterDetailsOptionList_CharacterBaseRaceType);
+    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_TransformedRace%", sCharacterDetailsOptionList_CharacterTransformedRaceType);
+    BoostReplaceAll(sPage, "%sCharacterDetailsOptionList_CurrentWeaponSet%", sCharacterDetailsOptionList_CharacterWeaponSetType);
     BoostReplaceAll(sPage, "%sOptionList_FileType%", sOptionList_FileType);
     BoostReplaceAll(sPage, "%sLoadCharacterFromJson_Textarea%", sLoadCharacterFromJson_Textarea);
     BoostReplaceAll(sPage, "%sLoadCharacterFromFile_Filename%", sLoadCharacterFromFile_Filename);

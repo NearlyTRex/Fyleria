@@ -33,10 +33,6 @@ WebPageHandlerSaveTool::~WebPageHandlerSaveTool()
 
 void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
 {
-    // Build option lists
-    MAKE_HTML_OPTION_LIST_STRING(SaveSlotType);
-    MAKE_HTML_OPTION_LIST_STRING(FileType);
-
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
     String sCollectSaveDataSingle_SaveSlotType = GetMapDataOrDefault(tParams, "sCollectSaveDataSingle_SaveSlotType", "");
@@ -143,6 +139,10 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
             sSaveAllToDir_FileType
         );
     }
+
+    // Build option lists
+    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(SaveSlotType);
+    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(FileType);
 
     // Set page content
     String sPage = GetPageTemplate();

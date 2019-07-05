@@ -380,7 +380,7 @@ void method##_StoreResult(const String& sResultID, at1 av1, at2 av2, at3 av3, at
 
 //=====================================================================================
 
-#define MAKE_HTML_OPTION_LIST_STRING(type)                                                          \
+#define MAKE_DEFAULT_HTML_OPTION_LIST_STRING(type)                                                  \
 String sOptionList_##type;                                                                          \
 {                                                                                                   \
     for(auto& sTypeName : GetEnumNames<type>())                                                     \
@@ -390,6 +390,27 @@ String sOptionList_##type;                                                      
             continue;                                                                               \
         }                                                                                           \
         sOptionList_##type += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>";     \
+    }                                                                                               \
+}
+
+#define MAKE_SELECTED_HTML_OPTION_LIST_STRING(prefix, type, selection)                              \
+String s##prefix##_##type;                                                                          \
+{                                                                                                   \
+    for(auto& sTypeName : GetEnumNames<type>())                                                     \
+    {                                                                                               \
+        if(IsNoneTypeForEnum<type>(sTypeName))                                                      \
+        {                                                                                           \
+            continue;                                                                               \
+        }                                                                                           \
+        if(sTypeName == selection)                                                                  \
+        {                                                                                           \
+            s##prefix##_##type += "<option value=\"" + sTypeName + "\" selected=\"selected\">";     \
+            s##prefix##_##type += sTypeName + "</option>";                                          \
+        }                                                                                           \
+        else                                                                                        \
+        {                                                                                           \
+            s##prefix##_##type += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>"; \
+        }                                                                                           \
     }                                                                                               \
 }
 

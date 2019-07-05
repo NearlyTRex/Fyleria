@@ -10,6 +10,7 @@
 
 namespace Gecko
 {
+    // Manager lambdas
     auto fnCreateBattle = MAKE_MANAGER_VOID_LAMBDA_A1(BattleManager, CreateBattle, const String&);
     auto fnUnloadBattle = MAKE_MANAGER_VOID_LAMBDA_A1(BattleManager, UnloadBattle, const String&);
     auto fnDoesBattleExist = MAKE_MANAGER_RETURN_LAMBDA_A1(BattleManager, DoesBattleExist, Bool, const String&);
