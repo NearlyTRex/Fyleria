@@ -34,9 +34,6 @@ void Application::Run()
         return;
     }
 
-    // Start first scene
-    SceneManager::GetInstance()->SwitchToScene((+SceneType::MainMenu)._to_string());
-
     // Main loop
     do
     {
@@ -114,6 +111,11 @@ Bool Application::Initialize()
     LOG_STATEMENT("Navigating to start page");
     MainWindow::GetInstance()->GetBrowserEngine()->Navigate("about:blank");
     LOG_STATEMENT("Finished navigating");
+
+    // Start first scene
+    LOG_STATEMENT("Starting first scene");
+    SceneManager::GetInstance()->SwitchToScene((+SceneType::MainMenu)._to_string());
+    LOG_STATEMENT("Finished switching scenes");
     return true;
 }
 
