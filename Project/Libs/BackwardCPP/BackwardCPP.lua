@@ -16,13 +16,14 @@ libBackwardCPP_sources = {
 
 -- Defines
 libBackwardCPP_defines = {
-    "BACKWARD_HAS_DW=1"
 }
+if os.host() == "linux" then
+    table.insert(libBackwardCPP_defines, "BACKWARD_HAS_DW=1")
+end
 
 -- Libs
 libBackwardCPP_libs = {
 }
-if os.host() == "windows" then
-elseif os.host() == "linux" then
+if os.host() == "linux" then
     table.insert(libBackwardCPP_libs, "dw")
 end
