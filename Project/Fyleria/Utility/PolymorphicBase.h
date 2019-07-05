@@ -4,6 +4,7 @@
 #ifndef _GECKO_UTILITY_POLYMORPHIC_BASE_H_
 #define _GECKO_UTILITY_POLYMORPHIC_BASE_H_
 
+// Internal includes
 #include "Utility/Macros.h"
 #include "Utility/Json.h"
 

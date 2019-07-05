@@ -1,6 +1,7 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
+// Internal includes
 #include "Utility/Converters.h"
 #include "Utility/Boost.h"
 #include "Utility/Errors.h"

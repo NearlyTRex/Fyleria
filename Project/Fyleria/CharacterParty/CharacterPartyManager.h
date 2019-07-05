@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_PARTY_MANAGER_H_
 #define _GECKO_CHARACTER_PARTY_MANAGER_H_
 
+// Internal includes
 #include "CharacterParty/CharacterParty.h"
 #include "Utility/ResultManager.h"
 

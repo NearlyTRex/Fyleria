@@ -4,6 +4,7 @@
 #ifndef _GECKO_UTILITY_TREE_H_
 #define _GECKO_UTILITY_TREE_H_
 
+// Internal includes
 #include "Utility/Assert.h"
 #include "Utility/Logging.h"
 #include "Utility/Singleton.h"

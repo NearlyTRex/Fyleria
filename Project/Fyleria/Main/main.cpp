@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cstdlib>
 
-// Local includes
+// Internal includes
 #include "Main/Application.h"
 #include "Config/ConfigManager.h"
 #include "Utility/Constants.h"

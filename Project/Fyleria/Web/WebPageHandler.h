@@ -4,6 +4,7 @@
 #ifndef _GECKO_WEB_PAGE_HANDLER_H_
 #define _GECKO_WEB_PAGE_HANDLER_H_
 
+// Internal includes
 #include "Utility/Macros.h"
 #include "Utility/Tree.h"
 #include "Utility/Enum.h"

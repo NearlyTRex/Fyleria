@@ -4,6 +4,7 @@
 #ifndef _GECKO_CONFIG_H_
 #define _GECKO_CONFIG_H_
 
+// Internal includes
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Serializable.h"

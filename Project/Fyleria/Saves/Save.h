@@ -4,6 +4,7 @@
 #ifndef _GECKO_SAVE_H_
 #define _GECKO_SAVE_H_
 
+// Internal includes
 #include "Character/CharacterManager.h"
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Macros.h"

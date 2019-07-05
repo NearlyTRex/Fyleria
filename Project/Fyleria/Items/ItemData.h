@@ -4,6 +4,7 @@
 #ifndef _GECKO_ITEMDATA_H_
 #define _GECKO_ITEMDATA_H_
 
+// Internal includes
 #include "Stats/StatChange.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"

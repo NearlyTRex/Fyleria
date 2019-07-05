@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_PARTY_H_
 #define _GECKO_CHARACTER_PARTY_H_
 
+// Internal includes
 #include "Character/Character.h"
 #include "CharacterParty/CharacterPartyMember.h"
 #include "CharacterParty/CharacterPartyItem.h"

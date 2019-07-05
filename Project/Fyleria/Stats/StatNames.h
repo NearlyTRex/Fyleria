@@ -4,6 +4,7 @@
 #ifndef _GECKO_STAT_NAMES_H_
 #define _GECKO_STAT_NAMES_H_
 
+// Internal includes
 #include "Utility/Types.h"
 
 namespace Gecko

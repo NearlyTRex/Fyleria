@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_ACTION_HANDLER_H_
 #define _GECKO_CHARACTER_ACTION_HANDLER_H_
 
+// Internal includes
 #include "CharacterAction/CharacterAction.h"
 
 namespace Gecko

@@ -1,6 +1,7 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
+// Internal includes
 #include "Window/MainWindow.h"
 #if defined(__linux__)
     #include "Window/BrowserEngineWebKitGtk.h"

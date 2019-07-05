@@ -1,6 +1,7 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
+// Internal includes
 #include "Skills/SkillDataWeapon.h"
 #include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"

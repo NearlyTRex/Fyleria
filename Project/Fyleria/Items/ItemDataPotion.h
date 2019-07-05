@@ -4,6 +4,7 @@
 #ifndef _GECKO_ITEMDATA_POTION_H_
 #define _GECKO_ITEMDATA_POTION_H_
 
+// Internal includes
 #include "Items/ItemData.h"
 #include "Items/ItemTypes.h"
 #include "Stats/StatChange.h"

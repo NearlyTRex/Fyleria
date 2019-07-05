@@ -4,6 +4,7 @@
 #ifndef _GECKO_WEB_PAGE_HANDLER_CHARACTER_TOOL_H_
 #define _GECKO_WEB_PAGE_HANDLER_CHARACTER_TOOL_H_
 
+// Internal includes
 #include "Web/WebPageHandler.h"
 
 namespace Gecko

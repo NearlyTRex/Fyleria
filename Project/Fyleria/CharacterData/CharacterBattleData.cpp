@@ -1,6 +1,7 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
+// Internal includes
 #include "CharacterData/CharacterBattleData.h"
 #include "CharacterData/CharacterProgressData.h"
 #include "Character/CharacterManager.h"

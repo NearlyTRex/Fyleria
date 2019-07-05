@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_STAT_CHANGE_DATA_H_
 #define _GECKO_CHARACTER_STAT_CHANGE_DATA_H_
 
+// Internal includes
 #include "Character/CharacterTypes.h"
 #include "Stats/ProlongedStatChange.h"
 #include "Utility/TreeIndex.h"

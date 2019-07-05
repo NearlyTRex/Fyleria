@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_SKILL_DATA_H_
 #define _GECKO_CHARACTER_SKILL_DATA_H_
 
+// Internal includes
 #include "Character/CharacterTypes.h"
 #include "Skills/SkillTypes.h"
 #include "Utility/Json.h"

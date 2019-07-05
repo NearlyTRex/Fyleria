@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_PROGRESS_DATA_H_
 #define _GECKO_CHARACTER_PROGRESS_DATA_H_
 
+// Internal includes
 #include "CharacterAction/CharacterAction.h"
 #include "Stats/StatTypeHolder.h"
 

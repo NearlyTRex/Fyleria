@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_ACTION_RESULT_H_
 #define _GECKO_CHARACTER_ACTION_RESULT_H_
 
+// Internal includes
 #include "Utility/Macros.h"
 #include "Utility/Tree.h"
 #include "Utility/Enum.h"

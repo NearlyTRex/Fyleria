@@ -4,6 +4,7 @@
 #ifndef _GECKO_BATTLE_MANAGER_H_
 #define _GECKO_BATTLE_MANAGER_H_
 
+// Internal includes
 #include "Battle/Battle.h"
 #include "Utility/ResultManager.h"
 

@@ -4,6 +4,7 @@
 #ifndef _GECKO_BATTLE_H_
 #define _GECKO_BATTLE_H_
 
+// Internal includes
 #include "CharacterAction/CharacterAction.h"
 #include "CharacterActionHandler/CharacterActionHandlerSkillAttack.h"
 #include "Utility/ResultManager.h"

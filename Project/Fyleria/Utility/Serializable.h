@@ -4,6 +4,7 @@
 #ifndef _GECKO_UTILITY_SERIALIZABLE_H_
 #define _GECKO_UTILITY_SERIALIZABLE_H_
 
+// Internal includes
 #include "Utility/Serialization.h"
 #include "Utility/Filesystem.h"
 

@@ -4,6 +4,7 @@
 #ifndef _GECKO_RECIPE_ENTRY_H_
 #define _GECKO_RECIPE_ENTRY_H_
 
+// Internal includes
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"

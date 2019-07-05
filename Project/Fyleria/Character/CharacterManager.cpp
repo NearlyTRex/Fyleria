@@ -1,6 +1,7 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
+// Internal includes
 #include "Character/CharacterManager.h"
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Character/CharacterTypes.h"

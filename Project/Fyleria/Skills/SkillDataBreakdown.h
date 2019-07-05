@@ -4,6 +4,7 @@
 #ifndef _GECKO_SKILLDATA_BREAKDOWN_H_
 #define _GECKO_SKILLDATA_BREAKDOWN_H_
 
+// Internal includes
 #include "Skills/SkillData.h"
 #include "Skills/SkillTypes.h"
 #include "Recipes/Recipe.h"

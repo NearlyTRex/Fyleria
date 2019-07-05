@@ -4,6 +4,7 @@
 #ifndef _GECKO_RECIPE_H_
 #define _GECKO_RECIPE_H_
 
+// Internal includes
 #include "Recipes/RecipeEntry.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"

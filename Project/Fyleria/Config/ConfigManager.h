@@ -4,6 +4,7 @@
 #ifndef _GECKO_CONFIG_MANAGER_H_
 #define _GECKO_CONFIG_MANAGER_H_
 
+// Internal includes
 #include "Config/Config.h"
 #include "Utility/Singleton.h"
 

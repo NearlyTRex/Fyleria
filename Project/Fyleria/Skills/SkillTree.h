@@ -4,6 +4,7 @@
 #ifndef _GECKO_SKILL_TREE_H_
 #define _GECKO_SKILL_TREE_H_
 
+// Internal includes
 #include "CharacterAction/CharacterAction.h"
 #include "Utility/ResultManager.h"
 #include "Skills/SkillDataAffinity.h"

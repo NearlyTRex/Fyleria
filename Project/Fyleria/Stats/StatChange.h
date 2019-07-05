@@ -4,6 +4,7 @@
 #ifndef _GECKO_STAT_CHANGE_H_
 #define _GECKO_STAT_CHANGE_H_
 
+// Internal includes
 #include "CharacterAction/CharacterAction.h"
 #include "Stats/StatChangeEntry.h"
 #include "Utility/Macros.h"

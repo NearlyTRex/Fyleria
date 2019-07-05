@@ -4,6 +4,7 @@
 #ifndef _GECKO_BATTLE_EVENTS_H_
 #define _GECKO_BATTLE_EVENTS_H_
 
+// Internal includes
 #include "Utility/Types.h"
 #include "CharacterAction/CharacterAction.h"
 

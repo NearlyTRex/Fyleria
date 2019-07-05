@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_MANAGER_H_
 #define _GECKO_CHARACTER_MANAGER_H_
 
+// Internal includes
 #include "Character/Character.h"
 #include "Character/CharacterGenerator.h"
 #include "Utility/ResultManager.h"

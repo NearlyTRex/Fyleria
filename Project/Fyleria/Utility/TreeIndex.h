@@ -4,6 +4,7 @@
 #ifndef _GECKO_UTILITY_TREEINDEX_H_
 #define _GECKO_UTILITY_TREEINDEX_H_
 
+// Internal includes
 #include "Utility/Serializable.h"
 
 namespace Gecko

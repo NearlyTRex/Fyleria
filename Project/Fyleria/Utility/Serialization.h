@@ -4,6 +4,7 @@
 #ifndef _GECKO_UTILITY_SERIALIZATION_H_
 #define _GECKO_UTILITY_SERIALIZATION_H_
 
+// Internal includes
 #include "Utility/Types.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"

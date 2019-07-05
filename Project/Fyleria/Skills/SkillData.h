@@ -4,6 +4,7 @@
 #ifndef _GECKO_SKILLDATA_H_
 #define _GECKO_SKILLDATA_H_
 
+// Internal includes
 #include "CharacterAction/CharacterAction.h"
 #include "Stats/StatChange.h"
 #include "Utility/Macros.h"

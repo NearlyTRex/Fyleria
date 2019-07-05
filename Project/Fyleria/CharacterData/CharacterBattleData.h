@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_BATTLE_DATA_H_
 #define _GECKO_CHARACTER_BATTLE_DATA_H_
 
+// Internal includes
 #include "Stats/StatTypeHolder.h"
 
 namespace Gecko

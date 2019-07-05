@@ -4,6 +4,7 @@
 #ifndef _GECKO_UTILITY_SINGLETON_H_
 #define _GECKO_UTILITY_SINGLETON_H_
 
+// Internal includes
 #include "Utility/ObjectThreadsafe.h"
 
 namespace Gecko

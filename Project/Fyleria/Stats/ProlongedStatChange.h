@@ -4,6 +4,7 @@
 #ifndef _GECKO_PROLONGED_STAT_CHANGE_H_
 #define _GECKO_PROLONGED_STAT_CHANGE_H_
 
+// Internal includes
 #include "Stats/StatChangeEntry.h"
 #include "Utility/Json.h"
 #include "Utility/Serializable.h"

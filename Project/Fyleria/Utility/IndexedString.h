@@ -4,6 +4,7 @@
 #ifndef _GECKO_UTILITY_INDEXEDSTRING_H_
 #define _GECKO_UTILITY_INDEXEDSTRING_H_
 
+// Internal includes
 #include "Utility/Types.h"
 #include "Utility/Json.h"
 #include "Utility/ImmutableString.h"

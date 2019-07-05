@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_H_
 #define _GECKO_CHARACTER_H_
 
+// Internal includes
 #include "Character/CharacterTypes.h"
 #include "CharacterAction/CharacterAction.h"
 #include "CharacterData/CharacterActionData.h"

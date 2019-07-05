@@ -4,6 +4,7 @@
 #ifndef _GECKO_CHARACTER_ACTION_H_
 #define _GECKO_CHARACTER_ACTION_H_
 
+// Internal includes
 #include "CharacterAction/CharacterActionEntry.h"
 #include "Utility/ResultManager.h"
 #include "Utility/Macros.h"
