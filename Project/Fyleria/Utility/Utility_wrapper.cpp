@@ -16,63 +16,71 @@
 
 namespace Gecko
 {
+    // Manager lambdas
+    auto fnStoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(ResultManager, StoreResult, const String&, const String&);
+    auto fnStoreCurrentResult = MAKE_MANAGER_VOID_LAMBDA_A1(ResultManager, StoreCurrentResult, const String&);
+    auto fnGetResult = MAKE_MANAGER_RETURN_LAMBDA_A1(ResultManager, GetResult, String, const String&);
+    auto fnDoesResultExist = MAKE_MANAGER_RETURN_LAMBDA_A1(ResultManager, DoesResultExist, Bool, const String&);
+    auto fnClearResult = MAKE_MANAGER_VOID_LAMBDA_A1(ResultManager, ClearResult, const String&);
+    auto fnClearAllResults = MAKE_MANAGER_VOID_LAMBDA(ResultManager, ClearAllResults);
+    auto fnGetCurrentResultID = MAKE_MANAGER_RETURN_LAMBDA(ResultManager, GetCurrentResultID, const String&);
+    auto fnSetCurrentResultID = MAKE_MANAGER_VOID_LAMBDA_A1(ResultManager, SetCurrentResultID, const String&);
 
-String GetAllTypeNames()
-{
-    Json jsonData;
+    // Get all type names as a json string
+    String GetAllTypeNames()
+    {
+        // CharacterTypes.h
+        Json jsonData;
+        jsonData["CharacterTreeIndexType"] = GetEnumNames<CharacterTreeIndexType>();
+        jsonData["CharacterSegmentType"] = GetEnumNames<CharacterSegmentType>();
+        jsonData["CharacterBasicStatType_String"] = GetEnumNames<CharacterBasicStatType_String>();
+        jsonData["CharacterBasicStatType_Int"] = GetEnumNames<CharacterBasicStatType_Int>();
+        jsonData["CharacterProgressStatType_Int"] = GetEnumNames<CharacterProgressStatType_Int>();
+        jsonData["CharacterBattleStatType_String"] = GetEnumNames<CharacterBattleStatType_String>();
+        jsonData["CharacterBattleStatType_StringArray"] = GetEnumNames<CharacterBattleStatType_StringArray>();
+        jsonData["CharacterBattleStatType_Bool"] = GetEnumNames<CharacterBattleStatType_Bool>();
+        jsonData["CharacterBattleStatType_Int"] = GetEnumNames<CharacterBattleStatType_Int>();
+        jsonData["CharacterBattleStatType_Float"] = GetEnumNames<CharacterBattleStatType_Float>();
+        jsonData["CharacterStatusType"] = GetEnumNames<CharacterStatusType>();
+        jsonData["CharacterBaseRaceType"] = GetEnumNames<CharacterBaseRaceType>();
+        jsonData["CharacterTransformedRaceType"] = GetEnumNames<CharacterTransformedRaceType>();
+        jsonData["CharacterPowerSetType"] = GetEnumNames<CharacterPowerSetType>();
+        jsonData["CharacterWeaponSetType"] = GetEnumNames<CharacterWeaponSetType>();
+        jsonData["CharacterGenderType"] = GetEnumNames<CharacterGenderType>();
+        jsonData["CharacterHairType"] = GetEnumNames<CharacterHairType>();
+        jsonData["CharacterEyeType"] = GetEnumNames<CharacterEyeType>();
+        jsonData["CharacterHandednessType"] = GetEnumNames<CharacterHandednessType>();
+        jsonData["CharacterHandType"] = GetEnumNames<CharacterHandType>();
+        jsonData["CharacterEquipmentType"] = GetEnumNames<CharacterEquipmentType>();
+        jsonData["CharacterTargetType"] = GetEnumNames<CharacterTargetType>();
+        jsonData["CharacterResolvedTargetType"] = GetEnumNames<CharacterResolvedTargetType>();
+        jsonData["CharacterPartyType"] = GetEnumNames<CharacterPartyType>();
+        jsonData["CharacterActionType"] = GetEnumNames<CharacterActionType>();
 
-    // CharacterTypes.h
-    jsonData["CharacterTreeIndexType"] = GetEnumNames<CharacterTreeIndexType>();
-    jsonData["CharacterSegmentType"] = GetEnumNames<CharacterSegmentType>();
-    jsonData["CharacterBasicStatType_String"] = GetEnumNames<CharacterBasicStatType_String>();
-    jsonData["CharacterBasicStatType_Int"] = GetEnumNames<CharacterBasicStatType_Int>();
-    jsonData["CharacterProgressStatType_Int"] = GetEnumNames<CharacterProgressStatType_Int>();
-    jsonData["CharacterBattleStatType_String"] = GetEnumNames<CharacterBattleStatType_String>();
-    jsonData["CharacterBattleStatType_StringArray"] = GetEnumNames<CharacterBattleStatType_StringArray>();
-    jsonData["CharacterBattleStatType_Bool"] = GetEnumNames<CharacterBattleStatType_Bool>();
-    jsonData["CharacterBattleStatType_Int"] = GetEnumNames<CharacterBattleStatType_Int>();
-    jsonData["CharacterBattleStatType_Float"] = GetEnumNames<CharacterBattleStatType_Float>();
-    jsonData["CharacterStatusType"] = GetEnumNames<CharacterStatusType>();
-    jsonData["CharacterBaseRaceType"] = GetEnumNames<CharacterBaseRaceType>();
-    jsonData["CharacterTransformedRaceType"] = GetEnumNames<CharacterTransformedRaceType>();
-    jsonData["CharacterPowerSetType"] = GetEnumNames<CharacterPowerSetType>();
-    jsonData["CharacterWeaponSetType"] = GetEnumNames<CharacterWeaponSetType>();
-    jsonData["CharacterGenderType"] = GetEnumNames<CharacterGenderType>();
-    jsonData["CharacterHairType"] = GetEnumNames<CharacterHairType>();
-    jsonData["CharacterEyeType"] = GetEnumNames<CharacterEyeType>();
-    jsonData["CharacterHandednessType"] = GetEnumNames<CharacterHandednessType>();
-    jsonData["CharacterHandType"] = GetEnumNames<CharacterHandType>();
-    jsonData["CharacterEquipmentType"] = GetEnumNames<CharacterEquipmentType>();
-    jsonData["CharacterTargetType"] = GetEnumNames<CharacterTargetType>();
-    jsonData["CharacterResolvedTargetType"] = GetEnumNames<CharacterResolvedTargetType>();
-    jsonData["CharacterPartyType"] = GetEnumNames<CharacterPartyType>();
-    jsonData["CharacterActionType"] = GetEnumNames<CharacterActionType>();
+        // SaveTypes.h
+        jsonData["SaveSlotType"] = GetEnumNames<SaveSlotType>();
 
-    // SaveTypes.h
-    jsonData["SaveSlotType"] = GetEnumNames<SaveSlotType>();
+        // SkillTypes.h
+        jsonData["SkillTreeType"] = GetEnumNames<SkillTreeType>();
+        jsonData["SkillWeaponBaseType"] = GetEnumNames<SkillWeaponBaseType>();
+        jsonData["SkillWeaponType"] = GetEnumNames<SkillWeaponType>();
+        jsonData["SkillAlchemyType"] = GetEnumNames<SkillAlchemyType>();
+        jsonData["SkillBreakdownType"] = GetEnumNames<SkillBreakdownType>();
+        jsonData["SkillCombatType"] = GetEnumNames<SkillCombatType>();
+        jsonData["SkillCraftingType"] = GetEnumNames<SkillCraftingType>();
+        jsonData["SkillAffinityType"] = GetEnumNames<SkillAffinityType>();
 
-    // SkillTypes.h
-    jsonData["SkillTreeType"] = GetEnumNames<SkillTreeType>();
-    jsonData["SkillWeaponBaseType"] = GetEnumNames<SkillWeaponBaseType>();
-    jsonData["SkillWeaponType"] = GetEnumNames<SkillWeaponType>();
-    jsonData["SkillAlchemyType"] = GetEnumNames<SkillAlchemyType>();
-    jsonData["SkillBreakdownType"] = GetEnumNames<SkillBreakdownType>();
-    jsonData["SkillCombatType"] = GetEnumNames<SkillCombatType>();
-    jsonData["SkillCraftingType"] = GetEnumNames<SkillCraftingType>();
-    jsonData["SkillAffinityType"] = GetEnumNames<SkillAffinityType>();
+        // ItemTypes.h
+        jsonData["ItemTreeType"] = GetEnumNames<ItemTreeType>();
+        jsonData["ItemType"] = GetEnumNames<ItemType>();
 
-    // ItemTypes.h
-    jsonData["ItemTreeType"] = GetEnumNames<ItemTreeType>();
-    jsonData["ItemType"] = GetEnumNames<ItemType>();
-
-    // TypesEnum.h
-    jsonData["OperationType"] = GetEnumNames<OperationType>();
-    jsonData["ComparisonType"] = GetEnumNames<ComparisonType>();
-    jsonData["FileType"] = GetEnumNames<FileType>();
-    return jsonData.dump();
-}
-
-MAKE_MODULE_RESULT_VARIANT(GetAllTypeNames);
+        // TypesEnum.h
+        jsonData["OperationType"] = GetEnumNames<OperationType>();
+        jsonData["ComparisonType"] = GetEnumNames<ComparisonType>();
+        jsonData["FileType"] = GetEnumNames<FileType>();
+        return jsonData.dump();
+    }
+    MAKE_MODULE_RESULT_VARIANT(GetAllTypeNames);
 
 };
 
@@ -175,15 +183,14 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetFantasySENamePattern, Gecko);
 
     // ResultManager.h
-    PyBindClass<Gecko::ResultManager>(m, "ResultManager")
-        WRAPPING_ADD_METHOD_SIMPLE(StoreResult, Gecko::ResultManager)
-        WRAPPING_ADD_METHOD_SIMPLE(StoreCurrentResult, Gecko::ResultManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetResult, Gecko::ResultManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesResultExist, Gecko::ResultManager)
-        WRAPPING_ADD_METHOD_SIMPLE(ClearResult, Gecko::ResultManager)
-        WRAPPING_ADD_METHOD_SIMPLE(ClearAllResults, Gecko::ResultManager)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentResultID, Gecko::ResultManager)
-    ;
+    WRAPPING_STANDALONE_LAMBDA(StoreResult, Gecko::fnStoreResult);
+    WRAPPING_STANDALONE_LAMBDA(StoreCurrentResult, Gecko::fnStoreCurrentResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetResult, Gecko::fnGetResult, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA(DoesResultExist, Gecko::fnDoesResultExist);
+    WRAPPING_STANDALONE_LAMBDA(ClearResult, Gecko::fnClearResult);
+    WRAPPING_STANDALONE_LAMBDA(ClearAllResults, Gecko::fnClearAllResults);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentResultID, Gecko::fnGetCurrentResultID, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA(SetCurrentResultID, Gecko::fnSetCurrentResultID);
 
     // Local
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetAllTypeNames, Gecko);

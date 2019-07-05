@@ -8,9 +8,33 @@
 
 namespace Gecko
 {
-
-SafePtr<ConfigManager>& GetConfigManager() { return ConfigManager::GetInstance(); }
-
+    // Manager lambdas
+    auto fnLoadConfig = MAKE_MANAGER_RETURN_LAMBDA_A2(ConfigManager, LoadConfig, Bool, const String&, const String&);
+    auto fnDoesConfigExist = MAKE_MANAGER_RETURN_LAMBDA_A1(ConfigManager, DoesConfigExist, Bool, const String&);
+    auto fnGetConfig = MAKE_MANAGER_RETURN_LAMBDA_A1(ConfigManager, GetConfig, const Config&, const String&);
+    auto fnGetCurrentConfig = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetCurrentConfig, const Config&);
+    auto fnGetConstructedConfigFilename = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetConstructedConfigFilename, String);
+    auto fnGetConstructedPythonLibraryFilename = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetConstructedPythonLibraryFilename, String);
+    auto fnGetCurrentConfigName = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetCurrentConfigName, const String&);
+    auto fnSetCurrentConfigName = MAKE_MANAGER_VOID_LAMBDA_A1(ConfigManager, SetCurrentConfigName, const String&);
+    auto fnGetUserConfigFile = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetUserConfigFile, const String&);
+    auto fnGetUserConfigFolder = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetUserConfigFolder, const String&);
+    auto fnGetUserDataFolder = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetUserDataFolder, const String&);
+    auto fnGetUserCacheFolder = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetUserCacheFolder, const String&);
+    auto fnGetUserWebFolder = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetUserWebFolder, const String&);
+    auto fnGetPythonLibraryFile = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetPythonLibraryFile, const String&);
+    auto fnGetScreenWidth = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetScreenWidth, Int);
+    auto fnGetScreenHeight = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, GetScreenHeight, Int);
+    auto fnIsPosix = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsPosix, Bool);
+    auto fnIsWindows = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsWindows, Bool);
+    auto fnIsWindows32 = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsWindows32, Bool);
+    auto fnIsWindows64 = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsWindows64, Bool);
+    auto fnIsLinux = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsLinux, Bool);
+    auto fnIsLinux32 = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsLinux32, Bool);
+    auto fnIsLinux64 = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsLinux64, Bool);
+    auto fnIsMac = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsMac, Bool);
+    auto fnIsIOS = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsIOS, Bool);
+    auto fnIsAndroid = MAKE_MANAGER_RETURN_LAMBDA(ConfigManager, IsAndroid, Bool);
 };
 
 PYBIND11_EMBEDDED_MODULE(GeckoConfig, m)
@@ -122,34 +146,30 @@ PYBIND11_EMBEDDED_MODULE(GeckoConfig, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetConfigArrayFromJsonString, Gecko);
 
     // ConfigManager.h
-    PyBindClass<Gecko::ConfigManager>(m, "ConfigManager")
-        WRAPPING_ADD_METHOD_SIMPLE(LoadConfig, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesConfigExist, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_POLICY(GetConfig, Gecko::ConfigManager, PyBindReturnCopy)
-        WRAPPING_ADD_METHOD_POLICY(GetCurrentConfig, Gecko::ConfigManager, PyBindReturnCopy)
-        WRAPPING_ADD_METHOD_SIMPLE(GetConstructedConfigFilename, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetConstructedPythonLibraryFilename, Gecko::ConfigManager)
-        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(CurrentConfigName, Gecko::ConfigManager)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(UserConfigFile, Gecko::ConfigManager)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(UserConfigFolder, Gecko::ConfigManager)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(UserDataFolder, Gecko::ConfigManager)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(UserCacheFolder, Gecko::ConfigManager)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(UserWebFolder, Gecko::ConfigManager)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(PythonLibraryFile, Gecko::ConfigManager)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(ScreenWidth, Gecko::ConfigManager)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(ScreenHeight, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsPosix, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsWindows, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsWindows32, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsWindows64, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsLinux, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsLinux32, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsLinux64, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsMac, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsIOS, Gecko::ConfigManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsAndroid, Gecko::ConfigManager)
-    ;
-
-    // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetConfigManager, Gecko, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA(LoadConfig, Gecko::fnLoadConfig);
+    WRAPPING_STANDALONE_LAMBDA(DoesConfigExist, Gecko::fnDoesConfigExist);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetConfig, Gecko::fnGetConfig, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentConfig, Gecko::fnGetCurrentConfig, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetConstructedConfigFilename, Gecko::fnGetConstructedConfigFilename, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetConstructedPythonLibraryFilename, Gecko::fnGetConstructedPythonLibraryFilename, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetCurrentConfigName, Gecko::fnGetCurrentConfigName, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA(SetCurrentConfigName, Gecko::fnSetCurrentConfigName);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetUserConfigFile, Gecko::fnGetUserConfigFile, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetUserConfigFolder, Gecko::fnGetUserConfigFolder, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetUserDataFolder, Gecko::fnGetUserDataFolder, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetUserCacheFolder, Gecko::fnGetUserCacheFolder, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetUserWebFolder, Gecko::fnGetUserWebFolder, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetPythonLibraryFile, Gecko::fnGetPythonLibraryFile, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA(GetScreenWidth, Gecko::fnGetScreenWidth);
+    WRAPPING_STANDALONE_LAMBDA(GetScreenHeight, Gecko::fnGetScreenHeight);
+    WRAPPING_STANDALONE_LAMBDA(IsPosix, Gecko::fnIsPosix);
+    WRAPPING_STANDALONE_LAMBDA(IsWindows, Gecko::fnIsWindows);
+    WRAPPING_STANDALONE_LAMBDA(IsWindows32, Gecko::fnIsWindows32);
+    WRAPPING_STANDALONE_LAMBDA(IsWindows64, Gecko::fnIsWindows64);
+    WRAPPING_STANDALONE_LAMBDA(IsLinux, Gecko::fnIsLinux);
+    WRAPPING_STANDALONE_LAMBDA(IsLinux32, Gecko::fnIsLinux32);
+    WRAPPING_STANDALONE_LAMBDA(IsLinux64, Gecko::fnIsLinux64);
+    WRAPPING_STANDALONE_LAMBDA(IsMac, Gecko::fnIsMac);
+    WRAPPING_STANDALONE_LAMBDA(IsIOS, Gecko::fnIsIOS);
+    WRAPPING_STANDALONE_LAMBDA(IsAndroid, Gecko::fnIsAndroid);
 }

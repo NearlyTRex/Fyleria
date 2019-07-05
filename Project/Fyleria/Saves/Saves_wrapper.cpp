@@ -9,9 +9,35 @@
 
 namespace Gecko
 {
-
-SafePtr<SaveManager>& GetSaveManager() { return SaveManager::GetInstance(); }
-
+    // Manager lambdas
+    auto fnLoadSave = MAKE_MANAGER_VOID_LAMBDA_A2(SaveManager, LoadSave, const String&, const Save&);
+    auto fnCreateSave = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, CreateSave, const String&);
+    auto fnUnloadSave = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, UnloadSave, const String&);
+    auto fnUnloadAllSaves = MAKE_MANAGER_VOID_LAMBDA(SaveManager, UnloadAllSaves);
+    auto fnDoesSaveExist = MAKE_MANAGER_RETURN_LAMBDA_A1(SaveManager, DoesSaveExist, Bool, const String&);
+    auto fnDoesSaveExist_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(SaveManager, DoesSaveExist_StoreResult, const String&, const String&);
+    auto fnGetSaveCapacity = MAKE_MANAGER_RETURN_LAMBDA(SaveManager, GetSaveCapacity, UByte);
+    auto fnGetSaveCapacity_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, GetSaveCapacity_StoreResult, const String&);
+    auto fnGetAllAvailableSaveSlots = MAKE_MANAGER_RETURN_LAMBDA(SaveManager, GetAllAvailableSaveSlots, StringArray);
+    auto fnGetAllAvailableSaveSlots_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, GetAllAvailableSaveSlots_StoreResult, const String&);
+    auto fnGetAllSaveDescriptions = MAKE_MANAGER_RETURN_LAMBDA(SaveManager, GetAllSaveDescriptions, StringArray);
+    auto fnGetAllSaveDescriptions_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, GetAllSaveDescriptions_StoreResult, const String&);
+    auto fnIsSaveCapacityReached = MAKE_MANAGER_RETURN_LAMBDA(SaveManager, IsSaveCapacityReached, Bool);
+    auto fnIsSaveCapacityReached_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, IsSaveCapacityReached_StoreResult, const String&);
+    auto fnGetSave1 = MAKE_MANAGER_RETURN_LAMBDA_A1(SaveManager, GetSave, const Save&, const String&);
+    auto fnGetSave2 = MAKE_MANAGER_RETURN_LAMBDA_A1(SaveManager, GetSave, Save&, const String&);
+    auto fnGetSave_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(SaveManager, GetSave_StoreResult, const String&, const String&);
+    auto fnGetAllSaves = MAKE_MANAGER_RETURN_LAMBDA(SaveManager, GetAllSaves, SaveArray);
+    auto fnGetAllSaves_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, GetAllSaves_StoreResult, const String&);
+    auto fnCollectSaveData1 = MAKE_MANAGER_VOID_LAMBDA_A2(SaveManager, CollectSaveData, const String&, const String&);
+    auto fnCollectSaveData2 = MAKE_MANAGER_VOID_LAMBDA_A4(SaveManager, CollectSaveData, const String&, const StringArray&, const String&, ULong);
+    auto fnDisperseSaveData = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, DisperseSaveData, const String&);
+    auto fnSaveToFile = MAKE_MANAGER_VOID_LAMBDA_A3(SaveManager, SaveToFile, const String&, const String&, const String&);
+    auto fnLoadFromFile = MAKE_MANAGER_VOID_LAMBDA_A3(SaveManager, LoadFromFile, const String&, const String&, const String&);
+    auto fnSaveAllToDirectory = MAKE_MANAGER_VOID_LAMBDA_A4(SaveManager, SaveAllToDirectory, const String&, const String&, const String&, const String&);
+    auto fnLoadAllFromDirectory = MAKE_MANAGER_VOID_LAMBDA_A4(SaveManager, LoadAllFromDirectory, const String&, const String&, const String&, const String&);
+    auto fnInitializeAllSaveSlots = MAKE_MANAGER_VOID_LAMBDA(SaveManager, InitializeAllSaveSlots);
+    auto fnInitializeEmptySaveSlots = MAKE_MANAGER_VOID_LAMBDA(SaveManager, InitializeEmptySaveSlots);
 };
 
 PYBIND11_EMBEDDED_MODULE(GeckoSaves, m)
@@ -33,40 +59,35 @@ PYBIND11_EMBEDDED_MODULE(GeckoSaves, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetSaveArrayFromJsonString, Gecko);
 
     // SaveManager.h
-    PyBindClass<Gecko::SaveManager>(m, "SaveManager")
-        WRAPPING_ADD_METHOD_SIMPLE(LoadSave, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(CreateSave, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(UnloadSave, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(UnloadAllSaves, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesSaveExist, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetSaveCapacity, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllAvailableSaveSlots, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllSaveDescriptions, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsSaveCapacityReached, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY_CONST(GetSave, Gecko::SaveManager, PyBindReturnCopy, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED_POLICY(GetSave, Gecko::SaveManager, PyBindReturnRefInternal, const Gecko::String&)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllSaves, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_OVERLOADED(CollectSaveData, Gecko::SaveManager, const Gecko::String&, const Gecko::String&)
-        WRAPPING_ADD_METHOD_OVERLOADED(CollectSaveData, Gecko::SaveManager, const Gecko::String&, const Gecko::StringArray&, const Gecko::String&, Gecko::ULong)
-        WRAPPING_ADD_METHOD_SIMPLE(DisperseSaveData, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(SaveToFile, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(LoadFromFile, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(SaveAllToDirectory, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(LoadAllFromDirectory, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(InitializeAllSaveSlots, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(InitializeEmptySaveSlots, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(DoesSaveExist_StoreResult, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetSaveCapacity_StoreResult, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllAvailableSaveSlots_StoreResult, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllSaveDescriptions_StoreResult, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(IsSaveCapacityReached_StoreResult, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetSave_StoreResult, Gecko::SaveManager)
-        WRAPPING_ADD_METHOD_SIMPLE(GetAllSaves_StoreResult, Gecko::SaveManager)
-    ;
+    WRAPPING_STANDALONE_LAMBDA(LoadSave, Gecko::fnLoadSave);
+    WRAPPING_STANDALONE_LAMBDA(CreateSave, Gecko::fnCreateSave);
+    WRAPPING_STANDALONE_LAMBDA(UnloadSave, Gecko::fnUnloadSave);
+    WRAPPING_STANDALONE_LAMBDA(UnloadAllSaves, Gecko::fnUnloadAllSaves);
+    WRAPPING_STANDALONE_LAMBDA(DoesSaveExist, Gecko::fnDoesSaveExist);
+    WRAPPING_STANDALONE_LAMBDA(DoesSaveExist_StoreResult, Gecko::fnDoesSaveExist_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(GetSaveCapacity, Gecko::fnGetSaveCapacity);
+    WRAPPING_STANDALONE_LAMBDA(GetSaveCapacity_StoreResult, Gecko::fnGetSaveCapacity_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(GetAllAvailableSaveSlots, Gecko::fnGetAllAvailableSaveSlots);
+    WRAPPING_STANDALONE_LAMBDA(GetAllAvailableSaveSlots_StoreResult, Gecko::fnGetAllAvailableSaveSlots_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(GetAllSaveDescriptions, Gecko::fnGetAllSaveDescriptions);
+    WRAPPING_STANDALONE_LAMBDA(GetAllSaveDescriptions_StoreResult, Gecko::fnGetAllSaveDescriptions_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(IsSaveCapacityReached, Gecko::fnIsSaveCapacityReached);
+    WRAPPING_STANDALONE_LAMBDA(IsSaveCapacityReached_StoreResult, Gecko::fnIsSaveCapacityReached_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetSave, Gecko::fnGetSave1, PyBindReturnCopy);
+    WRAPPING_STANDALONE_LAMBDA_POLICY(GetSave, Gecko::fnGetSave2, PyBindReturnRefInternal);
+    WRAPPING_STANDALONE_LAMBDA(GetSave_StoreResult, Gecko::fnGetSave_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(GetAllSaves, Gecko::fnGetAllSaves);
+    WRAPPING_STANDALONE_LAMBDA(GetAllSaves_StoreResult, Gecko::fnGetAllSaves_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(CollectSaveData, Gecko::fnCollectSaveData1);
+    WRAPPING_STANDALONE_LAMBDA(CollectSaveData, Gecko::fnCollectSaveData2);
+    WRAPPING_STANDALONE_LAMBDA(DisperseSaveData, Gecko::fnDisperseSaveData);
+    WRAPPING_STANDALONE_LAMBDA(SaveToFile, Gecko::fnSaveToFile);
+    WRAPPING_STANDALONE_LAMBDA(LoadFromFile, Gecko::fnLoadFromFile);
+    WRAPPING_STANDALONE_LAMBDA(SaveAllToDirectory, Gecko::fnSaveAllToDirectory);
+    WRAPPING_STANDALONE_LAMBDA(LoadAllFromDirectory, Gecko::fnLoadAllFromDirectory);
+    WRAPPING_STANDALONE_LAMBDA(InitializeAllSaveSlots, Gecko::fnInitializeAllSaveSlots);
+    WRAPPING_STANDALONE_LAMBDA(InitializeEmptySaveSlots, Gecko::fnInitializeEmptySaveSlots);
 
     // SaveTypes.h
     WRAPPING_STANDALONE_METHOD_FUNC(GetSaveSlotTypeNames, GetEnumNames<Gecko::SaveSlotType>, Gecko);
-
-    // Local
-    WRAPPING_STANDALONE_METHOD_POLICY(GetSaveManager, Gecko, PyBindReturnCopy);
 }

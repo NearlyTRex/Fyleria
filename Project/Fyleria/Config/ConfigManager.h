@@ -145,8 +145,8 @@ public:
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserCacheFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(UserWebFolder, String);
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(PythonLibraryFile, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ScreenWidth, Int);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ScreenHeight, Int);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(ScreenWidth, Int);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(ScreenHeight, Int);
 
     // Configuration map
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(LoadedConfigs, ConfigMappingType);
