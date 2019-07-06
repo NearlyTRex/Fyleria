@@ -105,7 +105,9 @@ Bool CharacterParty::AddMember(const String& sCharacterID)
     newMember.SetCharacterTargetType(GetNextAvailableTargetType());
     GetMembers().insert({sCharacterID, newMember});
     UseTargetType(newMember.GetCharacterTargetType());
-    CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetBasicData().SetPartyID(GetPartyID());
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    character.GetBasicData().SetPartyID(GetPartyID());
+    character.RegenerateCharacterData();
     return true;
 }
 
@@ -121,7 +123,9 @@ Bool CharacterParty::RemoveMember(const String& sCharacterID)
     // Remove member
     UnequipAllItems(sCharacterID);
     FreeTargetType(GetMemberByID(sCharacterID).GetCharacterTargetType());
-    CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetBasicData().SetPartyID({});
+    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    character.GetBasicData().SetPartyID({});
+    character.RegenerateCharacterData();
     GetMembers().erase(sCharacterID);
     return true;
 }
