@@ -44,6 +44,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     String sGenerateCharacter_CharID = GetMapDataOrDefault(tParams, "sGenerateCharacter_CharID", "");
     String sGenerateCharacter_Textarea = GetMapDataOrDefault(tParams, "sGenerateCharacter_Textarea", "");
     String sGenerateRandomCharacter_CharID = GetMapDataOrDefault(tParams, "sGenerateRandomCharacter_CharID", "");
+    String sRegenerateCharacterData_CharID = GetMapDataOrDefault(tParams, "sRegenerateCharacterData_CharID", "");
     String sCreateCharacter_CharID = GetMapDataOrDefault(tParams, "sCreateCharacter_CharID", "");
     String sDisplayCharacter_CharID = GetMapDataOrDefault(tParams, "sDisplayCharacter_CharID", "");
     String sCharacterDetails_CharID = GetMapDataOrDefault(tParams, "sCharacterDetails_CharID", "");
@@ -316,6 +317,12 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
             generator
         );
         sCharacterToDisplay = sGenerateRandomCharacter_CharID;
+    }
+    else if(sAction == "regenerate_character_data")
+    {
+        Character& character = CharacterManager::GetInstance()->GetCharacter(sRegenerateCharacterData_CharID);
+        character.RegenerateCharacterData();
+        sCharacterToDisplay = sRegenerateCharacterData_CharID;
     }
     else if(sAction == "create_character")
     {
@@ -791,6 +798,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     BoostReplaceAll(sPage, "%sGenerateCharacter_CharID%", sGenerateCharacter_CharID);
     BoostReplaceAll(sPage, "%sGenerateCharacter_Textarea%", sGenerateCharacter_Textarea);
     BoostReplaceAll(sPage, "%sGenerateRandomCharacter_CharID%", sGenerateRandomCharacter_CharID);
+    BoostReplaceAll(sPage, "%sRegenerateCharacterData_CharID%", sRegenerateCharacterData_CharID);
     BoostReplaceAll(sPage, "%sCreateCharacter_CharID%", sCreateCharacter_CharID);
     BoostReplaceAll(sPage, "%sDisplayCharacter_CharID%", sDisplayCharacter_CharID);
     BoostReplaceAll(sPage, "%sAllCharacterIDs%", sAllCharacterIDs);
