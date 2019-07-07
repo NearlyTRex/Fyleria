@@ -56,7 +56,6 @@ void Character::Clear()
 }
 
 void Character::RegenerateCharacterData(
-    Bool bUpdateSkillRankings /*= true*/,
     Bool bUpdateEquipmentRatings /*= true*/,
     Bool bUpdateAvailableChanges /*= true*/,
     Bool bUpdateAvailableActions /*= true*/,
@@ -70,7 +69,6 @@ void Character::RegenerateCharacterData(
     GetBattleDataActives().Clear();
 
     // Update character data
-    if(bUpdateSkillRankings) { UpdateSkillRankings(); }
     if(bUpdateEquipmentRatings) { UpdateEquipmentRatings(); }
     if(bUpdateAvailableChanges) { UpdateAvailableChanges(); }
     if(bUpdateAvailableActions) { UpdateAvailableActions(); }
@@ -84,7 +82,7 @@ void Character::RegenerateCharacterData(
     Json jsonData = *this;
     LOG_FORMAT_STATEMENT("Completed regenerating character data (CharacterID = '%s'):\n%s\n",
         GetBasicData().GetCharacterID().c_str(),
-        jsonData.dump().c_str());
+        jsonData.dump(4).c_str());
 #endif
 }
 
@@ -219,12 +217,6 @@ void Character::UpdateAvailableAP()
 {
     // Update available AP
     GetProgressDataBase().UpdateAvailableAP(GetCharacterID());
-}
-
-void Character::UpdateSkillRankings()
-{
-    // Update skill rankings
-    GetSkillData().UpdateUsedSkills();
 }
 
 void Character::ApplyPassiveChanges()

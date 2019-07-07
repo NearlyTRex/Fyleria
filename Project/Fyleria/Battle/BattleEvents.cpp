@@ -20,9 +20,6 @@ void HandleBattleStarted(const String& sCharacterID)
     // Reset prolonged stat changes
     character.GetStatChangeData().SetProlongedStatChanges({});
 
-    // Reset skill tracking
-    character.GetSkillData().SetSkillUseTrackingMap({});
-
     // Reset attack/defend counters
     character.GetBattleDataBase().SetAttackCounter(0);
     character.GetBattleDataBase().SetDefendCounter(0);
@@ -53,14 +50,12 @@ void HandleBattleTally(const String& sCharacterID)
     // The calling code should capture the state before and after this
     // then see the difference as something to display to the player
     // We DO
-    // - Update skill rankings because they could have used skills
     // - Update available changes because skills could have changed
     // - Update available actions because skills could have changed
     // We DO NOT
     // - Update equipment ratings, because equipment does not change
     // - Update available AP, because you only refill AP when resting
     character.RegenerateCharacterData(
-        true, /* bUpdateSkillRankings */
         false, /* bUpdateEquipmentRatings */
         true, /* bUpdateAvailableChanges */
         true, /* bUpdateAvailableActions */
@@ -86,9 +81,6 @@ void HandleBattleFullyCompleted(const String& sCharacterID)
         // Finish battle
         battleData.FinishBattle(sCharacterID, sSegment);
     }
-
-    // Reset skill tracking
-    character.GetSkillData().SetSkillUseTrackingMap({});
 }
 
 void HandleBattleRoundAdvanced(const String& sCharacterID)
@@ -319,7 +311,7 @@ void HandleBattleActionFinished(const String& sCharacterID, const CharacterActio
         // If this was a skill action, we should track it
         if(!action.GetSkillTreeIndex().empty())
         {
-            character.GetSkillData().AddSkillUse(SkillTree::GetSkillType(action.GetSkillTreeIndex()), 1);
+            character.GetSkillData().UpdateSkillValue(SkillTree::GetSkillType(action.GetSkillTreeIndex()), 1);
         }
 
         // Apply new status
