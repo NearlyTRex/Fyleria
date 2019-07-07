@@ -27,25 +27,28 @@ public:
     // Destructor
     virtual ~StatTypeHolder();
 
+    // Clear all data
+    virtual void Clear();
+
     // Get stat values
-    Bool GetBoolStatValue(const String& sStat, Bool& bValue) const;
-    Bool GetByteStatValue(const String& sStat, Byte& iValue) const;
-    Bool GetShortStatValue(const String& sStat, Short& iValue) const;
-    Bool GetIntStatValue(const String& sStat, Int& iValue) const;
-    Bool GetFloatStatValue(const String& sStat, Float& fValue) const;
-    Bool GetDoubleStatValue(const String& sStat, Double& fValue) const;
-    Bool GetStringStatValue(const String& sStat, String& sValue) const;
-    Bool GetStringArrayStatValue(const String& sStat, StringArray& vValues) const;
+    Bool GetStatValue(const String& sStat, Bool& bValue) const;
+    Bool GetStatValue(const String& sStat, Byte& iValue) const;
+    Bool GetStatValue(const String& sStat, Short& iValue) const;
+    Bool GetStatValue(const String& sStat, Int& iValue) const;
+    Bool GetStatValue(const String& sStat, Float& fValue) const;
+    Bool GetStatValue(const String& sStat, Double& fValue) const;
+    Bool GetStatValue(const String& sStat, String& sValue) const;
+    Bool GetStatValue(const String& sStat, StringArray& vValues) const;
 
     // Set stat values
-    Bool SetBoolStatValue(const String& sStat, const Bool& bValue);
-    Bool SetByteStatValue(const String& sStat, const Byte& iValue);
-    Bool SetShortStatValue(const String& sStat, const Short& iValue);
-    Bool SetIntStatValue(const String& sStat, const Int& iValue);
-    Bool SetFloatStatValue(const String& sStat, const Float& fValue);
-    Bool SetDoubleStatValue(const String& sStat, const Double& fValue);
-    Bool SetStringStatValue(const String& sStat, const String& sValue);
-    Bool SetStringArrayStatValue(const String& sStat, const StringArray& vValues);
+    Bool SetStatValue(const String& sStat, const Bool& bValue);
+    Bool SetStatValue(const String& sStat, const Byte& iValue);
+    Bool SetStatValue(const String& sStat, const Short& iValue);
+    Bool SetStatValue(const String& sStat, const Int& iValue);
+    Bool SetStatValue(const String& sStat, const Float& fValue);
+    Bool SetStatValue(const String& sStat, const Double& fValue);
+    Bool SetStatValue(const String& sStat, const String& sValue);
+    Bool SetStatValue(const String& sStat, const StringArray& vValues);
 
     // Stat types
     MAKE_RAW_OBJECT_TYPE_ACCESSORS(BoolStats, BoolStatTypeMap);

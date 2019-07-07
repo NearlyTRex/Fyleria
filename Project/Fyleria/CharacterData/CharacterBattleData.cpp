@@ -27,16 +27,6 @@ CharacterBattleData::~CharacterBattleData()
 {
 }
 
-void CharacterBattleData::Clear()
-{
-    // Clear stat values
-    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, String);
-    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, StringArray);
-    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Bool);
-    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Int);
-    RESET_STAT_TYPE_VALUES(CharacterBattleStatType, Float);
-}
-
 void CharacterBattleData::ApplyNewStatus(const String& sCharacterID, const String& sProgressSegment)
 {
     // Get character info

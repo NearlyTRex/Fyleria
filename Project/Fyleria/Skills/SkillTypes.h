@@ -12,14 +12,6 @@
 namespace Gecko
 {
 
-BETTER_ENUM(SkillFunctionNodeType, Int,
-    None,
-    GetRank,
-    SetRank,
-    GetCurrent,
-    SetCurrent
-);
-
 BETTER_ENUM(SkillTreeType, Int,
     None,
     Affinity,

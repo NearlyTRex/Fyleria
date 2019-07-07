@@ -161,38 +161,38 @@ void to_json(Json& jsonData, const CharacterAction& obj)
 void from_json(const Json& jsonData, CharacterAction& obj)
 {
     // Run type
-    SET_OBJ_DATA(RunType, String, "");
+    SET_OBJ_DATA(RunType, String);
 
     // Order
-    SET_OBJ_DATA(Order, Int, 0);
+    SET_OBJ_DATA(Order, Int);
 
     // Cost
-    SET_OBJ_DATA(CostAP, Int, 0);
-    SET_OBJ_DATA(CostHP, Int, 0);
-    SET_OBJ_DATA(CostMP, Int, 0);
-    SET_OBJ_DATA(CostEP, Int, 0);
+    SET_OBJ_DATA(CostAP, Int);
+    SET_OBJ_DATA(CostHP, Int);
+    SET_OBJ_DATA(CostMP, Int);
+    SET_OBJ_DATA(CostEP, Int);
 
     // Applicable weapon set
-    SET_OBJ_DATA(WeaponSet, String, "");
+    SET_OBJ_DATA(WeaponSet, String);
 
     // Action entries
-    SET_OBJ_DATA(ActionEntries, CharacterActionEntryArray, CharacterActionEntryArray());
+    SET_OBJ_DATA(ActionEntries, CharacterActionEntryArray);
 
     // Previous action types
-    SET_OBJ_DATA(PreviousActionTypes, StringArray, StringArray());
+    SET_OBJ_DATA(PreviousActionTypes, StringArray);
 
     // Skill
-    SET_OBJ_DATA(SkillTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(SkillTreeIndex, TreeIndex);
 
     // Item
-    SET_OBJ_DATA(ItemTreeIndex, TreeIndex, TreeIndex());
-    SET_OBJ_DATA(ItemAmount, Int, 0);
+    SET_OBJ_DATA(ItemTreeIndex, TreeIndex);
+    SET_OBJ_DATA(ItemAmount, Int);
 
     // Targets
-    SET_OBJ_DATA(SourceTargetType, String, "");
+    SET_OBJ_DATA(SourceTargetType, String);
 
     // Characters
-    SET_OBJ_DATA(SourceCharacterID, String, "");
+    SET_OBJ_DATA(SourceCharacterID, String);
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterActionArray);

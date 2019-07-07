@@ -58,13 +58,13 @@ void to_json(Json& jsonData, const ItemDataArmor& obj)
 void from_json(const Json& jsonData, ItemDataArmor& obj)
 {
     // Stat percents
-    SET_OBJ_DATA(BluntDefendPercent, Float, 0);
-    SET_OBJ_DATA(PierceDefendPercent, Float, 0);
-    SET_OBJ_DATA(SlashDefendPercent, Float, 0);
-    SET_OBJ_DATA(MagicDefendPercent, Float, 0);
+    SET_OBJ_DATA(BluntDefendPercent, Float);
+    SET_OBJ_DATA(PierceDefendPercent, Float);
+    SET_OBJ_DATA(SlashDefendPercent, Float);
+    SET_OBJ_DATA(MagicDefendPercent, Float);
 
     // Stat changes
-    SET_OBJ_DATA(StatChanges, StatChangeArray, StatChangeArray());
+    SET_OBJ_DATA(StatChanges, StatChangeArray);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataArmor, ItemDataArmor);

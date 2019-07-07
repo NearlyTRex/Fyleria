@@ -71,25 +71,25 @@ void to_json(Json& jsonData, const RecipeEntry& obj)
 void from_json(const Json& jsonData, RecipeEntry& obj)
 {
     // Chance to success
-    SET_OBJ_DATA(ChanceToSucceed, Float, 0);
+    SET_OBJ_DATA(ChanceToSucceed, Float);
 
     // Input type
-    SET_OBJ_DATA(InputPotionName, String, "");
-    SET_OBJ_DATA(InputIngredientName, String, "");
-    SET_OBJ_DATA(InputWeaponName, String, "");
-    SET_OBJ_DATA(InputArmorName, String, "");
+    SET_OBJ_DATA(InputPotionName, String);
+    SET_OBJ_DATA(InputIngredientName, String);
+    SET_OBJ_DATA(InputWeaponName, String);
+    SET_OBJ_DATA(InputArmorName, String);
 
     // Output type
-    SET_OBJ_DATA(OutputPotionName, String, "");
-    SET_OBJ_DATA(OutputIngredientName, String, "");
-    SET_OBJ_DATA(OutputWeaponName, String, "");
-    SET_OBJ_DATA(OutputArmorName, String, "");
+    SET_OBJ_DATA(OutputPotionName, String);
+    SET_OBJ_DATA(OutputIngredientName, String);
+    SET_OBJ_DATA(OutputWeaponName, String);
+    SET_OBJ_DATA(OutputArmorName, String);
 
     // Input amount
-    SET_OBJ_DATA(InputAmount, Int, 0);
+    SET_OBJ_DATA(InputAmount, Int);
 
     // Output amount
-    SET_OBJ_DATA(OutputAmount, Int, 0);
+    SET_OBJ_DATA(OutputAmount, Int);
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(RecipeEntryArray);

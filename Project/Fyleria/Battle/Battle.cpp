@@ -192,22 +192,22 @@ void to_json(Json& jsonData, const Battle& obj)
 void from_json(const Json& jsonData, Battle& obj)
 {
     // Battle status
-    SET_OBJ_DATA(IsBattleStarted, Bool, false);
-    SET_OBJ_DATA(IsBattleFinished, Bool, false);
-    SET_OBJ_DATA(IsBattleManuallyWon, Bool, false);
-    SET_OBJ_DATA(IsBattleManuallyLost, Bool, false);
+    SET_OBJ_DATA(IsBattleStarted, Bool);
+    SET_OBJ_DATA(IsBattleFinished, Bool);
+    SET_OBJ_DATA(IsBattleManuallyWon, Bool);
+    SET_OBJ_DATA(IsBattleManuallyLost, Bool);
 
     // Current action/round
-    SET_OBJ_DATA(CurrentActionIndex, Int, 0);
-    SET_OBJ_DATA(CurrentRoundIndex, Int, 0);
+    SET_OBJ_DATA(CurrentActionIndex, Int);
+    SET_OBJ_DATA(CurrentRoundIndex, Int);
 
     // Actions
-    SET_OBJ_DATA(Actions, CharacterActionArray, CharacterActionArray());
-    SET_OBJ_DATA(ActionCount, Int, 0);
+    SET_OBJ_DATA(Actions, CharacterActionArray);
+    SET_OBJ_DATA(ActionCount, Int);
 
     // Party IDs
-    SET_OBJ_DATA(EnemyPartyID, String, "");
-    SET_OBJ_DATA(AllyPartyID, String, "");
+    SET_OBJ_DATA(EnemyPartyID, String);
+    SET_OBJ_DATA(AllyPartyID, String);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Battle, Battle);

@@ -23,19 +23,12 @@ public:
     // Destructor
     virtual ~CharacterBasicData();
 
-    // Clear all data
-    void Clear();
-
     // Stat names
     static void InitAllStatNames();
 
-    // Character ID
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterID, String);
-
-    // Party ID
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyID, String);
-
     // String stats
+    MAKE_STAT_TYPE_ACCESSORS(CharacterID, String);
+    MAKE_STAT_TYPE_ACCESSORS(PartyID, String);
     MAKE_STAT_TYPE_ACCESSORS(FirstName, String);
     MAKE_STAT_TYPE_ACCESSORS(LastName, String);
     MAKE_STAT_TYPE_ACCESSORS(Gender, String);

@@ -171,10 +171,10 @@ void to_json(Json& jsonData, const SkillDataWeapon& obj)
 void from_json(const Json& jsonData, SkillDataWeapon& obj)
 {
     // Weapon base type
-    SET_OBJ_DATA(WeaponBaseType, String, "");
+    SET_OBJ_DATA(WeaponBaseType, String);
 
     // Amount of action points available
-    SET_OBJ_DATA(ActionPoints, Int, 0);
+    SET_OBJ_DATA(ActionPoints, Int);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(SkillDataWeapon, SkillDataWeapon);

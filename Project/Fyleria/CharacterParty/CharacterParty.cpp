@@ -820,25 +820,25 @@ void to_json(Json& jsonData, const CharacterParty& obj)
 void from_json(const Json& jsonData, CharacterParty& obj)
 {
     // Party ID
-    SET_OBJ_DATA(PartyID, String, "");
+    SET_OBJ_DATA(PartyID, String);
 
     // Party type
-    SET_OBJ_DATA(PartyType, String, "");
+    SET_OBJ_DATA(PartyType, String);
 
     // Map of members
-    SET_OBJ_DATA(Members, CharacterParty::CharacterPartyMemberMapType, CharacterParty::CharacterPartyMemberMapType());
+    SET_OBJ_DATA(Members, CharacterParty::CharacterPartyMemberMapType);
 
     // Map of items
-    SET_OBJ_DATA(Items, CharacterParty::CharacterPartyItemMapType, CharacterParty::CharacterPartyItemMapType());
+    SET_OBJ_DATA(Items, CharacterParty::CharacterPartyItemMapType);
 
     // Arrays of available target types
-    SET_OBJ_DATA(AvailableTargetTypes, StringArray, StringArray());
+    SET_OBJ_DATA(AvailableTargetTypes, StringArray);
 
     // Array of taken target types
-    SET_OBJ_DATA(TakenTargetTypes, StringArray, StringArray());
+    SET_OBJ_DATA(TakenTargetTypes, StringArray);
 
     // Play time
-    SET_OBJ_DATA(PlayTime, ULongLong, 0);
+    SET_OBJ_DATA(PlayTime, ULongLong);
 }
 
 MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(CharacterParty::CharacterPartyMemberMapType);

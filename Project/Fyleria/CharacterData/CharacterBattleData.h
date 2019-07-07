@@ -22,9 +22,6 @@ public:
     // Destructor
     virtual ~CharacterBattleData();
 
-    // Clear all data
-    void Clear();
-
     // Apply status
     void ApplyNewStatus(const String& sCharacterID, const String& sProgressSegment);
 

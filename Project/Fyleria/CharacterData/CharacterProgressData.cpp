@@ -23,12 +23,6 @@ CharacterProgressData::~CharacterProgressData()
 {
 }
 
-void CharacterProgressData::Clear()
-{
-    // Clear stat values
-    RESET_STAT_TYPE_VALUES(CharacterProgressStatType, Int);
-}
-
 void CharacterProgressData::ApplyTakenDamage(Int iDamage)
 {
     Int iNewHealthPoints = ClipValue<Int>(GetHealthPointsCurrent() - iDamage, 0, GetHealthPointsMax());
@@ -76,7 +70,7 @@ void CharacterProgressData::ApplyActionCost(const CharacterAction& action)
         if(!IsNoneTypeForEnum<CharacterProgressStatType_Int>(sMatchingStatType))
         {
             Int iAPValue = 0;
-            if(!GetIntStatValue(sMatchingStatType, iAPValue))
+            if(!GetStatValue(sMatchingStatType, iAPValue))
             {
                 return;
             }
@@ -87,7 +81,7 @@ void CharacterProgressData::ApplyActionCost(const CharacterAction& action)
                 return;
             }
 
-            if(!SetIntStatValue(sMatchingStatType, iNewAPValue))
+            if(!SetStatValue(sMatchingStatType, iNewAPValue))
             {
                 return;
             }
@@ -154,7 +148,7 @@ void CharacterProgressData::UpdateAvailableAP(const String& sCharacterID)
             const String sMatchingStatType = ConvertSkillWeaponTypeToCharacterProgressStatType(skillDataWeapon.GetSkillType());
             if(!IsNoneTypeForEnum<CharacterProgressStatType_Int>(sMatchingStatType))
             {
-                SetIntStatValue(sMatchingStatType, iActionPoints);
+                SetStatValue(sMatchingStatType, iActionPoints);
             }
         }
     }

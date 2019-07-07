@@ -94,7 +94,7 @@ void to_json(Json& jsonData, const CharacterActionData& obj)
 void from_json(const Json& jsonData, CharacterActionData& obj)
 {
     // List of character actions
-    SET_OBJ_DATA(AvailableActions, CharacterActionArray, CharacterActionArray());
+    SET_OBJ_DATA(AvailableActions, CharacterActionArray);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterActionData, CharacterActionData);

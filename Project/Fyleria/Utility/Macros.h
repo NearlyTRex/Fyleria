@@ -39,7 +39,7 @@ STDBindFunc(&type::method, this, STDPlaceholder1)
     to_json(jsonData[#name], obj.Get##name());                                      \
 }
 
-#define SET_OBJ_DATA(name, value_type, value_default)                               \
+#define SET_OBJ_DATA(name, value_type)                                              \
 {                                                                                   \
     if(jsonData.find(#name) != jsonData.end())                                      \
     {                                                                               \
@@ -47,7 +47,7 @@ STDBindFunc(&type::method, this, STDPlaceholder1)
     }                                                                               \
     else                                                                            \
     {                                                                               \
-        obj.Set##name(value_default);                                               \
+        obj.Set##name({});                                                          \
     }                                                                               \
 }
 
@@ -75,7 +75,7 @@ void to_json(Json& jsonData, const type& obj)                                   
 }                                                                                   \
 void from_json(const Json& jsonData, type& obj)                                     \
 {                                                                                   \
-    obj = jsonData;                                                                 \
+    obj = jsonData.get<type>();                                                     \
 }
 
 #define MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(type)                                    \
@@ -111,7 +111,7 @@ void from_json(const Json& vJsonData, type& vObj)                               
 {                                                                                   \
     for(auto it = vJsonData.begin(); it != vJsonData.end(); it++)                   \
     {                                                                               \
-        type::value_type obj;                                                       \
+        type::value_type obj {};                                                    \
         from_json(*it, obj);                                                        \
         vObj.push_back(obj);                                                        \
     }                                                                               \
@@ -136,7 +136,7 @@ void from_json(const Json& tJsonData, type& tObj)                               
 {                                                                                   \
     for(auto it = tJsonData.begin(); it != tJsonData.end(); it++)                   \
     {                                                                               \
-        type::mapped_type obj;                                                      \
+        type::mapped_type obj {};                                                   \
         from_json(it.value(), obj);                                                 \
         tObj[it.key()] = obj;                                                       \
     }                                                                               \
@@ -173,22 +173,22 @@ STDVector<type> Get##name##ArrayFromJsonString(const String& jsonString)        
 //=====================================================================================
 
 #define MAKE_RAW_BASIC_TYPE_ACCESSORS(name, type)                                   \
-type m_var##name = type();                                                          \
+type m_var##name {};                                                                \
 type Get##name() const { return m_var##name; }                                      \
 void Set##name(type varValue) { m_var##name = varValue; }
 
 #define MAKE_RAW_OBJECT_TYPE_ACCESSORS(name, type)                                  \
-type m_var##name;                                                                   \
+type m_var##name {};                                                                \
 const type& Get##name() const { return m_var##name; }                               \
 type& Get##name() { return m_var##name; }                                           \
 void Set##name(const type& varValue) { m_var##name = varValue; }
 
 #define MAKE_RAW_GET_ONLY_BASIC_TYPE_ACCESSORS(name, type)                          \
-type m_var##name = type();                                                          \
+type m_var##name {};                                                                \
 type Get##name() const { return m_var##name; }
 
 #define MAKE_RAW_GET_ONLY_OBJECT_TYPE_ACCESSORS(name, type)                         \
-type m_var##name;                                                                   \
+type m_var##name {};                                                                \
 const type& Get##name() const { return m_var##name; }                               \
 type& Get##name() { return m_var##name; }
 
@@ -200,7 +200,7 @@ type Get##name() const                                                          
 {                                                                                   \
     if(m_Data.find(#name) != m_Data.end())                                          \
     {                                                                               \
-        return m_Data[#name];                                                       \
+        return m_Data[#name].get<type>();                                           \
     }                                                                               \
     return type();                                                                  \
 }                                                                                   \
@@ -208,110 +208,70 @@ void Set##name(const type& varValue) { m_Data[#name] = varValue; }
 
 //=====================================================================================
 
-#define INITIALIZE_STAT_TYPE_NAMES(base, type)                                      \
-{                                                                                   \
-    for(auto& sType : base##_##type::_names())                                      \
-    {                                                                               \
-        if(sType == (+base##_##type::None)._to_string())                            \
-        {                                                                           \
-            continue;                                                               \
-        }                                                                           \
-        Get##type##StatNames()->insert(sType);                                      \
-    }                                                                               \
+#define INITIALIZE_STAT_TYPE_NAMES(base, type)                                          \
+{                                                                                       \
+    for(auto& sType : base##_##type::_names())                                          \
+    {                                                                                   \
+        if(sType == (+base##_##type::None)._to_string())                                \
+        {                                                                               \
+            continue;                                                                   \
+        }                                                                               \
+        Get##type##StatNames()->insert(sType);                                          \
+    }                                                                                   \
 }
 
-#define MAKE_STAT_TYPE_ACCESSORS(name, type)                                        \
-type Get##name() const                                                              \
-{                                                                                   \
-    type var##name = type();                                                        \
-    GetStatValue<type>(Get##type##Stats(), String(#name), var##name);               \
-    return var##name;                                                               \
-}                                                                                   \
-void Set##name(const type& var##name)                                               \
-{                                                                                   \
-    SetStatValue<type>(Get##type##Stats(), String(#name), var##name);               \
+#define MAKE_STAT_TYPE_ACCESSORS(name, type)                                            \
+type Get##name() const                                                                  \
+{                                                                                       \
+    type var##name {};                                                                  \
+    GetStatMapValue<type>(Get##type##Stats(), String(#name), var##name);                \
+    return var##name;                                                                   \
+}                                                                                       \
+void Set##name(const type& var##name)                                                   \
+{                                                                                       \
+    SetStatMapValue<type>(Get##type##Stats(), String(#name), var##name);                \
 }
 
-#define RESET_STAT_TYPE_VALUES(base, type)                                          \
-{                                                                                   \
-    for(auto& sType : base##_##type::_names())                                      \
-    {                                                                               \
-        if(IsNoneTypeForEnum<base##_##type>(sType))                                 \
-        {                                                                           \
-            continue;                                                               \
-        }                                                                           \
-        SetStatValue<type>(Get##type##Stats(), sType, type());                      \
-    }                                                                               \
+#define RESET_STAT_TYPE_VALUES(base, type)                                              \
+{                                                                                       \
+    for(auto& sType : base##_##type::_names())                                          \
+    {                                                                                   \
+        if(IsNoneTypeForEnum<base##_##type>(sType))                                     \
+        {                                                                               \
+            continue;                                                                   \
+        }                                                                               \
+        SetStatMapValue<type>(Get##type##Stats(), sType, type());                       \
+    }                                                                                   \
 }
 
-#define SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(base, type)                           \
-{                                                                                   \
-    for(auto& sStatTypeName : base##_##type::_names())                              \
-    {                                                                               \
-        if(IsNoneTypeForEnum<base##_##type>(sStatTypeName))                         \
-        {                                                                           \
-            continue;                                                               \
-        }                                                                           \
-        type varStatValue = type();                                                 \
-        if(GetStatValue<type>(obj.Get##type##Stats(), sStatTypeName, varStatValue)) \
-        {                                                                           \
-            to_json(jsonData[sStatTypeName], varStatValue);                         \
-        }                                                                           \
-    }                                                                               \
+#define SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(base, type)                               \
+{                                                                                       \
+    for(auto& sStatTypeName : base##_##type::_names())                                  \
+    {                                                                                   \
+        if(IsNoneTypeForEnum<base##_##type>(sStatTypeName))                             \
+        {                                                                               \
+            continue;                                                                   \
+        }                                                                               \
+        type varStatValue {};                                                           \
+        if(GetStatMapValue<type>(obj.Get##type##Stats(), sStatTypeName, varStatValue))  \
+        {                                                                               \
+            to_json(jsonData[sStatTypeName], varStatValue);                             \
+        }                                                                               \
+    }                                                                                   \
 }
 
-#define SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(base, type)                           \
-{                                                                                   \
-    for(auto& sStatTypeName : base##_##type::_names())                              \
-    {                                                                               \
-        if(IsNoneTypeForEnum<base##_##type>(sStatTypeName))                         \
-        {                                                                           \
-            continue;                                                               \
-        }                                                                           \
-        type varStatValue = type();                                                 \
-        from_json(jsonData[sStatTypeName], varStatValue);                           \
-        SetStatValue<type>(obj.Get##type##Stats(), sStatTypeName, varStatValue);    \
-    }                                                                               \
-}
-
-//=====================================================================================
-
-#define MAKE_EQUIPPED_ITEM_METHOD(type)                                                                         \
-TreeIndex GetEquipped##type##Item() const                                                                       \
-{                                                                                                               \
-    auto vEquippedItems = GetEquippedItems();                                                                   \
-    if(vEquippedItems.empty())                                                                                  \
-    {                                                                                                           \
-        return TreeIndex();                                                                                     \
-    }                                                                                                           \
-    for(auto it = vEquippedItems.begin(); it != vEquippedItems.end(); it++)                                     \
-    {                                                                                                           \
-        if(it->GetItemSlot() == (+CharacterEquipmentType::type)._to_string())                                   \
-        {                                                                                                       \
-            return it->GetItemTreeIndex();                                                                      \
-        }                                                                                                       \
-    }                                                                                                           \
-    return TreeIndex();                                                                                         \
-}
-
-#define MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(type)                                                               \
-Bool Get##type##StatValue(const String& sSegment, const String& sStat, type& varValue) const                    \
-{                                                                                                               \
-    const CharacterBasicData& basicData = GetBasicData();                                                       \
-    const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                               \
-    const CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                     \
-    return (basicData.Get##type##StatValue(sStat, varValue) ||                                                  \
-            progressData.Get##type##StatValue(sStat, varValue) ||                                               \
-            battleData.Get##type##StatValue(sStat, varValue));                                                  \
-}                                                                                                               \
-Bool Set##type##StatValue(const String& sSegment, const String& sStat, const type& varValue)                    \
-{                                                                                                               \
-    CharacterBasicData& basicData = GetBasicData();                                                             \
-    CharacterProgressData& progressData = GetProgressDataSegment(sSegment);                                     \
-    CharacterBattleData& battleData = GetBattleDataSegment(sSegment);                                           \
-    return (basicData.Set##type##StatValue(sStat, varValue) ||                                                  \
-            progressData.Set##type##StatValue(sStat, varValue) ||                                               \
-            battleData.Set##type##StatValue(sStat, varValue));                                                  \
+#define SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(base, type)                               \
+{                                                                                       \
+    for(auto& sStatTypeName : base##_##type::_names())                                  \
+    {                                                                                   \
+        if(IsNoneTypeForEnum<base##_##type>(sStatTypeName))                             \
+        {                                                                               \
+            continue;                                                                   \
+        }                                                                               \
+        type varStatValue {};                                                           \
+        from_json(jsonData[sStatTypeName], varStatValue);                               \
+        SetStatMapValue<type>(obj.Get##type##Stats(), sStatTypeName, varStatValue);     \
+    }                                                                                   \
 }
 
 //=====================================================================================

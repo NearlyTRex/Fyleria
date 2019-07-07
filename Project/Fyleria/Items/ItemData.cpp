@@ -148,28 +148,28 @@ void to_json(Json& jsonData, const ItemData& obj)
 void from_json(const Json& jsonData, ItemData& obj)
 {
     // Run types
-    SET_OBJ_DATA(RunTypes, StringArray, StringArray());
+    SET_OBJ_DATA(RunTypes, StringArray);
 
     // Data class
-    SET_OBJ_DATA(DataClass, String, "");
+    SET_OBJ_DATA(DataClass, String);
 
     // Item name
-    SET_OBJ_DATA(ItemName, String, "");
+    SET_OBJ_DATA(ItemName, String);
 
     // Item description
-    SET_OBJ_DATA(ItemDescription, String, "");
+    SET_OBJ_DATA(ItemDescription, String);
 
     // Item type
-    SET_OBJ_DATA(ItemType, String, "");
+    SET_OBJ_DATA(ItemType, String);
 
     // Item index
-    SET_OBJ_DATA(ItemTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(ItemTreeIndex, TreeIndex);
 
     // Action types
-    SET_OBJ_DATA(ActionTypes, StringArray, StringArray());
+    SET_OBJ_DATA(ActionTypes, StringArray);
 
     // Stat changes
-    SET_OBJ_DATA(StatChanges, StatChangeArray, StatChangeArray());
+    SET_OBJ_DATA(StatChanges, StatChangeArray);
 }
 
 };

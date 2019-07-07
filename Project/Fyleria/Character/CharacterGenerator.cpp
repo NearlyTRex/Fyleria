@@ -11,18 +11,17 @@ namespace Gecko
 {
 
 CharacterGenerator::CharacterGenerator()
-    : SerializableToJson()
 {
 }
 
 CharacterGenerator::CharacterGenerator(const Json& jsonData)
-    : SerializableToJson(jsonData)
 {
+    from_json(jsonData, *this);
 }
 
 CharacterGenerator::CharacterGenerator(const String& jsonString)
-    : SerializableToJson(JsonParse(jsonString))
 {
+    from_json(JsonParse(jsonString), *this);
 }
 
 CharacterGenerator::~CharacterGenerator()
@@ -92,84 +91,84 @@ CharacterSkillData CharacterGenerator::GenerateSkillData() const
     skillData.Clear();
 
     // Combat Skills
-    skillData.SetBarbarianRank(GetRandomIntValue<UByte>(GetBarbarianRankStart(), GetBarbarianRankEnd()));
-    skillData.SetMageRank(GetRandomIntValue<UByte>(GetMageRankStart(), GetMageRankEnd()));
-    skillData.SetRogueRank(GetRandomIntValue<UByte>(GetRogueRankStart(), GetRogueRankEnd()));
-    skillData.SetBlademasterRank(GetRandomIntValue<UByte>(GetBlademasterRankStart(), GetBlademasterRankEnd()));
-    skillData.SetAvatarRank(GetRandomIntValue<UByte>(GetAvatarRankStart(), GetAvatarRankEnd()));
-    skillData.SetAmbidextrousRank(GetRandomIntValue<UByte>(GetAmbidextrousRankStart(), GetAmbidextrousRankEnd()));
-    skillData.SetFocusedRank(GetRandomIntValue<UByte>(GetFocusedRankStart(), GetFocusedRankEnd()));
-    skillData.SetStalwartRank(GetRandomIntValue<UByte>(GetStalwartRankStart(), GetStalwartRankEnd()));
+    skillData.SetBarbarian(GetRandomIntValue<Short>(GetBarbarianStart(), GetBarbarianEnd()));
+    skillData.SetMage(GetRandomIntValue<Short>(GetMageStart(), GetMageEnd()));
+    skillData.SetRogue(GetRandomIntValue<Short>(GetRogueStart(), GetRogueEnd()));
+    skillData.SetBlademaster(GetRandomIntValue<Short>(GetBlademasterStart(), GetBlademasterEnd()));
+    skillData.SetAvatar(GetRandomIntValue<Short>(GetAvatarStart(), GetAvatarEnd()));
+    skillData.SetAmbidextrous(GetRandomIntValue<Short>(GetAmbidextrousStart(), GetAmbidextrousEnd()));
+    skillData.SetFocused(GetRandomIntValue<Short>(GetFocusedStart(), GetFocusedEnd()));
+    skillData.SetStalwart(GetRandomIntValue<Short>(GetStalwartStart(), GetStalwartEnd()));
 
     // Weapon Skills
-    skillData.SetSlashRank(GetRandomIntValue<UByte>(GetSlashRankStart(), GetSlashRankEnd()));
-    skillData.SetSeverRank(GetRandomIntValue<UByte>(GetSeverRankStart(), GetSeverRankEnd()));
-    skillData.SetSliceRank(GetRandomIntValue<UByte>(GetSliceRankStart(), GetSliceRankEnd()));
-    skillData.SetSlitRank(GetRandomIntValue<UByte>(GetSlitRankStart(), GetSlitRankEnd()));
-    skillData.SetCleaveRank(GetRandomIntValue<UByte>(GetCleaveRankStart(), GetCleaveRankEnd()));
-    skillData.SetDecapitateRank(GetRandomIntValue<UByte>(GetDecapitateRankStart(), GetDecapitateRankEnd()));
-    skillData.SetParryRank(GetRandomIntValue<UByte>(GetParryRankStart(), GetParryRankEnd()));
-    skillData.SetRiposteRank(GetRandomIntValue<UByte>(GetRiposteRankStart(), GetRiposteRankEnd()));
-    skillData.SetBashRank(GetRandomIntValue<UByte>(GetBashRankStart(), GetBashRankEnd()));
-    skillData.SetSmashRank(GetRandomIntValue<UByte>(GetSmashRankStart(), GetSmashRankEnd()));
-    skillData.SetCrushRank(GetRandomIntValue<UByte>(GetCrushRankStart(), GetCrushRankEnd()));
-    skillData.SetImpactRank(GetRandomIntValue<UByte>(GetImpactRankStart(), GetImpactRankEnd()));
-    skillData.SetBreakRank(GetRandomIntValue<UByte>(GetBreakRankStart(), GetBreakRankEnd()));
-    skillData.SetCrackRank(GetRandomIntValue<UByte>(GetCrackRankStart(), GetCrackRankEnd()));
-    skillData.SetBlockRank(GetRandomIntValue<UByte>(GetBlockRankStart(), GetBlockRankEnd()));
-    skillData.SetRushRank(GetRandomIntValue<UByte>(GetRushRankStart(), GetRushRankEnd()));
-    skillData.SetPierceRank(GetRandomIntValue<UByte>(GetPierceRankStart(), GetPierceRankEnd()));
-    skillData.SetDrillRank(GetRandomIntValue<UByte>(GetDrillRankStart(), GetDrillRankEnd()));
-    skillData.SetShootRank(GetRandomIntValue<UByte>(GetShootRankStart(), GetShootRankEnd()));
-    skillData.SetImpaleRank(GetRandomIntValue<UByte>(GetImpaleRankStart(), GetImpaleRankEnd()));
-    skillData.SetStealthStrikeRank(GetRandomIntValue<UByte>(GetStealthStrikeRankStart(), GetStealthStrikeRankEnd()));
-    skillData.SetCriticalShotRank(GetRandomIntValue<UByte>(GetCriticalShotRankStart(), GetCriticalShotRankEnd()));
-    skillData.SetDodgeRank(GetRandomIntValue<UByte>(GetDodgeRankStart(), GetDodgeRankEnd()));
-    skillData.SetCounterRank(GetRandomIntValue<UByte>(GetCounterRankStart(), GetCounterRankEnd()));
+    skillData.SetSlash(GetRandomIntValue<Short>(GetSlashStart(), GetSlashEnd()));
+    skillData.SetSever(GetRandomIntValue<Short>(GetSeverStart(), GetSeverEnd()));
+    skillData.SetSlice(GetRandomIntValue<Short>(GetSliceStart(), GetSliceEnd()));
+    skillData.SetSlit(GetRandomIntValue<Short>(GetSlitStart(), GetSlitEnd()));
+    skillData.SetCleave(GetRandomIntValue<Short>(GetCleaveStart(), GetCleaveEnd()));
+    skillData.SetDecapitate(GetRandomIntValue<Short>(GetDecapitateStart(), GetDecapitateEnd()));
+    skillData.SetParry(GetRandomIntValue<Short>(GetParryStart(), GetParryEnd()));
+    skillData.SetRiposte(GetRandomIntValue<Short>(GetRiposteStart(), GetRiposteEnd()));
+    skillData.SetBash(GetRandomIntValue<Short>(GetBashStart(), GetBashEnd()));
+    skillData.SetSmash(GetRandomIntValue<Short>(GetSmashStart(), GetSmashEnd()));
+    skillData.SetCrush(GetRandomIntValue<Short>(GetCrushStart(), GetCrushEnd()));
+    skillData.SetImpact(GetRandomIntValue<Short>(GetImpactStart(), GetImpactEnd()));
+    skillData.SetBreak(GetRandomIntValue<Short>(GetBreakStart(), GetBreakEnd()));
+    skillData.SetCrack(GetRandomIntValue<Short>(GetCrackStart(), GetCrackEnd()));
+    skillData.SetBlock(GetRandomIntValue<Short>(GetBlockStart(), GetBlockEnd()));
+    skillData.SetRush(GetRandomIntValue<Short>(GetRushStart(), GetRushEnd()));
+    skillData.SetPierce(GetRandomIntValue<Short>(GetPierceStart(), GetPierceEnd()));
+    skillData.SetDrill(GetRandomIntValue<Short>(GetDrillStart(), GetDrillEnd()));
+    skillData.SetShoot(GetRandomIntValue<Short>(GetShootStart(), GetShootEnd()));
+    skillData.SetImpale(GetRandomIntValue<Short>(GetImpaleStart(), GetImpaleEnd()));
+    skillData.SetStealthStrike(GetRandomIntValue<Short>(GetStealthStrikeStart(), GetStealthStrikeEnd()));
+    skillData.SetCriticalShot(GetRandomIntValue<Short>(GetCriticalShotStart(), GetCriticalShotEnd()));
+    skillData.SetDodge(GetRandomIntValue<Short>(GetDodgeStart(), GetDodgeEnd()));
+    skillData.SetCounter(GetRandomIntValue<Short>(GetCounterStart(), GetCounterEnd()));
 
     // Alchemy Skills
-    skillData.SetHealerRank(GetRandomIntValue<UByte>(GetHealerRankStart(), GetHealerRankEnd()));
-    skillData.SetAlchemistRank(GetRandomIntValue<UByte>(GetAlchemistRankStart(), GetAlchemistRankEnd()));
-    skillData.SetEnergistRank(GetRandomIntValue<UByte>(GetEnergistRankStart(), GetEnergistRankEnd()));
-    skillData.SetChemistRank(GetRandomIntValue<UByte>(GetChemistRankStart(), GetChemistRankEnd()));
+    skillData.SetHealer(GetRandomIntValue<Short>(GetHealerStart(), GetHealerEnd()));
+    skillData.SetAlchemist(GetRandomIntValue<Short>(GetAlchemistStart(), GetAlchemistEnd()));
+    skillData.SetEnergist(GetRandomIntValue<Short>(GetEnergistStart(), GetEnergistEnd()));
+    skillData.SetChemist(GetRandomIntValue<Short>(GetChemistStart(), GetChemistEnd()));
 
     // Crafting Skills
-    skillData.SetHammersmithRank(GetRandomIntValue<UByte>(GetHammersmithRankStart(), GetHammersmithRankEnd()));
-    skillData.SetSpellsmithRank(GetRandomIntValue<UByte>(GetSpellsmithRankStart(), GetSpellsmithRankEnd()));
-    skillData.SetBowsmithRank(GetRandomIntValue<UByte>(GetBowsmithRankStart(), GetBowsmithRankEnd()));
-    skillData.SetSwordsmithRank(GetRandomIntValue<UByte>(GetSwordsmithRankStart(), GetSwordsmithRankEnd()));
-    skillData.SetWeaverRank(GetRandomIntValue<UByte>(GetWeaverRankStart(), GetWeaverRankEnd()));
-    skillData.SetTannerRank(GetRandomIntValue<UByte>(GetTannerRankStart(), GetTannerRankEnd()));
-    skillData.SetScalesmithRank(GetRandomIntValue<UByte>(GetScalesmithRankStart(), GetScalesmithRankEnd()));
-    skillData.SetPlatesmithRank(GetRandomIntValue<UByte>(GetPlatesmithRankStart(), GetPlatesmithRankEnd()));
-    skillData.SetGoldsmithRank(GetRandomIntValue<UByte>(GetGoldsmithRankStart(), GetGoldsmithRankEnd()));
-    skillData.SetShieldsmithRank(GetRandomIntValue<UByte>(GetShieldsmithRankStart(), GetShieldsmithRankEnd()));
+    skillData.SetHammersmith(GetRandomIntValue<Short>(GetHammersmithStart(), GetHammersmithEnd()));
+    skillData.SetSpellsmith(GetRandomIntValue<Short>(GetSpellsmithStart(), GetSpellsmithEnd()));
+    skillData.SetBowsmith(GetRandomIntValue<Short>(GetBowsmithStart(), GetBowsmithEnd()));
+    skillData.SetSwordsmith(GetRandomIntValue<Short>(GetSwordsmithStart(), GetSwordsmithEnd()));
+    skillData.SetWeaver(GetRandomIntValue<Short>(GetWeaverStart(), GetWeaverEnd()));
+    skillData.SetTanner(GetRandomIntValue<Short>(GetTannerStart(), GetTannerEnd()));
+    skillData.SetScalesmith(GetRandomIntValue<Short>(GetScalesmithStart(), GetScalesmithEnd()));
+    skillData.SetPlatesmith(GetRandomIntValue<Short>(GetPlatesmithStart(), GetPlatesmithEnd()));
+    skillData.SetGoldsmith(GetRandomIntValue<Short>(GetGoldsmithStart(), GetGoldsmithEnd()));
+    skillData.SetShieldsmith(GetRandomIntValue<Short>(GetShieldsmithStart(), GetShieldsmithEnd()));
 
     // Breakdown Skills
-    skillData.SetHammerbaneRank(GetRandomIntValue<UByte>(GetHammerbaneRankStart(), GetHammerbaneRankEnd()));
-    skillData.SetSpellbaneRank(GetRandomIntValue<UByte>(GetSpellbaneRankStart(), GetSpellbaneRankEnd()));
-    skillData.SetBowbaneRank(GetRandomIntValue<UByte>(GetBowbaneRankStart(), GetBowbaneRankEnd()));
-    skillData.SetSwordbaneRank(GetRandomIntValue<UByte>(GetSwordbaneRankStart(), GetSwordbaneRankEnd()));
-    skillData.SetThreadbareRank(GetRandomIntValue<UByte>(GetThreadbareRankStart(), GetThreadbareRankEnd()));
-    skillData.SetStudRemoverRank(GetRandomIntValue<UByte>(GetStudRemoverRankStart(), GetStudRemoverRankEnd()));
-    skillData.SetScalebaneRank(GetRandomIntValue<UByte>(GetScalebaneRankStart(), GetScalebaneRankEnd()));
-    skillData.SetPlatebaneRank(GetRandomIntValue<UByte>(GetPlatebaneRankStart(), GetPlatebaneRankEnd()));
-    skillData.SetGoldbaneRank(GetRandomIntValue<UByte>(GetGoldbaneRankStart(), GetGoldbaneRankEnd()));
-    skillData.SetShieldbaneRank(GetRandomIntValue<UByte>(GetShieldbaneRankStart(), GetShieldbaneRankEnd()));
+    skillData.SetHammerbane(GetRandomIntValue<Short>(GetHammerbaneStart(), GetHammerbaneEnd()));
+    skillData.SetSpellbane(GetRandomIntValue<Short>(GetSpellbaneStart(), GetSpellbaneEnd()));
+    skillData.SetBowbane(GetRandomIntValue<Short>(GetBowbaneStart(), GetBowbaneEnd()));
+    skillData.SetSwordbane(GetRandomIntValue<Short>(GetSwordbaneStart(), GetSwordbaneEnd()));
+    skillData.SetThreadbare(GetRandomIntValue<Short>(GetThreadbareStart(), GetThreadbareEnd()));
+    skillData.SetStudRemover(GetRandomIntValue<Short>(GetStudRemoverStart(), GetStudRemoverEnd()));
+    skillData.SetScalebane(GetRandomIntValue<Short>(GetScalebaneStart(), GetScalebaneEnd()));
+    skillData.SetPlatebane(GetRandomIntValue<Short>(GetPlatebaneStart(), GetPlatebaneEnd()));
+    skillData.SetGoldbane(GetRandomIntValue<Short>(GetGoldbaneStart(), GetGoldbaneEnd()));
+    skillData.SetShieldbane(GetRandomIntValue<Short>(GetShieldbaneStart(), GetShieldbaneEnd()));
 
     // Affinity Skills
-    skillData.SetHolyRank(GetRandomIntValue<UByte>(GetHolyRankStart(), GetHolyRankEnd()));
-    skillData.SetFireRank(GetRandomIntValue<UByte>(GetFireRankStart(), GetFireRankEnd()));
-    skillData.SetIceRank(GetRandomIntValue<UByte>(GetIceRankStart(), GetIceRankEnd()));
-    skillData.SetShockRank(GetRandomIntValue<UByte>(GetShockRankStart(), GetShockRankEnd()));
-    skillData.SetDarkRank(GetRandomIntValue<UByte>(GetDarkRankStart(), GetDarkRankEnd()));
-    skillData.SetLightRank(GetRandomIntValue<UByte>(GetLightRankStart(), GetLightRankEnd()));
-    skillData.SetForceRank(GetRandomIntValue<UByte>(GetForceRankStart(), GetForceRankEnd()));
-    skillData.SetMindRank(GetRandomIntValue<UByte>(GetMindRankStart(), GetMindRankEnd()));
-    skillData.SetEarthRank(GetRandomIntValue<UByte>(GetEarthRankStart(), GetEarthRankEnd()));
-    skillData.SetBloodRank(GetRandomIntValue<UByte>(GetBloodRankStart(), GetBloodRankEnd()));
-    skillData.SetFleshRank(GetRandomIntValue<UByte>(GetFleshRankStart(), GetFleshRankEnd()));
-    skillData.SetWindRank(GetRandomIntValue<UByte>(GetWindRankStart(), GetWindRankEnd()));
+    skillData.SetHoly(GetRandomIntValue<Short>(GetHolyStart(), GetHolyEnd()));
+    skillData.SetFire(GetRandomIntValue<Short>(GetFireStart(), GetFireEnd()));
+    skillData.SetIce(GetRandomIntValue<Short>(GetIceStart(), GetIceEnd()));
+    skillData.SetShock(GetRandomIntValue<Short>(GetShockStart(), GetShockEnd()));
+    skillData.SetDark(GetRandomIntValue<Short>(GetDarkStart(), GetDarkEnd()));
+    skillData.SetLight(GetRandomIntValue<Short>(GetLightStart(), GetLightEnd()));
+    skillData.SetForce(GetRandomIntValue<Short>(GetForceStart(), GetForceEnd()));
+    skillData.SetMind(GetRandomIntValue<Short>(GetMindStart(), GetMindEnd()));
+    skillData.SetEarth(GetRandomIntValue<Short>(GetEarthStart(), GetEarthEnd()));
+    skillData.SetBlood(GetRandomIntValue<Short>(GetBloodStart(), GetBloodEnd()));
+    skillData.SetFlesh(GetRandomIntValue<Short>(GetFleshStart(), GetFleshEnd()));
+    skillData.SetWind(GetRandomIntValue<Short>(GetWindStart(), GetWindEnd()));
     return skillData;
 }
 
@@ -292,155 +291,155 @@ void CharacterGenerator::RandomizeScoring()
     SetMagicDEFEnd(GetRandomIntValue<Int>(GetMagicDEFStart() + 1, DEFAULT_MAX_SCORING));
 }
 
-void CharacterGenerator::RandomizeRanks()
+void CharacterGenerator::RandomizeSkills()
 {
     // Combat Skills
-    SetBarbarianRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetBarbarianRankEnd(GetRandomIntValue<UByte>(GetBarbarianRankStart() + 1, DEFAULT_MAX_RANK));
-    SetMageRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetMageRankEnd(GetRandomIntValue<UByte>(GetMageRankStart() + 1, DEFAULT_MAX_RANK));
-    SetRogueRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetRogueRankEnd(GetRandomIntValue<UByte>(GetRogueRankStart() + 1, DEFAULT_MAX_RANK));
-    SetBlademasterRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetBlademasterRankEnd(GetRandomIntValue<UByte>(GetBlademasterRankStart() + 1, DEFAULT_MAX_RANK));
-    SetAvatarRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetAvatarRankEnd(GetRandomIntValue<UByte>(GetAvatarRankStart() + 1, DEFAULT_MAX_RANK));
-    SetAmbidextrousRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetAmbidextrousRankEnd(GetRandomIntValue<UByte>(GetAmbidextrousRankStart() + 1, DEFAULT_MAX_RANK));
-    SetFocusedRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetFocusedRankEnd(GetRandomIntValue<UByte>(GetFocusedRankStart() + 1, DEFAULT_MAX_RANK));
-    SetStalwartRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetStalwartRankEnd(GetRandomIntValue<UByte>(GetStalwartRankStart() + 1, DEFAULT_MAX_RANK));
+    SetBarbarianStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetBarbarianEnd(GetRandomIntValue<Short>(GetBarbarianStart() + 1, DEFAULT_MAX_SKILL));
+    SetMageStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetMageEnd(GetRandomIntValue<Short>(GetMageStart() + 1, DEFAULT_MAX_SKILL));
+    SetRogueStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetRogueEnd(GetRandomIntValue<Short>(GetRogueStart() + 1, DEFAULT_MAX_SKILL));
+    SetBlademasterStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetBlademasterEnd(GetRandomIntValue<Short>(GetBlademasterStart() + 1, DEFAULT_MAX_SKILL));
+    SetAvatarStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetAvatarEnd(GetRandomIntValue<Short>(GetAvatarStart() + 1, DEFAULT_MAX_SKILL));
+    SetAmbidextrousStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetAmbidextrousEnd(GetRandomIntValue<Short>(GetAmbidextrousStart() + 1, DEFAULT_MAX_SKILL));
+    SetFocusedStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetFocusedEnd(GetRandomIntValue<Short>(GetFocusedStart() + 1, DEFAULT_MAX_SKILL));
+    SetStalwartStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetStalwartEnd(GetRandomIntValue<Short>(GetStalwartStart() + 1, DEFAULT_MAX_SKILL));
 
     // Weapon Skills
-    SetSlashRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetSlashRankEnd(GetRandomIntValue<UByte>(GetSlashRankStart() + 1, DEFAULT_MAX_RANK));
-    SetSeverRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetSeverRankEnd(GetRandomIntValue<UByte>(GetSeverRankStart() + 1, DEFAULT_MAX_RANK));
-    SetSliceRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetSliceRankEnd(GetRandomIntValue<UByte>(GetSliceRankStart() + 1, DEFAULT_MAX_RANK));
-    SetSlitRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetSlitRankEnd(GetRandomIntValue<UByte>(GetSlitRankStart() + 1, DEFAULT_MAX_RANK));
-    SetCleaveRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetCleaveRankEnd(GetRandomIntValue<UByte>(GetCleaveRankStart() + 1, DEFAULT_MAX_RANK));
-    SetDecapitateRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetDecapitateRankEnd(GetRandomIntValue<UByte>(GetDecapitateRankStart() + 1, DEFAULT_MAX_RANK));
-    SetParryRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetParryRankEnd(GetRandomIntValue<UByte>(GetParryRankStart() + 1, DEFAULT_MAX_RANK));
-    SetRiposteRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetRiposteRankEnd(GetRandomIntValue<UByte>(GetRiposteRankStart() + 1, DEFAULT_MAX_RANK));
-    SetBashRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetBashRankEnd(GetRandomIntValue<UByte>(GetBashRankStart() + 1, DEFAULT_MAX_RANK));
-    SetSmashRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetSmashRankEnd(GetRandomIntValue<UByte>(GetSmashRankStart() + 1, DEFAULT_MAX_RANK));
-    SetCrushRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetCrushRankEnd(GetRandomIntValue<UByte>(GetCrushRankStart() + 1, DEFAULT_MAX_RANK));
-    SetImpactRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetImpactRankEnd(GetRandomIntValue<UByte>(GetImpactRankStart() + 1, DEFAULT_MAX_RANK));
-    SetBreakRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetBreakRankEnd(GetRandomIntValue<UByte>(GetBreakRankStart() + 1, DEFAULT_MAX_RANK));
-    SetCrackRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetCrackRankEnd(GetRandomIntValue<UByte>(GetCrackRankStart() + 1, DEFAULT_MAX_RANK));
-    SetBlockRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetBlockRankEnd(GetRandomIntValue<UByte>(GetBlockRankStart() + 1, DEFAULT_MAX_RANK));
-    SetRushRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetRushRankEnd(GetRandomIntValue<UByte>(GetRushRankStart() + 1, DEFAULT_MAX_RANK));
-    SetPierceRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetPierceRankEnd(GetRandomIntValue<UByte>(GetPierceRankStart() + 1, DEFAULT_MAX_RANK));
-    SetDrillRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetDrillRankEnd(GetRandomIntValue<UByte>(GetDrillRankStart() + 1, DEFAULT_MAX_RANK));
-    SetShootRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetShootRankEnd(GetRandomIntValue<UByte>(GetShootRankStart() + 1, DEFAULT_MAX_RANK));
-    SetImpaleRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetImpaleRankEnd(GetRandomIntValue<UByte>(GetImpaleRankStart() + 1, DEFAULT_MAX_RANK));
-    SetStealthStrikeRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetStealthStrikeRankEnd(GetRandomIntValue<UByte>(GetStealthStrikeRankStart() + 1, DEFAULT_MAX_RANK));
-    SetCriticalShotRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetCriticalShotRankEnd(GetRandomIntValue<UByte>(GetCriticalShotRankStart() + 1, DEFAULT_MAX_RANK));
-    SetDodgeRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetDodgeRankEnd(GetRandomIntValue<UByte>(GetDodgeRankStart() + 1, DEFAULT_MAX_RANK));
-    SetCounterRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetCounterRankEnd(GetRandomIntValue<UByte>(GetCounterRankStart() + 1, DEFAULT_MAX_RANK));
+    SetSlashStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetSlashEnd(GetRandomIntValue<Short>(GetSlashStart() + 1, DEFAULT_MAX_SKILL));
+    SetSeverStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetSeverEnd(GetRandomIntValue<Short>(GetSeverStart() + 1, DEFAULT_MAX_SKILL));
+    SetSliceStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetSliceEnd(GetRandomIntValue<Short>(GetSliceStart() + 1, DEFAULT_MAX_SKILL));
+    SetSlitStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetSlitEnd(GetRandomIntValue<Short>(GetSlitStart() + 1, DEFAULT_MAX_SKILL));
+    SetCleaveStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetCleaveEnd(GetRandomIntValue<Short>(GetCleaveStart() + 1, DEFAULT_MAX_SKILL));
+    SetDecapitateStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetDecapitateEnd(GetRandomIntValue<Short>(GetDecapitateStart() + 1, DEFAULT_MAX_SKILL));
+    SetParryStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetParryEnd(GetRandomIntValue<Short>(GetParryStart() + 1, DEFAULT_MAX_SKILL));
+    SetRiposteStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetRiposteEnd(GetRandomIntValue<Short>(GetRiposteStart() + 1, DEFAULT_MAX_SKILL));
+    SetBashStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetBashEnd(GetRandomIntValue<Short>(GetBashStart() + 1, DEFAULT_MAX_SKILL));
+    SetSmashStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetSmashEnd(GetRandomIntValue<Short>(GetSmashStart() + 1, DEFAULT_MAX_SKILL));
+    SetCrushStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetCrushEnd(GetRandomIntValue<Short>(GetCrushStart() + 1, DEFAULT_MAX_SKILL));
+    SetImpactStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetImpactEnd(GetRandomIntValue<Short>(GetImpactStart() + 1, DEFAULT_MAX_SKILL));
+    SetBreakStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetBreakEnd(GetRandomIntValue<Short>(GetBreakStart() + 1, DEFAULT_MAX_SKILL));
+    SetCrackStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetCrackEnd(GetRandomIntValue<Short>(GetCrackStart() + 1, DEFAULT_MAX_SKILL));
+    SetBlockStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetBlockEnd(GetRandomIntValue<Short>(GetBlockStart() + 1, DEFAULT_MAX_SKILL));
+    SetRushStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetRushEnd(GetRandomIntValue<Short>(GetRushStart() + 1, DEFAULT_MAX_SKILL));
+    SetPierceStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetPierceEnd(GetRandomIntValue<Short>(GetPierceStart() + 1, DEFAULT_MAX_SKILL));
+    SetDrillStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetDrillEnd(GetRandomIntValue<Short>(GetDrillStart() + 1, DEFAULT_MAX_SKILL));
+    SetShootStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetShootEnd(GetRandomIntValue<Short>(GetShootStart() + 1, DEFAULT_MAX_SKILL));
+    SetImpaleStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetImpaleEnd(GetRandomIntValue<Short>(GetImpaleStart() + 1, DEFAULT_MAX_SKILL));
+    SetStealthStrikeStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetStealthStrikeEnd(GetRandomIntValue<Short>(GetStealthStrikeStart() + 1, DEFAULT_MAX_SKILL));
+    SetCriticalShotStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetCriticalShotEnd(GetRandomIntValue<Short>(GetCriticalShotStart() + 1, DEFAULT_MAX_SKILL));
+    SetDodgeStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetDodgeEnd(GetRandomIntValue<Short>(GetDodgeStart() + 1, DEFAULT_MAX_SKILL));
+    SetCounterStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetCounterEnd(GetRandomIntValue<Short>(GetCounterStart() + 1, DEFAULT_MAX_SKILL));
 
     // Alchemy Skills
-    SetHealerRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetHealerRankEnd(GetRandomIntValue<UByte>(GetHealerRankStart() + 1, DEFAULT_MAX_RANK));
-    SetAlchemistRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetAlchemistRankEnd(GetRandomIntValue<UByte>(GetAlchemistRankStart() + 1, DEFAULT_MAX_RANK));
-    SetEnergistRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetEnergistRankEnd(GetRandomIntValue<UByte>(GetEnergistRankStart() + 1, DEFAULT_MAX_RANK));
-    SetChemistRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetChemistRankEnd(GetRandomIntValue<UByte>(GetChemistRankStart() + 1, DEFAULT_MAX_RANK));
+    SetHealerStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetHealerEnd(GetRandomIntValue<Short>(GetHealerStart() + 1, DEFAULT_MAX_SKILL));
+    SetAlchemistStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetAlchemistEnd(GetRandomIntValue<Short>(GetAlchemistStart() + 1, DEFAULT_MAX_SKILL));
+    SetEnergistStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetEnergistEnd(GetRandomIntValue<Short>(GetEnergistStart() + 1, DEFAULT_MAX_SKILL));
+    SetChemistStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetChemistEnd(GetRandomIntValue<Short>(GetChemistStart() + 1, DEFAULT_MAX_SKILL));
 
     // Crafting Skills
-    SetHammersmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetHammersmithRankEnd(GetRandomIntValue<UByte>(GetHammersmithRankStart() + 1, DEFAULT_MAX_RANK));
-    SetSpellsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetSpellsmithRankEnd(GetRandomIntValue<UByte>(GetSpellsmithRankStart() + 1, DEFAULT_MAX_RANK));
-    SetBowsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetBowsmithRankEnd(GetRandomIntValue<UByte>(GetBowsmithRankStart() + 1, DEFAULT_MAX_RANK));
-    SetSwordsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetSwordsmithRankEnd(GetRandomIntValue<UByte>(GetSwordsmithRankStart() + 1, DEFAULT_MAX_RANK));
-    SetWeaverRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetWeaverRankEnd(GetRandomIntValue<UByte>(GetWeaverRankStart() + 1, DEFAULT_MAX_RANK));
-    SetTannerRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetTannerRankEnd(GetRandomIntValue<UByte>(GetTannerRankStart() + 1, DEFAULT_MAX_RANK));
-    SetScalesmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetScalesmithRankEnd(GetRandomIntValue<UByte>(GetScalesmithRankStart() + 1, DEFAULT_MAX_RANK));
-    SetPlatesmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetPlatesmithRankEnd(GetRandomIntValue<UByte>(GetPlatesmithRankStart() + 1, DEFAULT_MAX_RANK));
-    SetGoldsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetGoldsmithRankEnd(GetRandomIntValue<UByte>(GetGoldsmithRankStart() + 1, DEFAULT_MAX_RANK));
-    SetShieldsmithRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetShieldsmithRankEnd(GetRandomIntValue<UByte>(GetShieldsmithRankStart() + 1, DEFAULT_MAX_RANK));
+    SetHammersmithStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetHammersmithEnd(GetRandomIntValue<Short>(GetHammersmithStart() + 1, DEFAULT_MAX_SKILL));
+    SetSpellsmithStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetSpellsmithEnd(GetRandomIntValue<Short>(GetSpellsmithStart() + 1, DEFAULT_MAX_SKILL));
+    SetBowsmithStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetBowsmithEnd(GetRandomIntValue<Short>(GetBowsmithStart() + 1, DEFAULT_MAX_SKILL));
+    SetSwordsmithStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetSwordsmithEnd(GetRandomIntValue<Short>(GetSwordsmithStart() + 1, DEFAULT_MAX_SKILL));
+    SetWeaverStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetWeaverEnd(GetRandomIntValue<Short>(GetWeaverStart() + 1, DEFAULT_MAX_SKILL));
+    SetTannerStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetTannerEnd(GetRandomIntValue<Short>(GetTannerStart() + 1, DEFAULT_MAX_SKILL));
+    SetScalesmithStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetScalesmithEnd(GetRandomIntValue<Short>(GetScalesmithStart() + 1, DEFAULT_MAX_SKILL));
+    SetPlatesmithStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetPlatesmithEnd(GetRandomIntValue<Short>(GetPlatesmithStart() + 1, DEFAULT_MAX_SKILL));
+    SetGoldsmithStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetGoldsmithEnd(GetRandomIntValue<Short>(GetGoldsmithStart() + 1, DEFAULT_MAX_SKILL));
+    SetShieldsmithStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetShieldsmithEnd(GetRandomIntValue<Short>(GetShieldsmithStart() + 1, DEFAULT_MAX_SKILL));
 
     // Breakdown Skills
-    SetHammerbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetHammerbaneRankEnd(GetRandomIntValue<UByte>(GetHammerbaneRankStart() + 1, DEFAULT_MAX_RANK));
-    SetSpellbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetSpellbaneRankEnd(GetRandomIntValue<UByte>(GetSpellbaneRankStart() + 1, DEFAULT_MAX_RANK));
-    SetBowbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetBowbaneRankEnd(GetRandomIntValue<UByte>(GetBowbaneRankStart() + 1, DEFAULT_MAX_RANK));
-    SetSwordbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetSwordbaneRankEnd(GetRandomIntValue<UByte>(GetSwordbaneRankStart() + 1, DEFAULT_MAX_RANK));
-    SetThreadbareRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetThreadbareRankEnd(GetRandomIntValue<UByte>(GetThreadbareRankStart() + 1, DEFAULT_MAX_RANK));
-    SetStudRemoverRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetStudRemoverRankEnd(GetRandomIntValue<UByte>(GetStudRemoverRankStart() + 1, DEFAULT_MAX_RANK));
-    SetScalebaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetScalebaneRankEnd(GetRandomIntValue<UByte>(GetScalebaneRankStart() + 1, DEFAULT_MAX_RANK));
-    SetPlatebaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetPlatebaneRankEnd(GetRandomIntValue<UByte>(GetPlatebaneRankStart() + 1, DEFAULT_MAX_RANK));
-    SetGoldbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetGoldbaneRankEnd(GetRandomIntValue<UByte>(GetGoldbaneRankStart() + 1, DEFAULT_MAX_RANK));
-    SetShieldbaneRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetShieldbaneRankEnd(GetRandomIntValue<UByte>(GetShieldbaneRankStart() + 1, DEFAULT_MAX_RANK));
+    SetHammerbaneStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetHammerbaneEnd(GetRandomIntValue<Short>(GetHammerbaneStart() + 1, DEFAULT_MAX_SKILL));
+    SetSpellbaneStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetSpellbaneEnd(GetRandomIntValue<Short>(GetSpellbaneStart() + 1, DEFAULT_MAX_SKILL));
+    SetBowbaneStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetBowbaneEnd(GetRandomIntValue<Short>(GetBowbaneStart() + 1, DEFAULT_MAX_SKILL));
+    SetSwordbaneStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetSwordbaneEnd(GetRandomIntValue<Short>(GetSwordbaneStart() + 1, DEFAULT_MAX_SKILL));
+    SetThreadbareStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetThreadbareEnd(GetRandomIntValue<Short>(GetThreadbareStart() + 1, DEFAULT_MAX_SKILL));
+    SetStudRemoverStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetStudRemoverEnd(GetRandomIntValue<Short>(GetStudRemoverStart() + 1, DEFAULT_MAX_SKILL));
+    SetScalebaneStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetScalebaneEnd(GetRandomIntValue<Short>(GetScalebaneStart() + 1, DEFAULT_MAX_SKILL));
+    SetPlatebaneStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetPlatebaneEnd(GetRandomIntValue<Short>(GetPlatebaneStart() + 1, DEFAULT_MAX_SKILL));
+    SetGoldbaneStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetGoldbaneEnd(GetRandomIntValue<Short>(GetGoldbaneStart() + 1, DEFAULT_MAX_SKILL));
+    SetShieldbaneStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetShieldbaneEnd(GetRandomIntValue<Short>(GetShieldbaneStart() + 1, DEFAULT_MAX_SKILL));
 
     // Affinity Skills
-    SetHolyRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetHolyRankEnd(GetRandomIntValue<UByte>(GetHolyRankStart() + 1, DEFAULT_MAX_RANK));
-    SetFireRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetFireRankEnd(GetRandomIntValue<UByte>(GetFireRankStart() + 1, DEFAULT_MAX_RANK));
-    SetIceRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetIceRankEnd(GetRandomIntValue<UByte>(GetIceRankStart() + 1, DEFAULT_MAX_RANK));
-    SetShockRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetShockRankEnd(GetRandomIntValue<UByte>(GetShockRankStart() + 1, DEFAULT_MAX_RANK));
-    SetDarkRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetDarkRankEnd(GetRandomIntValue<UByte>(GetDarkRankStart() + 1, DEFAULT_MAX_RANK));
-    SetLightRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetLightRankEnd(GetRandomIntValue<UByte>(GetLightRankStart() + 1, DEFAULT_MAX_RANK));
-    SetForceRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetForceRankEnd(GetRandomIntValue<UByte>(GetForceRankStart() + 1, DEFAULT_MAX_RANK));
-    SetMindRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetMindRankEnd(GetRandomIntValue<UByte>(GetMindRankStart() + 1, DEFAULT_MAX_RANK));
-    SetEarthRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetEarthRankEnd(GetRandomIntValue<UByte>(GetEarthRankStart() + 1, DEFAULT_MAX_RANK));
-    SetBloodRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetBloodRankEnd(GetRandomIntValue<UByte>(GetBloodRankStart() + 1, DEFAULT_MAX_RANK));
-    SetFleshRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetFleshRankEnd(GetRandomIntValue<UByte>(GetFleshRankStart() + 1, DEFAULT_MAX_RANK));
-    SetWindRankStart(GetRandomIntValue<UByte>(1, DEFAULT_MAX_RANK));
-    SetWindRankEnd(GetRandomIntValue<UByte>(GetWindRankStart() + 1, DEFAULT_MAX_RANK));
+    SetHolyStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetHolyEnd(GetRandomIntValue<Short>(GetHolyStart() + 1, DEFAULT_MAX_SKILL));
+    SetFireStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetFireEnd(GetRandomIntValue<Short>(GetFireStart() + 1, DEFAULT_MAX_SKILL));
+    SetIceStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetIceEnd(GetRandomIntValue<Short>(GetIceStart() + 1, DEFAULT_MAX_SKILL));
+    SetShockStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetShockEnd(GetRandomIntValue<Short>(GetShockStart() + 1, DEFAULT_MAX_SKILL));
+    SetDarkStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetDarkEnd(GetRandomIntValue<Short>(GetDarkStart() + 1, DEFAULT_MAX_SKILL));
+    SetLightStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetLightEnd(GetRandomIntValue<Short>(GetLightStart() + 1, DEFAULT_MAX_SKILL));
+    SetForceStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetForceEnd(GetRandomIntValue<Short>(GetForceStart() + 1, DEFAULT_MAX_SKILL));
+    SetMindStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetMindEnd(GetRandomIntValue<Short>(GetMindStart() + 1, DEFAULT_MAX_SKILL));
+    SetEarthStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetEarthEnd(GetRandomIntValue<Short>(GetEarthStart() + 1, DEFAULT_MAX_SKILL));
+    SetBloodStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetBloodEnd(GetRandomIntValue<Short>(GetBloodStart() + 1, DEFAULT_MAX_SKILL));
+    SetFleshStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetFleshEnd(GetRandomIntValue<Short>(GetFleshStart() + 1, DEFAULT_MAX_SKILL));
+    SetWindStart(GetRandomIntValue<Short>(1, DEFAULT_MAX_SKILL));
+    SetWindEnd(GetRandomIntValue<Short>(GetWindStart() + 1, DEFAULT_MAX_SKILL));
 }
 
 void CharacterGenerator::RandomizeAll()
@@ -448,10 +447,441 @@ void CharacterGenerator::RandomizeAll()
     RandomizeBasics();
     RandomizeMeters();
     RandomizeScoring();
-    RandomizeRanks();
+    RandomizeSkills();
 }
 
-MAKE_JSON_OBJ_TYPE_CONVERTERS_IMPL(CharacterGenerator);
+void to_json(Json& jsonData, const CharacterGenerator& obj)
+{
+    // Basics
+    SET_JSON_DATA(FirstName);
+    SET_JSON_DATA(LastName);
+    SET_JSON_DATA(FirstNamePattern);
+    SET_JSON_DATA(LastNamePattern);
+    SET_JSON_DATA(Age);
+    SET_JSON_DATA(AgeStart);
+    SET_JSON_DATA(AgeEnd);
+    SET_JSON_DATA(Gender);
+    SET_JSON_DATA(Hair);
+    SET_JSON_DATA(Eyes);
+    SET_JSON_DATA(Handedness);
+    SET_JSON_DATA(BaseRace);
+    SET_JSON_DATA(TransformedRace);
+    SET_JSON_DATA(PowerSet);
+    SET_JSON_DATA(WeaponSet);
+    SET_JSON_DATA(UseRandomName);
+    SET_JSON_DATA(UseRandomAge);
+    SET_JSON_DATA(UseRandomGender);
+    SET_JSON_DATA(UseRandomHair);
+    SET_JSON_DATA(UseRandomEyes);
+    SET_JSON_DATA(UseRandomHandedness);
+    SET_JSON_DATA(UseRandomBaseRace);
+    SET_JSON_DATA(UseRandomTransformedRace);
+    SET_JSON_DATA(UseRandomPowerSet);
+    SET_JSON_DATA(UseRandomWeaponSet);
+
+    // Meters
+    SET_JSON_DATA(HPStart);
+    SET_JSON_DATA(HPEnd);
+    SET_JSON_DATA(MPStart);
+    SET_JSON_DATA(MPEnd);
+    SET_JSON_DATA(EPStart);
+    SET_JSON_DATA(EPEnd);
+    SET_JSON_DATA(HPRegenStart);
+    SET_JSON_DATA(HPRegenEnd);
+    SET_JSON_DATA(MPRegenStart);
+    SET_JSON_DATA(MPRegenEnd);
+    SET_JSON_DATA(EPRegenStart);
+    SET_JSON_DATA(EPRegenEnd);
+    SET_JSON_DATA(SpeedStart);
+    SET_JSON_DATA(SpeedEnd);
+
+    // Attack and Defense Scoring
+    SET_JSON_DATA(BluntATKStart);
+    SET_JSON_DATA(BluntATKEnd);
+    SET_JSON_DATA(BluntDEFStart);
+    SET_JSON_DATA(BluntDEFEnd);
+    SET_JSON_DATA(PierceATKStart);
+    SET_JSON_DATA(PierceATKEnd);
+    SET_JSON_DATA(PierceDEFStart);
+    SET_JSON_DATA(PierceDEFEnd);
+    SET_JSON_DATA(SlashATKStart);
+    SET_JSON_DATA(SlashATKEnd);
+    SET_JSON_DATA(SlashDEFStart);
+    SET_JSON_DATA(SlashDEFEnd);
+    SET_JSON_DATA(EnergyATKStart);
+    SET_JSON_DATA(EnergyATKEnd);
+    SET_JSON_DATA(EnergyDEFStart);
+    SET_JSON_DATA(EnergyDEFEnd);
+    SET_JSON_DATA(MagicATKStart);
+    SET_JSON_DATA(MagicATKEnd);
+    SET_JSON_DATA(MagicDEFStart);
+    SET_JSON_DATA(MagicDEFEnd);
+
+    // Combat Skills
+    SET_JSON_DATA(BarbarianStart);
+    SET_JSON_DATA(BarbarianEnd);
+    SET_JSON_DATA(MageStart);
+    SET_JSON_DATA(MageEnd);
+    SET_JSON_DATA(RogueStart);
+    SET_JSON_DATA(RogueEnd);
+    SET_JSON_DATA(BlademasterStart);
+    SET_JSON_DATA(BlademasterEnd);
+    SET_JSON_DATA(AvatarStart);
+    SET_JSON_DATA(AvatarEnd);
+    SET_JSON_DATA(AmbidextrousStart);
+    SET_JSON_DATA(AmbidextrousEnd);
+    SET_JSON_DATA(FocusedStart);
+    SET_JSON_DATA(FocusedEnd);
+    SET_JSON_DATA(StalwartStart);
+    SET_JSON_DATA(StalwartEnd);
+
+    // Weapon Skills
+    SET_JSON_DATA(SlashStart);
+    SET_JSON_DATA(SlashEnd);
+    SET_JSON_DATA(SeverStart);
+    SET_JSON_DATA(SeverEnd);
+    SET_JSON_DATA(SliceStart);
+    SET_JSON_DATA(SliceEnd);
+    SET_JSON_DATA(SlitStart);
+    SET_JSON_DATA(SlitEnd);
+    SET_JSON_DATA(CleaveStart);
+    SET_JSON_DATA(CleaveEnd);
+    SET_JSON_DATA(DecapitateStart);
+    SET_JSON_DATA(DecapitateEnd);
+    SET_JSON_DATA(ParryStart);
+    SET_JSON_DATA(ParryEnd);
+    SET_JSON_DATA(RiposteStart);
+    SET_JSON_DATA(RiposteEnd);
+    SET_JSON_DATA(BashStart);
+    SET_JSON_DATA(BashEnd);
+    SET_JSON_DATA(SmashStart);
+    SET_JSON_DATA(SmashEnd);
+    SET_JSON_DATA(CrushStart);
+    SET_JSON_DATA(CrushEnd);
+    SET_JSON_DATA(ImpactStart);
+    SET_JSON_DATA(ImpactEnd);
+    SET_JSON_DATA(BreakStart);
+    SET_JSON_DATA(BreakEnd);
+    SET_JSON_DATA(CrackStart);
+    SET_JSON_DATA(CrackEnd);
+    SET_JSON_DATA(BlockStart);
+    SET_JSON_DATA(BlockEnd);
+    SET_JSON_DATA(RushStart);
+    SET_JSON_DATA(RushEnd);
+    SET_JSON_DATA(PierceStart);
+    SET_JSON_DATA(PierceEnd);
+    SET_JSON_DATA(DrillStart);
+    SET_JSON_DATA(DrillEnd);
+    SET_JSON_DATA(ShootStart);
+    SET_JSON_DATA(ShootEnd);
+    SET_JSON_DATA(ImpaleStart);
+    SET_JSON_DATA(ImpaleEnd);
+    SET_JSON_DATA(StealthStrikeStart);
+    SET_JSON_DATA(StealthStrikeEnd);
+    SET_JSON_DATA(CriticalShotStart);
+    SET_JSON_DATA(CriticalShotEnd);
+    SET_JSON_DATA(DodgeStart);
+    SET_JSON_DATA(DodgeEnd);
+    SET_JSON_DATA(CounterStart);
+    SET_JSON_DATA(CounterEnd);
+
+    // Alchemy Skills
+    SET_JSON_DATA(HealerStart);
+    SET_JSON_DATA(HealerEnd);
+    SET_JSON_DATA(AlchemistStart);
+    SET_JSON_DATA(AlchemistEnd);
+    SET_JSON_DATA(EnergistStart);
+    SET_JSON_DATA(EnergistEnd);
+    SET_JSON_DATA(ChemistStart);
+    SET_JSON_DATA(ChemistEnd);
+
+    // Crafting Skills
+    SET_JSON_DATA(HammersmithStart);
+    SET_JSON_DATA(HammersmithEnd);
+    SET_JSON_DATA(SpellsmithStart);
+    SET_JSON_DATA(SpellsmithEnd);
+    SET_JSON_DATA(BowsmithStart);
+    SET_JSON_DATA(BowsmithEnd);
+    SET_JSON_DATA(SwordsmithStart);
+    SET_JSON_DATA(SwordsmithEnd);
+    SET_JSON_DATA(WeaverStart);
+    SET_JSON_DATA(WeaverEnd);
+    SET_JSON_DATA(TannerStart);
+    SET_JSON_DATA(TannerEnd);
+    SET_JSON_DATA(ScalesmithStart);
+    SET_JSON_DATA(ScalesmithEnd);
+    SET_JSON_DATA(PlatesmithStart);
+    SET_JSON_DATA(PlatesmithEnd);
+    SET_JSON_DATA(GoldsmithStart);
+    SET_JSON_DATA(GoldsmithEnd);
+    SET_JSON_DATA(ShieldsmithStart);
+    SET_JSON_DATA(ShieldsmithEnd);
+
+    // Breakdown Skills
+    SET_JSON_DATA(HammerbaneStart);
+    SET_JSON_DATA(HammerbaneEnd);
+    SET_JSON_DATA(SpellbaneStart);
+    SET_JSON_DATA(SpellbaneEnd);
+    SET_JSON_DATA(BowbaneStart);
+    SET_JSON_DATA(BowbaneEnd);
+    SET_JSON_DATA(SwordbaneStart);
+    SET_JSON_DATA(SwordbaneEnd);
+    SET_JSON_DATA(ThreadbareStart);
+    SET_JSON_DATA(ThreadbareEnd);
+    SET_JSON_DATA(StudRemoverStart);
+    SET_JSON_DATA(StudRemoverEnd);
+    SET_JSON_DATA(ScalebaneStart);
+    SET_JSON_DATA(ScalebaneEnd);
+    SET_JSON_DATA(PlatebaneStart);
+    SET_JSON_DATA(PlatebaneEnd);
+    SET_JSON_DATA(GoldbaneStart);
+    SET_JSON_DATA(GoldbaneEnd);
+    SET_JSON_DATA(ShieldbaneStart);
+    SET_JSON_DATA(ShieldbaneEnd);
+
+    // Affinity Skills
+    SET_JSON_DATA(HolyStart);
+    SET_JSON_DATA(HolyEnd);
+    SET_JSON_DATA(FireStart);
+    SET_JSON_DATA(FireEnd);
+    SET_JSON_DATA(IceStart);
+    SET_JSON_DATA(IceEnd);
+    SET_JSON_DATA(ShockStart);
+    SET_JSON_DATA(ShockEnd);
+    SET_JSON_DATA(DarkStart);
+    SET_JSON_DATA(DarkEnd);
+    SET_JSON_DATA(LightStart);
+    SET_JSON_DATA(LightEnd);
+    SET_JSON_DATA(ForceStart);
+    SET_JSON_DATA(ForceEnd);
+    SET_JSON_DATA(MindStart);
+    SET_JSON_DATA(MindEnd);
+    SET_JSON_DATA(EarthStart);
+    SET_JSON_DATA(EarthEnd);
+    SET_JSON_DATA(BloodStart);
+    SET_JSON_DATA(BloodEnd);
+    SET_JSON_DATA(FleshStart);
+    SET_JSON_DATA(FleshEnd);
+    SET_JSON_DATA(WindStart);
+    SET_JSON_DATA(WindEnd);
+}
+
+void from_json(const Json& jsonData, CharacterGenerator& obj)
+{
+    // Basics
+    SET_OBJ_DATA(FirstName, String);
+    SET_OBJ_DATA(LastName, String);
+    SET_OBJ_DATA(FirstNamePattern, String);
+    SET_OBJ_DATA(LastNamePattern, String);
+    SET_OBJ_DATA(Age, Int);
+    SET_OBJ_DATA(AgeStart, Int);
+    SET_OBJ_DATA(AgeEnd, Int);
+    SET_OBJ_DATA(Gender, String);
+    SET_OBJ_DATA(Hair, String);
+    SET_OBJ_DATA(Eyes, String);
+    SET_OBJ_DATA(Handedness, String);
+    SET_OBJ_DATA(BaseRace, String);
+    SET_OBJ_DATA(TransformedRace, String);
+    SET_OBJ_DATA(PowerSet, String);
+    SET_OBJ_DATA(WeaponSet, String);
+    SET_OBJ_DATA(UseRandomName, Bool);
+    SET_OBJ_DATA(UseRandomAge, Bool);
+    SET_OBJ_DATA(UseRandomGender, Bool);
+    SET_OBJ_DATA(UseRandomHair, Bool);
+    SET_OBJ_DATA(UseRandomEyes, Bool);
+    SET_OBJ_DATA(UseRandomHandedness, Bool);
+    SET_OBJ_DATA(UseRandomBaseRace, Bool);
+    SET_OBJ_DATA(UseRandomTransformedRace, Bool);
+    SET_OBJ_DATA(UseRandomPowerSet, Bool);
+    SET_OBJ_DATA(UseRandomWeaponSet, Bool);
+
+    // Meters
+    SET_OBJ_DATA(HPStart, Int);
+    SET_OBJ_DATA(HPEnd, Int);
+    SET_OBJ_DATA(MPStart, Int);
+    SET_OBJ_DATA(MPEnd, Int);
+    SET_OBJ_DATA(EPStart, Int);
+    SET_OBJ_DATA(EPEnd, Int);
+    SET_OBJ_DATA(HPRegenStart, Int);
+    SET_OBJ_DATA(HPRegenEnd, Int);
+    SET_OBJ_DATA(MPRegenStart, Int);
+    SET_OBJ_DATA(MPRegenEnd, Int);
+    SET_OBJ_DATA(EPRegenStart, Int);
+    SET_OBJ_DATA(EPRegenEnd, Int);
+    SET_OBJ_DATA(SpeedStart, Int);
+    SET_OBJ_DATA(SpeedEnd, Int);
+
+    // Attack and Defense Scoring
+    SET_OBJ_DATA(BluntATKStart, Int);
+    SET_OBJ_DATA(BluntATKEnd, Int);
+    SET_OBJ_DATA(BluntDEFStart, Int);
+    SET_OBJ_DATA(BluntDEFEnd, Int);
+    SET_OBJ_DATA(PierceATKStart, Int);
+    SET_OBJ_DATA(PierceATKEnd, Int);
+    SET_OBJ_DATA(PierceDEFStart, Int);
+    SET_OBJ_DATA(PierceDEFEnd, Int);
+    SET_OBJ_DATA(SlashATKStart, Int);
+    SET_OBJ_DATA(SlashATKEnd, Int);
+    SET_OBJ_DATA(SlashDEFStart, Int);
+    SET_OBJ_DATA(SlashDEFEnd, Int);
+    SET_OBJ_DATA(EnergyATKStart, Int);
+    SET_OBJ_DATA(EnergyATKEnd, Int);
+    SET_OBJ_DATA(EnergyDEFStart, Int);
+    SET_OBJ_DATA(EnergyDEFEnd, Int);
+    SET_OBJ_DATA(MagicATKStart, Int);
+    SET_OBJ_DATA(MagicATKEnd, Int);
+    SET_OBJ_DATA(MagicDEFStart, Int);
+    SET_OBJ_DATA(MagicDEFEnd, Int);
+
+    // Combat Skills
+    SET_OBJ_DATA(BarbarianStart, Short);
+    SET_OBJ_DATA(BarbarianEnd, Short);
+    SET_OBJ_DATA(MageStart, Short);
+    SET_OBJ_DATA(MageEnd, Short);
+    SET_OBJ_DATA(RogueStart, Short);
+    SET_OBJ_DATA(RogueEnd, Short);
+    SET_OBJ_DATA(BlademasterStart, Short);
+    SET_OBJ_DATA(BlademasterEnd, Short);
+    SET_OBJ_DATA(AvatarStart, Short);
+    SET_OBJ_DATA(AvatarEnd, Short);
+    SET_OBJ_DATA(AmbidextrousStart, Short);
+    SET_OBJ_DATA(AmbidextrousEnd, Short);
+    SET_OBJ_DATA(FocusedStart, Short);
+    SET_OBJ_DATA(FocusedEnd, Short);
+    SET_OBJ_DATA(StalwartStart, Short);
+    SET_OBJ_DATA(StalwartEnd, Short);
+
+    // Weapon Skills
+    SET_OBJ_DATA(SlashStart, Short);
+    SET_OBJ_DATA(SlashEnd, Short);
+    SET_OBJ_DATA(SeverStart, Short);
+    SET_OBJ_DATA(SeverEnd, Short);
+    SET_OBJ_DATA(SliceStart, Short);
+    SET_OBJ_DATA(SliceEnd, Short);
+    SET_OBJ_DATA(SlitStart, Short);
+    SET_OBJ_DATA(SlitEnd, Short);
+    SET_OBJ_DATA(CleaveStart, Short);
+    SET_OBJ_DATA(CleaveEnd, Short);
+    SET_OBJ_DATA(DecapitateStart, Short);
+    SET_OBJ_DATA(DecapitateEnd, Short);
+    SET_OBJ_DATA(ParryStart, Short);
+    SET_OBJ_DATA(ParryEnd, Short);
+    SET_OBJ_DATA(RiposteStart, Short);
+    SET_OBJ_DATA(RiposteEnd, Short);
+    SET_OBJ_DATA(BashStart, Short);
+    SET_OBJ_DATA(BashEnd, Short);
+    SET_OBJ_DATA(SmashStart, Short);
+    SET_OBJ_DATA(SmashEnd, Short);
+    SET_OBJ_DATA(CrushStart, Short);
+    SET_OBJ_DATA(CrushEnd, Short);
+    SET_OBJ_DATA(ImpactStart, Short);
+    SET_OBJ_DATA(ImpactEnd, Short);
+    SET_OBJ_DATA(BreakStart, Short);
+    SET_OBJ_DATA(BreakEnd, Short);
+    SET_OBJ_DATA(CrackStart, Short);
+    SET_OBJ_DATA(CrackEnd, Short);
+    SET_OBJ_DATA(BlockStart, Short);
+    SET_OBJ_DATA(BlockEnd, Short);
+    SET_OBJ_DATA(RushStart, Short);
+    SET_OBJ_DATA(RushEnd, Short);
+    SET_OBJ_DATA(PierceStart, Short);
+    SET_OBJ_DATA(PierceEnd, Short);
+    SET_OBJ_DATA(DrillStart, Short);
+    SET_OBJ_DATA(DrillEnd, Short);
+    SET_OBJ_DATA(ShootStart, Short);
+    SET_OBJ_DATA(ShootEnd, Short);
+    SET_OBJ_DATA(ImpaleStart, Short);
+    SET_OBJ_DATA(ImpaleEnd, Short);
+    SET_OBJ_DATA(StealthStrikeStart, Short);
+    SET_OBJ_DATA(StealthStrikeEnd, Short);
+    SET_OBJ_DATA(CriticalShotStart, Short);
+    SET_OBJ_DATA(CriticalShotEnd, Short);
+    SET_OBJ_DATA(DodgeStart, Short);
+    SET_OBJ_DATA(DodgeEnd, Short);
+    SET_OBJ_DATA(CounterStart, Short);
+    SET_OBJ_DATA(CounterEnd, Short);
+
+    // Alchemy Skills
+    SET_OBJ_DATA(HealerStart, Short);
+    SET_OBJ_DATA(HealerEnd, Short);
+    SET_OBJ_DATA(AlchemistStart, Short);
+    SET_OBJ_DATA(AlchemistEnd, Short);
+    SET_OBJ_DATA(EnergistStart, Short);
+    SET_OBJ_DATA(EnergistEnd, Short);
+    SET_OBJ_DATA(ChemistStart, Short);
+    SET_OBJ_DATA(ChemistEnd, Short);
+
+    // Crafting Skills
+    SET_OBJ_DATA(HammersmithStart, Short);
+    SET_OBJ_DATA(HammersmithEnd, Short);
+    SET_OBJ_DATA(SpellsmithStart, Short);
+    SET_OBJ_DATA(SpellsmithEnd, Short);
+    SET_OBJ_DATA(BowsmithStart, Short);
+    SET_OBJ_DATA(BowsmithEnd, Short);
+    SET_OBJ_DATA(SwordsmithStart, Short);
+    SET_OBJ_DATA(SwordsmithEnd, Short);
+    SET_OBJ_DATA(WeaverStart, Short);
+    SET_OBJ_DATA(WeaverEnd, Short);
+    SET_OBJ_DATA(TannerStart, Short);
+    SET_OBJ_DATA(TannerEnd, Short);
+    SET_OBJ_DATA(ScalesmithStart, Short);
+    SET_OBJ_DATA(ScalesmithEnd, Short);
+    SET_OBJ_DATA(PlatesmithStart, Short);
+    SET_OBJ_DATA(PlatesmithEnd, Short);
+    SET_OBJ_DATA(GoldsmithStart, Short);
+    SET_OBJ_DATA(GoldsmithEnd, Short);
+    SET_OBJ_DATA(ShieldsmithStart, Short);
+    SET_OBJ_DATA(ShieldsmithEnd, Short);
+
+    // Breakdown Skills
+    SET_OBJ_DATA(HammerbaneStart, Short);
+    SET_OBJ_DATA(HammerbaneEnd, Short);
+    SET_OBJ_DATA(SpellbaneStart, Short);
+    SET_OBJ_DATA(SpellbaneEnd, Short);
+    SET_OBJ_DATA(BowbaneStart, Short);
+    SET_OBJ_DATA(BowbaneEnd, Short);
+    SET_OBJ_DATA(SwordbaneStart, Short);
+    SET_OBJ_DATA(SwordbaneEnd, Short);
+    SET_OBJ_DATA(ThreadbareStart, Short);
+    SET_OBJ_DATA(ThreadbareEnd, Short);
+    SET_OBJ_DATA(StudRemoverStart, Short);
+    SET_OBJ_DATA(StudRemoverEnd, Short);
+    SET_OBJ_DATA(ScalebaneStart, Short);
+    SET_OBJ_DATA(ScalebaneEnd, Short);
+    SET_OBJ_DATA(PlatebaneStart, Short);
+    SET_OBJ_DATA(PlatebaneEnd, Short);
+    SET_OBJ_DATA(GoldbaneStart, Short);
+    SET_OBJ_DATA(GoldbaneEnd, Short);
+    SET_OBJ_DATA(ShieldbaneStart, Short);
+    SET_OBJ_DATA(ShieldbaneEnd, Short);
+
+    // Affinity Skills
+    SET_OBJ_DATA(HolyStart, Short);
+    SET_OBJ_DATA(HolyEnd, Short);
+    SET_OBJ_DATA(FireStart, Short);
+    SET_OBJ_DATA(FireEnd, Short);
+    SET_OBJ_DATA(IceStart, Short);
+    SET_OBJ_DATA(IceEnd, Short);
+    SET_OBJ_DATA(ShockStart, Short);
+    SET_OBJ_DATA(ShockEnd, Short);
+    SET_OBJ_DATA(DarkStart, Short);
+    SET_OBJ_DATA(DarkEnd, Short);
+    SET_OBJ_DATA(LightStart, Short);
+    SET_OBJ_DATA(LightEnd, Short);
+    SET_OBJ_DATA(ForceStart, Short);
+    SET_OBJ_DATA(ForceEnd, Short);
+    SET_OBJ_DATA(MindStart, Short);
+    SET_OBJ_DATA(MindEnd, Short);
+    SET_OBJ_DATA(EarthStart, Short);
+    SET_OBJ_DATA(EarthEnd, Short);
+    SET_OBJ_DATA(BloodStart, Short);
+    SET_OBJ_DATA(BloodEnd, Short);
+    SET_OBJ_DATA(FleshStart, Short);
+    SET_OBJ_DATA(FleshEnd, Short);
+    SET_OBJ_DATA(WindStart, Short);
+    SET_OBJ_DATA(WindEnd, Short);
+}
+
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterGenerator, CharacterGenerator);
 
 };

@@ -38,7 +38,7 @@
 #define DEFAULT_MAX_AGE                             100
 #define DEFAULT_MAX_METER                           200
 #define DEFAULT_MAX_SCORING                         200
-#define DEFAULT_MAX_RANK                            20
+#define DEFAULT_MAX_SKILL                           200
 
 // Web files
 #define WEB_LIB_CSS_BOOTSTRAP                       "lib/bootstrap/css/bootstrap.min.css"

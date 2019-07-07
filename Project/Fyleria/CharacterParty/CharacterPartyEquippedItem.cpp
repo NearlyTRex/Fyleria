@@ -28,10 +28,10 @@ void to_json(Json& jsonData, const CharacterPartyEquippedItem& obj)
 void from_json(const Json& jsonData, CharacterPartyEquippedItem& obj)
 {
     // Item tree index
-    SET_OBJ_DATA(ItemTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(ItemTreeIndex, TreeIndex);
 
     // Item slot
-    SET_OBJ_DATA(ItemSlot, String, "");
+    SET_OBJ_DATA(ItemSlot, String);
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterPartyEquippedItemArray);

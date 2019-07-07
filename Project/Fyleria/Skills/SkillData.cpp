@@ -269,32 +269,32 @@ void to_json(Json& jsonData, const SkillData& obj)
 void from_json(const Json& jsonData, SkillData& obj)
 {
     // Run types
-    SET_OBJ_DATA(RunTypes, StringArray, StringArray());
+    SET_OBJ_DATA(RunTypes, StringArray);
 
     // Data class
-    SET_OBJ_DATA(DataClass, String, "");
+    SET_OBJ_DATA(DataClass, String);
 
     // Skill rank
-    SET_OBJ_DATA(SkillRank, Int, 0);
+    SET_OBJ_DATA(SkillRank, Int);
 
     // Skill name
-    SET_OBJ_DATA(SkillName, String, "");
+    SET_OBJ_DATA(SkillName, String);
 
     // Skill description
-    SET_OBJ_DATA(SkillDescription, String, "");
+    SET_OBJ_DATA(SkillDescription, String);
 
     // Skill type
-    SET_OBJ_DATA(SkillType, String, "");
+    SET_OBJ_DATA(SkillType, String);
 
     // Skill costs
-    SET_OBJ_DATA(SkillCostAP, Int, 0);
-    SET_OBJ_DATA(SkillCostHP, Int, 0);
+    SET_OBJ_DATA(SkillCostAP, Int);
+    SET_OBJ_DATA(SkillCostHP, Int);
 
     // Skill index
-    SET_OBJ_DATA(SkillTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(SkillTreeIndex, TreeIndex);
 
     // Stat changes
-    SET_OBJ_DATA(StatChanges, StatChangeArray, StatChangeArray());
+    SET_OBJ_DATA(StatChanges, StatChangeArray);
 }
 
 };

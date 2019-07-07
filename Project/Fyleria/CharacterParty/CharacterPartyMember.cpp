@@ -270,13 +270,13 @@ void to_json(Json& jsonData, const CharacterPartyMember& obj)
 void from_json(const Json& jsonData, CharacterPartyMember& obj)
 {
     // Character ID
-    SET_OBJ_DATA(CharacterID, String, "");
+    SET_OBJ_DATA(CharacterID, String);
 
     // Character target type
-    SET_OBJ_DATA(CharacterTargetType, String, "");
+    SET_OBJ_DATA(CharacterTargetType, String);
 
     // Equipped items
-    SET_OBJ_DATA(EquippedItems, CharacterPartyEquippedItemArray, CharacterPartyEquippedItemArray());
+    SET_OBJ_DATA(EquippedItems, CharacterPartyEquippedItemArray);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyMember, CharacterPartyMember);

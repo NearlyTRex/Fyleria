@@ -42,6 +42,7 @@ namespace Gecko
         jsonData["CharacterBattleStatType_Bool"] = GetEnumNames<CharacterBattleStatType_Bool>();
         jsonData["CharacterBattleStatType_Int"] = GetEnumNames<CharacterBattleStatType_Int>();
         jsonData["CharacterBattleStatType_Float"] = GetEnumNames<CharacterBattleStatType_Float>();
+        jsonData["CharacterSkillStatType_Short"] = GetEnumNames<CharacterSkillStatType_Short>();
         jsonData["CharacterStatusType"] = GetEnumNames<CharacterStatusType>();
         jsonData["CharacterBaseRaceType"] = GetEnumNames<CharacterBaseRaceType>();
         jsonData["CharacterTransformedRaceType"] = GetEnumNames<CharacterTransformedRaceType>();

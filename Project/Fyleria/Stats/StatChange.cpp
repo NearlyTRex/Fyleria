@@ -514,51 +514,51 @@ void to_json(Json& jsonData, const StatChange& obj)
 void from_json(const Json& jsonData, StatChange& obj)
 {
     // ID
-    SET_OBJ_DATA(ID, ULongLong, 0);
+    SET_OBJ_DATA(ID, ULongLong);
 
     // Relevant skill data
-    SET_OBJ_DATA(SkillTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(SkillTreeIndex, TreeIndex);
 
     // Relevant item data
-    SET_OBJ_DATA(ItemTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(ItemTreeIndex, TreeIndex);
 
     // Percent chance to apply this change
-    SET_OBJ_DATA(ChanceToApply, Int, 0);
+    SET_OBJ_DATA(ChanceToApply, Int);
 
     // Amount of rounds to apply this change (0 is indefinite)
-    SET_OBJ_DATA(RoundAmount, Int, 0);
+    SET_OBJ_DATA(RoundAmount, Int);
 
     // Amount of attacks to apply this change (0 is indefinite)
-    SET_OBJ_DATA(AttackAmount, Int, 0);
+    SET_OBJ_DATA(AttackAmount, Int);
 
     // Amount of defends to apply this change (0 is indefinite)
-    SET_OBJ_DATA(DefendAmount, Int, 0);
+    SET_OBJ_DATA(DefendAmount, Int);
 
     // Required items or attack types
-    SET_OBJ_DATA(RequiredItemEquippedTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredItemEquippedTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredItemUsedTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredItemUsedTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredAttackTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredAttackTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredDefendTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredDefendTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredPreviousAttackTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredPreviousAttackTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredPreviousDefendTypesOR, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredPreviousDefendTypesAND, StringArray, StringArray());
-    SET_OBJ_DATA(RequiredEquippedWeaponCount, Int, 0);
-    SET_OBJ_DATA(RequiredEquippedShieldCount, Int, 0);
+    SET_OBJ_DATA(RequiredItemEquippedTypesOR, StringArray);
+    SET_OBJ_DATA(RequiredItemEquippedTypesAND, StringArray);
+    SET_OBJ_DATA(RequiredItemUsedTypesOR, StringArray);
+    SET_OBJ_DATA(RequiredItemUsedTypesAND, StringArray);
+    SET_OBJ_DATA(RequiredAttackTypesOR, StringArray);
+    SET_OBJ_DATA(RequiredAttackTypesAND, StringArray);
+    SET_OBJ_DATA(RequiredDefendTypesOR, StringArray);
+    SET_OBJ_DATA(RequiredDefendTypesAND, StringArray);
+    SET_OBJ_DATA(RequiredPreviousAttackTypesOR, StringArray);
+    SET_OBJ_DATA(RequiredPreviousAttackTypesAND, StringArray);
+    SET_OBJ_DATA(RequiredPreviousDefendTypesOR, StringArray);
+    SET_OBJ_DATA(RequiredPreviousDefendTypesAND, StringArray);
+    SET_OBJ_DATA(RequiredEquippedWeaponCount, Int);
+    SET_OBJ_DATA(RequiredEquippedShieldCount, Int);
 
     // Whether destination target is the same as the source target
-    SET_OBJ_DATA(DestinationIsSource, Bool, false);
+    SET_OBJ_DATA(DestinationIsSource, Bool);
 
     // Source and destination targets
-    SET_OBJ_DATA(SourceTargetType, String, "");
-    SET_OBJ_DATA(DestinationTargetType, String, "");
+    SET_OBJ_DATA(SourceTargetType, String);
+    SET_OBJ_DATA(DestinationTargetType, String);
 
     // Stat change entry list
-    SET_OBJ_DATA(StatChangeEntries, StatChangeEntryArray, StatChangeEntryArray());
+    SET_OBJ_DATA(StatChangeEntries, StatChangeEntryArray);
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(StatChangeArray);

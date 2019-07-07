@@ -22,7 +22,7 @@ typedef STDUnorderedMap<String, StringArray> StringArrayStatTypeMap;
 
 // Helper functions
 template <class T>
-Bool SetStatValue(STDUnorderedMap<String, T>& tStatMap, const String& sStatName, const T& inValue)
+Bool SetStatMapValue(STDUnorderedMap<String, T>& tStatMap, const String& sStatName, const T& inValue)
 {
     if(tStatMap.find(sStatName) == tStatMap.end())
     {
@@ -36,7 +36,7 @@ Bool SetStatValue(STDUnorderedMap<String, T>& tStatMap, const String& sStatName,
     }
 }
 template <class T>
-Bool GetStatValue(const STDUnorderedMap<String, T>& tStatMap, const String& sStatName, T& outValue)
+Bool GetStatMapValue(const STDUnorderedMap<String, T>& tStatMap, const String& sStatName, T& outValue)
 {
     if(tStatMap.find(sStatName) == tStatMap.end())
     {

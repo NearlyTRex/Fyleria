@@ -100,9 +100,9 @@ void to_json(Json& jsonData, const TreeIndex& obj)
 
 void from_json(const Json& jsonData, TreeIndex& obj)
 {
-    SET_OBJ_DATA(Tree, String, "");
-    SET_OBJ_DATA(Branch, String, "");
-    SET_OBJ_DATA(Leaf, String, "");
+    SET_OBJ_DATA(Tree, String);
+    SET_OBJ_DATA(Branch, String);
+    SET_OBJ_DATA(Leaf, String);
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(TreeIndexArray);

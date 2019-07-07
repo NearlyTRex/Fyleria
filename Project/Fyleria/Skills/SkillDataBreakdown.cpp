@@ -40,7 +40,7 @@ void to_json(Json& jsonData, const SkillDataBreakdown& obj)
 void from_json(const Json& jsonData, SkillDataBreakdown& obj)
 {
     // Recipes
-    SET_OBJ_DATA(Recipes, RecipeArray, RecipeArray());
+    SET_OBJ_DATA(Recipes, RecipeArray);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(SkillDataBreakdown, SkillDataBreakdown);

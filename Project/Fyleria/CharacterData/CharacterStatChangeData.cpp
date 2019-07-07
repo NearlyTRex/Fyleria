@@ -230,16 +230,16 @@ void to_json(Json& jsonData, const CharacterStatChangeData& obj)
 void from_json(const Json& jsonData, CharacterStatChangeData& obj)
 {
     // Passive data
-    SET_OBJ_DATA(PassiveSkillDataArray, TreeIndexArray, TreeIndexArray());
-    SET_OBJ_DATA(PassiveItemDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA(PassiveSkillDataArray, TreeIndexArray);
+    SET_OBJ_DATA(PassiveItemDataArray, TreeIndexArray);
 
     // Active data
-    SET_OBJ_DATA(ActiveSkillDataArray, TreeIndexArray, TreeIndexArray());
-    SET_OBJ_DATA(ActiveItemDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA(ActiveSkillDataArray, TreeIndexArray);
+    SET_OBJ_DATA(ActiveItemDataArray, TreeIndexArray);
 
     // Actionable data
-    SET_OBJ_DATA(ActionableSkillDataArray, TreeIndexArray, TreeIndexArray());
-    SET_OBJ_DATA(ActionableItemDataArray, TreeIndexArray, TreeIndexArray());
+    SET_OBJ_DATA(ActionableSkillDataArray, TreeIndexArray);
+    SET_OBJ_DATA(ActionableItemDataArray, TreeIndexArray);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterStatChangeData, CharacterStatChangeData);

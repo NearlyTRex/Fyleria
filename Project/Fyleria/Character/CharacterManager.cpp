@@ -71,13 +71,6 @@ void CharacterManager::GenerateCharacter(const String& sCharacterID, const Chara
     // Log start
     LOG_FORMAT_STATEMENT("Generating character (CharacterID = '%s') ...\n", sCharacterID.c_str());
 
-    // Check generator
-    ASSERT_ERROR(!generator.IsEmpty(), "Generator is empty, it should have some data set to it. Check that it loaded properly.");
-    if(generator.IsEmpty())
-    {
-        return;
-    }
-
     // Make sure that this character does not already exist
     ASSERT_ERROR(!DoesCharacterExist(sCharacterID), "Character with ID '%s' was already registered", sCharacterID.c_str());
 
@@ -370,7 +363,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 bValue,
                 sStat.c_str(),
                 sCharacterID.c_str());
-            return character.SetBoolStatValue(sSegment, sStat, bValue);
+            return character.SetStatValue(sSegment, sStat, bValue);
         default:
             break;
     }
@@ -389,7 +382,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
 
     // Get existing value
     Int iStatValue = 0;
-    if(!character.GetIntStatValue(sSegment, sStat, iStatValue))
+    if(!character.GetStatValue(sSegment, sStat, iStatValue))
     {
         return false;
     }
@@ -404,21 +397,21 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 sStat.c_str(),
                 iStatValue,
                 sCharacterID.c_str());
-            return character.SetIntStatValue(sSegment, sStat, iStatValue + iValue);
+            return character.SetStatValue(sSegment, sStat, iStatValue + iValue);
         case OperationType::Subtract:
             LOG_FORMAT_STATEMENT("-- Subtracting %i from %s's current value of %i in character '%s'\n",
                 iValue,
                 sStat.c_str(),
                 iStatValue,
                 sCharacterID.c_str());
-            return character.SetIntStatValue(sSegment, sStat, iStatValue - iValue);
+            return character.SetStatValue(sSegment, sStat, iStatValue - iValue);
         case OperationType::Multiply:
             LOG_FORMAT_STATEMENT("-- Multiplying %i against %s's current value of %i in character '%s'\n",
                 iValue,
                 sStat.c_str(),
                 iStatValue,
                 sCharacterID.c_str());
-            return character.SetIntStatValue(sSegment, sStat, iStatValue * iValue);
+            return character.SetStatValue(sSegment, sStat, iStatValue * iValue);
         case OperationType::Divide:
             if(iValue != 0)
             {
@@ -427,7 +420,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                     iStatValue,
                     iValue,
                     sCharacterID.c_str());
-                return character.SetIntStatValue(sSegment, sStat, iStatValue / iValue);
+                return character.SetStatValue(sSegment, sStat, iStatValue / iValue);
             }
         case OperationType::Modulus:
             if(iValue != 0)
@@ -437,14 +430,14 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                     iStatValue,
                     iValue,
                     sCharacterID.c_str());
-                return character.SetIntStatValue(sSegment, sStat, iStatValue % iValue);
+                return character.SetStatValue(sSegment, sStat, iStatValue % iValue);
             }
         case OperationType::Set:
             LOG_FORMAT_STATEMENT("-- Setting %i to %s stat in character '%s'\n",
                 iValue,
                 sStat.c_str(),
                 sCharacterID.c_str());
-            return character.SetIntStatValue(sSegment, sStat, iValue);
+            return character.SetStatValue(sSegment, sStat, iValue);
         default:
             break;
     }
@@ -463,7 +456,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
 
     // Get existing value
     Float fStatValue = 0;
-    if(!character.GetFloatStatValue(sSegment, sStat, fStatValue))
+    if(!character.GetStatValue(sSegment, sStat, fStatValue))
     {
         return false;
     }
@@ -478,21 +471,21 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 sStat.c_str(),
                 fStatValue,
                 sCharacterID.c_str());
-            return character.SetFloatStatValue(sSegment, sStat, fStatValue + fValue);
+            return character.SetStatValue(sSegment, sStat, fStatValue + fValue);
         case OperationType::Subtract:
             LOG_FORMAT_STATEMENT("-- Subtracting %f from %s's current value of %f in character '%s'\n",
                 fValue,
                 sStat.c_str(),
                 fStatValue,
                 sCharacterID.c_str());
-            return character.SetFloatStatValue(sSegment, sStat, fStatValue - fValue);
+            return character.SetStatValue(sSegment, sStat, fStatValue - fValue);
         case OperationType::Multiply:
             LOG_FORMAT_STATEMENT("-- Multiplying %f against %s's current value of %f in character '%s'\n",
                 fValue,
                 sStat.c_str(),
                 fStatValue,
                 sCharacterID.c_str());
-            return character.SetFloatStatValue(sSegment, sStat, fStatValue * fValue);
+            return character.SetStatValue(sSegment, sStat, fStatValue * fValue);
         case OperationType::Divide:
             if(fValue != 0)
             {
@@ -501,7 +494,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                     fStatValue,
                     fValue,
                     sCharacterID.c_str());
-                return character.SetFloatStatValue(sSegment, sStat, fStatValue / fValue);
+                return character.SetStatValue(sSegment, sStat, fStatValue / fValue);
             }
         case OperationType::Modulus:
             if(fValue != 0)
@@ -511,14 +504,14 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                     fStatValue,
                     fValue,
                     sCharacterID.c_str());
-                return character.SetFloatStatValue(sSegment, sStat, STDFmod(fStatValue, fValue));
+                return character.SetStatValue(sSegment, sStat, STDFmod(fStatValue, fValue));
             }
         case OperationType::Set:
             LOG_FORMAT_STATEMENT("-- Setting %f to %s in character '%s'\n",
                 fValue,
                 sStat.c_str(),
                 sCharacterID.c_str());
-            return character.SetFloatStatValue(sSegment, sStat, fValue);
+            return character.SetStatValue(sSegment, sStat, fValue);
         default:
             break;
     }
@@ -537,7 +530,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
 
     // Get existing value
     String sStatValue("");
-    if(!character.GetStringStatValue(sSegment, sStat, sStatValue))
+    if(!character.GetStatValue(sSegment, sStat, sStatValue))
     {
         return false;
     }
@@ -552,13 +545,13 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 sStat.c_str(),
                 sStatValue.c_str(),
                 sCharacterID.c_str());
-            return character.SetStringStatValue(sSegment, sStat, sStatValue + sValue);
+            return character.SetStatValue(sSegment, sStat, sStatValue + sValue);
         case OperationType::Set:
             LOG_FORMAT_STATEMENT("-- Setting %s to %s stat in character '%s'\n",
                 sValue.c_str(),
                 sStat.c_str(),
                 sCharacterID.c_str());
-            return character.SetStringStatValue(sSegment, sStat, sValue);
+            return character.SetStatValue(sSegment, sStat, sValue);
         default:
             break;
     }
@@ -592,7 +585,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 sStat.c_str(),
                 sCharacterID.c_str());
 #endif
-            return character.SetStringArrayStatValue(sSegment, sStat, vValues);
+            return character.SetStatValue(sSegment, sStat, vValues);
         }
         default:
             break;
@@ -631,7 +624,7 @@ Bool CharacterManager::GetDeltaStatChangeEntryValues(
     if(changeEntry.GetDeltaInt() != 0)
     {
         Int iStatValue = 0;
-        if(character.GetIntStatValue(sSegment, sSourceStatType, iStatValue))
+        if(character.GetStatValue(sSegment, sSourceStatType, iStatValue))
         {
             Int iNewValue = iStatValue + changeEntry.GetDeltaInt();
             LOG_FORMAT_STATEMENT("-- Getting %s value of %i from character '%s' and adding delta int of %i to get int value %i\n",
@@ -647,7 +640,7 @@ Bool CharacterManager::GetDeltaStatChangeEntryValues(
     else if(changeEntry.GetDeltaFloat() != 0)
     {
         Float fStatValue = 0;
-        if(character.GetFloatStatValue(sSegment, sSourceStatType, fStatValue))
+        if(character.GetStatValue(sSegment, sSourceStatType, fStatValue))
         {
             Float fNewValue = fStatValue + changeEntry.GetDeltaFloat();
             LOG_FORMAT_STATEMENT("-- Getting %s value of %f from character '%s' and adding delta float of %f to get float value %f\n",
@@ -690,7 +683,7 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
     {
         Float fStatValue = 0;
         Int iStatValue = 0;
-        if(character.GetIntStatValue(sSegment, sDestStatType, iStatValue))
+        if(character.GetStatValue(sSegment, sDestStatType, iStatValue))
         {
             fStatValue = static_cast<Float>(iStatValue);
             Float fNewValue = changeEntry.GetFullPercent() * fStatValue;
@@ -703,7 +696,7 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
             vFloatValues.push_back(fNewValue);
             bSuccess = true;
         }
-        else if(character.GetFloatStatValue(sSegment, sDestStatType, fStatValue))
+        else if(character.GetStatValue(sSegment, sDestStatType, fStatValue))
         {
             Float fNewValue = changeEntry.GetFullPercent() * fStatValue;
             LOG_FORMAT_STATEMENT("-- Getting %s value of %f from character '%s' and multiplying by full percent of %f to get float value %f\n",

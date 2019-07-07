@@ -26,27 +26,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoStats, m)
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetProlongedStatChangeFromJsonString, Gecko);
     WRAPPING_STANDALONE_METHOD_SIMPLE(GetProlongedStatChangeArrayFromJsonString, Gecko);
 
-    // StatTypeHolder.h
-    PyBindClass<Gecko::StatTypeHolder>(m, "StatTypeHolder")
-        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-        WRAPPING_ADD_METHOD_SIMPLE(GetBoolStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(GetByteStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(GetShortStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(GetIntStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(GetFloatStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(GetDoubleStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(GetStringStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(GetStringArrayStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(SetBoolStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(SetByteStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(SetShortStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(SetIntStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(SetFloatStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(SetDoubleStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(SetStringStatValue, Gecko::StatTypeHolder)
-        WRAPPING_ADD_METHOD_SIMPLE(SetStringArrayStatValue, Gecko::StatTypeHolder)
-    ;
-
     // StatChange.h
     PyBindClass<Gecko::StatChange>(m, "StatChange")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()

@@ -35,7 +35,6 @@ public:
 
     // Regenerate character data
     void RegenerateCharacterData(
-        Bool bUpdateSkillRankings = true,
         Bool bUpdateEquipmentRatings = true,
         Bool bUpdateAvailableChanges = true,
         Bool bUpdateAvailableActions = true,
@@ -63,18 +62,8 @@ public:
     MAKE_MODULE_RESULT_VARIANT(GetEquippedItems);
 
     // Get individual equipped items by type
-    MAKE_EQUIPPED_ITEM_METHOD(Chest);
-    MAKE_EQUIPPED_ITEM_METHOD(Feet);
-    MAKE_EQUIPPED_ITEM_METHOD(Hands);
-    MAKE_EQUIPPED_ITEM_METHOD(Head);
-    MAKE_EQUIPPED_ITEM_METHOD(Legs);
-    MAKE_EQUIPPED_ITEM_METHOD(Neck);
-    MAKE_EQUIPPED_ITEM_METHOD(LeftFingers);
-    MAKE_EQUIPPED_ITEM_METHOD(RightFingers);
-    MAKE_EQUIPPED_ITEM_METHOD(Weapon1Left);
-    MAKE_EQUIPPED_ITEM_METHOD(Weapon1Right);
-    MAKE_EQUIPPED_ITEM_METHOD(Weapon2Left);
-    MAKE_EQUIPPED_ITEM_METHOD(Weapon2Right);
+    TreeIndex GetEquippedItemByType(const String& sEquipmentType) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(GetEquippedItemByType, const String&);
 
     // Get available actions
     const CharacterActionArray& GetAvailableActions() const;
@@ -102,12 +91,33 @@ public:
     CharacterBattleData& GetBattleDataSegment(const String& sSegment);
     MAKE_MODULE_RESULT_VARIANT_A1(GetBattleDataSegment, const String&);
 
-    // Stat values
-    MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(Bool);
-    MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(Int);
-    MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(Float);
-    MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(String);
-    MAKE_SEGMENTED_STAT_VALUE_ACCESSORS(StringArray);
+    // Get stat values
+    template <class T>
+    Bool GetStatValue(const String& sSegment, const String& sStat, T& varValue) const
+    {
+        const CharacterBasicData& basicData = GetBasicData();
+        const CharacterSkillData& skillData = GetSkillData();
+        const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
+        const CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
+        return (basicData.GetStatValue(sStat, varValue) ||
+                progressData.GetStatValue(sStat, varValue) ||
+                battleData.GetStatValue(sStat, varValue) ||
+                skillData.GetStatValue(sStat, varValue));
+    }
+
+    // Set stat values
+    template <class T>
+    Bool SetStatValue(const String& sSegment, const String& sStat, const T& varValue)
+    {
+        CharacterBasicData& basicData = GetBasicData();
+        CharacterSkillData& skillData = GetSkillData();
+        CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
+        CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
+        return (basicData.SetStatValue(sStat, varValue) ||
+                progressData.SetStatValue(sStat, varValue) ||
+                battleData.SetStatValue(sStat, varValue) ||
+                skillData.SetStatValue(sStat, varValue));
+    }
 
     // Update equipment ratings
     // This pulls equipment and current attack/defense percents and fills
@@ -127,10 +137,6 @@ public:
     // Update available AP
     // This searches the skills for ones that give AP and updates each type
     void UpdateAvailableAP();
-
-    // Update skill rankings
-    // This searches through the skill uses and upgrades ranks if necessary
-    void UpdateSkillRankings();
 
     // Apply passive changes
     // Copy base data into passive data and apply each passive stat change

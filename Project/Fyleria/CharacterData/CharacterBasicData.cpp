@@ -20,16 +20,6 @@ CharacterBasicData::~CharacterBasicData()
 {
 }
 
-void CharacterBasicData::Clear()
-{
-    // Clear character ID
-    SetCharacterID("");
-
-    // Clear stat values
-    RESET_STAT_TYPE_VALUES(CharacterBasicStatType, String);
-    RESET_STAT_TYPE_VALUES(CharacterBasicStatType, Int);
-}
-
 void CharacterBasicData::InitAllStatNames()
 {
     // Initialize stat type names
@@ -49,9 +39,6 @@ Bool CharacterBasicData::operator!=(const CharacterBasicData& other) const
 
 void to_json(Json& jsonData, const CharacterBasicData& obj)
 {
-    // Character ID
-    SET_JSON_DATA(CharacterID);
-
     // Stat values
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBasicStatType, String);
     SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBasicStatType, Int);
@@ -59,9 +46,6 @@ void to_json(Json& jsonData, const CharacterBasicData& obj)
 
 void from_json(const Json& jsonData, CharacterBasicData& obj)
 {
-    // Character ID
-    SET_OBJ_DATA(CharacterID, String, "");
-
     // Stat values
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBasicStatType, String);
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBasicStatType, Int);

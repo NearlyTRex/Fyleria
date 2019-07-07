@@ -83,35 +83,35 @@ void to_json(Json& jsonData, const StatChangeEntry& obj)
 void from_json(const Json& jsonData, StatChangeEntry& obj)
 {
     // Applicable round or attack number
-    SET_OBJ_DATA(Round, Int, 0);
-    SET_OBJ_DATA(Attack, Int, 0);
-    SET_OBJ_DATA(Defend, Int, 0);
+    SET_OBJ_DATA(Round, Int);
+    SET_OBJ_DATA(Attack, Int);
+    SET_OBJ_DATA(Defend, Int);
 
     // Delta amounts
-    SET_OBJ_DATA(DeltaFloat, Float, 0);
-    SET_OBJ_DATA(DeltaInt, Int, 0);
+    SET_OBJ_DATA(DeltaFloat, Float);
+    SET_OBJ_DATA(DeltaInt, Int);
 
     // Full amounts
-    SET_OBJ_DATA(FullPercent, Float, 0);
-    SET_OBJ_DATA(FullFloat, Float, 0);
-    SET_OBJ_DATA(FullInt, Int, 0);
-    SET_OBJ_DATA(FullBool, Bool, false);
-    SET_OBJ_DATA(FullString, String, "");
-    SET_OBJ_DATA(FullFloatArray, FloatArray, FloatArray());
-    SET_OBJ_DATA(FullIntArray, IntArray, IntArray());
-    SET_OBJ_DATA(FullBoolArray, BoolArray, BoolArray());
-    SET_OBJ_DATA(FullStringArray, StringArray, StringArray());
+    SET_OBJ_DATA(FullPercent, Float);
+    SET_OBJ_DATA(FullFloat, Float);
+    SET_OBJ_DATA(FullInt, Int);
+    SET_OBJ_DATA(FullBool, Bool);
+    SET_OBJ_DATA(FullString, String);
+    SET_OBJ_DATA(FullFloatArray, FloatArray);
+    SET_OBJ_DATA(FullIntArray, IntArray);
+    SET_OBJ_DATA(FullBoolArray, BoolArray);
+    SET_OBJ_DATA(FullStringArray, StringArray);
 
     // Operation type (Add, Multiply, etc)
-    SET_OBJ_DATA(OperationType, String, "");
+    SET_OBJ_DATA(OperationType, String);
 
     // Stats to serve as source and destination
-    SET_OBJ_DATA(SourceStatType, String, "");
-    SET_OBJ_DATA(DestinationStatType, String, "");
+    SET_OBJ_DATA(SourceStatType, String);
+    SET_OBJ_DATA(DestinationStatType, String);
 
     // Character IDs for applying
-    SET_OBJ_DATA(SourceCharacterID, String, "");
-    SET_OBJ_DATA(DestinationCharacterIDs, StringArray, StringArray());
+    SET_OBJ_DATA(SourceCharacterID, String);
+    SET_OBJ_DATA(DestinationCharacterIDs, StringArray);
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(StatChangeEntryArray);

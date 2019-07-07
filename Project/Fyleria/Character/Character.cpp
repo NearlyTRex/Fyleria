@@ -129,6 +129,23 @@ CharacterPartyEquippedItemArray Character::GetEquippedItems() const
     return characterPartyMember.GetEquippedItems();
 }
 
+TreeIndex Character::GetEquippedItemByType(const String& sEquipmentType) const
+{
+    auto vEquippedItems = GetEquippedItems();
+    if(vEquippedItems.empty())
+    {
+        return TreeIndex();
+    }
+    for(auto it = vEquippedItems.begin(); it != vEquippedItems.end(); it++)
+    {
+        if(it->GetItemSlot() == sEquipmentType)
+        {
+            return it->GetItemTreeIndex();
+        }
+    }
+    return TreeIndex();
+}
+
 const CharacterActionArray& Character::GetAvailableActions() const
 {
     return GetActionData().GetAvailableActions();
@@ -329,24 +346,24 @@ void to_json(Json& jsonData, const Character& obj)
 void from_json(const Json& jsonData, Character& obj)
 {
     // Segmented progress data
-    SET_OBJ_DATA(ProgressDataBase, CharacterProgressData, CharacterProgressData());
-    SET_OBJ_DATA(ProgressDataPassives, CharacterProgressData, CharacterProgressData());
+    SET_OBJ_DATA(ProgressDataBase, CharacterProgressData);
+    SET_OBJ_DATA(ProgressDataPassives, CharacterProgressData);
 
     // Segmented battle data
-    SET_OBJ_DATA(BattleDataBase, CharacterBattleData, CharacterBattleData());
-    SET_OBJ_DATA(BattleDataPassives, CharacterBattleData, CharacterBattleData());
+    SET_OBJ_DATA(BattleDataBase, CharacterBattleData);
+    SET_OBJ_DATA(BattleDataPassives, CharacterBattleData);
 
     // Basic data
-    SET_OBJ_DATA(BasicData, CharacterBasicData, CharacterBasicData());
+    SET_OBJ_DATA(BasicData, CharacterBasicData);
 
     // Action data
-    SET_OBJ_DATA(ActionData, CharacterActionData, CharacterActionData());
+    SET_OBJ_DATA(ActionData, CharacterActionData);
 
     // Skill data
-    SET_OBJ_DATA(SkillData, CharacterSkillData, CharacterSkillData());
+    SET_OBJ_DATA(SkillData, CharacterSkillData);
 
     // Stat change data
-    SET_OBJ_DATA(StatChangeData, CharacterStatChangeData, CharacterStatChangeData());
+    SET_OBJ_DATA(StatChangeData, CharacterStatChangeData);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Character, Character);

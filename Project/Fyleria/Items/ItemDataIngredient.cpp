@@ -40,7 +40,7 @@ void to_json(Json& jsonData, const ItemDataIngredient& obj)
 void from_json(const Json& jsonData, ItemDataIngredient& obj)
 {
     // Stat changes
-    SET_OBJ_DATA(StatChanges, StatChangeArray, StatChangeArray());
+    SET_OBJ_DATA(StatChanges, StatChangeArray);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataIngredient, ItemDataIngredient);

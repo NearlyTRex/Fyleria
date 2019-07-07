@@ -23,9 +23,6 @@ public:
     // Destructor
     virtual ~CharacterProgressData();
 
-    // Clear all data
-    void Clear();
-
     // Apply damage
     void ApplyTakenDamage(Int iDamage);
 

@@ -47,13 +47,13 @@ void to_json(Json& jsonData, const Recipe& obj)
 void from_json(const Json& jsonData, Recipe& obj)
 {
     // Chance to success
-    SET_OBJ_DATA(ChanceToSucceed, Float, 0);
+    SET_OBJ_DATA(ChanceToSucceed, Float);
 
     // Ingredients
-    SET_OBJ_DATA(Ingredients, RecipeEntryArray, RecipeEntryArray());
+    SET_OBJ_DATA(Ingredients, RecipeEntryArray);
 
     // Results
-    SET_OBJ_DATA(Results, RecipeEntryArray, RecipeEntryArray());
+    SET_OBJ_DATA(Results, RecipeEntryArray);
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(RecipeArray);

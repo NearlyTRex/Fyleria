@@ -33,7 +33,7 @@ void to_json(Json& jsonData, const PolymorphicBase& obj)
 void from_json(const Json& jsonData, PolymorphicBase& obj)
 {
     // Type name
-    SET_OBJ_DATA(TypeName, String, "");
+    SET_OBJ_DATA(TypeName, String);
 }
 
 };

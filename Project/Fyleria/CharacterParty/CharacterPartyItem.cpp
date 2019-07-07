@@ -107,16 +107,16 @@ void to_json(Json& jsonData, const CharacterPartyItem& obj)
 void from_json(const Json& jsonData, CharacterPartyItem& obj)
 {
     // Item tree index
-    SET_OBJ_DATA(ItemTreeIndex, TreeIndex, TreeIndex());
+    SET_OBJ_DATA(ItemTreeIndex, TreeIndex);
 
     // Item amount
-    SET_OBJ_DATA(ItemAmount, UByte, 0);
+    SET_OBJ_DATA(ItemAmount, UByte);
 
     // Number of equips (must be less than or equal to the amount of the item)
-    SET_OBJ_DATA(EquipCount, UByte, 0);
+    SET_OBJ_DATA(EquipCount, UByte);
 
     // Applicable equipment slots
-    SET_OBJ_DATA(ApplicableEquipmentSlots, StringArray, StringArray());
+    SET_OBJ_DATA(ApplicableEquipmentSlots, StringArray);
 }
 
 MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyItem, CharacterPartyItem);
