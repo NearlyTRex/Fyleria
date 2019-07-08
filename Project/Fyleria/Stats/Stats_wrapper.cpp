@@ -7,7 +7,6 @@
 #include "Stats/ProlongedStatChange.h"
 #include "Stats/StatTypeHolder.h"
 #include "Utility/Macros.h"
-#include "Utility/Serializable.h"
 #include "Utility/Python.h"
 
 PYBIND11_EMBEDDED_MODULE(GeckoStats, m)

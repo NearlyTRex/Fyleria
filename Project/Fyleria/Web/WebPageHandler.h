@@ -10,7 +10,6 @@
 #include "Utility/Enum.h"
 #include "Utility/Json.h"
 #include "Utility/Types.h"
-#include "Utility/Serializable.h"
 
 namespace Gecko
 {

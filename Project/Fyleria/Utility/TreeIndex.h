@@ -5,12 +5,13 @@
 #define _GECKO_UTILITY_TREEINDEX_H_
 
 // Internal includes
-#include "Utility/Serializable.h"
+#include "Utility/Types.h"
+#include "Utility/Json.h"
 
 namespace Gecko
 {
 
-class TreeIndex : public SerializableToJson
+class TreeIndex
 {
 public:
 

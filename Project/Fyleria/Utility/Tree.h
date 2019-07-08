@@ -10,6 +10,7 @@
 #include "Utility/Singleton.h"
 #include "Utility/Filesystem.h"
 #include "Utility/TreeIndex.h"
+#include "Utility/Serialization.h"
 
 namespace Gecko
 {

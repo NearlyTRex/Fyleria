@@ -10,22 +10,24 @@
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"
-#include "Utility/PolymorphicBase.h"
 
 namespace Gecko
 {
 
-class CharacterAction : public SerializableToJson
+class CharacterAction
 {
 public:
 
     // Constructors
     CharacterAction();
-    explicit CharacterAction(const Json& jsonData);
-    explicit CharacterAction(const String& jsonString);
+    CharacterAction(const Json& jsonData);
+    CharacterAction(const String& jsonString);
 
     // Destructor
     virtual ~CharacterAction();
+
+    // Clear all data
+    void Clear();
 
     // Get array of character IDs
     StringArray GetAllCharacterIDs() const;

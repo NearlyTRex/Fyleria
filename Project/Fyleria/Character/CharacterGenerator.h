@@ -11,7 +11,6 @@
 #include "CharacterData/CharacterSkillData.h"
 #include "Utility/Macros.h"
 #include "Utility/Json.h"
-#include "Utility/Serializable.h"
 
 namespace Gecko
 {
@@ -22,8 +21,8 @@ public:
 
     // Constructors
     CharacterGenerator();
-    explicit CharacterGenerator(const Json& jsonData);
-    explicit CharacterGenerator(const String& jsonString);
+    CharacterGenerator(const Json& jsonData);
+    CharacterGenerator(const String& jsonString);
 
     // Destructor
     virtual ~CharacterGenerator();

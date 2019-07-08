@@ -10,7 +10,6 @@ namespace Gecko
 {
 
 TreeIndex::TreeIndex()
-    : SerializableToJson()
 {
     SetTree("");
     SetBranch("");
@@ -18,7 +17,6 @@ TreeIndex::TreeIndex()
 }
 
 TreeIndex::TreeIndex(const String& sTree, const String& sBranch, const String& sLeaf)
-    : SerializableToJson()
 {
     SetTree(sTree);
     SetBranch(sBranch);
@@ -26,13 +24,11 @@ TreeIndex::TreeIndex(const String& sTree, const String& sBranch, const String& s
 }
 
 TreeIndex::TreeIndex(const Json& jsonData)
-    : SerializableToJson(jsonData)
 {
     from_json(jsonData, *this);
 }
 
 TreeIndex::TreeIndex(const String& jsonString)
-    : SerializableToJson(JsonParse(jsonString))
 {
     from_json(JsonParse(jsonString), *this);
 }

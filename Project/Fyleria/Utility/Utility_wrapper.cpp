@@ -7,7 +7,6 @@
 #include "Skills/SkillTypes.h"
 #include "Saves/SaveTypes.h"
 #include "Utility/IndexedString.h"
-#include "Utility/Serializable.h"
 #include "Utility/Tree.h"
 #include "Utility/Enum.h"
 #include "Utility/FantasyName.h"
@@ -107,28 +106,8 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
     PyBindMakeImplicitlyConvertible<Gecko::String, Gecko::IndexedString>();
     PyBindMakeImplicitlyConvertible<Gecko::StringArray, Gecko::IndexedStringArray>();
 
-    // Serializable.h
-    PyBindClass<Gecko::SerializableToJson>(m, "SerializableToJson")
-        WRAPPING_ADD_METHOD_SIMPLE(FromJsonString, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_ARGS(ToJsonString, Gecko::SerializableToJson, PyBindArg("iIndent") = -1)
-        WRAPPING_ADD_METHOD_SIMPLE(FromCBOR, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(FromMsgPack, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(ToCBOR, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(ToMsgPack, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(FromFile, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(FromCBORFile, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(FromMsgPackFile, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(ToFile, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(ToCBORFile, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(ToMsgPackFile, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(Reset, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::SerializableToJson)
-        WRAPPING_ADD_METHOD_SIMPLE(IsEmpty, Gecko::SerializableToJson)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(Size, Gecko::SerializableToJson)
-    ;
-
     // TreeIndex.h
-    PyBindClass<Gecko::TreeIndex, Gecko::SerializableToJson>(m, "TreeIndex")
+    PyBindClass<Gecko::TreeIndex>(m, "TreeIndex")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_CONSTRUCTOR_ARGS(const Gecko::String&, const Gecko::String&, const Gecko::String&)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Tree, Gecko::TreeIndex)

@@ -11,22 +11,58 @@ namespace Gecko
 {
 
 CharacterAction::CharacterAction()
-    : SerializableToJson()
 {
 }
 
 CharacterAction::CharacterAction(const Json& jsonData)
-    : SerializableToJson(jsonData)
 {
+    from_json(jsonData, *this);
 }
 
 CharacterAction::CharacterAction(const String& jsonString)
-    : SerializableToJson(JsonParse(jsonString))
 {
+    from_json(JsonParse(jsonString), *this);
 }
 
 CharacterAction::~CharacterAction()
 {
+}
+
+void CharacterAction::Clear()
+{
+    // Run type
+    SetRunType("");
+
+    // Order
+    SetOrder(0);
+
+    // Cost
+    SetCostAP(0);
+    SetCostHP(0);
+    SetCostMP(0);
+    SetCostEP(0);
+
+    // Applicable weapon set
+    SetWeaponSet("");
+
+    // Action entries
+    SetActionEntries({});
+
+    // Previous action types
+    SetPreviousActionTypes({});
+
+    // Skill
+    SetSkillTreeIndex({});
+
+    // Item
+    SetItemTreeIndex({});
+    SetItemAmount(0);
+
+    // Targets
+    SetSourceTargetType("");
+
+    // Characters
+    SetSourceCharacterID("");
 }
 
 StringArray CharacterAction::GetAllCharacterIDs() const

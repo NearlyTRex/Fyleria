@@ -5,7 +5,6 @@
 #include "Recipes/Recipe.h"
 #include "Recipes/RecipeEntry.h"
 #include "Utility/Macros.h"
-#include "Utility/Serializable.h"
 #include "Utility/Python.h"
 
 PYBIND11_EMBEDDED_MODULE(GeckoRecipes, m)
