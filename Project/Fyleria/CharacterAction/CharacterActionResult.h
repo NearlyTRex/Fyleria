@@ -9,39 +9,41 @@
 #include "Utility/Tree.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"
-#include "Utility/Serializable.h"
 
 namespace Gecko
 {
 
-class CharacterActionResult : public SerializableToJson
+class CharacterActionResult
 {
 public:
 
     // Constructors
     CharacterActionResult();
-    explicit CharacterActionResult(const Json& jsonData);
-    explicit CharacterActionResult(const String& jsonString);
+    CharacterActionResult(const Json& jsonData);
+    CharacterActionResult(const String& jsonString);
 
     // Destructor
     virtual ~CharacterActionResult();
 
+    // Clear all data
+    void Clear();
+
     // Final skill damage
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(FinalDamage, Int);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(FinalDamage, Int);
 
     // Whether target successfully defended
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(HasTargetDefendedSuccessfully, Bool);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(HasTargetDefendedSuccessfully, Bool);
 
     // Whether multiple attacks succeeded
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(HaveMultipleAttacksSucceeded, Bool);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(HaveMultipleAttacksSucceeded, Bool);
 
     // Number of attacks to use on target
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(NumAttacksOnTarget, UByte);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(NumAttacksOnTarget, UByte);
 
     // Per attack lists of critical hit info and damage
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalCausedArray, BoolArray);
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackIsCriticalBlockedArray, BoolArray);
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IndividualAttackTargetDamageArray, FloatArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(IndividualAttackIsCriticalCausedArray, BoolArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(IndividualAttackIsCriticalBlockedArray, BoolArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(IndividualAttackTargetDamageArray, FloatArray);
 
     // Comparisons
     Bool operator==(const CharacterActionResult& other) const;
@@ -52,8 +54,8 @@ public:
 MAKE_TYPE_TYPEDEFS(CharacterActionResult);
 
 // JSON Converters
-MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(CharacterActionResult);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterActionResult, CharacterActionResult);
+void to_json(Json& jsonData, const CharacterActionResult& obj);
+void from_json(const Json& jsonData, CharacterActionResult& obj);
 
 };
 

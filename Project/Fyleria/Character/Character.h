@@ -192,7 +192,7 @@ MAKE_TYPE_TYPEDEFS(Character);
 // JSON Converters
 void to_json(Json& jsonData, const Character& obj);
 void from_json(const Json& jsonData, Character& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(Character, Character);
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(CharacterArray);
 
 // Comparisons
 Bool operator==(const Character& a, const Character& b);

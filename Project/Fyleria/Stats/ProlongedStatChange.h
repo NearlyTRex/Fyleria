@@ -7,41 +7,45 @@
 // Internal includes
 #include "Stats/StatChangeEntry.h"
 #include "Utility/Json.h"
-#include "Utility/Serializable.h"
 
 namespace Gecko
 {
 
-// JSON class for prolonged stat changes
-class ProlongedStatChange : public SerializableToJson
+// Prolonged stat changes
+class ProlongedStatChange
 {
 public:
+
     // Constructors
     ProlongedStatChange();
     ProlongedStatChange(const Json& jsonData);
+    ProlongedStatChange(const String& jsonString);
 
     // Destructor
     virtual ~ProlongedStatChange();
 
+    // Clear all data
+    void Clear();
+
     // Relevant stat change
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(StatChangeEntry, StatChangeEntry);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChangeEntry, StatChangeEntry);
 
     // Valid round
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Round, Int);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Round, Int);
 
     // Valid attack
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Attack, Int);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Attack, Int);
 
     // Valid defend
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Defend, Int);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Defend, Int);
 };
 
 // Typedefs
 MAKE_TYPE_TYPEDEFS(ProlongedStatChange);
 
 // JSON Converters
-MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(ProlongedStatChange);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(ProlongedStatChange, ProlongedStatChange);
+void to_json(Json& jsonData, const ProlongedStatChange& obj);
+void from_json(const Json& jsonData, ProlongedStatChange& obj);
 
 };
 

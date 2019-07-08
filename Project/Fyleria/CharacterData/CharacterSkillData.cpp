@@ -85,6 +85,4 @@ void from_json(const Json& jsonData, CharacterSkillData& obj)
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterSkillStatType, Short);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterSkillData, CharacterSkillData);
-
 };

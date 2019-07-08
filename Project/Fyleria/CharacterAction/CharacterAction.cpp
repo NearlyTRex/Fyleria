@@ -196,6 +196,5 @@ void from_json(const Json& jsonData, CharacterAction& obj)
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterActionArray);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterAction, CharacterAction);
 
 };

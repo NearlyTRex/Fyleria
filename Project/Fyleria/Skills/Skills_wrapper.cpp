@@ -39,10 +39,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(TreeType, Gecko::SkillDataAffinity)
     ;
     PyBindVector<Gecko::SkillDataAffinityArray>(m, "SkillDataAffinityArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataAffinityToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataAffinityArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataAffinityFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataAffinityArrayFromJsonString, Gecko);
 
     // SkillDataAlchemy.h
     PyBindClass<Gecko::SkillDataAlchemy, Gecko::SkillData>(m, "SkillDataAlchemy")
@@ -52,10 +48,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(Recipes, Gecko::SkillDataAlchemy)
     ;
     PyBindVector<Gecko::SkillDataAlchemyArray>(m, "SkillDataAlchemyArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataAlchemyToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataAlchemyArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataAlchemyFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataAlchemyArrayFromJsonString, Gecko);
 
     // SkillDataBreakdown.h
     PyBindClass<Gecko::SkillDataBreakdown, Gecko::SkillData>(m, "SkillDataBreakdown")
@@ -65,10 +57,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(Recipes, Gecko::SkillDataBreakdown)
     ;
     PyBindVector<Gecko::SkillDataBreakdownArray>(m, "SkillDataBreakdownArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataBreakdownToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataBreakdownArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataBreakdownFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataBreakdownArrayFromJsonString, Gecko);
 
     // SkillDataCombat.h
     PyBindClass<Gecko::SkillDataCombat, Gecko::SkillData>(m, "SkillDataCombat")
@@ -78,10 +66,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
         WRAPPING_ADD_METHOD_SIMPLE(CreateCombatActions, Gecko::SkillDataCombat)
     ;
     PyBindVector<Gecko::SkillDataCombatArray>(m, "SkillDataCombatArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataCombatToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataCombatArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataCombatFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataCombatArrayFromJsonString, Gecko);
 
     // SkillDataCrafting.h
     PyBindClass<Gecko::SkillDataCrafting, Gecko::SkillData>(m, "SkillDataCrafting")
@@ -91,10 +75,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(Recipes, Gecko::SkillDataCrafting)
     ;
     PyBindVector<Gecko::SkillDataCraftingArray>(m, "SkillDataCraftingArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataCraftingToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataCraftingArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataCraftingFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataCraftingArrayFromJsonString, Gecko);
 
     // SkillDataWeapon.h
     PyBindClass<Gecko::SkillDataWeapon, Gecko::SkillData>(m, "SkillDataWeapon")
@@ -106,10 +86,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(ActionPoints, Gecko::SkillDataWeapon)
     ;
     PyBindVector<Gecko::SkillDataWeaponArray>(m, "SkillDataWeaponArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataWeaponToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSkillDataWeaponArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataWeaponFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSkillDataWeaponArrayFromJsonString, Gecko);
 
     // SkillTree.h
     PyBindClass<Gecko::SkillTree>(m, "SkillTree")

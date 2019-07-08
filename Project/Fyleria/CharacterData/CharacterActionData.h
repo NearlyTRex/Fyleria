@@ -45,7 +45,6 @@ MAKE_TYPE_TYPEDEFS(CharacterActionData);
 // JSON Converters
 void to_json(Json& jsonData, const CharacterActionData& obj);
 void from_json(const Json& jsonData, CharacterActionData& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterActionData, CharacterActionData);
 
 };
 

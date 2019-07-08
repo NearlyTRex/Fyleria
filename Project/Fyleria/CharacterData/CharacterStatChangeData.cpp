@@ -148,9 +148,9 @@ StatChangeEntryArray CharacterStatChangeData::GetProlongedStatChangeEntries(Int 
         const ProlongedStatChange& change = it->second;
         const StatChangeEntry& entry = change.GetStatChangeEntry();
         if(
-            (change.IsValidRound() && change.GetRound() == iRound) ||
-            (change.IsValidAttack() && change.GetAttack() == iAttack) ||
-            (change.IsValidDefend() && change.GetDefend() == iDefend))
+            (change.GetRound() >= 0 && change.GetRound() == iRound) ||
+            (change.GetAttack() >= 0 && change.GetAttack() == iAttack) ||
+            (change.GetDefend() >= 0 && change.GetDefend() == iDefend))
         {
             vEntries.push_back(entry);
         }
@@ -167,9 +167,9 @@ Bool CharacterStatChangeData::HasProlongedStatChangeExpired(const String& sKey, 
 {
     const ProlongedStatChange& change = GetProlongedStatChange(sKey);
     return (
-        (change.IsValidRound() && change.GetRound() < iRound) ||
-        (change.IsValidAttack() && change.GetAttack() < iAttack) ||
-        (change.IsValidDefend() && change.GetDefend() < iDefend)
+        (change.GetRound() >= 0 && change.GetRound() < iRound) ||
+        (change.GetAttack() >= 0 && change.GetAttack() < iAttack) ||
+        (change.GetDefend() >= 0 && change.GetDefend() < iDefend)
     );
 }
 
@@ -241,7 +241,5 @@ void from_json(const Json& jsonData, CharacterStatChangeData& obj)
     SET_OBJ_DATA(ActionableSkillDataArray, TreeIndexArray);
     SET_OBJ_DATA(ActionableItemDataArray, TreeIndexArray);
 }
-
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterStatChangeData, CharacterStatChangeData);
 
 };

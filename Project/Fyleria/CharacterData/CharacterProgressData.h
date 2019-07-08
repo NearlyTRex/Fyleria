@@ -110,7 +110,6 @@ MAKE_TYPE_TYPEDEFS(CharacterProgressData);
 // JSON Converters
 void to_json(Json& jsonData, const CharacterProgressData& obj);
 void from_json(const Json& jsonData, CharacterProgressData& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterProgressData, CharacterProgressData);
 
 };
 

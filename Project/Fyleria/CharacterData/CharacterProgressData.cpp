@@ -182,6 +182,4 @@ void from_json(const Json& jsonData, CharacterProgressData& obj)
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterProgressStatType, Int);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterProgressData, CharacterProgressData);
-
 };

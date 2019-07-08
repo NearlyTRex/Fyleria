@@ -9,49 +9,47 @@
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
-#include "Utility/Serializable.h"
 
 namespace Gecko
 {
 
-class Save : public SerializableToJson
+class Save
 {
 public:
 
     // Constructors
     Save();
-    explicit Save(const Json& jsonData);
-    explicit Save(const String& jsonString);
+    Save(const Json& jsonData);
+    Save(const String& jsonString);
 
     // Destructor
     virtual ~Save();
 
     // Clear all data
-    virtual void Clear() override;
+    void Clear();
 
     // Slot
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Slot, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Slot, String);
 
     // Time
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Time, ULong);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(Time, ULong);
 
     // Description
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Description, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Description, String);
 
     // Party
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Parties, CharacterPartyArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Parties, CharacterPartyArray);
 
     // Characters
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Characters, CharacterArray);
-
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Characters, CharacterArray);
 };
 
 // Typedef
 MAKE_TYPE_TYPEDEFS(Save);
 
 // JSON Converters
-MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(Save);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(Save, Save);
+void to_json(Json& jsonData, const Save& obj);
+void from_json(const Json& jsonData, Save& obj);
 
 };
 

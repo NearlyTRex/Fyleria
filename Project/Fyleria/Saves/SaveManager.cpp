@@ -14,11 +14,12 @@ SaveManager::SaveManager()
 {
 }
 
-void SaveManager::LoadSave(const String& sSlot, const Save& save)
+void SaveManager::LoadSave(const Save& save)
 {
     // Load a save
+    const String& sSlot = save.GetSlot();
+    ASSERT_ERROR(IsValidSaveSlot(sSlot), "Save slot '%s' was not valid", sSlot.c_str());
     GetSaves().insert({sSlot, save});
-    GetSaves().at(sSlot).SetSlot(sSlot);
 }
 
 void SaveManager::CreateSave(const String& sSlot)
@@ -88,6 +89,12 @@ Bool SaveManager::IsSaveCapacityReached() const
     return vAvailableSlots.empty();
 }
 
+Bool SaveManager::IsValidSaveSlot(const String& sSlot) const
+{
+    // Check save slot validity
+    return IsValidEnumString<SaveSlotType>(sSlot);
+}
+
 const Save& SaveManager::GetSave(const String& sSlot) const
 {
     // Get save
@@ -146,7 +153,7 @@ void SaveManager::CollectSaveData(const String& sSlot, const StringArray& vParty
     newSave.SetDescription(sDescription);
 
     // Load save into manager, potentially overwriting an existing save
-    LoadSave(sSlot, newSave);
+    LoadSave(newSave);
 }
 
 void SaveManager::DisperseSaveData(const String& sSlot)
@@ -170,49 +177,18 @@ void SaveManager::DisperseSaveData(const String& sSlot)
 void SaveManager::SaveToFile(const String& sSlot, const String& sFile, const String& sType)
 {
     // Save to file based on the file type
-    Bool bSuccess = false;
-    const FileType eFileType = GetEnumFromString<FileType>(sType);
-    switch(eFileType)
-    {
-        case FileType::TextJson:
-            bSuccess = GetSave(sSlot).ToFile(sFile);
-            ASSERT_ERROR(bSuccess, "Saving to Json file '%s' failed", sFile.c_str());
-            break;
-        case FileType::BinaryCBOR:
-            bSuccess = GetSave(sSlot).ToCBORFile(sFile);
-            ASSERT_ERROR(bSuccess, "Saving to CBOR file '%s' failed", sFile.c_str());
-            break;
-        case FileType::BinaryMsgPack:
-            bSuccess = GetSave(sSlot).ToMsgPackFile(sFile);
-            ASSERT_ERROR(bSuccess, "Saving to MsgPack file '%s' failed", sFile.c_str());
-            break;
-        default:
-            break;
-    }
+    Json jsonData = GetSave(sSlot);
+    Bool bSuccess = WriteSerializedFile(sFile, sType, jsonData);
+    ASSERT_ERROR(bSuccess, "Writing save '%s' to file '%s' as type '%s' failed", sSlot.c_str(), sFile.c_str(), sType.c_str());
 }
 
 void SaveManager::LoadFromFile(const String& sSlot, const String& sFile, const String& sType)
 {
     // Load from file based on the file type
-    Bool bSuccess = false;
-    const FileType eFileType = GetEnumFromString<FileType>(sType);
-    switch(eFileType)
-    {
-        case FileType::TextJson:
-            bSuccess = GetSave(sSlot).FromFile(sFile);
-            ASSERT_ERROR(bSuccess, "Loading from Json file '%s' failed", sFile.c_str());
-            break;
-        case FileType::BinaryCBOR:
-            bSuccess = GetSave(sSlot).FromCBORFile(sFile);
-            ASSERT_ERROR(bSuccess, "Loading from CBOR file '%s' failed", sFile.c_str());
-            break;
-        case FileType::BinaryMsgPack:
-            bSuccess = GetSave(sSlot).FromMsgPackFile(sFile);
-            ASSERT_ERROR(bSuccess, "Loading from MsgPack file '%s' failed", sFile.c_str());
-            break;
-        default:
-            break;
-    }
+    Json jsonData;
+    Bool bSuccess = ReadSerializedFile(sFile, sType, jsonData);
+    ASSERT_ERROR(bSuccess, "Loading save '%s' from file '%s' as type '%s' failed", sSlot.c_str(), sFile.c_str(), sType.c_str());
+    LoadSave(jsonData.get<Save>());
 }
 
 void SaveManager::SaveAllToDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType)

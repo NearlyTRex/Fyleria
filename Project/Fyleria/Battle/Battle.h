@@ -102,7 +102,6 @@ MAKE_TYPE_TYPEDEFS(Battle);
 // JSON Converters
 void to_json(Json& jsonData, const Battle& obj);
 void from_json(const Json& jsonData, Battle& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(Battle, Battle);
 
 };
 

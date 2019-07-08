@@ -433,6 +433,4 @@ void from_json(const Json& jsonData, CharacterBattleData& obj)
     SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Float);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterBattleData, CharacterBattleData);
-
 };

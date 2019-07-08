@@ -13,18 +13,15 @@
 PYBIND11_EMBEDDED_MODULE(GeckoStats, m)
 {
     // ProlongedStatChange.h
-    PyBindClass<Gecko::ProlongedStatChange, Gecko::SerializableToJson>(m, "ProlongedStatChange")
+    PyBindClass<Gecko::ProlongedStatChange>(m, "ProlongedStatChange")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(StatChangeEntry, Gecko::ProlongedStatChange)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Round, Gecko::ProlongedStatChange)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Attack, Gecko::ProlongedStatChange)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Defend, Gecko::ProlongedStatChange)
+        WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::ProlongedStatChange)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(StatChangeEntry, Gecko::ProlongedStatChange)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Round, Gecko::ProlongedStatChange)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Attack, Gecko::ProlongedStatChange)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Defend, Gecko::ProlongedStatChange)
     ;
     PyBindVector<Gecko::ProlongedStatChangeArray>(m, "ProlongedStatChangeArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertProlongedStatChangeToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertProlongedStatChangeArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetProlongedStatChangeFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetProlongedStatChangeArrayFromJsonString, Gecko);
 
     // StatChange.h
     PyBindClass<Gecko::StatChange>(m, "StatChange")
@@ -69,10 +66,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoStats, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(StatChangeEntries, Gecko::StatChange)
     ;
     PyBindVector<Gecko::StatChangeArray>(m, "StatChangeArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertStatChangeToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertStatChangeArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetStatChangeFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetStatChangeArrayFromJsonString, Gecko);
 
     // StatChangeEntry.h
     PyBindClass<Gecko::StatChangeEntry>(m, "StatChangeEntry")
@@ -96,10 +89,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoStats, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(DestinationStatType, Gecko::StatChangeEntry)
     ;
     PyBindVector<Gecko::StatChangeEntryArray>(m, "StatChangeEntryArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertStatChangeEntryToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertStatChangeEntryArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetStatChangeEntryFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetStatChangeEntryArrayFromJsonString, Gecko);
 
     // StatChange.h
     WRAPPING_STANDALONE_METHOD_POLICY(GetStatChangesFromTreeIndex, Gecko, PyBindReturnCopy);

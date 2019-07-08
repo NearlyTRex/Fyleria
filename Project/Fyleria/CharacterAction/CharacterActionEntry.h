@@ -8,12 +8,11 @@
 #include "CharacterAction/CharacterActionResult.h"
 #include "Utility/Macros.h"
 #include "Utility/Json.h"
-#include "Utility/Serializable.h"
 
 namespace Gecko
 {
 
-class CharacterActionEntry : public SerializableToJson
+class CharacterActionEntry
 {
 public:
 
@@ -22,32 +21,35 @@ public:
 
     // Constructors
     CharacterActionEntry();
-    explicit CharacterActionEntry(const Json& jsonData);
-    explicit CharacterActionEntry(const String& jsonString);
+    CharacterActionEntry(const Json& jsonData);
+    CharacterActionEntry(const String& jsonString);
 
     // Destructor
     virtual ~CharacterActionEntry();
+
+    // Clear all data
+    void Clear();
 
     // Determine if action type is a match
     Bool DoesMatchActionType(const String& sType) const;
 
     // Action types
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(ActionTypes, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionTypes, StringArray);
 
     // Hand
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(HandType, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(HandType, String);
 
     // Whether hand is using a shield
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(IsHandTypeShield, Bool);
+    MAKE_RAW_BASIC_TYPE_ACCESSORS(IsHandTypeShield, Bool);
 
     // Target
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(DestinationTargetType, String);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationTargetType, String);
 
     // Character
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(DestinationCharacterIDs, StringArray);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationCharacterIDs, StringArray);
 
     // Result
-    MAKE_JSON_BASIC_TYPE_ACCESSORS(Results, CharacterActionResultMapType);
+    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Results, CharacterActionResultMapType);
 
     // Comparisons
     Bool operator==(const CharacterActionEntry& other) const;
@@ -58,9 +60,10 @@ public:
 MAKE_TYPE_TYPEDEFS(CharacterActionEntry);
 
 // JSON Converters
-MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(CharacterActionEntry);
+void to_json(Json& jsonData, const CharacterActionEntry& obj);
+void from_json(const Json& jsonData, CharacterActionEntry& obj);
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(CharacterActionEntryArray);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterActionEntry, CharacterActionEntry);
+MAKE_JSON_MAP_TYPE_CONVERTERS_DECL(CharacterActionEntry::CharacterActionResultMapType);
 
 };
 

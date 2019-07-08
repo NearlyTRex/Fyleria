@@ -67,10 +67,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoBattle, m)
         WRAPPING_ADD_METHOD_SIMPLE(AreAllActionsFinished_StoreResult, Gecko::Battle)
     ;
     PyBindVector<Gecko::BattleArray>(m, "BattleArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertBattleToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertBattleArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetBattleFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetBattleArrayFromJsonString, Gecko);
 
     // BattleEvents.h
     WRAPPING_STANDALONE_METHOD_SIMPLE(HandleBattleStarted, Gecko);

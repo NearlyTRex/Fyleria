@@ -106,6 +106,5 @@ void from_json(const Json& jsonData, TreeIndex& obj)
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(TreeIndexArray);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(TreeIndex, TreeIndex);
 
 };

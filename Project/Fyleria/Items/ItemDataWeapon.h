@@ -50,7 +50,6 @@ MAKE_TYPE_TYPEDEFS(ItemDataWeapon);
 // JSON Converters
 void to_json(Json& jsonData, const ItemDataWeapon& obj);
 void from_json(const Json& jsonData, ItemDataWeapon& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(ItemDataWeapon, ItemDataWeapon);
 
 };
 

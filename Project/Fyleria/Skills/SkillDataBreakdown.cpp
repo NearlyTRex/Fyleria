@@ -43,6 +43,4 @@ void from_json(const Json& jsonData, SkillDataBreakdown& obj)
     SET_OBJ_DATA(Recipes, RecipeArray);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(SkillDataBreakdown, SkillDataBreakdown);
-
 };

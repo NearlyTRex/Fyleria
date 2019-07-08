@@ -19,10 +19,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoRecipes, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Results, Gecko::Recipe)
     ;
     PyBindVector<Gecko::RecipeArray>(m, "RecipeArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertRecipeToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertRecipeArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetRecipeFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetRecipeArrayFromJsonString, Gecko);
 
     // RecipeEntry.h
     PyBindClass<Gecko::RecipeEntry>(m, "RecipeEntry")
@@ -41,8 +37,4 @@ PYBIND11_EMBEDDED_MODULE(GeckoRecipes, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(OutputAmount, Gecko::RecipeEntry)
     ;
     PyBindVector<Gecko::RecipeEntryArray>(m, "RecipeEntryArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertRecipeEntryToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertRecipeEntryArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetRecipeEntryFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetRecipeEntryArrayFromJsonString, Gecko);
 }

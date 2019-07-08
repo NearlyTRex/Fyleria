@@ -279,6 +279,4 @@ void from_json(const Json& jsonData, CharacterPartyMember& obj)
     SET_OBJ_DATA(EquippedItems, CharacterPartyEquippedItemArray);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterPartyMember, CharacterPartyMember);
-
 };

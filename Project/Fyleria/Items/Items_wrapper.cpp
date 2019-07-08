@@ -33,10 +33,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoItems, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(StatChanges, Gecko::ItemDataArmor)
     ;
     PyBindVector<Gecko::ItemDataArmorArray>(m, "ItemDataArmorArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertItemDataArmorToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertItemDataArmorArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemDataArmorFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemDataArmorArrayFromJsonString, Gecko);
 
     // ItemDataIngredient.h
     PyBindClass<Gecko::ItemDataIngredient, Gecko::ItemData>(m, "ItemDataIngredient")
@@ -46,10 +42,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoItems, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(StatChanges, Gecko::ItemDataIngredient)
     ;
     PyBindVector<Gecko::ItemDataIngredientArray>(m, "ItemDataIngredientArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertItemDataIngredientToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertItemDataIngredientArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemDataIngredientFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemDataIngredientArrayFromJsonString, Gecko);
 
     // ItemDataPotion.h
     PyBindClass<Gecko::ItemDataPotion, Gecko::ItemData>(m, "ItemDataPotion")
@@ -59,10 +51,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoItems, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(StatChanges, Gecko::ItemDataPotion)
     ;
     PyBindVector<Gecko::ItemDataPotionArray>(m, "ItemDataPotionArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertItemDataPotionToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertItemDataPotionArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemDataPotionFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemDataPotionArrayFromJsonString, Gecko);
 
     // ItemDataWeapon.h
     PyBindClass<Gecko::ItemDataWeapon, Gecko::ItemData>(m, "ItemDataWeapon")
@@ -75,10 +63,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoItems, m)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(StatChanges, Gecko::ItemDataWeapon)
     ;
     PyBindVector<Gecko::ItemDataWeaponArray>(m, "ItemDataWeaponArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertItemDataWeaponToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertItemDataWeaponArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemDataWeaponFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetItemDataWeaponArrayFromJsonString, Gecko);
 
     // ItemTree.h
     PyBindClass<Gecko::ItemTree>(m, "ItemTree")

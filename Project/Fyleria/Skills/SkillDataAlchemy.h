@@ -42,7 +42,6 @@ MAKE_TYPE_TYPEDEFS(SkillDataAlchemy);
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataAlchemy& obj);
 void from_json(const Json& jsonData, SkillDataAlchemy& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(SkillDataAlchemy, SkillDataAlchemy);
 
 };
 

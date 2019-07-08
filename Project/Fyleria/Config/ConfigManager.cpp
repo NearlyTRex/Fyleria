@@ -7,6 +7,7 @@
 #include "Utility/Errors.h"
 #include "Utility/Converters.h"
 #include "Utility/Filesystem.h"
+#include "Utility/Serialization.h"
 
 namespace Gecko
 {

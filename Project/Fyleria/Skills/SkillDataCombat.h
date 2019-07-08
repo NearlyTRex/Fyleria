@@ -41,7 +41,6 @@ MAKE_TYPE_TYPEDEFS(SkillDataCombat);
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataCombat& obj);
 void from_json(const Json& jsonData, SkillDataCombat& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(SkillDataCombat, SkillDataCombat);
 
 };
 

@@ -841,8 +841,8 @@ void from_json(const Json& jsonData, CharacterParty& obj)
     SET_OBJ_DATA(PlayTime, ULongLong);
 }
 
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterPartyArray);
 MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(CharacterParty::CharacterPartyMemberMapType);
 MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(CharacterParty::CharacterPartyItemMapType);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterParty, CharacterParty);
 
 };

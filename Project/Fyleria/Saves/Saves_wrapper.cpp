@@ -11,7 +11,7 @@
 namespace Gecko
 {
     // Manager lambdas
-    auto fnLoadSave = MAKE_MANAGER_VOID_LAMBDA_A2(SaveManager, LoadSave, const String&, const Save&);
+    auto fnLoadSave = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, LoadSave, const Save&);
     auto fnCreateSave = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, CreateSave, const String&);
     auto fnUnloadSave = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, UnloadSave, const String&);
     auto fnUnloadAllSaves = MAKE_MANAGER_VOID_LAMBDA(SaveManager, UnloadAllSaves);
@@ -25,6 +25,8 @@ namespace Gecko
     auto fnGetAllSaveDescriptions_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, GetAllSaveDescriptions_StoreResult, const String&);
     auto fnIsSaveCapacityReached = MAKE_MANAGER_RETURN_LAMBDA(SaveManager, IsSaveCapacityReached, Bool);
     auto fnIsSaveCapacityReached_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A1(SaveManager, IsSaveCapacityReached_StoreResult, const String&);
+    auto fnIsValidSaveSlot = MAKE_MANAGER_RETURN_LAMBDA_A1(SaveManager, IsValidSaveSlot, Bool, const String&);
+    auto fnIsValidSaveSlot_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(SaveManager, IsValidSaveSlot_StoreResult, const String&, const String&);
     auto fnGetSave1 = MAKE_MANAGER_RETURN_LAMBDA_A1(SaveManager, GetSave, const Save&, const String&);
     auto fnGetSave2 = MAKE_MANAGER_RETURN_LAMBDA_A1(SaveManager, GetSave, Save&, const String&);
     auto fnGetSave_StoreResult = MAKE_MANAGER_VOID_LAMBDA_A2(SaveManager, GetSave_StoreResult, const String&, const String&);
@@ -44,20 +46,16 @@ namespace Gecko
 PYBIND11_EMBEDDED_MODULE(GeckoSaves, m)
 {
     // Save.h
-    PyBindClass<Gecko::Save, Gecko::SerializableToJson>(m, "Save")
+    PyBindClass<Gecko::Save>(m, "Save")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_CONSTRUCTOR_ARGS(const Gecko::String&)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Slot, Gecko::Save)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Time, Gecko::Save)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Description, Gecko::Save)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Parties, Gecko::Save)
-        WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Characters, Gecko::Save)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Slot, Gecko::Save)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Time, Gecko::Save)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Description, Gecko::Save)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Parties, Gecko::Save)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Characters, Gecko::Save)
     ;
     PyBindVector<Gecko::SaveArray>(m, "SaveArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSaveToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertSaveArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSaveFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetSaveArrayFromJsonString, Gecko);
 
     // SaveManager.h
     WRAPPING_STANDALONE_LAMBDA(LoadSave, Gecko::fnLoadSave);
@@ -74,6 +72,8 @@ PYBIND11_EMBEDDED_MODULE(GeckoSaves, m)
     WRAPPING_STANDALONE_LAMBDA(GetAllSaveDescriptions_StoreResult, Gecko::fnGetAllSaveDescriptions_StoreResult);
     WRAPPING_STANDALONE_LAMBDA(IsSaveCapacityReached, Gecko::fnIsSaveCapacityReached);
     WRAPPING_STANDALONE_LAMBDA(IsSaveCapacityReached_StoreResult, Gecko::fnIsSaveCapacityReached_StoreResult);
+    WRAPPING_STANDALONE_LAMBDA(IsValidSaveSlot, Gecko::fnIsValidSaveSlot);
+    WRAPPING_STANDALONE_LAMBDA(IsValidSaveSlot_StoreResult, Gecko::fnIsValidSaveSlot_StoreResult);
     WRAPPING_STANDALONE_LAMBDA_POLICY(GetSave, Gecko::fnGetSave1, PyBindReturnCopy);
     WRAPPING_STANDALONE_LAMBDA_POLICY(GetSave, Gecko::fnGetSave2, PyBindReturnRefInternal);
     WRAPPING_STANDALONE_LAMBDA(GetSave_StoreResult, Gecko::fnGetSave_StoreResult);

@@ -113,10 +113,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(MagicDEFEnd, Gecko::CharacterGenerator)
     ;
     PyBindVector<Gecko::CharacterGeneratorArray>(m, "CharacterGeneratorArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterGeneratorToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterGeneratorArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterGeneratorFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterGeneratorArrayFromJsonString, Gecko);
 
     // Character.h
     PyBindClass<Gecko::Character>(m, "Character")
@@ -168,10 +164,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
         WRAPPING_ADD_METHOD_SIMPLE(GetStatChangeData_StoreResult, Gecko::Character)
     ;
     PyBindVector<Gecko::CharacterArray>(m, "CharacterArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterArrayFromJsonString, Gecko);
 
     // CharacterManager.h
     WRAPPING_STANDALONE_LAMBDA(LoadCharacter, Gecko::fnLoadCharacter);

@@ -366,7 +366,7 @@ void from_json(const Json& jsonData, Character& obj)
     SET_OBJ_DATA(StatChangeData, CharacterStatChangeData);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Character, Character);
+MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterArray);
 
 Bool operator==(const Character& a, const Character& b)
 {

@@ -562,7 +562,6 @@ void from_json(const Json& jsonData, StatChange& obj)
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(StatChangeArray);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChange, StatChange);
 
 const StatChangeArray& GetStatChangesFromTreeIndex(const String& sTreeIndexType, const TreeIndex& treeIndex)
 {

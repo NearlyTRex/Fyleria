@@ -271,7 +271,6 @@ MAKE_TYPE_TYPEDEFS(CharacterGenerator);
 // JSON Converters
 void to_json(Json& jsonData, const CharacterGenerator& obj);
 void from_json(const Json& jsonData, CharacterGenerator& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterGenerator, CharacterGenerator);
 
 };
 

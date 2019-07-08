@@ -115,6 +115,5 @@ void from_json(const Json& jsonData, StatChangeEntry& obj)
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(StatChangeEntryArray);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(StatChangeEntry, StatChangeEntry);
 
 };

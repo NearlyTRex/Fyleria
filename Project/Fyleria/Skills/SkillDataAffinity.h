@@ -38,7 +38,6 @@ MAKE_TYPE_TYPEDEFS(SkillDataAffinity);
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataAffinity& obj);
 void from_json(const Json& jsonData, SkillDataAffinity& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(SkillDataAffinity, SkillDataAffinity);
 
 };
 

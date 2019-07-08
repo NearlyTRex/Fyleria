@@ -25,10 +25,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(IndividualAttackTargetDamageArray, Gecko::CharacterActionResult)
     ;
     PyBindVector<Gecko::CharacterActionResultArray>(m, "CharacterActionResultArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionResultToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionResultArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionResultFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionResultArrayFromJsonString, Gecko);
 
     // CharacterActionEntry.h
     PyBindClass<Gecko::CharacterActionEntry>(m, "CharacterActionEntry")
@@ -41,10 +37,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(Results, Gecko::CharacterActionEntry)
     ;
     PyBindVector<Gecko::CharacterActionEntryArray>(m, "CharacterActionEntryArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionEntryToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionEntryArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionEntryFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionEntryArrayFromJsonString, Gecko);
 
     // CharacterAction.h
     PyBindClass<Gecko::CharacterAction>(m, "CharacterAction")
@@ -73,8 +65,4 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterAction, m)
         WRAPPING_ADD_METHOD_SIMPLE(PrepareCharacterIDs_StoreResult, Gecko::CharacterAction)
     ;
     PyBindVector<Gecko::CharacterActionArray>(m, "CharacterActionArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionArrayFromJsonString, Gecko);
 }

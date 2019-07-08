@@ -6,29 +6,6 @@
 
 //=====================================================================================
 
-#define CALL_MEMBER_FN_PTR(object, ptrToMember)     ((object).*(ptrToMember))
-#define CALL_SELF_MEMBER_FN_PTR(ptrToMember)        ((*this).*(ptrToMember))
-
-//=====================================================================================
-
-#define MAKE_CURRENT_CONFIG_SHORTCUT_STRING(name)                                   \
-String Get##name() const                                                            \
-{                                                                                   \
-    String sBasePath = GetUserConfigFolder();                                       \
-    String sFuncPath = GetCurrentConfig().Get##name();                              \
-    return GetCanonicalPath(JoinPaths(sBasePath, sFuncPath));                       \
-}
-
-#define MAKE_CURRENT_DATA_SHORTCUT_STRING(name)                                     \
-String Get##name() const                                                            \
-{                                                                                   \
-    String sBasePath = GetUserDataFolder();                                         \
-    String sFuncPath = GetCurrentConfig().Get##name();                              \
-    return GetCanonicalPath(JoinPaths(sBasePath, sFuncPath));                       \
-}
-
-//=====================================================================================
-
 #define CREATE_JAVASCRIPT_CLASS_CALLBACK(type, method)                              \
 STDBindFunc(&type::method, this, STDPlaceholder1)
 
@@ -50,17 +27,6 @@ STDBindFunc(&type::method, this, STDPlaceholder1)
         obj.Set##name({});                                                          \
     }                                                                               \
 }
-
-//=====================================================================================
-
-#define MAKE_TYPE_TYPEDEFS(type)                                                    \
-typedef type* type##Ptr;                                                            \
-typedef STDSharedPtr<type> type##SharedPtr;                                         \
-typedef STDReferenceWrapper<type> type##Ref;                                        \
-typedef STDVector<type> type##Array;                                                \
-typedef STDVector<type##Ptr> type##PtrArray;                                        \
-typedef STDVector<type##Ref> type##RefArray;                                        \
-typedef STDVector<type##SharedPtr> type##SharedPtrArray
 
 //=====================================================================================
 
@@ -142,33 +108,16 @@ void from_json(const Json& tJsonData, type& tObj)                               
     }                                                                               \
 }
 
-#define MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(name, type)                          \
-String Convert##name##ToJsonString(const type& obj);                                \
-String Convert##name##ArrayToJsonString(const STDVector<type>& vObjs);              \
-type Get##name##FromJsonString(const String& jsonString);                           \
-STDVector<type> Get##name##ArrayFromJsonString(const String& jsonString);
+//=====================================================================================
 
-#define MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(name, type)                          \
-String Convert##name##ToJsonString(const type& obj)                                 \
-{                                                                                   \
-    Json jsonData(obj);                                                             \
-    return jsonData.dump();                                                         \
-}                                                                                   \
-String Convert##name##ArrayToJsonString(const STDVector<type>& vObjs)               \
-{                                                                                   \
-    Json jsonData(vObjs);                                                           \
-    return jsonData.dump();                                                         \
-}                                                                                   \
-type Get##name##FromJsonString(const String& jsonString)                            \
-{                                                                                   \
-    Json jsonData(JsonParse(jsonString));                                           \
-    return jsonData.get<type>();                                                    \
-}                                                                                   \
-STDVector<type> Get##name##ArrayFromJsonString(const String& jsonString)            \
-{                                                                                   \
-    Json jsonData(JsonParse(jsonString));                                           \
-    return jsonData.get<STDVector<type>>();                                         \
-}
+#define MAKE_TYPE_TYPEDEFS(type)                                                    \
+typedef type* type##Ptr;                                                            \
+typedef STDSharedPtr<type> type##SharedPtr;                                         \
+typedef STDReferenceWrapper<type> type##Ref;                                        \
+typedef STDVector<type> type##Array;                                                \
+typedef STDVector<type##Ptr> type##PtrArray;                                        \
+typedef STDVector<type##Ref> type##RefArray;                                        \
+typedef STDVector<type##SharedPtr> type##SharedPtrArray
 
 //=====================================================================================
 
@@ -191,20 +140,6 @@ type Get##name() const { return m_var##name; }
 type m_var##name {};                                                                \
 const type& Get##name() const { return m_var##name; }                               \
 type& Get##name() { return m_var##name; }
-
-//=====================================================================================
-
-#define MAKE_JSON_BASIC_TYPE_ACCESSORS(name, type)                                  \
-Bool IsValid##name() const { return m_Data.find(#name) != m_Data.end(); }           \
-type Get##name() const                                                              \
-{                                                                                   \
-    if(m_Data.find(#name) != m_Data.end())                                          \
-    {                                                                               \
-        return m_Data[#name].get<type>();                                           \
-    }                                                                               \
-    return type();                                                                  \
-}                                                                                   \
-void Set##name(const type& varValue) { m_Data[#name] = varValue; }
 
 //=====================================================================================
 
@@ -276,6 +211,42 @@ void Set##name(const type& var##name)                                           
 
 //=====================================================================================
 
+#define MAKE_DEFAULT_HTML_OPTION_LIST_STRING(type)                                                  \
+String sOptionList_##type;                                                                          \
+{                                                                                                   \
+    for(auto& sTypeName : GetEnumNames<type>())                                                     \
+    {                                                                                               \
+        if(IsNoneTypeForEnum<type>(sTypeName))                                                      \
+        {                                                                                           \
+            continue;                                                                               \
+        }                                                                                           \
+        sOptionList_##type += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>";     \
+    }                                                                                               \
+}
+
+#define MAKE_SELECTED_HTML_OPTION_LIST_STRING(prefix, type, selection)                              \
+String s##prefix##_##type;                                                                          \
+{                                                                                                   \
+    for(auto& sTypeName : GetEnumNames<type>())                                                     \
+    {                                                                                               \
+        if(IsNoneTypeForEnum<type>(sTypeName))                                                      \
+        {                                                                                           \
+            continue;                                                                               \
+        }                                                                                           \
+        if(sTypeName == selection)                                                                  \
+        {                                                                                           \
+            s##prefix##_##type += "<option value=\"" + sTypeName + "\" selected=\"selected\">";     \
+            s##prefix##_##type += sTypeName + "</option>";                                          \
+        }                                                                                           \
+        else                                                                                        \
+        {                                                                                           \
+            s##prefix##_##type += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>"; \
+        }                                                                                           \
+    }                                                                                               \
+}
+
+//=====================================================================================
+
 #define MAKE_MODULE_RESULT_VARIANT(method)                                                                      \
 void method##_StoreResult(const String& sResultID)                                                              \
 {                                                                                                               \
@@ -337,42 +308,6 @@ void method##_StoreResult(const String& sResultID, at1 av1, at2 av2, at3 av3, at
 
 #define MAKE_MANAGER_VOID_LAMBDA_A4(manager, method, at1, at2, at3, at4)                                                \
 [](at1 av1, at2 av2, at3 av3, at4 av4) { manager::GetInstance()->method(av1, av2, av3, av4); }
-
-//=====================================================================================
-
-#define MAKE_DEFAULT_HTML_OPTION_LIST_STRING(type)                                                  \
-String sOptionList_##type;                                                                          \
-{                                                                                                   \
-    for(auto& sTypeName : GetEnumNames<type>())                                                     \
-    {                                                                                               \
-        if(IsNoneTypeForEnum<type>(sTypeName))                                                      \
-        {                                                                                           \
-            continue;                                                                               \
-        }                                                                                           \
-        sOptionList_##type += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>";     \
-    }                                                                                               \
-}
-
-#define MAKE_SELECTED_HTML_OPTION_LIST_STRING(prefix, type, selection)                              \
-String s##prefix##_##type;                                                                          \
-{                                                                                                   \
-    for(auto& sTypeName : GetEnumNames<type>())                                                     \
-    {                                                                                               \
-        if(IsNoneTypeForEnum<type>(sTypeName))                                                      \
-        {                                                                                           \
-            continue;                                                                               \
-        }                                                                                           \
-        if(sTypeName == selection)                                                                  \
-        {                                                                                           \
-            s##prefix##_##type += "<option value=\"" + sTypeName + "\" selected=\"selected\">";     \
-            s##prefix##_##type += sTypeName + "</option>";                                          \
-        }                                                                                           \
-        else                                                                                        \
-        {                                                                                           \
-            s##prefix##_##type += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>"; \
-        }                                                                                           \
-    }                                                                                               \
-}
 
 //=====================================================================================
 

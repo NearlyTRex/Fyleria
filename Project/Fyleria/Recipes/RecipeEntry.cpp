@@ -93,6 +93,5 @@ void from_json(const Json& jsonData, RecipeEntry& obj)
 }
 
 MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(RecipeEntryArray);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(RecipeEntry, RecipeEntry);
 
 };

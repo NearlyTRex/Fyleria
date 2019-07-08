@@ -23,7 +23,7 @@ public:
     SaveManager();
 
     // Load save
-    void LoadSave(const String& sSlot, const Save& save);
+    void LoadSave(const Save& save);
 
     // Create save
     void CreateSave(const String& sSlot);
@@ -54,6 +54,10 @@ public:
     // Is save capacity reached
     Bool IsSaveCapacityReached() const;
     MAKE_MODULE_RESULT_VARIANT(IsSaveCapacityReached);
+
+    // Check if save slot is valid
+    Bool IsValidSaveSlot(const String& sSlot) const;
+    MAKE_MODULE_RESULT_VARIANT_A1(IsValidSaveSlot, const String&);
 
     // Get save
     const Save& GetSave(const String& sSlot) const;

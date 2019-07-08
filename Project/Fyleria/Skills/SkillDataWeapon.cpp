@@ -177,6 +177,4 @@ void from_json(const Json& jsonData, SkillDataWeapon& obj)
     SET_OBJ_DATA(ActionPoints, Int);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(SkillDataWeapon, SkillDataWeapon);
-
 };

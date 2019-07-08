@@ -882,6 +882,4 @@ void from_json(const Json& jsonData, CharacterGenerator& obj)
     SET_OBJ_DATA(WindEnd, Short);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(CharacterGenerator, CharacterGenerator);
-
 };

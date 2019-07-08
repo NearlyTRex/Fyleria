@@ -42,7 +42,6 @@ MAKE_TYPE_TYPEDEFS(SkillDataCrafting);
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataCrafting& obj);
 void from_json(const Json& jsonData, SkillDataCrafting& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(SkillDataCrafting, SkillDataCrafting);
 
 };
 

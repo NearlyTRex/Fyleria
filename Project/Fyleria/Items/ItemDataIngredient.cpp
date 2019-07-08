@@ -43,6 +43,4 @@ void from_json(const Json& jsonData, ItemDataIngredient& obj)
     SET_OBJ_DATA(StatChanges, StatChangeArray);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(ItemDataIngredient, ItemDataIngredient);
-
 };

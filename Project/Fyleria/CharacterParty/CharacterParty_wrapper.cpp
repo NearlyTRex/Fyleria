@@ -139,10 +139,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
         WRAPPING_ADD_METHOD_SIMPLE(GetPlayTime_StoreResult, Gecko::CharacterParty)
     ;
     PyBindVector<Gecko::CharacterPartyArray>(m, "CharacterPartyArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyArrayFromJsonString, Gecko);
 
     // CharacterPartyItem.h
     PyBindClass<Gecko::CharacterPartyItem>(m, "CharacterPartyItem")
@@ -162,10 +158,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ApplicableEquipmentSlots, Gecko::CharacterPartyItem)
     ;
     PyBindVector<Gecko::CharacterPartyItemArray>(m, "CharacterPartyItemArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyItemToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyItemArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyItemFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyItemArrayFromJsonString, Gecko);
 
     // CharacterPartyEquippedItem.h
     PyBindClass<Gecko::CharacterPartyEquippedItem>(m, "CharacterPartyEquippedItem")
@@ -174,10 +166,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ItemSlot, Gecko::CharacterPartyEquippedItem)
     ;
     PyBindVector<Gecko::CharacterPartyEquippedItemArray>(m, "CharacterPartyEquippedItemArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyEquippedItemToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyEquippedItemArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyEquippedItemFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyEquippedItemArrayFromJsonString, Gecko);
 
     // CharacterPartyMember.h
     PyBindClass<Gecko::CharacterPartyMember>(m, "CharacterPartyMember")
@@ -193,10 +181,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterParty, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(EquippedItems, Gecko::CharacterPartyMember)
     ;
     PyBindVector<Gecko::CharacterPartyMemberArray>(m, "CharacterPartyMemberArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyMemberToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterPartyMemberArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyMemberFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterPartyMemberArrayFromJsonString, Gecko);
 
     // CharacterPartyManager.h
     WRAPPING_STANDALONE_LAMBDA(LoadParty, Gecko::fnLoadParty);

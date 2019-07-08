@@ -51,7 +51,6 @@ MAKE_TYPE_TYPEDEFS(ItemDataArmor);
 // JSON Converters
 void to_json(Json& jsonData, const ItemDataArmor& obj);
 void from_json(const Json& jsonData, ItemDataArmor& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(ItemDataArmor, ItemDataArmor);
 
 };
 

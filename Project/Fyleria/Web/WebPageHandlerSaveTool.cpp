@@ -42,7 +42,6 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     String sCollectSaveDataMultiple_Description = GetMapDataOrDefault(tParams, "sCollectSaveDataMultiple_Description", "");
     String sCollectSaveDataMultiple_PlayTime = GetMapDataOrDefault(tParams, "sCollectSaveDataMultiple_PlayTime", "");
     String sDisperseSaveData_SaveSlotType = GetMapDataOrDefault(tParams, "sDisperseSaveData_SaveSlotType", "");
-    String sLoadSave_SaveSlotType = GetMapDataOrDefault(tParams, "sLoadSave_SaveSlotType", "");
     String sLoadSave_Textarea = GetMapDataOrDefault(tParams, "sLoadSave_Textarea", "");
     String sUnloadSave_SaveSlotType = GetMapDataOrDefault(tParams, "sUnloadSave_SaveSlotType", "");
     String sLoadFromFile_SaveSlotType = GetMapDataOrDefault(tParams, "sLoadFromFile_SaveSlotType", "");
@@ -95,7 +94,6 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     else if(sAction == "load_save")
     {
         SaveManager::GetInstance()->LoadSave(
-            sLoadSave_SaveSlotType,
             Save(sLoadSave_Textarea)
         );
     }

@@ -42,7 +42,6 @@ MAKE_TYPE_TYPEDEFS(SkillDataBreakdown);
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataBreakdown& obj);
 void from_json(const Json& jsonData, SkillDataBreakdown& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(SkillDataBreakdown, SkillDataBreakdown);
 
 };
 

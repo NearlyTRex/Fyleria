@@ -27,10 +27,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(AvailableActions, Gecko::CharacterActionData)
     ;
     PyBindVector<Gecko::CharacterActionDataArray>(m, "CharacterActionDataArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionDataToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterActionDataArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionDataFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterActionDataArrayFromJsonString, Gecko);
 
     // CharacterBasicData.h
     PyBindClass<Gecko::CharacterBasicData>(m, "CharacterBasicData")
@@ -51,10 +47,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Age, Gecko::CharacterBasicData)
     ;
     PyBindVector<Gecko::CharacterBasicDataArray>(m, "CharacterBasicDataArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterBasicDataToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterBasicDataArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBasicDataFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBasicDataArrayFromJsonString, Gecko);
 
     // CharacterBattleData.h
     PyBindClass<Gecko::CharacterBattleData>(m, "CharacterBattleData")
@@ -125,10 +117,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(OffensivePowerEffectsBonusPercent, Gecko::CharacterBattleData)
     ;
     PyBindVector<Gecko::CharacterBattleDataArray>(m, "CharacterBattleDataArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterBattleDataToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterBattleDataArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleDataFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterBattleDataArrayFromJsonString, Gecko);
 
     // CharacterProgressData.h
     PyBindClass<Gecko::CharacterProgressData>(m, "CharacterProgressData")
@@ -199,10 +187,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(CounterPoints, Gecko::CharacterProgressData)
     ;
     PyBindVector<Gecko::CharacterProgressDataArray>(m, "CharacterProgressDataArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterProgressDataToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterProgressDataArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterProgressDataFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterProgressDataArrayFromJsonString, Gecko);
 
     // CharacterSkillData.h
     PyBindClass<Gecko::CharacterSkillData>(m, "CharacterSkillData")
@@ -281,10 +265,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_SIMPLE(Wind, Gecko::CharacterSkillData)
     ;
     PyBindVector<Gecko::CharacterSkillDataArray>(m, "CharacterSkillDataArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterSkillDataToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterSkillDataArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillDataFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterSkillDataArrayFromJsonString, Gecko);
 
     // CharacterStatChangeData.h
     PyBindClass<Gecko::CharacterStatChangeData>(m, "CharacterStatChangeData")
@@ -310,8 +290,4 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ProlongedStatChanges, Gecko::CharacterStatChangeData)
     ;
     PyBindVector<Gecko::CharacterStatChangeDataArray>(m, "CharacterStatChangeDataArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterStatChangeDataToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertCharacterStatChangeDataArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterStatChangeDataFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetCharacterStatChangeDataArrayFromJsonString, Gecko);
 }

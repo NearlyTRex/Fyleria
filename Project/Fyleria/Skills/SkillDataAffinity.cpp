@@ -36,6 +36,4 @@ void from_json(const Json& jsonData, SkillDataAffinity& obj)
 {
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(SkillDataAffinity, SkillDataAffinity);
-
 };

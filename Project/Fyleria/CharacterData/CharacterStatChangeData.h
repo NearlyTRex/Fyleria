@@ -87,7 +87,6 @@ MAKE_TYPE_TYPEDEFS(CharacterStatChangeData);
 // JSON Converters
 void to_json(Json& jsonData, const CharacterStatChangeData& obj);
 void from_json(const Json& jsonData, CharacterStatChangeData& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterStatChangeData, CharacterStatChangeData);
 
 };
 

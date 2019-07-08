@@ -141,7 +141,6 @@ MAKE_TYPE_TYPEDEFS(CharacterBattleData);
 // JSON Converters
 void to_json(Json& jsonData, const CharacterBattleData& obj);
 void from_json(const Json& jsonData, CharacterBattleData& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(CharacterBattleData, CharacterBattleData);
 
 };
 

@@ -8,19 +8,17 @@ namespace Gecko
 {
 
 Save::Save()
-    : SerializableToJson()
 {
-    Clear();
 }
 
 Save::Save(const Json& jsonData)
-    : SerializableToJson(jsonData)
 {
+    from_json(jsonData, *this);
 }
 
 Save::Save(const String& jsonString)
-    : SerializableToJson(JsonParse(jsonString))
 {
+    from_json(JsonParse(jsonString), *this);
 }
 
 Save::~Save()
@@ -45,7 +43,40 @@ void Save::Clear()
     SetCharacters({});
 }
 
-MAKE_JSON_OBJ_TYPE_CONVERTERS_IMPL(Save);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Save, Save);
+void to_json(Json& jsonData, const Save& obj)
+{
+    // Slot
+    SET_JSON_DATA(Slot);
+
+    // Time
+    SET_JSON_DATA(Time);
+
+    // Description
+    SET_JSON_DATA(Description);
+
+    // Party
+    SET_JSON_DATA(Parties);
+
+    // Characters
+    SET_JSON_DATA(Characters);
+}
+
+void from_json(const Json& jsonData, Save& obj)
+{
+    // Slot
+    SET_OBJ_DATA(Slot, String);
+
+    // Time
+    SET_OBJ_DATA(Time, ULong);
+
+    // Description
+    SET_OBJ_DATA(Description, String);
+
+    // Party
+    SET_OBJ_DATA(Parties, CharacterPartyArray);
+
+    // Characters
+    SET_OBJ_DATA(Characters, CharacterArray);
+}
 
 };

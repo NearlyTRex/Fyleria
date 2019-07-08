@@ -210,6 +210,4 @@ void from_json(const Json& jsonData, Battle& obj)
     SET_OBJ_DATA(AllyPartyID, String);
 }
 
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_IMPL(Battle, Battle);
-
 };

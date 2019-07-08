@@ -45,7 +45,6 @@ MAKE_TYPE_TYPEDEFS(ItemDataPotion);
 // JSON Converters
 void to_json(Json& jsonData, const ItemDataPotion& obj);
 void from_json(const Json& jsonData, ItemDataPotion& obj);
-MAKE_JSON_GENERIC_TYPE_CONVERTERS_DECL(ItemDataPotion, ItemDataPotion);
 
 };
 

@@ -139,10 +139,6 @@ PYBIND11_EMBEDDED_MODULE(GeckoUtility, m)
         WRAPPING_ADD_METHOD_SIMPLE(GetTypes, Gecko::TreeIndex)
     ;
     PyBindVector<Gecko::TreeIndexArray>(m, "TreeIndexArray");
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertTreeIndexToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(ConvertTreeIndexArrayToJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetTreeIndexFromJsonString, Gecko);
-    WRAPPING_STANDALONE_METHOD_SIMPLE(GetTreeIndexArrayFromJsonString, Gecko);
 
     // Serialization.h
     WRAPPING_STANDALONE_METHOD_SIMPLE(ReadBinaryFile, Gecko);
