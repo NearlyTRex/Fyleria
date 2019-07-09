@@ -11,8 +11,7 @@ namespace Gecko
 {
 
 // Types
-typedef STDUnorderedSet<String> StatNameSetType;
-typedef SafeObject<StatNameSetType> SafeStatNameSetType;
+typedef SafeStringUnorderedSet SafeStatNameSetType;
 
 // Stat names
 SafeStatNameSetType& GetBoolStatNames();
