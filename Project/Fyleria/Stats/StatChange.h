@@ -123,7 +123,6 @@ MAKE_TYPE_TYPEDEFS(StatChange);
 // JSON Converters
 void to_json(Json& jsonData, const StatChange& obj);
 void from_json(const Json& jsonData, StatChange& obj);
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(StatChangeArray);
 
 // Get stat changes from the given tree nodes
 const StatChangeArray& GetStatChangesFromTreeIndex(const String& sTreeIndexType, const TreeIndex& treeIndex);

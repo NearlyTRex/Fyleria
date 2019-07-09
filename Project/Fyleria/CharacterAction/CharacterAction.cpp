@@ -231,6 +231,4 @@ void from_json(const Json& jsonData, CharacterAction& obj)
     SET_OBJ_DATA(SourceCharacterID, String);
 }
 
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterActionArray);
-
 };

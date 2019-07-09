@@ -35,7 +35,6 @@ MAKE_TYPE_TYPEDEFS(CharacterPartyEquippedItem);
 // JSON Converters
 void to_json(Json& jsonData, const CharacterPartyEquippedItem& obj);
 void from_json(const Json& jsonData, CharacterPartyEquippedItem& obj);
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(CharacterPartyEquippedItemArray);
 
 // Comparisons
 Bool operator==(const CharacterPartyEquippedItem& a, const CharacterPartyEquippedItem& b);

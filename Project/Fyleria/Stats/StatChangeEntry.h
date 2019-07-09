@@ -62,7 +62,6 @@ MAKE_TYPE_TYPEDEFS(StatChangeEntry);
 // JSON Converters
 void to_json(Json& jsonData, const StatChangeEntry& obj);
 void from_json(const Json& jsonData, StatChangeEntry& obj);
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(StatChangeEntryArray);
 
 };
 

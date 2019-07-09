@@ -56,6 +56,4 @@ void from_json(const Json& jsonData, Recipe& obj)
     SET_OBJ_DATA(Results, RecipeEntryArray);
 }
 
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(RecipeArray);
-
 };

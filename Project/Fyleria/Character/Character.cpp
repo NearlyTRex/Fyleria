@@ -366,8 +366,6 @@ void from_json(const Json& jsonData, Character& obj)
     SET_OBJ_DATA(StatChangeData, CharacterStatChangeData);
 }
 
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterArray);
-
 Bool operator==(const Character& a, const Character& b)
 {
     return (a.GetBasicData().GetCharacterID() == b.GetBasicData().GetCharacterID());

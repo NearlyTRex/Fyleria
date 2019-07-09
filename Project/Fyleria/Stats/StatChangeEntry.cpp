@@ -114,6 +114,4 @@ void from_json(const Json& jsonData, StatChangeEntry& obj)
     SET_OBJ_DATA(DestinationCharacterIDs, StringArray);
 }
 
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(StatChangeEntryArray);
-
 };

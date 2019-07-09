@@ -34,8 +34,6 @@ void from_json(const Json& jsonData, CharacterPartyEquippedItem& obj)
     SET_OBJ_DATA(ItemSlot, String);
 }
 
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterPartyEquippedItemArray);
-
 Bool operator==(const CharacterPartyEquippedItem& a, const CharacterPartyEquippedItem& b)
 {
     return (

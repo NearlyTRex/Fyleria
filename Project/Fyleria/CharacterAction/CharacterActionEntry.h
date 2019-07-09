@@ -62,8 +62,6 @@ MAKE_TYPE_TYPEDEFS(CharacterActionEntry);
 // JSON Converters
 void to_json(Json& jsonData, const CharacterActionEntry& obj);
 void from_json(const Json& jsonData, CharacterActionEntry& obj);
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(CharacterActionEntryArray);
-MAKE_JSON_MAP_TYPE_CONVERTERS_DECL(CharacterActionEntry::CharacterActionResultMapType);
 
 };
 

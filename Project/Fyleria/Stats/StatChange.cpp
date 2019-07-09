@@ -561,8 +561,6 @@ void from_json(const Json& jsonData, StatChange& obj)
     SET_OBJ_DATA(StatChangeEntries, StatChangeEntryArray);
 }
 
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(StatChangeArray);
-
 const StatChangeArray& GetStatChangesFromTreeIndex(const String& sTreeIndexType, const TreeIndex& treeIndex)
 {
     const CharacterTreeIndexType eTreeIndexType = GetEnumFromString<CharacterTreeIndexType>(sTreeIndexType);

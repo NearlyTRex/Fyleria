@@ -92,6 +92,4 @@ void from_json(const Json& jsonData, RecipeEntry& obj)
     SET_OBJ_DATA(OutputAmount, Int);
 }
 
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(RecipeEntryArray);
-
 };

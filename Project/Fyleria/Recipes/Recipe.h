@@ -44,7 +44,6 @@ MAKE_TYPE_TYPEDEFS(Recipe);
 // JSON Converters
 void to_json(Json& jsonData, const Recipe& obj);
 void from_json(const Json& jsonData, Recipe& obj);
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(RecipeArray);
 
 };
 

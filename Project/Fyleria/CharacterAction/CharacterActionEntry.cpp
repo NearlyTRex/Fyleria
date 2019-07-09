@@ -103,7 +103,4 @@ void from_json(const Json& jsonData, CharacterActionEntry& obj)
     SET_OBJ_DATA(Results, CharacterActionEntry::CharacterActionResultMapType);
 }
 
-MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(CharacterActionEntryArray);
-MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(CharacterActionEntry::CharacterActionResultMapType);
-
 };

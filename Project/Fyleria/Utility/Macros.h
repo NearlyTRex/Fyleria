@@ -13,7 +13,7 @@ STDBindFunc(&type::method, this, STDPlaceholder1)
 
 #define SET_JSON_DATA(name)                                                         \
 {                                                                                   \
-    to_json(jsonData[#name], obj.Get##name());                                      \
+    jsonData[#name] = obj.Get##name();                                              \
 }
 
 #define SET_OBJ_DATA(name, value_type)                                              \
@@ -30,86 +30,6 @@ STDBindFunc(&type::method, this, STDPlaceholder1)
 
 //=====================================================================================
 
-#define MAKE_JSON_BASIC_TYPE_CONVERTERS_DECL(type)                                  \
-void to_json(Json& jsonData, const type& obj);                                      \
-void from_json(const Json& jsonData, type& obj);
-
-#define MAKE_JSON_BASIC_TYPE_CONVERTERS_IMPL(type)                                  \
-void to_json(Json& jsonData, const type& obj)                                       \
-{                                                                                   \
-    jsonData = obj;                                                                 \
-}                                                                                   \
-void from_json(const Json& jsonData, type& obj)                                     \
-{                                                                                   \
-    obj = jsonData.get<type>();                                                     \
-}
-
-#define MAKE_JSON_OBJ_TYPE_CONVERTERS_DECL(type)                                    \
-void to_json(Json& jsonData, const type& obj);                                      \
-void from_json(const Json& jsonData, type& obj);
-
-#define MAKE_JSON_OBJ_TYPE_CONVERTERS_IMPL(type)                                    \
-void to_json(Json& jsonData, const type& obj)                                       \
-{                                                                                   \
-    jsonData = obj.ToJson();                                                        \
-}                                                                                   \
-void from_json(const Json& jsonData, type& obj)                                     \
-{                                                                                   \
-    obj.FromJson(jsonData);                                                         \
-}
-
-#define MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_DECL(type)                               \
-void to_json(Json& jsonData, const type& obj);                                      \
-void from_json(const Json& jsonData, type& obj);
-
-#define MAKE_JSON_SEQUENCE_TYPE_CONVERTERS_IMPL(type)                               \
-void to_json(Json& vJsonData, const type& vObj)                                     \
-{                                                                                   \
-    vJsonData = STDVector<Json>();                                                  \
-    for(auto it = vObj.begin(); it != vObj.end(); it++)                             \
-    {                                                                               \
-        Json jsonData;                                                              \
-        to_json(jsonData, *it);                                                     \
-        vJsonData.push_back(jsonData);                                              \
-    }                                                                               \
-}                                                                                   \
-void from_json(const Json& vJsonData, type& vObj)                                   \
-{                                                                                   \
-    for(auto it = vJsonData.begin(); it != vJsonData.end(); it++)                   \
-    {                                                                               \
-        type::value_type obj {};                                                    \
-        from_json(*it, obj);                                                        \
-        vObj.push_back(obj);                                                        \
-    }                                                                               \
-}
-
-#define MAKE_JSON_MAP_TYPE_CONVERTERS_DECL(type)                                    \
-void to_json(Json& jsonData, const type& obj);                                      \
-void from_json(const Json& jsonData, type& obj);
-
-#define MAKE_JSON_MAP_TYPE_CONVERTERS_IMPL(type)                                    \
-void to_json(Json& tJsonData, const type& tObj)                                     \
-{                                                                                   \
-    tJsonData = STDMap<type::key_type, Json>();                                     \
-    for(auto it = tObj.begin(); it != tObj.end(); it++)                             \
-    {                                                                               \
-        Json jsonData;                                                              \
-        to_json(jsonData, it->second);                                              \
-        tJsonData[it->first] = jsonData;                                            \
-    }                                                                               \
-}                                                                                   \
-void from_json(const Json& tJsonData, type& tObj)                                   \
-{                                                                                   \
-    for(auto it = tJsonData.begin(); it != tJsonData.end(); it++)                   \
-    {                                                                               \
-        type::mapped_type obj {};                                                   \
-        from_json(it.value(), obj);                                                 \
-        tObj[it.key()] = obj;                                                       \
-    }                                                                               \
-}
-
-//=====================================================================================
-
 #define MAKE_TYPE_TYPEDEFS(type)                                                    \
 typedef type* type##Ptr;                                                            \
 typedef STDSharedPtr<type> type##SharedPtr;                                         \
@@ -121,38 +41,36 @@ typedef STDVector<type##SharedPtr> type##SharedPtrArray
 
 //=====================================================================================
 
-#define MAKE_RAW_BASIC_TYPE_ACCESSORS(name, type)                                   \
-type m_var##name {};                                                                \
-type Get##name() const { return m_var##name; }                                      \
+#define MAKE_RAW_BASIC_TYPE_ACCESSORS(name, type)                                       \
+type m_var##name {};                                                                    \
+type Get##name() const { return m_var##name; }                                          \
 void Set##name(type varValue) { m_var##name = varValue; }
 
-#define MAKE_RAW_OBJECT_TYPE_ACCESSORS(name, type)                                  \
-type m_var##name {};                                                                \
-const type& Get##name() const { return m_var##name; }                               \
-type& Get##name() { return m_var##name; }                                           \
+#define MAKE_RAW_OBJECT_TYPE_ACCESSORS(name, type)                                      \
+type m_var##name {};                                                                    \
+const type& Get##name() const { return m_var##name; }                                   \
+type& Get##name() { return m_var##name; }                                               \
 void Set##name(const type& varValue) { m_var##name = varValue; }
 
-#define MAKE_RAW_GET_ONLY_BASIC_TYPE_ACCESSORS(name, type)                          \
-type m_var##name {};                                                                \
+#define MAKE_RAW_GET_ONLY_BASIC_TYPE_ACCESSORS(name, type)                              \
+type m_var##name {};                                                                    \
 type Get##name() const { return m_var##name; }
 
-#define MAKE_RAW_GET_ONLY_OBJECT_TYPE_ACCESSORS(name, type)                         \
-type m_var##name {};                                                                \
-const type& Get##name() const { return m_var##name; }                               \
+#define MAKE_RAW_GET_ONLY_OBJECT_TYPE_ACCESSORS(name, type)                             \
+type m_var##name {};                                                                    \
+const type& Get##name() const { return m_var##name; }                                   \
 type& Get##name() { return m_var##name; }
-
-//=====================================================================================
 
 #define MAKE_STAT_TYPE_ACCESSORS(name, type)                                            \
 type Get##name() const                                                                  \
 {                                                                                       \
     type var##name {};                                                                  \
-    GetStatMapValue<type>(Get##type##Stats(), String(#name), var##name);                \
+    GetStatMapValue<type>(Get##type##Stats(), #name, var##name);                        \
     return var##name;                                                                   \
 }                                                                                       \
 void Set##name(const type& var##name)                                                   \
 {                                                                                       \
-    SetStatMapValue<type>(Get##type##Stats(), String(#name), var##name);                \
+    SetStatMapValue<type>(Get##type##Stats(), #name, var##name);                        \
 }
 
 //=====================================================================================
