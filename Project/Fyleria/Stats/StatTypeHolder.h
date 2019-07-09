@@ -40,6 +40,15 @@ public:
     Bool GetStatValue(const String& sStat, String& sValue) const;
     Bool GetStatValue(const String& sStat, StringArray& vValues) const;
 
+    // Get stat value
+    template <class T>
+    T GetStatValue(const String& sStat) const
+    {
+        T varStat {};
+        GetStatValue(sStat, varStat);
+        return varStat;
+    }
+
     // Set stat values
     Bool SetStatValue(const String& sStat, const Bool& bValue);
     Bool SetStatValue(const String& sStat, const Byte& iValue);
