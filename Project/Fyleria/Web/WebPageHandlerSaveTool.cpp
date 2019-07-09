@@ -139,8 +139,8 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     }
 
     // Build option lists
-    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(SaveSlotType);
-    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(FileType);
+    String sOptionList_SaveSlotType = MakeDefaultHtmlOptionList<SaveSlotType>();
+    String sOptionList_FileType = MakeDefaultHtmlOptionList<FileType>();
 
     // Set page content
     String sPage = GetPageTemplate();

@@ -23,8 +23,8 @@ CharacterBasicData::~CharacterBasicData()
 void CharacterBasicData::InitAllStatNames()
 {
     // Initialize stat type names
-    INITIALIZE_STAT_TYPE_NAMES(CharacterBasicStatType, String);
-    INITIALIZE_STAT_TYPE_NAMES(CharacterBasicStatType, Int);
+    InitializeStatTypeNames<CharacterBasicStatType_String>(GetStringStatNames());
+    InitializeStatTypeNames<CharacterBasicStatType_Int>(GetIntStatNames());
 }
 
 Bool CharacterBasicData::operator==(const CharacterBasicData& other) const
@@ -40,15 +40,15 @@ Bool CharacterBasicData::operator!=(const CharacterBasicData& other) const
 void to_json(Json& jsonData, const CharacterBasicData& obj)
 {
     // Stat values
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBasicStatType, String);
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBasicStatType, Int);
+    SetJsonValuesFromStatTypeValues<CharacterBasicStatType_String, String>(jsonData, obj.GetStringStats());
+    SetJsonValuesFromStatTypeValues<CharacterBasicStatType_Int, Int>(jsonData, obj.GetIntStats());
 }
 
 void from_json(const Json& jsonData, CharacterBasicData& obj)
 {
     // Stat values
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBasicStatType, String);
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBasicStatType, Int);
+    SetStatTypeValuesFromJsonValues<CharacterBasicStatType_String, String>(jsonData, obj.GetStringStats());
+    SetStatTypeValuesFromJsonValues<CharacterBasicStatType_Int, Int>(jsonData, obj.GetIntStats());
 }
 
 };

@@ -37,6 +37,46 @@ public:
 // Typedefs
 MAKE_TYPE_TYPEDEFS(WebPageHandler);
 
+// Make default html option list
+template <class EnumType>
+String MakeDefaultHtmlOptionList()
+{
+    String sOptionList;
+    for(auto& sTypeName : GetEnumNames<EnumType>())
+    {
+        if(IsNoneTypeForEnum<EnumType>(sTypeName))
+        {
+            continue;
+        }
+        sOptionList += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>";
+    }
+    return sOptionList;
+}
+
+// Make selected html option list
+template <class EnumType>
+String MakeSelectedHtmlOptionList(const String& sSelection)
+{
+    String sOptionList;
+    for(auto& sTypeName : GetEnumNames<EnumType>())
+    {
+        if(IsNoneTypeForEnum<EnumType>(sTypeName))
+        {
+            continue;
+        }
+        if(sTypeName == sSelection)
+        {
+            sOptionList += "<option value=\"" + sTypeName + "\" selected=\"selected\">";
+            sOptionList += sTypeName + "</option>";
+        }
+        else
+        {
+            sOptionList += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>";
+        }
+    }
+    return sOptionList;
+}
+
 };
 
 #endif

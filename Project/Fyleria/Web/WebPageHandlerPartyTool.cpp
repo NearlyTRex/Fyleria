@@ -287,11 +287,11 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
 
     // Build option lists
-    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(CharacterPartyType);
-    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(CharacterResolvedTargetType);
-    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(CharacterEquipmentType);
-    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(ItemTreeType);
-    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(FileType);
+    String sOptionList_CharacterPartyType = MakeDefaultHtmlOptionList<CharacterPartyType>();
+    String sOptionList_CharacterResolvedTargetType = MakeDefaultHtmlOptionList<CharacterResolvedTargetType>();
+    String sOptionList_CharacterEquipmentType = MakeDefaultHtmlOptionList<CharacterEquipmentType>();
+    String sOptionList_ItemTreeType = MakeDefaultHtmlOptionList<ItemTreeType>();
+    String sOptionList_FileType = MakeDefaultHtmlOptionList<FileType>();
 
     // Set page content
     String sPage = GetPageTemplate();

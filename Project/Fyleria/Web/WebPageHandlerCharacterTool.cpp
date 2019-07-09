@@ -565,15 +565,15 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     }
 
     // Build option lists
-    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterGenderType, sCharacterDetails_Gender);
-    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterHairType, sCharacterDetails_Hair);
-    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterEyeType, sCharacterDetails_Eyes);
-    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterHandednessType, sCharacterDetails_Handedness);
-    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterPowerSetType, sCharacterDetails_PowerSet);
-    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterBaseRaceType, sCharacterDetails_BaseRace);
-    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterTransformedRaceType, sCharacterDetails_TransformedRace);
-    MAKE_SELECTED_HTML_OPTION_LIST_STRING(CharacterDetailsOptionList, CharacterWeaponSetType, sCharacterDetails_WeaponSet);
-    MAKE_DEFAULT_HTML_OPTION_LIST_STRING(FileType);
+    String sCharacterDetailsOptionList_CharacterGenderType = MakeSelectedHtmlOptionList<CharacterGenderType>(sCharacterDetails_Gender);
+    String sCharacterDetailsOptionList_CharacterHairType = MakeSelectedHtmlOptionList<CharacterHairType>(sCharacterDetails_Hair);
+    String sCharacterDetailsOptionList_CharacterEyeType = MakeSelectedHtmlOptionList<CharacterEyeType>(sCharacterDetails_Eyes);
+    String sCharacterDetailsOptionList_CharacterHandednessType = MakeSelectedHtmlOptionList<CharacterHandednessType>(sCharacterDetails_Handedness);
+    String sCharacterDetailsOptionList_CharacterPowerSetType = MakeSelectedHtmlOptionList<CharacterPowerSetType>(sCharacterDetails_PowerSet);
+    String sCharacterDetailsOptionList_CharacterBaseRaceType = MakeSelectedHtmlOptionList<CharacterBaseRaceType>(sCharacterDetails_BaseRace);
+    String sCharacterDetailsOptionList_CharacterTransformedRaceType = MakeSelectedHtmlOptionList<CharacterTransformedRaceType>(sCharacterDetails_TransformedRace);
+    String sCharacterDetailsOptionList_CharacterWeaponSetType = MakeSelectedHtmlOptionList<CharacterWeaponSetType>(sCharacterDetails_WeaponSet);
+    String sOptionList_FileType = MakeDefaultHtmlOptionList<FileType>();
 
     // Set page content
     String sPage = GetPageTemplate();

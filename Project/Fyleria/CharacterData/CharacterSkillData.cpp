@@ -60,7 +60,7 @@ void CharacterSkillData::UpdateSkillValue(const String& sSkillType, Short iDelta
 void CharacterSkillData::InitAllStatNames()
 {
     // Initialize stat type names
-    INITIALIZE_STAT_TYPE_NAMES(CharacterSkillStatType, Short);
+    InitializeStatTypeNames<CharacterSkillStatType_Short>(GetShortStatNames());
 }
 
 Bool CharacterSkillData::operator==(const CharacterSkillData& other) const
@@ -76,13 +76,13 @@ Bool CharacterSkillData::operator!=(const CharacterSkillData& other) const
 void to_json(Json& jsonData, const CharacterSkillData& obj)
 {
     // Stat values
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterSkillStatType, Short);
+    SetJsonValuesFromStatTypeValues<CharacterSkillStatType_Short, Short>(jsonData, obj.GetShortStats());
 }
 
 void from_json(const Json& jsonData, CharacterSkillData& obj)
 {
     // Stat values
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterSkillStatType, Short);
+    SetStatTypeValuesFromJsonValues<CharacterSkillStatType_Short, Short>(jsonData, obj.GetShortStats());
 }
 
 };

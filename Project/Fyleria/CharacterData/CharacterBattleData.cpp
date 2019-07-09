@@ -396,11 +396,11 @@ Bool CharacterBattleData::GetSecondaryShieldRatings(const String& sHandedness,
 void CharacterBattleData::InitAllStatNames()
 {
     // Initialize stat type names
-    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, String);
-    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, StringArray);
-    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Bool);
-    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Int);
-    INITIALIZE_STAT_TYPE_NAMES(CharacterBattleStatType, Float);
+    InitializeStatTypeNames<CharacterBattleStatType_String>(GetStringStatNames());
+    InitializeStatTypeNames<CharacterBattleStatType_StringArray>(GetStringArrayStatNames());
+    InitializeStatTypeNames<CharacterBattleStatType_Bool>(GetBoolStatNames());
+    InitializeStatTypeNames<CharacterBattleStatType_Int>(GetIntStatNames());
+    InitializeStatTypeNames<CharacterBattleStatType_Float>(GetFloatStatNames());
 }
 
 Bool CharacterBattleData::operator==(const CharacterBattleData& other) const
@@ -416,21 +416,21 @@ Bool CharacterBattleData::operator!=(const CharacterBattleData& other) const
 void to_json(Json& jsonData, const CharacterBattleData& obj)
 {
     // Stat values
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, String);
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, StringArray);
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, Bool);
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, Int);
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterBattleStatType, Float);
+    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_String, String>(jsonData, obj.GetStringStats());
+    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_StringArray, StringArray>(jsonData, obj.GetStringArrayStats());
+    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_Bool, Bool>(jsonData, obj.GetBoolStats());
+    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_Int, Int>(jsonData, obj.GetIntStats());
+    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_Float, Float>(jsonData, obj.GetFloatStats());
 }
 
 void from_json(const Json& jsonData, CharacterBattleData& obj)
 {
     // Stat values
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, String);
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, StringArray);
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Bool);
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Int);
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterBattleStatType, Float);
+    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_String, String>(jsonData, obj.GetStringStats());
+    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_StringArray, StringArray>(jsonData, obj.GetStringArrayStats());
+    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_Bool, Bool>(jsonData, obj.GetBoolStats());
+    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_Int, Int>(jsonData, obj.GetIntStats());
+    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_Float, Float>(jsonData, obj.GetFloatStats());
 }
 
 };

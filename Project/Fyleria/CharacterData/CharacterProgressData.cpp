@@ -157,7 +157,7 @@ void CharacterProgressData::UpdateAvailableAP(const String& sCharacterID)
 void CharacterProgressData::InitAllStatNames()
 {
     // Initialize stat type names
-    INITIALIZE_STAT_TYPE_NAMES(CharacterProgressStatType, Int);
+    InitializeStatTypeNames<CharacterProgressStatType_Int>(GetIntStatNames());
 }
 
 Bool CharacterProgressData::operator==(const CharacterProgressData& other) const
@@ -173,13 +173,13 @@ Bool CharacterProgressData::operator!=(const CharacterProgressData& other) const
 void to_json(Json& jsonData, const CharacterProgressData& obj)
 {
     // Stat values
-    SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(CharacterProgressStatType, Int);
+    SetJsonValuesFromStatTypeValues<CharacterProgressStatType_Int, Int>(jsonData, obj.GetIntStats());
 }
 
 void from_json(const Json& jsonData, CharacterProgressData& obj)
 {
     // Stat values
-    SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(CharacterProgressStatType, Int);
+    SetStatTypeValuesFromJsonValues<CharacterProgressStatType_Int, Int>(jsonData, obj.GetIntStats());
 }
 
 };

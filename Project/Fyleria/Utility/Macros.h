@@ -143,18 +143,6 @@ type& Get##name() { return m_var##name; }
 
 //=====================================================================================
 
-#define INITIALIZE_STAT_TYPE_NAMES(base, type)                                          \
-{                                                                                       \
-    for(auto& sType : base##_##type::_names())                                          \
-    {                                                                                   \
-        if(sType == (+base##_##type::None)._to_string())                                \
-        {                                                                               \
-            continue;                                                                   \
-        }                                                                               \
-        Get##type##StatNames()->insert(sType);                                          \
-    }                                                                                   \
-}
-
 #define MAKE_STAT_TYPE_ACCESSORS(name, type)                                            \
 type Get##name() const                                                                  \
 {                                                                                       \
@@ -165,84 +153,6 @@ type Get##name() const                                                          
 void Set##name(const type& var##name)                                                   \
 {                                                                                       \
     SetStatMapValue<type>(Get##type##Stats(), String(#name), var##name);                \
-}
-
-#define RESET_STAT_TYPE_VALUES(base, type)                                              \
-{                                                                                       \
-    for(auto& sType : base##_##type::_names())                                          \
-    {                                                                                   \
-        if(IsNoneTypeForEnum<base##_##type>(sType))                                     \
-        {                                                                               \
-            continue;                                                                   \
-        }                                                                               \
-        SetStatMapValue<type>(Get##type##Stats(), sType, type());                       \
-    }                                                                                   \
-}
-
-#define SET_JSON_VALUES_FROM_STAT_TYPE_VALUES(base, type)                               \
-{                                                                                       \
-    for(auto& sStatTypeName : base##_##type::_names())                                  \
-    {                                                                                   \
-        if(IsNoneTypeForEnum<base##_##type>(sStatTypeName))                             \
-        {                                                                               \
-            continue;                                                                   \
-        }                                                                               \
-        type varStatValue {};                                                           \
-        if(GetStatMapValue<type>(obj.Get##type##Stats(), sStatTypeName, varStatValue))  \
-        {                                                                               \
-            to_json(jsonData[sStatTypeName], varStatValue);                             \
-        }                                                                               \
-    }                                                                                   \
-}
-
-#define SET_STAT_TYPE_VALUES_FROM_JSON_VALUES(base, type)                               \
-{                                                                                       \
-    for(auto& sStatTypeName : base##_##type::_names())                                  \
-    {                                                                                   \
-        if(IsNoneTypeForEnum<base##_##type>(sStatTypeName))                             \
-        {                                                                               \
-            continue;                                                                   \
-        }                                                                               \
-        type varStatValue {};                                                           \
-        from_json(jsonData[sStatTypeName], varStatValue);                               \
-        SetStatMapValue<type>(obj.Get##type##Stats(), sStatTypeName, varStatValue);     \
-    }                                                                                   \
-}
-
-//=====================================================================================
-
-#define MAKE_DEFAULT_HTML_OPTION_LIST_STRING(type)                                                  \
-String sOptionList_##type;                                                                          \
-{                                                                                                   \
-    for(auto& sTypeName : GetEnumNames<type>())                                                     \
-    {                                                                                               \
-        if(IsNoneTypeForEnum<type>(sTypeName))                                                      \
-        {                                                                                           \
-            continue;                                                                               \
-        }                                                                                           \
-        sOptionList_##type += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>";     \
-    }                                                                                               \
-}
-
-#define MAKE_SELECTED_HTML_OPTION_LIST_STRING(prefix, type, selection)                              \
-String s##prefix##_##type;                                                                          \
-{                                                                                                   \
-    for(auto& sTypeName : GetEnumNames<type>())                                                     \
-    {                                                                                               \
-        if(IsNoneTypeForEnum<type>(sTypeName))                                                      \
-        {                                                                                           \
-            continue;                                                                               \
-        }                                                                                           \
-        if(sTypeName == selection)                                                                  \
-        {                                                                                           \
-            s##prefix##_##type += "<option value=\"" + sTypeName + "\" selected=\"selected\">";     \
-            s##prefix##_##type += sTypeName + "</option>";                                          \
-        }                                                                                           \
-        else                                                                                        \
-        {                                                                                           \
-            s##prefix##_##type += "<option value=\"" + sTypeName + "\">" + sTypeName + "</option>"; \
-        }                                                                                           \
-    }                                                                                               \
 }
 
 //=====================================================================================
