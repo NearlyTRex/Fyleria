@@ -21,7 +21,7 @@ SceneMainMenu::~SceneMainMenu()
 void SceneMainMenu::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneMainMenu, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneMainMenu::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_SYSTEM_MAIN_MENU);

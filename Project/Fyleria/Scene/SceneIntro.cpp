@@ -21,7 +21,7 @@ SceneIntro::~SceneIntro()
 void SceneIntro::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneIntro, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneIntro::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_SYSTEM_INTRO);

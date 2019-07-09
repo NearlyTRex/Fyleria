@@ -22,7 +22,7 @@ SceneToolParty::~SceneToolParty()
 void SceneToolParty::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolParty, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneToolParty::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromHandler(GetPageHandler());

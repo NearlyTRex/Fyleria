@@ -22,7 +22,7 @@ SceneToolCharacter::~SceneToolCharacter()
 void SceneToolCharacter::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolCharacter, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneToolCharacter::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromHandler(GetPageHandler());

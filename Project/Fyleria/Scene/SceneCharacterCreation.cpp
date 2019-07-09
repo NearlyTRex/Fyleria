@@ -21,7 +21,7 @@ SceneCharacterCreation::~SceneCharacterCreation()
 void SceneCharacterCreation::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneCharacterCreation, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneCharacterCreation::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_SYSTEM_CHARACTER_CREATION);

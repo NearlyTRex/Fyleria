@@ -22,7 +22,7 @@ SceneToolSave::~SceneToolSave()
 void SceneToolSave::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolSave, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneToolSave::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromHandler(GetPageHandler());

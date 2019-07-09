@@ -21,7 +21,7 @@ SceneCraftingMenu::~SceneCraftingMenu()
 void SceneCraftingMenu::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneCraftingMenu, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneCraftingMenu::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_SYSTEM_CRAFTING_MENU);

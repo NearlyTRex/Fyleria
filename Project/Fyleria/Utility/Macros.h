@@ -6,11 +6,6 @@
 
 //=====================================================================================
 
-#define CREATE_JAVASCRIPT_CLASS_CALLBACK(type, method)                              \
-STDBindFunc(&type::method, this, STDPlaceholder1)
-
-//=====================================================================================
-
 #define SET_JSON_DATA(name)                                                         \
 {                                                                                   \
     jsonData[#name] = obj.Get##name();                                              \

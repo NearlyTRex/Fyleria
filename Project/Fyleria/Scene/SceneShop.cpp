@@ -21,7 +21,7 @@ SceneShop::~SceneShop()
 void SceneShop::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneShop, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneShop::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_SYSTEM_SHOP);

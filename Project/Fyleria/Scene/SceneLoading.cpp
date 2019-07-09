@@ -21,7 +21,7 @@ SceneLoading::~SceneLoading()
 void SceneLoading::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneLoading, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneLoading::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_SYSTEM_LOADING);

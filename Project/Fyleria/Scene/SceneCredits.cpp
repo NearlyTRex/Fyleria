@@ -21,7 +21,7 @@ SceneCredits::~SceneCredits()
 void SceneCredits::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneCredits, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneCredits::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_SYSTEM_CREDITS);

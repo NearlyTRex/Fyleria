@@ -21,7 +21,7 @@ SceneToolMain::~SceneToolMain()
 void SceneToolMain::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneToolMain, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneToolMain::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_TOOL_MAIN);

@@ -21,7 +21,7 @@ SceneStatusMenu::~SceneStatusMenu()
 void SceneStatusMenu::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneStatusMenu, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneStatusMenu::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_SYSTEM_STATUS_MENU);

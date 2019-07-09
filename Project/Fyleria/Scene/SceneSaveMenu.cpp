@@ -21,7 +21,7 @@ SceneSaveMenu::~SceneSaveMenu()
 void SceneSaveMenu::Start()
 {
     // Register callbacks
-    SetPostCallback(CREATE_JAVASCRIPT_CLASS_CALLBACK(SceneSaveMenu, OnMessageReceived));
+    SetPostCallback(STDBindFunc(&SceneSaveMenu::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(WEB_PAGE_SYSTEM_SAVE_MENU);
