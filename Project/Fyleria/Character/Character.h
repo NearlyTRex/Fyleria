@@ -27,8 +27,8 @@ public:
 
     // Constructors
     Character();
-    explicit Character(const Json& jsonData);
-    explicit Character(const String& jsonString);
+    Character(const Json& jsonData);
+    Character(const String& jsonString);
 
     // Clear all data
     void Clear();
