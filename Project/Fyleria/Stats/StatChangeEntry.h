@@ -24,6 +24,9 @@ public:
     // Destructor
     virtual ~StatChangeEntry();
 
+    // Clear all data
+    void Clear();
+
     // Applicable round or attack number
     MAKE_RAW_TYPE_ACCESSORS(Round, Short);
     MAKE_RAW_TYPE_ACCESSORS(Attack, Short);
