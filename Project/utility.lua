@@ -66,10 +66,15 @@ function GetSystemArchitecture()
     return os_name .. "_" .. arch_name
 end
 
+-- Get C++ dialect
+function GetCppDialect()
+    return "C++17"
+end
+
 -- Get build toolset
 function GetBuildToolset()
     if os.host() == "linux" then
-        return "clang"
+        return "gcc"
     elseif os.host() == "windows" then
         return "msc"
     end

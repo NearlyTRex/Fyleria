@@ -19,6 +19,7 @@ require "utility"
 -- Create solution
 workspace "all"
     startproject "Fyleria"
+    cppdialect(GetCppDialect())
     location(GetBuildLocation())
     toolset(GetBuildToolset())
     configurations { "Debug32", "Release32", "Debug64", "Release64" }
