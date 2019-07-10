@@ -125,7 +125,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(Config);
+MAKE_COMMON_TYPEDEFS(Config);
 
 // JSON Converters
 void to_json(Json& jsonData, const Config& obj);

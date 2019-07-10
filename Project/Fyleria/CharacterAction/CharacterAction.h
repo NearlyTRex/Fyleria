@@ -85,7 +85,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterAction);
+MAKE_COMMON_TYPEDEFS(CharacterAction);
 
 // JSON Converters
 void to_json(Json& jsonData, const CharacterAction& obj);

@@ -41,7 +41,7 @@ public:
 };
 
 // Typedefs
-MAKE_TYPE_TYPEDEFS(ProlongedStatChange);
+MAKE_COMMON_TYPEDEFS(ProlongedStatChange);
 
 // JSON Converters
 void to_json(Json& jsonData, const ProlongedStatChange& obj);

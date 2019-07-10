@@ -39,7 +39,7 @@ protected:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SceneMap);
+MAKE_COMMON_TYPEDEFS(SceneMap);
 
 };
 

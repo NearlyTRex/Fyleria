@@ -214,7 +214,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterParty);
+MAKE_COMMON_TYPEDEFS(CharacterParty);
 
 // JSON Converters
 void to_json(Json& jsonData, const CharacterParty& obj);

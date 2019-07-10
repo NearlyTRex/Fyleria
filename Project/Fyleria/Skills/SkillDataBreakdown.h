@@ -37,7 +37,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SkillDataBreakdown);
+MAKE_COMMON_TYPEDEFS(SkillDataBreakdown);
 
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataBreakdown& obj);

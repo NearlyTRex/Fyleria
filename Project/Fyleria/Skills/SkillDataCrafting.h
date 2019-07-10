@@ -37,7 +37,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SkillDataCrafting);
+MAKE_COMMON_TYPEDEFS(SkillDataCrafting);
 
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataCrafting& obj);

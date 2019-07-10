@@ -109,7 +109,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterSkillData);
+MAKE_COMMON_TYPEDEFS(CharacterSkillData);
 
 // JSON Converters
 void to_json(Json& jsonData, const CharacterSkillData& obj);

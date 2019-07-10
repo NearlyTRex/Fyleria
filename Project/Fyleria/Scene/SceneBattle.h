@@ -39,7 +39,7 @@ protected:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SceneBattle);
+MAKE_COMMON_TYPEDEFS(SceneBattle);
 
 };
 

@@ -77,7 +77,7 @@ protected:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(Scene);
+MAKE_COMMON_TYPEDEFS(Scene);
 
 };
 

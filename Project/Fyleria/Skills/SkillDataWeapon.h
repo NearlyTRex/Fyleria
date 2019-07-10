@@ -42,7 +42,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SkillDataWeapon);
+MAKE_COMMON_TYPEDEFS(SkillDataWeapon);
 
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataWeapon& obj);

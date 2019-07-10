@@ -25,7 +25,7 @@ public:
 };
 
 // Typedefs
-MAKE_TYPE_TYPEDEFS(WebPageHandlerCharacterTool);
+MAKE_COMMON_TYPEDEFS(WebPageHandlerCharacterTool);
 
 };
 

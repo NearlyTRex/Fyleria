@@ -45,7 +45,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(Save);
+MAKE_COMMON_TYPEDEFS(Save);
 
 // JSON Converters
 void to_json(Json& jsonData, const Save& obj);

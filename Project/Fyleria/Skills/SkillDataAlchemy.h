@@ -37,7 +37,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SkillDataAlchemy);
+MAKE_COMMON_TYPEDEFS(SkillDataAlchemy);
 
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataAlchemy& obj);

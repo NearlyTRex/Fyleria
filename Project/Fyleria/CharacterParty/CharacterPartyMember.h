@@ -52,7 +52,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterPartyMember);
+MAKE_COMMON_TYPEDEFS(CharacterPartyMember);
 
 // JSON Converters
 void to_json(Json& jsonData, const CharacterPartyMember& obj);

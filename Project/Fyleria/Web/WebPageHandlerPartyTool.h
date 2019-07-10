@@ -25,7 +25,7 @@ public:
 };
 
 // Typedefs
-MAKE_TYPE_TYPEDEFS(WebPageHandlerPartyTool);
+MAKE_COMMON_TYPEDEFS(WebPageHandlerPartyTool);
 
 };
 

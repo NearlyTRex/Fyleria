@@ -25,7 +25,7 @@ public:
 };
 
 // Typedefs
-MAKE_TYPE_TYPEDEFS(WebPageHandlerSaveTool);
+MAKE_COMMON_TYPEDEFS(WebPageHandlerSaveTool);
 
 };
 

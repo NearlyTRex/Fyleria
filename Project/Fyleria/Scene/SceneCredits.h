@@ -39,7 +39,7 @@ protected:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SceneCredits);
+MAKE_COMMON_TYPEDEFS(SceneCredits);
 
 };
 

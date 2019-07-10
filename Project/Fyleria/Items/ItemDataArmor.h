@@ -46,7 +46,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(ItemDataArmor);
+MAKE_COMMON_TYPEDEFS(ItemDataArmor);
 
 // JSON Converters
 void to_json(Json& jsonData, const ItemDataArmor& obj);

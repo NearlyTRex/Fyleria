@@ -39,7 +39,7 @@ public:
 };
 
 // Typedefs
-MAKE_TYPE_TYPEDEFS(Recipe);
+MAKE_COMMON_TYPEDEFS(Recipe);
 
 // JSON Converters
 void to_json(Json& jsonData, const Recipe& obj);

@@ -105,7 +105,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterProgressData);
+MAKE_COMMON_TYPEDEFS(CharacterProgressData);
 
 // JSON Converters
 void to_json(Json& jsonData, const CharacterProgressData& obj);

@@ -40,7 +40,7 @@ private:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterActionData);
+MAKE_COMMON_TYPEDEFS(CharacterActionData);
 
 // JSON Converters
 void to_json(Json& jsonData, const CharacterActionData& obj);

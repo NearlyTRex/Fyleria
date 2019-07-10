@@ -40,7 +40,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(ItemDataPotion);
+MAKE_COMMON_TYPEDEFS(ItemDataPotion);
 
 // JSON Converters
 void to_json(Json& jsonData, const ItemDataPotion& obj);

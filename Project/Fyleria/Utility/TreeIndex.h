@@ -50,7 +50,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(TreeIndex);
+MAKE_COMMON_TYPEDEFS(TreeIndex);
 
 // JSON Converters
 void to_json(Json& jsonData, const TreeIndex& obj);

@@ -39,7 +39,7 @@ protected:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SceneToolMain);
+MAKE_COMMON_TYPEDEFS(SceneToolMain);
 
 };
 

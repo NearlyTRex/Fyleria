@@ -34,7 +34,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterActionHandlerSkillAttack);
+MAKE_COMMON_TYPEDEFS(CharacterActionHandlerSkillAttack);
 
 };
 

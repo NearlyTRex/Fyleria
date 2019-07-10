@@ -36,7 +36,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SkillDataCombat);
+MAKE_COMMON_TYPEDEFS(SkillDataCombat);
 
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataCombat& obj);

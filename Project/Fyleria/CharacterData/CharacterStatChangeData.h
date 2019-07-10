@@ -82,7 +82,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterStatChangeData);
+MAKE_COMMON_TYPEDEFS(CharacterStatChangeData);
 
 // JSON Converters
 void to_json(Json& jsonData, const CharacterStatChangeData& obj);

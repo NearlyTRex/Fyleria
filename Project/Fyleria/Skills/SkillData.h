@@ -85,7 +85,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SkillData);
+MAKE_COMMON_TYPEDEFS(SkillData);
 
 // JSON Converters
 void to_json(Json& jsonData, const SkillData& obj);

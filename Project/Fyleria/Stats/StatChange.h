@@ -118,7 +118,7 @@ public:
 };
 
 // Typedefs
-MAKE_TYPE_TYPEDEFS(StatChange);
+MAKE_COMMON_TYPEDEFS(StatChange);
 
 // JSON Converters
 void to_json(Json& jsonData, const StatChange& obj);

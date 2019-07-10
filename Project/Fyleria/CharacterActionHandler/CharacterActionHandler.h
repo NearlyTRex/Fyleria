@@ -28,7 +28,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterActionHandler);
+MAKE_COMMON_TYPEDEFS(CharacterActionHandler);
 
 };
 

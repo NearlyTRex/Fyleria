@@ -33,7 +33,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SkillDataAffinity);
+MAKE_COMMON_TYPEDEFS(SkillDataAffinity);
 
 // JSON Converters
 void to_json(Json& jsonData, const SkillDataAffinity& obj);

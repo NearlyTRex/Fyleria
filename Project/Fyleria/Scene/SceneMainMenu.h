@@ -39,7 +39,7 @@ protected:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SceneMainMenu);
+MAKE_COMMON_TYPEDEFS(SceneMainMenu);
 
 };
 

@@ -35,7 +35,7 @@ public:
 };
 
 // Typedefs
-MAKE_TYPE_TYPEDEFS(WebPageHandler);
+MAKE_COMMON_TYPEDEFS(WebPageHandler);
 
 // Make default html option list
 template <class EnumType>

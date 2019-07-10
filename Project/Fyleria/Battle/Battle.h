@@ -97,7 +97,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(Battle);
+MAKE_COMMON_TYPEDEFS(Battle);
 
 // JSON Converters
 void to_json(Json& jsonData, const Battle& obj);

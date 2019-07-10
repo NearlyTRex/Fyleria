@@ -39,7 +39,7 @@ protected:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(SceneCraftingMenu);
+MAKE_COMMON_TYPEDEFS(SceneCraftingMenu);
 
 };
 

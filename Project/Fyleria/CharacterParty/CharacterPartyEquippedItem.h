@@ -30,7 +30,7 @@ public:
 };
 
 // Typedef
-MAKE_TYPE_TYPEDEFS(CharacterPartyEquippedItem);
+MAKE_COMMON_TYPEDEFS(CharacterPartyEquippedItem);
 
 // JSON Converters
 void to_json(Json& jsonData, const CharacterPartyEquippedItem& obj);
