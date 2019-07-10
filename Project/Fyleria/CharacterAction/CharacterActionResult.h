@@ -29,21 +29,21 @@ public:
     void Clear();
 
     // Final skill damage
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(FinalDamage, Int);
+    MAKE_RAW_TYPE_ACCESSORS(FinalDamage, Int);
 
     // Whether target successfully defended
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(HasTargetDefendedSuccessfully, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(HasTargetDefendedSuccessfully, Bool);
 
     // Whether multiple attacks succeeded
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(HaveMultipleAttacksSucceeded, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(HaveMultipleAttacksSucceeded, Bool);
 
     // Number of attacks to use on target
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(NumAttacksOnTarget, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(NumAttacksOnTarget, UByte);
 
     // Per attack lists of critical hit info and damage
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(IndividualAttackIsCriticalCausedArray, BoolArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(IndividualAttackIsCriticalBlockedArray, BoolArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(IndividualAttackTargetDamageArray, FloatArray);
+    MAKE_RAW_TYPE_ACCESSORS(IndividualAttackIsCriticalCausedArray, BoolArray);
+    MAKE_RAW_TYPE_ACCESSORS(IndividualAttackIsCriticalBlockedArray, BoolArray);
+    MAKE_RAW_TYPE_ACCESSORS(IndividualAttackTargetDamageArray, FloatArray);
 
     // Comparisons
     Bool operator==(const CharacterActionResult& other) const;

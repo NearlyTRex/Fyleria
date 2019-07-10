@@ -39,7 +39,7 @@ protected:
     virtual void OnMessageReceived(const String& sMessage) override;
 
     // Web page handler
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WebPageHandler, STDSharedPtr<WebPageHandlerPartyTool>);
+    MAKE_RAW_TYPE_ACCESSORS(WebPageHandler, STDSharedPtr<WebPageHandlerPartyTool>);
 };
 
 // Typedef

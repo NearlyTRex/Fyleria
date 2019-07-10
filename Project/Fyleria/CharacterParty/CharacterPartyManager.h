@@ -73,11 +73,11 @@ public:
     MAKE_MODULE_RESULT_VARIANT(GetAllPartyIDs);
 
     // Parties
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Parties, CharacterPartyMappingType);
+    MAKE_RAW_TYPE_ACCESSORS(Parties, CharacterPartyMappingType);
 
     // Current ally/enemy party
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentAllyPartyID, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentEnemyPartyID, String);
+    MAKE_RAW_TYPE_ACCESSORS(CurrentAllyPartyID, String);
+    MAKE_RAW_TYPE_ACCESSORS(CurrentEnemyPartyID, String);
 };
 
 };

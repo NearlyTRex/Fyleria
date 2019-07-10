@@ -37,28 +37,28 @@ public:
     CharacterActionArray CreateBaseActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Run types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RunTypes, StringArray);
 
     // Data class
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DataClass, String);
+    MAKE_RAW_TYPE_ACCESSORS(DataClass, String);
 
     // Item name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemName, String);
+    MAKE_RAW_TYPE_ACCESSORS(ItemName, String);
 
     // Item description
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemDescription, String);
+    MAKE_RAW_TYPE_ACCESSORS(ItemDescription, String);
 
     // Item type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemType, String);
+    MAKE_RAW_TYPE_ACCESSORS(ItemType, String);
 
     // Action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionTypes, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(ActionTypes, StringArray);
 
     // Item index
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
+    MAKE_RAW_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
+    MAKE_RAW_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

@@ -75,25 +75,25 @@ public:
     MAKE_MODULE_RESULT_VARIANT(AreAllActionsFinished);
 
     // Battle status
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(IsBattleStarted, Bool);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(IsBattleFinished, Bool);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(IsBattleManuallyWon, Bool);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(IsBattleManuallyLost, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(IsBattleStarted, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(IsBattleFinished, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(IsBattleManuallyWon, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(IsBattleManuallyLost, Bool);
 
     // Current action/round
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(CurrentActionIndex, Int);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(CurrentRoundIndex, Int);
+    MAKE_RAW_TYPE_ACCESSORS(CurrentActionIndex, Int);
+    MAKE_RAW_TYPE_ACCESSORS(CurrentRoundIndex, Int);
 
     // Actions
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Actions, CharacterActionArray);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(ActionCount, Int);
+    MAKE_RAW_TYPE_ACCESSORS(Actions, CharacterActionArray);
+    MAKE_RAW_TYPE_ACCESSORS(ActionCount, Int);
 
     // Party IDs
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EnemyPartyID, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AllyPartyID, String);
+    MAKE_RAW_TYPE_ACCESSORS(EnemyPartyID, String);
+    MAKE_RAW_TYPE_ACCESSORS(AllyPartyID, String);
 
     // Action handlers
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillAttackHandler, CharacterActionHandlerSkillAttack);
+    MAKE_RAW_TYPE_ACCESSORS(SkillAttackHandler, CharacterActionHandlerSkillAttack);
 };
 
 // Typedef

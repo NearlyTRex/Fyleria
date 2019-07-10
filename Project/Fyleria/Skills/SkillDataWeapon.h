@@ -35,10 +35,10 @@ public:
     CharacterActionArray CreateWeaponActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Weapon base type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(WeaponBaseType, String);
+    MAKE_RAW_TYPE_ACCESSORS(WeaponBaseType, String);
 
     // Amount of action points available
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(ActionPoints, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(ActionPoints, UByte);
 };
 
 // Typedef

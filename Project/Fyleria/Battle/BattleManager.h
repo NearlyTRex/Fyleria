@@ -42,10 +42,10 @@ public:
     MAKE_MODULE_RESULT_VARIANT(GetCurrentBattle);
 
     // Battles
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Battles, BattleMappingType);
+    MAKE_RAW_TYPE_ACCESSORS(Battles, BattleMappingType);
 
     // Current battle ID
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentBattleID, String);
+    MAKE_RAW_TYPE_ACCESSORS(CurrentBattleID, String);
 };
 
 };

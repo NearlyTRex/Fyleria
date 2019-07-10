@@ -29,7 +29,7 @@ public:
     void UpdateAvailableActions(const String& sCharacterID);
 
     // List of character actions
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AvailableActions, CharacterActionArray);
+    MAKE_RAW_TYPE_ACCESSORS(AvailableActions, CharacterActionArray);
 
     // Comparisons
     Bool operator==(const CharacterActionData& other) const;

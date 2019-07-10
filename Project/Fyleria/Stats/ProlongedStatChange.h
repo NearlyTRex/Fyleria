@@ -28,16 +28,16 @@ public:
     void Clear();
 
     // Relevant stat change
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChangeEntry, StatChangeEntry);
+    MAKE_RAW_TYPE_ACCESSORS(StatChangeEntry, StatChangeEntry);
 
     // Valid round
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(Round, Int);
+    MAKE_RAW_TYPE_ACCESSORS(Round, Int);
 
     // Valid attack
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(Attack, Int);
+    MAKE_RAW_TYPE_ACCESSORS(Attack, Int);
 
     // Valid defend
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(Defend, Int);
+    MAKE_RAW_TYPE_ACCESSORS(Defend, Int);
 };
 
 // Typedefs

@@ -42,13 +42,13 @@ public:
         StringArray& vSecondaryActionTypes) const;
 
     // Character ID
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterID, String);
+    MAKE_RAW_TYPE_ACCESSORS(CharacterID, String);
 
     // Character target type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CharacterTargetType, String);
+    MAKE_RAW_TYPE_ACCESSORS(CharacterTargetType, String);
 
     // Equipped items
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(EquippedItems, CharacterPartyEquippedItemArray);
+    MAKE_RAW_TYPE_ACCESSORS(EquippedItems, CharacterPartyEquippedItemArray);
 };
 
 // Typedef

@@ -28,25 +28,25 @@ public:
     void Clear();
 
     // Chance to success
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(ChanceToSucceed, Float);
+    MAKE_RAW_TYPE_ACCESSORS(ChanceToSucceed, Float);
 
     // Input type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputPotionName, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputIngredientName, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputWeaponName, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(InputArmorName, String);
+    MAKE_RAW_TYPE_ACCESSORS(InputPotionName, String);
+    MAKE_RAW_TYPE_ACCESSORS(InputIngredientName, String);
+    MAKE_RAW_TYPE_ACCESSORS(InputWeaponName, String);
+    MAKE_RAW_TYPE_ACCESSORS(InputArmorName, String);
 
     // Output type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputPotionName, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputIngredientName, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputWeaponName, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(OutputArmorName, String);
+    MAKE_RAW_TYPE_ACCESSORS(OutputPotionName, String);
+    MAKE_RAW_TYPE_ACCESSORS(OutputIngredientName, String);
+    MAKE_RAW_TYPE_ACCESSORS(OutputWeaponName, String);
+    MAKE_RAW_TYPE_ACCESSORS(OutputArmorName, String);
 
     // Input amount
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(InputAmount, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(InputAmount, UByte);
 
     // Output amount
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(OutputAmount, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(OutputAmount, UByte);
 };
 
 // Typedefs

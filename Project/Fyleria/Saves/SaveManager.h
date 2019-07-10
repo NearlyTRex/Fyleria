@@ -94,7 +94,7 @@ public:
     void InitializeEmptySaveSlots();
 
     // Saves
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Saves, SaveMappingType);
+    MAKE_RAW_TYPE_ACCESSORS(Saves, SaveMappingType);
 };
 
 };

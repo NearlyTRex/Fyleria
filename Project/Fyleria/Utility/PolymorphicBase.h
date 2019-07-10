@@ -22,7 +22,7 @@ public:
     PolymorphicBase(const Json& jsonData);
 
     // Type name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(TypeName, String);
+    MAKE_RAW_TYPE_ACCESSORS(TypeName, String);
 };
 
 // JSON Converters

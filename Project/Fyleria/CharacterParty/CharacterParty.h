@@ -186,31 +186,31 @@ public:
     void SetPlayTime(ULongLong uTime);
 
     // Party ID
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyID, String);
+    MAKE_RAW_TYPE_ACCESSORS(PartyID, String);
 
     // Party type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PartyType, String);
+    MAKE_RAW_TYPE_ACCESSORS(PartyType, String);
 
     // Map of members
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Members, CharacterPartyMemberMapType);
+    MAKE_RAW_TYPE_ACCESSORS(Members, CharacterPartyMemberMapType);
 
     // Map of items
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Items, CharacterPartyItemMapType);
+    MAKE_RAW_TYPE_ACCESSORS(Items, CharacterPartyItemMapType);
 
     // Arrays of available target types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(AvailableTargetTypes, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(AvailableTargetTypes, StringArray);
 
     // Array of taken target types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(TakenTargetTypes, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(TakenTargetTypes, StringArray);
 
     // Paused playtime
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(PlayTimePaused, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(PlayTimePaused, Bool);
 
     // Current playtime
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(CurrentPlayTime, ULongLong);
+    MAKE_RAW_TYPE_ACCESSORS(CurrentPlayTime, ULongLong);
 
     // Last time point
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(LastTimePoint, STDTimePoint);
+    MAKE_RAW_TYPE_ACCESSORS(LastTimePoint, STDTimePoint);
 };
 
 // Typedef

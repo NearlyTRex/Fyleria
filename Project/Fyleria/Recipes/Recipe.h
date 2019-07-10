@@ -29,13 +29,13 @@ public:
     void Clear();
 
     // Chance to success
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(ChanceToSucceed, Float);
+    MAKE_RAW_TYPE_ACCESSORS(ChanceToSucceed, Float);
 
     // Ingredients
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Ingredients, RecipeEntryArray);
+    MAKE_RAW_TYPE_ACCESSORS(Ingredients, RecipeEntryArray);
 
     // Results
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Results, RecipeEntryArray);
+    MAKE_RAW_TYPE_ACCESSORS(Results, RecipeEntryArray);
 };
 
 // Typedefs

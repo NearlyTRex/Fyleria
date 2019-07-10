@@ -36,37 +36,15 @@ typedef STDVector<type##SharedPtr> type##SharedPtrArray
 
 //=====================================================================================
 
-#define MAKE_RAW_BASIC_TYPE_ACCESSORS(name, type)                                       \
-type m_var##name {};                                                                    \
-type Get##name() const { return m_var##name; }                                          \
-void Set##name(type varValue) { m_var##name = varValue; }
-
-#define MAKE_RAW_OBJECT_TYPE_ACCESSORS(name, type)                                      \
+#define MAKE_RAW_TYPE_ACCESSORS(name, type)                                             \
 type m_var##name {};                                                                    \
 const type& Get##name() const { return m_var##name; }                                   \
 type& Get##name() { return m_var##name; }                                               \
 void Set##name(const type& varValue) { m_var##name = varValue; }
 
-#define MAKE_RAW_GET_ONLY_BASIC_TYPE_ACCESSORS(name, type)                              \
-type m_var##name {};                                                                    \
-type Get##name() const { return m_var##name; }
-
-#define MAKE_RAW_GET_ONLY_OBJECT_TYPE_ACCESSORS(name, type)                             \
-type m_var##name {};                                                                    \
-const type& Get##name() const { return m_var##name; }                                   \
-type& Get##name() { return m_var##name; }
-
 #define MAKE_STAT_TYPE_ACCESSORS(name, type)                                            \
-type Get##name() const                                                                  \
-{                                                                                       \
-    type var##name {};                                                                  \
-    GetStatMapValue<type>(Get##type##Stats(), #name, var##name);                        \
-    return var##name;                                                                   \
-}                                                                                       \
-void Set##name(const type& var##name)                                                   \
-{                                                                                       \
-    SetStatMapValue<type>(Get##type##Stats(), #name, var##name);                        \
-}
+type Get##name() const { return GetStatValue<type>(#name); }                            \
+void Set##name(const type& var##name) { SetStatValue(#name, var##name); }
 
 //=====================================================================================
 

@@ -29,19 +29,19 @@ public:
     void Clear();
 
     // Slot
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Slot, String);
+    MAKE_RAW_TYPE_ACCESSORS(Slot, String);
 
     // Time
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(Time, ULong);
+    MAKE_RAW_TYPE_ACCESSORS(Time, ULong);
 
     // Description
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Description, String);
+    MAKE_RAW_TYPE_ACCESSORS(Description, String);
 
     // Party
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Parties, CharacterPartyArray);
+    MAKE_RAW_TYPE_ACCESSORS(Parties, CharacterPartyArray);
 
     // Characters
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Characters, CharacterArray);
+    MAKE_RAW_TYPE_ACCESSORS(Characters, CharacterArray);
 };
 
 // Typedef

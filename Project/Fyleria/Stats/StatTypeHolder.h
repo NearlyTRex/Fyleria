@@ -60,14 +60,14 @@ public:
     Bool SetStatValue(const String& sStat, const StringArray& vValues);
 
     // Stat types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(BoolStats, BoolStatTypeMap);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ByteStats, ByteStatTypeMap);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ShortStats, ShortStatTypeMap);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(IntStats, IntStatTypeMap);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(FloatStats, FloatStatTypeMap);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DoubleStats, DoubleStatTypeMap);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StringStats, StringStatTypeMap);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StringArrayStats, StringArrayStatTypeMap);
+    MAKE_RAW_TYPE_ACCESSORS(BoolStats, BoolStatTypeMap);
+    MAKE_RAW_TYPE_ACCESSORS(ByteStats, ByteStatTypeMap);
+    MAKE_RAW_TYPE_ACCESSORS(ShortStats, ShortStatTypeMap);
+    MAKE_RAW_TYPE_ACCESSORS(IntStats, IntStatTypeMap);
+    MAKE_RAW_TYPE_ACCESSORS(FloatStats, FloatStatTypeMap);
+    MAKE_RAW_TYPE_ACCESSORS(DoubleStats, DoubleStatTypeMap);
+    MAKE_RAW_TYPE_ACCESSORS(StringStats, StringStatTypeMap);
+    MAKE_RAW_TYPE_ACCESSORS(StringArrayStats, StringArrayStatTypeMap);
 };
 
 };

@@ -36,12 +36,12 @@ public:
     CharacterActionArray CreateWeaponActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Stat percents
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(BluntAttackPercent, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(PierceAttackPercent, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(SlashAttackPercent, Float);
+    MAKE_RAW_TYPE_ACCESSORS(BluntAttackPercent, Float);
+    MAKE_RAW_TYPE_ACCESSORS(PierceAttackPercent, Float);
+    MAKE_RAW_TYPE_ACCESSORS(SlashAttackPercent, Float);
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
+    MAKE_RAW_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

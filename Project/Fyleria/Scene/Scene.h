@@ -70,10 +70,10 @@ protected:
     virtual void ClearRunResultCallback();
 
     // Page content
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageContent, String);
+    MAKE_RAW_TYPE_ACCESSORS(PageContent, String);
 
     // Page handler
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageHandler, WebPageHandlerSharedPtr);
+    MAKE_RAW_TYPE_ACCESSORS(PageHandler, WebPageHandlerSharedPtr);
 };
 
 // Typedef

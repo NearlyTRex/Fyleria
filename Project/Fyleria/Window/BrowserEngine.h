@@ -69,13 +69,13 @@ public:
     String GetCommonJavascriptShortcuts();
 
     // Shutting down
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(IsShuttingDown, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(IsShuttingDown, Bool);
 
     // Post (Javascript -> C++) callback
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PostJavascriptCallback, JavascriptCallback);
+    MAKE_RAW_TYPE_ACCESSORS(PostJavascriptCallback, JavascriptCallback);
 
     // Run result (C++ -> Javascript) callback
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunResultJavascriptCallback, JavascriptCallback);
+    MAKE_RAW_TYPE_ACCESSORS(RunResultJavascriptCallback, JavascriptCallback);
 };
 
 };

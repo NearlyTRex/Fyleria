@@ -33,7 +33,7 @@ public:
     }
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
+    MAKE_RAW_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

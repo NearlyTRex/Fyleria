@@ -36,13 +36,13 @@ public:
     CharacterActionArray CreateArmorActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Stat percents
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(BluntDefendPercent, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(PierceDefendPercent, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(SlashDefendPercent, Float);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(MagicDefendPercent, Float);
+    MAKE_RAW_TYPE_ACCESSORS(BluntDefendPercent, Float);
+    MAKE_RAW_TYPE_ACCESSORS(PierceDefendPercent, Float);
+    MAKE_RAW_TYPE_ACCESSORS(SlashDefendPercent, Float);
+    MAKE_RAW_TYPE_ACCESSORS(MagicDefendPercent, Float);
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
+    MAKE_RAW_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

@@ -50,38 +50,38 @@ public:
     MAKE_MODULE_RESULT_VARIANT(PrepareCharacterIDs);
 
     // Run type
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(RunType, String);
+    MAKE_RAW_TYPE_ACCESSORS(RunType, String);
 
     // Order
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(Order, Short);
+    MAKE_RAW_TYPE_ACCESSORS(Order, Short);
 
     // Cost
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(CostAP, UByte);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(CostHP, UByte);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(CostMP, UByte);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(CostEP, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(CostAP, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(CostHP, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(CostMP, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(CostEP, UByte);
 
     // Applicable weapon set
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(WeaponSet, String);
+    MAKE_RAW_TYPE_ACCESSORS(WeaponSet, String);
 
     // Action entries
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionEntries, CharacterActionEntryArray);
+    MAKE_RAW_TYPE_ACCESSORS(ActionEntries, CharacterActionEntryArray);
 
     // Previous action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PreviousActionTypes, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(PreviousActionTypes, StringArray);
 
     // Skill
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
+    MAKE_RAW_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
 
     // Item
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(ItemAmount, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
+    MAKE_RAW_TYPE_ACCESSORS(ItemAmount, UByte);
 
     // Targets
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceTargetType, String);
+    MAKE_RAW_TYPE_ACCESSORS(SourceTargetType, String);
 
     // Characters
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceCharacterID, String);
+    MAKE_RAW_TYPE_ACCESSORS(SourceCharacterID, String);
 };
 
 // Typedef

@@ -22,12 +22,12 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
         WRAPPING_ADD_METHOD_SIMPLE(IsActionable, Gecko::SkillData)
         WRAPPING_ADD_METHOD_SIMPLE(DoesMeetActionRequirements, Gecko::SkillData)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(DataClass, Gecko::SkillData)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(SkillRank, Gecko::SkillData)
+        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(SkillRank, Gecko::SkillData)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(SkillName, Gecko::SkillData)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(SkillDescription, Gecko::SkillData)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(SkillType, Gecko::SkillData)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(SkillCostAP, Gecko::SkillData)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(SkillCostHP, Gecko::SkillData)
+        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(SkillCostAP, Gecko::SkillData)
+        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(SkillCostHP, Gecko::SkillData)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(StatChanges, Gecko::SkillDataAffinity)
     ;
 
@@ -79,10 +79,10 @@ PYBIND11_EMBEDDED_MODULE(GeckoSkills, m)
     PyBindClass<Gecko::SkillDataWeapon, Gecko::SkillData>(m, "SkillDataWeapon")
         WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
         WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::SkillDataWeapon)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(TreeType, Gecko::SkillDataWeapon)
         WRAPPING_ADD_METHOD_SIMPLE(CreateWeaponActions, Gecko::SkillDataWeapon)
+        WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(TreeType, Gecko::SkillDataWeapon)
         WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(WeaponBaseType, Gecko::SkillDataWeapon)
-        WRAPPING_ADD_BASIC_PROPERTY_READONLY_SIMPLE(ActionPoints, Gecko::SkillDataWeapon)
+        WRAPPING_ADD_BASIC_PROPERTY_READONLY_MULTIGET(ActionPoints, Gecko::SkillDataWeapon)
     ;
     PyBindVector<Gecko::SkillDataWeaponArray>(m, "SkillDataWeaponArray");
 

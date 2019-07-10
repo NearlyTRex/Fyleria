@@ -56,32 +56,32 @@ public:
     CharacterActionArray CreateBaseActions(const String& sCharacterID, const String& sWeaponSet) const;
 
     // Run types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RunTypes, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RunTypes, StringArray);
 
     // Data class
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DataClass, String);
+    MAKE_RAW_TYPE_ACCESSORS(DataClass, String);
 
     // Skill rank
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(SkillRank, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(SkillRank, UByte);
 
     // Skill name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillName, String);
+    MAKE_RAW_TYPE_ACCESSORS(SkillName, String);
 
     // Skill description
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillDescription, String);
+    MAKE_RAW_TYPE_ACCESSORS(SkillDescription, String);
 
     // Skill type
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillType, String);
+    MAKE_RAW_TYPE_ACCESSORS(SkillType, String);
 
     // Skill costs
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(SkillCostAP, UByte);
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(SkillCostHP, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(SkillCostAP, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(SkillCostHP, UByte);
 
     // Skill index
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
+    MAKE_RAW_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
 
     // Stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChanges, StatChangeArray);
+    MAKE_RAW_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
 
 // Typedef

@@ -66,51 +66,51 @@ public:
     void ResolveTargetPlaceholders(const String& sCharacterID, const String& sSegment);
 
     // ID
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(ID, ULongLong);
+    MAKE_RAW_TYPE_ACCESSORS(ID, ULongLong);
 
     // Relevant skill data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
+    MAKE_RAW_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
 
     // Relevant item data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
+    MAKE_RAW_TYPE_ACCESSORS(ItemTreeIndex, TreeIndex);
 
     // Percent chance to apply this change
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(ChanceToApply, Float);
+    MAKE_RAW_TYPE_ACCESSORS(ChanceToApply, Float);
 
     // Amount of rounds to apply this change (0 is indefinite)
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(RoundAmount, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(RoundAmount, UByte);
 
     // Amount of attacks to apply this change (0 is indefinite)
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(AttackAmount, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(AttackAmount, UByte);
 
     // Amount of defends to apply this change (0 is indefinite)
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(DefendAmount, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(DefendAmount, UByte);
 
     // Required items or attack types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesOR, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemEquippedTypesAND, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesOR, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredItemUsedTypesAND, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesOR, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredAttackTypesAND, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesOR, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredDefendTypesAND, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesOR, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousAttackTypesAND, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesOR, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredPreviousDefendTypesAND, StringArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredEquippedWeaponCount, UByte);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(RequiredEquippedShieldCount, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredItemEquippedTypesOR, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredItemEquippedTypesAND, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredItemUsedTypesOR, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredItemUsedTypesAND, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredAttackTypesOR, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredAttackTypesAND, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredDefendTypesOR, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredDefendTypesAND, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredPreviousAttackTypesOR, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredPreviousAttackTypesAND, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredPreviousDefendTypesOR, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredPreviousDefendTypesAND, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredEquippedWeaponCount, UByte);
+    MAKE_RAW_TYPE_ACCESSORS(RequiredEquippedShieldCount, UByte);
 
     // Whether destination target is the same as the source target
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(DestinationIsSource, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(DestinationIsSource, Bool);
 
     // Source and destination targets
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SourceTargetType, String);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationTargetType, String);
+    MAKE_RAW_TYPE_ACCESSORS(SourceTargetType, String);
+    MAKE_RAW_TYPE_ACCESSORS(DestinationTargetType, String);
 
     // Stat change list
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChangeEntries, StatChangeEntryArray);
+    MAKE_RAW_TYPE_ACCESSORS(StatChangeEntries, StatChangeEntryArray);
 
     // Comparisons
     Bool operator==(const StatChange& other) const;

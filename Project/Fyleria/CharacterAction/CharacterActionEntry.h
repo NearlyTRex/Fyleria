@@ -34,22 +34,22 @@ public:
     Bool DoesMatchActionType(const String& sType) const;
 
     // Action types
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionTypes, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(ActionTypes, StringArray);
 
     // Hand
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(HandType, String);
+    MAKE_RAW_TYPE_ACCESSORS(HandType, String);
 
     // Whether hand is using a shield
-    MAKE_RAW_BASIC_TYPE_ACCESSORS(IsHandTypeShield, Bool);
+    MAKE_RAW_TYPE_ACCESSORS(IsHandTypeShield, Bool);
 
     // Target
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationTargetType, String);
+    MAKE_RAW_TYPE_ACCESSORS(DestinationTargetType, String);
 
     // Character
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(DestinationCharacterIDs, StringArray);
+    MAKE_RAW_TYPE_ACCESSORS(DestinationCharacterIDs, StringArray);
 
     // Result
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Results, CharacterActionResultMapType);
+    MAKE_RAW_TYPE_ACCESSORS(Results, CharacterActionResultMapType);
 
     // Comparisons
     Bool operator==(const CharacterActionEntry& other) const;

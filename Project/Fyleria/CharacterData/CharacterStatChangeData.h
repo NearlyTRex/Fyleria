@@ -61,19 +61,19 @@ public:
     void ApplyProlongedStatChanges(const String& sCharacterID, const String& sSegment);
 
     // Passive data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PassiveSkillDataArray, TreeIndexArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PassiveItemDataArray, TreeIndexArray);
+    MAKE_RAW_TYPE_ACCESSORS(PassiveSkillDataArray, TreeIndexArray);
+    MAKE_RAW_TYPE_ACCESSORS(PassiveItemDataArray, TreeIndexArray);
 
     // Active data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActiveSkillDataArray, TreeIndexArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActiveItemDataArray, TreeIndexArray);
+    MAKE_RAW_TYPE_ACCESSORS(ActiveSkillDataArray, TreeIndexArray);
+    MAKE_RAW_TYPE_ACCESSORS(ActiveItemDataArray, TreeIndexArray);
 
     // Actionable data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionableSkillDataArray, TreeIndexArray);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionableItemDataArray, TreeIndexArray);
+    MAKE_RAW_TYPE_ACCESSORS(ActionableSkillDataArray, TreeIndexArray);
+    MAKE_RAW_TYPE_ACCESSORS(ActionableItemDataArray, TreeIndexArray);
 
     // Prolonged stat changes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ProlongedStatChanges, ProlongedStatChangeMapType);
+    MAKE_RAW_TYPE_ACCESSORS(ProlongedStatChanges, ProlongedStatChangeMapType);
 
     // Comparisons
     Bool operator==(const CharacterStatChangeData& other) const;

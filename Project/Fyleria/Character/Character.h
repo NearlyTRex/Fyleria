@@ -150,35 +150,35 @@ public:
     void ClearActiveChanges();
 
     // Progress data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ProgressDataBase, CharacterProgressData);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ProgressDataPassives, CharacterProgressData);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ProgressDataActives, CharacterProgressData);
+    MAKE_RAW_TYPE_ACCESSORS(ProgressDataBase, CharacterProgressData);
+    MAKE_RAW_TYPE_ACCESSORS(ProgressDataPassives, CharacterProgressData);
+    MAKE_RAW_TYPE_ACCESSORS(ProgressDataActives, CharacterProgressData);
     MAKE_MODULE_RESULT_VARIANT(GetProgressDataBase);
     MAKE_MODULE_RESULT_VARIANT(GetProgressDataPassives);
     MAKE_MODULE_RESULT_VARIANT(GetProgressDataActives);
 
     // Battle data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(BattleDataBase, CharacterBattleData);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(BattleDataPassives, CharacterBattleData);
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(BattleDataActives, CharacterBattleData);
+    MAKE_RAW_TYPE_ACCESSORS(BattleDataBase, CharacterBattleData);
+    MAKE_RAW_TYPE_ACCESSORS(BattleDataPassives, CharacterBattleData);
+    MAKE_RAW_TYPE_ACCESSORS(BattleDataActives, CharacterBattleData);
     MAKE_MODULE_RESULT_VARIANT(GetBattleDataBase);
     MAKE_MODULE_RESULT_VARIANT(GetBattleDataPassives);
     MAKE_MODULE_RESULT_VARIANT(GetBattleDataActives);
 
     // Basic data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(BasicData, CharacterBasicData);
+    MAKE_RAW_TYPE_ACCESSORS(BasicData, CharacterBasicData);
     MAKE_MODULE_RESULT_VARIANT(GetBasicData);
 
     // Action data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(ActionData, CharacterActionData);
+    MAKE_RAW_TYPE_ACCESSORS(ActionData, CharacterActionData);
     MAKE_MODULE_RESULT_VARIANT(GetActionData);
 
     // Skill data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(SkillData, CharacterSkillData);
+    MAKE_RAW_TYPE_ACCESSORS(SkillData, CharacterSkillData);
     MAKE_MODULE_RESULT_VARIANT(GetSkillData);
 
     // Stat change data
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(StatChangeData, CharacterStatChangeData);
+    MAKE_RAW_TYPE_ACCESSORS(StatChangeData, CharacterStatChangeData);
     MAKE_MODULE_RESULT_VARIANT(GetStatChangeData);
 
     // Comparisons

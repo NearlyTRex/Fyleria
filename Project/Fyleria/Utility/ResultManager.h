@@ -41,10 +41,10 @@ public:
     void ClearAllResults();
 
     // Current result ID
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentResultID, String);
+    MAKE_RAW_TYPE_ACCESSORS(CurrentResultID, String);
 
     // Results
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Results, ResultMappingType);
+    MAKE_RAW_TYPE_ACCESSORS(Results, ResultMappingType);
 };
 
 };

@@ -40,13 +40,13 @@ public:
     Bool operator!=(const TreeIndex& other) const;
 
     // Tree name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Tree, String);
+    MAKE_RAW_TYPE_ACCESSORS(Tree, String);
 
     // Branch name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Branch, String);
+    MAKE_RAW_TYPE_ACCESSORS(Branch, String);
 
     // Leaf name
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Leaf, String);
+    MAKE_RAW_TYPE_ACCESSORS(Leaf, String);
 };
 
 // Typedef

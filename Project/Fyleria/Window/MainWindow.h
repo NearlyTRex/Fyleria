@@ -24,7 +24,7 @@ public:
     virtual ~MainWindow();
 
     // Browser engine
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(BrowserEngine, STDSharedPtr<BrowserEngine>);
+    MAKE_RAW_TYPE_ACCESSORS(BrowserEngine, STDSharedPtr<BrowserEngine>);
 };
 
 };

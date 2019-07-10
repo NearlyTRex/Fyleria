@@ -134,7 +134,7 @@ public:
         StringArray& vStringValues) const;
 
     // Characters
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Characters, CharacterMappingType);
+    MAKE_RAW_TYPE_ACCESSORS(Characters, CharacterMappingType);
 };
 
 };

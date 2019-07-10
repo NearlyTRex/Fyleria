@@ -33,7 +33,7 @@ public:
     }
 
     // Recipes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Recipes, RecipeArray);
+    MAKE_RAW_TYPE_ACCESSORS(Recipes, RecipeArray);
 };
 
 // Typedef

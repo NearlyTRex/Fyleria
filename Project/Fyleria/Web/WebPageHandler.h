@@ -28,10 +28,10 @@ public:
     virtual void UpdatePageContent(const StringMap& tParams) = 0;
 
     // Page content
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageContent, String);
+    MAKE_RAW_TYPE_ACCESSORS(PageContent, String);
 
     // Page template
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(PageTemplate, String);
+    MAKE_RAW_TYPE_ACCESSORS(PageTemplate, String);
 };
 
 // Typedefs

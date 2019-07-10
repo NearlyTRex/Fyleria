@@ -65,10 +65,10 @@ public:
     SceneSharedPtr& GetCurrentScene();
 
     // Current scene
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(CurrentSceneID, String);
+    MAKE_RAW_TYPE_ACCESSORS(CurrentSceneID, String);
 
     // Scenes
-    MAKE_RAW_OBJECT_TYPE_ACCESSORS(Scenes, SceneMappingType);
+    MAKE_RAW_TYPE_ACCESSORS(Scenes, SceneMappingType);
 };
 
 };
