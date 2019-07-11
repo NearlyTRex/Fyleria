@@ -78,6 +78,9 @@ private:
     GtkWidget* m_pWebview;
 };
 
+// Typedefs
+MAKE_COMMON_TYPEDEFS(BrowserEngineWebKitGtk);
+
 };
 
 #endif

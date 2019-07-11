@@ -24,8 +24,11 @@ public:
     virtual ~MainWindow();
 
     // Browser engine
-    MAKE_RAW_TYPE_ACCESSORS(BrowserEngine, STDSharedPtr<BrowserEngine>);
+    MAKE_RAW_TYPE_ACCESSORS(BrowserEngine, BrowserEngineSharedPtr);
 };
+
+// Typedefs
+MAKE_COMMON_TYPEDEFS(MainWindow);
 
 };
 

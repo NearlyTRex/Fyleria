@@ -78,6 +78,9 @@ public:
     MAKE_RAW_TYPE_ACCESSORS(RunResultJavascriptCallback, JavascriptCallback);
 };
 
+// Typedefs
+MAKE_COMMON_TYPEDEFS(BrowserEngine);
+
 };
 
 #endif
