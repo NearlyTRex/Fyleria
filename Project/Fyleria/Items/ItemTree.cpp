@@ -13,17 +13,18 @@
 namespace Gecko
 {
 
-#define POSTPROCESS_ITEMS(tree)                                                         \
-{                                                                                       \
-    for(const TreeIndex& treeIndex : GetAll##tree##Items())                             \
-    {                                                                                   \
-        ItemData##tree& itemData = ItemTree##tree::GetInstance()->GetLeaf(treeIndex);   \
-        itemData.SetItemTreeIndex(treeIndex);                                           \
-        for(StatChange& statChange : itemData.GetStatChanges())                         \
-        {                                                                               \
-            statChange.SetItemTreeIndex(treeIndex);                                     \
-        }                                                                               \
-    }                                                                                   \
+template <class T>
+void PostProcessItems(const TreeIndexArray& vTreeIndices)
+{
+    for(auto& treeIndex : vTreeIndices)
+    {
+        auto& itemData = T::GetInstance()->GetLeaf(treeIndex);
+        itemData.SetItemTreeIndex(treeIndex);
+        for(auto& statChange : itemData.GetStatChanges())
+        {
+            statChange.SetItemTreeIndex(treeIndex);
+        }
+    }
 }
 
 void ItemTree::LoadItemTreesIntoMemory()
@@ -68,10 +69,10 @@ void ItemTree::LoadItemTreesIntoMemory()
     ItemTreeWeapon::GetInstance()->AddBranch("Slash", JoinPathsCanonical(sUserConfigFolder, config.GetItemWeaponSlashFile()));
 
     // Post process item data
-    POSTPROCESS_ITEMS(Armor);
-    POSTPROCESS_ITEMS(Ingredient);
-    POSTPROCESS_ITEMS(Potion);
-    POSTPROCESS_ITEMS(Weapon);
+    PostProcessItems<ItemTreeArmor>(GetAllArmorItems());
+    PostProcessItems<ItemTreeIngredient>(GetAllIngredientItems());
+    PostProcessItems<ItemTreePotion>(GetAllPotionItems());
+    PostProcessItems<ItemTreeWeapon>(GetAllWeaponItems());
 }
 
 void ItemTree::UnloadItemTreesFromMemory()
@@ -83,29 +84,30 @@ void ItemTree::UnloadItemTreesFromMemory()
     ItemTreeWeapon::GetInstance()->ClearAllData();
 }
 
-#define VERIFY_APPLY_STATCHANGES(tree, character_target)                                                        \
-{                                                                                                               \
-    String sBaseType = (+CharacterSegmentType::Base)._to_string();                                              \
-    for(const TreeIndex& treeIndex : GetAll##tree##Items())                                                     \
-    {                                                                                                           \
-        ItemData##tree& itemData = ItemTree##tree::GetInstance()->GetLeaf(treeIndex);                           \
-        LOG_FORMAT_STATEMENT("Processing item (ItemTreeType = '%s', "                                           \
-                             "ItemType = '%s', "                                                                \
-                             "ItemName = '%s', "                                                                \
-                             "StatChanges = %zu)\n",                                                            \
-            #tree,                                                                                              \
-            itemData.GetItemType().c_str(),                                                                     \
-            itemData.GetItemName().c_str(),                                                                     \
-            itemData.GetStatChanges().size());                                                                  \
-        for(StatChange change : itemData.GetStatChanges())                                                      \
-        {                                                                                                       \
-            Bool bAll, bOne = false;                                                                            \
-            change.SetSourceTargetType(character_target);                                                       \
-            change.SetDestinationTargetType(character_target);                                                  \
-            change.SetChanceToApply(1.0);                                                                       \
-            CharacterManager::GetInstance()->ApplyStatChange(sBaseType, change, bAll, bOne, true);              \
-        }                                                                                                       \
-    }                                                                                                           \
+template <class T>
+void VerifyApplyStatChanges(const TreeIndexArray& vTreeIndices, const String& sCharacterTargetType)
+{
+    String sBaseType = (+CharacterSegmentType::Base)._to_string();
+    for(auto& treeIndex : vTreeIndices)
+    {
+        auto& itemData = T::GetInstance()->GetLeaf(treeIndex);
+        LOG_FORMAT_STATEMENT("Processing item (ItemTreeType = '%s', "
+                             "ItemType = '%s', "
+                             "ItemName = '%s', "
+                             "StatChanges = %zu)\n",
+            T::GetTreeType().c_str(),
+            itemData.GetItemType().c_str(),
+            itemData.GetItemName().c_str(),
+            itemData.GetStatChanges().size());
+        for(auto change : itemData.GetStatChanges())
+        {
+            Bool bAll, bOne = false;
+            change.SetSourceTargetType(sCharacterTargetType);
+            change.SetDestinationTargetType(sCharacterTargetType);
+            change.SetChanceToApply(1.0);
+            CharacterManager::GetInstance()->ApplyStatChange(sBaseType, change, bAll, bOne, true);
+        }
+    }
 }
 
 void ItemTree::VerifyItemTrees()
@@ -127,10 +129,10 @@ void ItemTree::VerifyItemTrees()
     const String sCharacterTargetType = CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetCharacterTargetType();
 
     // Apply all stat changes
-    VERIFY_APPLY_STATCHANGES(Armor, sCharacterTargetType);
-    VERIFY_APPLY_STATCHANGES(Ingredient, sCharacterTargetType);
-    VERIFY_APPLY_STATCHANGES(Potion, sCharacterTargetType);
-    VERIFY_APPLY_STATCHANGES(Weapon, sCharacterTargetType);
+    VerifyApplyStatChanges<ItemTreeArmor>(GetAllArmorItems(), sCharacterTargetType);
+    VerifyApplyStatChanges<ItemTreeIngredient>(GetAllIngredientItems(), sCharacterTargetType);
+    VerifyApplyStatChanges<ItemTreePotion>(GetAllPotionItems(), sCharacterTargetType);
+    VerifyApplyStatChanges<ItemTreeWeapon>(GetAllWeaponItems(), sCharacterTargetType);
 
     // Cleanup
     CharacterPartyManager::GetInstance()->GetPartyByID(sCharacterPartyID).RemoveMember(sCharacterID);
@@ -209,61 +211,61 @@ String ItemTree::RetrieveItemType(const TreeIndex& treeIndex)
     return GetNoneTypeForEnum<ItemTreeType>();
 }
 
-#define ADD_ITEM_LEAVES(tree, branch)                                           \
-{                                                                               \
-    String sBranchName(#branch);                                                \
-    auto vLeaves = ItemTree##tree::GetInstance()->GetAllLeaves(sBranchName);    \
-    vFinal.insert(vFinal.end(), vLeaves.begin(), vLeaves.end());                \
+template <class T>
+void AddItemLeaves(const String& sBranchName, TreeIndexArray& vLeaves)
+{
+    auto vNewLeaves = T::GetInstance()->GetAllLeaves(sBranchName);
+    vLeaves.insert(vLeaves.end(), vNewLeaves.begin(), vNewLeaves.end());
 }
 
 TreeIndexArray ItemTree::GetAllArmorItems()
 {
     TreeIndexArray vFinal;
-    ADD_ITEM_LEAVES(Armor, Chest);
-    ADD_ITEM_LEAVES(Armor, Feet);
-    ADD_ITEM_LEAVES(Armor, Finger);
-    ADD_ITEM_LEAVES(Armor, Hands);
-    ADD_ITEM_LEAVES(Armor, Head);
-    ADD_ITEM_LEAVES(Armor, Neck);
-    ADD_ITEM_LEAVES(Armor, Legs);
-    ADD_ITEM_LEAVES(Armor, Shield);
+    AddItemLeaves<ItemTreeArmor>("Chest", vFinal);
+    AddItemLeaves<ItemTreeArmor>("Feet", vFinal);
+    AddItemLeaves<ItemTreeArmor>("Finger", vFinal);
+    AddItemLeaves<ItemTreeArmor>("Hands", vFinal);
+    AddItemLeaves<ItemTreeArmor>("Head", vFinal);
+    AddItemLeaves<ItemTreeArmor>("Neck", vFinal);
+    AddItemLeaves<ItemTreeArmor>("Legs", vFinal);
+    AddItemLeaves<ItemTreeArmor>("Shield", vFinal);
     return vFinal;
 }
 
 TreeIndexArray ItemTree::GetAllIngredientItems()
 {
     TreeIndexArray vFinal;
-    ADD_ITEM_LEAVES(Ingredient, Bar);
-    ADD_ITEM_LEAVES(Ingredient, Cloth);
-    ADD_ITEM_LEAVES(Ingredient, Crystal);
-    ADD_ITEM_LEAVES(Ingredient, Leather);
-    ADD_ITEM_LEAVES(Ingredient, Mail);
-    ADD_ITEM_LEAVES(Ingredient, Plate);
-    ADD_ITEM_LEAVES(Ingredient, Scale);
-    ADD_ITEM_LEAVES(Ingredient, Screw);
-    ADD_ITEM_LEAVES(Ingredient, Sheet);
-    ADD_ITEM_LEAVES(Ingredient, Stud);
-    ADD_ITEM_LEAVES(Ingredient, Thread);
+    AddItemLeaves<ItemTreeIngredient>("Bar", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Cloth", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Crystal", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Leather", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Mail", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Plate", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Scale", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Screw", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Sheet", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Stud", vFinal);
+    AddItemLeaves<ItemTreeIngredient>("Thread", vFinal);
     return vFinal;
 }
 
 TreeIndexArray ItemTree::GetAllPotionItems()
 {
     TreeIndexArray vFinal;
-    ADD_ITEM_LEAVES(Potion, Energy);
-    ADD_ITEM_LEAVES(Potion, Heal);
-    ADD_ITEM_LEAVES(Potion, Magic);
-    ADD_ITEM_LEAVES(Potion, Speed);
+    AddItemLeaves<ItemTreePotion>("Energy", vFinal);
+    AddItemLeaves<ItemTreePotion>("Heal", vFinal);
+    AddItemLeaves<ItemTreePotion>("Magic", vFinal);
+    AddItemLeaves<ItemTreePotion>("Speed", vFinal);
     return vFinal;
 }
 
 TreeIndexArray ItemTree::GetAllWeaponItems()
 {
     TreeIndexArray vFinal;
-    ADD_ITEM_LEAVES(Weapon, Blunt);
-    ADD_ITEM_LEAVES(Weapon, Mage);
-    ADD_ITEM_LEAVES(Weapon, Pierce);
-    ADD_ITEM_LEAVES(Weapon, Slash);
+    AddItemLeaves<ItemTreeWeapon>("Blunt", vFinal);
+    AddItemLeaves<ItemTreeWeapon>("Mage", vFinal);
+    AddItemLeaves<ItemTreeWeapon>("Pierce", vFinal);
+    AddItemLeaves<ItemTreeWeapon>("Slash", vFinal);
     return vFinal;
 }
 

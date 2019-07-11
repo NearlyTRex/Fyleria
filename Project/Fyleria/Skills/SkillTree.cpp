@@ -14,17 +14,18 @@
 namespace Gecko
 {
 
-#define POSTPROCESS_SKILLS(tree)                                                            \
-{                                                                                           \
-    for(const TreeIndex& treeIndex : GetAll##tree##Skills())                                \
-    {                                                                                       \
-        SkillData##tree& skillData = SkillTree##tree::GetInstance()->GetLeaf(treeIndex);    \
-        skillData.SetSkillTreeIndex(treeIndex);                                             \
-        for(StatChange& statChange : skillData.GetStatChanges())                            \
-        {                                                                                   \
-            statChange.SetSkillTreeIndex(treeIndex);                                        \
-        }                                                                                   \
-    }                                                                                       \
+template <class T>
+void PostProcessSkills(const TreeIndexArray& vTreeIndices)
+{
+    for(auto& treeIndex : vTreeIndices)
+    {
+        auto& skillData = T::GetInstance()->GetLeaf(treeIndex);
+        skillData.SetSkillTreeIndex(treeIndex);
+        for(auto& statChange : skillData.GetStatChanges())
+        {
+            statChange.SetSkillTreeIndex(treeIndex);
+        }
+    }
 }
 
 void SkillTree::LoadSkillTreesIntoMemory()
@@ -114,12 +115,12 @@ void SkillTree::LoadSkillTreesIntoMemory()
     SkillTreeWeapon::GetInstance()->AddBranch("StealthStrike", JoinPathsCanonical(sUserConfigFolder, config.GetSkillWeaponStealthStrikeFile()));
 
     // Post process skill data
-    POSTPROCESS_SKILLS(Affinity);
-    POSTPROCESS_SKILLS(Alchemy);
-    POSTPROCESS_SKILLS(Breakdown);
-    POSTPROCESS_SKILLS(Combat);
-    POSTPROCESS_SKILLS(Crafting);
-    POSTPROCESS_SKILLS(Weapon);
+    PostProcessSkills<SkillTreeAffinity>(GetAllAffinitySkills());
+    PostProcessSkills<SkillTreeAlchemy>(GetAllAlchemySkills());
+    PostProcessSkills<SkillTreeBreakdown>(GetAllBreakdownSkills());
+    PostProcessSkills<SkillTreeCombat>(GetAllCombatSkills());
+    PostProcessSkills<SkillTreeCrafting>(GetAllCraftingSkills());
+    PostProcessSkills<SkillTreeWeapon>(GetAllWeaponSkills());
 }
 
 void SkillTree::UnloadSkillTreesFromMemory()
@@ -133,31 +134,32 @@ void SkillTree::UnloadSkillTreesFromMemory()
     SkillTreeWeapon::GetInstance()->ClearAllData();
 }
 
-#define VERIFY_APPLY_STATCHANGES(tree, character_target)                                                        \
-{                                                                                                               \
-    String sBaseType = (+CharacterSegmentType::Base)._to_string();                                              \
-    for(const TreeIndex& treeIndex : GetAll##tree##Skills())                                                    \
-    {                                                                                                           \
-        SkillData##tree& skillData = SkillTree##tree::GetInstance()->GetLeaf(treeIndex);                        \
-        LOG_FORMAT_STATEMENT("Processing skill (SkillRank = '%d', "                                             \
-                             "SkillTreeType = '%s', "                                                           \
-                             "SkillType = '%s', "                                                               \
-                             "SkillName = '%s', "                                                               \
-                             "StatChanges = %zu)\n",                                                            \
-            skillData.GetSkillRank(),                                                                           \
-            #tree,                                                                                              \
-            skillData.GetSkillType().c_str(),                                                                   \
-            skillData.GetSkillName().c_str(),                                                                   \
-            skillData.GetStatChanges().size());                                                                 \
-        for(StatChange change : skillData.GetStatChanges())                                                     \
-        {                                                                                                       \
-            Bool bAll, bOne = false;                                                                            \
-            change.SetSourceTargetType(character_target);                                                       \
-            change.SetDestinationTargetType(character_target);                                                  \
-            change.SetChanceToApply(1.0);                                                                       \
-            CharacterManager::GetInstance()->ApplyStatChange(sBaseType, change, bAll, bOne, true);              \
-        }                                                                                                       \
-    }                                                                                                           \
+template <class T>
+void VerifyApplyStatChanges(const TreeIndexArray& vTreeIndices, const String& sCharacterTargetType)
+{
+    String sBaseType = (+CharacterSegmentType::Base)._to_string();
+    for(auto& treeIndex : vTreeIndices)
+    {
+        auto& skillData = T::GetInstance()->GetLeaf(treeIndex);
+        LOG_FORMAT_STATEMENT("Processing skill (SkillRank = '%d', "
+                             "SkillTreeType = '%s', "
+                             "SkillType = '%s', "
+                             "SkillName = '%s', "
+                             "StatChanges = %zu)\n",
+            skillData.GetSkillRank(),
+            T::GetTreeType().c_str(),
+            skillData.GetSkillType().c_str(),
+            skillData.GetSkillName().c_str(),
+            skillData.GetStatChanges().size());
+        for(auto change : skillData.GetStatChanges())
+        {
+            Bool bAll, bOne = false;
+            change.SetSourceTargetType(sCharacterTargetType);
+            change.SetDestinationTargetType(sCharacterTargetType);
+            change.SetChanceToApply(1.0);
+            CharacterManager::GetInstance()->ApplyStatChange(sBaseType, change, bAll, bOne, true);
+        }
+    }
 }
 
 void SkillTree::VerifySkillTrees()
@@ -179,12 +181,12 @@ void SkillTree::VerifySkillTrees()
     const String sCharacterTargetType = CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetCharacterTargetType();
 
     // Apply all stat changes
-    VERIFY_APPLY_STATCHANGES(Affinity, sCharacterTargetType);
-    VERIFY_APPLY_STATCHANGES(Alchemy, sCharacterTargetType);
-    VERIFY_APPLY_STATCHANGES(Breakdown, sCharacterTargetType);
-    VERIFY_APPLY_STATCHANGES(Combat, sCharacterTargetType);
-    VERIFY_APPLY_STATCHANGES(Crafting, sCharacterTargetType);
-    VERIFY_APPLY_STATCHANGES(Weapon, sCharacterTargetType);
+    VerifyApplyStatChanges<SkillTreeAffinity>(GetAllAffinitySkills(), sCharacterTargetType);
+    VerifyApplyStatChanges<SkillTreeAlchemy>(GetAllAlchemySkills(), sCharacterTargetType);
+    VerifyApplyStatChanges<SkillTreeBreakdown>(GetAllBreakdownSkills(), sCharacterTargetType);
+    VerifyApplyStatChanges<SkillTreeCombat>(GetAllCombatSkills(), sCharacterTargetType);
+    VerifyApplyStatChanges<SkillTreeCrafting>(GetAllCraftingSkills(), sCharacterTargetType);
+    VerifyApplyStatChanges<SkillTreeWeapon>(GetAllWeaponSkills(), sCharacterTargetType);
 
     // Cleanup
     CharacterPartyManager::GetInstance()->GetPartyByID(sCharacterPartyID).RemoveMember(sCharacterID);
@@ -252,123 +254,123 @@ const SkillDataWeapon& SkillTree::RetrieveSkillDataWeapon(const TreeIndex& treeI
     return SkillTreeWeapon::GetInstance()->GetLeaf(treeIndex);
 }
 
-#define ADD_ALL_SKILL_LEAVES(tree, branch)                                      \
-{                                                                               \
-    String sBranchName(#branch);                                                \
-    auto vLeaves = SkillTree##tree::GetInstance()->GetAllLeaves(sBranchName);   \
-    vFinal.insert(vFinal.end(), vLeaves.begin(), vLeaves.end());                \
+template <class T>
+void AddAllSkillLeaves(const String& sBranchName, TreeIndexArray& vLeaves)
+{
+    auto vNewLeaves = T::GetInstance()->GetAllLeaves(sBranchName);
+    vLeaves.insert(vLeaves.end(), vNewLeaves.begin(), vNewLeaves.end());
 }
 
-#define ADD_SKILL_LEAVES_PROGRESS(tree, branch)                                                                             \
-{                                                                                                                           \
-    String sBranchName(#branch);                                                                                            \
-    String sRankBase("Rank");                                                                                               \
-    Int iLeafNumber = character.GetSkillData().GetSkillRankValue(#branch);                                                  \
-    auto vLeaves = SkillTree##tree::GetInstance()->GetLeavesUnderNumber(sBranchName, sRankBase, iLeafNumber, bUniqueOnly);  \
-    vFinal.insert(vFinal.end(), vLeaves.begin(), vLeaves.end());                                                            \
+template <class T>
+void AddSkillLeavesProgress(const String& sBranchName, const Character& character, TreeIndexArray& vLeaves, Bool bUniqueOnly)
+{
+    String sRankBase("Rank");
+    Int iLeafNumber = character.GetSkillData().GetSkillRankValue(sBranchName);
+    auto vNewLeaves = T::GetInstance()->GetLeavesUnderNumber(sBranchName, sRankBase, iLeafNumber, bUniqueOnly);
+    vLeaves.insert(vLeaves.end(), vNewLeaves.begin(), vNewLeaves.end());
 }
 
 TreeIndexArray SkillTree::GetAllAffinitySkills()
 {
     TreeIndexArray vFinal;
-    ADD_ALL_SKILL_LEAVES(Affinity, Holy);
-    ADD_ALL_SKILL_LEAVES(Affinity, Fire);
-    ADD_ALL_SKILL_LEAVES(Affinity, Ice);
-    ADD_ALL_SKILL_LEAVES(Affinity, Shock);
-    ADD_ALL_SKILL_LEAVES(Affinity, Dark);
-    ADD_ALL_SKILL_LEAVES(Affinity, Light);
-    ADD_ALL_SKILL_LEAVES(Affinity, Force);
-    ADD_ALL_SKILL_LEAVES(Affinity, Mind);
-    ADD_ALL_SKILL_LEAVES(Affinity, Earth);
-    ADD_ALL_SKILL_LEAVES(Affinity, Blood);
-    ADD_ALL_SKILL_LEAVES(Affinity, Flesh);
-    ADD_ALL_SKILL_LEAVES(Affinity, Wind);
+    AddAllSkillLeaves<SkillTreeAffinity>("Holy", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Fire", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Ice", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Shock", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Dark", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Light", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Force", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Mind", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Earth", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Blood", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Flesh", vFinal);
+    AddAllSkillLeaves<SkillTreeAffinity>("Wind", vFinal);
     return vFinal;
 }
 
 TreeIndexArray SkillTree::GetAllAlchemySkills()
 {
     TreeIndexArray vFinal;
-    ADD_ALL_SKILL_LEAVES(Alchemy, Alchemist);
-    ADD_ALL_SKILL_LEAVES(Alchemy, Chemist);
-    ADD_ALL_SKILL_LEAVES(Alchemy, Energist);
-    ADD_ALL_SKILL_LEAVES(Alchemy, Healer);
+    AddAllSkillLeaves<SkillTreeAlchemy>("Alchemist", vFinal);
+    AddAllSkillLeaves<SkillTreeAlchemy>("Chemist", vFinal);
+    AddAllSkillLeaves<SkillTreeAlchemy>("Energist", vFinal);
+    AddAllSkillLeaves<SkillTreeAlchemy>("Healer", vFinal);
     return vFinal;
 }
 
 TreeIndexArray SkillTree::GetAllBreakdownSkills()
 {
     TreeIndexArray vFinal;
-    ADD_ALL_SKILL_LEAVES(Breakdown, Bowbane);
-    ADD_ALL_SKILL_LEAVES(Breakdown, Goldbane);
-    ADD_ALL_SKILL_LEAVES(Breakdown, Hammerbane);
-    ADD_ALL_SKILL_LEAVES(Breakdown, Platebane);
-    ADD_ALL_SKILL_LEAVES(Breakdown, Scalebane);
-    ADD_ALL_SKILL_LEAVES(Breakdown, Shieldbane);
-    ADD_ALL_SKILL_LEAVES(Breakdown, Spellbane);
-    ADD_ALL_SKILL_LEAVES(Breakdown, StudRemover);
-    ADD_ALL_SKILL_LEAVES(Breakdown, Swordbane);
-    ADD_ALL_SKILL_LEAVES(Breakdown, Threadbare);
+    AddAllSkillLeaves<SkillTreeBreakdown>("Bowbane", vFinal);
+    AddAllSkillLeaves<SkillTreeBreakdown>("Goldbane", vFinal);
+    AddAllSkillLeaves<SkillTreeBreakdown>("Hammerbane", vFinal);
+    AddAllSkillLeaves<SkillTreeBreakdown>("Platebane", vFinal);
+    AddAllSkillLeaves<SkillTreeBreakdown>("Scalebane", vFinal);
+    AddAllSkillLeaves<SkillTreeBreakdown>("Shieldbane", vFinal);
+    AddAllSkillLeaves<SkillTreeBreakdown>("Spellbane", vFinal);
+    AddAllSkillLeaves<SkillTreeBreakdown>("StudRemover", vFinal);
+    AddAllSkillLeaves<SkillTreeBreakdown>("Swordbane", vFinal);
+    AddAllSkillLeaves<SkillTreeBreakdown>("Threadbare", vFinal);
     return vFinal;
 }
 
 TreeIndexArray SkillTree::GetAllCombatSkills()
 {
     TreeIndexArray vFinal;
-    ADD_ALL_SKILL_LEAVES(Combat, Ambidextrous);
-    ADD_ALL_SKILL_LEAVES(Combat, Avatar);
-    ADD_ALL_SKILL_LEAVES(Combat, Barbarian);
-    ADD_ALL_SKILL_LEAVES(Combat, Blademaster);
-    ADD_ALL_SKILL_LEAVES(Combat, Focused);
-    ADD_ALL_SKILL_LEAVES(Combat, Mage);
-    ADD_ALL_SKILL_LEAVES(Combat, Rogue);
-    ADD_ALL_SKILL_LEAVES(Combat, Stalwart);
+    AddAllSkillLeaves<SkillTreeCombat>("Ambidextrous", vFinal);
+    AddAllSkillLeaves<SkillTreeCombat>("Avatar", vFinal);
+    AddAllSkillLeaves<SkillTreeCombat>("Barbarian", vFinal);
+    AddAllSkillLeaves<SkillTreeCombat>("Blademaster", vFinal);
+    AddAllSkillLeaves<SkillTreeCombat>("Focused", vFinal);
+    AddAllSkillLeaves<SkillTreeCombat>("Mage", vFinal);
+    AddAllSkillLeaves<SkillTreeCombat>("Rogue", vFinal);
+    AddAllSkillLeaves<SkillTreeCombat>("Stalwart", vFinal);
     return vFinal;
 }
 
 TreeIndexArray SkillTree::GetAllCraftingSkills()
 {
     TreeIndexArray vFinal;
-    ADD_ALL_SKILL_LEAVES(Crafting, Bowsmith);
-    ADD_ALL_SKILL_LEAVES(Crafting, Goldsmith);
-    ADD_ALL_SKILL_LEAVES(Crafting, Hammersmith);
-    ADD_ALL_SKILL_LEAVES(Crafting, Platesmith);
-    ADD_ALL_SKILL_LEAVES(Crafting, Scalesmith);
-    ADD_ALL_SKILL_LEAVES(Crafting, Shieldsmith);
-    ADD_ALL_SKILL_LEAVES(Crafting, Spellsmith);
-    ADD_ALL_SKILL_LEAVES(Crafting, Swordsmith);
-    ADD_ALL_SKILL_LEAVES(Crafting, Tanner);
-    ADD_ALL_SKILL_LEAVES(Crafting, Weaver);
+    AddAllSkillLeaves<SkillTreeCrafting>("Bowsmith", vFinal);
+    AddAllSkillLeaves<SkillTreeCrafting>("Goldsmith", vFinal);
+    AddAllSkillLeaves<SkillTreeCrafting>("Hammersmith", vFinal);
+    AddAllSkillLeaves<SkillTreeCrafting>("Platesmith", vFinal);
+    AddAllSkillLeaves<SkillTreeCrafting>("Scalesmith", vFinal);
+    AddAllSkillLeaves<SkillTreeCrafting>("Shieldsmith", vFinal);
+    AddAllSkillLeaves<SkillTreeCrafting>("Spellsmith", vFinal);
+    AddAllSkillLeaves<SkillTreeCrafting>("Swordsmith", vFinal);
+    AddAllSkillLeaves<SkillTreeCrafting>("Tanner", vFinal);
+    AddAllSkillLeaves<SkillTreeCrafting>("Weaver", vFinal);
     return vFinal;
 }
 
 TreeIndexArray SkillTree::GetAllWeaponSkills()
 {
     TreeIndexArray vFinal;
-    ADD_ALL_SKILL_LEAVES(Weapon, Bash);
-    ADD_ALL_SKILL_LEAVES(Weapon, Block);
-    ADD_ALL_SKILL_LEAVES(Weapon, Break);
-    ADD_ALL_SKILL_LEAVES(Weapon, Cleave);
-    ADD_ALL_SKILL_LEAVES(Weapon, Counter);
-    ADD_ALL_SKILL_LEAVES(Weapon, Crack);
-    ADD_ALL_SKILL_LEAVES(Weapon, CriticalShot);
-    ADD_ALL_SKILL_LEAVES(Weapon, Crush);
-    ADD_ALL_SKILL_LEAVES(Weapon, Decapitate);
-    ADD_ALL_SKILL_LEAVES(Weapon, Dodge);
-    ADD_ALL_SKILL_LEAVES(Weapon, Drill);
-    ADD_ALL_SKILL_LEAVES(Weapon, Impact);
-    ADD_ALL_SKILL_LEAVES(Weapon, Impale);
-    ADD_ALL_SKILL_LEAVES(Weapon, Parry);
-    ADD_ALL_SKILL_LEAVES(Weapon, Pierce);
-    ADD_ALL_SKILL_LEAVES(Weapon, Riposte);
-    ADD_ALL_SKILL_LEAVES(Weapon, Rush);
-    ADD_ALL_SKILL_LEAVES(Weapon, Sever);
-    ADD_ALL_SKILL_LEAVES(Weapon, Shoot);
-    ADD_ALL_SKILL_LEAVES(Weapon, Slash);
-    ADD_ALL_SKILL_LEAVES(Weapon, Slice);
-    ADD_ALL_SKILL_LEAVES(Weapon, Slit);
-    ADD_ALL_SKILL_LEAVES(Weapon, Smash);
-    ADD_ALL_SKILL_LEAVES(Weapon, StealthStrike);
+    AddAllSkillLeaves<SkillTreeWeapon>("Bash", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Block", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Break", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Cleave", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Counter", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Crack", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("CriticalShot", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Crush", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Decapitate", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Dodge", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Drill", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Impact", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Impale", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Parry", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Pierce", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Riposte", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Rush", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Sever", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Shoot", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Slash", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Slice", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Slit", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("Smash", vFinal);
+    AddAllSkillLeaves<SkillTreeWeapon>("StealthStrike", vFinal);
     return vFinal;
 }
 
@@ -378,18 +380,18 @@ TreeIndexArray SkillTree::GetAffinitySkills(const String& sCharID, Bool bUniqueO
     if(!sCharID.empty())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Holy);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Fire);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Ice);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Shock);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Dark);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Light);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Force);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Mind);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Earth);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Blood);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Flesh);
-        ADD_SKILL_LEAVES_PROGRESS(Affinity, Wind);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Holy", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Fire", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Ice", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Shock", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Dark", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Light", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Force", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Mind", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Earth", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Blood", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Flesh", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAffinity>("Wind", character, vFinal, bUniqueOnly);
     }
     return vFinal;
 }
@@ -400,10 +402,10 @@ TreeIndexArray SkillTree::GetAlchemySkills(const String& sCharID, Bool bUniqueOn
     if(!sCharID.empty())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
-        ADD_SKILL_LEAVES_PROGRESS(Alchemy, Alchemist);
-        ADD_SKILL_LEAVES_PROGRESS(Alchemy, Chemist);
-        ADD_SKILL_LEAVES_PROGRESS(Alchemy, Energist);
-        ADD_SKILL_LEAVES_PROGRESS(Alchemy, Healer);
+        AddSkillLeavesProgress<SkillTreeAlchemy>("Alchemist", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAlchemy>("Chemist", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAlchemy>("Energist", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeAlchemy>("Healer", character, vFinal, bUniqueOnly);
     }
     return vFinal;
 }
@@ -414,16 +416,16 @@ TreeIndexArray SkillTree::GetBreakdownSkills(const String& sCharID, Bool bUnique
     if(!sCharID.empty())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, Bowbane);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, Goldbane);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, Hammerbane);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, Platebane);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, Scalebane);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, Shieldbane);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, Spellbane);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, StudRemover);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, Swordbane);
-        ADD_SKILL_LEAVES_PROGRESS(Breakdown, Threadbare);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("Bowbane", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("Goldbane", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("Hammerbane", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("Platebane", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("Scalebane", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("Shieldbane", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("Spellbane", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("StudRemover", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("Swordbane", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeBreakdown>("Threadbare", character, vFinal, bUniqueOnly);
     }
     return vFinal;
 }
@@ -434,14 +436,14 @@ TreeIndexArray SkillTree::GetCombatSkills(const String& sCharID, Bool bUniqueOnl
     if(!sCharID.empty())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
-        ADD_SKILL_LEAVES_PROGRESS(Combat, Ambidextrous);
-        ADD_SKILL_LEAVES_PROGRESS(Combat, Avatar);
-        ADD_SKILL_LEAVES_PROGRESS(Combat, Barbarian);
-        ADD_SKILL_LEAVES_PROGRESS(Combat, Blademaster);
-        ADD_SKILL_LEAVES_PROGRESS(Combat, Focused);
-        ADD_SKILL_LEAVES_PROGRESS(Combat, Mage);
-        ADD_SKILL_LEAVES_PROGRESS(Combat, Rogue);
-        ADD_SKILL_LEAVES_PROGRESS(Combat, Stalwart);
+        AddSkillLeavesProgress<SkillTreeCombat>("Ambidextrous", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCombat>("Avatar", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCombat>("Barbarian", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCombat>("Blademaster", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCombat>("Focused", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCombat>("Mage", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCombat>("Rogue", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCombat>("Stalwart", character, vFinal, bUniqueOnly);
     }
     return vFinal;
 }
@@ -452,16 +454,16 @@ TreeIndexArray SkillTree::GetCraftingSkills(const String& sCharID, Bool bUniqueO
     if(!sCharID.empty())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Bowsmith);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Goldsmith);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Hammersmith);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Platesmith);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Scalesmith);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Shieldsmith);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Spellsmith);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Swordsmith);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Tanner);
-        ADD_SKILL_LEAVES_PROGRESS(Crafting, Weaver);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Bowsmith", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Goldsmith", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Hammersmith", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Platesmith", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Scalesmith", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Shieldsmith", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Spellsmith", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Swordsmith", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Tanner", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeCrafting>("Weaver", character, vFinal, bUniqueOnly);
     }
     return vFinal;
 }
@@ -472,30 +474,30 @@ TreeIndexArray SkillTree::GetWeaponSkills(const String& sCharID, Bool bUniqueOnl
     if(!sCharID.empty())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Bash);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Block);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Break);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Cleave);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Counter);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Crack);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, CriticalShot);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Crush);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Decapitate);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Dodge);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Drill);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Impact);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Impale);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Parry);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Pierce);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Riposte);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Rush);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Sever);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Shoot);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Slash);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Slice);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Slit);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, Smash);
-        ADD_SKILL_LEAVES_PROGRESS(Weapon, StealthStrike);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Bash", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Block", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Break", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Cleave", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Counter", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Crack", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("CriticalShot", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Crush", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Decapitate", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Dodge", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Drill", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Impact", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Impale", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Parry", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Pierce", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Riposte", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Rush", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Sever", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Shoot", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Slash", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Slice", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Slit", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("Smash", character, vFinal, bUniqueOnly);
+        AddSkillLeavesProgress<SkillTreeWeapon>("StealthStrike", character, vFinal, bUniqueOnly);
     }
     return vFinal;
 }
