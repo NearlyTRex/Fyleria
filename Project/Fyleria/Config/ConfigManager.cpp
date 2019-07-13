@@ -60,14 +60,22 @@ const Config& ConfigManager::GetCurrentConfig() const
     return GetConfig(GetCurrentConfigName());
 }
 
-String ConfigManager::GetConstructedConfigFilename() const
+Bool ConfigManager::Is32Bit() const
 {
-    return GetCanonicalPath(JoinPaths(GetUserConfigFolder(), GetUserConfigFile()));
+#if defined(__i386__) || defined(_WIN32)
+    return true;
+#else
+    return false;
+#endif
 }
 
-String ConfigManager::GetConstructedPythonLibraryFilename() const
+Bool ConfigManager::Is64Bit() const
 {
-    return GetCanonicalPath(JoinPaths(GetUserDataFolder(), GetPythonLibraryFile()));
+#if defined(__x86_64__) || defined(_WIN64)
+    return true;
+#else
+    return false;
+#endif
 }
 
 Bool ConfigManager::IsPosix() const
@@ -88,24 +96,6 @@ Bool ConfigManager::IsWindows() const
 #endif
 }
 
-Bool ConfigManager::IsWindows32() const
-{
-#if defined(_WIN32)
-    return true;
-#else
-    return false;
-#endif
-}
-
-Bool ConfigManager::IsWindows64() const
-{
-#if defined(_WIN64)
-    return true;
-#else
-    return false;
-#endif
-}
-
 Bool ConfigManager::IsLinux() const
 {
 #if defined(__linux__)
@@ -115,25 +105,7 @@ Bool ConfigManager::IsLinux() const
 #endif
 }
 
-Bool ConfigManager::IsLinux32() const
-{
-#if defined(__linux__) && defined(__i386__)
-    return true;
-#else
-    return false;
-#endif
-}
-
-Bool ConfigManager::IsLinux64() const
-{
-#if defined(__linux__) && defined(__x86_64__)
-    return true;
-#else
-    return false;
-#endif
-}
-
-Bool ConfigManager::IsMac() const
+Bool ConfigManager::IsMacOS() const
 {
 #if TARGET_OS_MAC == 1
     return true;

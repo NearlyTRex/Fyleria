@@ -9,6 +9,7 @@
 #include "Window/MainWindow.h"
 #include "Utility/Converters.h"
 #include "Utility/Json.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -124,8 +125,7 @@ void Scene::ProcessForm(const String& sAction, const String& sParameters)
 void Scene::LoadHtmlFromFile(const String& sFile)
 {
     // Load html file
-    String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
-    String sFileContents = GetFileContents(JoinPathsCanonical(sWebDir, sFile));
+    String sFileContents = GetFileContents(JoinPathsCanonical(FOLDER_DATA, sFile));
     SetPageContent(sFileContents);
     SetHtmlContent(sFileContents);
 }

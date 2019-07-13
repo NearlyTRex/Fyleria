@@ -5,6 +5,7 @@
 #include "Window/BrowserEngineWebKitGtk.h"
 #include "Config/ConfigManager.h"
 #include "Utility/Filesystem.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -179,8 +180,7 @@ void BrowserEngineWebKitGtk::InjectStylesheet(const String& sStyle)
 void BrowserEngineWebKitGtk::InjectStylesheetFile(const String& sFile)
 {
     // Inject file contents
-    String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
-    String sFileContents = GetFileContents(JoinPathsCanonical(sWebDir, sFile));
+    String sFileContents = GetFileContents(JoinPathsCanonical(FOLDER_DATA, sFile));
     InjectStylesheet(sFileContents);
 }
 
@@ -214,8 +214,7 @@ void BrowserEngineWebKitGtk::InjectJavascript(const String& sScript)
 void BrowserEngineWebKitGtk::InjectJavascriptFile(const String& sFile)
 {
     // Inject file contents
-    String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
-    String sFileContents = GetFileContents(JoinPathsCanonical(sWebDir, sFile));
+    String sFileContents = GetFileContents(JoinPathsCanonical(FOLDER_DATA, sFile));
     InjectJavascript(sFileContents);
 }
 

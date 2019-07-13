@@ -24,7 +24,7 @@ void SceneStatusMenu::Start()
     SetPostCallback(STDBindFunc(&SceneStatusMenu::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_PAGE_SYSTEM_STATUS_MENU);
+    LoadHtmlFromFile(WEB_FILE_SYSTEM_STATUS_MENU);
 }
 
 void SceneStatusMenu::Finish()

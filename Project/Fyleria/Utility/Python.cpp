@@ -4,6 +4,7 @@
 // Internal includes
 #include "Config/ConfigManager.h"
 #include "Utility/Assert.h"
+#include "Utility/Constants.h"
 #include "Utility/Converters.h"
 #include "Utility/Logging.h"
 #include "Utility/Types.h"
@@ -23,7 +24,7 @@ Bool InitPython()
     STDLockGuard<STDMutex> lock(g_PythonMutex);
 
     // Check python library
-    String sPythonLibFile = ConfigManager::GetInstance()->GetConstructedPythonLibraryFilename();
+    String sPythonLibFile = JoinPathsCanonical(FOLDER_DATA, PYTHON_FILE);
     LOG_FORMAT_STATEMENT("Loading python library '%s'\n", sPythonLibFile.c_str());
     if(!DoesPathExist(sPythonLibFile))
     {

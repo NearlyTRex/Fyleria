@@ -29,44 +29,40 @@ void PostProcessItems(const TreeIndexArray& vTreeIndices)
 
 void ItemTree::LoadItemTreesIntoMemory()
 {
-    // Get config data
-    const Config& config = ConfigManager::GetInstance()->GetCurrentConfig();
-    String sUserConfigFolder = ConfigManager::GetInstance()->GetUserConfigFolder();
-
     // Armor
-    ItemTreeArmor::GetInstance()->AddBranch("Chest", JoinPathsCanonical(sUserConfigFolder, config.GetItemArmorChestFile()));
-    ItemTreeArmor::GetInstance()->AddBranch("Feet", JoinPathsCanonical(sUserConfigFolder, config.GetItemArmorFeetFile()));
-    ItemTreeArmor::GetInstance()->AddBranch("Finger", JoinPathsCanonical(sUserConfigFolder, config.GetItemArmorFingerFile()));
-    ItemTreeArmor::GetInstance()->AddBranch("Hands", JoinPathsCanonical(sUserConfigFolder, config.GetItemArmorHandsFile()));
-    ItemTreeArmor::GetInstance()->AddBranch("Head", JoinPathsCanonical(sUserConfigFolder, config.GetItemArmorHeadFile()));
-    ItemTreeArmor::GetInstance()->AddBranch("Neck", JoinPathsCanonical(sUserConfigFolder, config.GetItemArmorNeckFile()));
-    ItemTreeArmor::GetInstance()->AddBranch("Legs", JoinPathsCanonical(sUserConfigFolder, config.GetItemArmorLegsFile()));
-    ItemTreeArmor::GetInstance()->AddBranch("Shield", JoinPathsCanonical(sUserConfigFolder, config.GetItemArmorShieldFile()));
+    ItemTreeArmor::GetInstance()->AddBranch("Chest", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_CHEST));
+    ItemTreeArmor::GetInstance()->AddBranch("Feet", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_FEET));
+    ItemTreeArmor::GetInstance()->AddBranch("Finger", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_FINGER));
+    ItemTreeArmor::GetInstance()->AddBranch("Hands", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_HANDS));
+    ItemTreeArmor::GetInstance()->AddBranch("Head", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_HEAD));
+    ItemTreeArmor::GetInstance()->AddBranch("Neck", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_NECK));
+    ItemTreeArmor::GetInstance()->AddBranch("Legs", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_LEGS));
+    ItemTreeArmor::GetInstance()->AddBranch("Shield", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_SHIELD));
 
     // Ingredient
-    ItemTreeIngredient::GetInstance()->AddBranch("Bar", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientBarFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Cloth", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientClothFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Crystal", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientCrystalFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Leather", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientLeatherFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Mail", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientMailFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Plate", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientPlateFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Scale", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientScaleFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Screw", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientScrewFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Sheet", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientSheetFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Stud", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientStudFile()));
-    ItemTreeIngredient::GetInstance()->AddBranch("Thread", JoinPathsCanonical(sUserConfigFolder, config.GetItemIngredientThreadFile()));
+    ItemTreeIngredient::GetInstance()->AddBranch("Bar", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_BAR));
+    ItemTreeIngredient::GetInstance()->AddBranch("Cloth", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_CLOTH));
+    ItemTreeIngredient::GetInstance()->AddBranch("Crystal", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_CRYSTAL));
+    ItemTreeIngredient::GetInstance()->AddBranch("Leather", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_LEATHER));
+    ItemTreeIngredient::GetInstance()->AddBranch("Mail", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_MAIL));
+    ItemTreeIngredient::GetInstance()->AddBranch("Plate", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_PLATE));
+    ItemTreeIngredient::GetInstance()->AddBranch("Scale", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_SCALE));
+    ItemTreeIngredient::GetInstance()->AddBranch("Screw", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_SCREW));
+    ItemTreeIngredient::GetInstance()->AddBranch("Sheet", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_SHEET));
+    ItemTreeIngredient::GetInstance()->AddBranch("Stud", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_STUD));
+    ItemTreeIngredient::GetInstance()->AddBranch("Thread", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_THREAD));
 
     // Potion
-    ItemTreePotion::GetInstance()->AddBranch("Energy", JoinPathsCanonical(sUserConfigFolder, config.GetItemPotionEnergyFile()));
-    ItemTreePotion::GetInstance()->AddBranch("Heal", JoinPathsCanonical(sUserConfigFolder, config.GetItemPotionHealFile()));
-    ItemTreePotion::GetInstance()->AddBranch("Magic", JoinPathsCanonical(sUserConfigFolder, config.GetItemPotionMagicFile()));
-    ItemTreePotion::GetInstance()->AddBranch("Speed", JoinPathsCanonical(sUserConfigFolder, config.GetItemPotionSpeedFile()));
+    ItemTreePotion::GetInstance()->AddBranch("Energy", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_POTION_ENERGY));
+    ItemTreePotion::GetInstance()->AddBranch("Heal", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_POTION_HEAL));
+    ItemTreePotion::GetInstance()->AddBranch("Magic", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_POTION_MAGIC));
+    ItemTreePotion::GetInstance()->AddBranch("Speed", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_POTION_SPEED));
 
     // Weapon
-    ItemTreeWeapon::GetInstance()->AddBranch("Blunt", JoinPathsCanonical(sUserConfigFolder, config.GetItemWeaponBluntFile()));
-    ItemTreeWeapon::GetInstance()->AddBranch("Mage", JoinPathsCanonical(sUserConfigFolder, config.GetItemWeaponMageFile()));
-    ItemTreeWeapon::GetInstance()->AddBranch("Pierce", JoinPathsCanonical(sUserConfigFolder, config.GetItemWeaponPierceFile()));
-    ItemTreeWeapon::GetInstance()->AddBranch("Slash", JoinPathsCanonical(sUserConfigFolder, config.GetItemWeaponSlashFile()));
+    ItemTreeWeapon::GetInstance()->AddBranch("Blunt", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_WEAPON_BLUNT));
+    ItemTreeWeapon::GetInstance()->AddBranch("Mage", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_WEAPON_MAGE));
+    ItemTreeWeapon::GetInstance()->AddBranch("Pierce", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_WEAPON_PIERCE));
+    ItemTreeWeapon::GetInstance()->AddBranch("Slash", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_WEAPON_SLASH));
 
     // Post process item data
     PostProcessItems<ItemTreeArmor>(GetAllArmorItems());

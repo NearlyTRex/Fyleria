@@ -17,8 +17,7 @@ WebPageHandlerCharacterTool::WebPageHandlerCharacterTool()
     : WebPageHandler()
 {
     // Set template
-    String sWebDir = ConfigManager::GetInstance()->GetUserWebFolder();
-    String sTemplateFile = JoinPathsCanonical(sWebDir, WEB_PAGE_TOOL_CHARACTER);
+    String sTemplateFile = JoinPathsCanonical(FOLDER_DATA, WEB_FILE_TOOL_CHARACTER);
     String sTemplateContents = GetFileContents(sTemplateFile);
     SetPageTemplate(sTemplateContents);
 

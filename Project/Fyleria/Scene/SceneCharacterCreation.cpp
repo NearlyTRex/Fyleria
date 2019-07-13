@@ -24,7 +24,7 @@ void SceneCharacterCreation::Start()
     SetPostCallback(STDBindFunc(&SceneCharacterCreation::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_PAGE_SYSTEM_CHARACTER_CREATION);
+    LoadHtmlFromFile(WEB_FILE_SYSTEM_CHARACTER_CREATION);
 }
 
 void SceneCharacterCreation::Finish()

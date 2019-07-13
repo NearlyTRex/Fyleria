@@ -24,7 +24,7 @@ void SceneBattle::Start()
     SetPostCallback(STDBindFunc(&SceneBattle::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_PAGE_SYSTEM_BATTLE);
+    LoadHtmlFromFile(WEB_FILE_SYSTEM_BATTLE);
 }
 
 void SceneBattle::Finish()

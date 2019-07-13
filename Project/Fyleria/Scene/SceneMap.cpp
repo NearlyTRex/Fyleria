@@ -24,7 +24,7 @@ void SceneMap::Start()
     SetPostCallback(STDBindFunc(&SceneMap::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_PAGE_SYSTEM_MAP);
+    LoadHtmlFromFile(WEB_FILE_SYSTEM_MAP);
 }
 
 void SceneMap::Finish()

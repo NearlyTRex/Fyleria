@@ -24,7 +24,7 @@ void SceneToolMain::Start()
     SetPostCallback(STDBindFunc(&SceneToolMain::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_PAGE_TOOL_MAIN);
+    LoadHtmlFromFile(WEB_FILE_TOOL_MAIN);
 }
 
 void SceneToolMain::Finish()

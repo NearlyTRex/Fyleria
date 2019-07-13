@@ -53,7 +53,7 @@ void Application::Run()
 Bool Application::Initialize()
 {
     // Load config data
-    String sConfigFile = ConfigManager::GetInstance()->GetConstructedConfigFilename();
+    String sConfigFile = JoinPathsCanonical(FOLDER_DATA, CONFIG_FILE);
     LOG_FORMAT_STATEMENT("Loading config file '%s'\n", sConfigFile.c_str());
     ConfigManager::GetInstance()->SetCurrentConfigName("Default");
     if(!ConfigManager::GetInstance()->LoadConfig("Default", sConfigFile))
@@ -88,8 +88,8 @@ Bool Application::Initialize()
 
     // Initialize window
     LOG_STATEMENT("Initializing window");
-    Int iScreenWidth = ConfigManager::GetInstance()->GetScreenWidth();
-    Int iScreenHeight = ConfigManager::GetInstance()->GetScreenHeight();
+    Int iScreenWidth = ConfigManager::GetInstance()->GetCurrentConfig().GetScreenWidth();
+    Int iScreenHeight = ConfigManager::GetInstance()->GetCurrentConfig().GetScreenHeight();
     if(!MainWindow::GetInstance()->GetBrowserEngine()->Init(APPLICATION_NAME_SHORT, iScreenWidth, iScreenHeight, true))
     {
         ERROR_STATEMENT("Unable to initialize window");
@@ -100,10 +100,10 @@ Bool Application::Initialize()
     // Load web files
     LOG_STATEMENT("Loading web files");
     String sShortcuts = MainWindow::GetInstance()->GetBrowserEngine()->GetCommonJavascriptShortcuts();
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(WEB_LIB_CSS_BOOTSTRAP);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_LIB_JS_BOOTSTRAP);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_LIB_JS_JQUERY);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_LIB_JS_PHASER);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(WEB_FILE_CSS_BOOTSTRAP);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_FILE_JS_BOOTSTRAP);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_FILE_JS_JQUERY);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_FILE_JS_PHASER);
     MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascript(sShortcuts);
     LOG_STATEMENT("Finished loading web files");
 

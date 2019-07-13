@@ -31,37 +31,19 @@ public:
     const Config& GetConfig(const String& sName) const;
     const Config& GetCurrentConfig() const;
 
-    // Get constructed config file name
-    String GetConstructedConfigFilename() const;
-
-    // Get constructed python library file name
-    String GetConstructedPythonLibraryFilename() const;
-
     // Current config name
     MAKE_RAW_TYPE_ACCESSORS(CurrentConfigName, String);
-
-    // Config data
-    MAKE_RAW_TYPE_ACCESSORS(UserConfigFile, String);
-    MAKE_RAW_TYPE_ACCESSORS(UserConfigFolder, String);
-    MAKE_RAW_TYPE_ACCESSORS(UserDataFolder, String);
-    MAKE_RAW_TYPE_ACCESSORS(UserCacheFolder, String);
-    MAKE_RAW_TYPE_ACCESSORS(UserWebFolder, String);
-    MAKE_RAW_TYPE_ACCESSORS(PythonLibraryFile, String);
-    MAKE_RAW_TYPE_ACCESSORS(ScreenWidth, Int);
-    MAKE_RAW_TYPE_ACCESSORS(ScreenHeight, Int);
 
     // Configuration map
     MAKE_RAW_TYPE_ACCESSORS(LoadedConfigs, ConfigMappingType);
 
     // Platforms
+    Bool Is32Bit() const;
+    Bool Is64Bit() const;
     Bool IsPosix() const;
     Bool IsWindows() const;
-    Bool IsWindows32() const;
-    Bool IsWindows64() const;
     Bool IsLinux() const;
-    Bool IsLinux32() const;
-    Bool IsLinux64() const;
-    Bool IsMac() const;
+    Bool IsMacOS() const;
     Bool IsIOS() const;
     Bool IsAndroid() const;
 };
