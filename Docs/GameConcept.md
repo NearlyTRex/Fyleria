@@ -118,7 +118,19 @@ Art and media assets will be designed first in a way to make a workable prototyp
 
 **Team**
 
-Name | Role
----- | -----
-Luna White | Tech Lead, Software Engineer
-Faith Lynch | Designer, Writer
+<table>
+<tbody>
+<tr>
+<th>Name</th>
+<th>Role</th>
+</tr>
+<tr>
+<td>Luna White</td>
+<td>Tech Lead, Software Engineer</td>
+</tr>
+<tr>
+<td>Faith Lynch</td>
+<td>Designer, Writer</td>
+</tr>
+</tbody>
+</table>
