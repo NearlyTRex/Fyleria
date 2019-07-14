@@ -6,6 +6,12 @@
 
 //======================================================================================================================
 
+#define THROW_LOGIC_ERROR(message) { throw LogicError(message, __FILE__, __LINE__); }
+#define THROW_RUNTIME_ERROR(message) { throw RuntimeError(message, __FILE__, __LINE__); }
+#define THROW_PYTHON_ERROR(message) { throw PythonError(message, __FILE__, __LINE__); }
+
+//======================================================================================================================
+
 #define SET_JSON_DATA(name)                                                                                             \
 {                                                                                                                       \
     jsonData[#name] = obj.Get##name();                                                                                  \

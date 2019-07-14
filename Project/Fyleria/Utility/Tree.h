@@ -8,6 +8,7 @@
 #include "Utility/Assert.h"
 #include "Utility/Logging.h"
 #include "Utility/Singleton.h"
+#include "Utility/Errors.h"
 #include "Utility/Filesystem.h"
 #include "Utility/TreeIndex.h"
 #include "Utility/Serialization.h"
@@ -77,7 +78,10 @@ public:
     // Get leaf
     T& GetLeaf(const String& sBranchName, const String& sLeafName)
     {
-        ASSERT_ERROR(HasLeaf(sBranchName, sLeafName), "Specified leaf '%s' on branch '%s' was not found", sLeafName.c_str(), sBranchName.c_str());
+        if(!HasLeaf(sBranchName, sLeafName))
+        {
+            THROW_RUNTIME_ERROR("Specified leaf '" + sLeafName + "' on branch '" + sBranchName + "' was not found");
+        }
         return m_tBranches[sBranchName][sLeafName];
     }
 
@@ -85,7 +89,10 @@ public:
     T& GetLeaf(const String& sLeafName)
     {
         String sBranchName = GetBranchFromLeaf(sLeafName);
-        ASSERT_ERROR(!sBranchName.empty(), "Specified leaf '%s' was not found on any branches", sLeafName.c_str());
+        if(sBranchName.empty())
+        {
+            THROW_RUNTIME_ERROR("Specified leaf '" + sLeafName + "' was not found on any branches");
+        }
         return GetLeaf(sBranchName, sLeafName);
     }
 
@@ -112,11 +119,9 @@ public:
         }
 
         // Make sure branch exists
-        Bool bHasBranch = HasBranch(sBranchName);
-        ASSERT_ERROR(bHasBranch, "Specified branch '%s' was not found", sBranchName.c_str());
-        if(!bHasBranch)
+        if(!HasBranch(sBranchName))
         {
-            return vLeaves;
+            THROW_RUNTIME_ERROR("Specified branch '" + sBranchName + "' was not found");
         }
 
         // Look at all the leaves

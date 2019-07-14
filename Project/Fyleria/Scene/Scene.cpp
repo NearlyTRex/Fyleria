@@ -116,6 +116,11 @@ void Scene::ProcessForm(const String& sAction, const String& sParameters)
             // Print exception
             ERROR_FORMAT_STATEMENT("Caught exception: '%s'\n", e.what());
         }
+        catch(GeneralError& e)
+        {
+            // Print exception
+            ERROR_FORMAT_STATEMENT("Caught exception: '%s'\n", e.what().c_str());
+        }
 
         // Notify user
         LOG_FORMAT_STATEMENT("Processing of action '%s' completed\n", sAction.c_str());

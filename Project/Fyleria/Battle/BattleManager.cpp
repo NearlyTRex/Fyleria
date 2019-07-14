@@ -14,16 +14,26 @@ BattleManager::BattleManager()
 
 void BattleManager::CreateBattle(const String& sBattleName)
 {
+    // Check if battle exists
+    if(DoesBattleExist(sBattleName))
+    {
+        THROW_RUNTIME_ERROR("Battle '" + sBattleName + "' was already registered");
+    }
+
     // Create a new battle
-    ASSERT_ERROR(!DoesBattleExist(sBattleName), "Battle '%s' was already registered", sBattleName.c_str());
     Battle newBattle;
     GetBattles().insert({sBattleName, newBattle});
 }
 
 void BattleManager::UnloadBattle(const String& sBattleName)
 {
+    // Check if battle exists
+    if(!DoesBattleExist(sBattleName))
+    {
+        THROW_RUNTIME_ERROR("Battle '" + sBattleName + "' was not registered");
+    }
+
     // Unload battle
-    ASSERT_ERROR(DoesBattleExist(sBattleName), "Battle '%s' was not registered", sBattleName.c_str());
     GetBattles().erase(sBattleName);
 }
 
@@ -36,8 +46,13 @@ Bool BattleManager::DoesBattleExist(const String& sBattleName) const
 
 const Battle& BattleManager::GetBattle(const String& sBattleName) const
 {
+    // Check if battle exists
+    if(!DoesBattleExist(sBattleName))
+    {
+        THROW_RUNTIME_ERROR("Battle '" + sBattleName + "' was not registered");
+    }
+
     // Get battle
-    ASSERT_ERROR(DoesBattleExist(sBattleName), "Battle '%s' was not registered", sBattleName.c_str());
     auto iSearch = GetBattles().find(sBattleName);
     return iSearch->second;
 }

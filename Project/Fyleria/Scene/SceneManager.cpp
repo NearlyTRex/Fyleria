@@ -99,7 +99,7 @@ const SceneSharedPtr& SceneManager::GetScene(const String& sSceneID) const
     {
         return iSearch->second;
     }
-    throw RuntimeError("Invalid or unknown scene ID requested: " + sSceneID);
+    THROW_RUNTIME_ERROR("Invalid or unknown scene ID requested: " + sSceneID);
 }
 
 SceneSharedPtr& SceneManager::GetScene(const String& sSceneID)
@@ -114,7 +114,7 @@ const SceneSharedPtr& SceneManager::GetCurrentScene() const
     String sCurrentSceneID = GetCurrentSceneID();
     if(sCurrentSceneID.empty())
     {
-        throw RuntimeError("No current scene ID was set");
+        THROW_RUNTIME_ERROR("No current scene ID was set");
     }
 
     // Get current scene

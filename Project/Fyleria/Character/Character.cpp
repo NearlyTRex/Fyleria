@@ -176,7 +176,7 @@ const CharacterProgressData& Character::GetProgressDataSegment(const String& sSe
         case CharacterSegmentType::Active: return GetProgressDataActives();
         default: break;
     }
-    throw RuntimeError("Invalid or unknown segment requested: " + sSegment);
+    THROW_RUNTIME_ERROR("Invalid or unknown segment requested: " + sSegment);
 }
 
 CharacterProgressData& Character::GetProgressDataSegment(const String& sSegment)
@@ -194,7 +194,7 @@ const CharacterBattleData& Character::GetBattleDataSegment(const String& sSegmen
         case CharacterSegmentType::Active: return GetBattleDataActives();
         default: break;
     }
-    throw RuntimeError("Invalid or unknown segment requested: " + sSegment);
+    THROW_RUNTIME_ERROR("Invalid or unknown segment requested: " + sSegment);
 }
 
 CharacterBattleData& Character::GetBattleDataSegment(const String& sSegment)

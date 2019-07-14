@@ -19,33 +19,51 @@ CharacterManager::CharacterManager()
 
 void CharacterManager::LoadCharacter(const Character& character)
 {
-    // Load a character
+    // Check if character ID is valid
     const String& sCharacterID = character.GetCharacterID();
-    ASSERT_ERROR(IsValidCharacterID(sCharacterID), "Character ID '%s' was not valid", sCharacterID.c_str());
+    if(!IsValidCharacterID(sCharacterID))
+    {
+        THROW_RUNTIME_ERROR("Character ID '" + sCharacterID + "' was not valid");
+    }
+
+    // Load character
     GetCharacters().insert({sCharacterID, character});
 }
 
 void CharacterManager::LoadCharacterFromFile(const String& sFilename, const String& sType)
 {
-    // Load a character
+    // Deserialize file into character data
     Json jsonData;
     Bool bSuccess = ReadSerializedFile(sFilename, sType, jsonData);
-    ASSERT_ERROR(bSuccess, "Unable to read file '%s' as type '%s'", sFilename.c_str(), sType.c_str());
+    if(!bSuccess)
+    {
+        THROW_RUNTIME_ERROR("Unable to read file '" + sFilename + "' as type '" + sType + "'");
+    }
+
+    // Load character
     LoadCharacter(jsonData.get<Character>());
 }
 
 void CharacterManager::SaveCharacterToFile(const String& sCharacterID, const String& sFilename, const String& sType)
 {
-    // Save a character
+    // Serialize character data into file
     Json jsonData = GetCharacter(sCharacterID);
     Bool bSuccess = WriteSerializedFile(sFilename, sType, jsonData);
-    ASSERT_ERROR(bSuccess, "Unable to write file '%s' as type '%s'", sFilename.c_str(), sType.c_str());
+    if(!bSuccess)
+    {
+        THROW_RUNTIME_ERROR("Unable to write file '" + sFilename + "' as type '" + sType + "'");
+    }
 }
 
 void CharacterManager::CreateCharacter(const String& sCharacterID)
 {
+    // Check if character exists
+    if(DoesCharacterExist(sCharacterID))
+    {
+        THROW_RUNTIME_ERROR("Character with ID '" + sCharacterID + "' was already registered");
+    }
+
     // Create a new character
-    ASSERT_ERROR(!DoesCharacterExist(sCharacterID), "Character with ID '%s' was already registered", sCharacterID.c_str());
     Character newCharacter;
     newCharacter.Clear();
     newCharacter.GetBasicData().SetCharacterID(sCharacterID);
@@ -54,8 +72,13 @@ void CharacterManager::CreateCharacter(const String& sCharacterID)
 
 void CharacterManager::UnloadCharacter(const String& sCharacterID)
 {
+    // Check if character exists
+    if(!DoesCharacterExist(sCharacterID))
+    {
+        THROW_RUNTIME_ERROR("Character with ID '" + sCharacterID + "' was not registered");
+    }
+
     // Unload character
-    ASSERT_ERROR(DoesCharacterExist(sCharacterID), "Character with ID '%s' was not registered", sCharacterID.c_str());
     GetCharacters().erase(sCharacterID);
 }
 
@@ -72,7 +95,10 @@ void CharacterManager::GenerateCharacter(const String& sCharacterID, const Chara
     LOG_FORMAT_STATEMENT("Generating character (CharacterID = '%s') ...\n", sCharacterID.c_str());
 
     // Make sure that this character does not already exist
-    ASSERT_ERROR(!DoesCharacterExist(sCharacterID), "Character with ID '%s' was already registered", sCharacterID.c_str());
+    if(DoesCharacterExist(sCharacterID))
+    {
+        THROW_RUNTIME_ERROR("Character with ID '" + sCharacterID + "' was already registered");
+    }
 
     // Create a new character
     CreateCharacter(sCharacterID);
@@ -91,14 +117,19 @@ Bool CharacterManager::IsValidCharacterID(const String& sCharacterID) const
 
 const Character& CharacterManager::GetCharacter(const String& sCharacterID) const
 {
+    // Check if character exists
+    if(!DoesCharacterExist(sCharacterID))
+    {
+        THROW_RUNTIME_ERROR("Character with ID '" + sCharacterID + "' was not registered");
+    }
+
     // Get character
-    ASSERT_ERROR(DoesCharacterExist(sCharacterID), "Character with ID '%s' was not registered", sCharacterID.c_str());
     auto iSearch = GetCharacters().find(sCharacterID);
     if(iSearch != GetCharacters().end())
     {
         return iSearch->second;
     }
-    throw RuntimeError("Invalid or unknown character ID requested: " + sCharacterID);
+    THROW_RUNTIME_ERROR("Invalid or unknown character ID requested: " + sCharacterID);
 }
 
 Character& CharacterManager::GetCharacter(const String& sCharacterID)

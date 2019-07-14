@@ -16,16 +16,26 @@ SaveManager::SaveManager()
 
 void SaveManager::LoadSave(const Save& save)
 {
-    // Load a save
+    // Check if save slot is valid
     const String& sSlot = save.GetSlot();
-    ASSERT_ERROR(IsValidSaveSlot(sSlot), "Save slot '%s' was not valid", sSlot.c_str());
+    if(!IsValidSaveSlot(sSlot))
+    {
+        THROW_RUNTIME_ERROR("Save slot '" + sSlot + "' was not valid");
+    }
+
+    // Load a save
     GetSaves().insert({sSlot, save});
 }
 
 void SaveManager::CreateSave(const String& sSlot)
 {
+    // Check if save exists
+    if(DoesSaveExist(sSlot))
+    {
+        THROW_RUNTIME_ERROR("Save slot '" + sSlot + "' was already registered");
+    }
+
     // Create a new save
-    ASSERT_ERROR(!DoesSaveExist(sSlot), "Save slot '%s' was already registered", sSlot.c_str());
     Save newSave;
     newSave.SetSlot(sSlot);
     GetSaves().insert({sSlot, newSave});
@@ -33,8 +43,13 @@ void SaveManager::CreateSave(const String& sSlot)
 
 void SaveManager::UnloadSave(const String& sSlot)
 {
+    // Check if save exists
+    if(!DoesSaveExist(sSlot))
+    {
+        THROW_RUNTIME_ERROR("Save slot '" + sSlot + "' was not registered");
+    }
+
     // Unload save
-    ASSERT_ERROR(DoesSaveExist(sSlot), "Save slot '%s' was not registered", sSlot.c_str());
     GetSaves().erase(sSlot);
 }
 
@@ -97,8 +112,13 @@ Bool SaveManager::IsValidSaveSlot(const String& sSlot) const
 
 const Save& SaveManager::GetSave(const String& sSlot) const
 {
+    // Check if save exists
+    if(!DoesSaveExist(sSlot))
+    {
+        THROW_RUNTIME_ERROR("Save slot '" + sSlot + "' was not registered");
+    }
+
     // Get save
-    ASSERT_ERROR(DoesSaveExist(sSlot), "Save slot '%s' was not registered", sSlot.c_str());
     auto iSearch = GetSaves().find(sSlot);
     return iSearch->second;
 }
@@ -176,18 +196,26 @@ void SaveManager::DisperseSaveData(const String& sSlot)
 
 void SaveManager::SaveToFile(const String& sSlot, const String& sFile, const String& sType)
 {
-    // Save to file based on the file type
+    // Serialize save data to file
     Json jsonData = GetSave(sSlot);
     Bool bSuccess = WriteSerializedFile(sFile, sType, jsonData);
-    ASSERT_ERROR(bSuccess, "Writing save '%s' to file '%s' as type '%s' failed", sSlot.c_str(), sFile.c_str(), sType.c_str());
+    if(!bSuccess)
+    {
+        THROW_RUNTIME_ERROR("Writing save '" + sSlot + "' to file '" + sFile + "' as type '" + sType + "' failed");
+    }
 }
 
 void SaveManager::LoadFromFile(const String& sSlot, const String& sFile, const String& sType)
 {
-    // Load from file based on the file type
+    // Deserialize file to save data
     Json jsonData;
     Bool bSuccess = ReadSerializedFile(sFile, sType, jsonData);
-    ASSERT_ERROR(bSuccess, "Loading save '%s' from file '%s' as type '%s' failed", sSlot.c_str(), sFile.c_str(), sType.c_str());
+    if(!bSuccess)
+    {
+        THROW_RUNTIME_ERROR("Reading save '" + sSlot + "' from file '" + sFile + "' as type '" + sType + "' failed");
+    }
+
+    // Load save
     LoadSave(jsonData.get<Save>());
 }
 

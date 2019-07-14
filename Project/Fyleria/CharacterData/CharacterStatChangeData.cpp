@@ -78,7 +78,7 @@ const TreeIndexArray& CharacterStatChangeData::GetPassiveChanges(const String& s
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType);
+    THROW_RUNTIME_ERROR("Invalid or unknown tree index type requested: " + sTreeIndexType);
 }
 
 const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const String& sTreeIndexType) const
@@ -93,7 +93,7 @@ const TreeIndexArray& CharacterStatChangeData::GetActiveChanges(const String& sT
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType);
+    THROW_RUNTIME_ERROR("Invalid or unknown tree index type requested: " + sTreeIndexType);
 }
 
 const TreeIndexArray& CharacterStatChangeData::GetActionableChanges(const String& sTreeIndexType) const
@@ -108,7 +108,7 @@ const TreeIndexArray& CharacterStatChangeData::GetActionableChanges(const String
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType);
+    THROW_RUNTIME_ERROR("Invalid or unknown tree index type requested: " + sTreeIndexType);
 }
 
 void CharacterStatChangeData::AddProlongedStatChange(const String& sKey, const ProlongedStatChange& change)

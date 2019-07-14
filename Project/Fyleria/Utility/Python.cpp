@@ -115,7 +115,7 @@ Bool RunPythonFile(const String& sFile)
         auto sMessage = error.what();
         error.restore();
         ERROR_FORMAT_STATEMENT("%s\n", sMessage);
-        throw PythonError(sMessage);
+        THROW_PYTHON_ERROR(sMessage);
     }
     return false;
 }
@@ -143,7 +143,7 @@ Bool RunPythonCommand(const String& sCommand)
         auto sMessage = error.what();
         error.restore();
         ERROR_FORMAT_STATEMENT("%s\n", sMessage);
-        throw PythonError(sMessage);
+        THROW_PYTHON_ERROR(sMessage);
     }
     return false;
 }

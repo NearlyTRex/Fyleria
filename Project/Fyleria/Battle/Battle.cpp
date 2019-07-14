@@ -144,8 +144,11 @@ void Battle::FinishedWithCurrentAction()
 
 const CharacterAction& Battle::GetAction(Int iIndex) const
 {
-    ASSERT_ERROR(iIndex >= 0 && iIndex < GetActionCount());
-    return GetActions().at(iIndex);
+    if(iIndex >= 0 && iIndex < GetActionCount())
+    {
+        return GetActions().at(iIndex);
+    }
+    THROW_RUNTIME_ERROR("Invalid action index '" + STDToString(iIndex) + "'");
 }
 
 CharacterAction& Battle::GetAction(Int iIndex)

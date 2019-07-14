@@ -573,7 +573,7 @@ const StatChangeArray& GetStatChangesFromTreeIndex(const String& sTreeIndexType,
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index type requested: " + sTreeIndexType);
+    THROW_RUNTIME_ERROR("Invalid or unknown tree index type requested: " + sTreeIndexType);
 }
 
 const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeIndex)
@@ -596,7 +596,7 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeInd
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index requested: " + treeIndex.GetTreeBranchLeafType());
+    THROW_RUNTIME_ERROR("Invalid or unknown tree index requested: " + treeIndex.GetTreeBranchLeafType());
 }
 
 const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeIndex)
@@ -615,7 +615,7 @@ const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeInde
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown tree index requested: " + treeIndex.GetTreeBranchLeafType());
+    THROW_RUNTIME_ERROR("Invalid or unknown tree index requested: " + treeIndex.GetTreeBranchLeafType());
 }
 
 };

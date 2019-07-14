@@ -222,7 +222,7 @@ const CharacterPartyMember& CharacterParty::GetMemberByTargetType(const String& 
             return member.second;
         }
     }
-    throw RuntimeError("No character matching character target type '" + sCharacterTargetType + "' was found");
+    THROW_RUNTIME_ERROR("No character matching character target type '" + sCharacterTargetType + "' was found");
 }
 
 CharacterPartyMember& CharacterParty::GetMemberByID(const String& sCharacterID)

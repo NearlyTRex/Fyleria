@@ -144,7 +144,7 @@ UByte ConvertHexStringToByte(const String& sString)
         sStrStream >> STDHex >> iVal;
         if(sStrStream.fail())
         {
-            throw RuntimeError("Stream decode failure");
+            THROW_RUNTIME_ERROR("Stream decode failure");
         }
     }
     return static_cast<UByte>(iVal);

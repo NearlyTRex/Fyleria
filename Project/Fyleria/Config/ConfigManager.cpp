@@ -19,11 +19,10 @@ ConfigManager::ConfigManager()
 
 Bool ConfigManager::LoadConfig(const String& sName, const String& sFile)
 {
-    // Create full path
-    ASSERT_ERROR(DoesPathExist(sFile), "Path '%s' could not be loaded for configuration", sFile.c_str());
+    // Check if file exists
     if(!DoesPathExist(sFile))
     {
-        return false;
+        THROW_RUNTIME_ERROR("Path '" + sFile + "' could not be loaded for configuration");
     }
 
     // Read json data into config object
@@ -40,23 +39,31 @@ Bool ConfigManager::LoadConfig(const String& sName, const String& sFile)
 
 Bool ConfigManager::DoesConfigExist(const String& sName) const
 {
+    // Determine if config exists
     auto iSearch = GetLoadedConfigs().find(sName);
     return (iSearch != GetLoadedConfigs().end());
 }
 
 const Config& ConfigManager::GetConfig(const String& sName) const
 {
-    ASSERT_ERROR(DoesConfigExist(sName), "Config with name '%s' was not registered", sName.c_str());
+    // Check if config exists
+    if(!DoesConfigExist(sName))
+    {
+        THROW_RUNTIME_ERROR("Config with name '" + sName + "' was not registered");
+    }
+
+    // Get config
     auto iSearch = GetLoadedConfigs().find(sName);
     if(iSearch != GetLoadedConfigs().end())
     {
         return iSearch->second;
     }
-    throw RuntimeError("Invalid or unknown config requested: " + sName);
+    THROW_RUNTIME_ERROR("Invalid or unknown config requested: " + sName);
 }
 
 const Config& ConfigManager::GetCurrentConfig() const
 {
+    // Get current config
     return GetConfig(GetCurrentConfigName());
 }
 

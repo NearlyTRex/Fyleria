@@ -170,9 +170,16 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
             fSkillAttackDamage += (fSkillRatingDiff * fSourceAttacksMultiplier);
             vIndividualAttackTargetDamage.push_back(fSkillRatingDiff * fSourceAttacksMultiplier);
         }
-
     }
-    ASSERT_ERROR((vCriticalHitOnTarget.size() == vTargetBlockedCriticalHit.size()) == vIndividualAttackTargetDamage.size());
+    SizeType uNumCriticalHitOnTarget = vCriticalHitOnTarget.size();
+    SizeType uNumTargetBlockedCriticalHit = vTargetBlockedCriticalHit.size();
+    SizeType uNumIndividualAttackTargetDamage = vIndividualAttackTargetDamage.size();
+    if(uNumCriticalHitOnTarget != uNumTargetBlockedCriticalHit ||
+       uNumCriticalHitOnTarget != uNumIndividualAttackTargetDamage ||
+       uNumTargetBlockedCriticalHit != uNumIndividualAttackTargetDamage)
+    {
+        THROW_RUNTIME_ERROR("Mismatch on size of attack/block lists");
+    }
     result.SetIndividualAttackIsCriticalCausedArray(vCriticalHitOnTarget);
     result.SetIndividualAttackIsCriticalBlockedArray(vTargetBlockedCriticalHit);
     result.SetIndividualAttackTargetDamageArray(vIndividualAttackTargetDamage);

@@ -52,8 +52,6 @@ StringArray GetEnumNames()
 template <typename T>
 T GetEnumFromString(const String& sType)
 {
-    ASSERT_ERROR(T::_is_valid(sType.c_str()),
-        "Type '%s' was not a valid enum string for type", sType.c_str());
     return T::_from_string(sType.c_str());
 }
 

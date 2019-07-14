@@ -17,36 +17,64 @@ CharacterPartyManager::CharacterPartyManager()
 
 void CharacterPartyManager::LoadParty(const CharacterParty& party)
 {
-    // Load a party
+    // Check if party ID is valid
     const String& sPartyID = party.GetPartyID();
+    if(!IsValidPartyID(sPartyID))
+    {
+        THROW_RUNTIME_ERROR("Party ID '" + sPartyID + "' was not valid");
+    }
+
+    // Check if party type is valid
     const String& sPartyType = party.GetPartyType();
-    ASSERT_ERROR(IsValidPartyID(sPartyID), "Party ID '%s' was not valid", sPartyID.c_str());
-    ASSERT_ERROR(IsValidEnumString<CharacterPartyType>(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
+    if(!IsValidEnumString<CharacterPartyType>(sPartyType))
+    {
+        THROW_RUNTIME_ERROR("Party type '" + sPartyType + "' was not valid");
+    }
+
+    // Load party
     GetParties().insert({sPartyID, party});
 }
 
 void CharacterPartyManager::LoadPartyFromFile(const String& sFilename, const String& sType)
 {
-    // Load a party
+    // Deserialize file into party data
     Json jsonData;
     Bool bSuccess = ReadSerializedFile(sFilename, sType, jsonData);
-    ASSERT_ERROR(bSuccess, "Unable to read file '%s' as type '%s'", sFilename.c_str(), sType.c_str());
+    if(!bSuccess)
+    {
+        THROW_RUNTIME_ERROR("Unable to read file '" + sFilename + "' as type '" + sType + "'");
+    }
+
+    // Load party
     LoadParty(jsonData.get<CharacterParty>());
 }
 
 void CharacterPartyManager::SavePartyToFile(const String& sPartyID, const String& sFilename, const String& sType)
 {
-    // Save a party
+    // Serialize party data into file
     Json jsonData = GetPartyByID(sPartyID);
     Bool bSuccess = WriteSerializedFile(sFilename, sType, jsonData);
-    ASSERT_ERROR(bSuccess, "Unable to write file '%s' as type '%s'", sFilename.c_str(), sType.c_str());
+    if(!bSuccess)
+    {
+        THROW_RUNTIME_ERROR("Unable to write file '" + sFilename + "' as type '" + sType + "'");
+    }
 }
 
 void CharacterPartyManager::CreateParty(const String& sPartyID, const String& sPartyType, Bool bSetAsCurrent /*= false*/)
 {
+    // Check if party exists
+    if(DoesPartyExistByID(sPartyID))
+    {
+        THROW_RUNTIME_ERROR("Party '" + sPartyID + "' was already registered");
+    }
+
+    // Check if party type was valid
+    if(!IsValidEnumString<CharacterPartyType>(sPartyType))
+    {
+        THROW_RUNTIME_ERROR("Party type '" + sPartyType + "' was not valid");
+    }
+
     // Create a new party
-    ASSERT_ERROR(!DoesPartyExistByID(sPartyID), "Party '%s' was already registered", sPartyID.c_str());
-    ASSERT_ERROR(IsValidEnumString<CharacterPartyType>(sPartyType), "Party type '%s' was not valid", sPartyType.c_str());
     StringArray vAvailableTargetTypes;
     for(UInt i = 1; i <= MAX_TEAM_CHARACTER_AMOUNT; i++)
     {
@@ -79,8 +107,13 @@ void CharacterPartyManager::CreateParty(const String& sPartyID, const String& sP
 
 void CharacterPartyManager::UnloadParty(const String& sPartyID)
 {
+    // Check if party exists
+    if(!DoesPartyExistByID(sPartyID))
+    {
+        THROW_RUNTIME_ERROR("Party '" + sPartyID + "' was not registered");
+    }
+
     // Unload party
-    ASSERT_ERROR(DoesPartyExistByID(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
     GetParties().erase(sPartyID);
     if(sPartyID == GetCurrentAllyPartyID())
     {
@@ -120,14 +153,19 @@ Bool CharacterPartyManager::IsValidPartyID(const String& sPartyID) const
 
 const CharacterParty& CharacterPartyManager::GetPartyByID(const String& sPartyID) const
 {
+    // Check if party exists
+    if(!DoesPartyExistByID(sPartyID))
+    {
+        THROW_RUNTIME_ERROR("Party '" + sPartyID + "' was not registered");
+    }
+
     // Get party
-    ASSERT_ERROR(DoesPartyExistByID(sPartyID), "Party '%s' was not registered", sPartyID.c_str());
     auto iSearch = GetParties().find(sPartyID);
     if(iSearch != GetParties().end())
     {
         return iSearch->second;
     }
-    throw RuntimeError("Invalid or unknown party ID requested: " + sPartyID);
+    THROW_RUNTIME_ERROR("Invalid or unknown party ID requested: " + sPartyID);
 }
 
 CharacterParty& CharacterPartyManager::GetPartyByID(const String& sPartyID)
@@ -149,7 +187,7 @@ const CharacterParty& CharacterPartyManager::GetPartyByType(const String& sParty
         default:
             break;
     }
-    throw RuntimeError("Invalid or unknown party type requested: " + sPartyType);
+    THROW_RUNTIME_ERROR("Invalid or unknown party type requested: " + sPartyType);
 }
 
 CharacterParty& CharacterPartyManager::GetPartyByType(const String& sPartyType)
