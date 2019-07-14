@@ -16,51 +16,51 @@ Computer Role-playing Game (CRPG)
 
 **Similar Games / Elements for Inspiration**
 
-_Pokemon (GB)_
+_**Pokemon (GB)**_
 
 Specifically the party based mechanics, along with the ability to collect, customize, and level up individual party members based on use.
 
-_Mass Effect (PS3)_
+_**Mass Effect (PS3)**_
 
 The story driven mechanics, specifically those associated with unraveling closer relationships and backstories from party members over the course of the game. Also character customization, the ability to select and develop certain traits over the course of the game.
 
-_Batman: Arkham Asylum (PS3)_
+_**Batman: Arkham Asylum (PS3)**_
 
 The tense and provoking interactions with various antagonists, delving into their backstories, and the grey area aspect. Also the interesting way they tensed up to boss fights with villains interfering along the way without direct confrontation.
 
-_Diablo III (PS3)_
+_**Diablo III (PS3)**_
 
 Exciting and addicting character progression. Unlocking new skills, some tongue in cheek humor, possibly some item collection, and control over character progression. Also, good tutorials.
 
-_Chrono Trigger (SNES)_
+_**Chrono Trigger (SNES)**_
 
 Turn based combat system, along with being able to swap in various characters to compose your party.
 
-_Final Fantasy VI (SNES)_
+_**Final Fantasy VI (SNES)**_
 
 Side based battle system, along with a strong component to storytelling.
 
-_Ys III: Wanderers From Ys (SNES)_
+_**Ys III: Wanderers From Ys (SNES)**_
 
 Side based live action battle system, along with moving around in towns in a side scroller-esque fashion.
 
-_Grandia (PS1)_
+_**Grandia (PS1)**_
 
 Battle system that contains a visual time bar that allows players to quickly see where people are in sequential execution.
 
-_Suikoden (PS1)_
+_**Suikoden (PS1)**_
 
 Extremely large party system with over a hundred characters to join the party, along with strong turn based battle system / military based system.
 
-_Super Mario RPG (SNES)_
+_**Super Mario RPG (SNES)**_
 
 In-game tutorial that is integrated with the opening of the story.
 
-_Star Ocean (SNES) / Star Ocean: The 2nd Story (PS1)_
+_**Star Ocean (SNES) / Star Ocean: The 2nd Story (PS1)**_
 
 Dynamic and fun battle system which is live-action or close to it
 
-_Lunar: The Silver Star Story_
+_**Lunar: The Silver Star Story**_
 
 A battle system that is turn based but appears to be more live action, with characters moving around the battle area, and distance is strategic.
 
