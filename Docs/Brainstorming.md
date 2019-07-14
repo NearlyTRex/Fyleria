@@ -58,8 +58,8 @@
 *   A few characters can do this
 *   Two part component, earn new components with leveling
 *   Characters can combine skills into shortcuts, like in Star Ocean.
-**   They have slots, and basic attacks.
-**   This was for a live action battle system
+*   They have slots, and basic attacks.
+*   This was for a live action battle system
 *   Characters could have a special ability that prevents them from dying or being downed
 *   Passive effects, like the ones in FF6, if the health is 1-2% of total
 *   Concept of what it will look like
@@ -99,11 +99,7 @@
 *   Side quests that will offer various challenges to give you an easter egg character
 *   Character progression data will be saved and can be imported into newer games and when they show up they have the same stats later on, but don’t get them unlocked from the start of the new game.
 
-* * *
-
 ## March 3, 2015
-
-* * *
 
 **Basic Ability Components**
 
@@ -123,8 +119,8 @@
 
 *   Buff
 
-*   Individual
-*   Area of Effect
+*  Individual
+*  Area of Effect
 
 *   Utility
 
@@ -205,13 +201,9 @@
 *   Have to leave someone behind, item version
 *   Don’t have to leave someone, if using spell version
 
-*   Leaf shuriken, turns leaves into flying missiles
-
-* * *
+*   Leaf shuriken, turns leaves into flying missile
 
 ## March 29, 2015
-
-* * *
 
 **Kickstarter ideas**
 
@@ -267,11 +259,7 @@
 *   Pierce defense
 *   Magic defense
 
-* * *
-
 ## April 14, 2015
-
-* * *
 
 **First Playable**
 
@@ -331,5 +319,3 @@
 *   Game Over
 *   Introduction
 *   Opening Menu
-
-</div>
