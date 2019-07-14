@@ -70,29 +70,29 @@ The game engine will consist of Unity 2D. On top of this, the game will contain 
 
 **Gameplay**
 
-*   The player is introduced to the world of Fyleria during a tense and exciting opening tutorial. After that they are given the opportunity to create and play a character of their own. They can choose from a variety of customization options, and select a mysterious background ability that varies depending on their answers to a short quiz.
-*   Once they have a character they can be introduced back into the game flow where they will fight a variety of foes and come across quite a few interesting companions. The story begins to draw players in, and the characters are compelling and mysterious with the occasional bit of humor or romance. The further it goes, the greater the danger.
-*   Players can also learn more of the story by sporadic segments where they can control the captured elven princess, as well as the vampire countess who holds her hostage.
-*   Replay is moderate to high, given that hidden characters can be unlocked and new starting abilities can be chosen from the quiz. Or possibly a replay feature that allows you to start the game over with an existing character and gain party members at the same level as your prior game.
-*   Hidden characters could be available from the start.
+* The player is introduced to the world of Fyleria during a tense and exciting opening tutorial. After that they are given the opportunity to create and play a character of their own. They can choose from a variety of customization options, and select a mysterious background ability that varies depending on their answers to a short quiz.
+* Once they have a character they can be introduced back into the game flow where they will fight a variety of foes and come across quite a few interesting companions. The story begins to draw players in, and the characters are compelling and mysterious with the occasional bit of humor or romance. The further it goes, the greater the danger.
+* Players can also learn more of the story by sporadic segments where they can control the captured elven princess, as well as the vampire countess who holds her hostage.
+* Replay is moderate to high, given that hidden characters can be unlocked and new starting abilities can be chosen from the quiz. Or possibly a replay feature that allows you to start the game over with an existing character and gain party members at the same level as your prior game.
+* Hidden characters could be available from the start.
 
 **Features**
 
-*   Episodic story split over several segments.
-*   At least 5-10 hour game time per episode.
-*   Simple to understand yet expansive battle system incorporating powers, magic, weapons, armor, and artifacts.
-*   Multiple side quests allowing for additional hidden characters to be unlocked, extra treasure, powerful artifacts, and extra story.
-*   A compelling story that introduces players to the land of Fyleria in epic fashion.
-*   A variety of companions with engrossing backgrounds and hidden secrets that are revealed through continued interaction throughout the game.
-*   Replayability by having a robust leveling system that allows higher difficulties for additional playthroughs.
-*   Ability to run through previous episodes with characters in separate “New Game+” modes.
-*   Various sequences where the player takes control of characters in other parts of the world for glimpses into hidden parts of the story.
+* Episodic story split over several segments.
+* At least 5-10 hour game time per episode.
+* Simple to understand yet expansive battle system incorporating powers, magic, weapons, armor, and artifacts.
+* Multiple side quests allowing for additional hidden characters to be unlocked, extra treasure, powerful artifacts, and extra story.
+* A compelling story that introduces players to the land of Fyleria in epic fashion.
+* A variety of companions with engrossing backgrounds and hidden secrets that are revealed through continued interaction throughout the game.
+* Replayability by having a robust leveling system that allows higher difficulties for additional playthroughs.
+* Ability to run through previous episodes with characters in separate “New Game+” modes.
+* Various sequences where the player takes control of characters in other parts of the world for glimpses into hidden parts of the story.
 
 **Setting**
 
-*   The game takes place in the land of Fyleria.
-*   A medieval world where multiple kingdoms of various races have banded together in a desperate attempt to stave off the overwhelming undead army that threatens to invade and conquer them all.
-*   Environments include an elven palace, the town of Bluebrook, caves, forests, underground crypts, a secret vampire lair, a magic power (which can be portable), and residential places like cottages.
+* The game takes place in the land of Fyleria.
+* A medieval world where multiple kingdoms of various races have banded together in a desperate attempt to stave off the overwhelming undead army that threatens to invade and conquer them all.
+* Environments include an elven palace, the town of Bluebrook, caves, forests, underground crypts, a secret vampire lair, a magic power (which can be portable), and residential places like cottages.
 
 **Story**
 
