@@ -2,10 +2,6 @@
 
 ## Game Concept Document
 
-* * *
-
-<div id="content">
-
 **Title**
 
 Fyleria
@@ -20,51 +16,51 @@ Computer Role-playing Game (CRPG)
 
 **Similar Games / Elements for Inspiration**
 
-<u>Pokemon (GB)</u>
+_Pokemon (GB)_
 
 Specifically the party based mechanics, along with the ability to collect, customize, and level up individual party members based on use.
 
-<u>Mass Effect (PS3)</u>
+_Mass Effect (PS3)_
 
 The story driven mechanics, specifically those associated with unraveling closer relationships and backstories from party members over the course of the game. Also character customization, the ability to select and develop certain traits over the course of the game.
 
-<u>Batman: Arkham Asylum (PS3)</u>
+_Batman: Arkham Asylum (PS3)_
 
 The tense and provoking interactions with various antagonists, delving into their backstories, and the grey area aspect. Also the interesting way they tensed up to boss fights with villains interfering along the way without direct confrontation.
 
-<u>Diablo III (PS3)</u>
+_Diablo III (PS3)_
 
 Exciting and addicting character progression. Unlocking new skills, some tongue in cheek humor, possibly some item collection, and control over character progression. Also, good tutorials.
 
-<u>Chrono Trigger (SNES)</u>
+_Chrono Trigger (SNES)_
 
 Turn based combat system, along with being able to swap in various characters to compose your party.
 
-<u>Final Fantasy VI (SNES)</u>
+_Final Fantasy VI (SNES)_
 
 Side based battle system, along with a strong component to storytelling.
 
-<u>Ys III: Wanderers From Ys (SNES)</u>
+_Ys III: Wanderers From Ys (SNES)_
 
 Side based live action battle system, along with moving around in towns in a side scroller-esque fashion.
 
-<u>Grandia (PS1)</u>
+_Grandia (PS1)_
 
 Battle system that contains a visual time bar that allows players to quickly see where people are in sequential execution.
 
-<u>Suikoden (PS1)</u>
+_Suikoden (PS1)_
 
 Extremely large party system with over a hundred characters to join the party, along with strong turn based battle system / military based system.
 
-<u>Super Mario RPG (SNES)</u>
+_Super Mario RPG (SNES)_
 
 In-game tutorial that is integrated with the opening of the story.
 
-<u>Star Ocean (SNES) / Star Ocean: The 2nd Story (PS1)</u>
+_Star Ocean (SNES) / Star Ocean: The 2nd Story (PS1)_
 
 Dynamic and fun battle system which is live-action or close to it
 
-<u>Lunar: The Silver Star Story</u>
+_Lunar: The Silver Star Story_
 
 A battle system that is turn based but appears to be more live action, with characters moving around the battle area, and distance is strategic.
 
@@ -120,21 +116,9 @@ The target platform is a home computer capable of running Unity 2D. In the futur
 
 Art and media assets will be designed first in a way to make a workable prototype. Once the game is in a playable state, it will all be compiled into a bible that can be handed off to a contracted artist and/or musician.
 
-<table style="width: 50%"><caption>Team</caption>
-<tbody>
-<tr>
-<th>Name</th>
-<th>Role</th>
-</tr>
-<tr>
-<td>Luna White</td>
-<td>Tech Lead, Software Engineer</td>
-</tr>
-<tr>
-<td>Faith Lynch</td>
-<td>Designer, Writer</td>
-</tr>
-</tbody>
-</table>
+**Team**
 
-</div>
+Name | Role
+---- | -----
+Luna White | Tech Lead, Software Engineer
+Faith Lynch | Designer, Writer
