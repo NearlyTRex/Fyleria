@@ -2,15 +2,7 @@
 
 ## Game Brainstorming Document
 
-* * *
-
-<div id="content">  
-
-* * *
-
 ## January 8, 2015
-
-* * *
 
 **General ideas**
 
@@ -23,11 +15,7 @@
 *   Arena for getting hidden item
 *   Stores that have exclusive items based on the main character
 
-* * *
-
 ## January 15, 2015
-
-* * *
 
 **Battle system examples**
 
@@ -70,10 +58,8 @@
 *   A few characters can do this
 *   Two part component, earn new components with leveling
 *   Characters can combine skills into shortcuts, like in Star Ocean.
-
-*   They have slots, and basic attacks.
-*   This was for a live action battle system
-
+**   They have slots, and basic attacks.
+**   This was for a live action battle system
 *   Characters could have a special ability that prevents them from dying or being downed
 *   Passive effects, like the ones in FF6, if the health is 1-2% of total
 *   Concept of what it will look like
