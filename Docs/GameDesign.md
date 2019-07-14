@@ -57,8 +57,8 @@ Art and media assets will be designed first in a way to make a workable prototyp
 
 ## Items
 
+*Items*
 <table>
-<caption>Items
 <tbody>
 <tr>
 <th>Name</th>
@@ -253,27 +253,74 @@ Art and media assets will be designed first in a way to make a workable prototyp
 <td>55% PATK</td>
 </tr>
 <tr>
-<td>Bronze Dagger</td><td>Weapon/Slash</td><td>0 Ingots</td><td>50% SATK</td>
-</tr><tr><td>Bronze Shortsword</td><td>Weapon/Slash</td><td>0 Ingots</td><td>50% SATK</td>
-</tr><tr><td>Bronze Longsword</td><td>Weapon/Slash</td><td>0 Ingots</td><td>50% SATK</td>
+<td>Bronze Dagger</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>50% SATK</td>
 </tr>
-<tr><td>Bronze Greatsword</td><td>Weapon/Slash</td><td>0 Ingots</td><td>50% SATK</td>
+<tr>
+<td>Bronze Shortsword</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>50% SATK</td>
 </tr>
-<tr><td>Bronze Battleaxe</td><td>Weapon/Slash</td><td>0 Ingots</td><td>50% SATK</td>
+<tr>
+<td>Bronze Longsword</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>50% SATK</td>
 </tr>
-<tr><td>Bronze Scimitar</td><td>Weapon/Slash</td><td>0 Ingots</td><td>50% SATK</td>
+<tr><td>Bronze Greatsword</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>50% SATK</td>
 </tr>
-<tr><td>Bronze Katana</td><td>Weapon/Slash</td><td>0 Ingots</td><td>50% SATK</td>
+<tr>
+<td>Bronze Battleaxe</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>50% SATK</td>
 </tr>
-<tr><td>Bronze Daikatana</td><td>Weapon/Slash</td><td>0 Ingots</td><td>50% SATK</td>
+<tr>
+<td>Bronze Scimitar</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>50% SATK</td>
 </tr>
-<tr><td>Iron Dagger</td><td>Weapon/Slash</td><td>0 Ingots</td><td>55% SATK</td>
+<tr>
+<td>Bronze Katana</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>50% SATK</td>
 </tr>
-<tr><td>Iron Shortsword</td><td>Weapon/Slash</td><td>0 Ingots</td><td>55% SATK</td>
+<tr>
+<td>Bronze Daikatana</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>50% SATK</td>
 </tr>
-<tr><td>Iron Longsword</td><td>Weapon/Slash</td><td>0 Ingots</td><td>55% SATK</td>
+<tr>
+<td>Iron Dagger</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>55% SATK</td>
 </tr>
-<tr><td>Iron Greatsword</td><td>Weapon/Slash</td><td>0 Ingots</td>
+<tr>
+<td>Iron Shortsword</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>55% SATK</td>
+</tr>
+<tr>
+<td>Iron Longsword</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
+<td>55% SATK</td>
+</tr>
+<tr>
+<td>Iron Greatsword</td>
+<td>Weapon/Slash</td>
+<td>0 Ingots</td>
 <td>55% SATK</td>
 </tr>
 <tr>
@@ -1714,7 +1761,9 @@ Art and media assets will be designed first in a way to make a workable prototyp
 <td>Used as currency for buying and selling</td>
 </tr></tbody></table>
 
-<table style="width: 25%"><caption>Orb Effects<tbody>
+*Orb Effects*
+<table style="width: 25%">
+<tbody>
 <tr>
 <th>Stat</th>
 <th>Effect</th>
@@ -7423,7 +7472,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Bowsmith
+*Bowsmith*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -7550,7 +7600,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Swordsmith
+*Swordsmith*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -7677,7 +7728,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Weaver
+*Weaver*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -7802,7 +7854,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Tanner
+*Tanner*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -7927,7 +7980,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Scalesmith
+*Scalesmith*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -8052,7 +8106,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Platesmith
+*Platesmith*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -8177,7 +8232,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Goldsmith
+*Goldsmith*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -8306,7 +8362,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Shieldsmith
+*Shieldsmith*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -8437,7 +8494,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 
 ## Weapon Skills
 
-<table>Slash
+*Slash*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -8547,7 +8605,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Sever
+*Sever*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -8657,7 +8716,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Slice
+*Slice*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -8767,7 +8827,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Slit
+*Slit*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -8877,7 +8938,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Cleave
+*Cleave*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -8987,7 +9049,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Decapitate
+*Decapitate*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -9097,7 +9160,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Parry
+*Parry*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -9207,7 +9271,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Riposte
+*Riposte*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -9317,7 +9382,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Bash
+*Bash*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -9427,7 +9493,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Smash
+*Smash*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -9537,7 +9604,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Impact
+*Impact*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -9647,7 +9715,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Crush
+*Crush*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -9757,7 +9826,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Break
+*Break*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -9867,7 +9937,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Crack
+*Crack*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -9977,7 +10048,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Block
+*Block*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -10087,7 +10159,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Rush
+*Rush*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -10197,7 +10270,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Pierce
+*Pierce*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -10307,7 +10381,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Drill
+*Drill*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -10417,7 +10492,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Shoot
+*Shoot*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -10527,7 +10603,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Impale
+*Impale*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -10637,7 +10714,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Stealth Strike
+*Stealth Strike*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -10747,7 +10825,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Critical Shot
+*Critical Shot*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -10857,7 +10936,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Dodge
+*Dodge*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -10967,7 +11047,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Counter
+*Counter*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -11079,7 +11160,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 
 ## Affinity Skills
 
-<table>Holy Element
+*Holy Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -11189,7 +11271,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Fire Element
+*Fire Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -11299,7 +11382,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Ice Element
+*Ice Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -11409,7 +11493,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Shock Element
+*Shock Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -11519,7 +11604,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Dark Element
+*Dark Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -11629,7 +11715,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Light Element
+*Light Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -11739,7 +11826,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Force Element
+*Force Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -11849,7 +11937,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Mind Element
+*Mind Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -11959,7 +12048,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Earth Element
+*Earth Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -12069,7 +12159,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Blood Element
+*Blood Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -12179,7 +12270,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Flesh Element
+*Flesh Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -12289,7 +12381,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 </tbody>
 </table>
 
-<table>Wind Element
+*Wind Element*
+<table>
 <tbody>
 <tr>
 <th>Rank</th>
@@ -12401,7 +12494,8 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 
 ## Character Info Stats
 
-<table>Character Info
+*Character Info*
+<table>
 <tbody>
 <tr>
 <th width="20%">Stat</th>
@@ -12587,7 +12681,8 @@ Eyes2</td>
 
 ## Character Skills Stats
 
-<table>Character Combat Skills
+*Character Combat Skills*
+<table>
 <tbody>
 <tr>
 <th width="40%">Skill</th>
@@ -12637,7 +12732,8 @@ Eyes2</td>
 </tbody>
 </table>
 
-<table>Character Weapon Skills
+*Character Weapon Skills*
+<table>
 <tbody>
 <tr>
 <th width="40%">Skill</th>
@@ -12767,7 +12863,8 @@ Eyes2</td>
 </tbody>
 </table>
 
-<table>Character Alchemy Skills
+*Character Alchemy Skills*
+<table>
 <tbody>
 <tr>
 <th width="40%">Skill</th>
@@ -12797,7 +12894,8 @@ Eyes2</td>
 </tbody>
 </table>
 
-<table>Character Crafting Skills
+*Character Crafting Skills*
+<table>
 <tbody>
 <tr>
 <th width="40%">Skill</th>
@@ -12857,7 +12955,8 @@ Eyes2</td>
 </tbody>
 </table>
 
-<table>Character Breakdown Skills
+*Character Breakdown Skills*
+<table>
 <tbody>
 <tr>
 <th width="40%">Skill</th>
@@ -12917,7 +13016,8 @@ Eyes2</td>
 </tbody>
 </table>
 
-<table>Character Affinity Skills
+*Character Affinity Skills*
+<table>
 <tbody>
 <tr>
 <th width="40%">Skill</th>
@@ -12989,7 +13089,8 @@ Eyes2</td>
 
 ## Character Equipment Stats
 
-<table style="width: 50%"><caption>Character Equipment Slots
+*Character Equipment Slots*
+<table style="width: 50%">
 <tbody>
 <tr>
 <th>Slot</th>
