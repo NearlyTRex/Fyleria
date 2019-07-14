@@ -3955,12 +3955,12 @@ For the first round of the game, there will be 5 types of powers, subdivided int
 
 **Spells (Round 3)**
 
-To teach any character a spell, you must select a spell that is stored in your spellbook, spells are added to the spellbook by obtaining spell scrolls.  
-Spell scrolls are semi rare loot, showing up more often in the treasure of higher level enemies, they may also be found in loot containers, or bought at a store.  
-When you have a scroll you can either choose to add it to your spellbook (the scroll is no longer separate so vanishes from the inventory) or you may sell it or discard it.  
-You can only add a given spell to the spellbook once per spell level. But once it is added to the spellbook you are free to teach it to every member of your party or any new party members without requiring a new spell scroll.  
-Normally to get a higher level of a spell you would need the equivalent spell scroll, however Sidhe can unlock any spell using a power stone, and can also level them exactly like powers.  
-They must use a level 1 spell 25 times for level 2, 50 additional times for level 3, and 75 additional times for level 4.
+* To teach any character a spell, you must select a spell that is stored in your spellbook, spells are added to the spellbook by obtaining spell scrolls.  
+* Spell scrolls are semi rare loot, showing up more often in the treasure of higher level enemies, they may also be found in loot containers, or bought at a store.  
+* When you have a scroll you can either choose to add it to your spellbook (the scroll is no longer separate so vanishes from the inventory) or you may sell it or discard it.  
+* You can only add a given spell to the spellbook once per spell level. But once it is added to the spellbook you are free to teach it to every member of your party or any new party members without requiring a new spell scroll.  
+* Normally to get a higher level of a spell you would need the equivalent spell scroll, however Sidhe can unlock any spell using a power stone, and can also level them exactly like powers.  
+* They must use a level 1 spell 25 times for level 2, 50 additional times for level 3, and 75 additional times for level 4.
 
 *Healing Wave Levels 1-4*
 <table>
@@ -7257,6 +7257,7 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 <td>5</td>
 <td>Bronze Adept</td>
 <td>½ Bar Requirement for Recipes I-IV</td>
+<td>--</td>
 </tr>
 <tr>
 <td>6</td>
@@ -7286,6 +7287,7 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 <td>10</td>
 <td>Bronze Master</td>
 <td>½ Bar Requirement for Recipes V-VIII</td>
+<td>--</td>
 </tr>
 <tr>
 <td>11</td>
@@ -7315,6 +7317,7 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 <td>15</td>
 <td>Iron Adept</td>
 <td>½ Bar Requirement for Recipes IX-XII</td>
+<td>--</td>
 </tr>
 <tr>
 <td>16</td>
@@ -7344,6 +7347,7 @@ They must use a level 1 spell 25 times for level 2, 50 additional times for leve
 <td>20</td>
 <td>Iron Master</td>
 <td>½ Bar Requirement for Recipes XIII-XVI</td>
+<td>--</td>
 </tr>
 </tbody>
 </table>
