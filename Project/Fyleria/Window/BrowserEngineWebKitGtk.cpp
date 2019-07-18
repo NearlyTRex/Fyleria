@@ -286,7 +286,10 @@ void BrowserEngineWebKitGtk::RunJavascript(const String& sScript)
 void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
 {
     // Set document html
-    RunJavascript("var h=`" + sHtml + "`;document.open();document.write(h);document.close();");
+    webkit_web_view_load_html(
+        WEBKIT_WEB_VIEW(m_pWebview),
+        sHtml.c_str(),
+        "file://");
 }
 
 void BrowserEngineWebKitGtk::SetHtmlContentFile(const String& sFile)
