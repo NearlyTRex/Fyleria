@@ -1,0 +1,8 @@
+#ifndef _URIPARSER_EXTRA_CONFIG_H_
+#define _URIPARSER_EXTRA_CONFIG_H_
+
+#define HAVE_WPRINTF
+#define HAVE_REALLOCARRAY
+
+#endif
+

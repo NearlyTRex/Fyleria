@@ -13,6 +13,7 @@ require "Libs/PyBind/PyBind"
 require "Libs/Python3/Python3"
 require "Libs/TinyXML2/TinyXML2"
 require "Libs/TMXParser/TMXParser"
+require "Libs/URIParser/URIParser"
 require "Libs/Zlib/Zlib"
 require "utility"
 
@@ -36,9 +37,9 @@ filter "configurations:Release*"
 
 -- Fyleria
 project "Fyleria"
-kind "ConsoleApp"
 language "C++"
 pic "On"
+    kind(GetAppType())
     buildoptions(appFyleria_buildoptions)
     linkoptions(appFyleria_linkoptions)
     includedirs(appFyleria_includedirs)
@@ -71,9 +72,9 @@ filter "configurations:Release*"
 
 -- Assert
 project "Assert"
-kind "SharedLib"
 language "C++"
 pic "On"
+    kind(GetLibraryType())
     includedirs(libAssert_includedirs)
     files(libAssert_sources)
     targetdir(GetTargetDirectory())
@@ -85,9 +86,9 @@ filter "configurations:Release*"
 
 -- BackwardCPP
 project "BackwardCPP"
-kind "SharedLib"
 language "C++"
 pic "On"
+    kind(GetLibraryType())
     includedirs(libBackwardCPP_includedirs)
     files(libBackwardCPP_sources)
     targetdir(GetTargetDirectory())
@@ -95,9 +96,9 @@ pic "On"
 
 -- Boost
 project "Boost"
-kind "SharedLib"
 language "C++"
 pic "On"
+    kind(GetLibraryType())
     includedirs(libBoost_includedirs)
     files(libBoost_sources)
     targetdir(GetTargetDirectory())
@@ -105,9 +106,9 @@ pic "On"
 
 -- FantasyName
 project "FantasyName"
-kind "SharedLib"
 language "C++"
 pic "On"
+    kind(GetLibraryType())
     includedirs(libFantasyName_includedirs)
     defines(libFantasyName_defines)
     files(libFantasyName_sources)
@@ -120,9 +121,9 @@ filter "configurations:Release*"
 
 -- MicroPather
 project "MicroPather"
-kind "SharedLib"
 language "C++"
 pic "On"
+    kind(GetLibraryType())
     includedirs(libMicroPather_includedirs)
     files(libMicroPather_sources)
     targetdir(GetTargetDirectory())
@@ -134,9 +135,9 @@ filter "configurations:Release*"
 
 -- Python3
 project "Python3"
-kind "SharedLib"
 language "C"
 pic "On"
+    kind(GetLibraryType())
     includedirs(libPython3_includedirs)
     includedirs(libZlib_includedirs)
     defines(libPython3_defines)
@@ -151,9 +152,9 @@ filter "configurations:Release*"
 
 -- TinyXML2
 project "TinyXML2"
-kind "SharedLib"
 language "C++"
 pic "On"
+    kind(GetLibraryType())
     includedirs(libTinyXML2_includedirs)
     files(libTinyXML2_sources)
     targetdir(GetTargetDirectory())
@@ -161,9 +162,9 @@ pic "On"
 
 -- TMXParser
 project "TMXParser"
-kind "SharedLib"
 language "C++"
 pic "On"
+    kind(GetLibraryType())
     includedirs(libTMXParser_includedirs)
     includedirs(libTinyXML2_includedirs)
     files(libTMXParser_sources)
@@ -171,11 +172,22 @@ pic "On"
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("TMXParser"))
 
--- Zlib
-project "Zlib"
-kind "SharedLib"
+-- URIParser
+project "URIParser"
 language "C"
 pic "On"
+    kind(GetLibraryType())
+    includedirs(libURIParser_includedirs)
+    files(libURIParser_sources)
+    links(libURIParser_libs)
+    targetdir(GetTargetDirectory())
+    targetname(GetTargetName("URIParser"))
+
+-- Zlib
+project "Zlib"
+language "C"
+pic "On"
+    kind(GetLibraryType())
     includedirs(libZlib_includedirs)
     defines(libZlib_defines)
     files(libZlib_sources)

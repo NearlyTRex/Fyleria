@@ -51,6 +51,7 @@ def main():
         Project.SetupProject("Python3", "Project/Libs", system_info, program_options)
         Project.SetupProject("TinyXML2", "Project/Libs", system_info, program_options)
         Project.SetupProject("TMXParser", "Project/Libs", system_info, program_options)
+        Project.SetupProject("URIParser", "Project/Libs", system_info, program_options)
         Project.SetupProject("Zlib", "Project/Libs", system_info, program_options)
     if do_setup_javascript_libraries or do_all:
         Project.SetupProject("Bootstrap", "Project/Libs", system_info, program_options)

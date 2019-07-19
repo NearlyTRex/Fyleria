@@ -38,6 +38,7 @@ appFyleria_libs = {
     "Python3",
     "TinyXML2",
     "TMXParser",
+    "URIParser",
     "Zlib"
 }
 

@@ -104,3 +104,13 @@ end
 function GetTargetName(target)
     return target .. "_" .. GetSystemArchitecture()
 end
+
+-- Get app type
+function GetAppType()
+    return "ConsoleApp"
+end
+
+-- Get library type
+function GetLibraryType()
+    return "SharedLib"
+end
