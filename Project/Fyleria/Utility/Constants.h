@@ -40,6 +40,9 @@
 #define DEFAULT_MAX_SCORING                         200
 #define DEFAULT_MAX_SKILL                           200
 
+// File URI base
+#define FILE_URI_BASE                               "file://"
+
 // Folders
 #define FOLDER_DATA                                 "Data"
 #define FOLDER_SAVE                                 "Save"

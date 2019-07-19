@@ -289,7 +289,7 @@ void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
     webkit_web_view_load_html(
         WEBKIT_WEB_VIEW(m_pWebview),
         sHtml.c_str(),
-        "file://");
+        FILE_URI_BASE);
 }
 
 void BrowserEngineWebKitGtk::SetHtmlContentFile(const String& sFile)
