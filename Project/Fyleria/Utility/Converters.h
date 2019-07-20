@@ -40,6 +40,9 @@ StringArray ConvertStringToTokenArray(const String& sString, const String& sChar
 // Convert query string to string map
 StringMap ConvertQueryStringToStringMap(const String& sQuery);
 
+// Convert path to file URI
+String ConvertPathToFileUri(const String& sPath);
+
 };
 
 #endif

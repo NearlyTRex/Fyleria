@@ -5,6 +5,7 @@
 #include "Utility/Converters.h"
 #include "Utility/Boost.h"
 #include "Utility/Errors.h"
+#include "Utility/Uri.h"
 
 namespace Gecko
 {
@@ -179,6 +180,16 @@ StringMap ConvertQueryStringToStringMap(const String& sQuery)
         }
     }
     return tMap;
+}
+
+String ConvertPathToFileUri(const String& sPath)
+{
+    STDVector<String::value_type> vPathChars((sPath.size() * 3) + 10, 0);
+    if(ParseFilenameAsUri(sPath.c_str(), vPathChars.data()) == 0)
+    {
+        return String(vPathChars.begin(), vPathChars.end());
+    }
+    return sPath;
 }
 
 };
