@@ -54,6 +54,7 @@ pic "On"
     includedirs(libPistache_includedirs)
     includedirs(libPyBind_includedirs)
     includedirs(libPython3_includedirs)
+    includedirs(libURIParser_includedirs)
     includedirs(libZlib_includedirs)
     defines(appFyleria_defines)
     defines(libBackwardCPP_defines)
