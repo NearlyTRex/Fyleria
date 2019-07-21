@@ -24,7 +24,7 @@ void SceneSaveMenu::Start()
     SetPostCallback(STDBindFunc(&SceneSaveMenu::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_FILE_SYSTEM_SAVE_MENU);
+    LoadHtmlFromFile(PAGE_FILE_SAVE_MENU);
 }
 
 void SceneSaveMenu::Finish()

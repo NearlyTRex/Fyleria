@@ -24,7 +24,7 @@ void SceneIntro::Start()
     SetPostCallback(STDBindFunc(&SceneIntro::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_FILE_SYSTEM_INTRO);
+    LoadHtmlFromFile(PAGE_FILE_INTRO);
 }
 
 void SceneIntro::Finish()

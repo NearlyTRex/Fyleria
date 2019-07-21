@@ -24,7 +24,7 @@ void SceneCredits::Start()
     SetPostCallback(STDBindFunc(&SceneCredits::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_FILE_SYSTEM_CREDITS);
+    LoadHtmlFromFile(PAGE_FILE_CREDITS);
 }
 
 void SceneCredits::Finish()

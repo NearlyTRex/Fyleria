@@ -18,7 +18,7 @@ WebPageHandlerSaveTool::WebPageHandlerSaveTool()
     : WebPageHandler()
 {
     // Set template
-    String sTemplateFile = JoinPathsCanonical(FOLDER_DATA, WEB_FILE_TOOL_SAVE);
+    String sTemplateFile = JoinPathsCanonical(FOLDER_DATA, PAGE_FILE_TOOL_SAVE);
     String sTemplateContents = GetFileContents(sTemplateFile);
     SetPageTemplate(sTemplateContents);
 

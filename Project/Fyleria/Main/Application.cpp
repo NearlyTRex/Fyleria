@@ -100,10 +100,10 @@ Bool Application::Initialize()
     // Load web files
     LOG_STATEMENT("Loading web files");
     String sShortcuts = MainWindow::GetInstance()->GetBrowserEngine()->GetCommonJavascriptShortcuts();
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(WEB_FILE_CSS_BOOTSTRAP);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_FILE_JS_BOOTSTRAP);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_FILE_JS_JQUERY);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(WEB_FILE_JS_PHASER);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(LIB_FILE_CSS_BOOTSTRAP);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(LIB_FILE_JS_BOOTSTRAP);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(LIB_FILE_JS_JQUERY);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(LIB_FILE_JS_PHASER);
     MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascript(sShortcuts);
     LOG_STATEMENT("Finished loading web files");
 

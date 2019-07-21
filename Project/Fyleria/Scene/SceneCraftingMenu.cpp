@@ -24,7 +24,7 @@ void SceneCraftingMenu::Start()
     SetPostCallback(STDBindFunc(&SceneCraftingMenu::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_FILE_SYSTEM_CRAFTING_MENU);
+    LoadHtmlFromFile(PAGE_FILE_CRAFTING_MENU);
 }
 
 void SceneCraftingMenu::Finish()

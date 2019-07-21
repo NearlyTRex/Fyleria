@@ -24,7 +24,7 @@ void SceneShop::Start()
     SetPostCallback(STDBindFunc(&SceneShop::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_FILE_SYSTEM_SHOP);
+    LoadHtmlFromFile(PAGE_FILE_SHOP);
 }
 
 void SceneShop::Finish()

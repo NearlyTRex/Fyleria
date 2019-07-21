@@ -19,7 +19,7 @@ WebPageHandlerPartyTool::WebPageHandlerPartyTool()
     : WebPageHandler()
 {
     // Set template
-    String sTemplateFile = JoinPathsCanonical(FOLDER_DATA, WEB_FILE_TOOL_PARTY);
+    String sTemplateFile = JoinPathsCanonical(FOLDER_DATA, PAGE_FILE_TOOL_PARTY);
     String sTemplateContents = GetFileContents(sTemplateFile);
     SetPageTemplate(sTemplateContents);
 

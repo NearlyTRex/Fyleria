@@ -24,7 +24,7 @@ void SceneLoading::Start()
     SetPostCallback(STDBindFunc(&SceneLoading::OnMessageReceived, this, STDPlaceholder1));
 
     // Load page content
-    LoadHtmlFromFile(WEB_FILE_SYSTEM_LOADING);
+    LoadHtmlFromFile(PAGE_FILE_LOADING);
 }
 
 void SceneLoading::Finish()
