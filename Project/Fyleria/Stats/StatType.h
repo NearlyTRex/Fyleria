@@ -110,8 +110,11 @@ void SetStatTypeValuesFromJsonValues(const Json& jsonData, STDUnorderedMap<Strin
             continue;
         }
 
-        MappedType varStatValue = jsonData[sStatTypeName].template get<MappedType>();
-        SetStatMapValue<MappedType>(tStatValueMap, sStatTypeName, varStatValue);
+        if(jsonData.find(sStatTypeName) != jsonData.end())
+        {
+            MappedType varStatValue = jsonData[sStatTypeName].template get<MappedType>();
+            SetStatMapValue<MappedType>(tStatValueMap, sStatTypeName, varStatValue);
+        }
     }
 }
 
