@@ -27,11 +27,21 @@ CharacterParty::CharacterParty(const String& jsonString)
     from_json(JsonParse(jsonString), *this);
 }
 
-void CharacterParty::RegenerateCharacterData()
+void CharacterParty::RegenerateCharacterData(
+    Bool bUpdateEquipmentRatings /*= true*/,
+    Bool bUpdateAvailableChanges /*= true*/,
+    Bool bUpdateAvailableActions /*= true*/,
+    Bool bUpdateAvailableAP /*= true*/
+)
 {
     for(auto& member : GetMembers())
     {
-        CharacterManager::GetInstance()->GetCharacter(member.first).RegenerateCharacterData();
+        CharacterManager::GetInstance()->GetCharacter(member.first).RegenerateCharacterData(
+            bUpdateEquipmentRatings,
+            bUpdateAvailableChanges,
+            bUpdateAvailableActions,
+            bUpdateAvailableAP
+        );
     }
 }
 

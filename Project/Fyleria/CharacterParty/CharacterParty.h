@@ -27,7 +27,12 @@ public:
     CharacterParty(const String& jsonString);
 
     // Regenerate character data
-    void RegenerateCharacterData();
+    void RegenerateCharacterData(
+        Bool bUpdateEquipmentRatings = true,
+        Bool bUpdateAvailableChanges = true,
+        Bool bUpdateAvailableActions = true,
+        Bool bUpdateAvailableAP = true
+    );
 
     // Determine if party is able to fight
     Bool IsPartyAbleToFight() const;
