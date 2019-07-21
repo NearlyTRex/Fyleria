@@ -25,6 +25,34 @@ BETTER_ENUM(CharacterSegmentType, Int,
     Active
 );
 
+BETTER_ENUM(CharacterActionStatType_Int, Int,
+    None,
+    SlashPoints,
+    SeverPoints,
+    SlicePoints,
+    SlitPoints,
+    CleavePoints,
+    DecapitatePoints,
+    ParryPoints,
+    RipostePoints,
+    BashPoints,
+    SmashPoints,
+    ImpactPoints,
+    CrushPoints,
+    BreakPoints,
+    CrackPoints,
+    BlockPoints,
+    RushPoints,
+    PiercePoints,
+    DrillPoints,
+    ShootPoints,
+    ImpalePoints,
+    StealthStrikePoints,
+    CriticalShotPoints,
+    DodgePoints,
+    CounterPoints
+);
+
 BETTER_ENUM(CharacterBasicStatType_String, Int,
     None,
     CharacterID,
@@ -82,31 +110,7 @@ BETTER_ENUM(CharacterProgressStatType_Int, Int,
     MagicAttack,
     MagicDefense,
     EnergyAttack,
-    EnergyDefense,
-    SlashPoints,
-    SeverPoints,
-    SlicePoints,
-    SlitPoints,
-    CleavePoints,
-    DecapitatePoints,
-    ParryPoints,
-    RipostePoints,
-    BashPoints,
-    SmashPoints,
-    ImpactPoints,
-    CrushPoints,
-    BreakPoints,
-    CrackPoints,
-    BlockPoints,
-    RushPoints,
-    PiercePoints,
-    DrillPoints,
-    ShootPoints,
-    ImpalePoints,
-    StealthStrikePoints,
-    CriticalShotPoints,
-    DodgePoints,
-    CounterPoints
+    EnergyDefense
 );
 
 BETTER_ENUM(CharacterBattleStatType_String, Int,
@@ -442,7 +446,7 @@ String ConvertItemTypeToCharacterActionType(const String& sItemType);
 StringArray ConvertItemTypeToCharacterEquipTypes(const String& sItemType);
 String ConvertSkillWeaponBaseTypeToCharacterActionType(const String& sSkillWeaponBaseType);
 String ConvertSkillWeaponTypeToCharacterActionType(const String& sSkillWeaponType);
-String ConvertSkillWeaponTypeToCharacterProgressStatType(const String& sSkillWeaponType);
+String ConvertSkillWeaponTypeToCharacterActionStatType(const String& sSkillWeaponType);
 
 };
 

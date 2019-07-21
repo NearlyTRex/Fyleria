@@ -21,8 +21,8 @@ void HandleBattleStarted(const String& sCharacterID)
     character.GetStatChangeData().SetProlongedStatChanges({});
 
     // Reset attack/defend counters
-    character.GetBattleDataBase().SetAttackCounter(0);
-    character.GetBattleDataBase().SetDefendCounter(0);
+    character.GetBattleData().SetAttackCounter(0);
+    character.GetBattleData().SetDefendCounter(0);
 }
 
 void HandleBattleEnded(const String& sCharacterID)
@@ -37,8 +37,8 @@ void HandleBattleEnded(const String& sCharacterID)
     character.GetStatChangeData().SetProlongedStatChanges({});
 
     // Reset attack/defend counters
-    character.GetBattleDataBase().SetAttackCounter(0);
-    character.GetBattleDataBase().SetDefendCounter(0);
+    character.GetBattleData().SetAttackCounter(0);
+    character.GetBattleData().SetDefendCounter(0);
 }
 
 void HandleBattleTally(const String& sCharacterID)
@@ -75,7 +75,7 @@ void HandleBattleFullyCompleted(const String& sCharacterID)
     };
     for(const String& sSegment : vSegments)
     {
-        // Get appropriate segments
+        // Get character data
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Finish battle
@@ -95,7 +95,7 @@ void HandleBattleRoundAdvanced(const String& sCharacterID)
     };
     for(const String& sSegment : vSegments)
     {
-        // Get appropriate segments
+        // Get character data
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Advance round
@@ -104,8 +104,8 @@ void HandleBattleRoundAdvanced(const String& sCharacterID)
 
     // Remove expired prolonged stat changes
     Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
-    Int iCurrentAttack = character.GetBattleDataBase().GetAttackCounter();
-    Int iCurrentDefend = character.GetBattleDataBase().GetDefendCounter();
+    Int iCurrentAttack = character.GetBattleData().GetAttackCounter();
+    Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
@@ -127,7 +127,7 @@ void HandleBattleGivingDamage(const String& sCharacterID, Int iAmount)
     };
     for(const String& sSegment : vSegments)
     {
-        // Get appropriate segments
+        // Get character data
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Update damage given
@@ -135,12 +135,12 @@ void HandleBattleGivingDamage(const String& sCharacterID, Int iAmount)
     }
 
     // Update attack counter
-    character.GetBattleDataBase().SetAttackCounter(character.GetBattleDataBase().GetAttackCounter() + 1);
+    character.GetBattleData().SetAttackCounter(character.GetBattleData().GetAttackCounter() + 1);
 
     // Remove expired prolonged stat changes
     Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
-    Int iCurrentAttack = character.GetBattleDataBase().GetAttackCounter();
-    Int iCurrentDefend = character.GetBattleDataBase().GetDefendCounter();
+    Int iCurrentAttack = character.GetBattleData().GetAttackCounter();
+    Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
@@ -162,7 +162,7 @@ void HandleBattleTakingDamage(const String& sCharacterID, Int iAmount)
     };
     for(const String& sSegment : vSegments)
     {
-        // Get appropriate segments
+        // Get character data
         CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
@@ -175,12 +175,12 @@ void HandleBattleTakingDamage(const String& sCharacterID, Int iAmount)
     }
 
     // Update defend counter
-    character.GetBattleDataBase().SetDefendCounter(character.GetBattleDataBase().GetDefendCounter() + 1);
+    character.GetBattleData().SetDefendCounter(character.GetBattleData().GetDefendCounter() + 1);
 
     // Remove expired prolonged stat changes
     Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
-    Int iCurrentAttack = character.GetBattleDataBase().GetAttackCounter();
-    Int iCurrentDefend = character.GetBattleDataBase().GetDefendCounter();
+    Int iCurrentAttack = character.GetBattleData().GetAttackCounter();
+    Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
@@ -196,7 +196,7 @@ void HandleBattleChoosingTargets(const String& sCharacterID, const StringArray& 
     };
     for(const String& sSegment : vSegments)
     {
-        // Get appropriate segments
+        // Get character data
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Update most recent action targets
@@ -221,7 +221,7 @@ void HandleBattleBecomingTarget(const String& sCharacterID, const String& sSourc
     };
     for(const String& sSegment : vSegments)
     {
-        // Get appropriate segments
+        // Get character data
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Update most recent action source
@@ -244,7 +244,7 @@ void HandleBattleActionAttackSetup(const String& sCharacterID, const CharacterAc
     };
     for(const String& sSegment : vSegments)
     {
-        // Get appropriate segments
+        // Get character data
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Set targets for this action
@@ -268,7 +268,7 @@ void HandleBattleActionDefendSetup(const String& sCharacterID, const CharacterAc
     };
     for(const String& sSegment : vSegments)
     {
-        // Get appropriate segments
+        // Get character data
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Set targets for this action
@@ -286,7 +286,7 @@ void HandleBattleActionApplied(const String& sCharacterID, const CharacterAction
     Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
 
     // Store previous action types
-    character.GetBattleDataBase().SetPreviousActionTypes(action.GetAllActionTypes());
+    character.GetBattleData().SetPreviousActionTypes(action.GetAllActionTypes());
 }
 
 void HandleBattleActionFinished(const String& sCharacterID, const CharacterAction& action)
@@ -301,12 +301,12 @@ void HandleBattleActionFinished(const String& sCharacterID, const CharacterActio
     };
     for(const String& sSegment : vSegments)
     {
-        // Get appropriate segments
-        CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
+        // Get character data
+        CharacterActionData& actionData = character.GetActionData();
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Apply costs
-        progressData.ApplyActionCost(action);
+        actionData.ApplyActionCost(sCharacterID, sSegment, action);
 
         // If this was a skill action, we should track it
         if(!action.GetSkillTreeIndex().empty())

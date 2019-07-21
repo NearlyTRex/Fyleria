@@ -7,11 +7,12 @@
 // Internal includes
 #include "Character/CharacterTypes.h"
 #include "CharacterAction/CharacterAction.h"
+#include "Stats/StatTypeHolder.h"
 
 namespace Gecko
 {
 
-class CharacterActionData
+class CharacterActionData : public StatTypeHolder
 {
 public:
 
@@ -23,10 +24,48 @@ public:
     virtual ~CharacterActionData();
 
     // Clear all data
-    void Clear();
+    virtual void Clear();
 
     // Update available actions
     void UpdateAvailableActions(const String& sCharacterID);
+
+    // Apply cost of action
+    void ApplyActionCost(
+        const String& sCharacterID,
+        const String& sProgressSegment,
+        const CharacterAction& action);
+
+    // Update available AP
+    void UpdateAvailableAP(const String& sCharacterID);
+
+    // Stat names
+    static void InitAllStatNames();
+
+    // Int stats
+    MAKE_STAT_TYPE_ACCESSORS(SlashPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(SeverPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(SlicePoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(SlitPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(CleavePoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(DecapitatePoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(ParryPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(RipostePoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(BashPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(SmashPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(ImpactPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(CrushPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(BreakPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(CrackPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(BlockPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(RushPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(PiercePoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(DrillPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(ShootPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(ImpalePoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(StealthStrikePoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(CriticalShotPoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(DodgePoints, Int);
+    MAKE_STAT_TYPE_ACCESSORS(CounterPoints, Int);
 
     // List of character actions
     MAKE_RAW_TYPE_ACCESSORS(AvailableActions, CharacterActionArray);

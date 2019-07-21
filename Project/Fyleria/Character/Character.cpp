@@ -33,12 +33,12 @@ Character::Character(const String& jsonString)
 void Character::Clear()
 {
     // Progress data
-    GetProgressDataBase().Clear();
+    GetProgressData().Clear();
     GetProgressDataPassives().Clear();
     GetProgressDataActives().Clear();
 
     // Battle data
-    GetBattleDataBase().Clear();
+    GetBattleData().Clear();
     GetBattleDataPassives().Clear();
     GetBattleDataActives().Clear();
 
@@ -171,7 +171,7 @@ const CharacterProgressData& Character::GetProgressDataSegment(const String& sSe
     CharacterSegmentType eSegmentType = GetEnumFromString<CharacterSegmentType>(sSegment);
     switch(eSegmentType)
     {
-        case CharacterSegmentType::Base: return GetProgressDataBase();
+        case CharacterSegmentType::Base: return GetProgressData();
         case CharacterSegmentType::Passive: return GetProgressDataPassives();
         case CharacterSegmentType::Active: return GetProgressDataActives();
         default: break;
@@ -189,7 +189,7 @@ const CharacterBattleData& Character::GetBattleDataSegment(const String& sSegmen
     CharacterSegmentType eSegmentType = GetEnumFromString<CharacterSegmentType>(sSegment);
     switch(eSegmentType)
     {
-        case CharacterSegmentType::Base: return GetBattleDataBase();
+        case CharacterSegmentType::Base: return GetBattleData();
         case CharacterSegmentType::Passive: return GetBattleDataPassives();
         case CharacterSegmentType::Active: return GetBattleDataActives();
         default: break;
@@ -215,7 +215,7 @@ Bool Character::operator!=(const Character& other) const
 void Character::UpdateEquipmentRatings()
 {
     // Update equipment ratings
-    GetBattleDataBase().UpdateEquipmentRatings(GetCharacterID(), (+CharacterSegmentType::Base)._to_string());
+    GetBattleData().UpdateEquipmentRatings(GetCharacterID(), (+CharacterSegmentType::Base)._to_string());
 }
 
 void Character::UpdateAvailableChanges()
@@ -233,7 +233,7 @@ void Character::UpdateAvailableActions()
 void Character::UpdateAvailableAP()
 {
     // Update available AP
-    GetProgressDataBase().UpdateAvailableAP(GetCharacterID());
+    GetActionData().UpdateAvailableAP(GetCharacterID());
 }
 
 void Character::ApplyPassiveChanges()
@@ -243,8 +243,8 @@ void Character::ApplyPassiveChanges()
     const String sDestSegment("Passive");
 
     // Copy base data into passive to start with
-    SetProgressDataPassives(GetProgressDataBase());
-    SetBattleDataPassives(GetBattleDataBase());
+    SetProgressDataPassives(GetProgressData());
+    SetBattleDataPassives(GetBattleData());
 
     // Apply passives
     for(const String& sTreeIndexType : CharacterTreeIndexType::_names())
@@ -323,11 +323,11 @@ void Character::ClearActiveChanges()
 void to_json(Json& jsonData, const Character& obj)
 {
     // Segmented progress data
-    SET_JSON_DATA(ProgressDataBase);
+    SET_JSON_DATA(ProgressData);
     SET_JSON_DATA(ProgressDataPassives);
 
     // Segmented battle data
-    SET_JSON_DATA(BattleDataBase);
+    SET_JSON_DATA(BattleData);
     SET_JSON_DATA(BattleDataPassives);
 
     // Basic data
@@ -346,11 +346,11 @@ void to_json(Json& jsonData, const Character& obj)
 void from_json(const Json& jsonData, Character& obj)
 {
     // Segmented progress data
-    SET_OBJ_DATA(ProgressDataBase, CharacterProgressData);
+    SET_OBJ_DATA(ProgressData, CharacterProgressData);
     SET_OBJ_DATA(ProgressDataPassives, CharacterProgressData);
 
     // Segmented battle data
-    SET_OBJ_DATA(BattleDataBase, CharacterBattleData);
+    SET_OBJ_DATA(BattleData, CharacterBattleData);
     SET_OBJ_DATA(BattleDataPassives, CharacterBattleData);
 
     // Basic data
@@ -372,7 +372,7 @@ Json GetSaveableData(const Character& obj)
     Json jsonData;
 
     // Progress data
-    SET_JSON_DATA(ProgressDataBase);
+    SET_JSON_DATA(ProgressData);
 
     // Basic data
     SET_JSON_DATA(BasicData);

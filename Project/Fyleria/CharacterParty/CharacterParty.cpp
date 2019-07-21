@@ -302,7 +302,7 @@ UInt CharacterParty::GetStatusMemberCount(const String& sStatus) const
     for(auto& member : GetMembers())
     {
         const Character& character = CharacterManager::GetInstance()->GetCharacter(member.first);
-        const CharacterBattleData& battleData = character.GetBattleDataBase();
+        const CharacterBattleData& battleData = character.GetBattleData();
         switch(eStatusType)
         {
             case CharacterStatusType::Dead:

@@ -221,66 +221,66 @@ String ConvertSkillWeaponTypeToCharacterActionType(const String& sSkillWeaponTyp
     }
 }
 
-String ConvertSkillWeaponTypeToCharacterProgressStatType(const String& sSkillWeaponType)
+String ConvertSkillWeaponTypeToCharacterActionStatType(const String& sSkillWeaponType)
 {
     if(sSkillWeaponType.empty())
     {
-        return GetNoneTypeForEnum<CharacterProgressStatType_Int>();
+        return GetNoneTypeForEnum<CharacterActionStatType_Int>();
     }
 
     const SkillWeaponType eSkillWeaponType = GetEnumFromStringOrNone<SkillWeaponType>(sSkillWeaponType);
     switch(eSkillWeaponType)
     {
         case SkillWeaponType::Slash:
-            return (+CharacterProgressStatType_Int::SlashPoints)._to_string();
+            return (+CharacterActionStatType_Int::SlashPoints)._to_string();
         case SkillWeaponType::Sever:
-            return (+CharacterProgressStatType_Int::SeverPoints)._to_string();
+            return (+CharacterActionStatType_Int::SeverPoints)._to_string();
         case SkillWeaponType::Slice:
-            return (+CharacterProgressStatType_Int::SlicePoints)._to_string();
+            return (+CharacterActionStatType_Int::SlicePoints)._to_string();
         case SkillWeaponType::Slit:
-            return (+CharacterProgressStatType_Int::SlitPoints)._to_string();
+            return (+CharacterActionStatType_Int::SlitPoints)._to_string();
         case SkillWeaponType::Cleave:
-            return (+CharacterProgressStatType_Int::CleavePoints)._to_string();
+            return (+CharacterActionStatType_Int::CleavePoints)._to_string();
         case SkillWeaponType::Decapitate:
-            return (+CharacterProgressStatType_Int::DecapitatePoints)._to_string();
+            return (+CharacterActionStatType_Int::DecapitatePoints)._to_string();
         case SkillWeaponType::Parry:
-            return (+CharacterProgressStatType_Int::ParryPoints)._to_string();
+            return (+CharacterActionStatType_Int::ParryPoints)._to_string();
         case SkillWeaponType::Riposte:
-            return (+CharacterProgressStatType_Int::RipostePoints)._to_string();
+            return (+CharacterActionStatType_Int::RipostePoints)._to_string();
         case SkillWeaponType::Bash:
-            return (+CharacterProgressStatType_Int::BashPoints)._to_string();
+            return (+CharacterActionStatType_Int::BashPoints)._to_string();
         case SkillWeaponType::Smash:
-            return (+CharacterProgressStatType_Int::SmashPoints)._to_string();
+            return (+CharacterActionStatType_Int::SmashPoints)._to_string();
         case SkillWeaponType::Impact:
-            return (+CharacterProgressStatType_Int::ImpactPoints)._to_string();
+            return (+CharacterActionStatType_Int::ImpactPoints)._to_string();
         case SkillWeaponType::Crush:
-            return (+CharacterProgressStatType_Int::CrushPoints)._to_string();
+            return (+CharacterActionStatType_Int::CrushPoints)._to_string();
         case SkillWeaponType::Break:
-            return (+CharacterProgressStatType_Int::BreakPoints)._to_string();
+            return (+CharacterActionStatType_Int::BreakPoints)._to_string();
         case SkillWeaponType::Crack:
-            return (+CharacterProgressStatType_Int::CrackPoints)._to_string();
+            return (+CharacterActionStatType_Int::CrackPoints)._to_string();
         case SkillWeaponType::Block:
-            return (+CharacterProgressStatType_Int::BlockPoints)._to_string();
+            return (+CharacterActionStatType_Int::BlockPoints)._to_string();
         case SkillWeaponType::Rush:
-            return (+CharacterProgressStatType_Int::RushPoints)._to_string();
+            return (+CharacterActionStatType_Int::RushPoints)._to_string();
         case SkillWeaponType::Pierce:
-            return (+CharacterProgressStatType_Int::PiercePoints)._to_string();
+            return (+CharacterActionStatType_Int::PiercePoints)._to_string();
         case SkillWeaponType::Drill:
-            return (+CharacterProgressStatType_Int::DrillPoints)._to_string();
+            return (+CharacterActionStatType_Int::DrillPoints)._to_string();
         case SkillWeaponType::Shoot:
-            return (+CharacterProgressStatType_Int::ShootPoints)._to_string();
+            return (+CharacterActionStatType_Int::ShootPoints)._to_string();
         case SkillWeaponType::Impale:
-            return (+CharacterProgressStatType_Int::ImpalePoints)._to_string();
+            return (+CharacterActionStatType_Int::ImpalePoints)._to_string();
         case SkillWeaponType::StealthStrike:
-            return (+CharacterProgressStatType_Int::StealthStrikePoints)._to_string();
+            return (+CharacterActionStatType_Int::StealthStrikePoints)._to_string();
         case SkillWeaponType::CriticalShot:
-            return (+CharacterProgressStatType_Int::CriticalShotPoints)._to_string();
+            return (+CharacterActionStatType_Int::CriticalShotPoints)._to_string();
         case SkillWeaponType::Dodge:
-            return (+CharacterProgressStatType_Int::DodgePoints)._to_string();
+            return (+CharacterActionStatType_Int::DodgePoints)._to_string();
         case SkillWeaponType::Counter:
-            return (+CharacterProgressStatType_Int::CounterPoints)._to_string();
+            return (+CharacterActionStatType_Int::CounterPoints)._to_string();
         default:
-            return GetNoneTypeForEnum<CharacterProgressStatType_Int>();
+            return GetNoneTypeForEnum<CharacterActionStatType_Int>();
     }
 }
 

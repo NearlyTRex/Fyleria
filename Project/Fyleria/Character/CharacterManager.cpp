@@ -109,7 +109,7 @@ void CharacterManager::GenerateCharacter(const String& sCharacterID, const Chara
     CreateCharacter(sCharacterID);
     Character& newCharacter = GetCharacter(sCharacterID);
     newCharacter.SetBasicData(generator.GenerateBasicData(sCharacterID));
-    newCharacter.SetProgressDataBase(generator.GenerateProgressData());
+    newCharacter.SetProgressData(generator.GenerateProgressData());
     newCharacter.SetSkillData(generator.GenerateSkillData());
     newCharacter.RegenerateCharacterData();
 }
@@ -259,11 +259,11 @@ void CharacterManager::ApplyStatChange(
             }
             else if(localEntry.GetAttack() > 1)
             {
-                prolongedStatChange.SetAttack(character.GetBattleDataBase().GetAttackCounter() + localEntry.GetAttack());
+                prolongedStatChange.SetAttack(character.GetBattleData().GetAttackCounter() + localEntry.GetAttack());
             }
             else if(localEntry.GetDefend() > 1)
             {
-                prolongedStatChange.SetDefend(character.GetBattleDataBase().GetDefendCounter() + localEntry.GetDefend());
+                prolongedStatChange.SetDefend(character.GetBattleData().GetDefendCounter() + localEntry.GetDefend());
             }
 
             // Add prolonged entry

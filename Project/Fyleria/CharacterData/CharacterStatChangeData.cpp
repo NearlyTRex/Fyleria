@@ -194,8 +194,8 @@ void CharacterStatChangeData::ApplyProlongedStatChanges(const String& sCharacter
 {
     const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
     Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
-    Int iCurrentAttack = character.GetBattleDataBase().GetAttackCounter();
-    Int iCurrentDefend = character.GetBattleDataBase().GetDefendCounter();
+    Int iCurrentAttack = character.GetBattleData().GetAttackCounter();
+    Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     for(auto& entry : GetProlongedStatChangeEntries(iCurrentRound, iCurrentAttack, iCurrentDefend))
     {
         CharacterManager::GetInstance()->ApplyStatChangeEntry(sSegment, entry);

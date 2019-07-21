@@ -5,7 +5,6 @@
 #define _GECKO_CHARACTER_PROGRESS_DATA_H_
 
 // Internal includes
-#include "CharacterAction/CharacterAction.h"
 #include "Stats/StatTypeHolder.h"
 
 namespace Gecko
@@ -28,12 +27,6 @@ public:
 
     // Apply regeneration
     void ApplyRegeneration(Bool bCanRegenHP, Bool bCanRegenMP, Bool bCanRegenEP);
-
-    // Apply cost of action
-    void ApplyActionCost(const CharacterAction& action);
-
-    // Update available AP
-    void UpdateAvailableAP(const String& sCharacterID);
 
     // Stat names
     static void InitAllStatNames();
@@ -74,30 +67,6 @@ public:
     MAKE_STAT_TYPE_ACCESSORS(SlashDefense, Int);
     MAKE_STAT_TYPE_ACCESSORS(EnergyAttack, Int);
     MAKE_STAT_TYPE_ACCESSORS(EnergyDefense, Int);
-    MAKE_STAT_TYPE_ACCESSORS(SlashPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(SeverPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(SlicePoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(SlitPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(CleavePoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(DecapitatePoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(ParryPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(RipostePoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(BashPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(SmashPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(ImpactPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(CrushPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(BreakPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(CrackPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(BlockPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(RushPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(PiercePoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(DrillPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(ShootPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(ImpalePoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(StealthStrikePoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(CriticalShotPoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(DodgePoints, Int);
-    MAKE_STAT_TYPE_ACCESSORS(CounterPoints, Int);
 
     // Comparisons
     Bool operator==(const CharacterProgressData& other) const;

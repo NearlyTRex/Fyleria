@@ -150,18 +150,18 @@ public:
     void ClearActiveChanges();
 
     // Progress data
-    MAKE_RAW_TYPE_ACCESSORS(ProgressDataBase, CharacterProgressData);
+    MAKE_RAW_TYPE_ACCESSORS(ProgressData, CharacterProgressData);
     MAKE_RAW_TYPE_ACCESSORS(ProgressDataPassives, CharacterProgressData);
     MAKE_RAW_TYPE_ACCESSORS(ProgressDataActives, CharacterProgressData);
-    MAKE_MODULE_RESULT_VARIANT(GetProgressDataBase);
+    MAKE_MODULE_RESULT_VARIANT(GetProgressData);
     MAKE_MODULE_RESULT_VARIANT(GetProgressDataPassives);
     MAKE_MODULE_RESULT_VARIANT(GetProgressDataActives);
 
     // Battle data
-    MAKE_RAW_TYPE_ACCESSORS(BattleDataBase, CharacterBattleData);
+    MAKE_RAW_TYPE_ACCESSORS(BattleData, CharacterBattleData);
     MAKE_RAW_TYPE_ACCESSORS(BattleDataPassives, CharacterBattleData);
     MAKE_RAW_TYPE_ACCESSORS(BattleDataActives, CharacterBattleData);
-    MAKE_MODULE_RESULT_VARIANT(GetBattleDataBase);
+    MAKE_MODULE_RESULT_VARIANT(GetBattleData);
     MAKE_MODULE_RESULT_VARIANT(GetBattleDataPassives);
     MAKE_MODULE_RESULT_VARIANT(GetBattleDataActives);
 

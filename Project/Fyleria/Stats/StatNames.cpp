@@ -3,9 +3,11 @@
 
 // Internal includes
 #include "Stats/StatNames.h"
+#include "CharacterData/CharacterActionData.h"
 #include "CharacterData/CharacterBasicData.h"
 #include "CharacterData/CharacterProgressData.h"
 #include "CharacterData/CharacterBattleData.h"
+#include "CharacterData/CharacterSkillData.h"
 
 namespace Gecko
 {
@@ -63,9 +65,11 @@ Bool IsStatStringArray(const String& sStat) { return (GetStringArrayStatNames()-
 
 void InitializeAllStatNames()
 {
+    CharacterActionData::InitAllStatNames();
     CharacterBasicData::InitAllStatNames();
     CharacterProgressData::InitAllStatNames();
     CharacterBattleData::InitAllStatNames();
+    CharacterSkillData::InitAllStatNames();
 }
 
 };
