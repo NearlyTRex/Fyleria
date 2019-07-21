@@ -366,6 +366,24 @@ void from_json(const Json& jsonData, Character& obj)
     SET_OBJ_DATA(StatChangeData, CharacterStatChangeData);
 }
 
+Json GetSaveableData(const Character& obj)
+{
+    // Ouput data
+    Json jsonData;
+
+    // Progress data
+    SET_JSON_DATA(ProgressDataBase);
+
+    // Basic data
+    SET_JSON_DATA(BasicData);
+
+    // Skill data
+    SET_JSON_DATA(SkillData);
+
+    // Return saveable data
+    return jsonData;
+}
+
 Bool operator==(const Character& a, const Character& b)
 {
     return (a.GetBasicData().GetCharacterID() == b.GetBasicData().GetCharacterID());

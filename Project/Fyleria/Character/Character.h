@@ -193,6 +193,9 @@ MAKE_COMMON_TYPEDEFS(Character);
 void to_json(Json& jsonData, const Character& obj);
 void from_json(const Json& jsonData, Character& obj);
 
+// Get saveable data
+Json GetSaveableData(const Character& obj);
+
 // Comparisons
 Bool operator==(const Character& a, const Character& b);
 

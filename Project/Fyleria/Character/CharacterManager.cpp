@@ -47,7 +47,7 @@ void CharacterManager::LoadCharacterFromFile(const String& sFilename, const Stri
 void CharacterManager::SaveCharacterToFile(const String& sCharacterID, const String& sFilename, const String& sType)
 {
     // Serialize character data into file
-    Json jsonData = GetCharacter(sCharacterID);
+    Json jsonData = GetSaveableData(GetCharacter(sCharacterID));
     Bool bSuccess = WriteSerializedFile(sFilename, sType, jsonData);
     if(!bSuccess)
     {
