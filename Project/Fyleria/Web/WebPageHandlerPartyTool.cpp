@@ -99,15 +99,14 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     // Check action
     if(sAction == "load_party_from_json")
     {
-        CharacterPartyManager::GetInstance()->LoadParty(
-            CharacterParty(sLoadPartyFromJson_Textarea)
+        sPartyToDisplay = CharacterPartyManager::GetInstance()->LoadParty(
+            CharacterParty(sLoadPartyFromJson_Textarea), true
         );
     }
     else if(sAction == "load_party_from_file")
     {
-        CharacterPartyManager::GetInstance()->LoadPartyFromFile(
-            sLoadPartyFromFile_Filename,
-            sLoadPartyFromFile_FileType
+        sPartyToDisplay = CharacterPartyManager::GetInstance()->LoadPartyFromFile(
+            sLoadPartyFromFile_Filename, sLoadPartyFromFile_FileType, true
         );
     }
     else if(sAction == "save_party_to_file")
@@ -117,6 +116,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
             sSavePartyToFile_Filename,
             sSavePartyToFile_FileType
         );
+        sPartyToDisplay = sSavePartyToFile_PartyID;
     }
     else if(sAction == "unload_party")
     {
@@ -138,6 +138,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
             default:
                 break;
         }
+        sPartyToDisplay = sSetCurrentParty_PartyID;
     }
     else if(sAction == "create_party")
     {

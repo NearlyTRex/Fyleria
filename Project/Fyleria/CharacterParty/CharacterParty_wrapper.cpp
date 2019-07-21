@@ -13,8 +13,8 @@
 namespace Gecko
 {
     // Manager lambdas
-    auto fnLoadParty = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterPartyManager, LoadParty, const CharacterParty&);
-    auto fnLoadPartyFromFile = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterPartyManager, LoadPartyFromFile, const String&, const String&);
+    auto fnLoadParty = MAKE_MANAGER_RETURN_LAMBDA_A2(CharacterPartyManager, LoadParty, String, const CharacterParty&, Bool);
+    auto fnLoadPartyFromFile = MAKE_MANAGER_RETURN_LAMBDA_A3(CharacterPartyManager, LoadPartyFromFile, String, const String&, const String&, Bool);
     auto fnSavePartyToFile = MAKE_MANAGER_VOID_LAMBDA_A3(CharacterPartyManager, SavePartyToFile, const String&, const String&, const String&);
     auto fnCreateParty = MAKE_MANAGER_VOID_LAMBDA_A3(CharacterPartyManager, CreateParty, const String&, const String&, Bool);
     auto fnUnloadParty = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterPartyManager, UnloadParty, const String&);

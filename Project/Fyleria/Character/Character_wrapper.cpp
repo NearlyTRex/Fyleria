@@ -12,8 +12,8 @@
 namespace Gecko
 {
     // Manager lambdas
-    auto fnLoadCharacter = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterManager, LoadCharacter, const Character&);
-    auto fnLoadCharacterFromFile = MAKE_MANAGER_VOID_LAMBDA_A2(CharacterManager, LoadCharacterFromFile, const String&, const String&);
+    auto fnLoadCharacter = MAKE_MANAGER_RETURN_LAMBDA_A2(CharacterManager, LoadCharacter, String, const Character&, Bool);
+    auto fnLoadCharacterFromFile = MAKE_MANAGER_RETURN_LAMBDA_A3(CharacterManager, LoadCharacterFromFile, String, const String&, const String&, Bool);
     auto fnSaveCharacterToFile = MAKE_MANAGER_VOID_LAMBDA_A3(CharacterManager, SaveCharacterToFile, const String&, const String&, const String&);
     auto fnCreateCharacter = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterManager, CreateCharacter, const String&);
     auto fnUnloadCharacter = MAKE_MANAGER_VOID_LAMBDA_A1(CharacterManager, UnloadCharacter, const String&);

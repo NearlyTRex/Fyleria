@@ -184,13 +184,13 @@ void SaveManager::DisperseSaveData(const String& sSlot)
     // Load characters
     for(const Character& character : save.GetCharacters())
     {
-        CharacterManager::GetInstance()->LoadCharacter(character);
+        CharacterManager::GetInstance()->LoadCharacter(character, false);
     }
 
     // Load parties
     for(const CharacterParty& party : save.GetParties())
     {
-        CharacterPartyManager::GetInstance()->LoadParty(party);
+        CharacterPartyManager::GetInstance()->LoadParty(party, true);
     }
 }
 

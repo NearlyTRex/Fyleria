@@ -204,15 +204,14 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     // Check action
     if(sAction == "load_character_from_json")
     {
-        CharacterManager::GetInstance()->LoadCharacter(
-            Character(sLoadCharacterFromJson_Textarea)
+        sCharacterToDisplay = CharacterManager::GetInstance()->LoadCharacter(
+            Character(sLoadCharacterFromJson_Textarea), true
         );
     }
     else if(sAction == "load_character_from_file")
     {
-        CharacterManager::GetInstance()->LoadCharacterFromFile(
-            sLoadCharacterFromFile_Filename,
-            sLoadCharacterFromFile_FileType
+        sCharacterToDisplay = CharacterManager::GetInstance()->LoadCharacterFromFile(
+            sLoadCharacterFromFile_Filename, sLoadCharacterFromFile_FileType, true
         );
     }
     else if(sAction == "save_character_to_file")

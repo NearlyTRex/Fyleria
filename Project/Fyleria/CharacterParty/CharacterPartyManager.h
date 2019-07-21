@@ -21,13 +21,13 @@ public:
     // Constructors
     CharacterPartyManager();
 
-    // Load a party
+    // Load a party and return the party ID
     // This will overwrite any existing matching data
-    void LoadParty(const CharacterParty& party);
+    String LoadParty(const CharacterParty& party, Bool bRegenerateData);
 
-    // Load a party from a file
+    // Load a party from a file and return the party ID
     // This will overwrite any existing matching data
-    void LoadPartyFromFile(const String& sFilename, const String& sType);
+    String LoadPartyFromFile(const String& sFilename, const String& sType, Bool bRegenerateData);
 
     // Save a party to file
     void SavePartyToFile(const String& sPartyID, const String& sFilename, const String& sType);

@@ -15,7 +15,7 @@ CharacterPartyManager::CharacterPartyManager()
 {
 }
 
-void CharacterPartyManager::LoadParty(const CharacterParty& party)
+String CharacterPartyManager::LoadParty(const CharacterParty& party, Bool bRegenerateData)
 {
     // Check if party ID is valid
     const String& sPartyID = party.GetPartyID();
@@ -33,9 +33,14 @@ void CharacterPartyManager::LoadParty(const CharacterParty& party)
 
     // Load party
     GetParties().insert({sPartyID, party});
+    if(bRegenerateData)
+    {
+        GetParties().at(sPartyID).RegenerateCharacterData();
+    }
+    return sPartyID;
 }
 
-void CharacterPartyManager::LoadPartyFromFile(const String& sFilename, const String& sType)
+String CharacterPartyManager::LoadPartyFromFile(const String& sFilename, const String& sType, Bool bRegenerateData)
 {
     // Deserialize file into party data
     Json jsonData;
@@ -46,7 +51,7 @@ void CharacterPartyManager::LoadPartyFromFile(const String& sFilename, const Str
     }
 
     // Load party
-    LoadParty(jsonData.get<CharacterParty>());
+    return LoadParty(jsonData.get<CharacterParty>(), bRegenerateData);
 }
 
 void CharacterPartyManager::SavePartyToFile(const String& sPartyID, const String& sFilename, const String& sType)

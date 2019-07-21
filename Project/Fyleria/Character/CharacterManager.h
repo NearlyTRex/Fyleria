@@ -22,13 +22,13 @@ public:
     // Constructors
     CharacterManager();
 
-    // Load a character
+    // Load a character and return the character ID
     // This will overwrite any existing matching data
-    void LoadCharacter(const Character& character);
+    String LoadCharacter(const Character& character, Bool bRegenerateData);
 
-    // Load a character from a file
+    // Load a character from a file and return the character ID
     // This will overwrite any existing matching data
-    void LoadCharacterFromFile(const String& sFilename, const String& sType);
+    String LoadCharacterFromFile(const String& sFilename, const String& sType, Bool bRegenerateData);
 
     // Save a character to file
     void SaveCharacterToFile(const String& sCharacterID, const String& sFilename, const String& sType);

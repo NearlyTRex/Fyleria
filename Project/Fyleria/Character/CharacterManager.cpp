@@ -17,7 +17,7 @@ CharacterManager::CharacterManager()
 {
 }
 
-void CharacterManager::LoadCharacter(const Character& character)
+String CharacterManager::LoadCharacter(const Character& character, Bool bRegenerateData)
 {
     // Check if character ID is valid
     const String& sCharacterID = character.GetCharacterID();
@@ -28,9 +28,14 @@ void CharacterManager::LoadCharacter(const Character& character)
 
     // Load character
     GetCharacters().insert({sCharacterID, character});
+    if(bRegenerateData)
+    {
+        GetCharacters().at(sCharacterID).RegenerateCharacterData();
+    }
+    return sCharacterID;
 }
 
-void CharacterManager::LoadCharacterFromFile(const String& sFilename, const String& sType)
+String CharacterManager::LoadCharacterFromFile(const String& sFilename, const String& sType, Bool bRegenerateData)
 {
     // Deserialize file into character data
     Json jsonData;
@@ -41,7 +46,7 @@ void CharacterManager::LoadCharacterFromFile(const String& sFilename, const Stri
     }
 
     // Load character
-    LoadCharacter(jsonData.get<Character>());
+    return LoadCharacter(jsonData.get<Character>(), bRegenerateData);
 }
 
 void CharacterManager::SaveCharacterToFile(const String& sCharacterID, const String& sFilename, const String& sType)
