@@ -341,6 +341,9 @@ void to_json(Json& jsonData, const Character& obj)
 
     // Stat change data
     SET_JSON_DATA(StatChangeData);
+
+    // Media data
+    SET_JSON_DATA(MediaData);
 }
 
 void from_json(const Json& jsonData, Character& obj)
@@ -364,6 +367,9 @@ void from_json(const Json& jsonData, Character& obj)
 
     // Stat change data
     SET_OBJ_DATA(StatChangeData, CharacterStatChangeData);
+
+    // Media data
+    SET_OBJ_DATA(MediaData, CharacterMediaData);
 }
 
 Json GetSaveableData(const Character& obj)
@@ -379,6 +385,9 @@ Json GetSaveableData(const Character& obj)
 
     // Skill data
     SET_JSON_DATA(SkillData);
+
+    // Media data
+    SET_JSON_DATA(MediaData);
 
     // Return saveable data
     return jsonData;

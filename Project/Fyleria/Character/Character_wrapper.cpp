@@ -141,6 +141,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ActionData, Gecko::Character)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(SkillData, Gecko::Character)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(StatChangeData, Gecko::Character)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(MediaData, Gecko::Character)
         WRAPPING_ADD_METHOD_SIMPLE(GetCharacterID_StoreResult, Gecko::Character)
         WRAPPING_ADD_METHOD_SIMPLE(GetPartyID_StoreResult, Gecko::Character)
         WRAPPING_ADD_METHOD_SIMPLE(GetCharacterTargetType_StoreResult, Gecko::Character)
@@ -162,6 +163,7 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacter, m)
         WRAPPING_ADD_METHOD_SIMPLE(GetActionData_StoreResult, Gecko::Character)
         WRAPPING_ADD_METHOD_SIMPLE(GetSkillData_StoreResult, Gecko::Character)
         WRAPPING_ADD_METHOD_SIMPLE(GetStatChangeData_StoreResult, Gecko::Character)
+        WRAPPING_ADD_METHOD_SIMPLE(GetMediaData_StoreResult, Gecko::Character)
     ;
     PyBindVector<Gecko::CharacterArray>(m, "CharacterArray");
 

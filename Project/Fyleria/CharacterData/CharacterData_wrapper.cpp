@@ -8,6 +8,7 @@
 #include "CharacterData/CharacterProgressData.h"
 #include "CharacterData/CharacterSkillData.h"
 #include "CharacterData/CharacterStatChangeData.h"
+#include "CharacterData/CharacterMediaData.h"
 #include "Utility/Macros.h"
 #include "Utility/Python.h"
 
@@ -292,4 +293,12 @@ PYBIND11_EMBEDDED_MODULE(GeckoCharacterData, m)
         WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(ProlongedStatChanges, Gecko::CharacterStatChangeData)
     ;
     PyBindVector<Gecko::CharacterStatChangeDataArray>(m, "CharacterStatChangeDataArray");
+
+    // CharacterMediaData.h
+    PyBindClass<Gecko::CharacterMediaData>(m, "CharacterMediaData")
+        WRAPPING_ADD_CONSTRUCTOR_SIMPLE()
+        WRAPPING_ADD_METHOD_SIMPLE(Clear, Gecko::CharacterMediaData)
+        WRAPPING_ADD_BASIC_PROPERTY_MULTIGET(PortraitImage, Gecko::CharacterMediaData)
+    ;
+    PyBindVector<Gecko::CharacterMediaDataArray>(m, "CharacterMediaDataArray");
 }

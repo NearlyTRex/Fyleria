@@ -33,8 +33,10 @@ namespace Gecko
         Json jsonData;
         jsonData["CharacterTreeIndexType"] = GetEnumNames<CharacterTreeIndexType>();
         jsonData["CharacterSegmentType"] = GetEnumNames<CharacterSegmentType>();
+        jsonData["CharacterActionStatType_Int"] = GetEnumNames<CharacterActionStatType_Int>();
         jsonData["CharacterBasicStatType_String"] = GetEnumNames<CharacterBasicStatType_String>();
         jsonData["CharacterBasicStatType_Int"] = GetEnumNames<CharacterBasicStatType_Int>();
+        jsonData["CharacterMediaStatType_String"] = GetEnumNames<CharacterMediaStatType_String>();
         jsonData["CharacterProgressStatType_Int"] = GetEnumNames<CharacterProgressStatType_Int>();
         jsonData["CharacterBattleStatType_String"] = GetEnumNames<CharacterBattleStatType_String>();
         jsonData["CharacterBattleStatType_StringArray"] = GetEnumNames<CharacterBattleStatType_StringArray>();

@@ -74,6 +74,11 @@ BETTER_ENUM(CharacterBasicStatType_Int, Int,
     Age
 );
 
+BETTER_ENUM(CharacterMediaStatType_String, Int,
+    None,
+    PortraitImage
+);
+
 BETTER_ENUM(CharacterProgressStatType_Int, Int,
     None,
     HealthPointsCurrent,

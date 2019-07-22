@@ -11,6 +11,7 @@
 #include "CharacterData/CharacterBasicData.h"
 #include "CharacterData/CharacterBattleData.h"
 #include "CharacterData/CharacterProgressData.h"
+#include "CharacterData/CharacterMediaData.h"
 #include "CharacterData/CharacterSkillData.h"
 #include "CharacterData/CharacterStatChangeData.h"
 #include "CharacterParty/CharacterPartyEquippedItem.h"
@@ -97,12 +98,14 @@ public:
     {
         const CharacterBasicData& basicData = GetBasicData();
         const CharacterSkillData& skillData = GetSkillData();
+        const CharacterMediaData& mediaData = GetMediaData();
         const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
         const CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
         return (basicData.GetStatValue(sStat, varValue) ||
                 progressData.GetStatValue(sStat, varValue) ||
                 battleData.GetStatValue(sStat, varValue) ||
-                skillData.GetStatValue(sStat, varValue));
+                skillData.GetStatValue(sStat, varValue) ||
+                mediaData.GetStatValue(sStat, varValue));
     }
 
     // Set stat values
@@ -111,12 +114,14 @@ public:
     {
         CharacterBasicData& basicData = GetBasicData();
         CharacterSkillData& skillData = GetSkillData();
+        CharacterMediaData& mediaData = GetMediaData();
         CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
         CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
         return (basicData.SetStatValue(sStat, varValue) ||
                 progressData.SetStatValue(sStat, varValue) ||
                 battleData.SetStatValue(sStat, varValue) ||
-                skillData.SetStatValue(sStat, varValue));
+                skillData.SetStatValue(sStat, varValue) ||
+                mediaData.SetStatValue(sStat, varValue));
     }
 
     // Update equipment ratings
@@ -180,6 +185,10 @@ public:
     // Stat change data
     MAKE_RAW_TYPE_ACCESSORS(StatChangeData, CharacterStatChangeData);
     MAKE_MODULE_RESULT_VARIANT(GetStatChangeData);
+
+    // Media data
+    MAKE_RAW_TYPE_ACCESSORS(MediaData, CharacterMediaData);
+    MAKE_MODULE_RESULT_VARIANT(GetMediaData);
 
     // Comparisons
     Bool operator==(const Character& other) const;
