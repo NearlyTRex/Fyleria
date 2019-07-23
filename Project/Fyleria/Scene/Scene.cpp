@@ -49,11 +49,9 @@ Bool Scene::ParseMessage(const String& sMessage, String& sFunction, StringArray&
     return true;
 }
 
-Bool Scene::HandleMessage(const String& sMessage)
+Bool Scene::HandleMessage(const String& sMessage, String& sFunction, StringArray& vArgs)
 {
     // Parse message
-    String sFunction;
-    StringArray vArgs;
     if(!ParseMessage(sMessage, sFunction, vArgs))
     {
         return false;

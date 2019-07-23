@@ -43,8 +43,12 @@ void SceneIntro::Input()
 
 void SceneIntro::OnMessageReceived(const String& sMessage)
 {
+    // Function / arguments
+    String sFunction;
+    StringArray vArgs;
+
     // Handle common messages
-    if(Scene::HandleMessage(sMessage))
+    if(Scene::HandleMessage(sMessage, sFunction, vArgs))
     {
         return;
     }

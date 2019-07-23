@@ -44,7 +44,7 @@ protected:
     virtual Bool ParseMessage(const String& sMessage, String& sFunction, StringArray& vArgs);
 
     // Handle message or return false if it could not be handled
-    virtual Bool HandleMessage(const String& sMessage);
+    virtual Bool HandleMessage(const String& sMessage, String& sFunction, StringArray& vArgs);
 
     // Process form
     virtual void ProcessForm(const String& sAction, const String& sParameters);
