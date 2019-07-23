@@ -68,6 +68,12 @@ public:
     // Get common javascript shortcuts
     String GetCommonJavascriptShortcuts();
 
+    // Define javascript shortcut
+    void DefineJavascriptShortcut(const String& sFunction, const String& sArgs);
+
+    // Clear javascript shortcut
+    void ClearJavascriptShortcut(const String& sFunction);
+
     // Shutting down
     MAKE_RAW_TYPE_ACCESSORS(IsShuttingDown, Bool);
 

@@ -56,4 +56,25 @@ String BrowserEngine::GetCommonJavascriptShortcuts()
     return sCombinedShortcuts;
 }
 
+void BrowserEngine::DefineJavascriptShortcut(const String& sFunction, const String& sArgs)
+{
+    // Keys
+    const String sFunctionKey = (+SceneMessageKeyType::Function)._to_string();
+    const String sArgsKey = (+SceneMessageKeyType::Args)._to_string();
+
+    // Define shortcut
+    String sShortcut = sFunction + "=function(" + sArgs + "){";
+    sShortcut += "var p={" + sFunctionKey + ":\"" + sFunction + "\",";
+    sShortcut += sArgsKey + ":[" + sArgs + "]};";
+    sShortcut += "window.external.invoke(JSON.stringify(p));";
+    sShortcut += "};";
+    RunJavascript(sShortcut);
+}
+
+void BrowserEngine::ClearJavascriptShortcut(const String& sFunction)
+{
+    // Clear shortcut
+    RunJavascript("delete " + sFunction + ";");
+}
+
 };
