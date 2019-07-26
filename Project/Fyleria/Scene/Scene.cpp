@@ -156,6 +156,18 @@ void Scene::SetHtmlContent(const String& sHtml)
     MainWindow::GetInstance()->GetBrowserEngine()->SetHtmlContent(sHtml);
 }
 
+void Scene::DefineJavascriptShortcut(const String& sFunction, const String& sArgs)
+{
+    // Define shortcut
+    MainWindow::GetInstance()->GetBrowserEngine()->DefineJavascriptShortcut(sFunction, sArgs);
+}
+
+void Scene::ClearJavascriptShortcut(const String& sFunction)
+{
+    // Clear shortcut
+    MainWindow::GetInstance()->GetBrowserEngine()->ClearJavascriptShortcut(sFunction);
+}
+
 void Scene::SetPostCallback(const BrowserEngine::JavascriptCallback& fnCallback)
 {
     // Set callback

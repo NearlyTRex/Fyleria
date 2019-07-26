@@ -153,10 +153,11 @@
 #define SKILL_FILE_WEAPON_STEALTHSTRIKE             "Skills/SkillTreeWeapon-StealthStrike.json"
 
 // Lib files
-#define LIB_FILE_CSS_BOOTSTRAP                      "Libs/bootstrap.min.css"
-#define LIB_FILE_JS_BOOTSTRAP                       "Libs/bootstrap.min.js"
-#define LIB_FILE_JS_JQUERY                          "Libs/jquery.min.js"
-#define LIB_FILE_JS_PHASER                          "Libs/phaser.min.js"
+#define LIB_FILE_COMMON_JS                          "Libs/common.js"
+#define LIB_FILE_BOOTSTRAP_CSS                      "Libs/bootstrap.min.css"
+#define LIB_FILE_BOOTSTRAP_JS                       "Libs/bootstrap.min.js"
+#define LIB_FILE_JQUERY_JS                          "Libs/jquery.min.js"
+#define LIB_FILE_PHASER_JS                          "Libs/phaser.min.js"
 
 // Page files
 #define PAGE_FILE_INTRO                             "Pages/Intro.html"

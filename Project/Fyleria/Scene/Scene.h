@@ -61,6 +61,12 @@ protected:
     // Set html content
     virtual void SetHtmlContent(const String& sHtml);
 
+    // Define javascript shortcut
+    virtual void DefineJavascriptShortcut(const String& sFunction, const String& sArgs);
+
+    // Clear javascript shortcut
+    virtual void ClearJavascriptShortcut(const String& sFunction);
+
     // Set callbacks
     virtual void SetPostCallback(const BrowserEngine::JavascriptCallback& fnCallback);
     virtual void SetRunResultCallback(const BrowserEngine::JavascriptCallback& fnCallback);
