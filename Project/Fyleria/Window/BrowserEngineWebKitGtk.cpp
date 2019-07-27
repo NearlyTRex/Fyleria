@@ -1,6 +1,9 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
+// Linux only
+#if defined(__linux__)
+
 // Internal includes
 #include "Window/BrowserEngineWebKitGtk.h"
 #include "Config/ConfigManager.h"
@@ -11,8 +14,6 @@ namespace Gecko
 {
 
 BrowserEngineWebKitGtk::BrowserEngineWebKitGtk()
-    : m_pWindow(nullptr)
-    , m_pWebview(nullptr)
 {
 }
 
@@ -29,21 +30,21 @@ Bool BrowserEngineWebKitGtk::Init(const String& sTitle, Int iWidth, Int iHeight,
     }
 
     // Create top level window
-    m_pWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    if(m_pWindow == nullptr)
+    SetMainWindow(gtk_window_new(GTK_WINDOW_TOPLEVEL));
+    if(GetMainWindow() == nullptr)
     {
         return false;
     }
 
     // Create web view
-    m_pWebview = webkit_web_view_new();
-    if(m_pWebview == nullptr)
+    SetWebView(webkit_web_view_new());
+    if(GetWebView() == nullptr)
     {
         return false;
     }
 
     // Get user content manager
-    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(m_pWebview));
+    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(GetWebView()));
     if(pManager == nullptr)
     {
         return false;
@@ -82,7 +83,7 @@ Bool BrowserEngineWebKitGtk::Init(const String& sTitle, Int iWidth, Int iHeight,
     };
 
     // Register destroy handler
-    g_signal_connect(G_OBJECT(m_pWindow), "destroy", G_CALLBACK(fnDestroyHandler), this);
+    g_signal_connect(G_OBJECT(GetMainWindow()), "destroy", G_CALLBACK(fnDestroyHandler), this);
 
     // Register message handler
     g_signal_connect(pManager, "script-message-received::external", G_CALLBACK(fnMessageHandler), this);
@@ -90,11 +91,11 @@ Bool BrowserEngineWebKitGtk::Init(const String& sTitle, Int iWidth, Int iHeight,
     InjectJavascript("window.external={invoke:function(s){window.webkit.messageHandlers.external.postMessage(s);}}");
 
     // Add view
-    gtk_container_add(GTK_CONTAINER(m_pWindow), GTK_WIDGET(m_pWebview));
-    gtk_widget_grab_focus(GTK_WIDGET(m_pWebview));
+    gtk_container_add(GTK_CONTAINER(GetMainWindow()), GTK_WIDGET(GetWebView()));
+    gtk_widget_grab_focus(GTK_WIDGET(GetWebView()));
 
     // Update settings
-    WebKitSettings* pSettings = webkit_web_view_get_settings(WEBKIT_WEB_VIEW(m_pWebview));
+    WebKitSettings* pSettings = webkit_web_view_get_settings(WEBKIT_WEB_VIEW(GetWebView()));
     webkit_settings_set_auto_load_images(pSettings, true);
     webkit_settings_set_enable_frame_flattening(pSettings, true);
     webkit_settings_set_enable_html5_database(pSettings, true);
@@ -130,39 +131,40 @@ Bool BrowserEngineWebKitGtk::Init(const String& sTitle, Int iWidth, Int iHeight,
     webkit_settings_set_enable_back_forward_navigation_gestures(pSettings, true);
 
     // Set title
-    gtk_window_set_title(GTK_WINDOW(m_pWindow), sTitle.c_str());
+    gtk_window_set_title(GTK_WINDOW(GetMainWindow()), sTitle.c_str());
 
     // Set sizing
-    gtk_window_set_resizable(GTK_WINDOW(m_pWindow), !!bResizable);
+    gtk_window_set_resizable(GTK_WINDOW(GetMainWindow()), !!bResizable);
     if(bResizable)
     {
-        gtk_window_set_default_size(GTK_WINDOW(m_pWindow), iWidth, iHeight);
+        gtk_window_set_default_size(GTK_WINDOW(GetMainWindow()), iWidth, iHeight);
     }
     else
     {
-        gtk_widget_set_size_request(m_pWindow, iWidth, iHeight);
+        gtk_widget_set_size_request(GetMainWindow(), iWidth, iHeight);
     }
 
     // Show window
-    gtk_widget_show_all(m_pWindow);
+    gtk_widget_show_all(GetMainWindow());
     return true;
 }
 
 void BrowserEngineWebKitGtk::Shutdown()
 {
+    // Mark as shutting down
     SetIsShuttingDown(true);
 }
 
 void BrowserEngineWebKitGtk::Navigate(const String& sUrl)
 {
     // Navigate to the url
-    webkit_web_view_load_uri(WEBKIT_WEB_VIEW(m_pWebview), sUrl.c_str());
+    webkit_web_view_load_uri(WEBKIT_WEB_VIEW(GetWebView()), sUrl.c_str());
 }
 
 void BrowserEngineWebKitGtk::InjectStylesheet(const String& sStyle)
 {
     // Get manager
-    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(m_pWebview));
+    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(GetWebView()));
 
     // Create user stylesheet
     WebKitUserStyleSheet* pUserStyleSheet = webkit_user_style_sheet_new(
@@ -184,19 +186,10 @@ void BrowserEngineWebKitGtk::InjectStylesheetFile(const String& sFile)
     InjectStylesheet(sFileContents);
 }
 
-void BrowserEngineWebKitGtk::RemoveAllInjectedStylesheets()
-{
-    // Get manager
-    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(m_pWebview));
-
-    // Remove all injected style sheets
-    webkit_user_content_manager_remove_all_style_sheets(pManager);
-}
-
 void BrowserEngineWebKitGtk::InjectJavascript(const String& sScript)
 {
     // Get manager
-    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(m_pWebview));
+    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(GetWebView()));
 
     // Create user script
     WebKitUserScript* pUserScript = webkit_user_script_new(
@@ -218,12 +211,13 @@ void BrowserEngineWebKitGtk::InjectJavascriptFile(const String& sFile)
     InjectJavascript(sFileContents);
 }
 
-void BrowserEngineWebKitGtk::RemoveAllInjectedJavascript()
+void BrowserEngineWebKitGtk::RemoveAllInjectedData()
 {
     // Get manager
-    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(m_pWebview));
+    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(GetWebView()));
 
-    // Remove all injected scripts
+    // Remove all injected data
+    webkit_user_content_manager_remove_all_style_sheets(pManager);
     webkit_user_content_manager_remove_all_scripts(pManager);
 }
 
@@ -266,7 +260,7 @@ void BrowserEngineWebKitGtk::RunJavascript(const String& sScript)
     if(GetRunResultJavascriptCallback())
     {
         webkit_web_view_run_javascript(
-            WEBKIT_WEB_VIEW(m_pWebview),
+            WEBKIT_WEB_VIEW(GetWebView()),
             sScript.c_str(),
             NULL,
             JavascriptFinishedHandler,
@@ -275,7 +269,7 @@ void BrowserEngineWebKitGtk::RunJavascript(const String& sScript)
     else
     {
         webkit_web_view_run_javascript(
-            WEBKIT_WEB_VIEW(m_pWebview),
+            WEBKIT_WEB_VIEW(GetWebView()),
             sScript.c_str(),
             NULL,
             NULL,
@@ -287,7 +281,7 @@ void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
 {
     // Set document html
     webkit_web_view_load_html(
-        WEBKIT_WEB_VIEW(m_pWebview),
+        WEBKIT_WEB_VIEW(GetWebView()),
         sHtml.c_str(),
         FILE_URI_BASE);
 }
@@ -347,3 +341,5 @@ String BrowserEngineWebKitGtk::GetJavascriptResultString(WebKitJavascriptResult*
 }
 
 };
+
+#endif

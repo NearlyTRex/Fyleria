@@ -1,16 +1,23 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-#ifndef _GECKO_BROWSER_ENGINE_WEBKITGTK_H_
-#define _GECKO_BROWSER_ENGINE_WEBKITGTK_H_
+#ifndef _GECKO_BROWSER_ENGINE_EDGEHTML_H_
+#define _GECKO_BROWSER_ENGINE_EDGEHTML_H_
 
-// Linux only
-#if defined(__linux__)
+// If not already defined, prefer Windows 10
+#if !defined(_WIN32_WINNT)
+#define _WIN32_WINNT 0x0A00
+#endif
+
+// Windows 10 only
+#if defined(_WIN32) && _WIN32_WINNT >= 0x0A00
 
 // External includes
-#include <JavaScriptCore/JavaScript.h>
-#include <gtk/gtk.h>
-#include <webkit2/webkit2.h>
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <objbase.h>
+#include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.Web.UI.Interop.h>
 
 // Internal includes
 #include "Window/BrowserEngine.h"
@@ -19,16 +26,16 @@
 namespace Gecko
 {
 
-// WebKitGtk browser engine
-class BrowserEngineWebKitGtk : public BrowserEngine
+// EdgeHtml browser engine
+class BrowserEngineEdgeHtml : public BrowserEngine
 {
 public:
 
     // Constructor
-    BrowserEngineWebKitGtk();
+    BrowserEngineEdgeHtml();
 
     // Destructor
-    virtual ~BrowserEngineWebKitGtk();
+    virtual ~BrowserEngineEdgeHtml();
 
     // Initialize
     virtual Bool Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable) override;
@@ -66,18 +73,21 @@ public:
     // Run main loop iteration
     virtual void RunMainLoopIteration(Bool bBlocking) override;
 
-    // Get javascript result string
-    String GetJavascriptResultString(WebKitJavascriptResult* pResult);
-
     // Main window
-    MAKE_PRIMITIVE_TYPE_ACCESSORS(MainWindow, GtkWidget*);
+    MAKE_RAW_TYPE_ACCESSORS(MainWindow, HWND);
 
-    // Main window
-    MAKE_PRIMITIVE_TYPE_ACCESSORS(WebView, GtkWidget*);
+    // Web view control
+    MAKE_RAW_TYPE_ACCESSORS(WebViewControl, winrt::Windows::Web::UI::Interop::WebViewControl);
+
+    // Web view control process
+    MAKE_RAW_TYPE_ACCESSORS(WebViewControlProcess, winrt::Windows::Web::UI::Interop::WebViewControlProcess);
+
+    // Injected javascript
+    MAKE_RAW_TYPE_ACCESSORS(InjectedJavascript, String);
 };
 
 // Typedefs
-MAKE_COMMON_TYPEDEFS(BrowserEngineWebKitGtk);
+MAKE_COMMON_TYPEDEFS(BrowserEngineEdgeHtml);
 
 };
 

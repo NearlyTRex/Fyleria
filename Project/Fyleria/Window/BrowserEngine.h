@@ -41,17 +41,14 @@ public:
     // Inject stylesheet file
     virtual void InjectStylesheetFile(const String& sFile) = 0;
 
-    // Remove all injected stylesheets
-    virtual void RemoveAllInjectedStylesheets() = 0;
-
     // Inject javascript
     virtual void InjectJavascript(const String& sScript) = 0;
 
     // Inject javascript file
     virtual void InjectJavascriptFile(const String& sFile) = 0;
 
-    // Remove all injected javascript
-    virtual void RemoveAllInjectedJavascript() = 0;
+    // Remove all injected data
+    virtual void RemoveAllInjectedData() = 0;
 
     // Run javascript
     virtual void RunJavascript(const String& sScript) = 0;
