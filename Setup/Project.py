@@ -14,16 +14,16 @@ def SetupProject(project_name, project_base_dir, system_info, program_options):
     Utility.LogStatement("Setting up project: " + project_name)
 
     # Import library module
-    projectdir = os.path.join(project_base_dir, project_name)
+    projectdir = os.path.normpath(os.path.join(project_base_dir, project_name))
     sys.path.append(projectdir)
     module = importlib.import_module(project_name)
 
     # Generate archive info
     archive_base = module.Setup['url'].split('/')[-1].split('.')[0]
     archive_ext = module.Setup['url'].split('.')[-1]
-    archive_file = os.path.join(projectdir, archive_base + '.' + archive_ext)
-    archive_olddir = os.path.join(projectdir, module.Setup['extractdir'])
-    archive_newdir = os.path.join(projectdir, "orig")
+    archive_file = os.path.normpath(os.path.join(projectdir, archive_base + '.' + archive_ext))
+    archive_olddir = os.path.normpath(os.path.join(projectdir, module.Setup['extractdir']))
+    archive_newdir = os.path.normpath(os.path.join(projectdir, "orig"))
 
     # Detect if we should be downloading
     should_download = (program_options.force_download == True) or not os.path.exists(archive_file)

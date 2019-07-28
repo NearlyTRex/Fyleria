@@ -19,9 +19,10 @@ def GetSystemInformation(program_options, root_path):
     detect_linux = False
     detect_windows = False
     detect_bsd = False
-    detect_make_bin = "make"
-    detect_zip_bin = "zip"
-    detect_unzip_bin = "unzip"
+    detect_make_bin = ""
+    detect_premake_bin = ""
+    detect_zip_bin = ""
+    detect_unzip_bin = ""
     if 'cygwin' in current_system:
         detect_cygwin = True
     elif 'darwin' in current_system:
@@ -34,16 +35,25 @@ def GetSystemInformation(program_options, root_path):
                 detect_linux = False
     elif 'windows' in current_system:
         detect_windows = True
-        detect_make_bin = "nmake"
     elif 'bsd' in current_system:
         detect_bsd = True
+    if detect_linux or detect_macosx or detect_bsd or detect_wsl or detect_cygwin or detect_mingw:
+        detect_make_bin = "make"
+        detect_zip_bin = "zip"
+        detect_unzip_bin = "unzip"
+        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/orig/bin/release/premake5"))
+    elif detect_windows:
+        detect_make_bin = "nmake"
+        detect_zip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Zip/bin/windows-x86-32/zip.exe"))
+        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/windows-x86-32/unzip.exe"))
+        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/orig/bin/release/premake5.exe"))
     info = SystemInformation()
-    info.root_path = root_path
-    info.premake_bin = os.path.join(root_path, "Project/Programs/Premake5/orig/bin/release/premake5")
+    info.root_path = os.path.normpath(root_path)
     info.make_bin = detect_make_bin
     info.zip_bin = detect_zip_bin
     info.unzip_bin = detect_unzip_bin
-    info.python3_libdir = os.path.join(root_path, "Project/Libs/Python3/orig/Lib")
+    info.premake_bin = detect_premake_bin
+    info.python3_libdir = os.path.normpath(os.path.join(root_path, "Project/Libs/Python3/orig/Lib"))
     detect_64bits = sys.maxsize > 2**32
     info.is_32bits = not detect_64bits
     info.is_64bits = detect_64bits
@@ -80,20 +90,20 @@ def GetSystemInformation(program_options, root_path):
         info.is_32bits = False
         info.is_64bits = True
     if info.is_linux or info.is_wsl:
-        info.build_path = os.path.join(root_path, "Project/Build_linux")
+        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_linux"))
     elif info.is_macosx:
-        info.build_path = os.path.join(root_path, "Project/Build_macosx")
+        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_macosx"))
     elif info.is_windows:
-        info.build_path = os.path.join(root_path, "Project/Build_windows")
+        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_windows"))
     elif info.is_bsd:
-        info.build_path = os.path.join(root_path, "Project/Build_bsd")
+        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_bsd"))
     elif info.is_cygwin:
-        info.build_path = os.path.join(root_path, "Project/Build_cygwin")
+        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_cygwin"))
     elif info.is_mingw and info.is_32bits:
-        info.build_path = os.path.join(root_path, "Project/Build_mingw32")
+        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_mingw32"))
     elif info.is_mingw and info.is_64bits:
-        info.build_path = os.path.join(root_path, "Project/Build_mingw64")
+        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_mingw64"))
     else:
-        info.build_path = os.path.join(root_path, "Project/Build")
+        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build"))
     return info
 ###########################################################################

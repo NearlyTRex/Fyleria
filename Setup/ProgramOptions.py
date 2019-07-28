@@ -46,6 +46,7 @@ def GetProgramOptions():
         'setup_javascript_libraries',
         'build_premake',
         'build_tiled',
+        'build_zip',
         'build_game',
     ], help='Setup mode')
     args = parser.parse_args()

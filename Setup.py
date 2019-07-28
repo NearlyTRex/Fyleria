@@ -32,11 +32,15 @@ def main():
     do_setup_javascript_libraries = program_options.mode == "setup_javascript_libraries"
     do_build_premake = program_options.mode == "build_premake"
     do_build_tiled = program_options.mode == "build_tiled"
+    do_build_zip = program_options.mode == "build_zip"
     do_build_game = program_options.mode == "build_game"
     if do_build_premake or do_all:
         Project.SetupProject("Premake5", "Project/Programs", system_info, program_options)
     if do_build_tiled or do_all:
         Project.SetupProject("Tiled", "Project/Programs", system_info, program_options)
+    if do_build_zip or do_all:
+        Project.SetupProject("Zip", "Project/Programs", system_info, program_options)
+        Project.SetupProject("Unzip", "Project/Programs", system_info, program_options)
     if do_setup_cpp_libraries or do_all:
         Project.SetupProject("Assert", "Project/Libs", system_info, program_options)
         Project.SetupProject("BackwardCPP", "Project/Libs", system_info, program_options)
