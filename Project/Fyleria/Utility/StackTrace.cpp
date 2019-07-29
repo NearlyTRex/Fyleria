@@ -15,7 +15,7 @@ namespace Gecko
     {
         STDCerr << "Program terminated by signal " << iSignal << STDEndl;
 #ifdef __linux__
-        psiginfo(info, "Details");
+        psiginfo(pInfo, "Details");
 #endif
         DumpStacktrace(STDCerr, GetStacktrace());
 #ifdef _WIN32
