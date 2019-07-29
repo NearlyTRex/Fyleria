@@ -23,7 +23,7 @@
 
 // Version
 #ifndef VERSION
-    #define VERSION "3.8.0"
+    #define VERSION "3.9.0"
 #endif
 
 // Include the correct pyconfig.h
@@ -33,10 +33,6 @@
     #include "pyconfig-linux_x86_32.h"
 #elif defined(__linux__) && defined(__x86_64__)
     #include "pyconfig-linux_x86_64.h"
-#elif defined(__linux__) && defined(__ppc__)
-    #include "pyconfig-linux_ppc_32.h"
-#elif defined(__linux__) && defined(__ppc64__)
-    #include "pyconfig-linux_ppc_64.h"
 #endif
 
 #endif
