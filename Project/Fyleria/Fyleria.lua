@@ -17,6 +17,8 @@ appFyleria_releasedefines = {
 }
 if os.host() == "windows" then
     table.insert(appFyleria_defines, "NOMINMAX")
+    table.insert(appFyleria_defines, "_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING")
+    table.insert(appFyleria_defines, "_SILENCE_CXX17_OLD_ALLOCATOR_MEMBERS_DEPRECATION_WARNING")
 end
 
 -- Options
