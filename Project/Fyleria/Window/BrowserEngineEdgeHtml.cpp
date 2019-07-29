@@ -1,14 +1,14 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-// Windows 10 only
-#if defined(_WIN32) && _WIN32_WINNT >= 0x0A00
-
 // Internal includes
 #include "Window/BrowserEngineEdgeHtml.h"
 #include "Config/ConfigManager.h"
 #include "Utility/Filesystem.h"
 #include "Utility/Constants.h"
+
+// EdgeHTML is available for Windows 10 only
+#if defined(_WIN32) && _WIN32_WINNT >= 0x0A00
 
 namespace Gecko
 {
@@ -27,7 +27,7 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
     auto fnMessageHandler = +[](HWND pWindowHandle, UINT iMessage, WPARAM iWordParam, LPARAM iLongParam) -> Int
     {
         // Get engine instance
-        auto* pEngine = static_cast<BrowserEngineWebKitGtk*>(GetWindowLongPtr(pWindowHandle, GWLP_USERDATA));
+        auto* pEngine = static_cast<BrowserEngineEdgeHtml*>(GetWindowLongPtr(pWindowHandle, GWLP_USERDATA));
         if(!pEngine)
         {
             return -1;
@@ -167,7 +167,7 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
     auto fnNewWindowRequestedHandler = [this](const auto& sender, const auto& args)
     {
         this->GetWebViewControl().Navigate(args.Uri());
-    }
+    };
 
     // Create web view control completion handler
     auto fnCompletionHandler = [this](const auto& sender, const auto& args)
@@ -257,7 +257,7 @@ void BrowserEngineEdgeHtml::RunJavascript(const String& sScript)
 void BrowserEngineEdgeHtml::SetHtmlContent(const String& sHtml)
 {
     // Navigate to the given html string
-    GetWebViewControl().NavigateToString(sHtml);
+    GetWebViewControl().NavigateToString(winrt::to_hstring(sHtml));
 }
 
 void BrowserEngineEdgeHtml::SetHtmlContentFile(const String& sFile)

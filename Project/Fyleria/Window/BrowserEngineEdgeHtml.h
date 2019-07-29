@@ -9,7 +9,7 @@
 #define _WIN32_WINNT 0x0A00
 #endif
 
-// Windows 10 only
+// EdgeHTML is available for Windows 10 only
 #if defined(_WIN32) && _WIN32_WINNT >= 0x0A00
 
 // External includes
