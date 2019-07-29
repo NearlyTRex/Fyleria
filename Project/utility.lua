@@ -34,8 +34,6 @@ function GetSystemArchitecture()
         ['windows'] = 'windows',
         ['^mingw'] = 'windows',
         ['^cygwin'] = 'windows',
-        ['bsd$'] = 'bsd',
-        ['SunOS'] = 'solaris',
     }
 
     local arch_patterns = {
@@ -43,9 +41,6 @@ function GetSystemArchitecture()
         ['i[%d]86'] = 'x86_32',
         ['amd64'] = 'x86_64',
         ['x86_64'] = 'x86_64',
-        ['Power Macintosh'] = 'powerpc',
-        ['^arm'] = 'arm',
-        ['^mips'] = 'mips',
     }
 
     local os_name, arch_name = 'unknown', 'unknown'
@@ -92,7 +87,7 @@ end
 
 -- Get target release suffix
 function GetTargetReleaseSuffix()
-    return ""
+    return "_release"
 end
 
 -- Get target directory
