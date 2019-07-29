@@ -36,7 +36,6 @@ end
 -- Libs
 appFyleria_libs = {
     "Assert",
-    "BackwardCPP",
     "Boost",
     "FantasyName",
     "MicroPather",
