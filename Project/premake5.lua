@@ -85,16 +85,6 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libAssert_releasedefines)
 
--- BackwardCPP
-project "BackwardCPP"
-language "C++"
-pic "On"
-    kind(GetLibraryType())
-    includedirs(libBackwardCPP_includedirs)
-    files(libBackwardCPP_sources)
-    targetdir(GetTargetDirectory())
-    targetname(GetTargetName("BackwardCPP"))
-
 -- Boost
 project "Boost"
 language "C++"
@@ -168,6 +158,7 @@ pic "On"
     kind(GetLibraryType())
     includedirs(libTMXParser_includedirs)
     includedirs(libTinyXML2_includedirs)
+    includedirs(libZlib_includedirs)
     files(libTMXParser_sources)
     links(libTMXParser_libs)
     targetdir(GetTargetDirectory())

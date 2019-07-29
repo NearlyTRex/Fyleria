@@ -10,6 +10,7 @@
 #include <boost/format.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/function.hpp>
+#include <boost/stacktrace.hpp>
 #include <boost/bind.hpp>
 #include <boost/thread.hpp>
 #include <boost/program_options.hpp>
@@ -48,6 +49,7 @@
 #define BoostProgramOptionsBoolSwitch boost::program_options::bool_switch
 #define BoostTokenizer boost::tokenizer
 #define BoostCharSeparator boost::char_separator
+#define BoostStacktrace boost::stacktrace::stacktrace
 
 // External exception defines
 #define BoostBadAnyCast boost::bad_any_cast

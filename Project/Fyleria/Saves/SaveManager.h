@@ -70,7 +70,7 @@ public:
 
     // Collect data and create a save
     void CollectSaveData(const String& sSlot, const String& sPartyID);
-    void CollectSaveData(const String& sSlot, const StringArray& vPartyIDs, const String& sDescription, ULong uPlayTime);
+    void CollectSaveData(const String& sSlot, const StringArray& vPartyIDs, const String& sDescription, ULongLong uPlayTime);
 
     // Disperse save data
     void DisperseSaveData(const String& sSlot);

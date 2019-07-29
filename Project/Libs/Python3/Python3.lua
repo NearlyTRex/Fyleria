@@ -16,7 +16,9 @@ libPython3_includedirs = {
 -- Defines
 libPython3_defines = {
     "Py_NO_ENABLE_SHARED",
-    "Py_BUILD_CORE"
+    "Py_BUILD_CORE",
+    "Py_BUILD_CORE_MODULE",
+    "Py_BUILD_CORE_BUILTIN"
 }
 libPython3_debugdefines = {
     "NDEBUG"
@@ -171,7 +173,6 @@ libPython3_sources = {
     libPython3_srcdir .. "Python/codecs.c",
     libPython3_srcdir .. "Python/compile.c",
     libPython3_srcdir .. "Python/context.c",
-    libPython3_srcdir .. "Python/coreconfig.c",
     libPython3_srcdir .. "Python/dtoa.c",
     libPython3_srcdir .. "Python/errors.c",
     libPython3_srcdir .. "Python/fileutils.c",

@@ -20,7 +20,7 @@ int main(int iArgCount, char** vArgList)
 {
     // Register signal handler
 #ifdef DEBUG
-    Gecko::SignalHandler signalHandler(Gecko::GetStackTraceSignals());
+    Gecko::RegisterSignalHandler();
 #endif
 
     // Run application

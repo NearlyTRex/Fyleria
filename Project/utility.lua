@@ -112,5 +112,5 @@ end
 
 -- Get library type
 function GetLibraryType()
-    return "SharedLib"
+    return "StaticLib"
 end

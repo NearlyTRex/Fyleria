@@ -141,7 +141,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
 
     // Determine number of attacks
     Bool bShouldApplyMultipleAttacks = DoesChanceSucceed<Float>(fSourceChanceToApplyMultipleAttacks);
-    Int iNumAttacks = (bShouldApplyMultipleAttacks) ? (BASE_NUMBER_OF_SKILL_ATTACKS * fSourceAttacksMultiplier) : BASE_NUMBER_OF_SKILL_ATTACKS;
+    Int iNumAttacks = static_cast<Int>((bShouldApplyMultipleAttacks) ? (BASE_NUMBER_OF_SKILL_ATTACKS * fSourceAttacksMultiplier) : BASE_NUMBER_OF_SKILL_ATTACKS);
     result.SetHaveMultipleAttacksSucceeded(bShouldApplyMultipleAttacks);
     result.SetNumAttacksOnTarget(iNumAttacks);
 
@@ -185,7 +185,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     result.SetIndividualAttackTargetDamageArray(vIndividualAttackTargetDamage);
 
     // Calculate result damage now
-    Int iDamage = STDRound((fSkillAttackDamage * fGeneralDamageBonusPercent) + fGeneralDamageBonusValue);
+    Int iDamage = static_cast<Int>(STDRound((fSkillAttackDamage * fGeneralDamageBonusPercent) + fGeneralDamageBonusValue));
     result.SetFinalDamage(iDamage);
     return result;
 }

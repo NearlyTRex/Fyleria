@@ -145,7 +145,7 @@ void SaveManager::CollectSaveData(const String& sSlot, const String& sPartyID)
     CollectSaveData(sSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
 }
 
-void SaveManager::CollectSaveData(const String& sSlot, const StringArray& vPartyIDs, const String& sDescription, ULong uPlayTime)
+void SaveManager::CollectSaveData(const String& sSlot, const StringArray& vPartyIDs, const String& sDescription, ULongLong uPlayTime)
 {
     // Get parties and attached characters
     CharacterPartyArray vParties;

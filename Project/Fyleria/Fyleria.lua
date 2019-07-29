@@ -15,6 +15,9 @@ appFyleria_debugdefines = {
 appFyleria_releasedefines = {
     "NDEBUG"
 }
+if os.host() == "windows" then
+    table.insert(appFyleria_defines, "NOMINMAX")
+end
 
 -- Options
 appFyleria_buildoptions = {

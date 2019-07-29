@@ -44,7 +44,7 @@ Bool RemoveFile(const String& sPath)
 
 SizeType GetFileSize(const String& sPath)
 {
-    return BoostFilesystemFileSize(BoostFilesystemPath(sPath));
+    return static_cast<SizeType>(BoostFilesystemFileSize(BoostFilesystemPath(sPath)));
 }
 
 String GetAbsolutePath(const String& sPath)

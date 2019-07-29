@@ -29,9 +29,11 @@
 #include <mutex>
 #include <chrono>
 #include <type_traits>
+#include <csignal>
 
 // Standard defines
 #define STDCout std::cout
+#define STDCerr std::cerr
 #define STDEndl std::endl
 #define STDStringLiterals std::string_literals
 #define STDIsSpace std::isspace
@@ -103,7 +105,13 @@
 #define STDOutputFileStreamFlagAte std::ofstream::ate
 #define STDOutputFileStreamFlagAppend std::ofstream::app
 #define STDOutputFileStreamFlagTruncate std::ofstream::trunc
+#define STDOutputStream std::ostream
+#define STDInputStream std::istream
+#define STDOutputStringStream std::ostringstream
+#define STDInputStringStream std::istringstream
 #define STDBindFunc std::bind
+#define STDSignal std::signal
+#define STDRaise std::raise
 #define STDPlaceholder1 std::placeholders::_1
 #define STDPlaceholder2 std::placeholders::_2
 #define STDPlaceholder3 std::placeholders::_3
@@ -124,6 +132,8 @@
 #define STDSetFill std::setfill
 #define STDSetWidth std::setw
 #define STDHex std::hex
+#define STDFixed std::fixed
+#define STDSetPrecision std::setprecision
 #define STDEnableSharedFromThis std::enable_shared_from_this
 #define STDGetSharedThis shared_from_this
 

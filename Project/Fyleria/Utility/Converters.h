@@ -43,6 +43,9 @@ StringMap ConvertQueryStringToStringMap(const String& sQuery);
 // Convert path to file URI
 String ConvertPathToFileUri(const String& sPath);
 
+// Convert size to string containing the correct type
+String ConvertSizeToString(FixedSigned64 uSize);
+
 };
 
 #endif

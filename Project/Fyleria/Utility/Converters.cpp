@@ -29,9 +29,9 @@ String ConvertGameTimeToString(ULongLong uTime)
     const UInt uHourMax = 12;
     ULongLong uLeftover = 0;
     ULongLong uDays = 0;
-    ULong uHours = 0;
-    ULong uMinutes = 0;
-    ULong uSeconds = 0;
+    ULongLong uHours = 0;
+    ULongLong uMinutes = 0;
+    ULongLong uSeconds = 0;
 
     // Calculate days and get leftover for hours
     uDays = static_cast<ULongLong>(uTime / (uSecondMax * uMinuteMax * uHourMax));
@@ -190,6 +190,21 @@ String ConvertPathToFileUri(const String& sPath)
         return String(vPathChars.begin(), vPathChars.end());
     }
     return sPath;
+}
+
+String ConvertSizeToString(FixedSigned64 uSize)
+{
+    STDOutputStringStream sStream;
+    const Int iBytesPerKilobyte = 1024;
+    const STDVector<String> vUnits = {"B", "KB", "MB", "GB", "TB", "PB"};
+    Int iCurrentUnit = 0;
+    while (uSize > iBytesPerKilobyte)
+    {
+        uSize /= iBytesPerKilobyte;
+        iCurrentUnit++;
+    }
+    sStream << STDFixed << STDSetPrecision(2) << uSize << " " << vUnits.at(iCurrentUnit);
+    return sStream.str();
 }
 
 };
