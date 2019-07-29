@@ -28,19 +28,19 @@ function GetSystemArchitecture()
     raw_arch_name = (raw_arch_name):lower()
 
     local os_patterns = {
-        ['windows'] = 'windows',
         ['linux'] = 'linux',
-        ['mac'] = 'mac',
-        ['darwin'] = 'macosx',
-        ['^mingw'] = 'mingw',
-        ['^cygwin'] = 'cygwin',
+        ['mac'] = 'macos',
+        ['darwin'] = 'macos',
+        ['windows'] = 'windows',
+        ['^mingw'] = 'windows',
+        ['^cygwin'] = 'windows',
         ['bsd$'] = 'bsd',
         ['SunOS'] = 'solaris',
     }
 
     local arch_patterns = {
-        ['^x86$'] = 'x86',
-        ['i[%d]86'] = 'x86',
+        ['^x86$'] = 'x86_32',
+        ['i[%d]86'] = 'x86_32',
         ['amd64'] = 'x86_64',
         ['x86_64'] = 'x86_64',
         ['Power Macintosh'] = 'powerpc',
