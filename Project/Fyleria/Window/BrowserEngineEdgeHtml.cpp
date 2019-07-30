@@ -6,6 +6,7 @@
 #include "Config/ConfigManager.h"
 #include "Utility/Filesystem.h"
 #include "Utility/Constants.h"
+#include "Utility/Converters.h"
 
 // EdgeHTML is available for Windows 10 only
 #if defined(_WIN32) && _WIN32_WINNT >= 0x0A00
@@ -21,56 +22,55 @@ BrowserEngineEdgeHtml::~BrowserEngineEdgeHtml()
 {
 }
 
+LRESULT CALLBACK WndProcStatic(HWND pWindowHandle, UINT iMessage, WPARAM iWordParam, LPARAM iLongParam)
+{
+    // Get engine instance
+    auto* pEngine = reinterpret_cast<BrowserEngineEdgeHtml*>(GetWindowLongPtr(pWindowHandle, GWLP_USERDATA));
+    if (!pEngine)
+    {
+        return DefWindowProc(pWindowHandle, iMessage, iWordParam, iLongParam);
+    }
+
+    // Handle window message
+    switch (iMessage)
+    {
+    case WM_SIZE:
+        RECT clientArea;
+        if (GetClientRect(pEngine->GetMainWindow(), &clientArea))
+        {
+            winrt::Windows::Foundation::Rect bounds(
+                static_cast<float>(clientArea.left),
+                static_cast<float>(clientArea.top),
+                static_cast<float>(clientArea.right - clientArea.left),
+                static_cast<float>(clientArea.bottom - clientArea.top)
+            );
+            pEngine->GetWebViewControl()->Bounds(bounds);
+        }
+        break;
+    case WM_CLOSE:
+        DestroyWindow(pWindowHandle);
+        break;
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        break;
+    default:
+        return DefWindowProc(pWindowHandle, iMessage, iWordParam, iLongParam);
+    }
+    return 0;
+}
+
 Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
-    // Create message handler
-    auto fnMessageHandler = +[](HWND pWindowHandle, UINT iMessage, WPARAM iWordParam, LPARAM iLongParam) -> Int
-    {
-        // Get engine instance
-        auto* pEngine = static_cast<BrowserEngineEdgeHtml*>(GetWindowLongPtr(pWindowHandle, GWLP_USERDATA));
-        if(!pEngine)
-        {
-            return -1;
-        }
-
-        // Handle window message
-        switch(iMessage)
-        {
-            case WM_SIZE:
-                RECT clientArea;
-                if(GetClientRect(pEngine->GetMainWindow(), &clientArea))
-                {
-                    Rect bounds(
-                        clientArea.left,
-                        clientArea.top,
-                        clientArea.right - clientArea.left,
-                        clientArea.bottom - clientArea.top
-                    );
-                    pEngine->GetWebViewControl().Bounds(bounds);
-                }
-                break;
-            case WM_CLOSE:
-                DestroyWindow(pWindowHandle);
-                break;
-            case WM_DESTROY:
-                PostQuitMessage(0);
-                break;
-            default:
-                return DefWindowProc(pWindowHandle, iMessage, iWordParam, iLongParam);
-        }
-        return 0;
-    };
-
     // Create window class
     WNDCLASSEX windowClass;
     ZeroMemory(&windowClass, sizeof(WNDCLASSEX));
-    const String& sWindowClassName = "webview";
+    const WString& sWindowClassName = L"webview";
 
     // Register window class
     windowClass.cbSize = sizeof(WNDCLASSEX);
     windowClass.hInstance = GetModuleHandle(nullptr);
     windowClass.lpszClassName = sWindowClassName.c_str();
-    windowClass.lpfnWndProc = (WNDPROC)(fnMessageHandler);
+    windowClass.lpfnWndProc = WndProcStatic;
     if(!RegisterClassEx(&windowClass))
     {
         return false;
@@ -79,7 +79,7 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
     // Create main window
     SetMainWindow(CreateWindow(
         sWindowClassName.c_str(),
-        sTitle.c_str(),
+        ConvertStringToWideString(sTitle).c_str(),
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
@@ -101,7 +101,7 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
     SetWindowLongPtr(GetMainWindow(), GWLP_USERDATA, (LONG_PTR)this);
 
     // Set title
-    SetWindowText(GetMainWindow(), sTitle.c_str());
+    SetWindowText(GetMainWindow(), ConvertStringToWideString(sTitle).c_str());
 
     // Set sizing
     RECT sizeRect;
@@ -131,10 +131,12 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
     winrt::init_apartment(winrt::apartment_type::single_threaded);
 
     // Create script notify handler
-    auto fnScriptNotifyHandler = [this](const auto& sender, const auto& args)
+    auto fnScriptNotifyHandler = [&](
+        const winrt::Windows::Web::UI::IWebViewControl& sender,
+        winrt::Windows::Web::UI::IWebViewControlScriptNotifyEventArgs args)
     {
         // Call callback
-        auto fnCallback = this->GetPostJavascriptCallback();
+        auto fnCallback = GetPostJavascriptCallback();
         if(fnCallback)
         {
             fnCallback(winrt::to_string(args.Value()));
@@ -142,56 +144,76 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
     };
 
     // Create navigation starting handler
-    auto fnNavigationStartingHandler = [this](const auto& sender, const auto& args)
+    auto fnNavigationStartingHandler = [&](
+        const winrt::Windows::Web::UI::IWebViewControl& sender,
+        winrt::Windows::Web::UI::IWebViewControlNavigationStartingEventArgs args)
     {
-        // Inject javascript
-        this->GetWebViewControl().AddInitializeScript(winrt::to_hstring(this->GetInjectedJavascript()));
+        // Add initialize script
+        if (GetWebViewControl())
+        {
+            GetWebViewControl()->AddInitializeScript(winrt::to_hstring(GetInjectedJavascript()));
+        }
     };
 
     // Create navigation completed handler
-    auto fnNavigationCompletedHandler = [this](const auto& sender, const auto& args)
+    auto fnNavigationCompletedHandler = [&](
+        const winrt::Windows::Web::UI::IWebViewControl& sender,
+        winrt::Windows::Web::UI::IWebViewControlNavigationCompletedEventArgs args)
     {
     };
 
     // Create content loading handler
-    auto fnContentLoadingHandler = [this](const auto& sender, const auto& args)
+    auto fnContentLoadingHandler = [&](
+        const winrt::Windows::Web::UI::IWebViewControl& sender,
+        winrt::Windows::Web::UI::IWebViewControlContentLoadingEventArgs args)
     {
     };
 
     // Create DOM content loaded handler
-    auto fnDOMContentLoadedHandler = [this](const auto& sender, const auto& args)
+    auto fnDOMContentLoadedHandler = [&](
+        const winrt::Windows::Web::UI::IWebViewControl& sender,
+        winrt::Windows::Web::UI::IWebViewControlDOMContentLoadedEventArgs args)
     {
     };
 
     // Create new window requested handler
-    auto fnNewWindowRequestedHandler = [this](const auto& sender, const auto& args)
+    auto fnNewWindowRequestedHandler = [&](
+        const winrt::Windows::Web::UI::IWebViewControl& sender,
+        winrt::Windows::Web::UI::IWebViewControlNewWindowRequestedEventArgs args)
     {
-        this->GetWebViewControl().Navigate(args.Uri());
+        // Navigate to the new URI
+        if(GetWebViewControl())
+        {
+            GetWebViewControl()->Navigate(args.Uri());
+        }
     };
 
     // Create web view control completion handler
-    auto fnCompletionHandler = [this](const auto& sender, const auto& args)
+    auto fnCompletionHandler = [&](
+        const winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Web::UI::Interop::WebViewControl>& sender,
+        winrt::Windows::Foundation::AsyncStatus args
+    )
     {
-        this->SetWebViewControl(sender.GetResults());
-        this->GetWebViewControl().Settings().IsScriptNotifyAllowed(true);
-        this->GetWebViewControl().Settings().IsJavaScriptEnabled(true);
-        this->GetWebViewControl().IsVisible(true);
-        this->GetWebViewControl().ScriptNotify(fnScriptNotifyHandler);
-        this->GetWebViewControl().NavigationStarting(fnNavigationStartingHandler);
-        this->GetWebViewControl().NavigationCompleted(fnNavigationCompletedHandler);
-        this->GetWebViewControl().ContentLoading(fnContentLoadingHandler);
-        this->GetWebViewControl().DOMContentLoaded(fnDOMContentLoadedHandler);
-		this->GetWebViewControl().NewWindowRequested(fnNewWindowRequestedHandler);
-        this->InjectJavascript("(function(){window.external.invoke = s => window.external.notify(s)})();");
+        SetWebViewControl(STDMakeSharedPtr<winrt::Windows::Web::UI::Interop::WebViewControl>(sender.GetResults()));
+        GetWebViewControl()->Settings().IsScriptNotifyAllowed(true);
+        GetWebViewControl()->Settings().IsJavaScriptEnabled(true);
+        GetWebViewControl()->IsVisible(true);
+        GetWebViewControl()->ScriptNotify(fnScriptNotifyHandler);
+        GetWebViewControl()->NavigationStarting(fnNavigationStartingHandler);
+        GetWebViewControl()->NavigationCompleted(fnNavigationCompletedHandler);
+        GetWebViewControl()->ContentLoading(fnContentLoadingHandler);
+        GetWebViewControl()->DOMContentLoaded(fnDOMContentLoadedHandler);
+        GetWebViewControl()->NewWindowRequested(fnNewWindowRequestedHandler);
+        InjectJavascript("(function(){window.external.invoke = s => window.external.notify(s)})();");
     };
 
     // Create web view control process
-    SetWebViewControlProcess(winrt::Windows::Web::UI::Interop::WebViewControlProcess());
+    SetWebViewControlProcess(STDMakeSharedPtr<winrt::Windows::Web::UI::Interop::WebViewControlProcess>());
 
     // Create web view control
-    GetWebViewControlProcess().CreateWebViewControlAsync(
-        static_cast<int64_t>(GetMainWindow()),
-        Rect()
+    GetWebViewControlProcess()->CreateWebViewControlAsync(
+        (FixedSigned64)GetMainWindow(),
+        winrt::Windows::Foundation::Rect()
     ).Completed(fnCompletionHandler);
     return true;
 }
@@ -205,7 +227,10 @@ void BrowserEngineEdgeHtml::Shutdown()
 void BrowserEngineEdgeHtml::Navigate(const String& sUrl)
 {
     // Navigate to url
-    GetWebViewControl().Navigate(Uri(winrt::to_hstring(sUrl)));
+    if(GetWebViewControl())
+    {
+        GetWebViewControl()->Navigate(winrt::Windows::Foundation::Uri::Uri(winrt::to_hstring(sUrl)));
+    }
 }
 
 void BrowserEngineEdgeHtml::InjectStylesheet(const String& sStyle)
@@ -257,7 +282,10 @@ void BrowserEngineEdgeHtml::RunJavascript(const String& sScript)
 void BrowserEngineEdgeHtml::SetHtmlContent(const String& sHtml)
 {
     // Navigate to the given html string
-    GetWebViewControl().NavigateToString(winrt::to_hstring(sHtml));
+    if(GetWebViewControl())
+    {
+        GetWebViewControl()->NavigateToString(winrt::to_hstring(sHtml));
+    }
 }
 
 void BrowserEngineEdgeHtml::SetHtmlContentFile(const String& sFile)
