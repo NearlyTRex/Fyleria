@@ -32,7 +32,7 @@ public:
     MAKE_RAW_TYPE_ACCESSORS(Slot, String);
 
     // Time
-    MAKE_RAW_TYPE_ACCESSORS(Time, ULong);
+    MAKE_RAW_TYPE_ACCESSORS(Time, ULongLong);
 
     // Description
     MAKE_RAW_TYPE_ACCESSORS(Description, String);

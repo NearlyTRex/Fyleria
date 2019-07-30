@@ -67,7 +67,7 @@ void from_json(const Json& jsonData, Save& obj)
     SET_OBJ_DATA(Slot, String);
 
     // Time
-    SET_OBJ_DATA(Time, ULong);
+    SET_OBJ_DATA(Time, ULongLong);
 
     // Description
     SET_OBJ_DATA(Description, String);

@@ -523,7 +523,7 @@ void from_json(const Json& jsonData, StatChange& obj)
     SET_OBJ_DATA(ItemTreeIndex, TreeIndex);
 
     // Percent chance to apply this change
-    SET_OBJ_DATA(ChanceToApply, Int);
+    SET_OBJ_DATA(ChanceToApply, Float);
 
     // Amount of rounds to apply this change (0 is indefinite)
     SET_OBJ_DATA(RoundAmount, Int);
