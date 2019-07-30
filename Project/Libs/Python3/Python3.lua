@@ -65,6 +65,7 @@ libPython3_sources = {
     libPython3_srcdir .. "Modules/_io/iobase.c",
     libPython3_srcdir .. "Modules/_io/stringio.c",
     libPython3_srcdir .. "Modules/_io/textio.c",
+    libPython3_srcdir .. "Modules/_io/_iomodule.c",
     libPython3_srcdir .. "Modules/_json.c",
     libPython3_srcdir .. "Modules/_localemodule.c",
     libPython3_srcdir .. "Modules/_lsprof.c",
@@ -101,6 +102,7 @@ libPython3_sources = {
     libPython3_srcdir .. "Modules/md5module.c",
     libPython3_srcdir .. "Modules/mmapmodule.c",
     libPython3_srcdir .. "Modules/parsermodule.c",
+    libPython3_srcdir .. "Modules/posixmodule.c",
     libPython3_srcdir .. "Modules/rotatingtree.c",
     libPython3_srcdir .. "Modules/sha1module.c",
     libPython3_srcdir .. "Modules/sha256module.c",
@@ -220,8 +222,8 @@ libPython3_sources = {
 if os.host() == "windows" then
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/_io/winconsoleio.c")
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/_winapi.c")
+    table.insert(libPython3_sources, libPython3_srcdir .. "PC/invalid_parameter_handler.c")
+    table.insert(libPython3_sources, libPython3_srcdir .. "PC/getpathp.c")
 else
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/getpath.c")
-    table.insert(libPython3_sources, libPython3_srcdir .. "Modules/_io/_iomodule.c")
-    table.insert(libPython3_sources, libPython3_srcdir .. "Modules/posixmodule.c")
 end
