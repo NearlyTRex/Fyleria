@@ -59,6 +59,7 @@ pic "On"
     defines(appFyleria_defines)
     defines(libBackwardCPP_defines)
     defines(libBetterEnums_defines)
+    defines(libBoost_defines)
     defines(libPython3_defines)
     files(appFyleria_sources)
     links(appFyleria_libs)
@@ -91,6 +92,7 @@ language "C++"
 pic "On"
     kind(GetLibraryType())
     includedirs(libBoost_includedirs)
+    defines(libBoost_defines)
     files(libBoost_sources)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("Boost"))

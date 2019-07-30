@@ -9,6 +9,11 @@ libBoost_includedirs = {
     libBoost_incdir
 }
 
+-- Defines
+libBoost_defines = {
+    "BOOST_ALL_NO_LIB"
+}
+
 -- Libs
 libBoost_libs = {
 }
