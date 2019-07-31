@@ -49,11 +49,13 @@ end
 
 -- Sources
 libPython3_sources = {
+    libPython3_srcdir .. "Modules/_abc.c",
     libPython3_srcdir .. "Modules/_bisectmodule.c",
     libPython3_srcdir .. "Modules/_blake2/blake2b_impl.c",
     libPython3_srcdir .. "Modules/_blake2/blake2s_impl.c",
     libPython3_srcdir .. "Modules/_blake2/blake2module.c",
     libPython3_srcdir .. "Modules/_codecsmodule.c",
+    libPython3_srcdir .. "Modules/_contextvarsmodule.c",
     libPython3_srcdir .. "Modules/_collectionsmodule.c",
     libPython3_srcdir .. "Modules/_csv.c",
     libPython3_srcdir .. "Modules/_datetimemodule.c",
@@ -82,6 +84,7 @@ libPython3_sources = {
     libPython3_srcdir .. "Modules/_weakref.c",
     libPython3_srcdir .. "Modules/arraymodule.c",
     libPython3_srcdir .. "Modules/atexitmodule.c",
+    libPython3_srcdir .. "Modules/audioop.c",
     libPython3_srcdir .. "Modules/binascii.c",
     libPython3_srcdir .. "Modules/cjkcodecs/_codecs_cn.c",
     libPython3_srcdir .. "Modules/cjkcodecs/_codecs_hk.c",
@@ -222,8 +225,10 @@ libPython3_sources = {
 if os.host() == "windows" then
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/_io/winconsoleio.c")
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/_winapi.c")
-    table.insert(libPython3_sources, libPython3_srcdir .. "PC/invalid_parameter_handler.c")
     table.insert(libPython3_sources, libPython3_srcdir .. "PC/getpathp.c")
+    table.insert(libPython3_sources, libPython3_srcdir .. "PC/invalid_parameter_handler.c")
+    table.insert(libPython3_sources, libPython3_srcdir .. "PC/msvcrtmodule.c")
+    table.insert(libPython3_sources, libPython3_srcdir .. "PC/winreg.c")
 else
     table.insert(libPython3_sources, libPython3_srcdir .. "Modules/getpath.c")
 end
