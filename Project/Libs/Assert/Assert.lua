@@ -10,6 +10,8 @@ libAssert_includedirs = {
 }
 
 -- Defines
+libAssert_defines = {
+}
 libAssert_debugdefines = {
 }
 libAssert_releasedefines = {

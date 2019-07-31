@@ -13,3 +13,7 @@ libBetterEnums_includedirs = {
 -- Defines
 libBetterEnums_defines = {
 }
+libBetterEnums_debugdefines = {
+}
+libBetterEnums_releasedefines = {
+}

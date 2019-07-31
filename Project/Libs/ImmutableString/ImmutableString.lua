@@ -9,3 +9,11 @@ libImmutableString_includedirs = {
     libImmutableString_extradir,
     libImmutableString_incdir
 }
+
+-- Defines
+libImmutableString_defines = {
+}
+libImmutableString_debugdefines = {
+}
+libImmutableString_releasedefines = {
+}

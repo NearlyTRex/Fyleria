@@ -45,6 +45,9 @@ appFyleria_libs = {
     "URIParser",
     "Zlib"
 }
+if os.host() == "windows" then
+    table.insert(appFyleria_libs, "windowsapp")
+end
 
 -- Sources
 appFyleria_sources = {

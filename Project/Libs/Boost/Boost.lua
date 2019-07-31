@@ -13,6 +13,10 @@ libBoost_includedirs = {
 libBoost_defines = {
     "BOOST_ALL_NO_LIB"
 }
+libBoost_debugdefines = {
+}
+libBoost_releasedefines = {
+}
 
 -- Libs
 libBoost_libs = {

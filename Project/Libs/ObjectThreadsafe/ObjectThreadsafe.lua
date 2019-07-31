@@ -10,6 +10,8 @@ libObjectThreadsafe_includedirs = {
 }
 
 -- Defines
+libObjectThreadsafe_defines = {
+}
 libObjectThreadsafe_debugdefines = {
 }
 libObjectThreadsafe_releasedefines = {

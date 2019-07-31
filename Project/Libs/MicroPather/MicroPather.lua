@@ -10,6 +10,8 @@ libMicroPather_includedirs = {
 }
 
 -- Defines
+libMicroPather_defines = {
+}
 libMicroPather_debugdefines = {
     "DEBUG"
 }

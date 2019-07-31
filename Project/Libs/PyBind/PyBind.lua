@@ -8,3 +8,11 @@ libPyBind_incdir = libPyBind_origdir .. "include/"
 libPyBind_includedirs = {
     libPyBind_incdir
 }
+
+-- Defines
+libPyBind_defines = {
+}
+libPyBind_debugdefines = {
+}
+libPyBind_releasedefines = {
+}

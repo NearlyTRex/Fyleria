@@ -9,6 +9,14 @@ libTMXParser_includedirs = {
     libTMXParser_incdir
 }
 
+-- Defines
+libTMXParser_defines = {
+}
+libTMXParser_debugdefines = {
+}
+libTMXParser_releasedefines = {
+}
+
 -- Libs
 libTMXParser_libs = {
     "TinyXML2"

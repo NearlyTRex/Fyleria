@@ -10,6 +10,8 @@ libTinyXML2_includedirs = {
 }
 
 -- Defines
+libTinyXML2_defines = {
+}
 libTinyXML2_debugdefines = {
 }
 libTinyXML2_releasedefines = {

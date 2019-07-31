@@ -61,6 +61,7 @@ pic "On"
     defines(libBetterEnums_defines)
     defines(libBoost_defines)
     defines(libPython3_defines)
+    defines(libURIParser_defines)
     files(appFyleria_sources)
     links(appFyleria_libs)
     links(libBackwardCPP_libs)
@@ -78,6 +79,7 @@ language "C++"
 pic "On"
     kind(GetLibraryType())
     includedirs(libAssert_includedirs)
+    defines(libAssert_defines)
     files(libAssert_sources)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("Assert"))
@@ -96,6 +98,10 @@ pic "On"
     files(libBoost_sources)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("Boost"))
+filter "configurations:Debug*"
+    defines(libBoost_debugdefines)
+filter "configurations:Release*"
+    defines(libBoost_releasedefines)
 
 -- FantasyName
 project "FantasyName"
@@ -118,6 +124,7 @@ language "C++"
 pic "On"
     kind(GetLibraryType())
     includedirs(libMicroPather_includedirs)
+    defines(libMicroPather_defines)
     files(libMicroPather_sources)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("MicroPather"))
@@ -149,9 +156,14 @@ language "C++"
 pic "On"
     kind(GetLibraryType())
     includedirs(libTinyXML2_includedirs)
+    defines(libTinyXML2_defines)
     files(libTinyXML2_sources)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("TinyXML2"))
+filter "configurations:Debug*"
+    defines(libTinyXML2_debugdefines)
+filter "configurations:Release*"
+    defines(libTinyXML2_releasedefines)
 
 -- TMXParser
 project "TMXParser"
@@ -161,10 +173,15 @@ pic "On"
     includedirs(libTMXParser_includedirs)
     includedirs(libTinyXML2_includedirs)
     includedirs(libZlib_includedirs)
+    defines(libTMXParser_defines)
     files(libTMXParser_sources)
     links(libTMXParser_libs)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("TMXParser"))
+filter "configurations:Debug*"
+    defines(libTMXParser_debugdefines)
+filter "configurations:Release*"
+    defines(libTMXParser_releasedefines)
 
 -- URIParser
 project "URIParser"
@@ -172,10 +189,15 @@ language "C"
 pic "On"
     kind(GetLibraryType())
     includedirs(libURIParser_includedirs)
+    defines(libURIParser_defines)
     files(libURIParser_sources)
     links(libURIParser_libs)
     targetdir(GetTargetDirectory())
     targetname(GetTargetName("URIParser"))
+filter "configurations:Debug*"
+    defines(libURIParser_debugdefines)
+filter "configurations:Release*"
+    defines(libURIParser_releasedefines)
 
 -- Zlib
 project "Zlib"

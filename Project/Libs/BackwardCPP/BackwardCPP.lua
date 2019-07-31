@@ -9,17 +9,21 @@ libBackwardCPP_includedirs = {
     libBackwardCPP_incdir
 }
 
--- Sources
-libBackwardCPP_sources = {
-    libBackwardCPP_srcdir .. "backward.cpp",
-}
-
 -- Defines
 libBackwardCPP_defines = {
+}
+libBackwardCPP_debugdefines = {
+}
+libBackwardCPP_releasedefines = {
 }
 if os.host() == "linux" then
     table.insert(libBackwardCPP_defines, "BACKWARD_HAS_DW=1")
 end
+
+-- Sources
+libBackwardCPP_sources = {
+    libBackwardCPP_srcdir .. "backward.cpp",
+}
 
 -- Libs
 libBackwardCPP_libs = {

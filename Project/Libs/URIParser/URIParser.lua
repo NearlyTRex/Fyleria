@@ -10,6 +10,15 @@ libURIParser_includedirs = {
     libURIParser_extradir
 }
 
+-- Defines
+libURIParser_defines = {
+    "URI_STATIC_BUILD"
+}
+libURIParser_debugdefines = {
+}
+libURIParser_releasedefines = {
+}
+
 -- Libs
 libURIParser_libs = {
 }
