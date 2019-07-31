@@ -1,15 +1,15 @@
-# Source: https://github.com/NearlyTRex/jquery
+# Source: https://github.com/NearlyTRex/jquery-dist
 # Version: Gitmaster
 
 # Steps
-RunProcessNpmBuild = 'RunProcess("npm run build")'
 CopyFileBootstrapJs = 'CopyFile("dist/jquery.min.js", "$(RootPath)/Data/Libs/jquery.min.js")'
+CopyFileBootstrapSlimJs = 'CopyFile("dist/jquery.slim.min.js", "$(RootPath)/Data/Libs/jquery.slim.min.js")'
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/jquery/archive/master.zip"
-Setup['extractdir'] = "jquery-master"
+Setup['url'] = "https://github.com/NearlyTRex/jquery-dist/archive/master.zip"
+Setup['extractdir'] = "jquery-dist-master"
 Setup['steps'] = {}
 Setup['steps']['all'] = []
-Setup['steps']['all'].append(RunProcessNpmBuild)
 Setup['steps']['all'].append(CopyFileBootstrapJs)
+Setup['steps']['all'].append(CopyFileBootstrapSlimJs)
