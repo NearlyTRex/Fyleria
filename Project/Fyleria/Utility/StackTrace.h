@@ -11,7 +11,7 @@
 #include <signal.h>
 
 // External includes
-#ifdef _WIN32
+#if defined(PLATFORM_OS_WINDOWS)
     #define __attribute__(param)
     #define backtrace(buffer, size) (0)
     #define BACKWARD_CXX11
@@ -19,11 +19,16 @@
     #define BACKWARD_ATLEAST_CXX98
 #endif
 #include <backward.hpp>
-#ifdef _WIN32
+#if defined(PLATFORM_OS_WINDOWS)
     #undef backtrace
     #undef __attribute__
     #include <windows.h>
 #endif
+
+// Printer defines
+#define StackTracePrinterColorAutomatic backward::ColorMode::automatic
+#define StackTracePrinterColorAlways backward::ColorMode::always
+#define StackTracePrinterColorNone backward::ColorMode::never
 
 namespace Gecko
 {
@@ -35,7 +40,7 @@ typedef FixedUnsigned64 ThreadID;
 typedef backward::SignalHandling SignalHandler;
 
 // Stack trace
-#ifdef _WIN32
+#if defined(PLATFORM_OS_WINDOWS)
     typedef STDPair<BoostStacktrace, ThreadID> StackTrace;
 #else
     typedef backward::StackTrace StackTrace;
@@ -49,6 +54,9 @@ void RegisterSignalHandler();
 
 // Get current stacktrace
 StackTrace GetStacktrace();
+
+// Get signal string representation
+String GetSignalAsString(Int iSignal);
 
 // Dump the given stacktrace
 void DumpStacktrace(STDOutputStream& sStream, const StackTrace& stackTrace);

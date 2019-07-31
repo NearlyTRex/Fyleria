@@ -34,7 +34,7 @@ Bool InitPython()
     }
 
     // Get python path separator
-#ifdef _WIN32
+#if defined(PLATFORM_OS_WINDOWS)
     String sPathSeparator = ";";
 #else
     String sPathSeparator = ":";

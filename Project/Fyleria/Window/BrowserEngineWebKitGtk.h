@@ -5,7 +5,8 @@
 #define _GECKO_BROWSER_ENGINE_WEBKITGTK_H_
 
 // Linux only
-#if defined(__linux__)
+#include "Utility/Platform.h"
+#if defined(PLATFORM_OS_LINUX)
 
 // External includes
 #include <JavaScriptCore/JavaScript.h>
@@ -81,5 +82,6 @@ MAKE_COMMON_TYPEDEFS(BrowserEngineWebKitGtk);
 
 };
 
-#endif
+#endif /* PLATFORM_OS_LINUX */
+
 #endif

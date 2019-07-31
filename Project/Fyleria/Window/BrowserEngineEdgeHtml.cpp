@@ -9,7 +9,7 @@
 #include "Utility/Converters.h"
 
 // EdgeHTML is available for Windows 10 only
-#if defined(_WIN32) && _WIN32_WINNT >= 0x0A00
+#if defined(PLATFORM_OS_WINDOWS_10)
 
 namespace Gecko
 {
@@ -326,4 +326,4 @@ void BrowserEngineEdgeHtml::RunMainLoopIteration(Bool bBlocking)
 
 };
 
-#endif
+#endif /* PLATFORM_OS_WINDOWS_10 */

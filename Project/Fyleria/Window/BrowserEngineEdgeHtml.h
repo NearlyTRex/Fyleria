@@ -4,13 +4,9 @@
 #ifndef _GECKO_BROWSER_ENGINE_EDGEHTML_H_
 #define _GECKO_BROWSER_ENGINE_EDGEHTML_H_
 
-// If not already defined, prefer Windows 10
-#if !defined(_WIN32_WINNT)
-#define _WIN32_WINNT 0x0A00
-#endif
-
 // EdgeHTML is available for Windows 10 only
-#if defined(_WIN32) && _WIN32_WINNT >= 0x0A00
+#include "Utility/Platform.h"
+#if defined(PLATFORM_OS_WINDOWS_10)
 
 // External includes
 #define WIN32_LEAN_AND_MEAN
@@ -91,5 +87,6 @@ MAKE_COMMON_TYPEDEFS(BrowserEngineEdgeHtml);
 
 };
 
-#endif
+#endif /* PLATFORM_OS_WINDOWS_10 */
+
 #endif

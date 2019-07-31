@@ -7,8 +7,11 @@
 // External includes
 #include <uriparser/Uri.h>
 
+// Internal includes
+#include "Utility/Platform.h"
+
 // External function defines
-#if defined(_WIN64) || defined(_WIN32)
+#if defined(PLATFORM_OS_WINDOWS)
     #define ParseFilenameAsUri uriWindowsFilenameToUriStringA
 #else
     #define ParseFilenameAsUri uriUnixFilenameToUriStringA

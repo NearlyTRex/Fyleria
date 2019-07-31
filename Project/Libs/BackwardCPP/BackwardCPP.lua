@@ -18,6 +18,7 @@ libBackwardCPP_releasedefines = {
 }
 if os.host() == "linux" then
     table.insert(libBackwardCPP_defines, "BACKWARD_HAS_DW=1")
+    table.insert(libBackwardCPP_defines, "BACKWARD_HAS_UNWIND=1")
 end
 
 -- Sources

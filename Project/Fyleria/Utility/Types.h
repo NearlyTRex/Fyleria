@@ -4,15 +4,16 @@
 #ifndef _GECKO_UTILITY_TYPES_H_
 #define _GECKO_UTILITY_TYPES_H_
 
-// Posix-style OS
-#if !defined(_WIN32) && (defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__)))
-#include <unistd.h>
-#endif
-
 // Internal includes
+#include "Utility/Platform.h"
 #include "Utility/Standard.h"
 #include "Utility/Boost.h"
 #include "Utility/ObjectThreadsafe.h"
+
+// Posix-style OS
+#if defined(PLATFORM_POSIX)
+#include <unistd.h>
+#endif
 
 namespace Gecko
 {

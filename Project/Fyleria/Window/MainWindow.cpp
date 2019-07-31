@@ -11,10 +11,12 @@ namespace Gecko
 
 MainWindow::MainWindow()
 {
-#if defined(_WIN32) && _WIN32_WINNT >= 0x0A00
+#if defined(PLATFORM_OS_WINDOWS_10)
     SetBrowserEngine(STDMakeSharedPtr<BrowserEngineEdgeHtml>());
-#elif defined(__linux__)
+#elif defined(PLATFORM_OS_LINUX)
     SetBrowserEngine(STDMakeSharedPtr<BrowserEngineWebKitGtk>());
+#else
+    #error "No browser engine available for this platform"
 #endif
 }
 

@@ -1,14 +1,14 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-// Linux only
-#if defined(__linux__)
-
 // Internal includes
 #include "Window/BrowserEngineWebKitGtk.h"
 #include "Config/ConfigManager.h"
 #include "Utility/Filesystem.h"
 #include "Utility/Constants.h"
+
+// Linux only
+#if defined(PLATFORM_OS_LINUX)
 
 namespace Gecko
 {
@@ -342,4 +342,4 @@ String BrowserEngineWebKitGtk::GetJavascriptResultString(WebKitJavascriptResult*
 
 };
 
-#endif
+#endif /* PLATFORM_OS_LINUX */

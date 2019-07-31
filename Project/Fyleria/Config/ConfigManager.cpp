@@ -69,7 +69,7 @@ const Config& ConfigManager::GetCurrentConfig() const
 
 Bool ConfigManager::Is32Bit() const
 {
-#if defined(__i386__) || defined(_WIN32)
+#if defined(PLATFORM_32_BIT)
     return true;
 #else
     return false;
@@ -78,7 +78,7 @@ Bool ConfigManager::Is32Bit() const
 
 Bool ConfigManager::Is64Bit() const
 {
-#if defined(__x86_64__) || defined(_WIN64)
+#if defined(PLATFORM_64_BIT)
     return true;
 #else
     return false;
@@ -87,7 +87,7 @@ Bool ConfigManager::Is64Bit() const
 
 Bool ConfigManager::IsPosix() const
 {
-#if defined(_POSIX_VERSION)
+#if defined(PLATFORM_POSIX)
     return true;
 #else
     return false;
@@ -96,7 +96,7 @@ Bool ConfigManager::IsPosix() const
 
 Bool ConfigManager::IsWindows() const
 {
-#if defined(_WIN64) || defined(_WIN32)
+#if defined(PLATFORM_OS_WINDOWS)
     return true;
 #else
     return false;
@@ -105,7 +105,7 @@ Bool ConfigManager::IsWindows() const
 
 Bool ConfigManager::IsLinux() const
 {
-#if defined(__linux__)
+#if defined(PLATFORM_OS_LINUX)
     return true;
 #else
     return false;
@@ -114,7 +114,7 @@ Bool ConfigManager::IsLinux() const
 
 Bool ConfigManager::IsMacOS() const
 {
-#if TARGET_OS_MAC == 1
+#if defined(PLATFORM_OS_MACOS)
     return true;
 #else
     return false;
@@ -123,7 +123,7 @@ Bool ConfigManager::IsMacOS() const
 
 Bool ConfigManager::IsIOS() const
 {
-#if (TARGET_IPHONE_SIMULATOR == 1) || (TARGET_OS_IPHONE == 1)
+#if defined(PLATFORM_OS_IOS)
     return true;
 #else
     return false;
@@ -132,7 +132,7 @@ Bool ConfigManager::IsIOS() const
 
 Bool ConfigManager::IsAndroid() const
 {
-#if defined(__ANDROID__)
+#if defined(PLATFORM_OS_ANDROID)
     return true;
 #else
     return false;
