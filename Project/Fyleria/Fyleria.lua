@@ -26,7 +26,9 @@ appFyleria_buildoptions = {
 }
 appFyleria_linkoptions = {
 }
-if os.host() == "linux" then
+if os.host() == "windows" then
+    table.insert(appFyleria_buildoptions, "/bigobj")
+elseif os.host() == "linux" then
     table.insert(appFyleria_buildoptions, "-Wall")
     table.insert(appFyleria_buildoptions, "-Wfatal-errors")
     table.insert(appFyleria_buildoptions, "`pkg-config --cflags gtk+-3.0 webkit2gtk-4.0`")
