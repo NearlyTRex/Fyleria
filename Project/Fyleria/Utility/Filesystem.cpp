@@ -83,6 +83,8 @@ String GetProgramDirectory()
     STDVector<Byte> vBuffer;
 #elif defined(PLATFORM_OS_WINDOWS)
     STDVector<WByte> vBuffer;
+#else
+    STDVector<Byte> vBuffer;
 #endif
     ULong uLength = 0;
     do
@@ -98,6 +100,9 @@ String GetProgramDirectory()
         uLength = static_cast<ULong>(iSize);
 #elif defined(PLATFORM_OS_WINDOWS)
         uLength = GetModuleFileName(NULL, vBuffer.data(), static_cast<DWORD>(vBuffer.size()));
+#else
+        uLength = 0;
+        break;
 #endif
     }
     while(uLength >= vBuffer.size());
@@ -106,6 +111,8 @@ String GetProgramDirectory()
     sFullPath = String(vBuffer.begin(), vBuffer.end());
 #elif defined(PLATFORM_OS_WINDOWS)
     sFullPath = WString(vBuffer.begin(), vBuffer.end());
+#else
+    sFullPath = String(vBuffer.begin(), vBuffer.end());
 #endif
     sFullPath.remove_filename();
     return GetAbsolutePath(sFullPath.string());
