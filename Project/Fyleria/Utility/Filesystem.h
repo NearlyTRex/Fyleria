@@ -52,6 +52,12 @@ String GetFileContents(const String& sPath);
 // Get program directory
 String GetProgramDirectory();
 
+// Get data directory
+String GetDataDirectory();
+
+// Get save directory
+String GetSaveDirectory();
+
 };
 
 #endif

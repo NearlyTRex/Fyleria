@@ -24,7 +24,7 @@ Bool InitPython()
     STDLockGuard<STDMutex> lock(g_PythonMutex);
 
     // Check python library
-    String sPythonLibFile = JoinPathsCanonical(FOLDER_DATA, PYTHON_FILE);
+    String sPythonLibFile = JoinPathsCanonical(GetDataDirectory(), PYTHON_FILE);
     LOG_FORMAT_STATEMENT("Loading python library '%s'\n", sPythonLibFile.c_str());
     if(!DoesPathExist(sPythonLibFile))
     {

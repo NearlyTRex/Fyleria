@@ -252,7 +252,7 @@ void BrowserEngineEdgeHtml::InjectStylesheet(const String& sStyle)
 void BrowserEngineEdgeHtml::InjectStylesheetFile(const String& sFile)
 {
     // Inject file contents
-    String sFileContents = GetFileContents(JoinPathsCanonical(FOLDER_DATA, sFile));
+    String sFileContents = GetFileContents(JoinPathsCanonical(GetDataDirectory(), sFile));
     InjectStylesheet(sFileContents);
 }
 
@@ -265,7 +265,7 @@ void BrowserEngineEdgeHtml::InjectJavascript(const String& sScript)
 void BrowserEngineEdgeHtml::InjectJavascriptFile(const String& sFile)
 {
     // Inject file contents
-    String sFileContents = GetFileContents(JoinPathsCanonical(FOLDER_DATA, sFile));
+    String sFileContents = GetFileContents(JoinPathsCanonical(GetDataDirectory(), sFile));
     InjectJavascript(sFileContents);
 }
 

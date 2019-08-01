@@ -108,7 +108,17 @@ String GetProgramDirectory()
     sFullPath = WString(vBuffer.begin(), vBuffer.end());
 #endif
     sFullPath.remove_filename();
-    return GetCanonicalPath(sFullPath.string());
+    return GetAbsolutePath(sFullPath.string());
+}
+
+String GetDataDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_DATA);
+}
+
+String GetSaveDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_SAVE);
 }
 
 };

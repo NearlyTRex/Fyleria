@@ -53,7 +53,7 @@ void Application::Run()
 Bool Application::Initialize()
 {
     // Load config data
-    String sConfigFile = JoinPathsCanonical(FOLDER_DATA, CONFIG_FILE);
+    String sConfigFile = JoinPathsCanonical(GetDataDirectory(), CONFIG_FILE);
     LOG_FORMAT_STATEMENT("Loading config file '%s'\n", sConfigFile.c_str());
     ConfigManager::GetInstance()->SetCurrentConfigName("Default");
     if(!ConfigManager::GetInstance()->LoadConfig("Default", sConfigFile))

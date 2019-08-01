@@ -182,7 +182,7 @@ void BrowserEngineWebKitGtk::InjectStylesheet(const String& sStyle)
 void BrowserEngineWebKitGtk::InjectStylesheetFile(const String& sFile)
 {
     // Inject file contents
-    String sFileContents = GetFileContents(JoinPathsCanonical(FOLDER_DATA, sFile));
+    String sFileContents = GetFileContents(JoinPathsCanonical(GetDataDirectory(), sFile));
     InjectStylesheet(sFileContents);
 }
 
@@ -207,7 +207,7 @@ void BrowserEngineWebKitGtk::InjectJavascript(const String& sScript)
 void BrowserEngineWebKitGtk::InjectJavascriptFile(const String& sFile)
 {
     // Inject file contents
-    String sFileContents = GetFileContents(JoinPathsCanonical(FOLDER_DATA, sFile));
+    String sFileContents = GetFileContents(JoinPathsCanonical(GetDataDirectory(), sFile));
     InjectJavascript(sFileContents);
 }
 

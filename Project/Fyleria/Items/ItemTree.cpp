@@ -30,39 +30,39 @@ void PostProcessItems(const TreeIndexArray& vTreeIndices)
 void ItemTree::LoadItemTreesIntoMemory()
 {
     // Armor
-    ItemTreeArmor::GetInstance()->AddBranch("Chest", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_CHEST));
-    ItemTreeArmor::GetInstance()->AddBranch("Feet", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_FEET));
-    ItemTreeArmor::GetInstance()->AddBranch("Finger", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_FINGER));
-    ItemTreeArmor::GetInstance()->AddBranch("Hands", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_HANDS));
-    ItemTreeArmor::GetInstance()->AddBranch("Head", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_HEAD));
-    ItemTreeArmor::GetInstance()->AddBranch("Neck", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_NECK));
-    ItemTreeArmor::GetInstance()->AddBranch("Legs", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_LEGS));
-    ItemTreeArmor::GetInstance()->AddBranch("Shield", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_ARMOR_SHIELD));
+    ItemTreeArmor::GetInstance()->AddBranch("Chest", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_CHEST));
+    ItemTreeArmor::GetInstance()->AddBranch("Feet", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_FEET));
+    ItemTreeArmor::GetInstance()->AddBranch("Finger", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_FINGER));
+    ItemTreeArmor::GetInstance()->AddBranch("Hands", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_HANDS));
+    ItemTreeArmor::GetInstance()->AddBranch("Head", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_HEAD));
+    ItemTreeArmor::GetInstance()->AddBranch("Neck", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_NECK));
+    ItemTreeArmor::GetInstance()->AddBranch("Legs", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_LEGS));
+    ItemTreeArmor::GetInstance()->AddBranch("Shield", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_SHIELD));
 
     // Ingredient
-    ItemTreeIngredient::GetInstance()->AddBranch("Bar", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_BAR));
-    ItemTreeIngredient::GetInstance()->AddBranch("Cloth", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_CLOTH));
-    ItemTreeIngredient::GetInstance()->AddBranch("Crystal", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_CRYSTAL));
-    ItemTreeIngredient::GetInstance()->AddBranch("Leather", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_LEATHER));
-    ItemTreeIngredient::GetInstance()->AddBranch("Mail", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_MAIL));
-    ItemTreeIngredient::GetInstance()->AddBranch("Plate", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_PLATE));
-    ItemTreeIngredient::GetInstance()->AddBranch("Scale", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_SCALE));
-    ItemTreeIngredient::GetInstance()->AddBranch("Screw", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_SCREW));
-    ItemTreeIngredient::GetInstance()->AddBranch("Sheet", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_SHEET));
-    ItemTreeIngredient::GetInstance()->AddBranch("Stud", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_STUD));
-    ItemTreeIngredient::GetInstance()->AddBranch("Thread", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_INGREDIENT_THREAD));
+    ItemTreeIngredient::GetInstance()->AddBranch("Bar", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_BAR));
+    ItemTreeIngredient::GetInstance()->AddBranch("Cloth", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_CLOTH));
+    ItemTreeIngredient::GetInstance()->AddBranch("Crystal", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_CRYSTAL));
+    ItemTreeIngredient::GetInstance()->AddBranch("Leather", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_LEATHER));
+    ItemTreeIngredient::GetInstance()->AddBranch("Mail", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_MAIL));
+    ItemTreeIngredient::GetInstance()->AddBranch("Plate", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_PLATE));
+    ItemTreeIngredient::GetInstance()->AddBranch("Scale", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_SCALE));
+    ItemTreeIngredient::GetInstance()->AddBranch("Screw", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_SCREW));
+    ItemTreeIngredient::GetInstance()->AddBranch("Sheet", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_SHEET));
+    ItemTreeIngredient::GetInstance()->AddBranch("Stud", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_STUD));
+    ItemTreeIngredient::GetInstance()->AddBranch("Thread", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_THREAD));
 
     // Potion
-    ItemTreePotion::GetInstance()->AddBranch("Energy", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_POTION_ENERGY));
-    ItemTreePotion::GetInstance()->AddBranch("Heal", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_POTION_HEAL));
-    ItemTreePotion::GetInstance()->AddBranch("Magic", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_POTION_MAGIC));
-    ItemTreePotion::GetInstance()->AddBranch("Speed", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_POTION_SPEED));
+    ItemTreePotion::GetInstance()->AddBranch("Energy", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_ENERGY));
+    ItemTreePotion::GetInstance()->AddBranch("Heal", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_HEAL));
+    ItemTreePotion::GetInstance()->AddBranch("Magic", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_MAGIC));
+    ItemTreePotion::GetInstance()->AddBranch("Speed", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_SPEED));
 
     // Weapon
-    ItemTreeWeapon::GetInstance()->AddBranch("Blunt", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_WEAPON_BLUNT));
-    ItemTreeWeapon::GetInstance()->AddBranch("Mage", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_WEAPON_MAGE));
-    ItemTreeWeapon::GetInstance()->AddBranch("Pierce", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_WEAPON_PIERCE));
-    ItemTreeWeapon::GetInstance()->AddBranch("Slash", JoinPathsCanonical(FOLDER_DATA, ITEM_FILE_WEAPON_SLASH));
+    ItemTreeWeapon::GetInstance()->AddBranch("Blunt", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_BLUNT));
+    ItemTreeWeapon::GetInstance()->AddBranch("Mage", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_MAGE));
+    ItemTreeWeapon::GetInstance()->AddBranch("Pierce", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_PIERCE));
+    ItemTreeWeapon::GetInstance()->AddBranch("Slash", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_SLASH));
 
     // Post process item data
     PostProcessItems<ItemTreeArmor>(GetAllArmorItems());
