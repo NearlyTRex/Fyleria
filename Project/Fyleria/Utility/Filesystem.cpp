@@ -3,6 +3,7 @@
 
 // Internal includes
 #include "Utility/Filesystem.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -73,6 +74,35 @@ String GetFileContents(const String& sPath)
     StringStream sBuffer;
     sBuffer << inputFile.rdbuf();
     return sBuffer.str();
+}
+
+String GetProgramDirectory()
+{
+    BoostFilesystemPath sFullPath;
+#if defined(PLATFORM_OS_LINUX)
+    STDVector<Byte> vBuffer;
+#elif defined(PLATFORM_OS_WINDOWS)
+    STDVector<WByte> vBuffer;
+#endif
+    ULong uLength = 0;
+    do
+    {
+        vBuffer.resize(vBuffer.size() + DEFAULT_MAX_PATH_SIZE);
+#if defined(PLATFORM_OS_LINUX)
+        uLength = ::readlink("/proc/self/exe", vBuffer.data(), vBuffer.size());
+#elif defined(PLATFORM_OS_WINDOWS)
+        uLength = GetModuleFileName(NULL, vBuffer.data(), static_cast<DWORD>(vBuffer.size()));
+#endif
+    }
+    while(uLength >= vBuffer.size());
+    vBuffer.resize(uLength);
+#if defined(PLATFORM_OS_LINUX)
+    sFullPath = String(vBuffer.begin(), vBuffer.end());
+#elif defined(PLATFORM_OS_WINDOWS)
+    sFullPath = WString(vBuffer.begin(), vBuffer.end());
+#endif
+    sFullPath.remove_filename();
+    return GetCanonicalPath(sFullPath.string());
 }
 
 };

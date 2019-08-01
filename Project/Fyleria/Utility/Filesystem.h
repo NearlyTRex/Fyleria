@@ -49,6 +49,9 @@ String JoinPathsCanonical(const String& sPath1, const String& sPath2);
 // Get file contents
 String GetFileContents(const String& sPath);
 
+// Get program directory
+String GetProgramDirectory();
+
 };
 
 #endif
