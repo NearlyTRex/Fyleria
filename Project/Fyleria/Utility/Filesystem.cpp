@@ -89,7 +89,13 @@ String GetProgramDirectory()
     {
         vBuffer.resize(vBuffer.size() + DEFAULT_MAX_PATH_SIZE);
 #if defined(PLATFORM_OS_LINUX)
-        uLength = ::readlink("/proc/self/exe", vBuffer.data(), vBuffer.size());
+        auto iSize = ::readlink("/proc/self/exe", vBuffer.data(), vBuffer.size());
+        if(iSize == -1)
+        {
+            uLength = 0;
+            break;
+        }
+        uLength = static_cast<ULong>(iSize);
 #elif defined(PLATFORM_OS_WINDOWS)
         uLength = GetModuleFileName(NULL, vBuffer.data(), static_cast<DWORD>(vBuffer.size()));
 #endif
