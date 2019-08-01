@@ -28,7 +28,7 @@ UInt CharacterPartyMember::GetEquippedItemTypeCount(const TreeIndex& index) cons
     {
         vEquippedItemIndices.push_back(progressItem.GetItemTreeIndex());
     }
-    return STDCountData(vEquippedItemIndices.begin(), vEquippedItemIndices.end(), index);
+    return static_cast<UInt>(STDCountData(vEquippedItemIndices.begin(), vEquippedItemIndices.end(), index));
 }
 
 UInt CharacterPartyMember::GetEquippedWeaponCount(const String& sWeaponSet) const

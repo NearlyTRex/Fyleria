@@ -69,7 +69,7 @@ void IndexedString::Set(const String& sStr)
     {
         // Add new string
         s_pStoredStrings->push_back(sImmutableStr);
-        m_iIndex = s_pStoredStrings->size() - 1;
+        m_iIndex = static_cast<Int>(s_pStoredStrings->size()) - 1;
 
         // Some extra logging
         LOG_FORMAT_STATEMENT("Adding string '%s' to index %i, current count is %zu\n",
@@ -80,7 +80,7 @@ void IndexedString::Set(const String& sStr)
     }
 
     // String was found, make sure to update the index
-    m_iIndex = STDDistance(s_pStoredStrings->begin(), iSearch);
+    m_iIndex = static_cast<Int>(STDDistance(s_pStoredStrings->begin(), iSearch));
 }
 
 String IndexedString::Get() const

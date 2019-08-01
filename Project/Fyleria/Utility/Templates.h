@@ -113,7 +113,7 @@ T GetRandomVectorValue(const STDVector<T>& varValues)
         return T();
     }
 
-    Int iRandomIndex = GetRandomIntValue<Int>(0, varValues.size() - 1);
+    Int iRandomIndex = GetRandomIntValue<Int>(0, static_cast<Int>(varValues.size()) - 1);
     return varValues[iRandomIndex];
 }
 
@@ -122,7 +122,7 @@ template <typename T>
 String GetRandomEnumValue()
 {
     ASSERT_FATAL(T::_names().size() >= 2);
-    Int iIndex = GetRandomIntValue<Int>(1, T::_names().size() - 1);
+    Int iIndex = GetRandomIntValue<Int>(1, static_cast<Int>(T::_names().size()) - 1);
     ASSERT_FATAL(iIndex >= 0 && iIndex < static_cast<Int>(T::_names().size()));
     return T::_names()[iIndex];
 }

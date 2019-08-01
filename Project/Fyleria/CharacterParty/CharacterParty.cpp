@@ -728,12 +728,12 @@ Bool CharacterParty::UnequipAllItemsForAllMembers()
 
 UInt CharacterParty::GetMemberCount() const
 {
-    return GetMembers().size();
+    return static_cast<UInt>(GetMembers().size());
 }
 
 UInt CharacterParty::GetItemCount() const
 {
-    return GetItems().size();
+    return static_cast<UInt>(GetItems().size());
 }
 
 String CharacterParty::GetDescription() const
