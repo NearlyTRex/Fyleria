@@ -66,7 +66,7 @@ pic "On"
     links(appFyleria_libs)
     links(libBackwardCPP_libs)
     links(libPython3_libs)
-    targetdir(GetTargetDirectory())
+    targetdir(GetAppTargetDirectory())
     targetname(GetTargetName("FyleriaMain"))
 filter "configurations:Debug*"
     defines(appFyleria_debugdefines)
@@ -81,7 +81,7 @@ pic "On"
     includedirs(libAssert_includedirs)
     defines(libAssert_defines)
     files(libAssert_sources)
-    targetdir(GetTargetDirectory())
+    targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Assert"))
 filter "configurations:Debug*"
     defines(libAssert_debugdefines)
@@ -96,7 +96,7 @@ pic "On"
     includedirs(libBoost_includedirs)
     defines(libBoost_defines)
     files(libBoost_sources)
-    targetdir(GetTargetDirectory())
+    targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Boost"))
 filter "configurations:Debug*"
     defines(libBoost_debugdefines)
@@ -111,7 +111,7 @@ pic "On"
     includedirs(libFantasyName_includedirs)
     defines(libFantasyName_defines)
     files(libFantasyName_sources)
-    targetdir(GetTargetDirectory())
+    targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("FantasyName"))
 filter "configurations:Debug*"
     defines(libFantasyName_debugdefines)
@@ -126,7 +126,7 @@ pic "On"
     includedirs(libMicroPather_includedirs)
     defines(libMicroPather_defines)
     files(libMicroPather_sources)
-    targetdir(GetTargetDirectory())
+    targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("MicroPather"))
 filter "configurations:Debug*"
     defines(libMicroPather_debugdefines)
@@ -143,7 +143,7 @@ pic "On"
     defines(libPython3_defines)
     files(libPython3_sources)
     links(libPython3_libs)
-    targetdir(GetTargetDirectory())
+    targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Python3"))
 filter "configurations:Debug*"
     defines(libPython3_debugdefines)
@@ -158,7 +158,7 @@ pic "On"
     includedirs(libTinyXML2_includedirs)
     defines(libTinyXML2_defines)
     files(libTinyXML2_sources)
-    targetdir(GetTargetDirectory())
+    targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("TinyXML2"))
 filter "configurations:Debug*"
     defines(libTinyXML2_debugdefines)
@@ -176,7 +176,7 @@ pic "On"
     defines(libTMXParser_defines)
     files(libTMXParser_sources)
     links(libTMXParser_libs)
-    targetdir(GetTargetDirectory())
+    targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("TMXParser"))
 filter "configurations:Debug*"
     defines(libTMXParser_debugdefines)
@@ -192,7 +192,7 @@ pic "On"
     defines(libURIParser_defines)
     files(libURIParser_sources)
     links(libURIParser_libs)
-    targetdir(GetTargetDirectory())
+    targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("URIParser"))
 filter "configurations:Debug*"
     defines(libURIParser_debugdefines)
@@ -207,7 +207,7 @@ pic "On"
     includedirs(libZlib_includedirs)
     defines(libZlib_defines)
     files(libZlib_sources)
-    targetdir(GetTargetDirectory())
+    targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Zlib"))
 filter "configurations:Debug*"
     defines(libZlib_debugdefines)

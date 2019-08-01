@@ -90,8 +90,13 @@ function GetTargetReleaseSuffix()
     return "_release"
 end
 
--- Get target directory
-function GetTargetDirectory()
+-- Get application target directory
+function GetAppTargetDirectory()
+    return ".."
+end
+
+-- Get library target directory
+function GetLibraryTargetDirectory()
     return "../Bin"
 end
 
