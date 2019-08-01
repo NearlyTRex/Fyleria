@@ -97,7 +97,7 @@ end
 
 -- Get library target directory
 function GetLibraryTargetDirectory()
-    return "../Bin"
+    return "Build"
 end
 
 -- Get target name

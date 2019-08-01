@@ -104,6 +104,6 @@ def GetSystemInformation(program_options, root_path):
     elif info.is_mingw and info.is_64bits:
         info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_mingw64"))
     else:
-        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build"))
+        info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_unknown"))
     return info
 ###########################################################################
