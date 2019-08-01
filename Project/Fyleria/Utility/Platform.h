@@ -17,12 +17,12 @@
 #endif
 
 // x86-64 architecture
-#if defined(_M_X64) || defined(_M_AMD64) || defined(__ia64__) || defined(__x86_64__)
+#if defined(_M_X64) || defined(_M_AMD64) || defined(__ia64__) || defined(__x86_64__) || defined(_WIN64)
 #define PLATFORM_ARCH_X86_64
 #endif
 
 // 32-bit architecture
-#if PLATFORM_ARCH_X86_32
+#if defined(PLATFORM_ARCH_X86_32)
 #define PLATFORM_32_BIT
 #else
 #define PLATFORM_64_BIT
