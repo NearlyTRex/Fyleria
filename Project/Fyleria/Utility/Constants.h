@@ -40,6 +40,9 @@
 #define DEFAULT_MAX_SCORING                         200
 #define DEFAULT_MAX_SKILL                           200
 
+// Paths
+#define DEFAULT_MAX_PATH_SIZE                       2048
+
 // File URI base
 #define FILE_URI_BASE                               "file://"
 
