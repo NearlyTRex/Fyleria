@@ -46,8 +46,7 @@ __pycache__
 *.min.js
 
 # Folders
-Bin/*
-Project/Build_*
+Project/Build*
 Project/Libs/Assert/orig
 Project/Libs/BackwardCPP/orig
 Project/Libs/BetterEnums/orig
