@@ -3,6 +3,8 @@
 
 // Internal includes
 #include "Window/BrowserEngineWebKitGtk.h"
+#include "Scene/SceneManager.h"
+#include "Scene/SceneTypes.h"
 #include "Config/ConfigManager.h"
 #include "Utility/Filesystem.h"
 #include "Utility/Constants.h"
@@ -88,7 +90,14 @@ Bool BrowserEngineWebKitGtk::Init(const String& sTitle, Int iWidth, Int iHeight,
     // Register message handler
     g_signal_connect(pManager, "script-message-received::external", G_CALLBACK(fnMessageHandler), this);
     webkit_user_content_manager_register_script_message_handler(pManager, "external");
+
+    // Inject starting javascript / css
     InjectJavascript("window.external={invoke:function(s){window.webkit.messageHandlers.external.postMessage(s);}}");
+    InjectJavascriptFile(LIB_FILE_COMMON_JS);
+    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
+    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
+    InjectJavascriptFile(LIB_FILE_PHASER_JS);
 
     // Add view
     gtk_container_add(GTK_CONTAINER(GetMainWindow()), GTK_WIDGET(GetWebView()));
@@ -146,6 +155,12 @@ Bool BrowserEngineWebKitGtk::Init(const String& sTitle, Int iWidth, Int iHeight,
 
     // Show window
     gtk_widget_show_all(GetMainWindow());
+
+    // Navigate to starting page
+    Navigate(STARTING_URI);
+
+    // Switch to starting scene
+    SceneManager::GetInstance()->SwitchToScene((+SceneType::Intro)._to_string());
     return true;
 }
 
@@ -229,7 +244,7 @@ static void JavascriptFinishedHandler(GObject* pObject, GAsyncResult* pAsyncResu
         WEBKIT_WEB_VIEW(pObject),
         pAsyncResult,
         &pError);
-    if (!pResult)
+    if(!pResult)
     {
         ERROR_FORMAT_STATEMENT("Error running javascript: %s\n", pError->message);
         g_error_free(pError);

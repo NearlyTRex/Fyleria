@@ -47,8 +47,19 @@ type m_var##name {};                                                            
 type Get##name() { return m_var##name; }                                                                                \
 void Set##name(type varValue) { m_var##name = varValue; }
 
+#define MAKE_PRIMITIVE_TYPE_ACCESSORS_INITIAL_VALUE(name, type, value)                                                  \
+type m_var##name = value;                                                                                               \
+type Get##name() { return m_var##name; }                                                                                \
+void Set##name(type varValue) { m_var##name = varValue; }
+
 #define MAKE_RAW_TYPE_ACCESSORS(name, type)                                                                             \
 type m_var##name {};                                                                                                    \
+const type& Get##name() const { return m_var##name; }                                                                   \
+type& Get##name() { return m_var##name; }                                                                               \
+void Set##name(const type& varValue) { m_var##name = varValue; }
+
+#define MAKE_RAW_TYPE_ACCESSORS_INITIAL_VALUE(name, type, value)                                                        \
+type m_var##name = value;                                                                                               \
 const type& Get##name() const { return m_var##name; }                                                                   \
 type& Get##name() { return m_var##name; }                                                                               \
 void Set##name(const type& varValue) { m_var##name = varValue; }

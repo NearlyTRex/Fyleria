@@ -3,6 +3,8 @@
 
 // Internal includes
 #include "Window/BrowserEngineEdgeHtml.h"
+#include "Scene/SceneManager.h"
+#include "Scene/SceneTypes.h"
 #include "Config/ConfigManager.h"
 #include "Utility/Filesystem.h"
 #include "Utility/Constants.h"
@@ -26,37 +28,15 @@ LRESULT CALLBACK WndProcStatic(HWND pWindowHandle, UINT uMessage, WPARAM iWordPa
 {
     // Get engine instance
     auto* pEngine = reinterpret_cast<BrowserEngineEdgeHtml*>(GetWindowLongPtr(pWindowHandle, GWLP_USERDATA));
-    if (!pEngine)
+    if(!pEngine)
     {
         return DefWindowProc(pWindowHandle, uMessage, iWordParam, iLongParam);
     }
 
     // Handle window message
     Bool bHandled = false;
-    switch (uMessage)
+    switch(uMessage)
     {
-        case WM_SIZE:
-        {
-            // Get the current client rect
-            RECT clientRect;
-            if(!GetClientRect(pEngine->GetMainWindow(), &clientRect))
-            {
-                break;
-            }
-
-            // Resize the web view control
-            if(pEngine->GetWebViewControl())
-            {
-                winrt::Windows::Foundation::Rect newWebViewBounds;
-                newWebViewBounds.X = static_cast<float>(clientRect.left);
-                newWebViewBounds.Y = static_cast<float>(clientRect.top);
-                newWebViewBounds.Width = static_cast<float>(clientRect.right - clientRect.left);
-                newWebViewBounds.Height = static_cast<float>(clientRect.bottom - clientRect.top);
-                pEngine->GetWebViewControl()->Bounds(newWebViewBounds);
-                bHandled = true;
-            }
-            break;
-        }
         case WM_CLOSE:
         {
             // Destroy window
@@ -145,100 +125,104 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
         SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED
     );
 
-    // Create script notify handler
-    auto fnScriptNotifyHandler = [&](
-        const winrt::Windows::Web::UI::IWebViewControl& sender,
-        winrt::Windows::Web::UI::IWebViewControlScriptNotifyEventArgs args)
-    {
-        // Call callback
-        auto fnCallback = GetPostJavascriptCallback();
-        if(fnCallback)
-        {
-            fnCallback(winrt::to_string(args.Value()));
-        }
-    };
-
-    // Create navigation starting handler
-    auto fnNavigationStartingHandler = [&](
-        const winrt::Windows::Web::UI::IWebViewControl& sender,
-        winrt::Windows::Web::UI::IWebViewControlNavigationStartingEventArgs args)
-    {
-        // Add initialize script
-        if (GetWebViewControl())
-        {
-            GetWebViewControl()->AddInitializeScript(winrt::to_hstring(GetInjectedJavascript()));
-        }
-    };
-
-    // Create navigation completed handler
-    auto fnNavigationCompletedHandler = [&](
-        const winrt::Windows::Web::UI::IWebViewControl& sender,
-        winrt::Windows::Web::UI::IWebViewControlNavigationCompletedEventArgs args)
-    {
-    };
-
-    // Create content loading handler
-    auto fnContentLoadingHandler = [&](
-        const winrt::Windows::Web::UI::IWebViewControl& sender,
-        winrt::Windows::Web::UI::IWebViewControlContentLoadingEventArgs args)
-    {
-    };
-
-    // Create DOM content loaded handler
-    auto fnDOMContentLoadedHandler = [&](
-        const winrt::Windows::Web::UI::IWebViewControl& sender,
-        winrt::Windows::Web::UI::IWebViewControlDOMContentLoadedEventArgs args)
-    {
-    };
-
-    // Create new window requested handler
-    auto fnNewWindowRequestedHandler = [&](
-        const winrt::Windows::Web::UI::IWebViewControl& sender,
-        winrt::Windows::Web::UI::IWebViewControlNewWindowRequestedEventArgs args)
-    {
-        // Navigate to the new URI
-        if(GetWebViewControl())
-        {
-            GetWebViewControl()->Navigate(args.Uri());
-        }
-    };
-
     // Create web view control completion handler
-    auto fnCompletionHandler = [&](
+    auto fnCompletionHandler = [this](
         const winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Web::UI::Interop::WebViewControl>& sender,
         winrt::Windows::Foundation::AsyncStatus args
     )
     {
         // Set web view control
-        SetWebViewControl(STDMakeSharedPtr<winrt::Windows::Web::UI::Interop::WebViewControl>(sender.GetResults()));
+        SetWebViewControl(sender.GetResults());
 
         // Update settings
-        GetWebViewControl()->Settings().IsScriptNotifyAllowed(true);
-        GetWebViewControl()->Settings().IsJavaScriptEnabled(true);
-        GetWebViewControl()->IsVisible(true);
+        GetWebViewControl().Settings().IsScriptNotifyAllowed(true);
+        GetWebViewControl().Settings().IsJavaScriptEnabled(true);
+        GetWebViewControl().IsVisible(true);
 
-        // Set handlers
-        GetWebViewControl()->ScriptNotify(fnScriptNotifyHandler);
-        GetWebViewControl()->NavigationStarting(fnNavigationStartingHandler);
-        GetWebViewControl()->NavigationCompleted(fnNavigationCompletedHandler);
-        GetWebViewControl()->ContentLoading(fnContentLoadingHandler);
-        GetWebViewControl()->DOMContentLoaded(fnDOMContentLoadedHandler);
-        GetWebViewControl()->NewWindowRequested(fnNewWindowRequestedHandler);
+        // Set script notify handler
+        GetWebViewControl().ScriptNotify([this](
+            const winrt::Windows::Web::UI::IWebViewControl& sender,
+            winrt::Windows::Web::UI::IWebViewControlScriptNotifyEventArgs args)
+            {
+                // Call callback
+                auto fnCallback = GetPostJavascriptCallback();
+                if (fnCallback)
+                {
+                    fnCallback(winrt::to_string(args.Value()));
+                }
+            }
+        );
 
-        // Inject starting javascript
+        // Set navigation starting handler
+        GetWebViewControl().NavigationStarting([this](
+            const winrt::Windows::Web::UI::IWebViewControl& sender,
+            winrt::Windows::Web::UI::IWebViewControlNavigationStartingEventArgs args)
+            {
+                // Add initialize script
+                const String& sJavascript = GetInjectedJavascript();
+                GetWebViewControl().AddInitializeScript(winrt::to_hstring(sJavascript));
+            }
+        );
+
+        // Set navigation completed handler
+        GetWebViewControl().NavigationCompleted([this](
+            const winrt::Windows::Web::UI::IWebViewControl& sender,
+            winrt::Windows::Web::UI::IWebViewControlNavigationCompletedEventArgs args)
+            {
+            }
+        );
+
+        // Set content loading handler
+        GetWebViewControl().ContentLoading([this](
+            const winrt::Windows::Web::UI::IWebViewControl& sender,
+            winrt::Windows::Web::UI::IWebViewControlContentLoadingEventArgs args)
+            {
+            }
+        );
+
+        // Set DOM content loaded handler
+        GetWebViewControl().DOMContentLoaded([this](
+            const winrt::Windows::Web::UI::IWebViewControl& sender,
+            winrt::Windows::Web::UI::IWebViewControlDOMContentLoadedEventArgs args)
+            {
+            }
+        );
+
+        // Set new window requested handler
+        GetWebViewControl().NewWindowRequested([this](
+            const winrt::Windows::Web::UI::IWebViewControl& sender,
+            winrt::Windows::Web::UI::IWebViewControlNewWindowRequestedEventArgs args)
+            {
+                // Navigate to the new URI
+                GetWebViewControl().Navigate(args.Uri());
+            }
+        );
+
+        // Inject starting javascript / css
         InjectJavascript("(function(){window.external.invoke = s => window.external.notify(s)})();");
+        InjectJavascriptFile(LIB_FILE_COMMON_JS);
+        InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
+        InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
+        InjectJavascriptFile(LIB_FILE_JQUERY_JS);
+        InjectJavascriptFile(LIB_FILE_PHASER_JS);
 
         // Show window
         ShowWindow(GetMainWindow(), SW_SHOW);
         UpdateWindow(GetMainWindow());
         SetFocus(GetMainWindow());
+
+        // Navigate to starting page
+        Navigate(STARTING_URI);
+
+        // Switch to starting scene
+        SceneManager::GetInstance()->SwitchToScene((+SceneType::Intro)._to_string());
     };
 
     // Create web view control process
-    SetWebViewControlProcess(STDMakeSharedPtr<winrt::Windows::Web::UI::Interop::WebViewControlProcess>());
+    SetWebViewControlProcess(winrt::Windows::Web::UI::Interop::WebViewControlProcess());
 
     // Create web view control
-    GetWebViewControlProcess()->CreateWebViewControlAsync(
+    GetWebViewControlProcess().CreateWebViewControlAsync(
         (FixedSigned64)GetMainWindow(),
         winrt::Windows::Foundation::Rect()
     ).Completed(fnCompletionHandler);
@@ -254,10 +238,7 @@ void BrowserEngineEdgeHtml::Shutdown()
 void BrowserEngineEdgeHtml::Navigate(const String& sUrl)
 {
     // Navigate to url
-    if(GetWebViewControl())
-    {
-        GetWebViewControl()->Navigate(winrt::Windows::Foundation::Uri::Uri(winrt::to_hstring(sUrl)));
-    }
+    GetWebViewControl().Navigate(winrt::Windows::Foundation::Uri::Uri(winrt::to_hstring(sUrl)));
 }
 
 void BrowserEngineEdgeHtml::InjectStylesheet(const String& sStyle)
@@ -286,7 +267,8 @@ void BrowserEngineEdgeHtml::InjectStylesheetFile(const String& sFile)
 void BrowserEngineEdgeHtml::InjectJavascript(const String& sScript)
 {
     // Add to injectable javascript
-    SetInjectedJavascript(GetInjectedJavascript() + sScript);
+    String sJavascript = GetInjectedJavascript();
+    SetInjectedJavascript(sJavascript + sScript);
 }
 
 void BrowserEngineEdgeHtml::InjectJavascriptFile(const String& sFile)
@@ -299,7 +281,7 @@ void BrowserEngineEdgeHtml::InjectJavascriptFile(const String& sFile)
 void BrowserEngineEdgeHtml::RemoveAllInjectedData()
 {
     // Clear injectable javascript
-    GetInjectedJavascript().clear();
+    SetInjectedJavascript("");
 }
 
 void BrowserEngineEdgeHtml::RunJavascript(const String& sScript)
@@ -309,10 +291,7 @@ void BrowserEngineEdgeHtml::RunJavascript(const String& sScript)
 void BrowserEngineEdgeHtml::SetHtmlContent(const String& sHtml)
 {
     // Navigate to the given html string
-    if(GetWebViewControl())
-    {
-        GetWebViewControl()->NavigateToString(winrt::to_hstring(sHtml));
-    }
+    GetWebViewControl().NavigateToString(winrt::to_hstring(sHtml));
 }
 
 void BrowserEngineEdgeHtml::SetHtmlContentFile(const String& sFile)

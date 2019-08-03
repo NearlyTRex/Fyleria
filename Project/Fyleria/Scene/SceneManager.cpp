@@ -19,24 +19,63 @@ SceneManager::~SceneManager()
 {
 }
 
-void SceneManager::Init()
+void SceneManager::AddScene(const String& sSceneID)
 {
-    // Add initial scenes
-    AddScene((+SceneType::Intro)._to_string(), STDMakeSharedPtr<SceneIntro>());
-    AddScene((+SceneType::Loading)._to_string(), STDMakeSharedPtr<SceneLoading>());
-    AddScene((+SceneType::MainMenu)._to_string(), STDMakeSharedPtr<SceneMainMenu>());
-    AddScene((+SceneType::StatusMenu)._to_string(), STDMakeSharedPtr<SceneStatusMenu>());
-    AddScene((+SceneType::SaveMenu)._to_string(), STDMakeSharedPtr<SceneSaveMenu>());
-    AddScene((+SceneType::CraftingMenu)._to_string(), STDMakeSharedPtr<SceneCraftingMenu>());
-    AddScene((+SceneType::Map)._to_string(), STDMakeSharedPtr<SceneMap>());
-    AddScene((+SceneType::Shop)._to_string(), STDMakeSharedPtr<SceneShop>());
-    AddScene((+SceneType::Battle)._to_string(), STDMakeSharedPtr<SceneBattle>());
-    AddScene((+SceneType::CharacterCreation)._to_string(), STDMakeSharedPtr<SceneCharacterCreation>());
-    AddScene((+SceneType::Credits)._to_string(), STDMakeSharedPtr<SceneCredits>());
-    AddScene((+SceneType::ToolMain)._to_string(), STDMakeSharedPtr<SceneToolMain>());
-    AddScene((+SceneType::ToolCharacter)._to_string(), STDMakeSharedPtr<SceneToolCharacter>());
-    AddScene((+SceneType::ToolParty)._to_string(), STDMakeSharedPtr<SceneToolParty>());
-    AddScene((+SceneType::ToolSave)._to_string(), STDMakeSharedPtr<SceneToolSave>());
+    // Only add if it is not already added
+    if (!DoesSceneExist(sSceneID))
+    {
+        SceneType eSceneType = GetEnumFromStringOrNone<SceneType>(sSceneID);
+        switch (eSceneType)
+        {
+        case SceneType::Intro:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneIntro>());
+            break;
+        case SceneType::Loading:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneLoading>());
+            break;
+        case SceneType::MainMenu:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneMainMenu>());
+            break;
+        case SceneType::StatusMenu:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneStatusMenu>());
+            break;
+        case SceneType::SaveMenu:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneSaveMenu>());
+            break;
+        case SceneType::CraftingMenu:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneCraftingMenu>());
+            break;
+        case SceneType::Map:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneMap>());
+            break;
+        case SceneType::Shop:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneShop>());
+            break;
+        case SceneType::Battle:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneBattle>());
+            break;
+        case SceneType::CharacterCreation:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneCharacterCreation>());
+            break;
+        case SceneType::Credits:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneCredits>());
+            break;
+        case SceneType::ToolMain:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneToolMain>());
+            break;
+        case SceneType::ToolCharacter:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneToolCharacter>());
+            break;
+        case SceneType::ToolParty:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneToolParty>());
+            break;
+        case SceneType::ToolSave:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneToolSave>());
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 void SceneManager::AddScene(const String& sSceneID, const SceneSharedPtr& pScene)
@@ -55,10 +94,13 @@ void SceneManager::RemoveScene(const String& sSceneID)
 
 void SceneManager::SwitchToScene(const String& sSceneID)
 {
-    // Ensure that the new scene already exists
+    // Add scene if necessary
+    AddScene(sSceneID);
+
+    // Skip if it still does not exist
     if(!DoesSceneExist(sSceneID))
     {
-        ERROR_FORMAT_STATEMENT("Scene '%s' does not exist, so cannot switch to it\n", sSceneID.c_str());
+        ERROR_FORMAT_STATEMENT("Scene '%s' does not exist\n", sSceneID.c_str());
         return;
     }
 

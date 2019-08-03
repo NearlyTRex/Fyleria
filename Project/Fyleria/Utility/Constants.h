@@ -46,6 +46,9 @@
 // File URI base
 #define FILE_URI_BASE                               "file://"
 
+// Starting URI
+#define STARTING_URI                                "about:blank"
+
 // Folders
 #define FOLDER_DATA                                 "Data"
 #define FOLDER_SAVE                                 "Save"

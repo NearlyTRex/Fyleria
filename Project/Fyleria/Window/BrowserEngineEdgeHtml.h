@@ -73,10 +73,10 @@ public:
     MAKE_RAW_TYPE_ACCESSORS(MainWindow, HWND);
 
     // Web view control
-    MAKE_RAW_TYPE_ACCESSORS(WebViewControl, STDSharedPtr<winrt::Windows::Web::UI::Interop::WebViewControl>);
+    MAKE_RAW_TYPE_ACCESSORS_INITIAL_VALUE(WebViewControl, winrt::Windows::Web::UI::Interop::WebViewControl, nullptr);
 
     // Web view control process
-    MAKE_RAW_TYPE_ACCESSORS(WebViewControlProcess, STDSharedPtr<winrt::Windows::Web::UI::Interop::WebViewControlProcess>);
+    MAKE_RAW_TYPE_ACCESSORS_INITIAL_VALUE(WebViewControlProcess, winrt::Windows::Web::UI::Interop::WebViewControlProcess, nullptr);
 
     // Injected javascript
     MAKE_RAW_TYPE_ACCESSORS(InjectedJavascript, String);

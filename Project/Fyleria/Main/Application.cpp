@@ -38,8 +38,11 @@ void Application::Run()
     do
     {
         // Handle scene
-        SceneManager::GetInstance()->GetCurrentScene()->Input();
-        SceneManager::GetInstance()->GetCurrentScene()->Update();
+        if(!SceneManager::GetInstance()->GetCurrentSceneID().empty())
+        {
+            SceneManager::GetInstance()->GetCurrentScene()->Input();
+            SceneManager::GetInstance()->GetCurrentScene()->Update();
+        }
 
         // Handle browser main loop
         MainWindow::GetInstance()->GetBrowserEngine()->RunMainLoopIteration(true);
@@ -62,11 +65,6 @@ Bool Application::Initialize()
             sConfigFile.c_str());
         return false;
     }
-
-    // Initialize scenes
-    LOG_STATEMENT("Initializing scenes...");
-    SceneManager::GetInstance()->Init();
-    LOG_STATEMENT("Finished initializing scenes");
 
     // Initialize python
     if(!InitPython())
@@ -96,25 +94,6 @@ Bool Application::Initialize()
         return false;
     }
     LOG_STATEMENT("Finished initializing window");
-
-    // Load web files
-    LOG_STATEMENT("Loading web files");
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(LIB_FILE_COMMON_JS);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(LIB_FILE_JQUERY_JS);
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectJavascriptFile(LIB_FILE_PHASER_JS);
-    LOG_STATEMENT("Finished loading web files");
-
-    // Setup window
-    LOG_STATEMENT("Navigating to start page");
-    MainWindow::GetInstance()->GetBrowserEngine()->Navigate("about:blank");
-    LOG_STATEMENT("Finished navigating");
-
-    // Start first scene
-    LOG_STATEMENT("Starting first scene");
-    SceneManager::GetInstance()->SwitchToScene((+SceneType::MainMenu)._to_string());
-    LOG_STATEMENT("Finished switching scenes");
     return true;
 }
 
