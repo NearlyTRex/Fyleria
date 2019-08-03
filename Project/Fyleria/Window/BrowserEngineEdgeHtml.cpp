@@ -22,45 +22,68 @@ BrowserEngineEdgeHtml::~BrowserEngineEdgeHtml()
 {
 }
 
-LRESULT CALLBACK WndProcStatic(HWND pWindowHandle, UINT iMessage, WPARAM iWordParam, LPARAM iLongParam)
+LRESULT CALLBACK WndProcStatic(HWND pWindowHandle, UINT uMessage, WPARAM iWordParam, LPARAM iLongParam)
 {
     // Get engine instance
     auto* pEngine = reinterpret_cast<BrowserEngineEdgeHtml*>(GetWindowLongPtr(pWindowHandle, GWLP_USERDATA));
     if (!pEngine)
     {
-        return DefWindowProc(pWindowHandle, iMessage, iWordParam, iLongParam);
+        return DefWindowProc(pWindowHandle, uMessage, iWordParam, iLongParam);
     }
 
     // Handle window message
-    switch (iMessage)
+    Bool bHandled = false;
+    switch (uMessage)
     {
-    case WM_SIZE:
-        RECT clientArea;
-        if (GetClientRect(pEngine->GetMainWindow(), &clientArea))
+        case WM_SIZE:
         {
-            winrt::Windows::Foundation::Rect bounds(
-                static_cast<float>(clientArea.left),
-                static_cast<float>(clientArea.top),
-                static_cast<float>(clientArea.right - clientArea.left),
-                static_cast<float>(clientArea.bottom - clientArea.top)
-            );
-            pEngine->GetWebViewControl()->Bounds(bounds);
+            // Get the current client rect
+            RECT clientRect;
+            if(!GetClientRect(pEngine->GetMainWindow(), &clientRect))
+            {
+                break;
+            }
+
+            // Resize the web view control
+            if(pEngine->GetWebViewControl())
+            {
+                winrt::Windows::Foundation::Rect newWebViewBounds;
+                newWebViewBounds.X = static_cast<float>(clientRect.left);
+                newWebViewBounds.Y = static_cast<float>(clientRect.top);
+                newWebViewBounds.Width = static_cast<float>(clientRect.right - clientRect.left);
+                newWebViewBounds.Height = static_cast<float>(clientRect.bottom - clientRect.top);
+                pEngine->GetWebViewControl()->Bounds(newWebViewBounds);
+                bHandled = true;
+            }
+            break;
         }
-        break;
-    case WM_CLOSE:
-        DestroyWindow(pWindowHandle);
-        break;
-    case WM_DESTROY:
-        PostQuitMessage(0);
-        break;
-    default:
-        return DefWindowProc(pWindowHandle, iMessage, iWordParam, iLongParam);
+        case WM_CLOSE:
+        {
+            // Destroy window
+            DestroyWindow(pWindowHandle);
+            bHandled = true;
+            break;
+        }
+        case WM_DESTROY:
+        {
+            // Stop program
+            PostQuitMessage(0);
+            bHandled = true;
+            break;
+        }
+        default:
+        {
+            break;
+        }
     }
-    return 0;
+    return (bHandled) ? 0 : DefWindowProc(pWindowHandle, uMessage, iWordParam, iLongParam);
 }
 
 Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
+    // Initialize windows runtime to single thread
+    winrt::init_apartment(winrt::apartment_type::single_threaded);
+
     // Create window class
     WNDCLASSEX windowClass;
     ZeroMemory(&windowClass, sizeof(WNDCLASSEX));
@@ -105,8 +128,8 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
 
     // Set sizing
     RECT sizeRect;
-    sizeRect.left = 0;
-    sizeRect.top = 0;
+    sizeRect.left = 50;
+    sizeRect.top = 50;
     sizeRect.right = iWidth;
     sizeRect.bottom = iHeight;
     AdjustWindowRect(&sizeRect, WS_OVERLAPPEDWINDOW, 0);
@@ -121,14 +144,6 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
         sizeRect.bottom - sizeRect.top,
         SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED
     );
-
-    // Show window
-    ShowWindow(GetMainWindow(), SW_SHOW);
-    UpdateWindow(GetMainWindow());
-    SetFocus(GetMainWindow());
-
-    // Initialize windows runtime to single thread
-    winrt::init_apartment(winrt::apartment_type::single_threaded);
 
     // Create script notify handler
     auto fnScriptNotifyHandler = [&](
@@ -194,17 +209,29 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
         winrt::Windows::Foundation::AsyncStatus args
     )
     {
+        // Set web view control
         SetWebViewControl(STDMakeSharedPtr<winrt::Windows::Web::UI::Interop::WebViewControl>(sender.GetResults()));
+
+        // Update settings
         GetWebViewControl()->Settings().IsScriptNotifyAllowed(true);
         GetWebViewControl()->Settings().IsJavaScriptEnabled(true);
         GetWebViewControl()->IsVisible(true);
+
+        // Set handlers
         GetWebViewControl()->ScriptNotify(fnScriptNotifyHandler);
         GetWebViewControl()->NavigationStarting(fnNavigationStartingHandler);
         GetWebViewControl()->NavigationCompleted(fnNavigationCompletedHandler);
         GetWebViewControl()->ContentLoading(fnContentLoadingHandler);
         GetWebViewControl()->DOMContentLoaded(fnDOMContentLoadedHandler);
         GetWebViewControl()->NewWindowRequested(fnNewWindowRequestedHandler);
+
+        // Inject starting javascript
         InjectJavascript("(function(){window.external.invoke = s => window.external.notify(s)})();");
+
+        // Show window
+        ShowWindow(GetMainWindow(), SW_SHOW);
+        UpdateWindow(GetMainWindow());
+        SetFocus(GetMainWindow());
     };
 
     // Create web view control process
