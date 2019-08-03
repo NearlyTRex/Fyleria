@@ -53,5 +53,6 @@ end
 
 -- Sources
 appFyleria_sources = {
+    appFyleria_srcdir .. "**.h",
     appFyleria_srcdir .. "**.cpp"
 }
