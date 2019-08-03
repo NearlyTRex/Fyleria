@@ -130,20 +130,48 @@ def BuildProject(system_info, program_options):
     # Makefile build type
     if program_options.build_type.startswith("gmake"):
 
-        # Make flags
-        make_verbose_flag = "verbose=1"
-        make_debug32_flag = "config=debug32" if (system_info.is_32bits and program_options.configuration == "debug") else ""
-        make_debug64_flag = "config=debug64" if (system_info.is_64bits and program_options.configuration == "debug") else ""
-        make_release32_flag = "config=release32" if (system_info.is_32bits and program_options.configuration == "release") else ""
-        make_release64_flag = "config=release64" if (system_info.is_64bits and program_options.configuration == "release") else ""
+        # Build flags
+        build_verbose_flag = "verbose=1"
+        build_debug32_flag = "config=debug32" if (system_info.is_32bits and program_options.configuration == "debug") else ""
+        build_debug64_flag = "config=debug64" if (system_info.is_64bits and program_options.configuration == "debug") else ""
+        build_release32_flag = "config=release32" if (system_info.is_32bits and program_options.configuration == "release") else ""
+        build_release64_flag = "config=release64" if (system_info.is_64bits and program_options.configuration == "release") else ""
 
-        # Run make
+        # Run build
         Utility.RunLiveSubprocess(subprocess_args=[
             system_info.make_bin,
-            make_debug32_flag,
-            make_debug64_flag,
-            make_release32_flag,
-            make_release64_flag,
-            make_verbose_flag
+            build_debug32_flag,
+            build_debug64_flag,
+            build_release32_flag,
+            build_release64_flag,
+            build_verbose_flag
         ], verbose_output=program_options.verbose)
+
+    # Visual studio
+    elif program_options.build_type.startswith("vs"):
+
+        # Build flags
+        build_solution_file = "all.sln"
+        build_build_flag = "/Build"
+        build_debug32_flag = "Debug32|Win32" if (system_info.is_32bits and program_options.configuration == "debug") else ""
+        build_debug64_flag = "Debug64|x64" if (system_info.is_64bits and program_options.configuration == "debug") else ""
+        build_release32_flag = "Release32|Win32" if (system_info.is_32bits and program_options.configuration == "release") else ""
+        build_release64_flag = "Release64|x64" if (system_info.is_64bits and program_options.configuration == "release") else ""
+
+        # Run build
+        Utility.RunLiveSubprocess(subprocess_args=[
+            system_info.build_bin,
+            build_solution_file,
+            build_build_flag,
+            build_debug32_flag,
+            build_debug64_flag,
+            build_release32_flag,
+            build_release64_flag
+        ], verbose_output=program_options.verbose)
+
+    # Copy output binary
+    output_binary = os.path.abspath(os.path.join("App", system_info.out_bin))
+    if os.path.exists(output_binary):
+        Utility.LogStatement("Copying output application " + output_binary + " to " + system_info.root_path)
+        shutil.copy(output_binary, system_info.root_path)
 ###########################################################################

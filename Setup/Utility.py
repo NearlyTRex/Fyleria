@@ -33,6 +33,7 @@ def RunSubprocess(subprocess_args = [], expected_substr = "", verbose_output = F
             args=cleared_subprocess_args,
             stderr=subprocess.STDOUT,
             stdout=subprocess.PIPE,
+            shell=False,
             universal_newlines=True)
         if verbose_output:
             if len(result.stdout) > 0:
@@ -55,6 +56,7 @@ def RunLiveSubprocess(subprocess_args = [], verbose_output = False):
             args=cleared_subprocess_args,
             stderr=subprocess.STDOUT,
             stdout=subprocess.PIPE,
+            shell=False,
             universal_newlines=True)
         while verbose_output and True:
             output = process.stdout.readline()

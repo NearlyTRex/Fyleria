@@ -92,12 +92,12 @@ end
 
 -- Get application target directory
 function GetAppTargetDirectory()
-    return ".."
+    return GetBuildLocation() .. "/App"
 end
 
 -- Get library target directory
 function GetLibraryTargetDirectory()
-    return "Build"
+    return GetBuildLocation() .. "/Lib"
 end
 
 -- Get target name
