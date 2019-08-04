@@ -125,6 +125,14 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
         SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED
     );
 
+    // Inject starting javascript / css
+    InjectJavascript("(function(){window.external.invoke = s => window.external.notify(s)})();");
+    InjectJavascriptFile(LIB_FILE_COMMON_JS);
+    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
+    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
+    InjectJavascriptFile(LIB_FILE_PHASER_JS);
+
     // Create web view control completion handler
     auto fnCompletionHandler = [this](
         const winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Web::UI::Interop::WebViewControl>& sender,
@@ -158,9 +166,6 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
             const winrt::Windows::Web::UI::IWebViewControl& sender,
             winrt::Windows::Web::UI::IWebViewControlNavigationStartingEventArgs args)
             {
-                // Add initialize script
-                const String& sJavascript = GetInjectedJavascript();
-                GetWebViewControl().AddInitializeScript(winrt::to_hstring(sJavascript));
             }
         );
 
@@ -197,14 +202,6 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
                 GetWebViewControl().Navigate(args.Uri());
             }
         );
-
-        // Inject starting javascript / css
-        InjectJavascript("(function(){window.external.invoke = s => window.external.notify(s)})();");
-        InjectJavascriptFile(LIB_FILE_COMMON_JS);
-        InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
-        InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
-        InjectJavascriptFile(LIB_FILE_JQUERY_JS);
-        InjectJavascriptFile(LIB_FILE_PHASER_JS);
 
         // Show window
         ShowWindow(GetMainWindow(), SW_SHOW);
