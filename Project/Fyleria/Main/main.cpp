@@ -15,7 +15,7 @@
 #if defined(PLATFORM_OS_WINDOWS)
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 #else
-int main(int iArgCount, char** vArgList)
+int main(int argc, char** argv)
 #endif
 {
     // Register signal handler
