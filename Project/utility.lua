@@ -107,7 +107,11 @@ end
 
 -- Get app type
 function GetAppType()
-    return "ConsoleApp"
+    if os.host() == "windows" then
+        return "WindowedApp"
+    else
+        return "ConsoleApp"
+    end
 end
 
 -- Get library type
