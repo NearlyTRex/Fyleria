@@ -12,7 +12,11 @@
 #include "Utility/Filesystem.h"
 
 // Main
+#if defined(PLATFORM_OS_WINDOWS)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+#else
 int main(int iArgCount, char** vArgList)
+#endif
 {
     // Register signal handler
 #ifdef DEBUG
