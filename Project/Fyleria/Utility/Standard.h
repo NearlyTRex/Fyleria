@@ -90,7 +90,8 @@
 #define STDIOSFlagInputOperations std::ios::in
 #define STDIOSFlagOutputOperations std::ios::out
 #define STDIOSFlagBinaryMode std::ios::binary
-#define STDIOSFlagInitialPosAtEnd std::ios::ate
+#define STDIOSFlagPosAtBeginning std::ios::beg
+#define STDIOSFlagPosAtEnd std::ios::ate
 #define STDIOSFlagAppendToEnd std::ios::app
 #define STDIOSFlagTruncate std::ios::trunc
 #define STDInputFileStreamFlagInput std::ifstream::in

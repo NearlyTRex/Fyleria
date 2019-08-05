@@ -59,6 +59,9 @@
 // Python file
 #define PYTHON_FILE                                 "PythonLib.zip"
 
+// Icon files
+#define ICON_FILE_MAIN_WINDOW                       "Icons/Icon.ico"
+
 // Item files
 #define ITEM_FILE_ARMOR_CHEST                       "Items/ItemTreeArmor-Chest.json"
 #define ITEM_FILE_ARMOR_FEET                        "Items/ItemTreeArmor-Feet.json"

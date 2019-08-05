@@ -128,7 +128,7 @@ void Scene::ProcessForm(const String& sAction, const String& sParameters)
 void Scene::LoadHtmlFromFile(const String& sFile)
 {
     // Load html file
-    String sFileContents = GetFileContents(JoinPathsCanonical(GetDataDirectory(), sFile));
+    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
     SetPageContent(sFileContents);
     SetHtmlContent(sFileContents);
 }

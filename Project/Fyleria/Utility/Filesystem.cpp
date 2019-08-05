@@ -68,12 +68,21 @@ String JoinPathsCanonical(const String& sPath1, const String& sPath2)
     return GetCanonicalPath(JoinPaths(sPath1, sPath2));
 }
 
-String GetFileContents(const String& sPath)
+String GetFileContentsAsString(const String& sPath)
 {
     InputFile inputFile(sPath, STDInputFileStreamFlagInput | STDInputFileStreamFlagBinary);
     StringStream sBuffer;
     sBuffer << inputFile.rdbuf();
     return sBuffer.str();
+}
+
+UByteArray GetFileContentsAsByteArray(const String& sPath)
+{
+    InputFile inputFile(sPath, STDInputFileStreamFlagInput | STDInputFileStreamFlagBinary);
+    SizeType uSize = GetFileSize(sPath);
+    UByteArray vBuffer(uSize);
+    inputFile.read(reinterpret_cast<char*>(vBuffer.data()), uSize);
+    return vBuffer;
 }
 
 String GetProgramDirectory()

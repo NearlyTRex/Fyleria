@@ -26,13 +26,6 @@ BrowserEngineEdgeHtml::~BrowserEngineEdgeHtml()
 
 LRESULT CALLBACK WndProcStatic(HWND pWindowHandle, UINT uMessage, WPARAM iWordParam, LPARAM iLongParam)
 {
-    // Get engine instance
-    auto* pEngine = reinterpret_cast<BrowserEngineEdgeHtml*>(GetWindowLongPtr(pWindowHandle, GWLP_USERDATA));
-    if(!pEngine)
-    {
-        return DefWindowProc(pWindowHandle, uMessage, iWordParam, iLongParam);
-    }
-
     // Handle window message
     Bool bHandled = false;
     switch(uMessage)
@@ -59,6 +52,73 @@ LRESULT CALLBACK WndProcStatic(HWND pWindowHandle, UINT uMessage, WPARAM iWordPa
     return (bHandled) ? 0 : DefWindowProc(pWindowHandle, uMessage, iWordParam, iLongParam);
 }
 
+winrt::Windows::Foundation::Rect GetBoundsRectFromWindow(HWND pHandle)
+{
+    // Get window rect
+    RECT windowRect = {0};
+    if(!GetWindowRect(pHandle, &windowRect))
+    {
+        return winrt::Windows::Foundation::Rect();
+    }
+
+    // Create bounds rect
+    winrt::Windows::Foundation::Rect boundsRect;
+    boundsRect.X = 0;
+    boundsRect.Y = 0;
+    boundsRect.Width = static_cast<float>(windowRect.right - windowRect.left);
+    boundsRect.Height = static_cast<float>(windowRect.bottom - windowRect.top);
+    return boundsRect;
+}
+
+typedef struct
+{
+    BYTE bWidth;                // Width, in pixels, of the image
+    BYTE bHeight;               // Height, in pixels, of the image
+    BYTE bColorCount;           // Number of colors in image (0 if >=8bpp)
+    BYTE bReserved;             // Reserved ( must be 0)
+    WORD wPlanes;               // Color Planes
+    WORD wBitCount;             // Bits per pixel
+    DWORD dwBytesInRes;         // How many bytes in this resource?
+    DWORD dwImageOffset;        // Where in the file is this image?
+} ICONDIRENTRY, *LPICONDIRENTRY;
+
+typedef struct
+{
+    WORD idReserved;            // Reserved (must be 0)
+    WORD idType;                // Resource Type (1 for icons)
+    WORD idCount;               // How many images?
+    ICONDIRENTRY idEntries[1];  // An entry for each image (idCount of 'em)
+} ICONDIR, *LPICONDIR;
+
+typedef struct
+{
+    BITMAPINFOHEADER icHeader;  // DIB header
+    RGBQUAD icColors[1];        // Color table
+    BYTE icXOR[1];              // DIB bits for XOR mask
+    BYTE icAND[1];              // DIB bits for AND mask
+} ICONIMAGE, *LPICONIMAGE;
+
+HICON GetIconFromFile(const String& sPath)
+{
+    // Get bytes from file
+    UByteArray vBytes = GetFileContentsAsByteArray(sPath);
+    if(vBytes.empty())
+    {
+        return NULL;
+    }
+
+    // Get the icon offset
+    Int iFileSize = static_cast<Int>(vBytes.size());
+    Int iOffset = (3 * sizeof(WORD)) + (1 * sizeof(ICONDIRENTRY));
+    if(iFileSize <= iOffset)
+    {
+        return NULL;
+    }
+
+    // Create the icon
+    return CreateIconFromResourceEx(vBytes.data() + iOffset, iFileSize - iOffset, TRUE, 0x00030000, 0, 0, LR_DEFAULTCOLOR | LR_SHARED);
+}
+
 Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
     // Initialize windows runtime to single thread
@@ -67,13 +127,16 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
     // Create window class
     WNDCLASSEX windowClass;
     ZeroMemory(&windowClass, sizeof(WNDCLASSEX));
-    const WString& sWindowClassName = L"webview";
+    const WString& sWindowClassName = L"WebView";
 
     // Register window class
+    HICON hIcon = GetIconFromFile(JoinPathsCanonical(GetDataDirectory(), ICON_FILE_MAIN_WINDOW));
     windowClass.cbSize = sizeof(WNDCLASSEX);
     windowClass.hInstance = GetModuleHandle(nullptr);
     windowClass.lpszClassName = sWindowClassName.c_str();
     windowClass.lpfnWndProc = WndProcStatic;
+    windowClass.hIcon = hIcon;
+    windowClass.hIconSm = hIcon;
     if(!RegisterClassEx(&windowClass))
     {
         return false;
@@ -134,10 +197,7 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
     InjectJavascriptFile(LIB_FILE_PHASER_JS);
 
     // Create web view control completion handler
-    auto fnCompletionHandler = [this](
-        const winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Web::UI::Interop::WebViewControl>& sender,
-        winrt::Windows::Foundation::AsyncStatus args
-    )
+    auto fnCompletionHandler = [this](const auto& sender, const auto& args)
     {
         // Set web view control
         SetWebViewControl(sender.GetResults());
@@ -148,9 +208,7 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
         GetWebViewControl().IsVisible(true);
 
         // Set script notify handler
-        GetWebViewControl().ScriptNotify([this](
-            const winrt::Windows::Web::UI::IWebViewControl& sender,
-            winrt::Windows::Web::UI::IWebViewControlScriptNotifyEventArgs args)
+        GetWebViewControl().ScriptNotify([this](const auto& sender, const auto& args)
             {
                 // Call callback
                 auto fnCallback = GetPostJavascriptCallback();
@@ -162,41 +220,31 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
         );
 
         // Set navigation starting handler
-        GetWebViewControl().NavigationStarting([this](
-            const winrt::Windows::Web::UI::IWebViewControl& sender,
-            winrt::Windows::Web::UI::IWebViewControlNavigationStartingEventArgs args)
+        GetWebViewControl().NavigationStarting([this](const auto& sender, const auto& args)
             {
             }
         );
 
         // Set navigation completed handler
-        GetWebViewControl().NavigationCompleted([this](
-            const winrt::Windows::Web::UI::IWebViewControl& sender,
-            winrt::Windows::Web::UI::IWebViewControlNavigationCompletedEventArgs args)
+        GetWebViewControl().NavigationCompleted([this](const auto& sender, const auto& args)
             {
             }
         );
 
         // Set content loading handler
-        GetWebViewControl().ContentLoading([this](
-            const winrt::Windows::Web::UI::IWebViewControl& sender,
-            winrt::Windows::Web::UI::IWebViewControlContentLoadingEventArgs args)
+        GetWebViewControl().ContentLoading([this](const auto& sender, const auto& args)
             {
             }
         );
 
         // Set DOM content loaded handler
-        GetWebViewControl().DOMContentLoaded([this](
-            const winrt::Windows::Web::UI::IWebViewControl& sender,
-            winrt::Windows::Web::UI::IWebViewControlDOMContentLoadedEventArgs args)
+        GetWebViewControl().DOMContentLoaded([this](const auto& sender, const auto& args)
             {
             }
         );
 
         // Set new window requested handler
-        GetWebViewControl().NewWindowRequested([this](
-            const winrt::Windows::Web::UI::IWebViewControl& sender,
-            winrt::Windows::Web::UI::IWebViewControlNewWindowRequestedEventArgs args)
+        GetWebViewControl().NewWindowRequested([this](const auto& sender, const auto& args)
             {
                 // Navigate to the new URI
                 GetWebViewControl().Navigate(args.Uri());
@@ -221,7 +269,7 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
     // Create web view control
     GetWebViewControlProcess().CreateWebViewControlAsync(
         (FixedSigned64)GetMainWindow(),
-        winrt::Windows::Foundation::Rect()
+        GetBoundsRectFromWindow(GetMainWindow())
     ).Completed(fnCompletionHandler);
     return true;
 }
@@ -240,43 +288,35 @@ void BrowserEngineEdgeHtml::Navigate(const String& sUrl)
 
 void BrowserEngineEdgeHtml::InjectStylesheet(const String& sStyle)
 {
-    // Create injectable javascript
-    String sScript;
-    sScript += "(function(e){";
-    sScript += "var t = document.createElement('style');";
-    sScript += "var d = document.head || document.getElementsByTagName('head')[0];";
-    sScript += "t.setAttribute('type','text/css');";
-    sScript += "t.styleSheet ? t.styleSheet.cssText = e : t.appendChild(document.createTextNode(e));";
-    sScript += "d.appendChild(t);";
-    sScript += "})(\"" + sStyle + "\")";
-
-    // Inject javascript
-    InjectJavascript(sScript);
+    // Add to injectable stylesheets
+    SetInjectedStylesheets(GetInjectedStylesheets() + sStyle);
 }
 
 void BrowserEngineEdgeHtml::InjectStylesheetFile(const String& sFile)
 {
     // Inject file contents
-    String sFileContents = GetFileContents(JoinPathsCanonical(GetDataDirectory(), sFile));
+    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
     InjectStylesheet(sFileContents);
 }
 
 void BrowserEngineEdgeHtml::InjectJavascript(const String& sScript)
 {
     // Add to injectable javascript
-    String sJavascript = GetInjectedJavascript();
-    SetInjectedJavascript(sJavascript + sScript);
+    SetInjectedJavascript(GetInjectedJavascript() + sScript);
 }
 
 void BrowserEngineEdgeHtml::InjectJavascriptFile(const String& sFile)
 {
     // Inject file contents
-    String sFileContents = GetFileContents(JoinPathsCanonical(GetDataDirectory(), sFile));
+    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
     InjectJavascript(sFileContents);
 }
 
 void BrowserEngineEdgeHtml::RemoveAllInjectedData()
 {
+    // Clear injectable stylesheets
+    SetInjectedStylesheets("");
+
     // Clear injectable javascript
     SetInjectedJavascript("");
 }
@@ -294,7 +334,7 @@ void BrowserEngineEdgeHtml::SetHtmlContent(const String& sHtml)
 void BrowserEngineEdgeHtml::SetHtmlContentFile(const String& sFile)
 {
     // Set document html
-    String sFileContents = GetFileContents(sFile);
+    String sFileContents = GetFileContentsAsString(sFile);
     SetHtmlContent(sFileContents);
 }
 

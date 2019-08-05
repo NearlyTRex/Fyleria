@@ -78,6 +78,9 @@ public:
     // Web view control process
     MAKE_RAW_TYPE_ACCESSORS_INITIAL_VALUE(WebViewControlProcess, winrt::Windows::Web::UI::Interop::WebViewControlProcess, nullptr);
 
+    // Injected stylesheets
+    MAKE_RAW_TYPE_ACCESSORS(InjectedStylesheets, String);
+
     // Injected javascript
     MAKE_RAW_TYPE_ACCESSORS(InjectedJavascript, String);
 };

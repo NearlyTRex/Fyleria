@@ -46,8 +46,11 @@ String JoinPaths(const String& sPath1, const String& sPath2);
 // Join paths together and get canonical result
 String JoinPathsCanonical(const String& sPath1, const String& sPath2);
 
-// Get file contents
-String GetFileContents(const String& sPath);
+// Get file contents as string
+String GetFileContentsAsString(const String& sPath);
+
+// Get file contents as byte array
+UByteArray GetFileContentsAsByteArray(const String& sPath);
 
 // Get program directory
 String GetProgramDirectory();
