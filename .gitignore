@@ -70,3 +70,6 @@ Project/Programs/Premake5/orig
 Project/Programs/Tiled/orig
 Project/Programs/Unzip/orig
 Project/Programs/Zip/orig
+
+# Program
+FyleriaMain_*
