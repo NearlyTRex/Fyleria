@@ -42,6 +42,7 @@ appFyleria_libs = {
     "FantasyName",
     "MicroPather",
     "Python3",
+    "SpdLog",
     "TinyXML2",
     "TMXParser",
     "URIParser",

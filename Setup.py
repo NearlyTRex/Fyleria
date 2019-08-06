@@ -53,6 +53,7 @@ def main():
         Project.SetupProject("ObjectThreadsafe", "Project/Libs", system_info, program_options)
         Project.SetupProject("PyBind", "Project/Libs", system_info, program_options)
         Project.SetupProject("Python3", "Project/Libs", system_info, program_options)
+        Project.SetupProject("SpdLog", "Project/Libs", system_info, program_options)
         Project.SetupProject("TinyXML2", "Project/Libs", system_info, program_options)
         Project.SetupProject("TMXParser", "Project/Libs", system_info, program_options)
         Project.SetupProject("URIParser", "Project/Libs", system_info, program_options)

@@ -11,6 +11,7 @@ require "Libs/ModernCPPJson/ModernCPPJson"
 require "Libs/ObjectThreadsafe/ObjectThreadsafe"
 require "Libs/PyBind/PyBind"
 require "Libs/Python3/Python3"
+require "Libs/SpdLog/SpdLog"
 require "Libs/TinyXML2/TinyXML2"
 require "Libs/TMXParser/TMXParser"
 require "Libs/URIParser/URIParser"
@@ -149,6 +150,21 @@ filter "configurations:Debug*"
     defines(libPython3_debugdefines)
 filter "configurations:Release*"
     defines(libPython3_releasedefines)
+
+-- SpdLog
+project "SpdLog"
+language "C++"
+pic "On"
+    kind(GetLibraryType())
+    includedirs(libSpdLog_includedirs)
+    defines(libSpdLog_defines)
+    files(libSpdLog_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("SpdLog"))
+filter "configurations:Debug*"
+    defines(libSpdLog_debugdefines)
+filter "configurations:Release*"
+    defines(libSpdLog_releasedefines)
 
 -- TinyXML2
 project "TinyXML2"

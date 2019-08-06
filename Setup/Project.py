@@ -72,7 +72,6 @@ def SetupProject(project_name, project_base_dir, system_info, program_options):
         # Run basic extra steps
         Utility.RunExtraSteps(module.Setup['steps'], "linux", system_info.root_path, system_info.is_linux and not system_info.is_mingw)
         Utility.RunExtraSteps(module.Setup['steps'], "macosx", system_info.root_path, system_info.is_macosx and not system_info.is_mingw)
-        Utility.RunExtraSteps(module.Setup['steps'], "bsd", system_info.root_path, system_info.is_bsd and not system_info.is_mingw)
         Utility.RunExtraSteps(module.Setup['steps'], "wsl", system_info.root_path, system_info.is_macosx and not system_info.is_mingw)
         Utility.RunExtraSteps(module.Setup['steps'], "posix", system_info.root_path, system_info.is_posix and not system_info.is_mingw)
         Utility.RunExtraSteps(module.Setup['steps'], "windows", system_info.root_path, system_info.is_windows)
@@ -85,8 +84,6 @@ def SetupProject(project_name, project_base_dir, system_info, program_options):
         Utility.RunExtraSteps(module.Setup['steps'], "linux64", system_info.root_path, system_info.is_linux and system_info.is_64bits and not system_info.is_mingw)
         Utility.RunExtraSteps(module.Setup['steps'], "macosx32", system_info.root_path, system_info.is_macosx and system_info.is_32bits and not system_info.is_mingw)
         Utility.RunExtraSteps(module.Setup['steps'], "macosx64", system_info.root_path, system_info.is_macosx and system_info.is_64bits and not system_info.is_mingw)
-        Utility.RunExtraSteps(module.Setup['steps'], "bsd32", system_info.root_path, system_info.is_bsd and system_info.is_32bits and not system_info.is_mingw)
-        Utility.RunExtraSteps(module.Setup['steps'], "bsd64", system_info.root_path, system_info.is_bsd and system_info.is_64bits and not system_info.is_mingw)
         Utility.RunExtraSteps(module.Setup['steps'], "wsl32", system_info.root_path, system_info.is_wsl and system_info.is_32bits and not system_info.is_mingw)
         Utility.RunExtraSteps(module.Setup['steps'], "wsl64", system_info.root_path, system_info.is_wsl and system_info.is_64bits and not system_info.is_mingw)
         Utility.RunExtraSteps(module.Setup['steps'], "posix32", system_info.root_path, system_info.is_posix and system_info.is_32bits and not system_info.is_mingw)
