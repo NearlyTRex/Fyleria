@@ -87,9 +87,9 @@ void VerifyApplyStatChanges(const TreeIndexArray& vTreeIndices, const String& sC
     for(auto& treeIndex : vTreeIndices)
     {
         auto& itemData = T::GetInstance()->GetLeaf(treeIndex);
-        LOG_FORMAT_STATEMENT("Processing item (ItemTreeType = '%s', "
-                             "ItemType = '%s', "
-                             "ItemName = '%s', "
+        LOG_FORMAT_STATEMENT("Processing item (ItemTreeType = '{}', "
+                             "ItemType = '{}', "
+                             "ItemName = '{}', "
                              "StatChanges = %zu)\n",
             T::GetTreeType().c_str(),
             itemData.GetItemType().c_str(),

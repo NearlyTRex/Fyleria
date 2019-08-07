@@ -97,7 +97,7 @@ Bool CharacterManager::DoesCharacterExist(const String& sCharacterID) const
 void CharacterManager::GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator)
 {
     // Log start
-    LOG_FORMAT_STATEMENT("Generating character (CharacterID = '%s') ...\n", sCharacterID.c_str());
+    LOG_FORMAT_STATEMENT("Generating character (CharacterID = '{}') ...\n", sCharacterID.c_str());
 
     // Make sure that this character does not already exist
     if(DoesCharacterExist(sCharacterID))
@@ -166,9 +166,9 @@ void CharacterManager::ApplyStatChange(
     if((skillIndex.empty() && itemIndex.empty()) ||
        change.GetStatChangeEntries().empty())
     {
-        LOG_FORMAT_STATEMENT("Skipping stat change (Skill = '%s', "
-                             "Item = '%s', "
-                             "StatChangeEntries = %zu)\n",
+        LOG_FORMAT_STATEMENT("Skipping stat change (Skill = '{}', "
+                             "Item = '{}', "
+                             "StatChangeEntries = {})\n",
             skillIndex.GetTreeBranchLeafType().c_str(),
             itemIndex.GetTreeBranchLeafType().c_str(),
             change.GetStatChangeEntries().size());
@@ -180,9 +180,9 @@ void CharacterManager::ApplyStatChange(
     StringArray vDestCharIDs;
     if(!change.GetResolvedCharacterArrays(vSourceCharIDs, vDestCharIDs))
     {
-        LOG_FORMAT_STATEMENT("Invalid character IDs (Skill = '%s', "
-                             "Item = '%s', "
-                             "StatChangeEntries = %zu)\n",
+        LOG_FORMAT_STATEMENT("Invalid character IDs (Skill = '{}', "
+                             "Item = '{}', "
+                             "StatChangeEntries = {})\n",
             skillIndex.GetTreeBranchLeafType().c_str(),
             itemIndex.GetTreeBranchLeafType().c_str(),
             change.GetStatChangeEntries().size());
@@ -191,12 +191,12 @@ void CharacterManager::ApplyStatChange(
 
     // Get tree index info
     const TreeIndex& treeIndex = (!skillIndex.empty()) ? skillIndex : itemIndex;
-    LOG_FORMAT_STATEMENT("Applying stat change (Tree = '%s', "
-                         "Branch = '%s', "
-                         "Leaf = '%s', "
-                         "StatChangeEntries = %zu, "
-                         "IsSkill = %d, "
-                         "IsItem = %d)\n",
+    LOG_FORMAT_STATEMENT("Applying stat change (Tree = '{}', "
+                         "Branch = '{}', "
+                         "Leaf = '{}', "
+                         "StatChangeEntries = {}, "
+                         "IsSkill = {}, "
+                         "IsItem = {})\n",
         treeIndex.GetTree().c_str(),
         treeIndex.GetBranch().c_str(),
         treeIndex.GetLeaf().c_str(),
@@ -212,7 +212,7 @@ void CharacterManager::ApplyStatChange(
         // Check operation type
         String sOperation = entry.GetOperationType();
         ASSERT_WARNING(!sOperation.empty(),
-            "Stat change (tree = '%s', type = '%s', skill = '%s') is missing a valid operation type",
+            "Stat change (tree = '{}', type = '{}', skill = '{}') is missing a valid operation type",
             treeIndex.GetTree().c_str(),
             treeIndex.GetBranch().c_str(),
             treeIndex.GetLeaf().c_str());
@@ -395,7 +395,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     switch(eOperationType)
     {
         case OperationType::Set:
-            LOG_FORMAT_STATEMENT("-- Setting %d to %s stat in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Setting {} to {} stat in character '{}'\n",
                 bValue,
                 sStat.c_str(),
                 sCharacterID.c_str());
@@ -428,21 +428,21 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     switch(eOperationType)
     {
         case OperationType::Add:
-            LOG_FORMAT_STATEMENT("-- Adding %i to %s's current value of %i in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Adding {} to {}'s current value of {} in character '{}'\n",
                 iValue,
                 sStat.c_str(),
                 iStatValue,
                 sCharacterID.c_str());
             return character.SetStatValue(sSegment, sStat, iStatValue + iValue);
         case OperationType::Subtract:
-            LOG_FORMAT_STATEMENT("-- Subtracting %i from %s's current value of %i in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Subtracting {} from {}'s current value of {} in character '{}'\n",
                 iValue,
                 sStat.c_str(),
                 iStatValue,
                 sCharacterID.c_str());
             return character.SetStatValue(sSegment, sStat, iStatValue - iValue);
         case OperationType::Multiply:
-            LOG_FORMAT_STATEMENT("-- Multiplying %i against %s's current value of %i in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Multiplying {} against {}'s current value of {} in character '{}'\n",
                 iValue,
                 sStat.c_str(),
                 iStatValue,
@@ -451,7 +451,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
         case OperationType::Divide:
             if(iValue != 0)
             {
-                LOG_FORMAT_STATEMENT("-- Dividing %s's current value of %i by %i in character '%s'\n",
+                LOG_FORMAT_STATEMENT("-- Dividing {}'s current value of {} by {} in character '{}'\n",
                     sStat.c_str(),
                     iStatValue,
                     iValue,
@@ -461,7 +461,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
         case OperationType::Modulus:
             if(iValue != 0)
             {
-                LOG_FORMAT_STATEMENT("-- Modulusing %s's current value of %i by %i in character '%s'\n",
+                LOG_FORMAT_STATEMENT("-- Modulusing {}'s current value of {} by {} in character '{}'\n",
                     sStat.c_str(),
                     iStatValue,
                     iValue,
@@ -469,7 +469,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 return character.SetStatValue(sSegment, sStat, iStatValue % iValue);
             }
         case OperationType::Set:
-            LOG_FORMAT_STATEMENT("-- Setting %i to %s stat in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Setting {} to {} stat in character '{}'\n",
                 iValue,
                 sStat.c_str(),
                 sCharacterID.c_str());
@@ -502,21 +502,21 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     switch(eOperationType)
     {
         case OperationType::Add:
-            LOG_FORMAT_STATEMENT("-- Adding %f to %s's current value of %f in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Adding {} to {}'s current value of {} in character '{}'\n",
                 fValue,
                 sStat.c_str(),
                 fStatValue,
                 sCharacterID.c_str());
             return character.SetStatValue(sSegment, sStat, fStatValue + fValue);
         case OperationType::Subtract:
-            LOG_FORMAT_STATEMENT("-- Subtracting %f from %s's current value of %f in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Subtracting {} from {}'s current value of {} in character '{}'\n",
                 fValue,
                 sStat.c_str(),
                 fStatValue,
                 sCharacterID.c_str());
             return character.SetStatValue(sSegment, sStat, fStatValue - fValue);
         case OperationType::Multiply:
-            LOG_FORMAT_STATEMENT("-- Multiplying %f against %s's current value of %f in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Multiplying {} against {}'s current value of {} in character '{}'\n",
                 fValue,
                 sStat.c_str(),
                 fStatValue,
@@ -525,7 +525,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
         case OperationType::Divide:
             if(fValue != 0)
             {
-                LOG_FORMAT_STATEMENT("-- Dividing %s's current value of %f by %f in character '%s'\n",
+                LOG_FORMAT_STATEMENT("-- Dividing {}'s current value of {} by {} in character '{}'\n",
                     sStat.c_str(),
                     fStatValue,
                     fValue,
@@ -535,7 +535,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
         case OperationType::Modulus:
             if(fValue != 0)
             {
-                LOG_FORMAT_STATEMENT("-- Modulusing %s's current value of %f by %f in character '%s'\n",
+                LOG_FORMAT_STATEMENT("-- Modulusing {}'s current value of {} by {} in character '{}'\n",
                     sStat.c_str(),
                     fStatValue,
                     fValue,
@@ -543,7 +543,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
                 return character.SetStatValue(sSegment, sStat, STDFmod(fStatValue, fValue));
             }
         case OperationType::Set:
-            LOG_FORMAT_STATEMENT("-- Setting %f to %s in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Setting {} to {} in character '{}'\n",
                 fValue,
                 sStat.c_str(),
                 sCharacterID.c_str());
@@ -576,14 +576,14 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
     switch(eOperationType)
     {
         case OperationType::Add:
-            LOG_FORMAT_STATEMENT("-- Adding %s to %s's current value of %s in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Adding {} to {}'s current value of {} in character '{}'\n",
                 sValue.c_str(),
                 sStat.c_str(),
                 sStatValue.c_str(),
                 sCharacterID.c_str());
             return character.SetStatValue(sSegment, sStat, sStatValue + sValue);
         case OperationType::Set:
-            LOG_FORMAT_STATEMENT("-- Setting %s to %s stat in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Setting {} to {} stat in character '{}'\n",
                 sValue.c_str(),
                 sStat.c_str(),
                 sCharacterID.c_str());
@@ -616,7 +616,7 @@ Bool CharacterManager::ApplyStatChangeEntryOperation(
             {
                 sValue += (vValues[i] + String(","));
             }
-            LOG_FORMAT_STATEMENT("-- Setting (%s) to %s stat in character '%s'\n",
+            LOG_FORMAT_STATEMENT("-- Setting ({}) to {} stat in character '{}'\n",
                 sValue.c_str(),
                 sStat.c_str(),
                 sCharacterID.c_str());
@@ -663,7 +663,7 @@ Bool CharacterManager::GetDeltaStatChangeEntryValues(
         if(character.GetStatValue(sSegment, sSourceStatType, iStatValue))
         {
             Int iNewValue = iStatValue + changeEntry.GetDeltaInt();
-            LOG_FORMAT_STATEMENT("-- Getting %s value of %i from character '%s' and adding delta int of %i to get int value %i\n",
+            LOG_FORMAT_STATEMENT("-- Getting {} value of {} from character '{}' and adding delta int of {} to get int value {}\n",
                 sSourceStatType.c_str(),
                 iStatValue,
                 sCharacterID.c_str(),
@@ -679,7 +679,7 @@ Bool CharacterManager::GetDeltaStatChangeEntryValues(
         if(character.GetStatValue(sSegment, sSourceStatType, fStatValue))
         {
             Float fNewValue = fStatValue + changeEntry.GetDeltaFloat();
-            LOG_FORMAT_STATEMENT("-- Getting %s value of %f from character '%s' and adding delta float of %f to get float value %f\n",
+            LOG_FORMAT_STATEMENT("-- Getting {} value of {} from character '{}' and adding delta float of {} to get float value {}\n",
                 sSourceStatType.c_str(),
                 fStatValue,
                 sCharacterID.c_str(),
@@ -723,7 +723,7 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
         {
             fStatValue = static_cast<Float>(iStatValue);
             Float fNewValue = changeEntry.GetFullPercent() * fStatValue;
-            LOG_FORMAT_STATEMENT("-- Getting %s value of %i from character '%s' and multiplying by full percent of %f to get float value %f\n",
+            LOG_FORMAT_STATEMENT("-- Getting {} value of {} from character '{}' and multiplying by full percent of {} to get float value {}\n",
                 sDestStatType.c_str(),
                 iStatValue,
                 sCharacterID.c_str(),
@@ -735,7 +735,7 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
         else if(character.GetStatValue(sSegment, sDestStatType, fStatValue))
         {
             Float fNewValue = changeEntry.GetFullPercent() * fStatValue;
-            LOG_FORMAT_STATEMENT("-- Getting %s value of %f from character '%s' and multiplying by full percent of %f to get float value %f\n",
+            LOG_FORMAT_STATEMENT("-- Getting {} value of {} from character '{}' and multiplying by full percent of {} to get float value {}\n",
                 sDestStatType.c_str(),
                 fStatValue,
                 sCharacterID.c_str(),
@@ -748,28 +748,28 @@ Bool CharacterManager::GetFullStatChangeEntryValues(
     else if(changeEntry.GetFullInt() != 0)
     {
         Int iNewValue = changeEntry.GetFullInt();
-        LOG_FORMAT_STATEMENT("-- Using full int value of %i directly\n", iNewValue);
+        LOG_FORMAT_STATEMENT("-- Using full int value of {} directly\n", iNewValue);
         vIntValues.push_back(iNewValue);
         bSuccess = true;
     }
     else if(changeEntry.GetFullFloat() != 0)
     {
         Float fNewValue = changeEntry.GetFullFloat();
-        LOG_FORMAT_STATEMENT("-- Using full float value of %f directly\n", fNewValue);
+        LOG_FORMAT_STATEMENT("-- Using full float value of {} directly\n", fNewValue);
         vFloatValues.push_back(fNewValue);
         bSuccess = true;
     }
     else if(!changeEntry.GetFullString().empty())
     {
         String sNewValue = changeEntry.GetFullString();
-        LOG_FORMAT_STATEMENT("-- Using full string value of %s directly\n", sNewValue.c_str());
+        LOG_FORMAT_STATEMENT("-- Using full string value of {} directly\n", sNewValue.c_str());
         vStringValues.push_back(sNewValue);
         bSuccess = true;
     }
     else if(!changeEntry.GetFullStringArray().empty())
     {
         StringArray vNewValues = changeEntry.GetFullStringArray();
-        LOG_FORMAT_STATEMENT("-- Using full string array value of %s directly\n", ConcatStringVector<String>(vNewValues).c_str());
+        LOG_FORMAT_STATEMENT("-- Using full string array value of {} directly\n", ConcatStringVector<String>(vNewValues).c_str());
         vStringValues = vNewValues;
         bSuccess = true;
     }

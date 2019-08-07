@@ -137,10 +137,10 @@ void VerifyApplyStatChanges(const TreeIndexArray& vTreeIndices, const String& sC
     for(auto& treeIndex : vTreeIndices)
     {
         auto& skillData = T::GetInstance()->GetLeaf(treeIndex);
-        LOG_FORMAT_STATEMENT("Processing skill (SkillRank = '%d', "
-                             "SkillTreeType = '%s', "
-                             "SkillType = '%s', "
-                             "SkillName = '%s', "
+        LOG_FORMAT_STATEMENT("Processing skill (SkillRank = '{}', "
+                             "SkillTreeType = '{}', "
+                             "SkillType = '{}', "
+                             "SkillName = '{}', "
                              "StatChanges = %zu)\n",
             skillData.GetSkillRank(),
             T::GetTreeType().c_str(),

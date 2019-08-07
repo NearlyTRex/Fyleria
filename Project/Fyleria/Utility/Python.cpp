@@ -25,10 +25,10 @@ Bool InitPython()
 
     // Check python library
     String sPythonLibFile = JoinPathsCanonical(GetDataDirectory(), PYTHON_FILE);
-    LOG_FORMAT_STATEMENT("Loading python library '%s'\n", sPythonLibFile.c_str());
+    LOG_FORMAT_STATEMENT("Loading python library '{}'\n", sPythonLibFile.c_str());
     if(!DoesPathExist(sPythonLibFile))
     {
-        ERROR_FORMAT_STATEMENT("Python library '%s' could not be found\n",
+        ERROR_FORMAT_STATEMENT("Python library '{}' could not be found\n",
             sPythonLibFile.c_str());
         return false;
     }
@@ -44,7 +44,7 @@ Bool InitPython()
     LOG_STATEMENT("Generating python path...");
     String sPythonPath = sPathSeparator + sPythonLibFile + sPathSeparator;
     WString sPythonPathW = ConvertStringToWideString(sPythonPath);
-    LOG_FORMAT_STATEMENT("Generated python path is '%s'\n", sPythonPath.c_str());
+    LOG_FORMAT_STATEMENT("Generated python path is '{}'\n", sPythonPath.c_str());
 
     // Skip site usage and ignore environment variables
     Py_NoSiteFlag++;
@@ -106,7 +106,7 @@ Bool RunPythonFile(const String& sFile)
         PyBindObject scope = PyBindModuleImport("__main__").attr("__dict__");
 
         // Evaluate the statements in an separate Python file on disk
-        LOG_FORMAT_STATEMENT("Running file '%s'\n", sFile.c_str());
+        LOG_FORMAT_STATEMENT("Running file '{}'\n", sFile.c_str());
         PyBindEvalFile(sFile.c_str(), scope);
         return true;
     }
@@ -114,7 +114,7 @@ Bool RunPythonFile(const String& sFile)
     {
         auto sMessage = error.what();
         error.restore();
-        ERROR_FORMAT_STATEMENT("%s\n", sMessage);
+        ERROR_FORMAT_STATEMENT("{}\n", sMessage);
         THROW_PYTHON_ERROR(sMessage);
     }
     return false;
@@ -134,7 +134,7 @@ Bool RunPythonCommand(const String& sCommand)
         PyBindObject scope = PyBindModuleImport("__main__").attr("__dict__");
 
         // Evaluate a string containing a sequence of statements
-        LOG_FORMAT_STATEMENT("Running command '%s'\n", sCommand.c_str());
+        LOG_FORMAT_STATEMENT("Running command '{}'\n", sCommand.c_str());
         PyBindExec(sCommand.c_str(), scope);
         return true;
     }
@@ -142,7 +142,7 @@ Bool RunPythonCommand(const String& sCommand)
     {
         auto sMessage = error.what();
         error.restore();
-        ERROR_FORMAT_STATEMENT("%s\n", sMessage);
+        ERROR_FORMAT_STATEMENT("{}\n", sMessage);
         THROW_PYTHON_ERROR(sMessage);
     }
     return false;

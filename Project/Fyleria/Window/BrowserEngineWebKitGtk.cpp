@@ -246,7 +246,7 @@ static void JavascriptFinishedHandler(GObject* pObject, GAsyncResult* pAsyncResu
         &pError);
     if(!pResult)
     {
-        ERROR_FORMAT_STATEMENT("Error running javascript: %s\n", pError->message);
+        ERROR_FORMAT_STATEMENT("Error running javascript: {}\n", pError->message);
         g_error_free(pError);
         return;
     }
@@ -338,7 +338,7 @@ String BrowserEngineWebKitGtk::GetJavascriptResultString(WebKitJavascriptResult*
         JSCException* pException = jsc_context_get_exception(jsc_value_get_context(pValue));
         if(pException)
         {
-            ERROR_FORMAT_STATEMENT("Error running javascript: %s\n", jsc_exception_get_message(pException));
+            ERROR_FORMAT_STATEMENT("Error running javascript: {}\n", jsc_exception_get_message(pException));
         }
         else
         {

@@ -80,7 +80,7 @@ void Character::RegenerateCharacterData(
     // Display the new data
 #ifdef DEBUG
     Json jsonData = *this;
-    LOG_FORMAT_STATEMENT("Completed regenerating character data (CharacterID = '%s'):\n%s\n",
+    LOG_FORMAT_STATEMENT("Completed regenerating character data (CharacterID = '{}'):\n{}\n",
         GetBasicData().GetCharacterID().c_str(),
         jsonData.dump(4).c_str());
 #endif
