@@ -6,7 +6,6 @@
 
 // Internal includes
 #include "Saves/Save.h"
-#include "Utility/ResultManager.h"
 #include "Utility/Singleton.h"
 
 namespace Gecko

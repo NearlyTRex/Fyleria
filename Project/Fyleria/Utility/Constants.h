@@ -57,9 +57,6 @@
 // Config file
 #define CONFIG_FILE                                 "Config.json"
 
-// Python file
-#define PYTHON_FILE                                 "PythonLib.zip"
-
 // Icon files
 #define ICON_FILE_MAIN_WINDOW                       "Icons/Icon-32x32.ico"
 

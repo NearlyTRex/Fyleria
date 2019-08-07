@@ -37,11 +37,9 @@ end
 
 -- Libs
 appFyleria_libs = {
-    "Assert",
     "Boost",
     "FantasyName",
     "MicroPather",
-    "Python3",
     "SpdLog",
     "TinyXML2",
     "TMXParser",

@@ -5,6 +5,17 @@ import subprocess
 import stat
 
 ###########################################################################
+# Required python version
+def GetRequiredPythonVersion():
+    return (3,5)
+###########################################################################
+# Detect Python version
+def DetectPython(required_version):
+    if (sys.version_info <= required_version):
+        return False
+    else:
+        return True
+###########################################################################
 ## Print log statement
 def LogStatement(message, include_elipses = True):
     output = " -- "

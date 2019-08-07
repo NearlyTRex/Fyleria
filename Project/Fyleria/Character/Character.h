@@ -15,7 +15,6 @@
 #include "CharacterData/CharacterSkillData.h"
 #include "CharacterData/CharacterStatChangeData.h"
 #include "CharacterParty/CharacterPartyEquippedItem.h"
-#include "Utility/ResultManager.h"
 #include "Items/ItemTree.h"
 #include "Skills/SkillTree.h"
 

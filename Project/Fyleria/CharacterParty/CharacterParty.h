@@ -8,7 +8,6 @@
 #include "Character/Character.h"
 #include "CharacterParty/CharacterPartyMember.h"
 #include "CharacterParty/CharacterPartyItem.h"
-#include "Utility/ResultManager.h"
 
 namespace Gecko
 {

@@ -7,7 +7,6 @@
 // Internal includes
 #include "CharacterAction/CharacterAction.h"
 #include "CharacterActionHandler/CharacterActionHandlerSkillAttack.h"
-#include "Utility/ResultManager.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 

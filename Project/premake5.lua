@@ -1,6 +1,5 @@
 -- Imports
 require "Fyleria/Fyleria"
-require "Libs/Assert/Assert"
 require "Libs/BackwardCPP/BackwardCPP"
 require "Libs/BetterEnums/BetterEnums"
 require "Libs/Boost/Boost"
@@ -9,8 +8,6 @@ require "Libs/ImmutableString/ImmutableString"
 require "Libs/MicroPather/MicroPather"
 require "Libs/ModernCPPJson/ModernCPPJson"
 require "Libs/ObjectThreadsafe/ObjectThreadsafe"
-require "Libs/PyBind/PyBind"
-require "Libs/Python3/Python3"
 require "Libs/SpdLog/SpdLog"
 require "Libs/TinyXML2/TinyXML2"
 require "Libs/TMXParser/TMXParser"
@@ -44,7 +41,6 @@ pic "On"
     buildoptions(appFyleria_buildoptions)
     linkoptions(appFyleria_linkoptions)
     includedirs(appFyleria_includedirs)
-    includedirs(libAssert_includedirs)
     includedirs(libBackwardCPP_includedirs)
     includedirs(libBoost_includedirs)
     includedirs(libFantasyName_includedirs)
@@ -52,8 +48,6 @@ pic "On"
     includedirs(libBetterEnums_includedirs)
     includedirs(libModernCPPJson_includedirs)
     includedirs(libObjectThreadsafe_includedirs)
-    includedirs(libPyBind_includedirs)
-    includedirs(libPython3_includedirs)
     includedirs(libSpdLog_includedirs)
     includedirs(libURIParser_includedirs)
     includedirs(libZlib_includedirs)
@@ -61,33 +55,16 @@ pic "On"
     defines(libBackwardCPP_defines)
     defines(libBetterEnums_defines)
     defines(libBoost_defines)
-    defines(libPython3_defines)
     defines(libURIParser_defines)
     files(appFyleria_sources)
     links(appFyleria_libs)
     links(libBackwardCPP_libs)
-    links(libPython3_libs)
     targetdir(GetAppTargetDirectory())
     targetname(GetTargetName("FyleriaMain"))
 filter "configurations:Debug*"
     defines(appFyleria_debugdefines)
 filter "configurations:Release*"
     defines(appFyleria_releasedefines)
-
--- Assert
-project "Assert"
-language "C++"
-pic "On"
-    kind(GetLibraryType())
-    includedirs(libAssert_includedirs)
-    defines(libAssert_defines)
-    files(libAssert_sources)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("Assert"))
-filter "configurations:Debug*"
-    defines(libAssert_debugdefines)
-filter "configurations:Release*"
-    defines(libAssert_releasedefines)
 
 -- Boost
 project "Boost"
@@ -133,23 +110,6 @@ filter "configurations:Debug*"
     defines(libMicroPather_debugdefines)
 filter "configurations:Release*"
     defines(libMicroPather_releasedefines)
-
--- Python3
-project "Python3"
-language "C"
-pic "On"
-    kind(GetLibraryType())
-    includedirs(libPython3_includedirs)
-    includedirs(libZlib_includedirs)
-    defines(libPython3_defines)
-    files(libPython3_sources)
-    links(libPython3_libs)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("Python3"))
-filter "configurations:Debug*"
-    defines(libPython3_debugdefines)
-filter "configurations:Release*"
-    defines(libPython3_releasedefines)
 
 -- SpdLog
 project "SpdLog"

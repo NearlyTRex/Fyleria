@@ -13,7 +13,6 @@
 #include "Utility/Constants.h"
 #include "Utility/Logging.h"
 #include "Utility/Filesystem.h"
-#include "Utility/Python.h"
 
 namespace Gecko
 {
@@ -66,13 +65,6 @@ Bool Application::Initialize()
         return false;
     }
 
-    // Initialize python
-    if(!InitPython())
-    {
-        ERROR_STATEMENT("Unable to initialize python");
-        return false;
-    }
-
     // Initialize stat names
     LOG_STATEMENT("Initializing stat names...");
     InitializeAllStatNames();
@@ -104,13 +96,6 @@ Bool Application::Finalize()
     SkillTree::UnloadSkillTreesFromMemory();
     ItemTree::UnloadItemTreesFromMemory();
     LOG_STATEMENT("Finished unloading trees from memory");
-
-    // Finalize python
-    if(!FinalizePython())
-    {
-        ERROR_STATEMENT("Unable to finalize python");
-        return false;
-    }
     return true;
 }
 

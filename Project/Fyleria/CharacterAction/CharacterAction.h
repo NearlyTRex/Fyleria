@@ -6,7 +6,6 @@
 
 // Internal includes
 #include "CharacterAction/CharacterActionEntry.h"
-#include "Utility/ResultManager.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 #include "Utility/Json.h"

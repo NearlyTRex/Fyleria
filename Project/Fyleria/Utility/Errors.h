@@ -21,15 +21,11 @@ namespace Gecko
 // or some wrong human input, or some lack of resource (no more memory, disk space
 // full, broken hardware, network connection failure).
 
-// Python Error
-// A module error is specifically designed for errors around Python.
-
 // Error codes
 BETTER_ENUM(ErrorCode, Int,
     GeneralError,
     LogicError,
-    RuntimeError,
-    PythonError
+    RuntimeError
 );
 
 // General error
@@ -96,15 +92,6 @@ class RuntimeError : public GeneralError
 public:
     RuntimeError(const String& message, const String& file = __FILE__, Int line = __LINE__)
         : GeneralError(message, ErrorCode::RuntimeError, file, line)
-    {}
-};
-
-// Python error
-class PythonError : public GeneralError
-{
-public:
-    PythonError(const String& message, const String& file = __FILE__, Int line = __LINE__)
-        : GeneralError(message, ErrorCode::PythonError, file, line)
     {}
 };
 

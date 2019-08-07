@@ -6,7 +6,6 @@
 
 // Internal includes
 #include "CharacterAction/CharacterAction.h"
-#include "Utility/ResultManager.h"
 #include "Skills/SkillDataAffinity.h"
 #include "Skills/SkillDataAlchemy.h"
 #include "Skills/SkillDataBreakdown.h"

@@ -6,7 +6,6 @@
 
 // Internal includes
 #include "CharacterAction/CharacterAction.h"
-#include "Utility/ResultManager.h"
 #include "Items/ItemDataArmor.h"
 #include "Items/ItemDataIngredient.h"
 #include "Items/ItemDataPotion.h"

@@ -6,7 +6,6 @@
 
 // Internal includes
 #include "CharacterParty/CharacterParty.h"
-#include "Utility/ResultManager.h"
 
 namespace Gecko
 {

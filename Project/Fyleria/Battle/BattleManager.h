@@ -6,7 +6,6 @@
 
 // Internal includes
 #include "Battle/Battle.h"
-#include "Utility/ResultManager.h"
 
 namespace Gecko
 {

@@ -7,7 +7,6 @@
 // Internal includes
 #include "Character/Character.h"
 #include "Character/CharacterGenerator.h"
-#include "Utility/ResultManager.h"
 
 namespace Gecko
 {
