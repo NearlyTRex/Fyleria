@@ -27,7 +27,7 @@
 #define WriteDebugLogEntry spdlog::debug
 #define WriteInfoLogEntry spdlog::info
 #define WriteErrorLogEntry spdlog::error
-#define WriteWarngingLogEntry spdlog::warn
+#define WriteWarningLogEntry spdlog::warn
 #define WriteCriticalLogEntry spdlog::critical
 
 // SpdLog type defines
@@ -53,6 +53,21 @@
 #define LOG_WFORMAT_STATEMENT(string, ...)
 #define LOG_FORMAT_STATEMENT_NARGS(string)
 #define LOG_WFORMAT_STATEMENT_NARGS(string)
+#endif
+
+// Write a warning statement
+#ifdef DEBUG
+#define WARNING_STATEMENT(string) WriteWarningLogEntry(string)
+#define WARNING_FORMAT_STATEMENT(string, ...) WriteWarningLogEntry(string, __VA_ARGS__)
+#define WARNING_WFORMAT_STATEMENT(string, ...) WriteWarningLogEntry(string, __VA_ARGS__)
+#define WARNING_FORMAT_STATEMENT_NARGS(string) WriteWarningLogEntry(string)
+#define WARNING_WFORMAT_STATEMENT_NARGS(string) WriteWarningLogEntry(string)
+#else
+#define WARNING_STATEMENT(string)
+#define WARNING_FORMAT_STATEMENT(string, ...)
+#define WARNING_WFORMAT_STATEMENT(string, ...)
+#define WARNING_FORMAT_STATEMENT_NARGS(string)
+#define WARNING_WFORMAT_STATEMENT_NARGS(string)
 #endif
 
 // Write an error statement
