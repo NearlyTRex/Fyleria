@@ -25,18 +25,13 @@ int main(int argc, char** argv)
 
     try
     {
-        // Check data folder
-        if(!Gecko::DoesPathExist(Gecko::GetDataDirectory()))
-        {
-            STDCerr << "Missing data folder, stopping." << STDEndl;
-            return EXIT_FAILURE;
-        }
-
-        // Create other folders if they don't already exist
+        // Create save folder
         if(!Gecko::DoesPathExist(Gecko::GetSaveDirectory()))
         {
             Gecko::CreateNewDirectory(Gecko::GetSaveDirectory());
         }
+
+        // Create log folder
         if(!Gecko::DoesPathExist(Gecko::GetLogDirectory()))
         {
             Gecko::CreateNewDirectory(Gecko::GetLogDirectory());
@@ -45,6 +40,13 @@ int main(int argc, char** argv)
         // Setup logging
         SETUP_FILE_LOGGING(Log, Gecko::GetLogFile());
 
+        // Check data folder
+        if(!Gecko::DoesPathExist(Gecko::GetDataDirectory()))
+        {
+            ERROR_STATEMENT("Missing data folder, stopping.");
+            return EXIT_FAILURE;
+        }
+
         // Run application
         Gecko::Application app;
         app.Run();
@@ -52,7 +54,7 @@ int main(int argc, char** argv)
     }
     catch (STDException& e)
     {
-        STDCerr << e.what() << STDEndl;
+        ERROR_FORMAT_STATEMENT("Caught exception: {}", e.what());
+        return EXIT_FAILURE;
     }
-    return EXIT_FAILURE;
 }
