@@ -28,12 +28,12 @@ Bool IsSymbolicLink(const String& sPath)
     return BoostFilesystemIsSymbolicLink(BoostFilesystemPath(sPath));
 }
 
-Bool CreateDirectory(const String& sPath)
+Bool CreateNewDirectory(const String& sPath)
 {
     return BoostFilesystemCreateDirectory(BoostFilesystemPath(sPath));
 }
 
-Bool RemoveDirectory(const String& sPath)
+Bool RemoveDirectoryAndFiles(const String& sPath)
 {
     return BoostFilesystemRemoveAll(BoostFilesystemPath(sPath)) > 0;
 }
@@ -135,6 +135,18 @@ String GetDataDirectory()
 String GetSaveDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_SAVE);
+}
+
+String GetLogDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_LOG);
+}
+
+String GetLogFile()
+{
+    TimeType uTime = STDTime(nullptr);
+    String sFile = "Log-" + BoostLexicalCast<String>(STDPutTime(STDLocalTime(&uTime), "%Y%m%d-%OH%OM%OS")) + ".txt";
+    return JoinPaths(GetLogDirectory(), sFile);
 }
 
 };

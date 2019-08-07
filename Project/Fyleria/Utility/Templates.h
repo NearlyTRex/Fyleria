@@ -160,16 +160,16 @@ void ShuffleVector(STDVector<T>& vVector)
 template <typename T>
 void PrintStringVector(const STDVector<T>& vVector)
 {
-    PRINTF("[");
+    printf("[");
     for(UInt i = 0; i < vVector.size(); i++)
     {
-        PRINTF("%s", vVector[i].c_str());
+        printf("%s", vVector[i].c_str());
         if(i != vVector.size() - 1)
         {
-            PRINTF(", ");
+            printf(", ");
         }
     }
-    PRINTF("]\n");
+    printf("]\n");
 }
 
 // Concatenate vector of strings to one string

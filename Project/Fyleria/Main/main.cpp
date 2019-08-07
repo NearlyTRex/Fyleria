@@ -4,7 +4,7 @@
 // Internal includes
 #include "Main/Application.h"
 #include "Config/ConfigManager.h"
-#include "Utility/Constants.h"
+#include "Utility/Logging.h"
 #include "Utility/Types.h"
 #include "Utility/Standard.h"
 #include "Utility/Boost.h"
@@ -13,7 +13,7 @@
 
 // Main
 #if defined(PLATFORM_OS_WINDOWS)
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 #else
 int main(int argc, char** argv)
 #endif
@@ -23,15 +23,36 @@ int main(int argc, char** argv)
     Gecko::RegisterSignalHandler();
 #endif
 
-    // Check data folder
-    if(!Gecko::DoesPathExist(Gecko::GetDataDirectory()))
+    try
     {
-        STDCerr << "Missing data folder, stopping." << STDEndl;
-        return EXIT_FAILURE;
-    }
+        // Check data folder
+        if(!Gecko::DoesPathExist(Gecko::GetDataDirectory()))
+        {
+            STDCerr << "Missing data folder, stopping." << STDEndl;
+            return EXIT_FAILURE;
+        }
 
-    // Run application
-    Gecko::Application app;
-    app.Run();
-    return EXIT_SUCCESS;
+        // Create other folders if they don't already exist
+        if(!Gecko::DoesPathExist(Gecko::GetSaveDirectory()))
+        {
+            Gecko::CreateNewDirectory(Gecko::GetSaveDirectory());
+        }
+        if(!Gecko::DoesPathExist(Gecko::GetLogDirectory()))
+        {
+            Gecko::CreateNewDirectory(Gecko::GetLogDirectory());
+        }
+
+        // Setup logging
+        SETUP_FILE_LOGGING(Log, Gecko::GetLogFile());
+
+        // Run application
+        Gecko::Application app;
+        app.Run();
+        return EXIT_SUCCESS;
+    }
+    catch (STDException& e)
+    {
+        STDCerr << e.what() << STDEndl;
+    }
+    return EXIT_FAILURE;
 }

@@ -22,11 +22,11 @@ Bool IsDirectory(const String& sPath);
 // Is path a symbolic link
 Bool IsSymbolicLink(const String& sPath);
 
-// Create directory
-Bool CreateDirectory(const String& sPath);
+// Create new directory
+Bool CreateNewDirectory(const String& sPath);
 
-// Remove directory
-Bool RemoveDirectory(const String& sPath);
+// Remove directory and all files
+Bool RemoveDirectoryAndFiles(const String& sPath);
 
 // Remove file
 Bool RemoveFile(const String& sPath);
@@ -60,6 +60,12 @@ String GetDataDirectory();
 
 // Get save directory
 String GetSaveDirectory();
+
+// Get log directory
+String GetLogDirectory();
+
+// Get log file
+String GetLogFile();
 
 };
 

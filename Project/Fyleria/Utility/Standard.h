@@ -36,6 +36,9 @@
 #define STDCerr std::cerr
 #define STDEndl std::endl
 #define STDStringLiterals std::string_literals
+#define STDTime std::time
+#define STDLocalTime std::localtime
+#define STDPutTime std::put_time
 #define STDIsSpace std::isspace
 #define STDIsAlphaNumeric std::isalpha
 #define STDToUpper std::toupper

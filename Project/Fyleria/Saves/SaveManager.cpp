@@ -221,13 +221,6 @@ void SaveManager::LoadFromFile(const String& sSlot, const String& sFile, const S
 
 void SaveManager::SaveAllToDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType)
 {
-    // Create directory if it does not yet exist
-    String sSavePath = GetAbsolutePath(sDirectory);
-    if(!DoesPathExist(sSavePath))
-    {
-        CreateDirectory(sSavePath);
-    }
-
     // Save each slot into a save file
     for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {

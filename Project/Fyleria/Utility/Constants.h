@@ -52,6 +52,7 @@
 // Folders
 #define FOLDER_DATA                                 "Data"
 #define FOLDER_SAVE                                 "Save"
+#define FOLDER_LOG                                  "Log"
 
 // Config file
 #define CONFIG_FILE                                 "Config.json"
