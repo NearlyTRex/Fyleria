@@ -88,9 +88,7 @@ UByteArray GetFileContentsAsByteArray(const String& sPath)
 String GetProgramDirectory()
 {
     BoostFilesystemPath sFullPath;
-#if defined(PLATFORM_OS_LINUX)
-    STDVector<Byte> vBuffer;
-#elif defined(PLATFORM_OS_WINDOWS)
+#if defined(PLATFORM_OS_WINDOWS)
     STDVector<WByte> vBuffer;
 #else
     STDVector<Byte> vBuffer;
@@ -116,9 +114,7 @@ String GetProgramDirectory()
     }
     while(uLength >= vBuffer.size());
     vBuffer.resize(uLength);
-#if defined(PLATFORM_OS_LINUX)
-    sFullPath = String(vBuffer.begin(), vBuffer.end());
-#elif defined(PLATFORM_OS_WINDOWS)
+#if defined(PLATFORM_OS_WINDOWS)
     sFullPath = WString(vBuffer.begin(), vBuffer.end());
 #else
     sFullPath = String(vBuffer.begin(), vBuffer.end());
@@ -144,9 +140,8 @@ String GetLogDirectory()
 
 String GetLogFile()
 {
-    TimeType uTime = STDTime(nullptr);
-    String sFile = "Log-" + BoostLexicalCast<String>(STDPutTime(STDLocalTime(&uTime), "%Y%m%d-%OH%OM%OS")) + ".txt";
-    return JoinPaths(GetLogDirectory(), sFile);
+    static TimeType uTime = STDTime(nullptr);
+    return "Log-" + BoostLexicalCast<String>(STDPutTime(STDLocalTime(&uTime), "%Y%m%d-%OH%OM%OS")) + ".txt";
 }
 
 };
