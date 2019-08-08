@@ -11,11 +11,11 @@ namespace Gecko
 {
 
 template <class T>
-void PostProcessItems(const TreeIndexArray& vTreeIndices)
+void PostProcessItems(T& tree, const TreeIndexArray& vTreeIndices)
 {
     for(auto& treeIndex : vTreeIndices)
     {
-        auto& itemData = T::GetInstance()->GetLeaf(treeIndex);
+        auto& itemData = tree.GetLeaf(treeIndex);
         itemData.SetItemTreeIndex(treeIndex);
         for(auto& statChange : itemData.GetStatChanges())
         {
@@ -24,60 +24,60 @@ void PostProcessItems(const TreeIndexArray& vTreeIndices)
     }
 }
 
-void ItemTree::LoadItemTreesIntoMemory()
+void ItemManager::LoadItemTreesIntoMemory()
 {
     // Armor
-    ItemTreeArmor::GetInstance()->AddBranch("Chest", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_CHEST));
-    ItemTreeArmor::GetInstance()->AddBranch("Feet", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_FEET));
-    ItemTreeArmor::GetInstance()->AddBranch("Finger", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_FINGER));
-    ItemTreeArmor::GetInstance()->AddBranch("Hands", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_HANDS));
-    ItemTreeArmor::GetInstance()->AddBranch("Head", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_HEAD));
-    ItemTreeArmor::GetInstance()->AddBranch("Neck", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_NECK));
-    ItemTreeArmor::GetInstance()->AddBranch("Legs", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_LEGS));
-    ItemTreeArmor::GetInstance()->AddBranch("Shield", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_SHIELD));
+    GetItemTreeArmor().AddBranch("Chest", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_CHEST));
+    GetItemTreeArmor().AddBranch("Feet", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_FEET));
+    GetItemTreeArmor().AddBranch("Finger", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_FINGER));
+    GetItemTreeArmor().AddBranch("Hands", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_HANDS));
+    GetItemTreeArmor().AddBranch("Head", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_HEAD));
+    GetItemTreeArmor().AddBranch("Neck", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_NECK));
+    GetItemTreeArmor().AddBranch("Legs", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_LEGS));
+    GetItemTreeArmor().AddBranch("Shield", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_ARMOR_SHIELD));
 
     // Ingredient
-    ItemTreeIngredient::GetInstance()->AddBranch("Bar", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_BAR));
-    ItemTreeIngredient::GetInstance()->AddBranch("Cloth", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_CLOTH));
-    ItemTreeIngredient::GetInstance()->AddBranch("Crystal", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_CRYSTAL));
-    ItemTreeIngredient::GetInstance()->AddBranch("Leather", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_LEATHER));
-    ItemTreeIngredient::GetInstance()->AddBranch("Mail", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_MAIL));
-    ItemTreeIngredient::GetInstance()->AddBranch("Plate", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_PLATE));
-    ItemTreeIngredient::GetInstance()->AddBranch("Scale", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_SCALE));
-    ItemTreeIngredient::GetInstance()->AddBranch("Screw", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_SCREW));
-    ItemTreeIngredient::GetInstance()->AddBranch("Sheet", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_SHEET));
-    ItemTreeIngredient::GetInstance()->AddBranch("Stud", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_STUD));
-    ItemTreeIngredient::GetInstance()->AddBranch("Thread", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_THREAD));
+    GetItemTreeIngredient().AddBranch("Bar", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_BAR));
+    GetItemTreeIngredient().AddBranch("Cloth", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_CLOTH));
+    GetItemTreeIngredient().AddBranch("Crystal", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_CRYSTAL));
+    GetItemTreeIngredient().AddBranch("Leather", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_LEATHER));
+    GetItemTreeIngredient().AddBranch("Mail", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_MAIL));
+    GetItemTreeIngredient().AddBranch("Plate", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_PLATE));
+    GetItemTreeIngredient().AddBranch("Scale", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_SCALE));
+    GetItemTreeIngredient().AddBranch("Screw", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_SCREW));
+    GetItemTreeIngredient().AddBranch("Sheet", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_SHEET));
+    GetItemTreeIngredient().AddBranch("Stud", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_STUD));
+    GetItemTreeIngredient().AddBranch("Thread", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_INGREDIENT_THREAD));
 
     // Potion
-    ItemTreePotion::GetInstance()->AddBranch("Energy", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_ENERGY));
-    ItemTreePotion::GetInstance()->AddBranch("Heal", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_HEAL));
-    ItemTreePotion::GetInstance()->AddBranch("Magic", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_MAGIC));
-    ItemTreePotion::GetInstance()->AddBranch("Speed", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_SPEED));
+    GetItemTreePotion().AddBranch("Energy", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_ENERGY));
+    GetItemTreePotion().AddBranch("Heal", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_HEAL));
+    GetItemTreePotion().AddBranch("Magic", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_MAGIC));
+    GetItemTreePotion().AddBranch("Speed", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_POTION_SPEED));
 
     // Weapon
-    ItemTreeWeapon::GetInstance()->AddBranch("Blunt", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_BLUNT));
-    ItemTreeWeapon::GetInstance()->AddBranch("Mage", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_MAGE));
-    ItemTreeWeapon::GetInstance()->AddBranch("Pierce", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_PIERCE));
-    ItemTreeWeapon::GetInstance()->AddBranch("Slash", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_SLASH));
+    GetItemTreeWeapon().AddBranch("Blunt", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_BLUNT));
+    GetItemTreeWeapon().AddBranch("Mage", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_MAGE));
+    GetItemTreeWeapon().AddBranch("Pierce", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_PIERCE));
+    GetItemTreeWeapon().AddBranch("Slash", JoinPathsCanonical(GetDataDirectory(), ITEM_FILE_WEAPON_SLASH));
 
     // Post process item data
-    PostProcessItems<ItemTreeArmor>(GetAllArmorItems());
-    PostProcessItems<ItemTreeIngredient>(GetAllIngredientItems());
-    PostProcessItems<ItemTreePotion>(GetAllPotionItems());
-    PostProcessItems<ItemTreeWeapon>(GetAllWeaponItems());
+    PostProcessItems<ItemTreeArmor>(GetItemTreeArmor(), GetAllArmorItems());
+    PostProcessItems<ItemTreeIngredient>(GetItemTreeIngredient(), GetAllIngredientItems());
+    PostProcessItems<ItemTreePotion>(GetItemTreePotion(), GetAllPotionItems());
+    PostProcessItems<ItemTreeWeapon>(GetItemTreeWeapon(), GetAllWeaponItems());
 }
 
-void ItemTree::UnloadItemTreesFromMemory()
+void ItemManager::UnloadItemTreesFromMemory()
 {
     // Clear all item data
-    ItemTreeArmor::GetInstance()->ClearAllData();
-    ItemTreeIngredient::GetInstance()->ClearAllData();
-    ItemTreePotion::GetInstance()->ClearAllData();
-    ItemTreeWeapon::GetInstance()->ClearAllData();
+    GetItemTreeArmor().ClearAllData();
+    GetItemTreeIngredient().ClearAllData();
+    GetItemTreePotion().ClearAllData();
+    GetItemTreeWeapon().ClearAllData();
 }
 
-Bool ItemTree::DoesItemDataExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataExist(const TreeIndex& treeIndex)
 {
     return (
         DoesItemDataArmorExist(treeIndex) ||
@@ -87,47 +87,47 @@ Bool ItemTree::DoesItemDataExist(const TreeIndex& treeIndex)
     );
 }
 
-Bool ItemTree::DoesItemDataArmorExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataArmorExist(const TreeIndex& treeIndex)
 {
-    return ItemTreeArmor::GetInstance()->HasLeaf(treeIndex);
+    return GetItemTreeArmor().HasLeaf(treeIndex);
 }
 
-Bool ItemTree::DoesItemDataIngredientExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataIngredientExist(const TreeIndex& treeIndex)
 {
-    return ItemTreeIngredient::GetInstance()->HasLeaf(treeIndex);
+    return GetItemTreeIngredient().HasLeaf(treeIndex);
 }
 
-Bool ItemTree::DoesItemDataPotionExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataPotionExist(const TreeIndex& treeIndex)
 {
-    return ItemTreePotion::GetInstance()->HasLeaf(treeIndex);
+    return GetItemTreePotion().HasLeaf(treeIndex);
 }
 
-Bool ItemTree::DoesItemDataWeaponExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataWeaponExist(const TreeIndex& treeIndex)
 {
-    return ItemTreeWeapon::GetInstance()->HasLeaf(treeIndex);
+    return GetItemTreeWeapon().HasLeaf(treeIndex);
 }
 
-const ItemDataArmor& ItemTree::RetrieveItemDataArmor(const TreeIndex& treeIndex)
+const ItemDataArmor& ItemManager::RetrieveItemDataArmor(const TreeIndex& treeIndex)
 {
-    return ItemTreeArmor::GetInstance()->GetLeaf(treeIndex);
+    return GetItemTreeArmor().GetLeaf(treeIndex);
 }
 
-const ItemDataIngredient& ItemTree::RetrieveItemDataIngredient(const TreeIndex& treeIndex)
+const ItemDataIngredient& ItemManager::RetrieveItemDataIngredient(const TreeIndex& treeIndex)
 {
-    return ItemTreeIngredient::GetInstance()->GetLeaf(treeIndex);
+    return GetItemTreeIngredient().GetLeaf(treeIndex);
 }
 
-const ItemDataPotion& ItemTree::RetrieveItemDataPotion(const TreeIndex& treeIndex)
+const ItemDataPotion& ItemManager::RetrieveItemDataPotion(const TreeIndex& treeIndex)
 {
-    return ItemTreePotion::GetInstance()->GetLeaf(treeIndex);
+    return GetItemTreePotion().GetLeaf(treeIndex);
 }
 
-const ItemDataWeapon& ItemTree::RetrieveItemDataWeapon(const TreeIndex& treeIndex)
+const ItemDataWeapon& ItemManager::RetrieveItemDataWeapon(const TreeIndex& treeIndex)
 {
-    return ItemTreeWeapon::GetInstance()->GetLeaf(treeIndex);
+    return GetItemTreeWeapon().GetLeaf(treeIndex);
 }
 
-String ItemTree::RetrieveItemType(const TreeIndex& treeIndex)
+String ItemManager::RetrieveItemType(const TreeIndex& treeIndex)
 {
     if(DoesItemDataArmorExist(treeIndex))
     {
@@ -149,13 +149,13 @@ String ItemTree::RetrieveItemType(const TreeIndex& treeIndex)
 }
 
 template <class T>
-void AddItemLeaves(const String& sBranchName, TreeIndexArray& vLeaves)
+void AddItemLeaves(T& tree, const String& sBranchName, TreeIndexArray& vLeaves)
 {
-    auto vNewLeaves = T::GetInstance()->GetAllLeaves(sBranchName);
+    auto vNewLeaves = tree.GetAllLeaves(sBranchName);
     vLeaves.insert(vLeaves.end(), vNewLeaves.begin(), vNewLeaves.end());
 }
 
-TreeIndexArray ItemTree::GetAllArmorItems()
+TreeIndexArray ItemManager::GetAllArmorItems()
 {
     TreeIndexArray vFinal;
     AddItemLeaves<ItemTreeArmor>("Chest", vFinal);
@@ -169,7 +169,7 @@ TreeIndexArray ItemTree::GetAllArmorItems()
     return vFinal;
 }
 
-TreeIndexArray ItemTree::GetAllIngredientItems()
+TreeIndexArray ItemManager::GetAllIngredientItems()
 {
     TreeIndexArray vFinal;
     AddItemLeaves<ItemTreeIngredient>("Bar", vFinal);
@@ -186,7 +186,7 @@ TreeIndexArray ItemTree::GetAllIngredientItems()
     return vFinal;
 }
 
-TreeIndexArray ItemTree::GetAllPotionItems()
+TreeIndexArray ItemManager::GetAllPotionItems()
 {
     TreeIndexArray vFinal;
     AddItemLeaves<ItemTreePotion>("Energy", vFinal);
@@ -196,7 +196,7 @@ TreeIndexArray ItemTree::GetAllPotionItems()
     return vFinal;
 }
 
-TreeIndexArray ItemTree::GetAllWeaponItems()
+TreeIndexArray ItemManager::GetAllWeaponItems()
 {
     TreeIndexArray vFinal;
     AddItemLeaves<ItemTreeWeapon>("Blunt", vFinal);
@@ -206,7 +206,7 @@ TreeIndexArray ItemTree::GetAllWeaponItems()
     return vFinal;
 }
 
-TreeIndexArray ItemTree::GetAllEquippedItems(const String& sCharID)
+TreeIndexArray ItemManager::GetAllEquippedItems(const String& sCharID)
 {
     TreeIndexArray vFinal;
     if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharID))
@@ -222,34 +222,34 @@ TreeIndexArray ItemTree::GetAllEquippedItems(const String& sCharID)
     return vFinal;
 }
 
-TreeIndex ItemTree::ResolveItemLeafIntoIndex(const String& sLeaf)
+TreeIndex ItemManager::ResolveItemLeafIntoIndex(const String& sLeaf)
 {
     // Branch name
     String sBranch;
 
     // Check armor
-    sBranch = ItemTreeArmor::GetInstance()->GetBranchFromLeaf(sLeaf);
+    sBranch = GetItemTreeArmor().GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
         return TreeIndex((+ItemTreeType::Armor)._to_string(), sBranch, sLeaf);
     }
 
     // Check weapon
-    sBranch = ItemTreeWeapon::GetInstance()->GetBranchFromLeaf(sLeaf);
+    sBranch = GetItemTreeWeapon().GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
         return TreeIndex((+ItemTreeType::Weapon)._to_string(), sBranch, sLeaf);
     }
 
     // Check potion
-    sBranch = ItemTreePotion::GetInstance()->GetBranchFromLeaf(sLeaf);
+    sBranch = GetItemTreePotion().GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
         return TreeIndex((+ItemTreeType::Potion)._to_string(), sBranch, sLeaf);
     }
 
     // Check ingredient
-    sBranch = ItemTreeIngredient::GetInstance()->GetBranchFromLeaf(sLeaf);
+    sBranch = GetItemTreeIngredient().GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
         return TreeIndex((+ItemTreeType::Ingredient)._to_string(), sBranch, sLeaf);
@@ -259,7 +259,7 @@ TreeIndex ItemTree::ResolveItemLeafIntoIndex(const String& sLeaf)
     return TreeIndex();
 }
 
-Bool ItemTree::IsItemActionable(const TreeIndex& treeIndex)
+Bool ItemManager::IsItemActionable(const TreeIndex& treeIndex)
 {
     if(DoesItemDataArmorExist(treeIndex))
     {
@@ -276,7 +276,7 @@ Bool ItemTree::IsItemActionable(const TreeIndex& treeIndex)
     return false;
 }
 
-Bool ItemTree::GenerateItemCharacterActions(const TreeIndex& treeIndex,
+Bool ItemManager::GenerateItemCharacterActions(const TreeIndex& treeIndex,
     const String& sCharacterID,
     const String& sWeaponSet,
     CharacterActionArray& vActions)
@@ -314,7 +314,7 @@ Bool ItemTree::GenerateItemCharacterActions(const TreeIndex& treeIndex,
     return false;
 }
 
-Bool ItemTree::IsArmorBetter(const TreeIndex& treeIndex1, const TreeIndex& treeIndex2)
+Bool ItemManager::IsArmorBetter(const TreeIndex& treeIndex1, const TreeIndex& treeIndex2)
 {
     if(!DoesItemDataArmorExist(treeIndex1) || !DoesItemDataArmorExist(treeIndex2))
     {
@@ -330,7 +330,7 @@ Bool ItemTree::IsArmorBetter(const TreeIndex& treeIndex1, const TreeIndex& treeI
         itemData1.GetMagicDefendPercent() > itemData2.GetMagicDefendPercent());
 }
 
-Bool ItemTree::IsWeaponBetter(const TreeIndex& treeIndex1, const TreeIndex& treeIndex2)
+Bool ItemManager::IsWeaponBetter(const TreeIndex& treeIndex1, const TreeIndex& treeIndex2)
 {
     if(!DoesItemDataWeaponExist(treeIndex1) || !DoesItemDataWeaponExist(treeIndex2))
     {
@@ -345,12 +345,12 @@ Bool ItemTree::IsWeaponBetter(const TreeIndex& treeIndex1, const TreeIndex& tree
         itemData1.GetSlashAttackPercent() > itemData2.GetSlashAttackPercent());
 }
 
-Bool ItemTree::IsItemWeapon(const TreeIndex& treeIndex)
+Bool ItemManager::IsItemWeapon(const TreeIndex& treeIndex)
 {
     return DoesItemDataWeaponExist(treeIndex);
 }
 
-Bool ItemTree::IsItemShield(const TreeIndex& treeIndex)
+Bool ItemManager::IsItemShield(const TreeIndex& treeIndex)
 {
     if(DoesItemDataArmorExist(treeIndex))
     {
@@ -364,7 +364,7 @@ Bool ItemTree::IsItemShield(const TreeIndex& treeIndex)
     return false;
 }
 
-StringArray ItemTree::GetActionTypes(const TreeIndex& treeIndex)
+StringArray ItemManager::GetActionTypes(const TreeIndex& treeIndex)
 {
     StringArray vActionTypes;
     if(DoesItemDataArmorExist(treeIndex))
@@ -385,7 +385,7 @@ StringArray ItemTree::GetActionTypes(const TreeIndex& treeIndex)
     return vActionTypes;
 }
 
-void ItemTree::FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
+void ItemManager::FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
     TreeIndexArray& vPassives,
     TreeIndexArray& vActives,
     TreeIndexArray& vActionables)
