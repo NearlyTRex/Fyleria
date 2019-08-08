@@ -11,7 +11,7 @@
 namespace Gecko
 {
 
-class CharacterManager : public Singleton<CharacterManager>
+class CharacterManager
 {
 public:
 

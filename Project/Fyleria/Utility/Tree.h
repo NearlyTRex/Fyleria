@@ -6,7 +6,6 @@
 
 // Internal includes
 #include "Utility/Logging.h"
-#include "Utility/Singleton.h"
 #include "Utility/Errors.h"
 #include "Utility/Filesystem.h"
 #include "Utility/TreeIndex.h"
@@ -16,7 +15,7 @@ namespace Gecko
 {
 
 template <class T>
-class Tree : public Singleton<Tree<T>>
+class Tree
 {
 public:
 

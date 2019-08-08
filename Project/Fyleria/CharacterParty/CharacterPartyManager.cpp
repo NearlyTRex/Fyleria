@@ -11,7 +11,6 @@ namespace Gecko
 {
 
 CharacterPartyManager::CharacterPartyManager()
-    : Singleton<CharacterPartyManager>()
 {
 }
 

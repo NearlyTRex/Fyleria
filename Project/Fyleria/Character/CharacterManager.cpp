@@ -13,7 +13,6 @@ namespace Gecko
 {
 
 CharacterManager::CharacterManager()
-    : Singleton<CharacterManager>()
 {
 }
 

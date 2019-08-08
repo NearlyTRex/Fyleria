@@ -1,8 +1,8 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-#ifndef _GECKO_ITEM_TREE_H_
-#define _GECKO_ITEM_TREE_H_
+#ifndef _GECKO_ITEM_MANAGER_H_
+#define _GECKO_ITEM_MANAGER_H_
 
 // Internal includes
 #include "CharacterAction/CharacterAction.h"
@@ -21,68 +21,74 @@ typedef Tree<ItemDataIngredient> ItemTreeIngredient;
 typedef Tree<ItemDataPotion> ItemTreePotion;
 typedef Tree<ItemDataWeapon> ItemTreeWeapon;
 
-class ItemTree
+class ItemManager
 {
 public:
 
-    // Load/unload item trees into memory
-    static void LoadItemTreesIntoMemory();
-    static void UnloadItemTreesFromMemory();
+    // Constructors
+    ItemManager();
 
-    // Verify
-    static void VerifyItemTrees();
+    // Load/unload item trees into memory
+    void LoadItemTreesIntoMemory();
+    void UnloadItemTreesFromMemory();
 
     // Determine if item data exists
-    static Bool DoesItemDataExist(const TreeIndex& treeIndex);
-    static Bool DoesItemDataArmorExist(const TreeIndex& treeIndex);
-    static Bool DoesItemDataIngredientExist(const TreeIndex& treeIndex);
-    static Bool DoesItemDataPotionExist(const TreeIndex& treeIndex);
-    static Bool DoesItemDataWeaponExist(const TreeIndex& treeIndex);
+    Bool DoesItemDataExist(const TreeIndex& treeIndex);
+    Bool DoesItemDataArmorExist(const TreeIndex& treeIndex);
+    Bool DoesItemDataIngredientExist(const TreeIndex& treeIndex);
+    Bool DoesItemDataPotionExist(const TreeIndex& treeIndex);
+    Bool DoesItemDataWeaponExist(const TreeIndex& treeIndex);
 
     // Retrieve item data
-    static const ItemDataArmor& RetrieveItemDataArmor(const TreeIndex& treeIndex);
-    static const ItemDataIngredient& RetrieveItemDataIngredient(const TreeIndex& treeIndex);
-    static const ItemDataPotion& RetrieveItemDataPotion(const TreeIndex& treeIndex);
-    static const ItemDataWeapon& RetrieveItemDataWeapon(const TreeIndex& treeIndex);
+    const ItemDataArmor& RetrieveItemDataArmor(const TreeIndex& treeIndex);
+    const ItemDataIngredient& RetrieveItemDataIngredient(const TreeIndex& treeIndex);
+    const ItemDataPotion& RetrieveItemDataPotion(const TreeIndex& treeIndex);
+    const ItemDataWeapon& RetrieveItemDataWeapon(const TreeIndex& treeIndex);
 
     // Retrieve item type
-    static String RetrieveItemType(const TreeIndex& treeIndex);
+    String RetrieveItemType(const TreeIndex& treeIndex);
 
     // Get item lists
-    static TreeIndexArray GetAllArmorItems();
-    static TreeIndexArray GetAllIngredientItems();
-    static TreeIndexArray GetAllPotionItems();
-    static TreeIndexArray GetAllWeaponItems();
-    static TreeIndexArray GetAllEquippedItems(const String& sCharID);
+    TreeIndexArray GetAllArmorItems();
+    TreeIndexArray GetAllIngredientItems();
+    TreeIndexArray GetAllPotionItems();
+    TreeIndexArray GetAllWeaponItems();
+    TreeIndexArray GetAllEquippedItems(const String& sCharID);
 
     // Resolve leaf into index
-    static TreeIndex ResolveItemLeafIntoIndex(const String& sLeaf);
+    TreeIndex ResolveItemLeafIntoIndex(const String& sLeaf);
 
     // Determine if item is actionable
-    static Bool IsItemActionable(const TreeIndex& treeIndex);
+    Bool IsItemActionable(const TreeIndex& treeIndex);
 
     // Generate character actions
-    static Bool GenerateItemCharacterActions(const TreeIndex& treeIndex,
+    Bool GenerateItemCharacterActions(const TreeIndex& treeIndex,
         const String& sCharacterID,
         const String& sWeaponSet,
         CharacterActionArray& vActions);
 
     // Check "better" quality
-    static Bool IsArmorBetter(const TreeIndex& index1, const TreeIndex& index2);
-    static Bool IsWeaponBetter(const TreeIndex& index1, const TreeIndex& index2);
+    Bool IsArmorBetter(const TreeIndex& index1, const TreeIndex& index2);
+    Bool IsWeaponBetter(const TreeIndex& index1, const TreeIndex& index2);
 
     // Check item type
-    static Bool IsItemWeapon(const TreeIndex& treeIndex);
-    static Bool IsItemShield(const TreeIndex& treeIndex);
+    Bool IsItemWeapon(const TreeIndex& treeIndex);
+    Bool IsItemShield(const TreeIndex& treeIndex);
 
     // Get action types
-    static StringArray GetActionTypes(const TreeIndex& treeIndex);
+    StringArray GetActionTypes(const TreeIndex& treeIndex);
 
     // Get stat changes
-    static void FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
+    void FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
         TreeIndexArray& vPassives,
         TreeIndexArray& vActives,
         TreeIndexArray& vActionables);
+
+    // Item trees
+    MAKE_RAW_TYPE_ACCESSORS(ItemTreeArmor, ItemTreeArmor);
+    MAKE_RAW_TYPE_ACCESSORS(ItemTreeIngredient, ItemTreeIngredient);
+    MAKE_RAW_TYPE_ACCESSORS(ItemTreePotion, ItemTreePotion);
+    MAKE_RAW_TYPE_ACCESSORS(ItemTreeWeapon, ItemTreeWeapon);
 };
 
 };

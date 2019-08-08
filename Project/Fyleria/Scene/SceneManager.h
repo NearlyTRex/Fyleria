@@ -22,13 +22,12 @@
 #include "Scene/SceneToolParty.h"
 #include "Scene/SceneToolSave.h"
 #include "Utility/Types.h"
-#include "Utility/Singleton.h"
 
 namespace Gecko
 {
 
 // Scene manager
-class SceneManager : public Singleton<SceneManager>
+class SceneManager
 {
 public:
 

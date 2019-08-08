@@ -10,7 +10,6 @@ namespace Gecko
 {
 
 SaveManager::SaveManager()
-    : Singleton<SaveManager>()
 {
 }
 

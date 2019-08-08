@@ -8,7 +8,6 @@ namespace Gecko
 {
 
 BattleManager::BattleManager()
-    : Singleton<BattleManager>()
 {
 }
 

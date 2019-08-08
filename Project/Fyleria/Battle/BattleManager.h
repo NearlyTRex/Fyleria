@@ -10,7 +10,7 @@
 namespace Gecko
 {
 
-class BattleManager : public Singleton<BattleManager>
+class BattleManager
 {
 public:
 

@@ -10,7 +10,7 @@
 namespace Gecko
 {
 
-class CharacterPartyManager : public Singleton<CharacterPartyManager>
+class CharacterPartyManager
 {
 public:
 

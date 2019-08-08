@@ -1,8 +1,8 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-#ifndef _GECKO_SKILL_TREE_H_
-#define _GECKO_SKILL_TREE_H_
+#ifndef _GECKO_SKILL_MANAGER_H_
+#define _GECKO_SKILL_MANAGER_H_
 
 // Internal includes
 #include "CharacterAction/CharacterAction.h"
@@ -25,70 +25,78 @@ typedef Tree<SkillDataCombat> SkillTreeCombat;
 typedef Tree<SkillDataCrafting> SkillTreeCrafting;
 typedef Tree<SkillDataWeapon> SkillTreeWeapon;
 
-class SkillTree
+class SkillManager
 {
 public:
 
-    // Load/unload skill trees into memory
-    static void LoadSkillTreesIntoMemory();
-    static void UnloadSkillTreesFromMemory();
+    // Constructors
+    SkillManager();
 
-    // Verify
-    static void VerifySkillTrees();
+    // Load/unload skill trees into memory
+    void LoadSkillTreesIntoMemory();
+    void UnloadSkillTreesFromMemory();
 
     // Determine if skill data exists
-    static Bool DoesSkillDataAffinityExist(const TreeIndex& treeIndex);
-    static Bool DoesSkillDataAlchemyExist(const TreeIndex& treeIndex);
-    static Bool DoesSkillDataBreakdownExist(const TreeIndex& treeIndex);
-    static Bool DoesSkillDataCombatExist(const TreeIndex& treeIndex);
-    static Bool DoesSkillDataCraftingExist(const TreeIndex& treeIndex);
-    static Bool DoesSkillDataWeaponExist(const TreeIndex& treeIndex);
+    Bool DoesSkillDataAffinityExist(const TreeIndex& treeIndex);
+    Bool DoesSkillDataAlchemyExist(const TreeIndex& treeIndex);
+    Bool DoesSkillDataBreakdownExist(const TreeIndex& treeIndex);
+    Bool DoesSkillDataCombatExist(const TreeIndex& treeIndex);
+    Bool DoesSkillDataCraftingExist(const TreeIndex& treeIndex);
+    Bool DoesSkillDataWeaponExist(const TreeIndex& treeIndex);
 
     // Retrieve skill data
-    static const SkillDataAffinity& RetrieveSkillDataAffinity(const TreeIndex& treeIndex);
-    static const SkillDataAlchemy& RetrieveSkillDataAlchemy(const TreeIndex& treeIndex);
-    static const SkillDataBreakdown& RetrieveSkillDataBreakdown(const TreeIndex& treeIndex);
-    static const SkillDataCombat& RetrieveSkillDataCombat(const TreeIndex& treeIndex);
-    static const SkillDataCrafting& RetrieveSkillDataCrafting(const TreeIndex& treeIndex);
-    static const SkillDataWeapon& RetrieveSkillDataWeapon(const TreeIndex& treeIndex);
+    const SkillDataAffinity& RetrieveSkillDataAffinity(const TreeIndex& treeIndex);
+    const SkillDataAlchemy& RetrieveSkillDataAlchemy(const TreeIndex& treeIndex);
+    const SkillDataBreakdown& RetrieveSkillDataBreakdown(const TreeIndex& treeIndex);
+    const SkillDataCombat& RetrieveSkillDataCombat(const TreeIndex& treeIndex);
+    const SkillDataCrafting& RetrieveSkillDataCrafting(const TreeIndex& treeIndex);
+    const SkillDataWeapon& RetrieveSkillDataWeapon(const TreeIndex& treeIndex);
 
     // Get all skills
-    static TreeIndexArray GetAllAffinitySkills();
-    static TreeIndexArray GetAllAlchemySkills();
-    static TreeIndexArray GetAllBreakdownSkills();
-    static TreeIndexArray GetAllCombatSkills();
-    static TreeIndexArray GetAllCraftingSkills();
-    static TreeIndexArray GetAllWeaponSkills();
+    TreeIndexArray GetAllAffinitySkills();
+    TreeIndexArray GetAllAlchemySkills();
+    TreeIndexArray GetAllBreakdownSkills();
+    TreeIndexArray GetAllCombatSkills();
+    TreeIndexArray GetAllCraftingSkills();
+    TreeIndexArray GetAllWeaponSkills();
 
     // Get matching skills
-    static TreeIndexArray GetAffinitySkills(const String& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetAlchemySkills(const String& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetBreakdownSkills(const String& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetCombatSkills(const String& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetCraftingSkills(const String& sCharID, Bool bUniqueOnly = false);
-    static TreeIndexArray GetWeaponSkills(const String& sCharID, Bool bUniqueOnly = false);
+    TreeIndexArray GetAffinitySkills(const String& sCharID, Bool bUniqueOnly = false);
+    TreeIndexArray GetAlchemySkills(const String& sCharID, Bool bUniqueOnly = false);
+    TreeIndexArray GetBreakdownSkills(const String& sCharID, Bool bUniqueOnly = false);
+    TreeIndexArray GetCombatSkills(const String& sCharID, Bool bUniqueOnly = false);
+    TreeIndexArray GetCraftingSkills(const String& sCharID, Bool bUniqueOnly = false);
+    TreeIndexArray GetWeaponSkills(const String& sCharID, Bool bUniqueOnly = false);
 
     // Get skill type
-    static String GetSkillType(const TreeIndex& treeIndex);
+    String GetSkillType(const TreeIndex& treeIndex);
 
     // Determine if base weapon skill
-    static Bool IsBaseWeaponSkill(const TreeIndex& treeIndex);
+    Bool IsBaseWeaponSkill(const TreeIndex& treeIndex);
 
     // Determine if skill is actionable
-    static Bool IsSkillActionable(const TreeIndex& treeIndex);
+    Bool IsSkillActionable(const TreeIndex& treeIndex);
 
     // Generate character actions
-    static Bool GenerateSkillCharacterActions(const TreeIndex& treeIndex,
+    Bool GenerateSkillCharacterActions(const TreeIndex& treeIndex,
         const String& sCharacterID,
         const String& sWeaponSet,
         CharacterActionArray& vActions);
 
     // Get stat changes
-    static void FillSkillStatChangeArrays(const String& sCharID,
+    void FillSkillStatChangeArrays(const String& sCharID,
         TreeIndexArray& vPassives,
         TreeIndexArray& vActives,
         TreeIndexArray& vActionables,
         Bool bUniqueOnly = false);
+
+    // Skill trees
+    MAKE_RAW_TYPE_ACCESSORS(SkillTreeAffinity, SkillTreeAffinity);
+    MAKE_RAW_TYPE_ACCESSORS(SkillTreeAlchemy, SkillTreeAlchemy);
+    MAKE_RAW_TYPE_ACCESSORS(SkillTreeBreakdown, SkillTreeBreakdown);
+    MAKE_RAW_TYPE_ACCESSORS(SkillTreeCombat, SkillTreeCombat);
+    MAKE_RAW_TYPE_ACCESSORS(SkillTreeCrafting, SkillTreeCrafting);
+    MAKE_RAW_TYPE_ACCESSORS(SkillTreeWeapon, SkillTreeWeapon);
 };
 
 };

@@ -3,9 +3,6 @@
 
 // Internal includes
 #include "Items/ItemTree.h"
-#include "Config/ConfigManager.h"
-#include "Character/CharacterManager.h"
-#include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Constants.h"
 #include "Utility/FantasyName.h"
 #include "Utility/Json.h"
@@ -78,62 +75,6 @@ void ItemTree::UnloadItemTreesFromMemory()
     ItemTreeIngredient::GetInstance()->ClearAllData();
     ItemTreePotion::GetInstance()->ClearAllData();
     ItemTreeWeapon::GetInstance()->ClearAllData();
-}
-
-template <class T>
-void VerifyApplyStatChanges(const TreeIndexArray& vTreeIndices, const String& sCharacterTargetType)
-{
-    String sBaseType = (+CharacterSegmentType::Base)._to_string();
-    for(auto& treeIndex : vTreeIndices)
-    {
-        auto& itemData = T::GetInstance()->GetLeaf(treeIndex);
-        LOG_FORMAT_STATEMENT("Processing item (ItemTreeType = '{}', "
-                             "ItemType = '{}', "
-                             "ItemName = '{}', "
-                             "StatChanges = {})",
-            T::GetTreeType().c_str(),
-            itemData.GetItemType().c_str(),
-            itemData.GetItemName().c_str(),
-            itemData.GetStatChanges().size());
-        for(auto change : itemData.GetStatChanges())
-        {
-            Bool bAll, bOne = false;
-            change.SetSourceTargetType(sCharacterTargetType);
-            change.SetDestinationTargetType(sCharacterTargetType);
-            change.SetChanceToApply(1.0);
-            CharacterManager::GetInstance()->ApplyStatChange(sBaseType, change, bAll, bOne, true);
-        }
-    }
-}
-
-void ItemTree::VerifyItemTrees()
-{
-    // Log start
-    LOG_STATEMENT("Verifying item trees...");
-
-    // Load character generator
-    CharacterGenerator generator;
-    generator.RandomizeAll();
-
-    // Generate a character and party
-    const String sCharacterID("CharacterID");
-    const String sCharacterPartyID("CharacterPartyID");
-    const String sCharacterPartyType("Ally");
-    CharacterManager::GetInstance()->GenerateCharacter(sCharacterID, generator);
-    CharacterPartyManager::GetInstance()->CreateParty(sCharacterPartyID, sCharacterPartyType, true);
-    CharacterPartyManager::GetInstance()->GetPartyByID(sCharacterPartyID).AddMember(sCharacterID);
-    const String sCharacterTargetType = CharacterManager::GetInstance()->GetCharacter(sCharacterID).GetCharacterTargetType();
-
-    // Apply all stat changes
-    VerifyApplyStatChanges<ItemTreeArmor>(GetAllArmorItems(), sCharacterTargetType);
-    VerifyApplyStatChanges<ItemTreeIngredient>(GetAllIngredientItems(), sCharacterTargetType);
-    VerifyApplyStatChanges<ItemTreePotion>(GetAllPotionItems(), sCharacterTargetType);
-    VerifyApplyStatChanges<ItemTreeWeapon>(GetAllWeaponItems(), sCharacterTargetType);
-
-    // Cleanup
-    CharacterPartyManager::GetInstance()->GetPartyByID(sCharacterPartyID).RemoveMember(sCharacterID);
-    CharacterPartyManager::GetInstance()->UnloadParty(sCharacterPartyID);
-    CharacterManager::GetInstance()->UnloadCharacter(sCharacterID);
 }
 
 Bool ItemTree::DoesItemDataExist(const TreeIndex& treeIndex)

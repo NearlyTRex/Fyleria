@@ -12,7 +12,6 @@ namespace Gecko
 {
 
 ConfigManager::ConfigManager()
-    : Singleton<ConfigManager>()
 {
 }
 

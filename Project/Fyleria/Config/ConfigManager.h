@@ -6,12 +6,11 @@
 
 // Internal includes
 #include "Config/Config.h"
-#include "Utility/Singleton.h"
 
 namespace Gecko
 {
 
-class ConfigManager : public Singleton<ConfigManager>
+class ConfigManager
 {
 public:
 
