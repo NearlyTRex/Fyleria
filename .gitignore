@@ -73,6 +73,8 @@ Project/Programs/Premake5/orig
 Project/Programs/Tiled/orig
 Project/Programs/Unzip/orig
 Project/Programs/Zip/orig
+Log
+Save
 
 # Program
 FyleriaMain_*
