@@ -5,7 +5,6 @@
 #define _GECKO_UTILITY_TEMPLATES_H_
 
 // Internal includes
-#include "Utility/Assert.h"
 #include "Utility/Logging.h"
 
 namespace Gecko
@@ -121,9 +120,11 @@ T GetRandomVectorValue(const STDVector<T>& varValues)
 template <typename T>
 String GetRandomEnumValue()
 {
-    ASSERT_FATAL(T::_names().size() >= 2);
     Int iIndex = GetRandomIntValue<Int>(1, static_cast<Int>(T::_names().size()) - 1);
-    ASSERT_FATAL(iIndex >= 0 && iIndex < static_cast<Int>(T::_names().size()));
+    if(iIndex <= 0 || iIndex >= static_cast<Int>(T::_names().size()))
+    {
+        return "None";
+    }
     return T::_names()[iIndex];
 }
 

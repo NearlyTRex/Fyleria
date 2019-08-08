@@ -90,7 +90,7 @@ void VerifyApplyStatChanges(const TreeIndexArray& vTreeIndices, const String& sC
         LOG_FORMAT_STATEMENT("Processing item (ItemTreeType = '{}', "
                              "ItemType = '{}', "
                              "ItemName = '{}', "
-                             "StatChanges = %zu)\n",
+                             "StatChanges = {})",
             T::GetTreeType().c_str(),
             itemData.GetItemType().c_str(),
             itemData.GetItemName().c_str(),

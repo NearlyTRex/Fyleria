@@ -8,7 +8,6 @@
 #include <enum.h>
 
 // Internal includes
-#include "Utility/Assert.h"
 #include "Utility/Macros.h"
 #include "Utility/Types.h"
 

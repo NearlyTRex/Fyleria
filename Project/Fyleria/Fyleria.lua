@@ -48,6 +48,8 @@ appFyleria_libs = {
 }
 if os.host() == "windows" then
     table.insert(appFyleria_libs, "windowsapp")
+elseif os.host() == "linux" then
+    table.insert(appFyleria_libs, "pthread")
 end
 
 -- Sources

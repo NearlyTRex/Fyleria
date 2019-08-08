@@ -40,23 +40,19 @@ public:
 
     // Does a character exist
     Bool DoesCharacterExist(const String& sCharacterID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesCharacterExist, const String&);
 
     // Generate a character
     void GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator);
 
     // Check if character ID is valid
     Bool IsValidCharacterID(const String& sCharacterID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsValidCharacterID, const String&);
 
     // Get character
     const Character& GetCharacter(const String& sCharacterID) const;
     Character& GetCharacter(const String& sCharacterID);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetCharacter, const String&);
 
     // Get all character IDs
     StringArray GetAllCharacterIDs() const;
-    MAKE_MODULE_RESULT_VARIANT(GetAllCharacterIDs);
 
     // Apply a stat change
     void ApplyStatChange(

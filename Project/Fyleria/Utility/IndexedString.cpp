@@ -72,7 +72,7 @@ void IndexedString::Set(const String& sStr)
         m_iIndex = static_cast<Int>(s_pStoredStrings->size()) - 1;
 
         // Some extra logging
-        LOG_FORMAT_STATEMENT("Adding string '{}' to index %i, current count is %zu\n",
+        LOG_FORMAT_STATEMENT("Adding string '{}' to index %i, current count is {}",
             sImmutableStr.c_str(),
             m_iIndex.load(),
             s_pStoredStrings->size());

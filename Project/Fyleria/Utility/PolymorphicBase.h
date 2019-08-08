@@ -20,9 +20,6 @@ public:
     PolymorphicBase();
     PolymorphicBase(const String& sName);
     PolymorphicBase(const Json& jsonData);
-
-    // Type name
-    MAKE_RAW_TYPE_ACCESSORS(TypeName, String);
 };
 
 // JSON Converters

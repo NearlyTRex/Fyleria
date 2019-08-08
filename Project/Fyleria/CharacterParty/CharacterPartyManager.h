@@ -40,36 +40,28 @@ public:
     // Determine if party exists
     Bool DoesPartyExistByID(const String& sPartyID) const;
     Bool DoesPartyExistByType(const String& sPartyType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesPartyExistByID, const String&);
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesPartyExistByType, const String&);
 
     // Check if party ID is valid
     Bool IsValidPartyID(const String& sPartyID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsValidPartyID, const String&);
 
     // Get party by ID
     const CharacterParty& GetPartyByID(const String& sPartyID) const;
     CharacterParty& GetPartyByID(const String& sPartyID);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetPartyByID, const String&);
 
     // Get party by type
     const CharacterParty& GetPartyByType(const String& sPartyType) const;
     CharacterParty& GetPartyByType(const String& sPartyType);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetPartyByType, const String&);
 
     // Get current ally party
     const CharacterParty& GetCurrentAllyParty() const;
     CharacterParty& GetCurrentAllyParty();
-    MAKE_MODULE_RESULT_VARIANT(GetCurrentAllyParty);
 
     // Get current enemy party
     const CharacterParty& GetCurrentEnemyParty() const;
     CharacterParty& GetCurrentEnemyParty();
-    MAKE_MODULE_RESULT_VARIANT(GetCurrentEnemyParty);
 
     // Get all party IDs
     StringArray GetAllPartyIDs() const;
-    MAKE_MODULE_RESULT_VARIANT(GetAllPartyIDs);
 
     // Parties
     MAKE_RAW_TYPE_ACCESSORS(Parties, CharacterPartyMappingType);

@@ -81,14 +81,14 @@ void SceneManager::AddScene(const String& sSceneID)
 void SceneManager::AddScene(const String& sSceneID, const SceneSharedPtr& pScene)
 {
     // Add scene
-    LOG_FORMAT_STATEMENT("Adding scene '{}'\n", sSceneID.c_str());
+    LOG_FORMAT_STATEMENT("Adding scene '{}'", sSceneID.c_str());
     GetScenes().insert({sSceneID, pScene});
 }
 
 void SceneManager::RemoveScene(const String& sSceneID)
 {
     // Remove scene
-    LOG_FORMAT_STATEMENT("Removing scene '{}'\n", sSceneID.c_str());
+    LOG_FORMAT_STATEMENT("Removing scene '{}'", sSceneID.c_str());
     GetScenes().erase(sSceneID);
 }
 
@@ -100,7 +100,7 @@ void SceneManager::SwitchToScene(const String& sSceneID)
     // Skip if it still does not exist
     if(!DoesSceneExist(sSceneID))
     {
-        ERROR_FORMAT_STATEMENT("Scene '{}' does not exist\n", sSceneID.c_str());
+        ERROR_FORMAT_STATEMENT("Scene '{}' does not exist", sSceneID.c_str());
         return;
     }
 
@@ -108,7 +108,7 @@ void SceneManager::SwitchToScene(const String& sSceneID)
     String sCurrentSceneID = GetCurrentSceneID();
     if(sCurrentSceneID == sSceneID)
     {
-        ERROR_FORMAT_STATEMENT("Already in scene '{}'\n", sSceneID.c_str());
+        ERROR_FORMAT_STATEMENT("Already in scene '{}'", sSceneID.c_str());
         return;
     }
 
@@ -116,12 +116,12 @@ void SceneManager::SwitchToScene(const String& sSceneID)
     if(DoesSceneExist(sCurrentSceneID) && (sCurrentSceneID != sSceneID))
     {
         // Finish it
-        LOG_FORMAT_STATEMENT("Finishing scene '{}'\n", sCurrentSceneID.c_str());
+        LOG_FORMAT_STATEMENT("Finishing scene '{}'", sCurrentSceneID.c_str());
         GetCurrentScene()->Finish();
     }
 
     // Start new scene
-    LOG_FORMAT_STATEMENT("Starting scene '{}'\n", sSceneID.c_str());
+    LOG_FORMAT_STATEMENT("Starting scene '{}'", sSceneID.c_str());
     SetCurrentSceneID(sSceneID);
     GetCurrentScene()->Start();
 }

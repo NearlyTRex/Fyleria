@@ -3,7 +3,6 @@
 
 // Internal includes
 #include "Config/ConfigManager.h"
-#include "Utility/Assert.h"
 #include "Utility/Errors.h"
 #include "Utility/Converters.h"
 #include "Utility/Filesystem.h"

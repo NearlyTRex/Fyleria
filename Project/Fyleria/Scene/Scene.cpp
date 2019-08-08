@@ -97,7 +97,7 @@ void Scene::ProcessForm(const String& sAction, const String& sParameters)
     if(GetPageHandler())
     {
         // Notify user
-        LOG_FORMAT_STATEMENT("Processing form action '{}'\n", sAction.c_str());
+        LOG_FORMAT_STATEMENT("Processing form action '{}'", sAction.c_str());
 
         try
         {
@@ -112,16 +112,16 @@ void Scene::ProcessForm(const String& sAction, const String& sParameters)
         catch(STDException& e)
         {
             // Print exception
-            ERROR_FORMAT_STATEMENT("Caught exception: '{}'\n", e.what());
+            ERROR_FORMAT_STATEMENT("Caught exception: '{}'", e.what());
         }
         catch(GeneralError& e)
         {
             // Print exception
-            ERROR_FORMAT_STATEMENT("Caught exception: '{}'\n", e.what().c_str());
+            ERROR_FORMAT_STATEMENT("Caught exception: '{}'", e.what().c_str());
         }
 
         // Notify user
-        LOG_FORMAT_STATEMENT("Processing of action '{}' completed\n", sAction.c_str());
+        LOG_FORMAT_STATEMENT("Processing of action '{}' completed", sAction.c_str());
     }
 }
 

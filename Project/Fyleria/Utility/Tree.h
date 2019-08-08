@@ -5,7 +5,6 @@
 #define _GECKO_UTILITY_TREE_H_
 
 // Internal includes
-#include "Utility/Assert.h"
 #include "Utility/Logging.h"
 #include "Utility/Singleton.h"
 #include "Utility/Errors.h"
@@ -43,12 +42,12 @@ public:
     void AddBranch(const String& sBranchName, const String& sBranchFile)
     {
         // Log loading of JSON data
-        LOG_FORMAT_STATEMENT("Loading JSON file '{}' into branch {}\n", sBranchFile.c_str(), sBranchName.c_str());
+        LOG_FORMAT_STATEMENT("Loading JSON file '{}' into branch {}", sBranchFile.c_str(), sBranchName.c_str());
 
         // Check that the file exists first
         if(!DoesPathExist(sBranchFile.c_str()))
         {
-            ERROR_FORMAT_STATEMENT("JSON file '{}' does not exist!\n", sBranchFile.c_str());
+            ERROR_FORMAT_STATEMENT("JSON file '{}' does not exist!", sBranchFile.c_str());
             return;
         }
 
@@ -56,7 +55,7 @@ public:
         Json jsonData;
         if(!ReadJsonFile(sBranchFile, jsonData))
         {
-            ERROR_FORMAT_STATEMENT("Could not load data from '{}' as JSON\n", sBranchName.c_str());
+            ERROR_FORMAT_STATEMENT("Could not load data from '{}' as JSON", sBranchName.c_str());
         }
 
         // Add branches

@@ -30,23 +30,18 @@ public:
 
     // Get array of character IDs
     StringArray GetAllCharacterIDs() const;
-    MAKE_MODULE_RESULT_VARIANT(GetAllCharacterIDs);
 
     // Get array of action types from all entries
     StringArray GetAllActionTypes() const;
-    MAKE_MODULE_RESULT_VARIANT(GetAllActionTypes);
 
     // Get array of destination target types from all entries
     StringArray GetAllDestinationTargetTypes() const;
-    MAKE_MODULE_RESULT_VARIANT(GetAllDestinationTargetTypes);
 
     // Are all character IDs valid
     Bool AreAllCharacterIDsValid() const;
-    MAKE_MODULE_RESULT_VARIANT(AreAllCharacterIDsValid);
 
     // Prepare character IDs
     Bool PrepareCharacterIDs();
-    MAKE_MODULE_RESULT_VARIANT(PrepareCharacterIDs);
 
     // Run type
     MAKE_RAW_TYPE_ACCESSORS(RunType, String);

@@ -141,7 +141,7 @@ void VerifyApplyStatChanges(const TreeIndexArray& vTreeIndices, const String& sC
                              "SkillTreeType = '{}', "
                              "SkillType = '{}', "
                              "SkillName = '{}', "
-                             "StatChanges = %zu)\n",
+                             "StatChanges = {})",
             skillData.GetSkillRank(),
             T::GetTreeType().c_str(),
             skillData.GetSkillType().c_str(),

@@ -35,37 +35,29 @@ public:
 
     // Does save exist
     Bool DoesSaveExist(const String& sSlot) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(DoesSaveExist, const String&);
 
     // Get save capacity
     UByte GetSaveCapacity() const;
-    MAKE_MODULE_RESULT_VARIANT(GetSaveCapacity);
 
     // Get list of all available save slots
     StringArray GetAllAvailableSaveSlots() const;
-    MAKE_MODULE_RESULT_VARIANT(GetAllAvailableSaveSlots);
 
     // Get list of all descriptions from save slots
     // Unused slots are also included
     StringArray GetAllSaveDescriptions() const;
-    MAKE_MODULE_RESULT_VARIANT(GetAllSaveDescriptions);
 
     // Is save capacity reached
     Bool IsSaveCapacityReached() const;
-    MAKE_MODULE_RESULT_VARIANT(IsSaveCapacityReached);
 
     // Check if save slot is valid
     Bool IsValidSaveSlot(const String& sSlot) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsValidSaveSlot, const String&);
 
     // Get save
     const Save& GetSave(const String& sSlot) const;
     Save& GetSave(const String& sSlot);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetSave, const String&);
 
     // Get all saves
     SaveArray GetAllSaves() const;
-    MAKE_MODULE_RESULT_VARIANT(GetAllSaves);
 
     // Collect data and create a save
     void CollectSaveData(const String& sSlot, const String& sPartyID);

@@ -3,4 +3,3 @@
 
 // Internal includes
 #include "Utility/Enum.h"
-#include "Utility/Assert.h"

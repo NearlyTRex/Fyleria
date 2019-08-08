@@ -43,53 +43,41 @@ public:
 
     // Get character ID
     String GetCharacterID() const;
-    MAKE_MODULE_RESULT_VARIANT(GetCharacterID);
 
     // Get party ID
     String GetPartyID() const;
-    MAKE_MODULE_RESULT_VARIANT(GetPartyID);
 
     // Get character target type
     String GetCharacterTargetType() const;
-    MAKE_MODULE_RESULT_VARIANT(GetCharacterTargetType);
 
     // Get weapon set
     String GetWeaponSet() const;
-    MAKE_MODULE_RESULT_VARIANT(GetWeaponSet);
 
     // Get equipped items
     CharacterPartyEquippedItemArray GetEquippedItems() const;
-    MAKE_MODULE_RESULT_VARIANT(GetEquippedItems);
 
     // Get individual equipped items by type
     TreeIndex GetEquippedItemByType(const String& sEquipmentType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetEquippedItemByType, const String&);
 
     // Get available actions
     const CharacterActionArray& GetAvailableActions() const;
-    MAKE_MODULE_RESULT_VARIANT(GetAvailableActions);
 
     // Get passive changes
     const TreeIndexArray& GetPassiveChanges(const String& sTreeIndexType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetPassiveChanges, const String&);
 
     // Get active changes
     const TreeIndexArray& GetActiveChanges(const String& sTreeIndexType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetActiveChanges, const String&);
 
     // Get actionable changes
     const TreeIndexArray& GetActionableChanges(const String& sTreeIndexType) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(GetActionableChanges, const String&);
 
     // Get progress data segment
     const CharacterProgressData& GetProgressDataSegment(const String& sSegment) const;
     CharacterProgressData& GetProgressDataSegment(const String& sSegment);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetProgressDataSegment, const String&);
 
     // Get battle data segment
     const CharacterBattleData& GetBattleDataSegment(const String& sSegment) const;
     CharacterBattleData& GetBattleDataSegment(const String& sSegment);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetBattleDataSegment, const String&);
 
     // Get stat values
     template <class T>
@@ -157,37 +145,26 @@ public:
     MAKE_RAW_TYPE_ACCESSORS(ProgressData, CharacterProgressData);
     MAKE_RAW_TYPE_ACCESSORS(ProgressDataPassives, CharacterProgressData);
     MAKE_RAW_TYPE_ACCESSORS(ProgressDataActives, CharacterProgressData);
-    MAKE_MODULE_RESULT_VARIANT(GetProgressData);
-    MAKE_MODULE_RESULT_VARIANT(GetProgressDataPassives);
-    MAKE_MODULE_RESULT_VARIANT(GetProgressDataActives);
 
     // Battle data
     MAKE_RAW_TYPE_ACCESSORS(BattleData, CharacterBattleData);
     MAKE_RAW_TYPE_ACCESSORS(BattleDataPassives, CharacterBattleData);
     MAKE_RAW_TYPE_ACCESSORS(BattleDataActives, CharacterBattleData);
-    MAKE_MODULE_RESULT_VARIANT(GetBattleData);
-    MAKE_MODULE_RESULT_VARIANT(GetBattleDataPassives);
-    MAKE_MODULE_RESULT_VARIANT(GetBattleDataActives);
 
     // Basic data
     MAKE_RAW_TYPE_ACCESSORS(BasicData, CharacterBasicData);
-    MAKE_MODULE_RESULT_VARIANT(GetBasicData);
 
     // Action data
     MAKE_RAW_TYPE_ACCESSORS(ActionData, CharacterActionData);
-    MAKE_MODULE_RESULT_VARIANT(GetActionData);
 
     // Skill data
     MAKE_RAW_TYPE_ACCESSORS(SkillData, CharacterSkillData);
-    MAKE_MODULE_RESULT_VARIANT(GetSkillData);
 
     // Stat change data
     MAKE_RAW_TYPE_ACCESSORS(StatChangeData, CharacterStatChangeData);
-    MAKE_MODULE_RESULT_VARIANT(GetStatChangeData);
 
     // Media data
     MAKE_RAW_TYPE_ACCESSORS(MediaData, CharacterMediaData);
-    MAKE_MODULE_RESULT_VARIANT(GetMediaData);
 
     // Comparisons
     Bool operator==(const Character& other) const;

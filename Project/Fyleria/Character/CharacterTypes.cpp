@@ -5,7 +5,6 @@
 #include "Character/CharacterTypes.h"
 #include "Items/ItemTypes.h"
 #include "Skills/SkillTypes.h"
-#include "Utility/Assert.h"
 
 namespace Gecko
 {

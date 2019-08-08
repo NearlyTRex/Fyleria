@@ -56,11 +56,11 @@ Bool Application::Initialize()
 {
     // Load config data
     String sConfigFile = JoinPathsCanonical(GetDataDirectory(), CONFIG_FILE);
-    LOG_FORMAT_STATEMENT("Loading config file '{}'\n", sConfigFile.c_str());
+    LOG_FORMAT_STATEMENT("Loading config file '{}'", sConfigFile.c_str());
     ConfigManager::GetInstance()->SetCurrentConfigName("Default");
     if(!ConfigManager::GetInstance()->LoadConfig("Default", sConfigFile))
     {
-        ERROR_FORMAT_STATEMENT("Could not load configuration file '{}'\n",
+        ERROR_FORMAT_STATEMENT("Could not load configuration file '{}'",
             sConfigFile.c_str());
         return false;
     }

@@ -3,4 +3,3 @@
 
 // Internal includes
 #include "Saves/SaveTypes.h"
-#include "Utility/Assert.h"

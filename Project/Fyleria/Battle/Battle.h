@@ -33,19 +33,15 @@ public:
 
     // Determine if battle is over
     Bool IsBattleOver(const String& sPartyID) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsBattleOver, const String&);
 
     // Determine if battle is won
     Bool IsBattleWon() const;
-    MAKE_MODULE_RESULT_VARIANT(IsBattleWon);
 
     // Determine if battle is lost
     Bool IsBattleLost() const;
-    MAKE_MODULE_RESULT_VARIANT(IsBattleLost);
 
     // Determine if action is skill attack
     Bool IsSkillAttackAction(const CharacterAction& action) const;
-    MAKE_MODULE_RESULT_VARIANT_A1(IsSkillAttackAction, const CharacterAction&);
 
     // Adding and processing actions that are chosen by the player
     void AddAction(const CharacterAction& action);
@@ -62,16 +58,13 @@ public:
     // Get action
     const CharacterAction& GetAction(Int iIndex) const;
     CharacterAction& GetAction(Int iIndex);
-    MAKE_MODULE_RESULT_VARIANT_A1(GetAction, Int);
 
     // Get current action
     const CharacterAction& GetCurrentAction() const;
     CharacterAction& GetCurrentAction();
-    MAKE_MODULE_RESULT_VARIANT(GetCurrentAction);
 
     // Are all actions finished
     Bool AreAllActionsFinished() const;
-    MAKE_MODULE_RESULT_VARIANT(AreAllActionsFinished);
 
     // Battle status
     MAKE_RAW_TYPE_ACCESSORS(IsBattleStarted, Bool);
