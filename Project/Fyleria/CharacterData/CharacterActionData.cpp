@@ -4,8 +4,7 @@
 // Internal includes
 #include "CharacterData/CharacterActionData.h"
 #include "Character/CharacterTypes.h"
-#include "Character/CharacterManager.h"
-#include "Skills/SkillTree.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -32,10 +31,10 @@ void CharacterActionData::Clear()
     GetAvailableActions().clear();
 }
 
-void CharacterActionData::UpdateAvailableActions(const String& sCharacterID)
+void CharacterActionData::UpdateAvailableActions(ManagerSet* pManagerSet, const String& sCharacterID)
 {
     // Get character
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Clear stored actions
     CharacterActionArray& vAvailableActions = GetAvailableActions();
@@ -64,14 +63,14 @@ void CharacterActionData::UpdateAvailableActions(const String& sCharacterID)
 
                 // Add skill actions
                 CharacterActionArray vSkillActions;
-                if(SkillTree::GenerateSkillCharacterActions(treeIndex, sCharacterID, sWeaponSet, vSkillActions))
+                if(pManagerSet->GetSkillManager().GenerateSkillCharacterActions(treeIndex, sCharacterID, sWeaponSet, vSkillActions))
                 {
                    vAvailableActions.insert(vAvailableActions.end(), vSkillActions.begin(), vSkillActions.end());
                 }
 
                 // Add item actions
                 CharacterActionArray vItemActions;
-                if(ItemTree::GenerateItemCharacterActions(treeIndex, sCharacterID, sWeaponSet, vItemActions))
+                if(pManagerSet->GetItemManager().GenerateItemCharacterActions(treeIndex, sCharacterID, sWeaponSet, vItemActions))
                 {
                    vAvailableActions.insert(vAvailableActions.end(), vItemActions.begin(), vItemActions.end());
                 }
@@ -81,12 +80,13 @@ void CharacterActionData::UpdateAvailableActions(const String& sCharacterID)
 }
 
 void CharacterActionData::ApplyActionCost(
+    ManagerSet* pManagerSet,
     const String& sCharacterID,
     const String& sProgressSegment,
     const CharacterAction& action)
 {
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Get progress data
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
@@ -107,9 +107,9 @@ void CharacterActionData::ApplyActionCost(
     {
         // Get matching stat type
         String sMatchingStatType;
-        if(SkillTree::DoesSkillDataWeaponExist(action.GetSkillTreeIndex()))
+        if(pManagerSet->GetSkillManager().DoesSkillDataWeaponExist(action.GetSkillTreeIndex()))
         {
-            const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(action.GetSkillTreeIndex());
+            const SkillDataWeapon& skillDataWeapon = pManagerSet->GetSkillManager().RetrieveSkillDataWeapon(action.GetSkillTreeIndex());
             sMatchingStatType = ConvertSkillWeaponTypeToCharacterActionStatType(skillDataWeapon.GetSkillType());
         }
 
@@ -136,7 +136,7 @@ void CharacterActionData::ApplyActionCost(
     }
 }
 
-void CharacterActionData::UpdateAvailableAP(const String& sCharacterID)
+void CharacterActionData::UpdateAvailableAP(ManagerSet* pManagerSet, const String& sCharacterID)
 {
     // Action point count type
     struct ActionPointCountEntry
@@ -146,7 +146,7 @@ void CharacterActionData::UpdateAvailableAP(const String& sCharacterID)
     };
 
     // Get weapon skills
-    TreeIndexArray vWeaponSkills = SkillTree::GetWeaponSkills(sCharacterID, true);
+    TreeIndexArray vWeaponSkills = pManagerSet->GetSkillManager().GetWeaponSkills(sCharacterID, true);
     if(vWeaponSkills.empty())
     {
         return;
@@ -157,10 +157,10 @@ void CharacterActionData::UpdateAvailableAP(const String& sCharacterID)
     for(const TreeIndex& treeIndex : vWeaponSkills)
     {
         // Skill based action points
-        if(SkillTree::DoesSkillDataWeaponExist(treeIndex) && !SkillTree::IsBaseWeaponSkill(treeIndex))
+        if(pManagerSet->GetSkillManager().DoesSkillDataWeaponExist(treeIndex) && !pManagerSet->GetSkillManager().IsBaseWeaponSkill(treeIndex))
         {
             // Get skill information
-            const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(treeIndex);
+            const SkillDataWeapon& skillDataWeapon = pManagerSet->GetSkillManager().RetrieveSkillDataWeapon(treeIndex);
             String sKey = treeIndex.GetTreeBranchType();
             Int iActionPoints = skillDataWeapon.GetActionPoints();
 
@@ -191,7 +191,7 @@ void CharacterActionData::UpdateAvailableAP(const String& sCharacterID)
         if(!skillIndex.empty())
         {
             // Update AP in each area
-            const SkillDataWeapon& skillDataWeapon = SkillTree::RetrieveSkillDataWeapon(skillIndex);
+            const SkillDataWeapon& skillDataWeapon = pManagerSet->GetSkillManager().RetrieveSkillDataWeapon(skillIndex);
             const String sMatchingStatType = ConvertSkillWeaponTypeToCharacterActionStatType(skillDataWeapon.GetSkillType());
             if(!IsNoneTypeForEnum<CharacterActionStatType_Int>(sMatchingStatType))
             {

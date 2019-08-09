@@ -3,15 +3,12 @@
 
 // Internal includes
 #include "Character/Character.h"
-#include "Character/CharacterManager.h"
-#include "CharacterParty/CharacterPartyManager.h"
 #include "Character/CharacterTypes.h"
-#include "Config/ConfigManager.h"
-#include "Battle/BattleManager.h"
 #include "Items/ItemTypes.h"
 #include "Utility/Constants.h"
 #include "Utility/Errors.h"
 #include "Utility/Enum.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -96,7 +93,7 @@ String Character::GetPartyID() const
     return GetBasicData().GetPartyID();
 }
 
-String Character::GetCharacterTargetType() const
+String Character::GetCharacterTargetType(ManagerSet* pManagerSet) const
 {
     String sCharacterID = GetCharacterID();
     String sPartyID = GetPartyID();
@@ -105,7 +102,7 @@ String Character::GetCharacterTargetType() const
         return GetNoneTypeForEnum<CharacterResolvedTargetType>();
     }
 
-    const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
+    const CharacterParty& characterParty = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetCharacterTargetType();
 }
@@ -115,7 +112,7 @@ String Character::GetWeaponSet() const
     return GetBasicData().GetWeaponSet();
 }
 
-CharacterPartyEquippedItemArray Character::GetEquippedItems() const
+CharacterPartyEquippedItemArray Character::GetEquippedItems(ManagerSet* pManagerSet) const
 {
     String sCharacterID = GetCharacterID();
     String sPartyID = GetPartyID();
@@ -124,7 +121,7 @@ CharacterPartyEquippedItemArray Character::GetEquippedItems() const
         return CharacterPartyEquippedItemArray();
     }
 
-    const CharacterParty& characterParty = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
+    const CharacterParty& characterParty = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetEquippedItems();
 }
@@ -263,7 +260,7 @@ void Character::ApplyPassiveChanges()
                 // Apply change
                 Bool bAllChangesApplied = false;
                 Bool bAtLeastOneChange = false;
-                CharacterManager::GetInstance()->ApplyStatChange(sDestSegment, change, bAllChangesApplied, bAtLeastOneChange);
+                pManagerSet->GetCharacterManager().ApplyStatChange(sDestSegment, change, bAllChangesApplied, bAtLeastOneChange);
             }
         }
     }
@@ -305,7 +302,7 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
                 // Apply change
                 Bool bAllChangesApplied = false;
                 Bool bAtLeastOneChange = false;
-                CharacterManager::GetInstance()->ApplyStatChange(sDestSegment, localStatChange, bAllChangesApplied, bAtLeastOneChange);
+                pManagerSet->GetCharacterManager().ApplyStatChange(sDestSegment, localStatChange, bAllChangesApplied, bAtLeastOneChange);
             }
         }
     }

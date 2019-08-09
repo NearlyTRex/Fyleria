@@ -3,11 +3,10 @@
 
 // Internal includes
 #include "Window/BrowserEngineWebKitGtk.h"
-#include "Scene/SceneManager.h"
 #include "Scene/SceneTypes.h"
-#include "Config/ConfigManager.h"
 #include "Utility/Filesystem.h"
 #include "Utility/Constants.h"
+#include "Utility/ManagerSet.h"
 
 // Linux only
 #if defined(PLATFORM_OS_LINUX)
@@ -23,7 +22,7 @@ BrowserEngineWebKitGtk::~BrowserEngineWebKitGtk()
 {
 }
 
-Bool BrowserEngineWebKitGtk::Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
+Bool BrowserEngineWebKitGtk::Init(ManagerSet* pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
     // Initialize gtk
     if(!gtk_init_check(0, nullptr))
@@ -160,7 +159,7 @@ Bool BrowserEngineWebKitGtk::Init(const String& sTitle, Int iWidth, Int iHeight,
     Navigate(STARTING_URI);
 
     // Switch to starting scene
-    SceneManager::GetInstance()->SwitchToScene((+SceneType::Intro)._to_string());
+    pManagerSet->GetSceneManager().SwitchToScene(pManagerSet, (+SceneType::Intro)._to_string());
     return true;
 }
 

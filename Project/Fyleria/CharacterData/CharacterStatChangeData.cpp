@@ -3,11 +3,8 @@
 
 // Internal includes
 #include "CharacterData/CharacterStatChangeData.h"
-#include "Character/CharacterManager.h"
-#include "Battle/BattleManager.h"
-#include "Items/ItemTree.h"
-#include "Skills/SkillTree.h"
 #include "Utility/Errors.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -43,19 +40,19 @@ void CharacterStatChangeData::Clear()
     SetProlongedStatChanges({});
 }
 
-void CharacterStatChangeData::UpdateAvailableChanges(const String& sCharacterID)
+void CharacterStatChangeData::UpdateAvailableChanges(ManagerSet* pManagerSet, const String& sCharacterID)
 {
     // Fill skill indices
     TreeIndexArray vSkillPassives;
     TreeIndexArray vSkillActives;
     TreeIndexArray vSkillActionables;
-    SkillTree::FillSkillStatChangeArrays(sCharacterID, vSkillPassives, vSkillActives, vSkillActionables, true);
+    pManagerSet->GetSkillManager().FillSkillStatChangeArrays(sCharacterID, vSkillPassives, vSkillActives, vSkillActionables, true);
 
     // Fill item indices
     TreeIndexArray vItemPassives;
     TreeIndexArray vItemActives;
     TreeIndexArray vItemActionables;
-    ItemTree::FillItemStatChangeArrays(ItemTree::GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
+    pManagerSet->GetItemManager().FillItemStatChangeArrays(pManagerSet->GetItemManager().GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
 
     // Add to stored changes
     SetPassiveSkillDataArray(vSkillPassives);
@@ -190,15 +187,18 @@ void CharacterStatChangeData::RemoveAllExpiredProlongedStatChanges(Int iRound, I
     }
 }
 
-void CharacterStatChangeData::ApplyProlongedStatChanges(const String& sCharacterID, const String& sSegment)
+void CharacterStatChangeData::ApplyProlongedStatChanges(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sSegment)
 {
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
-    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    Int iCurrentRound = pManagerSet->GetBattleManager().GetCurrentBattle().GetCurrentRoundIndex();
     Int iCurrentAttack = character.GetBattleData().GetAttackCounter();
     Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     for(auto& entry : GetProlongedStatChangeEntries(iCurrentRound, iCurrentAttack, iCurrentDefend))
     {
-        CharacterManager::GetInstance()->ApplyStatChangeEntry(sSegment, entry);
+        pManagerSet->GetCharacterManager().ApplyStatChangeEntry(sSegment, entry);
     }
 }
 

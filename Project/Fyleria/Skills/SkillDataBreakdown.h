@@ -12,6 +12,7 @@
 namespace Gecko
 {
 
+// Skill data breakdown
 class SkillDataBreakdown : public SkillData
 {
 public:

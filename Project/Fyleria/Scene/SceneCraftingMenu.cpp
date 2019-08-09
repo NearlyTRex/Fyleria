@@ -18,7 +18,7 @@ SceneCraftingMenu::~SceneCraftingMenu()
 {
 }
 
-void SceneCraftingMenu::Start()
+void SceneCraftingMenu::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneCraftingMenu::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneCraftingMenu::Start()
     LoadHtmlFromFile(PAGE_FILE_CRAFTING_MENU);
 }
 
-void SceneCraftingMenu::Finish()
+void SceneCraftingMenu::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneCraftingMenu::Update()
+void SceneCraftingMenu::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneCraftingMenu::Input()
+void SceneCraftingMenu::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneCraftingMenu::OnMessageReceived(const String& sMessage)
+void SceneCraftingMenu::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

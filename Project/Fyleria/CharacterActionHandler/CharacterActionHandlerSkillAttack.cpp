@@ -3,10 +3,10 @@
 
 // Internal includes
 #include "CharacterActionHandler/CharacterActionHandlerSkillAttack.h"
-#include "Character/CharacterManager.h"
 #include "Battle/BattleEvents.h"
 #include "Utility/Constants.h"
 #include "Utility/Templates.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -20,6 +20,7 @@ CharacterActionHandlerSkillAttack::~CharacterActionHandlerSkillAttack()
 }
 
 CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
+    ManagerSet* pManagerSet,
     const CharacterAction& action,
     const CharacterActionEntry& entry,
     const String& sDestCharID) const
@@ -29,8 +30,8 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
 
     // Get character data
     const String& sSourceCharID = action.GetSourceCharacterID();
-    const Character& sourceCharacter = CharacterManager::GetInstance()->GetCharacter(sSourceCharID);
-    const Character& destCharacter = CharacterManager::GetInstance()->GetCharacter(sDestCharID);
+    const Character& sourceCharacter = pManagerSet->GetCharacterManager().GetCharacter(sSourceCharID);
+    const Character& destCharacter = pManagerSet->GetCharacterManager().GetCharacter(sDestCharID);
     const CharacterBattleData& sourceBattleData = sourceCharacter.GetBattleDataActives();
     const CharacterBattleData& destBattleData = destCharacter.GetBattleDataActives();
 

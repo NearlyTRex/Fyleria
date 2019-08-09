@@ -21,6 +21,10 @@ typedef Tree<ItemDataIngredient> ItemTreeIngredient;
 typedef Tree<ItemDataPotion> ItemTreePotion;
 typedef Tree<ItemDataWeapon> ItemTreeWeapon;
 
+// Manager set
+class ManagerSet;
+
+// Item manager
 class ItemManager
 {
 public:
@@ -53,7 +57,7 @@ public:
     TreeIndexArray GetAllIngredientItems();
     TreeIndexArray GetAllPotionItems();
     TreeIndexArray GetAllWeaponItems();
-    TreeIndexArray GetAllEquippedItems(const String& sCharID);
+    TreeIndexArray GetAllEquippedItems(ManagerSet* pManagerSet, const String& sCharID);
 
     // Resolve leaf into index
     TreeIndex ResolveItemLeafIntoIndex(const String& sLeaf);

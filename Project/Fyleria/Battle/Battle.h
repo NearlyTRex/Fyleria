@@ -13,6 +13,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Battle
 class Battle
 {
 public:
@@ -32,13 +36,13 @@ public:
     void AdvanceRound();
 
     // Determine if battle is over
-    Bool IsBattleOver(const String& sPartyID) const;
+    Bool IsBattleOver(ManagerSet* pManagerSet, const String& sPartyID) const;
 
     // Determine if battle is won
-    Bool IsBattleWon() const;
+    Bool IsBattleWon(ManagerSet* pManagerSet) const;
 
     // Determine if battle is lost
-    Bool IsBattleLost() const;
+    Bool IsBattleLost(ManagerSet* pManagerSet) const;
 
     // Determine if action is skill attack
     Bool IsSkillAttackAction(const CharacterAction& action) const;

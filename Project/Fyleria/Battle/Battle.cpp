@@ -3,7 +3,7 @@
 
 // Internal includes
 #include "Battle/Battle.h"
-#include "CharacterParty/CharacterPartyManager.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -63,20 +63,24 @@ void Battle::AdvanceRound()
     ClearAllActions();
 }
 
-Bool Battle::IsBattleOver(const String& sPartyID) const
+Bool Battle::IsBattleOver(ManagerSet* pManagerSet, const String& sPartyID) const
 {
-    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Check if able to fight
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
     return party.IsPartyAbleToFight();
 }
 
-Bool Battle::IsBattleWon() const
+Bool Battle::IsBattleWon(ManagerSet* pManagerSet) const
 {
-    return (GetIsBattleManuallyWon() || IsBattleOver(GetEnemyPartyID()));
+    return (GetIsBattleManuallyWon() || IsBattleOver(pManagerSet, GetEnemyPartyID()));
 }
 
-Bool Battle::IsBattleLost() const
+Bool Battle::IsBattleLost(ManagerSet* pManagerSet) const
 {
-    return (GetIsBattleManuallyLost() || IsBattleOver(GetAllyPartyID()));
+    return (GetIsBattleManuallyLost() || IsBattleOver(pManagerSet, GetAllyPartyID()));
 }
 
 Bool Battle::IsSkillAttackAction(const CharacterAction& action) const

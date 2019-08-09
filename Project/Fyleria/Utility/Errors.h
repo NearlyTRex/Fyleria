@@ -25,7 +25,8 @@ namespace Gecko
 BETTER_ENUM(ErrorCode, Int,
     GeneralError,
     LogicError,
-    RuntimeError
+    RuntimeError,
+    InvalidManagerError
 );
 
 // General error
@@ -92,6 +93,15 @@ class RuntimeError : public GeneralError
 public:
     RuntimeError(const String& message, const String& file = __FILE__, Int line = __LINE__)
         : GeneralError(message, ErrorCode::RuntimeError, file, line)
+    {}
+};
+
+// Invalid manager error
+class InvalidManagerError : public GeneralError
+{
+public:
+    InvalidManagerError(const String& file = __FILE__, Int line = __LINE__)
+        : GeneralError("Invalid manager", ErrorCode::InvalidManagerError, file, line)
     {}
 };
 

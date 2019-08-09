@@ -5,7 +5,6 @@
 #include "CharacterParty/CharacterPartyItem.h"
 #include "Character/CharacterTypes.h"
 #include "Items/ItemTypes.h"
-#include "Items/ItemTree.h"
 #include "Utility/Templates.h"
 
 namespace Gecko

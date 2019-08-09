@@ -2,15 +2,14 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 // Internal includes
-#include "Config/ConfigManager.h"
 #include "Web/WebPageHandlerPartyTool.h"
 #include "Character/CharacterTypes.h"
-#include "CharacterParty/CharacterPartyManager.h"
 #include "Items/ItemTypes.h"
 #include "Utility/Constants.h"
 #include "Utility/Converters.h"
 #include "Utility/Enum.h"
 #include "Utility/Templates.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -31,7 +30,7 @@ WebPageHandlerPartyTool::~WebPageHandlerPartyTool()
 {
 }
 
-void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
+void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams)
 {
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
@@ -99,19 +98,19 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     // Check action
     if(sAction == "load_party_from_json")
     {
-        sPartyToDisplay = CharacterPartyManager::GetInstance()->LoadParty(
+        sPartyToDisplay = pManagerSet->GetCharacterPartyManager().LoadParty(
             CharacterParty(sLoadPartyFromJson_Textarea), true
         );
     }
     else if(sAction == "load_party_from_file")
     {
-        sPartyToDisplay = CharacterPartyManager::GetInstance()->LoadPartyFromFile(
+        sPartyToDisplay = pManagerSet->GetCharacterPartyManager().LoadPartyFromFile(
             sLoadPartyFromFile_Filename, sLoadPartyFromFile_FileType, true
         );
     }
     else if(sAction == "save_party_to_file")
     {
-        CharacterPartyManager::GetInstance()->SavePartyToFile(
+        pManagerSet->GetCharacterPartyManager().SavePartyToFile(
             sSavePartyToFile_PartyID,
             sSavePartyToFile_Filename,
             sSavePartyToFile_FileType
@@ -120,7 +119,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "unload_party")
     {
-        CharacterPartyManager::GetInstance()->UnloadParty(
+        pManagerSet->GetCharacterPartyManager().UnloadParty(
             sUnloadParty_PartyID
         );
     }
@@ -130,10 +129,10 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
         switch(ePartyType)
         {
             case CharacterPartyType::Ally:
-                CharacterPartyManager::GetInstance()->SetCurrentAllyPartyID(sSetCurrentParty_PartyID);
+                pManagerSet->GetCharacterPartyManager().SetCurrentAllyPartyID(sSetCurrentParty_PartyID);
                 break;
             case CharacterPartyType::Enemy:
-                CharacterPartyManager::GetInstance()->SetCurrentEnemyPartyID(sSetCurrentParty_PartyID);
+                pManagerSet->GetCharacterPartyManager().SetCurrentEnemyPartyID(sSetCurrentParty_PartyID);
                 break;
             default:
                 break;
@@ -142,7 +141,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "create_party")
     {
-        CharacterPartyManager::GetInstance()->CreateParty(
+        pManagerSet->GetCharacterPartyManager().CreateParty(
             sCreateParty_PartyID,
             sCreateParty_PartyType,
             (sCreateParty_SetAsCurrent == "current")
@@ -151,7 +150,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "add_member")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sAddMember_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sAddMember_PartyID);
         party.AddMember(
             sAddMember_CharID
         );
@@ -159,7 +158,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "remove_member")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sRemoveMember_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sRemoveMember_PartyID);
         party.RemoveMember(
             sRemoveMember_CharID
         );
@@ -167,7 +166,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "move_member")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sMoveMember_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sMoveMember_PartyID);
         party.MoveMember(
             sMoveMember_CharID,
             sMoveMember_CharTargetType
@@ -176,7 +175,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "swap_member")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sSwapMember_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sSwapMember_PartyID);
         party.SwapMembers(
             sSwapMember_First_CharID,
             sSwapMember_Second_CharID
@@ -185,7 +184,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "add_item")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sAddItem_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sAddItem_PartyID);
         party.AddItemByLeaf(
             sAddItem_ItemName,
             BoostLexicalCast<UInt>(sAddItem_ItemAmount)
@@ -194,7 +193,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "add_random_items")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sAddRandomItems_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sAddRandomItems_PartyID);
         party.AddRandomItems(
             {sAddRandomItems_ItemTreeType},
             BoostLexicalCast<Int>(sAddRandomItems_ItemCount),
@@ -205,7 +204,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "remove_item")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sRemoveItem_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sRemoveItem_PartyID);
         party.RemoveItemByLeaf(
             sRemoveItem_ItemName,
             BoostLexicalCast<UInt>(sRemoveItem_ItemAmount)
@@ -214,7 +213,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "equip_item")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sEquipItem_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sEquipItem_PartyID);
         party.EquipItem(
             sEquipItem_CharID,
             sEquipItem_ItemName,
@@ -224,7 +223,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "unequip_item")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sUnequipItem_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sUnequipItem_PartyID);
         party.UnequipItem(
             sUnequipItem_CharID,
             sUnequipItem_ItemName,
@@ -234,7 +233,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "equip_best_items")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sEquipBestItems_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sEquipBestItems_PartyID);
         party.EquipBestItems(
             sEquipBestItems_CharID
         );
@@ -242,7 +241,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "unequip_best_items")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sUnequipBestItems_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sUnequipBestItems_PartyID);
         party.UnequipAllItems(
             sUnequipBestItems_CharID
         );
@@ -250,13 +249,13 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "equip_best_items_all_members")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sEquipBestItemsAllMembers_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sEquipBestItemsAllMembers_PartyID);
         party.EquipBestItemsForAllMembers();
         sPartyToDisplay = sEquipBestItemsAllMembers_PartyID;
     }
     else if(sAction == "unequip_best_items_all_members")
     {
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sUnequipBestItemsAllMembers_PartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sUnequipBestItemsAllMembers_PartyID);
         party.UnequipAllItemsForAllMembers();
         sPartyToDisplay = sUnequipBestItemsAllMembers_PartyID;
     }
@@ -266,16 +265,16 @@ void WebPageHandlerPartyTool::UpdatePageContent(const StringMap& tParams)
     }
 
     // Get all party ids
-    String sAllPartyIDs = ConcatStringVector(CharacterPartyManager::GetInstance()->GetAllPartyIDs());
+    String sAllPartyIDs = ConcatStringVector(pManagerSet->GetCharacterPartyManager().GetAllPartyIDs());
 
     // Get current parties
-    String sCurrentParty_Ally = CharacterPartyManager::GetInstance()->GetCurrentAllyPartyID();
-    String sCurrentParty_Enemy = CharacterPartyManager::GetInstance()->GetCurrentEnemyPartyID();
+    String sCurrentParty_Ally = pManagerSet->GetCharacterPartyManager().GetCurrentAllyPartyID();
+    String sCurrentParty_Enemy = pManagerSet->GetCharacterPartyManager().GetCurrentEnemyPartyID();
 
     // Display party
     if(!sPartyToDisplay.empty())
     {
-        const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyToDisplay);
+        const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyToDisplay);
         sPartyDetails_PartyID = party.GetPartyID();
         sPartyDetails_PartyType = party.GetPartyType();
         sPartyDetails_PlayTime = ConvertGameTimeToString(party.GetPlayTime());

@@ -10,6 +10,7 @@
 namespace Gecko
 {
 
+// Character skill data
 class CharacterSkillData : public StatTypeHolder
 {
 public:

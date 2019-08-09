@@ -12,7 +12,7 @@
 namespace Gecko
 {
 
-// Class for stat change entries
+// Stat change entry
 class StatChangeEntry
 {
 public:

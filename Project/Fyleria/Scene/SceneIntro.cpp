@@ -18,7 +18,7 @@ SceneIntro::~SceneIntro()
 {
 }
 
-void SceneIntro::Start()
+void SceneIntro::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneIntro::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneIntro::Start()
     LoadHtmlFromFile(PAGE_FILE_INTRO);
 }
 
-void SceneIntro::Finish()
+void SceneIntro::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneIntro::Update()
+void SceneIntro::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneIntro::Input()
+void SceneIntro::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneIntro::OnMessageReceived(const String& sMessage)
+void SceneIntro::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

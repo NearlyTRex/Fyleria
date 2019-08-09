@@ -4,12 +4,11 @@
 // Internal includes
 #include "Scene/Scene.h"
 #include "Scene/SceneTypes.h"
-#include "Scene/SceneManager.h"
-#include "Config/ConfigManager.h"
 #include "Window/MainWindow.h"
 #include "Utility/Converters.h"
 #include "Utility/Json.h"
 #include "Utility/Constants.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -22,7 +21,7 @@ Scene::~Scene()
 {
 }
 
-Bool Scene::ParseMessage(const String& sMessage, String& sFunction, StringArray& vArgs)
+Bool Scene::ParseMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs)
 {
     // Parse json data
     Json jsonData = JsonParse(sMessage);
@@ -49,7 +48,7 @@ Bool Scene::ParseMessage(const String& sMessage, String& sFunction, StringArray&
     return true;
 }
 
-Bool Scene::HandleMessage(const String& sMessage, String& sFunction, StringArray& vArgs)
+Bool Scene::HandleMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs)
 {
     // Parse message
     if(!ParseMessage(sMessage, sFunction, vArgs))
@@ -67,7 +66,7 @@ Bool Scene::HandleMessage(const String& sMessage, String& sFunction, StringArray
     switch(eFunctionType)
     {
         case SceneMessageFunctionType::SwitchToScene:
-            SceneManager::GetInstance()->SwitchToScene(sArg1);
+            pManagerSet->GetSceneManager().SwitchToScene(sArg1);
             return true;
         case SceneMessageFunctionType::SubmitForm:
             ProcessForm(sArg1, sArg2);
@@ -84,7 +83,7 @@ Bool Scene::HandleMessage(const String& sMessage, String& sFunction, StringArray
     return false;
 }
 
-void Scene::ProcessForm(const String& sAction, const String& sParameters)
+void Scene::ProcessForm(ManagerSet* pManagerSet, const String& sAction, const String& sParameters)
 {
     // Check input data
     if(sAction.empty() || sParameters.empty())

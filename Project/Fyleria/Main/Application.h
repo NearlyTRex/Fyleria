@@ -6,6 +6,8 @@
 
 // Internal includes
 #include "Utility/Types.h"
+#include "Utility/Macros.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -30,6 +32,9 @@ private:
 
     // Finalize
     Bool Finalize();
+
+    // Managers
+    MAKE_RAW_TYPE_ACCESSORS(Managers, STDSharedPtr<ManagerSet>);
 };
 
 };

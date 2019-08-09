@@ -35,6 +35,9 @@ public:
     MAKE_RAW_TYPE_ACCESSORS(SkillManager, SkillManager);
 };
 
+// Typedef
+MAKE_COMMON_TYPEDEFS(ManagerSet);
+
 };
 
 #endif

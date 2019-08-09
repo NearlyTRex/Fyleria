@@ -15,7 +15,10 @@
 namespace Gecko
 {
 
-// Class for stat changes
+// Manager set
+class ManagerSet;
+
+// Stat change
 class StatChange
 {
 public:
@@ -46,24 +49,32 @@ public:
     Bool DoesHaveDefendRequirements() const;
 
     // Determine if change meets specific requirements
-    Bool DoesMeetItemEquippedRequirements(const String& sCharacterID, const String& sWeaponSet) const;
+    Bool DoesMeetItemEquippedRequirements(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
     Bool DoesMeetItemUsedRequirements(const StringArray& vActionItemTypes) const;
     Bool DoesMeetAttackRequirements(const StringArray& vActionTypes) const;
     Bool DoesMeetAttackRequirements(const StringArray& vActionTypes, const StringArray& vPreviousActionTypes) const;
     Bool DoesMeetDefendRequirements(const StringArray& vActionTypes) const;
     Bool DoesMeetDefendRequirements(const StringArray& vActionTypes, const StringArray& vPreviousActionTypes) const;
-    Bool DoesMeetActiveRequirements(const String& sCharacterID, const String& sWeaponSet) const;
-    Bool DoesMeetActiveRequirements(const String& sCharacterID, const String& sCharacterTargetType, const String& sWeaponSet, const CharacterAction& action) const;
+    Bool DoesMeetActiveRequirements(
+        ManagerSet* pManagerSet,
+        const String& sCharacterID,
+        const String& sWeaponSet) const;
+    Bool DoesMeetActiveRequirements(
+        ManagerSet* pManagerSet,
+        const String& sCharacterID,
+        const String& sCharacterTargetType,
+        const String& sWeaponSet,
+        const CharacterAction& action) const;
 
     // Get intersecting requirements
     StringArray GetIntersectingAttackRequirements(const StringArray& vActionTypes) const;
     StringArray GetIntersectingDefendRequirements(const StringArray& vActionTypes) const;
 
     // Get resolved characters
-    Bool GetResolvedCharacterArrays(StringArray& vSourceCharIDs, StringArray& vDestCharIDs) const;
+    Bool GetResolvedCharacterArrays(ManagerSet* pManagerSet, StringArray& vSourceCharIDs, StringArray& vDestCharIDs) const;
 
     // Resolve target placeholders
-    void ResolveTargetPlaceholders(const String& sCharacterID, const String& sSegment);
+    void ResolveTargetPlaceholders(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSegment);
 
     // ID
     MAKE_RAW_TYPE_ACCESSORS(ID, ULongLong);

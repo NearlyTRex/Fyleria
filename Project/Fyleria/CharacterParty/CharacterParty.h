@@ -12,6 +12,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Character party
 class CharacterParty
 {
 public:
@@ -27,6 +31,7 @@ public:
 
     // Regenerate character data
     void RegenerateCharacterData(
+        ManagerSet* pManagerSet,
         Bool bUpdateEquipmentRatings = true,
         Bool bUpdateAvailableChanges = true,
         Bool bUpdateAvailableActions = true,
@@ -49,10 +54,10 @@ public:
     Bool IsTargetTypeTaken(const String& sCharacterTargetType) const;
 
     // Add member
-    Bool AddMember(const String& sCharacterID);
+    Bool AddMember(ManagerSet* pManagerSet, const String& sCharacterID);
 
     // Remove member
-    Bool RemoveMember(const String& sCharacterID);
+    Bool RemoveMember(ManagerSet* pManagerSet, const String& sCharacterID);
 
     // Move member to the given target type
     Bool MoveMember(const String& sCharacterID, const String& sCharacterTargetType);
@@ -84,22 +89,22 @@ public:
     Bool GetCharacterIDsFromTargetType(const String& sCharacterTargetType, StringArray& vCharacterIDs) const;
 
     // Check member status
-    UInt GetStatusMemberCount(const String& sStatus) const;
+    UInt GetStatusMemberCount(ManagerSet* pManagerSet, const String& sStatus) const;
 
     // Add random items
-    Bool AddRandomItems(const StringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd);
+    Bool AddRandomItems(ManagerSet* pManagerSet, const StringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd);
 
     // Add item by leaf
-    Bool AddItemByLeaf(const String& sLeaf, UInt uAmount);
+    Bool AddItemByLeaf(ManagerSet* pManagerSet, const String& sLeaf, UInt uAmount);
 
     // Add item by tree index
-    Bool AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount);
+    Bool AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount);
 
     // Remove item by leaf
-    Bool RemoveItemByLeaf(const String& sLeaf, UInt uAmount);
+    Bool RemoveItemByLeaf(ManagerSet* pManagerSet, const String& sLeaf, UInt uAmount);
 
     // Remove item by tree index
-    Bool RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount);
+    Bool RemoveItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount);
 
     // Get item by leaf
     const CharacterPartyItem& GetItemByLeaf(const String& sLeaf) const;
@@ -110,7 +115,7 @@ public:
     CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& treeIndex);
 
     // Get best unequipped item for the given slot
-    TreeIndex GetBestUnequippedItem(const String& sCharacterID, const String& sSlot) const;
+    TreeIndex GetBestUnequippedItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSlot) const;
 
     // Equip item
     Bool EquipItem(const String& sCharacterID, const String& sLeaf, const String& sSlot);

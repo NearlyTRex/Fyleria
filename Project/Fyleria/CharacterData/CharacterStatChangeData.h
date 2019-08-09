@@ -12,6 +12,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Character stat change data
 class CharacterStatChangeData
 {
 public:
@@ -30,7 +34,7 @@ public:
     void Clear();
 
     // Update available passive, active, and actionable changes
-    void UpdateAvailableChanges(const String& sCharacterID);
+    void UpdateAvailableChanges(ManagerSet* pManagerSet, const String& sCharacterID);
 
     // Get tree actives/passives
     const TreeIndexArray& GetPassiveChanges(const String& sTreeIndexType) const;
@@ -58,7 +62,7 @@ public:
     void RemoveAllExpiredProlongedStatChanges(Int iRound, Int iAttack, Int iDefend);
 
     // Apply prolonged stat changes
-    void ApplyProlongedStatChanges(const String& sCharacterID, const String& sSegment);
+    void ApplyProlongedStatChanges(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSegment);
 
     // Passive data
     MAKE_RAW_TYPE_ACCESSORS(PassiveSkillDataArray, TreeIndexArray);

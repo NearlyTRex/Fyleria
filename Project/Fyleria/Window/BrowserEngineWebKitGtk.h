@@ -32,7 +32,7 @@ public:
     virtual ~BrowserEngineWebKitGtk();
 
     // Initialize
-    virtual Bool Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable) override;
+    virtual Bool Init(ManagerSet* pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable) override;
 
     // Shutdown
     virtual void Shutdown() override;

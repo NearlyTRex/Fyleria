@@ -10,6 +10,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Save manager
 class SaveManager
 {
 public:
@@ -59,11 +63,19 @@ public:
     SaveArray GetAllSaves() const;
 
     // Collect data and create a save
-    void CollectSaveData(const String& sSlot, const String& sPartyID);
-    void CollectSaveData(const String& sSlot, const StringArray& vPartyIDs, const String& sDescription, ULongLong uPlayTime);
+    void CollectSaveData(
+        ManagerSet* pManagerSet,
+        const String& sSlot,
+        const String& sPartyID);
+    void CollectSaveData(
+        ManagerSet* pManagerSet,
+        const String& sSlot,
+        const StringArray& vPartyIDs,
+        const String& sDescription,
+        ULongLong uPlayTime);
 
     // Disperse save data
-    void DisperseSaveData(const String& sSlot);
+    void DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot);
 
     // Save to file
     void SaveToFile(const String& sSlot, const String& sFile, const String& sType);

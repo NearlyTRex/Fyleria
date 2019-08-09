@@ -18,7 +18,7 @@ SceneCredits::~SceneCredits()
 {
 }
 
-void SceneCredits::Start()
+void SceneCredits::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneCredits::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneCredits::Start()
     LoadHtmlFromFile(PAGE_FILE_CREDITS);
 }
 
-void SceneCredits::Finish()
+void SceneCredits::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneCredits::Update()
+void SceneCredits::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneCredits::Input()
+void SceneCredits::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneCredits::OnMessageReceived(const String& sMessage)
+void SceneCredits::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

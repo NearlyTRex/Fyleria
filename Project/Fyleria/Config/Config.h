@@ -12,6 +12,7 @@
 namespace Gecko
 {
 
+// Config
 class Config
 {
 public:

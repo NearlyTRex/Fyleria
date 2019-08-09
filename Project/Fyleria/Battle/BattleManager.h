@@ -10,6 +10,7 @@
 namespace Gecko
 {
 
+// Battle manager
 class BattleManager
 {
 public:

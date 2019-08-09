@@ -15,6 +15,7 @@
 namespace Gecko
 {
 
+// Character generator
 class CharacterGenerator
 {
 public:

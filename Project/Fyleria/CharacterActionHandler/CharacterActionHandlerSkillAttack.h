@@ -10,6 +10,7 @@
 namespace Gecko
 {
 
+// Skill attack character action handler
 class CharacterActionHandlerSkillAttack : public CharacterActionHandler
 {
 public:
@@ -22,6 +23,7 @@ public:
 
     // Get skill attack result
     CharacterActionResult GetSkillAttackResult(
+        ManagerSet* pManagerSet,
         const CharacterAction& action,
         const CharacterActionEntry& entry,
         const String& sDestCharID) const;

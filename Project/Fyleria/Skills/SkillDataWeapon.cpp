@@ -3,9 +3,8 @@
 
 // Internal includes
 #include "Skills/SkillDataWeapon.h"
-#include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
-#include "CharacterParty/CharacterPartyManager.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -37,30 +36,33 @@ void SkillDataWeapon::Clear()
     SetActionPoints(0);
 }
 
-CharacterActionArray SkillDataWeapon::CreateWeaponActions(const String& sCharacterID, const String& sWeaponSet) const
+CharacterActionArray SkillDataWeapon::CreateWeaponActions(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sWeaponSet) const
 {
     // Skip base actions
     CharacterActionArray vNewActions;
-    if(SkillTree::IsBaseWeaponSkill(GetSkillTreeIndex()))
+    if(pManagerSet->GetSkillManager().IsBaseWeaponSkill(GetSkillTreeIndex()))
     {
         return vNewActions;
     }
 
     // Check character
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
     }
 
     // Get character
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())
     {
         return vNewActions;
     }
 
     // Get party
-    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
     // Get equipped item information
@@ -94,8 +96,8 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(const String& sCharact
     }
 
     // Get item types
-    const String sPrimaryItemType = ItemTree::RetrieveItemType(primaryItemIndex);
-    const String sSecondaryItemType = ItemTree::RetrieveItemType(secondaryItemIndex);
+    const String sPrimaryItemType = pManagerSet->GetItemManager().RetrieveItemType(primaryItemIndex);
+    const String sSecondaryItemType = pManagerSet->GetItemManager().RetrieveItemType(secondaryItemIndex);
     const String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
     const String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
     const String sActionNoneType = GetNoneTypeForEnum<CharacterActionType>();

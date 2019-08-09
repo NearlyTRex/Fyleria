@@ -12,6 +12,7 @@
 namespace Gecko
 {
 
+// Character action entry
 class CharacterActionEntry
 {
 public:

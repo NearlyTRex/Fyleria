@@ -10,6 +10,9 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
 // Character battle data
 class CharacterBattleData : public StatTypeHolder
 {
@@ -23,23 +26,23 @@ public:
     virtual ~CharacterBattleData();
 
     // Apply status
-    void ApplyNewStatus(const String& sCharacterID, const String& sProgressSegment);
+    void ApplyNewStatus(ManagerSet* pManagerSet, const String& sCharacterID, const String& sProgressSegment);
 
     // Apply damage
     void ApplyGivenDamage(Int iDamage);
     void ApplyTakenDamage(Int iDamage);
 
     // Advance round
-    void AdvanceRound(const String& sCharacterID, const String& sProgressSegment);
+    void AdvanceRound(ManagerSet* pManagerSet, const String& sCharacterID, const String& sProgressSegment);
 
     // Finish battle
-    void FinishBattle(const String& sCharacterID, const String& sProgressSegment);
+    void FinishBattle(ManagerSet* pManagerSet, const String& sCharacterID, const String& sProgressSegment);
 
     // Can regenerate from stat
     Bool CanRegenerateFromStat(const String& sRegenStat) const;
 
     // Update equipment ratings
-    void UpdateEquipmentRatings(const String& sCharacterID, const String& sProgressSegment);
+    void UpdateEquipmentRatings(ManagerSet* pManagerSet, const String& sCharacterID, const String& sProgressSegment);
 
     // Resolve target placeholders
     StringArray ResolveTargetPlaceholder(const String& sSelfTargetType,

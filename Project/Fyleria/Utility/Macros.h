@@ -8,6 +8,8 @@
 
 #define THROW_LOGIC_ERROR(message) { throw LogicError(message, __FILE__, __LINE__); }
 #define THROW_RUNTIME_ERROR(message) { throw RuntimeError(message, __FILE__, __LINE__); }
+#define THROW_INVALID_MANAGER_ERROR() { throw InvalidManagerError(__FILE__, __LINE__); }
+#define CHECK_MANAGER_SET_PTR(ptr) { if(!ptr) { THROW_INVALID_MANAGER_ERROR(); } }
 
 //======================================================================================================================
 

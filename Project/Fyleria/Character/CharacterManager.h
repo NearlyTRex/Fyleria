@@ -7,10 +7,15 @@
 // Internal includes
 #include "Character/Character.h"
 #include "Character/CharacterGenerator.h"
+#include "Stats/StatChange.h"
 
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Character manager
 class CharacterManager
 {
 public:
@@ -56,6 +61,7 @@ public:
 
     // Apply a stat change
     void ApplyStatChange(
+        ManagerSet* pManagerSet,
         const String& sSegment,
         const StatChange& change,
         Bool& bAllChangesApplied,

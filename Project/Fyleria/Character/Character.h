@@ -15,12 +15,14 @@
 #include "CharacterData/CharacterSkillData.h"
 #include "CharacterData/CharacterStatChangeData.h"
 #include "CharacterParty/CharacterPartyEquippedItem.h"
-#include "Items/ItemTree.h"
-#include "Skills/SkillTree.h"
 
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Character class
 class Character
 {
 public:
@@ -48,13 +50,13 @@ public:
     String GetPartyID() const;
 
     // Get character target type
-    String GetCharacterTargetType() const;
+    String GetCharacterTargetType(ManagerSet* pManagerSet) const;
 
     // Get weapon set
     String GetWeaponSet() const;
 
     // Get equipped items
-    CharacterPartyEquippedItemArray GetEquippedItems() const;
+    CharacterPartyEquippedItemArray GetEquippedItems(ManagerSet* pManagerSet) const;
 
     // Get individual equipped items by type
     TreeIndex GetEquippedItemByType(const String& sEquipmentType) const;
@@ -132,11 +134,11 @@ public:
 
     // Apply passive changes
     // Copy base data into passive data and apply each passive stat change
-    void ApplyPassiveChanges();
+    void ApplyPassiveChanges(ManagerSet* pManagerSet);
 
     // Apply active changes
     // Copy passive data into active data and apply each active stat change
-    void ApplyActiveChanges(const CharacterAction& action);
+    void ApplyActiveChanges(ManagerSet* pManagerSet, const CharacterAction& action);
 
     // Clear active changes
     void ClearActiveChanges();

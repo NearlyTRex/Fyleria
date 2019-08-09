@@ -18,7 +18,7 @@ SceneShop::~SceneShop()
 {
 }
 
-void SceneShop::Start()
+void SceneShop::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneShop::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneShop::Start()
     LoadHtmlFromFile(PAGE_FILE_SHOP);
 }
 
-void SceneShop::Finish()
+void SceneShop::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneShop::Update()
+void SceneShop::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneShop::Input()
+void SceneShop::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneShop::OnMessageReceived(const String& sMessage)
+void SceneShop::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

@@ -4,11 +4,7 @@
 // Internal includes
 #include "Main/Application.h"
 #include "Window/MainWindow.h"
-#include "Config/ConfigManager.h"
-#include "Scene/SceneManager.h"
 #include "Scene/SceneTypes.h"
-#include "Items/ItemTree.h"
-#include "Skills/SkillTree.h"
 #include "Stats/StatNames.h"
 #include "Utility/Constants.h"
 #include "Utility/Logging.h"
@@ -27,6 +23,9 @@ Application::~Application()
 
 void Application::Run()
 {
+    // Create managers
+    SetManagers(STDMakeSharedPtr<ManagerSet>());
+
     // Initialize
     if(!Initialize())
     {
@@ -37,10 +36,10 @@ void Application::Run()
     do
     {
         // Handle scene
-        if(!SceneManager::GetInstance()->GetCurrentSceneID().empty())
+        if(!GetManagers()->GetSceneManager().GetCurrentSceneID().empty())
         {
-            SceneManager::GetInstance()->GetCurrentScene()->Input();
-            SceneManager::GetInstance()->GetCurrentScene()->Update();
+            GetManagers()->GetSceneManager().GetCurrentScene()->Input(GetManagers().get());
+            GetManagers()->GetSceneManager().GetCurrentScene()->Update(GetManagers().get());
         }
 
         // Handle browser main loop
@@ -57,8 +56,8 @@ Bool Application::Initialize()
     // Load config data
     String sConfigFile = JoinPathsCanonical(GetDataDirectory(), CONFIG_FILE);
     LOG_FORMAT_STATEMENT("Loading config file '{}'", sConfigFile.c_str());
-    ConfigManager::GetInstance()->SetCurrentConfigName("Default");
-    if(!ConfigManager::GetInstance()->LoadConfig("Default", sConfigFile))
+    GetManagers()->GetConfigManager().SetCurrentConfigName("Default");
+    if(!GetManagers()->GetConfigManager().LoadConfig("Default", sConfigFile))
     {
         ERROR_FORMAT_STATEMENT("Could not load configuration file '{}'",
             sConfigFile.c_str());
@@ -72,15 +71,15 @@ Bool Application::Initialize()
 
     // Load trees into memory
     LOG_STATEMENT("Loading trees into memory...");
-    SkillTree::LoadSkillTreesIntoMemory();
-    ItemTree::LoadItemTreesIntoMemory();
+    GetManagers()->GetSkillManager().LoadSkillTreesIntoMemory();
+    GetManagers()->GetItemManager().LoadItemTreesIntoMemory();
     LOG_STATEMENT("Finished loading trees into memory");
 
     // Initialize window
     LOG_STATEMENT("Initializing window");
-    Int iScreenWidth = ConfigManager::GetInstance()->GetCurrentConfig().GetScreenWidth();
-    Int iScreenHeight = ConfigManager::GetInstance()->GetCurrentConfig().GetScreenHeight();
-    if(!MainWindow::GetInstance()->GetBrowserEngine()->Init(APPLICATION_NAME_SHORT, iScreenWidth, iScreenHeight, true))
+    Int iScreenWidth = GetManagers()->GetConfigManager().GetCurrentConfig().GetScreenWidth();
+    Int iScreenHeight = GetManagers()->GetConfigManager().GetCurrentConfig().GetScreenHeight();
+    if(!MainWindow::GetInstance()->GetBrowserEngine()->Init(GetManagers().get(), APPLICATION_NAME_SHORT, iScreenWidth, iScreenHeight, true))
     {
         ERROR_STATEMENT("Unable to initialize window");
         return false;
@@ -93,8 +92,8 @@ Bool Application::Finalize()
 {
     // Unload trees from memory
     LOG_STATEMENT("Unloading trees from memory...");
-    SkillTree::UnloadSkillTreesFromMemory();
-    ItemTree::UnloadItemTreesFromMemory();
+    GetManagers()->GetSkillManager().UnloadSkillTreesFromMemory();
+    GetManagers()->GetItemManager().UnloadItemTreesFromMemory();
     LOG_STATEMENT("Finished unloading trees from memory");
     return true;
 }

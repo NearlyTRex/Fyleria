@@ -14,6 +14,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Web page handler
 class WebPageHandler
 {
 public:
@@ -25,7 +29,7 @@ public:
     virtual ~WebPageHandler();
 
     // Update page content
-    virtual void UpdatePageContent(const StringMap& tParams) = 0;
+    virtual void UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams) = 0;
 
     // Page content
     MAKE_RAW_TYPE_ACCESSORS(PageContent, String);

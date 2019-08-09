@@ -13,7 +13,7 @@
 namespace Gecko
 {
 
-// Class for recipes
+// Recipe
 class Recipe
 {
 public:

@@ -10,6 +10,7 @@
 namespace Gecko
 {
 
+// Character party manager
 class CharacterPartyManager
 {
 public:

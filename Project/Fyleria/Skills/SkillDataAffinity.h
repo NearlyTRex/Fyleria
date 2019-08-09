@@ -11,6 +11,7 @@
 namespace Gecko
 {
 
+// Skill data affinity
 class SkillDataAffinity : public SkillData
 {
 public:

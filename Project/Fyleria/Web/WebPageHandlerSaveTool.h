@@ -10,6 +10,7 @@
 namespace Gecko
 {
 
+// Save tool
 class WebPageHandlerSaveTool : public WebPageHandler
 {
 public:
@@ -21,7 +22,7 @@ public:
     virtual ~WebPageHandlerSaveTool();
 
     // Update page content
-    virtual void UpdatePageContent(const StringMap& tParams) override;
+    virtual void UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams) override;
 };
 
 // Typedefs

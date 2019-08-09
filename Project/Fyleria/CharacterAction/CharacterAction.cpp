@@ -3,9 +3,8 @@
 
 // Internal includes
 #include "CharacterAction/CharacterAction.h"
-#include "Character/CharacterManager.h"
-#include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Constants.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -102,7 +101,7 @@ StringArray CharacterAction::GetAllDestinationTargetTypes() const
     return vAllDestinationTargetTypes;
 }
 
-Bool CharacterAction::AreAllCharacterIDsValid() const
+Bool CharacterAction::AreAllCharacterIDsValid(ManagerSet* pManagerSet) const
 {
     StringArray vAllCharacterIDs = GetAllCharacterIDs();
     if(vAllCharacterIDs.empty())
@@ -111,7 +110,7 @@ Bool CharacterAction::AreAllCharacterIDsValid() const
     }
     for(const String& sCharacterID : vAllCharacterIDs)
     {
-        if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+        if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
         {
             return false;
         }
@@ -119,7 +118,7 @@ Bool CharacterAction::AreAllCharacterIDsValid() const
     return true;
 }
 
-Bool CharacterAction::PrepareCharacterIDs()
+Bool CharacterAction::PrepareCharacterIDs(ManagerSet* pManagerSet)
 {
     // Get source character info if it's not already set
     if(GetSourceCharacterID().empty())
@@ -128,7 +127,7 @@ Bool CharacterAction::PrepareCharacterIDs()
         StringArray vSourceCharIDs;
         String sSourceTargetType = GetSourceTargetType();
         String sSourcePartyType = ConvertCharacterTargetTypeToCharacterPartyType(sSourceTargetType);
-        CharacterPartyManager::GetInstance()->GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
+        pManagerSet->GetCharacterPartyManager().GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
         if(vSourceCharIDs.empty())
         {
             return false;
@@ -145,7 +144,7 @@ Bool CharacterAction::PrepareCharacterIDs()
         StringArray vDestCharIDs;
         String sDestTargetType = entry.GetDestinationTargetType();
         String sDestPartyType = ConvertCharacterTargetTypeToCharacterPartyType(sDestTargetType);
-        CharacterPartyManager::GetInstance()->GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
+        pManagerSet->GetCharacterPartyManager().GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
         if(vDestCharIDs.empty())
         {
             return false;

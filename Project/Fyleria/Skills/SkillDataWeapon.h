@@ -11,6 +11,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Skill data weapon
 class SkillDataWeapon : public SkillData
 {
 public:
@@ -32,7 +36,7 @@ public:
     }
 
     // Create weapon actions
-    CharacterActionArray CreateWeaponActions(const String& sCharacterID, const String& sWeaponSet) const;
+    CharacterActionArray CreateWeaponActions(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
 
     // Weapon base type
     MAKE_RAW_TYPE_ACCESSORS(WeaponBaseType, String);

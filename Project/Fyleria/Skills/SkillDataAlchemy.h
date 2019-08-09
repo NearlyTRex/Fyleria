@@ -12,6 +12,7 @@
 namespace Gecko
 {
 
+// Skill data alchemy
 class SkillDataAlchemy : public SkillData
 {
 public:

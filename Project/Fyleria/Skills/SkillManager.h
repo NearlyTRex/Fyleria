@@ -25,6 +25,10 @@ typedef Tree<SkillDataCombat> SkillTreeCombat;
 typedef Tree<SkillDataCrafting> SkillTreeCrafting;
 typedef Tree<SkillDataWeapon> SkillTreeWeapon;
 
+// Manager set
+class ManagerSet;
+
+// Skill manager
 class SkillManager
 {
 public:

@@ -19,7 +19,7 @@ SceneToolCharacter::~SceneToolCharacter()
 {
 }
 
-void SceneToolCharacter::Start()
+void SceneToolCharacter::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneToolCharacter::OnMessageReceived, this, STDPlaceholder1));
@@ -28,21 +28,21 @@ void SceneToolCharacter::Start()
     LoadHtmlFromHandler(GetPageHandler());
 }
 
-void SceneToolCharacter::Finish()
+void SceneToolCharacter::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneToolCharacter::Update()
+void SceneToolCharacter::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneToolCharacter::Input()
+void SceneToolCharacter::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneToolCharacter::OnMessageReceived(const String& sMessage)
+void SceneToolCharacter::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

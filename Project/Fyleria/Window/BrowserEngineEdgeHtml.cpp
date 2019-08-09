@@ -3,12 +3,11 @@
 
 // Internal includes
 #include "Window/BrowserEngineEdgeHtml.h"
-#include "Scene/SceneManager.h"
 #include "Scene/SceneTypes.h"
-#include "Config/ConfigManager.h"
 #include "Utility/Filesystem.h"
 #include "Utility/Constants.h"
 #include "Utility/Converters.h"
+#include "Utility/ManagerSet.h"
 
 // EdgeHTML is available for Windows 10 only
 #if defined(PLATFORM_OS_WINDOWS_10)
@@ -260,7 +259,7 @@ Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, 
         Navigate(STARTING_URI);
 
         // Switch to starting scene
-        SceneManager::GetInstance()->SwitchToScene((+SceneType::Intro)._to_string());
+        pManagerSet->GetSceneManager().SwitchToScene((+SceneType::Intro)._to_string());
     };
 
     // Create web view control process

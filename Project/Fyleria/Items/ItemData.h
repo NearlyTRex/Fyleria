@@ -13,6 +13,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Item data
 class ItemData
 {
 public:
@@ -31,10 +35,10 @@ public:
     Bool IsActionable() const;
 
     // Does meet action requirements
-    Bool DoesMeetActionRequirements(const String& sCharacterID, const String& sWeaponSet) const;
+    Bool DoesMeetActionRequirements(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
 
     // Create base character action
-    CharacterActionArray CreateBaseActions(const String& sCharacterID, const String& sWeaponSet) const;
+    CharacterActionArray CreateBaseActions(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
 
     // Run types
     MAKE_RAW_TYPE_ACCESSORS(RunTypes, StringArray);

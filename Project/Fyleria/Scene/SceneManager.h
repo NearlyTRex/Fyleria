@@ -26,6 +26,9 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
 // Scene manager
 class SceneManager
 {
@@ -48,7 +51,7 @@ public:
     void RemoveScene(const String& sSceneID);
 
     // Switch to scene
-    void SwitchToScene(const String& sSceneID);
+    void SwitchToScene(ManagerSet* pManagerSet, const String& sSceneID);
 
     // Does scene exist
     Bool DoesSceneExist(const String& sSceneID) const;

@@ -4,12 +4,10 @@
 // Internal includes
 #include "CharacterData/CharacterBattleData.h"
 #include "CharacterData/CharacterProgressData.h"
-#include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
 #include "CharacterParty/CharacterPartyEquippedItem.h"
-#include "Config/ConfigManager.h"
-#include "Items/ItemTree.h"
 #include "Items/ItemTypes.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -27,10 +25,13 @@ CharacterBattleData::~CharacterBattleData()
 {
 }
 
-void CharacterBattleData::ApplyNewStatus(const String& sCharacterID, const String& sProgressSegment)
+void CharacterBattleData::ApplyNewStatus(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sProgressSegment)
 {
     // Get character info
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
 
     // Update status
@@ -52,10 +53,13 @@ void CharacterBattleData::ApplyTakenDamage(Int iDamage)
     SetDamageTakenThisBattle(GetDamageTakenThisBattle() + abs(iDamage));
 }
 
-void CharacterBattleData::AdvanceRound(const String& sCharacterID, const String& sProgressSegment)
+void CharacterBattleData::AdvanceRound(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sProgressSegment)
 {
     // Get character info
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
 
     // Apply regeneration
@@ -81,10 +85,13 @@ void CharacterBattleData::AdvanceRound(const String& sCharacterID, const String&
     SetActionSourcesThisRound({});
 }
 
-void CharacterBattleData::FinishBattle(const String& sCharacterID, const String& sProgressSegment)
+void CharacterBattleData::FinishBattle(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sProgressSegment)
 {
     // Get character info
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
 
     // Update character health if they are "dead"
@@ -127,10 +134,13 @@ Bool CharacterBattleData::CanRegenerateFromStat(const String& sRegenStat) const
     return false;
 }
 
-void CharacterBattleData::UpdateEquipmentRatings(const String& sCharacterID, const String& sProgressSegment)
+void CharacterBattleData::UpdateEquipmentRatings(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sProgressSegment)
 {
     // Get character
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())
     {
         return;
@@ -188,8 +198,8 @@ void CharacterBattleData::UpdateEquipmentRatings(const String& sCharacterID, con
         {
             case ItemTreeType::Armor:
             {
-                const Bool bIsShield = ItemTree::IsItemShield(equippedItem.GetItemTreeIndex());
-                const ItemDataArmor& itemArmor = ItemTree::RetrieveItemDataArmor(equippedItem.GetItemTreeIndex());
+                const Bool bIsShield = pManagerSet->GetItemManager().IsItemShield(equippedItem.GetItemTreeIndex());
+                const ItemDataArmor& itemArmor = pManagerSet->GetItemManager().RetrieveItemDataArmor(equippedItem.GetItemTreeIndex());
                 if(bIsShield && bValidEquipLeft)
                 {
                     fShieldLeft_BluntDefendPercent = itemArmor.GetBluntDefendPercent();
@@ -215,7 +225,7 @@ void CharacterBattleData::UpdateEquipmentRatings(const String& sCharacterID, con
             }
             case ItemTreeType::Weapon:
             {
-                const ItemDataWeapon& itemWeapon = ItemTree::RetrieveItemDataWeapon(equippedItem.GetItemTreeIndex());
+                const ItemDataWeapon& itemWeapon = pManagerSet->GetItemManager().RetrieveItemDataWeapon(equippedItem.GetItemTreeIndex());
                 if(bValidEquipLeft)
                 {
                     fWeaponLeft_BluntAttackPercent = itemWeapon.GetBluntAttackPercent();

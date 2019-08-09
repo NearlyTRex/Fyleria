@@ -2,7 +2,7 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 // Internal includes
-#include "Skills/SkillTree.h"
+#include "Skills/SkillManager.h"
 #include "Stats/StatChange.h"
 #include "Utility/Constants.h"
 #include "Utility/FantasyName.h"
@@ -307,12 +307,15 @@ TreeIndexArray SkillManager::GetAllWeaponSkills()
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetAffinitySkills(const String& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray SkillManager::GetAffinitySkills(
+    ManagerSet* pManagerSet,
+    const String& sCharID,
+    Bool bUniqueOnly /*= false*/)
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeAffinity>(GetSkillTreeAffinity(), "Holy", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeAffinity>(GetSkillTreeAffinity(), "Fire", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeAffinity>(GetSkillTreeAffinity(), "Ice", character, vFinal, bUniqueOnly);
@@ -329,12 +332,15 @@ TreeIndexArray SkillManager::GetAffinitySkills(const String& sCharID, Bool bUniq
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetAlchemySkills(const String& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray SkillManager::GetAlchemySkills(
+    ManagerSet* pManagerSet,
+    const String& sCharID,
+    Bool bUniqueOnly /*= false*/)
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeAlchemy>(GetSkillTreeAlchemy(), "Alchemist", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeAlchemy>(GetSkillTreeAlchemy(), "Chemist", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeAlchemy>(GetSkillTreeAlchemy(), "Energist", character, vFinal, bUniqueOnly);
@@ -343,12 +349,15 @@ TreeIndexArray SkillManager::GetAlchemySkills(const String& sCharID, Bool bUniqu
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetBreakdownSkills(const String& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray SkillManager::GetBreakdownSkills(
+    ManagerSet* pManagerSet,
+    const String& sCharID,
+    Bool bUniqueOnly /*= false*/)
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeBreakdown>(GetSkillTreeBreakdown(), "Bowbane", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeBreakdown>(GetSkillTreeBreakdown(), "Goldbane", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeBreakdown>(GetSkillTreeBreakdown(), "Hammerbane", character, vFinal, bUniqueOnly);
@@ -363,12 +372,15 @@ TreeIndexArray SkillManager::GetBreakdownSkills(const String& sCharID, Bool bUni
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetCombatSkills(const String& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray SkillManager::GetCombatSkills(
+    ManagerSet* pManagerSet,
+    const String& sCharID,
+    Bool bUniqueOnly /*= false*/)
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeCombat>(GetSkillTreeCombat(), "Ambidextrous", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeCombat>(GetSkillTreeCombat(), "Avatar", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeCombat>(GetSkillTreeCombat(), "Barbarian", character, vFinal, bUniqueOnly);
@@ -381,12 +393,15 @@ TreeIndexArray SkillManager::GetCombatSkills(const String& sCharID, Bool bUnique
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetCraftingSkills(const String& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray SkillManager::GetCraftingSkills(
+    ManagerSet* pManagerSet,
+    const String& sCharID,
+    Bool bUniqueOnly /*= false*/)
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeCrafting>(GetSkillTreeCrafting(), "Bowsmith", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeCrafting>(GetSkillTreeCrafting(), "Goldsmith", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeCrafting>(GetSkillTreeCrafting(), "Hammersmith", character, vFinal, bUniqueOnly);
@@ -401,12 +416,15 @@ TreeIndexArray SkillManager::GetCraftingSkills(const String& sCharID, Bool bUniq
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetWeaponSkills(const String& sCharID, Bool bUniqueOnly /*= false*/)
+TreeIndexArray SkillManager::GetWeaponSkills(
+    ManagerSet* pManagerSet,
+    const String& sCharID,
+    Bool bUniqueOnly /*= false*/)
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeWeapon>(GetSkillTreeWeapon(), "Bash", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeWeapon>(GetSkillTreeWeapon(), "Block", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeWeapon>(GetSkillTreeWeapon(), "Break", character, vFinal, bUniqueOnly);

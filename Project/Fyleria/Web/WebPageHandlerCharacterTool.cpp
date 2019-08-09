@@ -2,13 +2,12 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 // Internal includes
-#include "Config/ConfigManager.h"
 #include "Web/WebPageHandlerCharacterTool.h"
-#include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
 #include "Utility/Constants.h"
 #include "Utility/Converters.h"
 #include "Utility/Templates.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -29,7 +28,7 @@ WebPageHandlerCharacterTool::~WebPageHandlerCharacterTool()
 {
 }
 
-void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
+void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams)
 {
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
@@ -204,19 +203,19 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     // Check action
     if(sAction == "load_character_from_json")
     {
-        sCharacterToDisplay = CharacterManager::GetInstance()->LoadCharacter(
+        sCharacterToDisplay = pManagerSet->GetCharacterManager().LoadCharacter(
             Character(sLoadCharacterFromJson_Textarea), true
         );
     }
     else if(sAction == "load_character_from_file")
     {
-        sCharacterToDisplay = CharacterManager::GetInstance()->LoadCharacterFromFile(
+        sCharacterToDisplay = pManagerSet->GetCharacterManager().LoadCharacterFromFile(
             sLoadCharacterFromFile_Filename, sLoadCharacterFromFile_FileType, true
         );
     }
     else if(sAction == "save_character_to_file")
     {
-        CharacterManager::GetInstance()->SaveCharacterToFile(
+        pManagerSet->GetCharacterManager().SaveCharacterToFile(
             sSaveCharacterToFile_CharID,
             sSaveCharacterToFile_Filename,
             sSaveCharacterToFile_FileType
@@ -225,14 +224,14 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "unload_character")
     {
-        CharacterManager::GetInstance()->UnloadCharacter(
+        pManagerSet->GetCharacterManager().UnloadCharacter(
             sUnloadCharacter_CharID
         );
         sCharacterToDisplay = sUnloadCharacter_CharID;
     }
     else if(sAction == "generate_character")
     {
-        CharacterManager::GetInstance()->GenerateCharacter(
+        pManagerSet->GetCharacterManager().GenerateCharacter(
             sGenerateCharacter_CharID,
             CharacterGenerator(sGenerateCharacter_Textarea)
         );
@@ -242,7 +241,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     {
         CharacterGenerator generator;
         generator.RandomizeAll();
-        CharacterManager::GetInstance()->GenerateCharacter(
+        pManagerSet->GetCharacterManager().GenerateCharacter(
             sGenerateRandomCharacter_CharID,
             generator
         );
@@ -250,13 +249,13 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "regenerate_character_data")
     {
-        Character& character = CharacterManager::GetInstance()->GetCharacter(sRegenerateCharacterData_CharID);
+        Character& character = pManagerSet->GetCharacterManager().GetCharacter(sRegenerateCharacterData_CharID);
         character.RegenerateCharacterData();
         sCharacterToDisplay = sRegenerateCharacterData_CharID;
     }
     else if(sAction == "create_character")
     {
-        CharacterManager::GetInstance()->CreateCharacter(
+        pManagerSet->GetCharacterManager().CreateCharacter(
             sCreateCharacter_CharID
         );
         sCharacterToDisplay = sCreateCharacter_CharID;
@@ -267,7 +266,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "save_character")
     {
-        Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterDetails_CharID);
+        Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterDetails_CharID);
         CharacterActionData& actionData = character.GetActionData();
         actionData.SetSlashPoints(BoostLexicalCast<Int>(sCharacterDetails_Slash_ActionPoints));
         actionData.SetSeverPoints(BoostLexicalCast<Int>(sCharacterDetails_Sever_ActionPoints));
@@ -403,14 +402,14 @@ void WebPageHandlerCharacterTool::UpdatePageContent(const StringMap& tParams)
     }
 
     // Get all character IDs
-    String sAllCharacterIDs = ConcatStringVector(CharacterManager::GetInstance()->GetAllCharacterIDs());
+    String sAllCharacterIDs = ConcatStringVector(pManagerSet->GetCharacterManager().GetAllCharacterIDs());
 
     // Display character
     if(!sCharacterToDisplay.empty())
     {
         const String sSkillTreeIndexType = (+CharacterTreeIndexType::Skill)._to_string();
         const String sItemTreeIndexType = (+CharacterTreeIndexType::Item)._to_string();
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterToDisplay);
+        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterToDisplay);
         sCharacterDetails_Chest = character.GetEquippedItemByType((+CharacterEquipmentType::Chest)._to_string()).GetLeaf();
         sCharacterDetails_Feet = character.GetEquippedItemByType((+CharacterEquipmentType::Feet)._to_string()).GetLeaf();
         sCharacterDetails_Hands = character.GetEquippedItemByType((+CharacterEquipmentType::Hands)._to_string()).GetLeaf();

@@ -18,7 +18,7 @@ SceneMap::~SceneMap()
 {
 }
 
-void SceneMap::Start()
+void SceneMap::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneMap::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneMap::Start()
     LoadHtmlFromFile(PAGE_FILE_MAP);
 }
 
-void SceneMap::Finish()
+void SceneMap::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneMap::Update()
+void SceneMap::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneMap::Input()
+void SceneMap::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneMap::OnMessageReceived(const String& sMessage)
+void SceneMap::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

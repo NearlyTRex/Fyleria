@@ -4,9 +4,8 @@
 // Internal includes
 #include "Skills/SkillData.h"
 #include "CharacterAction/CharacterAction.h"
-#include "Character/CharacterManager.h"
-#include "CharacterParty/CharacterPartyManager.h"
 #include "Utility/Templates.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -155,23 +154,26 @@ Bool SkillData::GetIntersectingRequirementTypes(
     );
 }
 
-Bool SkillData::DoesMeetActionRequirements(const String& sCharacterID, const String& sWeaponSet) const
+Bool SkillData::DoesMeetActionRequirements(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sWeaponSet) const
 {
     // Check character
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
         return false;
     }
 
     // Get character
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())
     {
         return false;
     }
 
     // Get party
-    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
     // Get action types
@@ -207,17 +209,20 @@ Bool SkillData::DoesMeetActionRequirements(const String& sCharacterID, const Str
     return false;
 }
 
-CharacterActionArray SkillData::CreateBaseActions(const String& sCharacterID, const String& sWeaponSet) const
+CharacterActionArray SkillData::CreateBaseActions(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sWeaponSet) const
 {
     // Check character
     CharacterActionArray vNewActions;
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
     }
 
     // Get character
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Create actions
     for(auto& sType : GetRunTypes())

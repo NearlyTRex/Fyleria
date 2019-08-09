@@ -21,21 +21,21 @@ public:
     virtual ~SceneMainMenu();
 
     // Start scene
-    virtual void Start() override;
+    virtual void Start(ManagerSet* pManagerSet) override;
 
     // Finish scene
-    virtual void Finish() override;
+    virtual void Finish(ManagerSet* pManagerSet) override;
 
     // Update scene
-    virtual void Update() override;
+    virtual void Update(ManagerSet* pManagerSet) override;
 
     // Handle scene input
-    virtual void Input() override;
+    virtual void Input(ManagerSet* pManagerSet) override;
 
 protected:
 
     // Handle message received
-    virtual void OnMessageReceived(const String& sMessage) override;
+    virtual void OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage) override;
 };
 
 // Typedef

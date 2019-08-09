@@ -12,6 +12,9 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
 // Browser engine interface
 class BrowserEngine
 {
@@ -27,7 +30,7 @@ public:
     virtual ~BrowserEngine();
 
     // Initialize
-    virtual Bool Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable) = 0;
+    virtual Bool Init(ManagerSet* pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable) = 0;
 
     // Shutdown
     virtual void Shutdown() = 0;

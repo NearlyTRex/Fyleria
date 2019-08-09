@@ -13,6 +13,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Scene
 class Scene
 {
 public:
@@ -24,30 +28,30 @@ public:
     virtual ~Scene();
 
     // Start scene
-    virtual void Start() = 0;
+    virtual void Start(ManagerSet* pManagerSet) = 0;
 
     // Finish scene
-    virtual void Finish() = 0;
+    virtual void Finish(ManagerSet* pManagerSet) = 0;
 
     // Update scene
-    virtual void Update() = 0;
+    virtual void Update(ManagerSet* pManagerSet) = 0;
 
     // Handle scene input
-    virtual void Input() = 0;
+    virtual void Input(ManagerSet* pManagerSet) = 0;
 
 protected:
 
     // Handle message received
-    virtual void OnMessageReceived(const String& sMessage) = 0;
+    virtual void OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage) = 0;
 
     // Parse message and get the function and arguments
-    virtual Bool ParseMessage(const String& sMessage, String& sFunction, StringArray& vArgs);
+    virtual Bool ParseMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs);
 
     // Handle message or return false if it could not be handled
-    virtual Bool HandleMessage(const String& sMessage, String& sFunction, StringArray& vArgs);
+    virtual Bool HandleMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs);
 
     // Process form
-    virtual void ProcessForm(const String& sAction, const String& sParameters);
+    virtual void ProcessForm(ManagerSet* pManagerSet, const String& sAction, const String& sParameters);
 
     // Load html from file
     virtual void LoadHtmlFromFile(const String& sFile);

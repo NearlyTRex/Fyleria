@@ -10,6 +10,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Character action handler
 class CharacterActionHandler
 {
 public:

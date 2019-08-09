@@ -3,14 +3,11 @@
 
 // Internal includes
 #include "Stats/StatChange.h"
-#include "Character/CharacterManager.h"
-#include "CharacterParty/CharacterPartyManager.h"
-#include "Items/ItemTree.h"
 #include "Items/ItemTypes.h"
 #include "Skills/SkillTypes.h"
-#include "Skills/SkillTree.h"
 #include "Utility/Errors.h"
 #include "Utility/Templates.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -161,30 +158,33 @@ Bool StatChange::DoesHaveDefendRequirements() const
     );
 }
 
-Bool StatChange::DoesMeetItemEquippedRequirements(const String& sCharacterID, const String& sWeaponSet) const
+Bool StatChange::DoesMeetItemEquippedRequirements(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sWeaponSet) const
 {
     // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
         return false;
     }
 
     // Get character
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())
     {
         return false;
     }
 
     // Get party
-    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(character.GetPartyID());
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
     // Get equipped item types
     StringArray vEquippedItemTypes;
     for(auto&& item : partyMember.GetEquippedItems())
     {
-        vEquippedItemTypes.push_back(ItemTree::RetrieveItemType(item.GetItemTreeIndex()));
+        vEquippedItemTypes.push_back(pManagerSet->GetItemManager().RetrieveItemType(item.GetItemTreeIndex()));
     }
 
     // Get equipped item counts
@@ -327,17 +327,22 @@ Bool StatChange::DoesMeetDefendRequirements(const StringArray& vActionTypes, con
     return false;
 }
 
-Bool StatChange::DoesMeetActiveRequirements(const String& sCharacterID, const String& sWeaponSet) const
+Bool StatChange::DoesMeetActiveRequirements(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const
 {
     // Check change requirements
-    if(DoesHaveItemEquippedRequirements() && DoesMeetItemEquippedRequirements(sCharacterID, sWeaponSet))
+    if(DoesHaveItemEquippedRequirements() && DoesMeetItemEquippedRequirements(pManagerSet, sCharacterID, sWeaponSet))
     {
         return true;
     }
     return false;
 }
 
-Bool StatChange::DoesMeetActiveRequirements(const String& sCharacterID, const String& sCharacterTargetType, const String& sWeaponSet, const CharacterAction& action) const
+Bool StatChange::DoesMeetActiveRequirements(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sCharacterTargetType,
+    const String& sWeaponSet,
+    const CharacterAction& action) const
 {
     // Make sure there are some entries first
     if(action.GetActionEntries().empty())
@@ -357,7 +362,7 @@ Bool StatChange::DoesMeetActiveRequirements(const String& sCharacterID, const St
     }
     else if(DoesHaveItemUsedRequirements())
     {
-        return DoesMeetItemUsedRequirements(ItemTree::GetActionTypes(GetItemTreeIndex()));
+        return DoesMeetItemUsedRequirements(pManagerSet->GetItemManager().GetActionTypes(GetItemTreeIndex()));
     }
     else if(DoesHaveAttackRequirements() && bSelfIsActionSender)
     {
@@ -406,33 +411,39 @@ StringArray StatChange::GetIntersectingDefendRequirements(const StringArray& vAc
     return StringArray();
 }
 
-Bool StatChange::GetResolvedCharacterArrays(StringArray& vSourceCharIDs, StringArray& vDestCharIDs) const
+Bool StatChange::GetResolvedCharacterArrays(
+    ManagerSet* pManagerSet,
+    StringArray& vSourceCharIDs,
+    StringArray& vDestCharIDs) const
 {
     String sSourceTargetType = GetSourceTargetType();
     String sDestTargetType = GetDestinationTargetType();
     String sSourcePartyType = ConvertCharacterTargetTypeToCharacterPartyType(sSourceTargetType);
     String sDestPartyType = ConvertCharacterTargetTypeToCharacterPartyType(sDestTargetType);
-    if(CharacterPartyManager::GetInstance()->DoesPartyExistByType(sSourcePartyType))
+    if(pManagerSet->GetCharacterPartyManager().DoesPartyExistByType(sSourcePartyType))
     {
-        CharacterPartyManager::GetInstance()->GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
+        pManagerSet->GetCharacterPartyManager().GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
     }
-    if(CharacterPartyManager::GetInstance()->DoesPartyExistByType(sDestPartyType))
+    if(pManagerSet->GetCharacterPartyManager().DoesPartyExistByType(sDestPartyType))
     {
-        CharacterPartyManager::GetInstance()->GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
+        pManagerSet->GetCharacterPartyManager().GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
     }
     return (!vSourceCharIDs.empty() || !vDestCharIDs.empty());
 }
 
-void StatChange::ResolveTargetPlaceholders(const String& sCharacterID, const String& sSegment)
+void StatChange::ResolveTargetPlaceholders(
+    ManagerSet* pManagerSet,
+    const String& sCharacterID,
+    const String& sSegment)
 {
     // Check character first
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
         return;
     }
 
     // Get battle data
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     const CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
     // Get resolved target types
@@ -582,17 +593,17 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeInd
     switch(eSkillTreeType)
     {
         case SkillTreeType::Affinity:
-            return SkillTree::RetrieveSkillDataAffinity(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager().RetrieveSkillDataAffinity(treeIndex).GetStatChanges();
         case SkillTreeType::Alchemy:
-            return SkillTree::RetrieveSkillDataAlchemy(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager().RetrieveSkillDataAlchemy(treeIndex).GetStatChanges();
         case SkillTreeType::Crafting:
-            return SkillTree::RetrieveSkillDataCrafting(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager().RetrieveSkillDataCrafting(treeIndex).GetStatChanges();
         case SkillTreeType::Breakdown:
-            return SkillTree::RetrieveSkillDataBreakdown(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager().RetrieveSkillDataBreakdown(treeIndex).GetStatChanges();
         case SkillTreeType::Combat:
-            return SkillTree::RetrieveSkillDataCombat(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager().RetrieveSkillDataCombat(treeIndex).GetStatChanges();
         case SkillTreeType::Weapon:
-            return SkillTree::RetrieveSkillDataWeapon(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager().RetrieveSkillDataWeapon(treeIndex).GetStatChanges();
         default:
             break;
     }
@@ -605,13 +616,13 @@ const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeInde
     switch(eItemTreeType)
     {
         case ItemTreeType::Armor:
-            return ItemTree::RetrieveItemDataArmor(treeIndex).GetStatChanges();
+            return pManagerSet->GetItemManager().RetrieveItemDataArmor(treeIndex).GetStatChanges();
         case ItemTreeType::Ingredient:
-            return ItemTree::RetrieveItemDataIngredient(treeIndex).GetStatChanges();
+            return pManagerSet->GetItemManager().RetrieveItemDataIngredient(treeIndex).GetStatChanges();
         case ItemTreeType::Potion:
-            return ItemTree::RetrieveItemDataPotion(treeIndex).GetStatChanges();
+            return pManagerSet->GetItemManager().RetrieveItemDataPotion(treeIndex).GetStatChanges();
         case ItemTreeType::Weapon:
-            return ItemTree::RetrieveItemDataWeapon(treeIndex).GetStatChanges();
+            return pManagerSet->GetItemManager().RetrieveItemDataWeapon(treeIndex).GetStatChanges();
         default:
             break;
     }

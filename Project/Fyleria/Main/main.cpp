@@ -3,7 +3,6 @@
 
 // Internal includes
 #include "Main/Application.h"
-#include "Config/ConfigManager.h"
 #include "Utility/Logging.h"
 #include "Utility/Types.h"
 #include "Utility/Standard.h"

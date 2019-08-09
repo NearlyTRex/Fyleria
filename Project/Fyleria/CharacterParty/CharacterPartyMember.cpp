@@ -3,11 +3,10 @@
 
 // Internal includes
 #include "CharacterParty/CharacterPartyMember.h"
-#include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
-#include "Items/ItemTree.h"
 #include "Utility/Constants.h"
 #include "Utility/Templates.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -31,13 +30,13 @@ UInt CharacterPartyMember::GetEquippedItemTypeCount(const TreeIndex& index) cons
     return static_cast<UInt>(STDCountData(vEquippedItemIndices.begin(), vEquippedItemIndices.end(), index));
 }
 
-UInt CharacterPartyMember::GetEquippedWeaponCount(const String& sWeaponSet) const
+UInt CharacterPartyMember::GetEquippedWeaponCount(ManagerSet* pManagerSet, const String& sWeaponSet) const
 {
     UInt uWeapon1Count = 0;
     UInt uWeapon2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
     {
-        if(!ItemTree::IsItemWeapon(progressItem.GetItemTreeIndex()))
+        if(!pManagerSet->GetItemManager().IsItemWeapon(progressItem.GetItemTreeIndex()))
         {
             continue;
         }
@@ -61,13 +60,13 @@ UInt CharacterPartyMember::GetEquippedWeaponCount(const String& sWeaponSet) cons
     return 0;
 }
 
-UInt CharacterPartyMember::GetEquippedShieldCount(const String& sWeaponSet) const
+UInt CharacterPartyMember::GetEquippedShieldCount(ManagerSet* pManagerSet, const String& sWeaponSet) const
 {
     UInt uShield1Count = 0;
     UInt uShield2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
     {
-        if(!ItemTree::IsItemShield(progressItem.GetItemTreeIndex()))
+        if(!pManagerSet->GetItemManager().IsItemShield(progressItem.GetItemTreeIndex()))
         {
             continue;
         }
@@ -91,10 +90,10 @@ UInt CharacterPartyMember::GetEquippedShieldCount(const String& sWeaponSet) cons
     return 0;
 }
 
-Bool CharacterPartyMember::CanAddEquippedItem(const TreeIndex& index) const
+Bool CharacterPartyMember::CanAddEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index) const
 {
     const UInt uItemCount = GetEquippedItemTypeCount(index);
-    const ItemType eItemType = GetEnumFromString<ItemType>(ItemTree::RetrieveItemType(index));
+    const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager().RetrieveItemType(index));
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -118,10 +117,10 @@ Bool CharacterPartyMember::CanAddEquippedItem(const TreeIndex& index) const
     }
 }
 
-Bool CharacterPartyMember::CanRemoveEquippedItem(const TreeIndex& index) const
+Bool CharacterPartyMember::CanRemoveEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index) const
 {
     const UInt uItemCount = GetEquippedItemTypeCount(index);
-    const ItemType eItemType = GetEnumFromString<ItemType>(ItemTree::RetrieveItemType(index));
+    const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager().RetrieveItemType(index));
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -176,7 +175,9 @@ Bool CharacterPartyMember::RemoveEquippedItem(const TreeIndex& index, const Stri
     return true;
 }
 
-Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
+Bool CharacterPartyMember::GetHandInfoByWeaponSet(
+    ManagerSet* pManagerSet,
+    const String& sWeaponSet,
     TreeIndex& primaryItemIndex,
     TreeIndex& secondaryItemIndex,
     StringArray& vPrimaryActionTypes,
@@ -204,7 +205,7 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
         {
             case ItemTreeType::Armor:
             {
-                const Bool bIsShield = ItemTree::IsItemShield(progressItem.GetItemTreeIndex());
+                const Bool bIsShield = pManagerSet->GetItemManager().IsItemShield(progressItem.GetItemTreeIndex());
                 if(bIsShield && bValidEquipLeft)
                 {
                     itemIndexLeft = progressItem.GetItemTreeIndex();
@@ -233,7 +234,7 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
     }
 
     // Translate left/right to primary/secondary
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(GetCharacterID());
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(GetCharacterID());
     const CharacterHandednessType eHandedness = GetEnumFromString<CharacterHandednessType>(character.GetBasicData().GetHandedness());
     switch(eHandedness)
     {
@@ -250,8 +251,8 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(const String& sWeaponSet,
     }
 
     // Fill action types
-    vPrimaryActionTypes = ItemTree::GetActionTypes(primaryItemIndex);
-    vSecondaryActionTypes = ItemTree::GetActionTypes(secondaryItemIndex);
+    vPrimaryActionTypes = pManagerSet->GetItemManager().GetActionTypes(primaryItemIndex);
+    vSecondaryActionTypes = pManagerSet->GetItemManager().GetActionTypes(secondaryItemIndex);
     return (!primaryItemIndex.empty() || !secondaryItemIndex.empty());
 }
 

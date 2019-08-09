@@ -11,6 +11,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Skill data combat
 class SkillDataCombat : public SkillData
 {
 public:
@@ -32,7 +36,7 @@ public:
     }
 
     // Create combat action
-    CharacterActionArray CreateCombatActions(const String& sCharacterID, const String& sWeaponSet) const;
+    CharacterActionArray CreateCombatActions(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
 };
 
 // Typedef

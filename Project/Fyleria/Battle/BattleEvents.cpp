@@ -3,16 +3,18 @@
 
 // Internal includes
 #include "Battle/BattleEvents.h"
-#include "Battle/BattleManager.h"
-#include "Character/CharacterManager.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
 
-void HandleBattleStarted(const String& sCharacterID)
+void HandleBattleStarted(ManagerSet* pManagerSet, const String& sCharacterID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Clear active changes
     character.ClearActiveChanges();
@@ -25,10 +27,13 @@ void HandleBattleStarted(const String& sCharacterID)
     character.GetBattleData().SetDefendCounter(0);
 }
 
-void HandleBattleEnded(const String& sCharacterID)
+void HandleBattleEnded(ManagerSet* pManagerSet, const String& sCharacterID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Clear active changes
     character.ClearActiveChanges();
@@ -41,10 +46,13 @@ void HandleBattleEnded(const String& sCharacterID)
     character.GetBattleData().SetDefendCounter(0);
 }
 
-void HandleBattleTally(const String& sCharacterID)
+void HandleBattleTally(ManagerSet* pManagerSet, const String& sCharacterID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Regenerate character data on the tally screen
     // The calling code should capture the state before and after this
@@ -63,10 +71,13 @@ void HandleBattleTally(const String& sCharacterID)
     );
 }
 
-void HandleBattleFullyCompleted(const String& sCharacterID)
+void HandleBattleFullyCompleted(ManagerSet* pManagerSet, const String& sCharacterID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
     const StringArray vSegments = {
@@ -79,14 +90,17 @@ void HandleBattleFullyCompleted(const String& sCharacterID)
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Finish battle
-        battleData.FinishBattle(sCharacterID, sSegment);
+        battleData.FinishBattle(pManagerSet, sCharacterID, sSegment);
     }
 }
 
-void HandleBattleRoundAdvanced(const String& sCharacterID)
+void HandleBattleRoundAdvanced(ManagerSet* pManagerSet, const String& sCharacterID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
     const StringArray vSegments = {
@@ -99,18 +113,21 @@ void HandleBattleRoundAdvanced(const String& sCharacterID)
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Advance round
-        battleData.AdvanceRound(sCharacterID, sSegment);
+        battleData.AdvanceRound(pManagerSet, sCharacterID, sSegment);
     }
 
     // Remove expired prolonged stat changes
-    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
+    Int iCurrentRound = pManagerSet->GetBattleManager().GetCurrentBattle().GetCurrentRoundIndex();
     Int iCurrentAttack = character.GetBattleData().GetAttackCounter();
     Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
-void HandleBattleGivingDamage(const String& sCharacterID, Int iAmount)
+void HandleBattleGivingDamage(ManagerSet* pManagerSet, const String& sCharacterID, Int iAmount)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Skip invalid damage
     if(iAmount <= 0)
     {
@@ -118,7 +135,7 @@ void HandleBattleGivingDamage(const String& sCharacterID, Int iAmount)
     }
 
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
     const StringArray vSegments = {
@@ -138,14 +155,17 @@ void HandleBattleGivingDamage(const String& sCharacterID, Int iAmount)
     character.GetBattleData().SetAttackCounter(character.GetBattleData().GetAttackCounter() + 1);
 
     // Remove expired prolonged stat changes
-    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
+    Int iCurrentRound = pManagerSet->GetBattleManager().GetCurrentBattle().GetCurrentRoundIndex();
     Int iCurrentAttack = character.GetBattleData().GetAttackCounter();
     Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
-void HandleBattleTakingDamage(const String& sCharacterID, Int iAmount)
+void HandleBattleTakingDamage(ManagerSet* pManagerSet, const String& sCharacterID, Int iAmount)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Skip invalid damage
     if(iAmount <= 0)
     {
@@ -153,7 +173,7 @@ void HandleBattleTakingDamage(const String& sCharacterID, Int iAmount)
     }
 
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
     const StringArray vSegments = {
@@ -171,23 +191,26 @@ void HandleBattleTakingDamage(const String& sCharacterID, Int iAmount)
         battleData.ApplyTakenDamage(iAmount);
 
         // Apply new status
-        battleData.ApplyNewStatus(sCharacterID, sSegment);
+        battleData.ApplyNewStatus(pManagerSet, sCharacterID, sSegment);
     }
 
     // Update defend counter
     character.GetBattleData().SetDefendCounter(character.GetBattleData().GetDefendCounter() + 1);
 
     // Remove expired prolonged stat changes
-    Int iCurrentRound = BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex();
+    Int iCurrentRound = pManagerSet->GetBattleManager().GetCurrentBattle().GetCurrentRoundIndex();
     Int iCurrentAttack = character.GetBattleData().GetAttackCounter();
     Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
-void HandleBattleChoosingTargets(const String& sCharacterID, const StringArray& vDestTargets)
+void HandleBattleChoosingTargets(ManagerSet* pManagerSet, const String& sCharacterID, const StringArray& vDestTargets)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
     const StringArray vSegments = {
@@ -209,10 +232,13 @@ void HandleBattleChoosingTargets(const String& sCharacterID, const StringArray& 
     }
 }
 
-void HandleBattleBecomingTarget(const String& sCharacterID, const String& sSourceTarget)
+void HandleBattleBecomingTarget(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSourceTarget)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
     const StringArray vSegments = {
@@ -232,10 +258,13 @@ void HandleBattleBecomingTarget(const String& sCharacterID, const String& sSourc
     }
 }
 
-void HandleBattleActionAttackSetup(const String& sCharacterID, const CharacterAction& action)
+void HandleBattleActionAttackSetup(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterAction& action)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
     const StringArray vSegments = {
@@ -253,13 +282,16 @@ void HandleBattleActionAttackSetup(const String& sCharacterID, const CharacterAc
     }
 
     // Apply active changes
-    character.ApplyActiveChanges(action);
+    character.ApplyActiveChanges(pManagerSet, action);
 }
 
-void HandleBattleActionDefendSetup(const String& sCharacterID, const CharacterAction& action)
+void HandleBattleActionDefendSetup(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterAction& action)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
     const StringArray vSegments = {
@@ -277,22 +309,28 @@ void HandleBattleActionDefendSetup(const String& sCharacterID, const CharacterAc
     }
 
     // Apply active changes
-    character.ApplyActiveChanges(action);
+    character.ApplyActiveChanges(pManagerSet, action);
 }
 
-void HandleBattleActionApplied(const String& sCharacterID, const CharacterAction& action)
+void HandleBattleActionApplied(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterAction& action)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Store previous action types
     character.GetBattleData().SetPreviousActionTypes(action.GetAllActionTypes());
 }
 
-void HandleBattleActionFinished(const String& sCharacterID, const CharacterAction& action)
+void HandleBattleActionFinished(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterAction& action)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Update character data across non-active segments
     const StringArray vSegments = {
@@ -306,16 +344,16 @@ void HandleBattleActionFinished(const String& sCharacterID, const CharacterActio
         CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
         // Apply costs
-        actionData.ApplyActionCost(sCharacterID, sSegment, action);
+        actionData.ApplyActionCost(pManagerSet, sCharacterID, sSegment, action);
 
         // If this was a skill action, we should track it
         if(!action.GetSkillTreeIndex().empty())
         {
-            character.GetSkillData().UpdateSkillValue(SkillTree::GetSkillType(action.GetSkillTreeIndex()), 1);
+            character.GetSkillData().UpdateSkillValue(pManagerSet->GetSkillManager().GetSkillType(action.GetSkillTreeIndex()), 1);
         }
 
         // Apply new status
-        battleData.ApplyNewStatus(sCharacterID, sSegment);
+        battleData.ApplyNewStatus(pManagerSet, sCharacterID, sSegment);
 
         // Clear action targets
         battleData.SetActionTargetsThisAction({});

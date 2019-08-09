@@ -10,6 +10,7 @@
 namespace Gecko
 {
 
+// Config manager
 class ConfigManager
 {
 public:

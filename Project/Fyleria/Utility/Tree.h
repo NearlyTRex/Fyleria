@@ -229,10 +229,6 @@ public:
 
 private:
 
-    // Deleted
-    Tree(Tree const&) = delete;
-    Tree& operator=(Tree const&) = delete;
-
     // Leaves
     typedef STDUnorderedMap<String, T> LeafType;
     typedef STDUnorderedMap<String, LeafType> BranchType;

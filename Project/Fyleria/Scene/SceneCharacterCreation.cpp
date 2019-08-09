@@ -18,7 +18,7 @@ SceneCharacterCreation::~SceneCharacterCreation()
 {
 }
 
-void SceneCharacterCreation::Start()
+void SceneCharacterCreation::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneCharacterCreation::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneCharacterCreation::Start()
     LoadHtmlFromFile(PAGE_FILE_CHARACTER_CREATION);
 }
 
-void SceneCharacterCreation::Finish()
+void SceneCharacterCreation::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneCharacterCreation::Update()
+void SceneCharacterCreation::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneCharacterCreation::Input()
+void SceneCharacterCreation::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneCharacterCreation::OnMessageReceived(const String& sMessage)
+void SceneCharacterCreation::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

@@ -18,7 +18,7 @@ SceneLoading::~SceneLoading()
 {
 }
 
-void SceneLoading::Start()
+void SceneLoading::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneLoading::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneLoading::Start()
     LoadHtmlFromFile(PAGE_FILE_LOADING);
 }
 
-void SceneLoading::Finish()
+void SceneLoading::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneLoading::Update()
+void SceneLoading::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneLoading::Input()
+void SceneLoading::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneLoading::OnMessageReceived(const String& sMessage)
+void SceneLoading::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

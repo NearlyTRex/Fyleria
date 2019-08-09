@@ -10,6 +10,7 @@
 namespace Gecko
 {
 
+// Character tool
 class WebPageHandlerCharacterTool : public WebPageHandler
 {
 public:
@@ -21,7 +22,7 @@ public:
     virtual ~WebPageHandlerCharacterTool();
 
     // Update page content
-    virtual void UpdatePageContent(const StringMap& tParams) override;
+    virtual void UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams) override;
 };
 
 // Typedefs

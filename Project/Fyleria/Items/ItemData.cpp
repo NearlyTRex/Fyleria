@@ -4,7 +4,7 @@
 // Internal includes
 #include "Items/ItemData.h"
 #include "CharacterAction/CharacterAction.h"
-#include "Character/CharacterManager.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -69,10 +69,10 @@ Bool ItemData::IsActionable() const
     return true;
 }
 
-Bool ItemData::DoesMeetActionRequirements(const String& sCharacterID, const String& sWeaponSet) const
+Bool ItemData::DoesMeetActionRequirements(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const
 {
     // Check character
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
         return false;
     }
@@ -92,17 +92,17 @@ Bool ItemData::DoesMeetActionRequirements(const String& sCharacterID, const Stri
     return false;
 }
 
-CharacterActionArray ItemData::CreateBaseActions(const String& sCharacterID, const String& sWeaponSet) const
+CharacterActionArray ItemData::CreateBaseActions(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const
 {
     // Check character
     CharacterActionArray vNewActions;
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
     }
 
     // Get character
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
     // Create actions
     for(auto& sType : GetRunTypes())

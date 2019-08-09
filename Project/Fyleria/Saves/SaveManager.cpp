@@ -2,9 +2,9 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 // Internal includes
-#include "Saves/SaveManager.h"
 #include "Saves/SaveTypes.h"
 #include "Utility/Constants.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -138,13 +138,21 @@ SaveArray SaveManager::GetAllSaves() const
     return vSaves;
 }
 
-void SaveManager::CollectSaveData(const String& sSlot, const String& sPartyID)
+void SaveManager::CollectSaveData(
+    ManagerSet* pManagerSet,
+    const String& sSlot,
+    const String& sPartyID)
 {
-    const CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
     CollectSaveData(sSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
 }
 
-void SaveManager::CollectSaveData(const String& sSlot, const StringArray& vPartyIDs, const String& sDescription, ULongLong uPlayTime)
+void SaveManager::CollectSaveData(
+    ManagerSet* pManagerSet,
+    const String& sSlot,
+    const StringArray& vPartyIDs,
+    const String& sDescription,
+    ULongLong uPlayTime)
 {
     // Get parties and attached characters
     CharacterPartyArray vParties;
@@ -152,14 +160,14 @@ void SaveManager::CollectSaveData(const String& sSlot, const StringArray& vParty
     for (auto& sPartyID : vPartyIDs)
     {
         // Add party
-        CharacterParty& party = CharacterPartyManager::GetInstance()->GetPartyByID(sPartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
         party.RegenerateCharacterData();
         vParties.push_back(party);
 
         // Add members of this party
         for(auto& member : party.GetMembers())
         {
-            vCharacters.push_back(CharacterManager::GetInstance()->GetCharacter(member.first));
+            vCharacters.push_back(pManagerSet->GetCharacterManager().GetCharacter(member.first));
         }
     }
 
@@ -175,7 +183,7 @@ void SaveManager::CollectSaveData(const String& sSlot, const StringArray& vParty
     LoadSave(newSave);
 }
 
-void SaveManager::DisperseSaveData(const String& sSlot)
+void SaveManager::DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot)
 {
     // Get save from slot
     const Save& save = GetSave(sSlot);
@@ -183,13 +191,13 @@ void SaveManager::DisperseSaveData(const String& sSlot)
     // Load characters
     for(const Character& character : save.GetCharacters())
     {
-        CharacterManager::GetInstance()->LoadCharacter(character, false);
+        pManagerSet->GetCharacterManager().LoadCharacter(character, false);
     }
 
     // Load parties
     for(const CharacterParty& party : save.GetParties())
     {
-        CharacterPartyManager::GetInstance()->LoadParty(party, true);
+        pManagerSet->GetCharacterPartyManager().LoadParty(party, true);
     }
 }
 

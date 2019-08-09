@@ -2,12 +2,10 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 // Internal includes
-#include "Character/CharacterManager.h"
-#include "CharacterParty/CharacterPartyManager.h"
 #include "Character/CharacterTypes.h"
-#include "Battle/BattleManager.h"
 #include "Utility/Errors.h"
 #include "Utility/Templates.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -153,6 +151,7 @@ StringArray CharacterManager::GetAllCharacterIDs() const
 }
 
 void CharacterManager::ApplyStatChange(
+    ManagerSet* pManagerSet,
     const String& sSegment,
     const StatChange& change,
     Bool& bAllChangesApplied,
@@ -246,14 +245,14 @@ void CharacterManager::ApplyStatChange(
         if(!bApplyAllEntries && (localEntry.GetRound() > 1 || localEntry.GetAttack() > 1 || localEntry.GetDefend() > 1))
         {
             // Get character
-            Character& character = CharacterManager::GetInstance()->GetCharacter(sSourceCharID);
+            Character& character = pManagerSet->GetCharacterManager().GetCharacter(sSourceCharID);
 
             // Create prolonged stat change
             ProlongedStatChange prolongedStatChange;
             prolongedStatChange.SetStatChangeEntry(localEntry);
             if(localEntry.GetRound() > 1)
             {
-                prolongedStatChange.SetRound(BattleManager::GetInstance()->GetCurrentBattle().GetCurrentRoundIndex() + localEntry.GetRound());
+                prolongedStatChange.SetRound(pManagerSet->GetBattleManager().GetCurrentBattle().GetCurrentRoundIndex() + localEntry.GetRound());
             }
             else if(localEntry.GetAttack() > 1)
             {

@@ -12,6 +12,7 @@
 namespace Gecko
 {
 
+// Skill data crafting
 class SkillDataCrafting : public SkillData
 {
 public:

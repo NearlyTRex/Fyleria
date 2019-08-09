@@ -13,6 +13,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Character action
 class CharacterAction
 {
 public:
@@ -38,10 +42,10 @@ public:
     StringArray GetAllDestinationTargetTypes() const;
 
     // Are all character IDs valid
-    Bool AreAllCharacterIDsValid() const;
+    Bool AreAllCharacterIDsValid(ManagerSet* pManagerSet) const;
 
     // Prepare character IDs
-    Bool PrepareCharacterIDs();
+    Bool PrepareCharacterIDs(ManagerSet* pManagerSet);
 
     // Run type
     MAKE_RAW_TYPE_ACCESSORS(RunType, String);

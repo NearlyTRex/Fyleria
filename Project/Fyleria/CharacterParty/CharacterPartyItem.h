@@ -12,6 +12,7 @@
 namespace Gecko
 {
 
+// Character party item
 class CharacterPartyItem
 {
 public:

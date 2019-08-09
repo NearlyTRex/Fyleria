@@ -12,6 +12,10 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
+// Character action data
 class CharacterActionData : public StatTypeHolder
 {
 public:
@@ -27,16 +31,17 @@ public:
     virtual void Clear();
 
     // Update available actions
-    void UpdateAvailableActions(const String& sCharacterID);
+    void UpdateAvailableActions(ManagerSet* pManagerSet, const String& sCharacterID);
 
     // Apply cost of action
     void ApplyActionCost(
+        ManagerSet* pManagerSet,
         const String& sCharacterID,
         const String& sProgressSegment,
         const CharacterAction& action);
 
     // Update available AP
-    void UpdateAvailableAP(const String& sCharacterID);
+    void UpdateAvailableAP(ManagerSet* pManagerSet, const String& sCharacterID);
 
     // Stat names
     static void InitAllStatNames();

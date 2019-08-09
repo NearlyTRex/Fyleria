@@ -13,6 +13,7 @@
 namespace Gecko
 {
 
+// Character action result
 class CharacterActionResult
 {
 public:

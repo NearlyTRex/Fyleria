@@ -18,7 +18,7 @@ SceneToolMain::~SceneToolMain()
 {
 }
 
-void SceneToolMain::Start()
+void SceneToolMain::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneToolMain::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneToolMain::Start()
     LoadHtmlFromFile(PAGE_FILE_TOOL_MAIN);
 }
 
-void SceneToolMain::Finish()
+void SceneToolMain::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneToolMain::Update()
+void SceneToolMain::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneToolMain::Input()
+void SceneToolMain::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneToolMain::OnMessageReceived(const String& sMessage)
+void SceneToolMain::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

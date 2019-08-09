@@ -92,7 +92,7 @@ void SceneManager::RemoveScene(const String& sSceneID)
     GetScenes().erase(sSceneID);
 }
 
-void SceneManager::SwitchToScene(const String& sSceneID)
+void SceneManager::SwitchToScene(ManagerSet* pManagerSet, const String& sSceneID)
 {
     // Add scene if necessary
     AddScene(sSceneID);
@@ -117,13 +117,13 @@ void SceneManager::SwitchToScene(const String& sSceneID)
     {
         // Finish it
         LOG_FORMAT_STATEMENT("Finishing scene '{}'", sCurrentSceneID.c_str());
-        GetCurrentScene()->Finish();
+        GetCurrentScene()->Finish(pManagerSet);
     }
 
     // Start new scene
     LOG_FORMAT_STATEMENT("Starting scene '{}'", sSceneID.c_str());
     SetCurrentSceneID(sSceneID);
-    GetCurrentScene()->Start();
+    GetCurrentScene()->Start(pManagerSet);
 }
 
 Bool SceneManager::DoesSceneExist(const String& sSceneID) const

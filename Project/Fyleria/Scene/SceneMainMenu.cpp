@@ -18,7 +18,7 @@ SceneMainMenu::~SceneMainMenu()
 {
 }
 
-void SceneMainMenu::Start()
+void SceneMainMenu::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneMainMenu::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneMainMenu::Start()
     LoadHtmlFromFile(PAGE_FILE_MAIN_MENU);
 }
 
-void SceneMainMenu::Finish()
+void SceneMainMenu::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneMainMenu::Update()
+void SceneMainMenu::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneMainMenu::Input()
+void SceneMainMenu::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneMainMenu::OnMessageReceived(const String& sMessage)
+void SceneMainMenu::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

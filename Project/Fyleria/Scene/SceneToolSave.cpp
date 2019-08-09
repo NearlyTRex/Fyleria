@@ -19,7 +19,7 @@ SceneToolSave::~SceneToolSave()
 {
 }
 
-void SceneToolSave::Start()
+void SceneToolSave::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneToolSave::OnMessageReceived, this, STDPlaceholder1));
@@ -28,21 +28,21 @@ void SceneToolSave::Start()
     LoadHtmlFromHandler(GetPageHandler());
 }
 
-void SceneToolSave::Finish()
+void SceneToolSave::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneToolSave::Update()
+void SceneToolSave::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneToolSave::Input()
+void SceneToolSave::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneToolSave::OnMessageReceived(const String& sMessage)
+void SceneToolSave::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

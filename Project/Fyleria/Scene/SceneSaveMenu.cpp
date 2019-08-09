@@ -18,7 +18,7 @@ SceneSaveMenu::~SceneSaveMenu()
 {
 }
 
-void SceneSaveMenu::Start()
+void SceneSaveMenu::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneSaveMenu::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneSaveMenu::Start()
     LoadHtmlFromFile(PAGE_FILE_SAVE_MENU);
 }
 
-void SceneSaveMenu::Finish()
+void SceneSaveMenu::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneSaveMenu::Update()
+void SceneSaveMenu::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneSaveMenu::Input()
+void SceneSaveMenu::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneSaveMenu::OnMessageReceived(const String& sMessage)
+void SceneSaveMenu::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

@@ -2,14 +2,13 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 // Internal includes
-#include "Config/ConfigManager.h"
 #include "Web/WebPageHandlerSaveTool.h"
-#include "Saves/SaveManager.h"
 #include "Saves/SaveTypes.h"
 #include "Utility/Enum.h"
 #include "Utility/Constants.h"
 #include "Utility/Converters.h"
 #include "Utility/Templates.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -30,7 +29,7 @@ WebPageHandlerSaveTool::~WebPageHandlerSaveTool()
 {
 }
 
-void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
+void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams)
 {
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
@@ -61,15 +60,15 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     // Check action
     if(sAction == "initalize_empty_save_slots")
     {
-        SaveManager::GetInstance()->InitializeEmptySaveSlots();
+        pManagerSet->GetSaveManager().InitializeEmptySaveSlots();
     }
     else if(sAction == "initalize_all_save_slots")
     {
-        SaveManager::GetInstance()->InitializeAllSaveSlots();
+        pManagerSet->GetSaveManager().InitializeAllSaveSlots();
     }
     else if(sAction == "collect_save_data_single")
     {
-        SaveManager::GetInstance()->CollectSaveData(
+        pManagerSet->GetSaveManager().CollectSaveData(
             sCollectSaveDataSingle_SaveSlotType,
             sCollectSaveDataSingle_PartyID
         );
@@ -77,7 +76,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     else if(sAction == "collect_save_data_multiple")
     {
         StringArray vPartyIDs = ConvertStringToTokenArray(sCollectSaveDataMultiple_PartyIDs, ", ");
-        SaveManager::GetInstance()->CollectSaveData(
+        pManagerSet->GetSaveManager().CollectSaveData(
             sCollectSaveDataMultiple_SaveSlotType,
             vPartyIDs,
             sCollectSaveDataMultiple_Description,
@@ -86,25 +85,25 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "disperse_save_data")
     {
-        SaveManager::GetInstance()->DisperseSaveData(
+        pManagerSet->GetSaveManager().DisperseSaveData(
             sDisperseSaveData_SaveSlotType
         );
     }
     else if(sAction == "load_save")
     {
-        SaveManager::GetInstance()->LoadSave(
+        pManagerSet->GetSaveManager().LoadSave(
             Save(sLoadSave_Textarea)
         );
     }
     else if(sAction == "unload_save")
     {
-        SaveManager::GetInstance()->UnloadSave(
+        pManagerSet->GetSaveManager().UnloadSave(
             sUnloadSave_SaveSlotType
         );
     }
     else if(sAction == "load_from_file")
     {
-        SaveManager::GetInstance()->LoadFromFile(
+        pManagerSet->GetSaveManager().LoadFromFile(
             sLoadFromFile_SaveSlotType,
             sLoadFromFile_Filename,
             sLoadFromFile_FileType
@@ -112,7 +111,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "save_to_file")
     {
-        SaveManager::GetInstance()->SaveToFile(
+        pManagerSet->GetSaveManager().SaveToFile(
             sSaveToFile_SaveSlotType,
             sSaveToFile_Filename,
             sSaveToFile_FileType
@@ -120,7 +119,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "load_all_from_dir")
     {
-        SaveManager::GetInstance()->LoadAllFromDirectory(
+        pManagerSet->GetSaveManager().LoadAllFromDirectory(
             sLoadAllFromDir_Directory,
             sLoadAllFromDir_Basename,
             sLoadAllFromDir_Extension,
@@ -129,7 +128,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     }
     else if(sAction == "save_all_to_dir")
     {
-        SaveManager::GetInstance()->SaveAllToDirectory(
+        pManagerSet->GetSaveManager().SaveAllToDirectory(
             sSaveAllToDir_Directory,
             sSaveAllToDir_Basename,
             sSaveAllToDir_Extension,
@@ -161,8 +160,8 @@ void WebPageHandlerSaveTool::UpdatePageContent(const StringMap& tParams)
     for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {
         String sSaveDataKey = String("%sSaveData_") + sSlotName + String("%");
-        String sSaveDataVal = (SaveManager::GetInstance()->DoesSaveExist(sSlotName)) ?
-            Json(SaveManager::GetInstance()->GetSave(sSlotName)).dump() : "";
+        String sSaveDataVal = (pManagerSet->GetSaveManager().DoesSaveExist(sSlotName)) ?
+            Json(pManagerSet->GetSaveManager().GetSave(sSlotName)).dump() : "";
         BoostReplaceAll(sPage, sSaveDataKey, sSaveDataVal);
     }
     SetPageContent(sPage);

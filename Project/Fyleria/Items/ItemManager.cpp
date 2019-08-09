@@ -2,7 +2,7 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 // Internal includes
-#include "Items/ItemTree.h"
+#include "Items/ItemManager.h"
 #include "Utility/Constants.h"
 #include "Utility/FantasyName.h"
 #include "Utility/Json.h"
@@ -149,7 +149,7 @@ String ItemManager::RetrieveItemType(const TreeIndex& treeIndex)
 }
 
 template <class T>
-void AddItemLeaves(T& tree, const String& sBranchName, TreeIndexArray& vLeaves)
+void AddItemLeaves(const T& tree, const String& sBranchName, TreeIndexArray& vLeaves)
 {
     auto vNewLeaves = tree.GetAllLeaves(sBranchName);
     vLeaves.insert(vLeaves.end(), vNewLeaves.begin(), vNewLeaves.end());
@@ -206,15 +206,15 @@ TreeIndexArray ItemManager::GetAllWeaponItems()
     return vFinal;
 }
 
-TreeIndexArray ItemManager::GetAllEquippedItems(const String& sCharID)
+TreeIndexArray ItemManager::GetAllEquippedItems(ManagerSet* pManagerSet, const String& sCharID)
 {
     TreeIndexArray vFinal;
-    if(!CharacterManager::GetInstance()->DoesCharacterExist(sCharID))
+    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharID))
     {
         return vFinal;
     }
 
-    const Character& character = CharacterManager::GetInstance()->GetCharacter(sCharID);
+    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
     for(auto& item : character.GetEquippedItems())
     {
         vFinal.push_back(item.GetItemTreeIndex());

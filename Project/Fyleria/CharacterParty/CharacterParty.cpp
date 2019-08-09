@@ -4,11 +4,11 @@
 // Internal includes
 #include "CharacterParty/CharacterParty.h"
 #include "CharacterData/CharacterProgressData.h"
-#include "Character/CharacterManager.h"
 #include "Character/CharacterTypes.h"
 #include "Utility/Errors.h"
 #include "Utility/Converters.h"
 #include "Utility/Templates.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -28,6 +28,7 @@ CharacterParty::CharacterParty(const String& jsonString)
 }
 
 void CharacterParty::RegenerateCharacterData(
+    ManagerSet* pManagerSet,
     Bool bUpdateEquipmentRatings /*= true*/,
     Bool bUpdateAvailableChanges /*= true*/,
     Bool bUpdateAvailableActions /*= true*/,
@@ -36,7 +37,7 @@ void CharacterParty::RegenerateCharacterData(
 {
     for(auto& member : GetMembers())
     {
-        CharacterManager::GetInstance()->GetCharacter(member.first).RegenerateCharacterData(
+        pManagerSet->GetCharacterManager().GetCharacter(member.first).RegenerateCharacterData(
             bUpdateEquipmentRatings,
             bUpdateAvailableChanges,
             bUpdateAvailableActions,
@@ -93,7 +94,7 @@ Bool CharacterParty::IsTargetTypeTaken(const String& sCharacterTargetType) const
     return (iLocation != vTargetTypes.end());
 }
 
-Bool CharacterParty::AddMember(const String& sCharacterID)
+Bool CharacterParty::AddMember(ManagerSet* pManagerSet, const String& sCharacterID)
 {
     // Check if party is full
     if(IsPartyFull())
@@ -115,13 +116,13 @@ Bool CharacterParty::AddMember(const String& sCharacterID)
     newMember.SetCharacterTargetType(GetNextAvailableTargetType());
     GetMembers().insert({sCharacterID, newMember});
     UseTargetType(newMember.GetCharacterTargetType());
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     character.GetBasicData().SetPartyID(GetPartyID());
     character.RegenerateCharacterData();
     return true;
 }
 
-Bool CharacterParty::RemoveMember(const String& sCharacterID)
+Bool CharacterParty::RemoveMember(ManagerSet* pManagerSet, const String& sCharacterID)
 {
     // Check if member exists first
     if(!IsMemberPresent(sCharacterID))
@@ -133,7 +134,7 @@ Bool CharacterParty::RemoveMember(const String& sCharacterID)
     // Remove member
     UnequipAllItems(sCharacterID);
     FreeTargetType(GetMemberByID(sCharacterID).GetCharacterTargetType());
-    Character& character = CharacterManager::GetInstance()->GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     character.GetBasicData().SetPartyID({});
     character.RegenerateCharacterData();
     GetMembers().erase(sCharacterID);
@@ -295,13 +296,15 @@ Bool CharacterParty::GetCharacterIDsFromTargetType(const String& sCharacterTarge
     return false;
 }
 
-UInt CharacterParty::GetStatusMemberCount(const String& sStatus) const
+UInt CharacterParty::GetStatusMemberCount(
+    ManagerSet* pManagerSet,
+    const String& sStatus) const
 {
     UInt uCount = 0;
     const CharacterStatusType eStatusType = GetEnumFromStringOrNone<CharacterStatusType>(sStatus);
     for(auto& member : GetMembers())
     {
-        const Character& character = CharacterManager::GetInstance()->GetCharacter(member.first);
+        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(member.first);
         const CharacterBattleData& battleData = character.GetBattleData();
         switch(eStatusType)
         {
@@ -318,7 +321,12 @@ UInt CharacterParty::GetStatusMemberCount(const String& sStatus) const
     return uCount;
 }
 
-Bool CharacterParty::AddRandomItems(const StringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd)
+Bool CharacterParty::AddRandomItems(
+    ManagerSet* pManagerSet,
+    const StringArray& vTreeTypes,
+    Int iNumRandomItems,
+    Int iAmountStart,
+    Int iAmountEnd)
 {
     // Notify user
     LOG_FORMAT_STATEMENT(
@@ -331,10 +339,10 @@ Bool CharacterParty::AddRandomItems(const StringArray& vTreeTypes, Int iNumRando
         iAmountEnd);
 
     // Get lists of all items
-    TreeIndexArray vAllArmors = ItemTree::GetAllArmorItems();
-    TreeIndexArray vAllIngredients = ItemTree::GetAllIngredientItems();
-    TreeIndexArray vAllPotions = ItemTree::GetAllPotionItems();
-    TreeIndexArray vAllWeapons = ItemTree::GetAllWeaponItems();
+    TreeIndexArray vAllArmors = pManagerSet->GetItemManager().GetAllArmorItems();
+    TreeIndexArray vAllIngredients = pManagerSet->GetItemManager().GetAllIngredientItems();
+    TreeIndexArray vAllPotions = pManagerSet->GetItemManager().GetAllPotionItems();
+    TreeIndexArray vAllWeapons = pManagerSet->GetItemManager().GetAllWeaponItems();
 
     // Shuffle item lists
     ShuffleVector<TreeIndex>(vAllArmors);
@@ -391,13 +399,16 @@ Bool CharacterParty::AddRandomItems(const StringArray& vTreeTypes, Int iNumRando
     return bAtLeastOneAdded;
 }
 
-Bool CharacterParty::AddItemByLeaf(const String& sLeaf, UInt uAmount)
+Bool CharacterParty::AddItemByLeaf(
+    ManagerSet* pManagerSet,
+    const String& sLeaf,
+    UInt uAmount)
 {
-    TreeIndex treeIndex = ItemTree::ResolveItemLeafIntoIndex(sLeaf);
+    TreeIndex treeIndex = pManagerSet->GetItemManager().ResolveItemLeafIntoIndex(sLeaf);
     return AddItemByTreeIndex(treeIndex, uAmount);
 }
 
-Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount)
+Bool CharacterParty::AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
 {
     if(treeIndex.empty())
     {
@@ -405,7 +416,7 @@ Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount
         return false;
     }
 
-    if(!ItemTree::DoesItemDataExist(treeIndex))
+    if(!pManagerSet->GetItemManager().DoesItemDataExist(treeIndex))
     {
         ERROR_FORMAT_STATEMENT("Tree index '{}' was not found", treeIndex.GetTreeBranchLeafType().c_str());
         return false;
@@ -428,7 +439,7 @@ Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount
     }
     else
     {
-        String sItemType = ItemTree::RetrieveItemType(treeIndex);
+        String sItemType = pManagerSet->GetItemManager().RetrieveItemType(treeIndex);
         StringArray vEquipTypes = ConvertItemTypeToCharacterEquipTypes(sItemType);
         CharacterPartyItem newItem;
         newItem.SetItemTreeIndex(treeIndex);
@@ -448,13 +459,13 @@ Bool CharacterParty::AddItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount
     }
 }
 
-Bool CharacterParty::RemoveItemByLeaf(const String& sLeaf, UInt uAmount)
+Bool CharacterParty::RemoveItemByLeaf(ManagerSet* pManagerSet, const String& sLeaf, UInt uAmount)
 {
-    TreeIndex treeIndex = ItemTree::ResolveItemLeafIntoIndex(sLeaf);
+    TreeIndex treeIndex = pManagerSet->GetItemManager().ResolveItemLeafIntoIndex(sLeaf);
     return RemoveItemByTreeIndex(treeIndex, uAmount);
 }
 
-Bool CharacterParty::RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmount)
+Bool CharacterParty::RemoveItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
 {
     if(treeIndex.empty())
     {
@@ -462,7 +473,7 @@ Bool CharacterParty::RemoveItemByTreeIndex(const TreeIndex& treeIndex, UInt uAmo
         return false;
     }
 
-    if(!ItemTree::DoesItemDataExist(treeIndex))
+    if(!pManagerSet->GetItemManager().DoesItemDataExist(treeIndex))
     {
         ERROR_FORMAT_STATEMENT("Tree index '{}' was not found", treeIndex.GetTreeBranchLeafType().c_str());
         return false;
@@ -514,7 +525,7 @@ CharacterPartyItem& CharacterParty::GetItemByTreeIndex(const TreeIndex& treeInde
     return const_cast<CharacterPartyItem&>(static_cast<const CharacterParty&>(*this).GetItemByTreeIndex(treeIndex));
 }
 
-TreeIndex CharacterParty::GetBestUnequippedItem(const String& sCharacterID, const String& sSlot) const
+TreeIndex CharacterParty::GetBestUnequippedItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSlot) const
 {
     // Check character
     TreeIndex bestItem;
@@ -539,7 +550,7 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const String& sCharacterID, cons
     // Look at each of the matching, unequipped items the party has and find the best one
     for(auto& item : GetItems())
     {
-        if(uShieldCount == 1 && ItemTree::IsItemShield(item.second.GetItemTreeIndex()))
+        if(uShieldCount == 1 && pManagerSet->GetItemManager().IsItemShield(item.second.GetItemTreeIndex()))
         {
             continue;
         }
@@ -560,11 +571,11 @@ TreeIndex CharacterParty::GetBestUnequippedItem(const String& sCharacterID, cons
             continue;
         }
 
-        Bool bIsArmor = ItemTree::DoesItemDataArmorExist(item.second.GetItemTreeIndex());
-        Bool bIsWeapon = ItemTree::DoesItemDataWeaponExist(item.second.GetItemTreeIndex());
+        Bool bIsArmor = pManagerSet->GetItemManager().DoesItemDataArmorExist(item.second.GetItemTreeIndex());
+        Bool bIsWeapon = pManagerSet->GetItemManager().DoesItemDataWeaponExist(item.second.GetItemTreeIndex());
         if(
-            (bIsArmor && ItemTree::IsArmorBetter(item.second.GetItemTreeIndex(), bestItem)) ||
-            (bIsWeapon && ItemTree::IsWeaponBetter(item.second.GetItemTreeIndex(), bestItem)))
+            (bIsArmor && pManagerSet->GetItemManager().IsArmorBetter(item.second.GetItemTreeIndex(), bestItem)) ||
+            (bIsWeapon && pManagerSet->GetItemManager().IsWeaponBetter(item.second.GetItemTreeIndex(), bestItem)))
         {
             bestItem = item.second.GetItemTreeIndex();
         }

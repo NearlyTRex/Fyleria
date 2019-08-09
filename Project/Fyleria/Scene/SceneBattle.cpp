@@ -18,7 +18,7 @@ SceneBattle::~SceneBattle()
 {
 }
 
-void SceneBattle::Start()
+void SceneBattle::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneBattle::OnMessageReceived, this, STDPlaceholder1));
@@ -27,21 +27,21 @@ void SceneBattle::Start()
     LoadHtmlFromFile(PAGE_FILE_BATTLE);
 }
 
-void SceneBattle::Finish()
+void SceneBattle::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneBattle::Update()
+void SceneBattle::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneBattle::Input()
+void SceneBattle::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneBattle::OnMessageReceived(const String& sMessage)
+void SceneBattle::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

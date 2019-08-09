@@ -19,7 +19,7 @@ SceneToolParty::~SceneToolParty()
 {
 }
 
-void SceneToolParty::Start()
+void SceneToolParty::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneToolParty::OnMessageReceived, this, STDPlaceholder1));
@@ -28,21 +28,21 @@ void SceneToolParty::Start()
     LoadHtmlFromHandler(GetPageHandler());
 }
 
-void SceneToolParty::Finish()
+void SceneToolParty::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneToolParty::Update()
+void SceneToolParty::Update(ManagerSet* pManagerSet)
 {
 }
 
-void SceneToolParty::Input()
+void SceneToolParty::Input(ManagerSet* pManagerSet)
 {
 }
 
-void SceneToolParty::OnMessageReceived(const String& sMessage)
+void SceneToolParty::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;
