@@ -96,6 +96,10 @@ String Character::GetPartyID() const
 
 String Character::GetCharacterTargetType(ManagerSet* pManagerSet) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get character and party ID
     String sCharacterID = GetCharacterID();
     String sPartyID = GetPartyID();
     if(sPartyID.empty())
@@ -103,6 +107,7 @@ String Character::GetCharacterTargetType(ManagerSet* pManagerSet) const
         return GetNoneTypeForEnum<CharacterResolvedTargetType>();
     }
 
+    // Get target type
     const CharacterParty& characterParty = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetCharacterTargetType();
@@ -115,6 +120,10 @@ String Character::GetWeaponSet() const
 
 CharacterPartyEquippedItemArray Character::GetEquippedItems(ManagerSet* pManagerSet) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get character and party ID
     String sCharacterID = GetCharacterID();
     String sPartyID = GetPartyID();
     if(sPartyID.empty())
@@ -122,6 +131,7 @@ CharacterPartyEquippedItemArray Character::GetEquippedItems(ManagerSet* pManager
         return CharacterPartyEquippedItemArray();
     }
 
+    // Get equipped items
     const CharacterParty& characterParty = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetEquippedItems();
@@ -226,6 +236,9 @@ void Character::UpdateAvailableAP(ManagerSet* pManagerSet)
 
 void Character::ApplyPassiveChanges(ManagerSet* pManagerSet)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Data sources should come from base but apply to passive
     const String sSourceSegment("Base");
     const String sDestSegment("Passive");
@@ -259,6 +272,9 @@ void Character::ApplyPassiveChanges(ManagerSet* pManagerSet)
 
 void Character::ApplyActiveChanges(ManagerSet* pManagerSet, const CharacterAction& action)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Data sources should come from passive but apply to active
     const String sSourceSegment("Passive");
     const String sDestSegment("Active");

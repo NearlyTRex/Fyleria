@@ -31,6 +31,9 @@ WebPageHandlerSaveTool::~WebPageHandlerSaveTool()
 
 void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
     String sCollectSaveDataSingle_SaveSlotType = GetMapDataOrDefault(tParams, "sCollectSaveDataSingle_SaveSlotType", "");

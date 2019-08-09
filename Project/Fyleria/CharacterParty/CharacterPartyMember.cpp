@@ -32,6 +32,10 @@ UInt CharacterPartyMember::GetEquippedItemTypeCount(const TreeIndex& index) cons
 
 UInt CharacterPartyMember::GetEquippedWeaponCount(ManagerSet* pManagerSet, const String& sWeaponSet) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get matching weapon counts
     UInt uWeapon1Count = 0;
     UInt uWeapon2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
@@ -48,6 +52,7 @@ UInt CharacterPartyMember::GetEquippedWeaponCount(ManagerSet* pManagerSet, const
         uWeapon2Count += (eEquipType == +CharacterEquipmentType::Weapon2Right) ? 1 : 0;
     }
 
+    // Return weapon counts
     const CharacterWeaponSetType eWeaponSetType = GetEnumFromString<CharacterWeaponSetType>(sWeaponSet);
     if(eWeaponSetType == +CharacterWeaponSetType::WeaponSet1)
     {
@@ -62,6 +67,10 @@ UInt CharacterPartyMember::GetEquippedWeaponCount(ManagerSet* pManagerSet, const
 
 UInt CharacterPartyMember::GetEquippedShieldCount(ManagerSet* pManagerSet, const String& sWeaponSet) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get matching shield counts
     UInt uShield1Count = 0;
     UInt uShield2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
@@ -78,6 +87,7 @@ UInt CharacterPartyMember::GetEquippedShieldCount(ManagerSet* pManagerSet, const
         uShield2Count += (eEquipType == +CharacterEquipmentType::Weapon2Right) ? 1 : 0;
     }
 
+    // Return shield counts
     const CharacterWeaponSetType eWeaponSetType = GetEnumFromString<CharacterWeaponSetType>(sWeaponSet);
     if(eWeaponSetType == +CharacterWeaponSetType::WeaponSet1)
     {
@@ -92,6 +102,10 @@ UInt CharacterPartyMember::GetEquippedShieldCount(ManagerSet* pManagerSet, const
 
 Bool CharacterPartyMember::CanAddEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Check item type
     const UInt uItemCount = GetEquippedItemTypeCount(index);
     const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager().RetrieveItemType(index));
     switch(eItemType)
@@ -119,6 +133,10 @@ Bool CharacterPartyMember::CanAddEquippedItem(ManagerSet* pManagerSet, const Tre
 
 Bool CharacterPartyMember::CanRemoveEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Check item type
     const UInt uItemCount = GetEquippedItemTypeCount(index);
     const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager().RetrieveItemType(index));
     switch(eItemType)
@@ -183,6 +201,9 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(
     StringArray& vPrimaryActionTypes,
     StringArray& vSecondaryActionTypes) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get weapon set
     const CharacterWeaponSetType eWeaponSetType = GetEnumFromString<CharacterWeaponSetType>(sWeaponSet);
     const Bool bIsWeaponSetSelected1 = (eWeaponSetType == +CharacterWeaponSetType::WeaponSet1);

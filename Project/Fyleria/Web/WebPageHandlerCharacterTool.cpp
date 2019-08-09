@@ -30,6 +30,9 @@ WebPageHandlerCharacterTool::~WebPageHandlerCharacterTool()
 
 void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
     String sLoadCharacterFromJson_Textarea = GetMapDataOrDefault(tParams, "sLoadCharacterFromJson_Textarea", "");

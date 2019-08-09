@@ -35,6 +35,10 @@ void CharacterParty::RegenerateCharacterData(
     Bool bUpdateAvailableAP /*= true*/
 )
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Regenerate all members
     for(auto& member : GetMembers())
     {
         pManagerSet->GetCharacterManager().GetCharacter(member.first).RegenerateCharacterData(
@@ -97,6 +101,9 @@ Bool CharacterParty::IsTargetTypeTaken(const String& sCharacterTargetType) const
 
 Bool CharacterParty::AddMember(ManagerSet* pManagerSet, const String& sCharacterID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Check if party is full
     if(IsPartyFull())
     {
@@ -125,6 +132,9 @@ Bool CharacterParty::AddMember(ManagerSet* pManagerSet, const String& sCharacter
 
 Bool CharacterParty::RemoveMember(ManagerSet* pManagerSet, const String& sCharacterID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Check if member exists first
     if(!IsMemberPresent(sCharacterID))
     {
@@ -301,6 +311,10 @@ UInt CharacterParty::GetStatusMemberCount(
     ManagerSet* pManagerSet,
     const String& sStatus) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get count of characters matching that status
     UInt uCount = 0;
     const CharacterStatusType eStatusType = GetEnumFromStringOrNone<CharacterStatusType>(sStatus);
     for(auto& member : GetMembers())
@@ -329,6 +343,9 @@ Bool CharacterParty::AddRandomItems(
     Int iAmountStart,
     Int iAmountEnd)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Notify user
     LOG_FORMAT_STATEMENT(
         "Trying to add random items to party '{}' "
@@ -405,24 +422,34 @@ Bool CharacterParty::AddItemByLeaf(
     const String& sLeaf,
     UInt uAmount)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Resolve and add item
     TreeIndex treeIndex = pManagerSet->GetItemManager().ResolveItemLeafIntoIndex(sLeaf);
     return AddItemByTreeIndex(pManagerSet, treeIndex, uAmount);
 }
 
 Bool CharacterParty::AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Check tree index
     if(treeIndex.empty())
     {
         ERROR_STATEMENT("Received an empty tree index");
         return false;
     }
 
+    // Check if it exists
     if(!pManagerSet->GetItemManager().DoesItemDataExist(treeIndex))
     {
         ERROR_FORMAT_STATEMENT("Tree index '{}' was not found", treeIndex.GetTreeBranchLeafType().c_str());
         return false;
     }
 
+    // Add item
     String sLeaf = treeIndex.GetLeaf();
     if(GetItems().count(sLeaf) > 0)
     {
@@ -462,24 +489,34 @@ Bool CharacterParty::AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex
 
 Bool CharacterParty::RemoveItemByLeaf(ManagerSet* pManagerSet, const String& sLeaf, UInt uAmount)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Resolve and add item
     TreeIndex treeIndex = pManagerSet->GetItemManager().ResolveItemLeafIntoIndex(sLeaf);
     return RemoveItemByTreeIndex(pManagerSet, treeIndex, uAmount);
 }
 
 Bool CharacterParty::RemoveItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Check tree index
     if(treeIndex.empty())
     {
         ERROR_STATEMENT("Received an empty tree index");
         return false;
     }
 
+    // Check item existence
     if(!pManagerSet->GetItemManager().DoesItemDataExist(treeIndex))
     {
         ERROR_FORMAT_STATEMENT("Tree index '{}' was not found", treeIndex.GetTreeBranchLeafType().c_str());
         return false;
     }
 
+    // Skip if there's no item to remove
     String sLeaf = treeIndex.GetLeaf();
     if(GetItems().count(sLeaf) == 0)
     {
@@ -489,6 +526,7 @@ Bool CharacterParty::RemoveItemByTreeIndex(ManagerSet* pManagerSet, const TreeIn
         return false;
     }
 
+    // Remove the item
     if(GetItems().count(sLeaf) > 0)
     {
         CharacterPartyItem& item = GetItems().at(sLeaf);
@@ -528,6 +566,9 @@ CharacterPartyItem& CharacterParty::GetItemByTreeIndex(const TreeIndex& treeInde
 
 TreeIndex CharacterParty::GetBestUnequippedItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSlot) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Check character
     TreeIndex bestItem;
     if(!IsMemberPresent(sCharacterID))

@@ -24,6 +24,9 @@ BrowserEngineWebKitGtk::~BrowserEngineWebKitGtk()
 
 Bool BrowserEngineWebKitGtk::Init(ManagerSet* pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Initialize gtk
     if(!gtk_init_check(0, nullptr))
     {

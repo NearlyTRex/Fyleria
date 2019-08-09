@@ -159,6 +159,9 @@ Bool SkillData::DoesMeetActionRequirements(
     const String& sCharacterID,
     const String& sWeaponSet) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Check character
     if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
@@ -216,6 +219,9 @@ CharacterActionArray SkillData::CreateBaseActions(
     const String& sCharacterID,
     const String& sWeaponSet) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Check character
     CharacterActionArray vNewActions;
     if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))

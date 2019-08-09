@@ -30,6 +30,9 @@ void CharacterBattleData::ApplyNewStatus(
     const String& sCharacterID,
     const String& sProgressSegment)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character info
     const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
@@ -58,6 +61,9 @@ void CharacterBattleData::AdvanceRound(
     const String& sCharacterID,
     const String& sProgressSegment)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character info
     Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
@@ -90,6 +96,9 @@ void CharacterBattleData::FinishBattle(
     const String& sCharacterID,
     const String& sProgressSegment)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character info
     Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
@@ -139,6 +148,9 @@ void CharacterBattleData::UpdateEquipmentRatings(
     const String& sCharacterID,
     const String& sProgressSegment)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
     const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())

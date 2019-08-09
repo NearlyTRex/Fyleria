@@ -318,6 +318,10 @@ TreeIndexArray SkillManager::GetAffinitySkills(
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
@@ -343,6 +347,10 @@ TreeIndexArray SkillManager::GetAlchemySkills(
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
@@ -360,6 +368,10 @@ TreeIndexArray SkillManager::GetBreakdownSkills(
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
@@ -383,6 +395,10 @@ TreeIndexArray SkillManager::GetCombatSkills(
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
@@ -404,6 +420,10 @@ TreeIndexArray SkillManager::GetCraftingSkills(
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
@@ -427,6 +447,10 @@ TreeIndexArray SkillManager::GetWeaponSkills(
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {

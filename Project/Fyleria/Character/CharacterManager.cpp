@@ -158,6 +158,9 @@ void CharacterManager::ApplyStatChange(
     Bool& bAtLeastOneChange,
     Bool bApplyAllEntries /*= false*/)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Skip invalid changes
     const TreeIndex& skillIndex = change.GetSkillTreeIndex();
     const TreeIndex& itemIndex = change.GetItemTreeIndex();

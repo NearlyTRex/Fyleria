@@ -35,6 +35,9 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(
     const String& sCharacterID,
     const String& sWeaponSet) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Check character
     CharacterActionArray vNewActions;
     if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))

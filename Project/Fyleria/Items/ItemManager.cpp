@@ -213,12 +213,17 @@ TreeIndexArray ItemManager::GetAllWeaponItems() const
 
 TreeIndexArray ItemManager::GetAllEquippedItems(ManagerSet* pManagerSet, const String& sCharID) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Check character existence
     TreeIndexArray vFinal;
     if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharID))
     {
         return vFinal;
     }
 
+    // Get items
     const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
     for(auto& item : character.GetEquippedItems(pManagerSet))
     {

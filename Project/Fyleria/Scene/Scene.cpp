@@ -50,6 +50,9 @@ Bool Scene::ParseMessage(ManagerSet* pManagerSet, const String& sMessage, String
 
 Bool Scene::HandleMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Parse message
     if(!ParseMessage(pManagerSet, sMessage, sFunction, vArgs))
     {

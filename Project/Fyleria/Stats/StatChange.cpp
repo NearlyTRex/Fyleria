@@ -163,7 +163,10 @@ Bool StatChange::DoesMeetItemEquippedRequirements(
     const String& sCharacterID,
     const String& sWeaponSet) const
 {
-    // Check character first
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Check character
     if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
         return false;
@@ -344,7 +347,10 @@ Bool StatChange::DoesMeetActiveRequirements(
     const String& sWeaponSet,
     const CharacterAction& action) const
 {
-    // Make sure there are some entries first
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Make sure there are some entries
     if(action.GetActionEntries().empty())
     {
         return false;
@@ -416,6 +422,10 @@ Bool StatChange::GetResolvedCharacterArrays(
     StringArray& vSourceCharIDs,
     StringArray& vDestCharIDs) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Build character list
     String sSourceTargetType = GetSourceTargetType();
     String sDestTargetType = GetDestinationTargetType();
     String sSourcePartyType = ConvertCharacterTargetTypeToCharacterPartyType(sSourceTargetType);
@@ -436,6 +446,9 @@ void StatChange::ResolveTargetPlaceholders(
     const String& sCharacterID,
     const String& sSegment)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Check character first
     if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
     {
@@ -589,6 +602,10 @@ const StatChangeArray& GetStatChangesFromTreeIndex(ManagerSet* pManagerSet, cons
 
 const StatChangeArray& GetStatChangesFromSkillTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Check skill type
     const SkillTreeType eSkillTreeType = GetEnumFromStringOrNone<SkillTreeType>(treeIndex.GetTree());
     switch(eSkillTreeType)
     {
@@ -612,6 +629,10 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(ManagerSet* pManagerSet,
 
 const StatChangeArray& GetStatChangesFromItemTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Check item type
     const ItemTreeType eItemTreeType = GetEnumFromStringOrNone<ItemTreeType>(treeIndex.GetTree());
     switch(eItemTreeType)
     {

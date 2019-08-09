@@ -118,8 +118,11 @@ HICON GetIconFromFile(const String& sPath)
     return CreateIconFromResourceEx(vBytes.data() + iOffset, iFileSize - iOffset, TRUE, 0x00030000, 0, 0, LR_DEFAULTCOLOR | LR_SHARED);
 }
 
-Bool BrowserEngineEdgeHtml::Init(const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
+Bool BrowserEngineEdgeHtml::Init(ManagerSet* pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Initialize windows runtime to single thread
     winrt::init_apartment(winrt::apartment_type::single_threaded);
 

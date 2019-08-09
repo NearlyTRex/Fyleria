@@ -33,6 +33,9 @@ void CharacterActionData::Clear()
 
 void CharacterActionData::UpdateAvailableActions(ManagerSet* pManagerSet, const String& sCharacterID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
     const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
@@ -85,6 +88,9 @@ void CharacterActionData::ApplyActionCost(
     const String& sProgressSegment,
     const CharacterAction& action)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get character
     Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
 
@@ -138,6 +144,9 @@ void CharacterActionData::ApplyActionCost(
 
 void CharacterActionData::UpdateAvailableAP(ManagerSet* pManagerSet, const String& sCharacterID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Action point count type
     struct ActionPointCountEntry
     {

@@ -143,6 +143,10 @@ void SaveManager::CollectSaveData(
     const String& sSlot,
     const String& sPartyID)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Collect save data from party
     const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
     CollectSaveData(pManagerSet, sSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
 }
@@ -154,6 +158,9 @@ void SaveManager::CollectSaveData(
     const String& sDescription,
     ULongLong uPlayTime)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get parties and attached characters
     CharacterPartyArray vParties;
     CharacterArray vCharacters;
@@ -185,6 +192,9 @@ void SaveManager::CollectSaveData(
 
 void SaveManager::DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get save from slot
     const Save& save = GetSave(sSlot);
 

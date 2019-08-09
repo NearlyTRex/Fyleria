@@ -25,6 +25,9 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     const CharacterActionEntry& entry,
     const String& sDestCharID) const
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Action result
     CharacterActionResult result;
 
