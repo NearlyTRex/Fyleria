@@ -86,7 +86,7 @@ Bool ItemData::DoesMeetActionRequirements(ManagerSet* pManagerSet, const String&
         }
         else if(change.DoesHaveItemEquippedRequirements())
         {
-            return change.DoesMeetItemEquippedRequirements(sCharacterID, sWeaponSet);
+            return change.DoesMeetItemEquippedRequirements(pManagerSet, sCharacterID, sWeaponSet);
         }
     }
     return false;
@@ -111,7 +111,7 @@ CharacterActionArray ItemData::CreateBaseActions(ManagerSet* pManagerSet, const 
         newAction.SetRunType(sType);
         newAction.SetWeaponSet(sWeaponSet);
         newAction.SetItemTreeIndex(GetItemTreeIndex());
-        newAction.SetSourceTargetType(character.GetCharacterTargetType());
+        newAction.SetSourceTargetType(character.GetCharacterTargetType(pManagerSet));
         newAction.SetSourceCharacterID(sCharacterID);
         vNewActions.push_back(newAction);
     }

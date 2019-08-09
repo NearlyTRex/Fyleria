@@ -6,9 +6,14 @@
 #include "Utility/Constants.h"
 #include "Utility/FantasyName.h"
 #include "Utility/Json.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
+
+ItemManager::ItemManager()
+{
+}
 
 template <class T>
 void PostProcessItems(T& tree, const TreeIndexArray& vTreeIndices)
@@ -77,7 +82,7 @@ void ItemManager::UnloadItemTreesFromMemory()
     GetItemTreeWeapon().ClearAllData();
 }
 
-Bool ItemManager::DoesItemDataExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataExist(const TreeIndex& treeIndex) const
 {
     return (
         DoesItemDataArmorExist(treeIndex) ||
@@ -87,47 +92,47 @@ Bool ItemManager::DoesItemDataExist(const TreeIndex& treeIndex)
     );
 }
 
-Bool ItemManager::DoesItemDataArmorExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataArmorExist(const TreeIndex& treeIndex) const
 {
     return GetItemTreeArmor().HasLeaf(treeIndex);
 }
 
-Bool ItemManager::DoesItemDataIngredientExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataIngredientExist(const TreeIndex& treeIndex) const
 {
     return GetItemTreeIngredient().HasLeaf(treeIndex);
 }
 
-Bool ItemManager::DoesItemDataPotionExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataPotionExist(const TreeIndex& treeIndex) const
 {
     return GetItemTreePotion().HasLeaf(treeIndex);
 }
 
-Bool ItemManager::DoesItemDataWeaponExist(const TreeIndex& treeIndex)
+Bool ItemManager::DoesItemDataWeaponExist(const TreeIndex& treeIndex) const
 {
     return GetItemTreeWeapon().HasLeaf(treeIndex);
 }
 
-const ItemDataArmor& ItemManager::RetrieveItemDataArmor(const TreeIndex& treeIndex)
+const ItemDataArmor& ItemManager::RetrieveItemDataArmor(const TreeIndex& treeIndex) const
 {
     return GetItemTreeArmor().GetLeaf(treeIndex);
 }
 
-const ItemDataIngredient& ItemManager::RetrieveItemDataIngredient(const TreeIndex& treeIndex)
+const ItemDataIngredient& ItemManager::RetrieveItemDataIngredient(const TreeIndex& treeIndex) const
 {
     return GetItemTreeIngredient().GetLeaf(treeIndex);
 }
 
-const ItemDataPotion& ItemManager::RetrieveItemDataPotion(const TreeIndex& treeIndex)
+const ItemDataPotion& ItemManager::RetrieveItemDataPotion(const TreeIndex& treeIndex) const
 {
     return GetItemTreePotion().GetLeaf(treeIndex);
 }
 
-const ItemDataWeapon& ItemManager::RetrieveItemDataWeapon(const TreeIndex& treeIndex)
+const ItemDataWeapon& ItemManager::RetrieveItemDataWeapon(const TreeIndex& treeIndex) const
 {
     return GetItemTreeWeapon().GetLeaf(treeIndex);
 }
 
-String ItemManager::RetrieveItemType(const TreeIndex& treeIndex)
+String ItemManager::RetrieveItemType(const TreeIndex& treeIndex) const
 {
     if(DoesItemDataArmorExist(treeIndex))
     {
@@ -155,58 +160,58 @@ void AddItemLeaves(const T& tree, const String& sBranchName, TreeIndexArray& vLe
     vLeaves.insert(vLeaves.end(), vNewLeaves.begin(), vNewLeaves.end());
 }
 
-TreeIndexArray ItemManager::GetAllArmorItems()
+TreeIndexArray ItemManager::GetAllArmorItems() const
 {
     TreeIndexArray vFinal;
-    AddItemLeaves<ItemTreeArmor>("Chest", vFinal);
-    AddItemLeaves<ItemTreeArmor>("Feet", vFinal);
-    AddItemLeaves<ItemTreeArmor>("Finger", vFinal);
-    AddItemLeaves<ItemTreeArmor>("Hands", vFinal);
-    AddItemLeaves<ItemTreeArmor>("Head", vFinal);
-    AddItemLeaves<ItemTreeArmor>("Neck", vFinal);
-    AddItemLeaves<ItemTreeArmor>("Legs", vFinal);
-    AddItemLeaves<ItemTreeArmor>("Shield", vFinal);
+    AddItemLeaves<ItemTreeArmor>(GetItemTreeArmor(), "Chest", vFinal);
+    AddItemLeaves<ItemTreeArmor>(GetItemTreeArmor(), "Feet", vFinal);
+    AddItemLeaves<ItemTreeArmor>(GetItemTreeArmor(), "Finger", vFinal);
+    AddItemLeaves<ItemTreeArmor>(GetItemTreeArmor(), "Hands", vFinal);
+    AddItemLeaves<ItemTreeArmor>(GetItemTreeArmor(), "Head", vFinal);
+    AddItemLeaves<ItemTreeArmor>(GetItemTreeArmor(), "Neck", vFinal);
+    AddItemLeaves<ItemTreeArmor>(GetItemTreeArmor(), "Legs", vFinal);
+    AddItemLeaves<ItemTreeArmor>(GetItemTreeArmor(), "Shield", vFinal);
     return vFinal;
 }
 
-TreeIndexArray ItemManager::GetAllIngredientItems()
+TreeIndexArray ItemManager::GetAllIngredientItems() const
 {
     TreeIndexArray vFinal;
-    AddItemLeaves<ItemTreeIngredient>("Bar", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Cloth", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Crystal", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Leather", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Mail", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Plate", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Scale", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Screw", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Sheet", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Stud", vFinal);
-    AddItemLeaves<ItemTreeIngredient>("Thread", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Bar", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Cloth", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Crystal", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Leather", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Mail", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Plate", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Scale", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Screw", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Sheet", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Stud", vFinal);
+    AddItemLeaves<ItemTreeIngredient>(GetItemTreeIngredient(), "Thread", vFinal);
     return vFinal;
 }
 
-TreeIndexArray ItemManager::GetAllPotionItems()
+TreeIndexArray ItemManager::GetAllPotionItems() const
 {
     TreeIndexArray vFinal;
-    AddItemLeaves<ItemTreePotion>("Energy", vFinal);
-    AddItemLeaves<ItemTreePotion>("Heal", vFinal);
-    AddItemLeaves<ItemTreePotion>("Magic", vFinal);
-    AddItemLeaves<ItemTreePotion>("Speed", vFinal);
+    AddItemLeaves<ItemTreePotion>(GetItemTreePotion(), "Energy", vFinal);
+    AddItemLeaves<ItemTreePotion>(GetItemTreePotion(), "Heal", vFinal);
+    AddItemLeaves<ItemTreePotion>(GetItemTreePotion(), "Magic", vFinal);
+    AddItemLeaves<ItemTreePotion>(GetItemTreePotion(), "Speed", vFinal);
     return vFinal;
 }
 
-TreeIndexArray ItemManager::GetAllWeaponItems()
+TreeIndexArray ItemManager::GetAllWeaponItems() const
 {
     TreeIndexArray vFinal;
-    AddItemLeaves<ItemTreeWeapon>("Blunt", vFinal);
-    AddItemLeaves<ItemTreeWeapon>("Mage", vFinal);
-    AddItemLeaves<ItemTreeWeapon>("Pierce", vFinal);
-    AddItemLeaves<ItemTreeWeapon>("Slash", vFinal);
+    AddItemLeaves<ItemTreeWeapon>(GetItemTreeWeapon(), "Blunt", vFinal);
+    AddItemLeaves<ItemTreeWeapon>(GetItemTreeWeapon(), "Mage", vFinal);
+    AddItemLeaves<ItemTreeWeapon>(GetItemTreeWeapon(), "Pierce", vFinal);
+    AddItemLeaves<ItemTreeWeapon>(GetItemTreeWeapon(), "Slash", vFinal);
     return vFinal;
 }
 
-TreeIndexArray ItemManager::GetAllEquippedItems(ManagerSet* pManagerSet, const String& sCharID)
+TreeIndexArray ItemManager::GetAllEquippedItems(ManagerSet* pManagerSet, const String& sCharID) const
 {
     TreeIndexArray vFinal;
     if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharID))
@@ -215,14 +220,14 @@ TreeIndexArray ItemManager::GetAllEquippedItems(ManagerSet* pManagerSet, const S
     }
 
     const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
-    for(auto& item : character.GetEquippedItems())
+    for(auto& item : character.GetEquippedItems(pManagerSet))
     {
         vFinal.push_back(item.GetItemTreeIndex());
     }
     return vFinal;
 }
 
-TreeIndex ItemManager::ResolveItemLeafIntoIndex(const String& sLeaf)
+TreeIndex ItemManager::ResolveItemLeafIntoIndex(const String& sLeaf) const
 {
     // Branch name
     String sBranch;
@@ -259,7 +264,7 @@ TreeIndex ItemManager::ResolveItemLeafIntoIndex(const String& sLeaf)
     return TreeIndex();
 }
 
-Bool ItemManager::IsItemActionable(const TreeIndex& treeIndex)
+Bool ItemManager::IsItemActionable(const TreeIndex& treeIndex) const
 {
     if(DoesItemDataArmorExist(treeIndex))
     {
@@ -276,15 +281,17 @@ Bool ItemManager::IsItemActionable(const TreeIndex& treeIndex)
     return false;
 }
 
-Bool ItemManager::GenerateItemCharacterActions(const TreeIndex& treeIndex,
+Bool ItemManager::GenerateItemCharacterActions(
+    ManagerSet* pManagerSet,
+    const TreeIndex& treeIndex,
     const String& sCharacterID,
     const String& sWeaponSet,
-    CharacterActionArray& vActions)
+    CharacterActionArray& vActions) const
 {
     if(DoesItemDataArmorExist(treeIndex))
     {
         const ItemDataArmor& itemData = RetrieveItemDataArmor(treeIndex);
-        if(itemData.IsActionable() && itemData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
+        if(itemData.IsActionable() && itemData.DoesMeetActionRequirements(pManagerSet, sCharacterID, sWeaponSet))
         {
             CharacterActionArray vNewActions = itemData.CreateArmorActions(sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
@@ -294,7 +301,7 @@ Bool ItemManager::GenerateItemCharacterActions(const TreeIndex& treeIndex,
     else if(DoesItemDataPotionExist(treeIndex))
     {
         const ItemDataPotion& itemData = RetrieveItemDataPotion(treeIndex);
-        if(itemData.IsActionable() && itemData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
+        if(itemData.IsActionable() && itemData.DoesMeetActionRequirements(pManagerSet, sCharacterID, sWeaponSet))
         {
             CharacterActionArray vNewActions = itemData.CreatePotionActions(sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
@@ -304,7 +311,7 @@ Bool ItemManager::GenerateItemCharacterActions(const TreeIndex& treeIndex,
     else if(DoesItemDataWeaponExist(treeIndex))
     {
         const ItemDataWeapon& itemData = RetrieveItemDataWeapon(treeIndex);
-        if(itemData.IsActionable() && itemData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
+        if(itemData.IsActionable() && itemData.DoesMeetActionRequirements(pManagerSet, sCharacterID, sWeaponSet))
         {
             CharacterActionArray vNewActions = itemData.CreateWeaponActions(sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
@@ -314,7 +321,7 @@ Bool ItemManager::GenerateItemCharacterActions(const TreeIndex& treeIndex,
     return false;
 }
 
-Bool ItemManager::IsArmorBetter(const TreeIndex& treeIndex1, const TreeIndex& treeIndex2)
+Bool ItemManager::IsArmorBetter(const TreeIndex& treeIndex1, const TreeIndex& treeIndex2) const
 {
     if(!DoesItemDataArmorExist(treeIndex1) || !DoesItemDataArmorExist(treeIndex2))
     {
@@ -330,7 +337,7 @@ Bool ItemManager::IsArmorBetter(const TreeIndex& treeIndex1, const TreeIndex& tr
         itemData1.GetMagicDefendPercent() > itemData2.GetMagicDefendPercent());
 }
 
-Bool ItemManager::IsWeaponBetter(const TreeIndex& treeIndex1, const TreeIndex& treeIndex2)
+Bool ItemManager::IsWeaponBetter(const TreeIndex& treeIndex1, const TreeIndex& treeIndex2) const
 {
     if(!DoesItemDataWeaponExist(treeIndex1) || !DoesItemDataWeaponExist(treeIndex2))
     {
@@ -345,12 +352,12 @@ Bool ItemManager::IsWeaponBetter(const TreeIndex& treeIndex1, const TreeIndex& t
         itemData1.GetSlashAttackPercent() > itemData2.GetSlashAttackPercent());
 }
 
-Bool ItemManager::IsItemWeapon(const TreeIndex& treeIndex)
+Bool ItemManager::IsItemWeapon(const TreeIndex& treeIndex) const
 {
     return DoesItemDataWeaponExist(treeIndex);
 }
 
-Bool ItemManager::IsItemShield(const TreeIndex& treeIndex)
+Bool ItemManager::IsItemShield(const TreeIndex& treeIndex) const
 {
     if(DoesItemDataArmorExist(treeIndex))
     {
@@ -364,7 +371,7 @@ Bool ItemManager::IsItemShield(const TreeIndex& treeIndex)
     return false;
 }
 
-StringArray ItemManager::GetActionTypes(const TreeIndex& treeIndex)
+StringArray ItemManager::GetActionTypes(const TreeIndex& treeIndex) const
 {
     StringArray vActionTypes;
     if(DoesItemDataArmorExist(treeIndex))
@@ -385,10 +392,12 @@ StringArray ItemManager::GetActionTypes(const TreeIndex& treeIndex)
     return vActionTypes;
 }
 
-void ItemManager::FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
+void ItemManager::FillItemStatChangeArrays(
+    ManagerSet* pManagerSet,
+    const TreeIndexArray& vItemDataArray,
     TreeIndexArray& vPassives,
     TreeIndexArray& vActives,
-    TreeIndexArray& vActionables)
+    TreeIndexArray& vActionables) const
 {
     // Use a set to make sure that we do not include duplicates
     STDUnorderedSet<String> tAlreadyUsed;
@@ -406,7 +415,7 @@ void ItemManager::FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
         }
         else if(!bIsActionable && !bIsAlreadyUsed)
         {
-            for(const StatChange& statChange : GetStatChangesFromItemTreeIndex(treeIndex))
+            for(const StatChange& statChange : GetStatChangesFromItemTreeIndex(pManagerSet, treeIndex))
             {
                 if(statChange.IsPassive())
                 {

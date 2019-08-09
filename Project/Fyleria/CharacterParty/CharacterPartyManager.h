@@ -23,11 +23,11 @@ public:
 
     // Load a party and return the party ID
     // This will overwrite any existing matching data
-    String LoadParty(const CharacterParty& party, Bool bRegenerateData);
+    String LoadParty(ManagerSet* pManagerSet, const CharacterParty& party, Bool bRegenerateData);
 
     // Load a party from a file and return the party ID
     // This will overwrite any existing matching data
-    String LoadPartyFromFile(const String& sFilename, const String& sType, Bool bRegenerateData);
+    String LoadPartyFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData);
 
     // Save a party to file
     void SavePartyToFile(const String& sPartyID, const String& sFilename, const String& sType);

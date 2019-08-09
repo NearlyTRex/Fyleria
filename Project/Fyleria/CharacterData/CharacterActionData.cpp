@@ -63,14 +63,14 @@ void CharacterActionData::UpdateAvailableActions(ManagerSet* pManagerSet, const 
 
                 // Add skill actions
                 CharacterActionArray vSkillActions;
-                if(pManagerSet->GetSkillManager().GenerateSkillCharacterActions(treeIndex, sCharacterID, sWeaponSet, vSkillActions))
+                if(pManagerSet->GetSkillManager().GenerateSkillCharacterActions(pManagerSet, treeIndex, sCharacterID, sWeaponSet, vSkillActions))
                 {
                    vAvailableActions.insert(vAvailableActions.end(), vSkillActions.begin(), vSkillActions.end());
                 }
 
                 // Add item actions
                 CharacterActionArray vItemActions;
-                if(pManagerSet->GetItemManager().GenerateItemCharacterActions(treeIndex, sCharacterID, sWeaponSet, vItemActions))
+                if(pManagerSet->GetItemManager().GenerateItemCharacterActions(pManagerSet, treeIndex, sCharacterID, sWeaponSet, vItemActions))
                 {
                    vAvailableActions.insert(vAvailableActions.end(), vItemActions.begin(), vItemActions.end());
                 }
@@ -146,7 +146,7 @@ void CharacterActionData::UpdateAvailableAP(ManagerSet* pManagerSet, const Strin
     };
 
     // Get weapon skills
-    TreeIndexArray vWeaponSkills = pManagerSet->GetSkillManager().GetWeaponSkills(sCharacterID, true);
+    TreeIndexArray vWeaponSkills = pManagerSet->GetSkillManager().GetWeaponSkills(pManagerSet, sCharacterID, true);
     if(vWeaponSkills.empty())
     {
         return;

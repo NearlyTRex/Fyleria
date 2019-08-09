@@ -16,7 +16,7 @@ class WebPageHandlerCharacterTool : public WebPageHandler
 public:
 
     // Constructors
-    WebPageHandlerCharacterTool();
+    WebPageHandlerCharacterTool(ManagerSet* pManagerSet);
 
     // Destructor
     virtual ~WebPageHandlerCharacterTool();

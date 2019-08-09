@@ -143,10 +143,10 @@ Bool CharacterPartyMember::CanRemoveEquippedItem(ManagerSet* pManagerSet, const 
     }
 }
 
-Bool CharacterPartyMember::AddEquippedItem(const TreeIndex& index, const String& sEquipSlot)
+Bool CharacterPartyMember::AddEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index, const String& sEquipSlot)
 {
     // Check if it can be added
-    if(!CanAddEquippedItem(index))
+    if(!CanAddEquippedItem(pManagerSet, index))
     {
         return false;
     }
@@ -159,10 +159,10 @@ Bool CharacterPartyMember::AddEquippedItem(const TreeIndex& index, const String&
     return true;
 }
 
-Bool CharacterPartyMember::RemoveEquippedItem(const TreeIndex& index, const String& sEquipSlot)
+Bool CharacterPartyMember::RemoveEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index, const String& sEquipSlot)
 {
     // Check if it can be removed
-    if(!CanRemoveEquippedItem(index))
+    if(!CanRemoveEquippedItem(pManagerSet, index))
     {
         return false;
     }

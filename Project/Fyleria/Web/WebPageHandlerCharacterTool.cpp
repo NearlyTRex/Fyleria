@@ -12,7 +12,7 @@
 namespace Gecko
 {
 
-WebPageHandlerCharacterTool::WebPageHandlerCharacterTool()
+WebPageHandlerCharacterTool::WebPageHandlerCharacterTool(ManagerSet* pManagerSet)
     : WebPageHandler()
 {
     // Set template
@@ -21,7 +21,7 @@ WebPageHandlerCharacterTool::WebPageHandlerCharacterTool()
     SetPageTemplate(sTemplateContents);
 
     // Update page
-    UpdatePageContent({});
+    UpdatePageContent(pManagerSet, {});
 }
 
 WebPageHandlerCharacterTool::~WebPageHandlerCharacterTool()
@@ -204,12 +204,14 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     if(sAction == "load_character_from_json")
     {
         sCharacterToDisplay = pManagerSet->GetCharacterManager().LoadCharacter(
+            pManagerSet,
             Character(sLoadCharacterFromJson_Textarea), true
         );
     }
     else if(sAction == "load_character_from_file")
     {
         sCharacterToDisplay = pManagerSet->GetCharacterManager().LoadCharacterFromFile(
+            pManagerSet,
             sLoadCharacterFromFile_Filename, sLoadCharacterFromFile_FileType, true
         );
     }
@@ -232,6 +234,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     else if(sAction == "generate_character")
     {
         pManagerSet->GetCharacterManager().GenerateCharacter(
+            pManagerSet,
             sGenerateCharacter_CharID,
             CharacterGenerator(sGenerateCharacter_Textarea)
         );
@@ -242,6 +245,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
         CharacterGenerator generator;
         generator.RandomizeAll();
         pManagerSet->GetCharacterManager().GenerateCharacter(
+            pManagerSet,
             sGenerateRandomCharacter_CharID,
             generator
         );
@@ -250,7 +254,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     else if(sAction == "regenerate_character_data")
     {
         Character& character = pManagerSet->GetCharacterManager().GetCharacter(sRegenerateCharacterData_CharID);
-        character.RegenerateCharacterData();
+        character.RegenerateCharacterData(pManagerSet);
         sCharacterToDisplay = sRegenerateCharacterData_CharID;
     }
     else if(sAction == "create_character")
@@ -397,7 +401,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
         skillData.SetBlood(BoostLexicalCast<Byte>(sCharacterDetails_Blood_SkillPoints));
         skillData.SetFlesh(BoostLexicalCast<Byte>(sCharacterDetails_Flesh_SkillPoints));
         skillData.SetWind(BoostLexicalCast<Byte>(sCharacterDetails_Wind_SkillPoints));
-        character.RegenerateCharacterData();
+        character.RegenerateCharacterData(pManagerSet);
         sCharacterToDisplay = sCharacterDetails_CharID;
     }
 
@@ -410,18 +414,18 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
         const String sSkillTreeIndexType = (+CharacterTreeIndexType::Skill)._to_string();
         const String sItemTreeIndexType = (+CharacterTreeIndexType::Item)._to_string();
         const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterToDisplay);
-        sCharacterDetails_Chest = character.GetEquippedItemByType((+CharacterEquipmentType::Chest)._to_string()).GetLeaf();
-        sCharacterDetails_Feet = character.GetEquippedItemByType((+CharacterEquipmentType::Feet)._to_string()).GetLeaf();
-        sCharacterDetails_Hands = character.GetEquippedItemByType((+CharacterEquipmentType::Hands)._to_string()).GetLeaf();
-        sCharacterDetails_Head = character.GetEquippedItemByType((+CharacterEquipmentType::Head)._to_string()).GetLeaf();
-        sCharacterDetails_Legs = character.GetEquippedItemByType((+CharacterEquipmentType::Legs)._to_string()).GetLeaf();
-        sCharacterDetails_Neck = character.GetEquippedItemByType((+CharacterEquipmentType::Neck)._to_string()).GetLeaf();
-        sCharacterDetails_LeftFingers = character.GetEquippedItemByType((+CharacterEquipmentType::LeftFingers)._to_string()).GetLeaf();
-        sCharacterDetails_RightFingers = character.GetEquippedItemByType((+CharacterEquipmentType::RightFingers)._to_string()).GetLeaf();
-        sCharacterDetails_Weapon1Left = character.GetEquippedItemByType((+CharacterEquipmentType::Weapon1Left)._to_string()).GetLeaf();
-        sCharacterDetails_Weapon1Right = character.GetEquippedItemByType((+CharacterEquipmentType::Weapon1Right)._to_string()).GetLeaf();
-        sCharacterDetails_Weapon2Left = character.GetEquippedItemByType((+CharacterEquipmentType::Weapon2Left)._to_string()).GetLeaf();
-        sCharacterDetails_Weapon2Right = character.GetEquippedItemByType((+CharacterEquipmentType::Weapon2Right)._to_string()).GetLeaf();
+        sCharacterDetails_Chest = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Chest)._to_string()).GetLeaf();
+        sCharacterDetails_Feet = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Feet)._to_string()).GetLeaf();
+        sCharacterDetails_Hands = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Hands)._to_string()).GetLeaf();
+        sCharacterDetails_Head = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Head)._to_string()).GetLeaf();
+        sCharacterDetails_Legs = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Legs)._to_string()).GetLeaf();
+        sCharacterDetails_Neck = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Neck)._to_string()).GetLeaf();
+        sCharacterDetails_LeftFingers = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::LeftFingers)._to_string()).GetLeaf();
+        sCharacterDetails_RightFingers = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::RightFingers)._to_string()).GetLeaf();
+        sCharacterDetails_Weapon1Left = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Weapon1Left)._to_string()).GetLeaf();
+        sCharacterDetails_Weapon1Right = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Weapon1Right)._to_string()).GetLeaf();
+        sCharacterDetails_Weapon2Left = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Weapon2Left)._to_string()).GetLeaf();
+        sCharacterDetails_Weapon2Right = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Weapon2Right)._to_string()).GetLeaf();
         const CharacterActionData& actionData = character.GetActionData();
         sCharacterDetails_Slash_ActionPoints = STDToString(actionData.GetSlashPoints());
         sCharacterDetails_Sever_ActionPoints = STDToString(actionData.GetSeverPoints());

@@ -8,11 +8,11 @@
 namespace Gecko
 {
 
-SceneToolCharacter::SceneToolCharacter()
+SceneToolCharacter::SceneToolCharacter(ManagerSet* pManagerSet)
     : Scene()
 {
     // Create handler
-    SetPageHandler(STDMakeSharedPtr<WebPageHandlerCharacterTool>());
+    SetPageHandler(STDMakeSharedPtr<WebPageHandlerCharacterTool>(pManagerSet));
 }
 
 SceneToolCharacter::~SceneToolCharacter()
@@ -22,7 +22,7 @@ SceneToolCharacter::~SceneToolCharacter()
 void SceneToolCharacter::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
-    SetPostCallback(STDBindFunc(&SceneToolCharacter::OnMessageReceived, this, STDPlaceholder1));
+    SetPostCallback(STDBindFunc(&SceneToolCharacter::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromHandler(GetPageHandler());
@@ -49,7 +49,7 @@ void SceneToolCharacter::OnMessageReceived(ManagerSet* pManagerSet, const String
     StringArray vArgs;
 
     // Handle common messages
-    if(Scene::HandleMessage(sMessage, sFunction, vArgs))
+    if(Scene::HandleMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
         return;
     }

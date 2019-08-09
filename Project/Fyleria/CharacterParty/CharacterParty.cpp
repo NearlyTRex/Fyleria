@@ -38,6 +38,7 @@ void CharacterParty::RegenerateCharacterData(
     for(auto& member : GetMembers())
     {
         pManagerSet->GetCharacterManager().GetCharacter(member.first).RegenerateCharacterData(
+            pManagerSet,
             bUpdateEquipmentRatings,
             bUpdateAvailableChanges,
             bUpdateAvailableActions,
@@ -46,7 +47,7 @@ void CharacterParty::RegenerateCharacterData(
     }
 }
 
-Bool CharacterParty::IsPartyAbleToFight() const
+Bool CharacterParty::IsPartyAbleToFight(ManagerSet* pManagerSet) const
 {
     UInt uMemberCount = GetMemberCount();
     if(uMemberCount == 0)
@@ -54,7 +55,7 @@ Bool CharacterParty::IsPartyAbleToFight() const
         return false;
     }
 
-    UInt uDeadMemberCount = GetStatusMemberCount((+CharacterStatusType::Dead)._to_string());
+    UInt uDeadMemberCount = GetStatusMemberCount(pManagerSet, (+CharacterStatusType::Dead)._to_string());
     if(uMemberCount == uDeadMemberCount)
     {
         return false;
@@ -118,7 +119,7 @@ Bool CharacterParty::AddMember(ManagerSet* pManagerSet, const String& sCharacter
     UseTargetType(newMember.GetCharacterTargetType());
     Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     character.GetBasicData().SetPartyID(GetPartyID());
-    character.RegenerateCharacterData();
+    character.RegenerateCharacterData(pManagerSet);
     return true;
 }
 
@@ -132,11 +133,11 @@ Bool CharacterParty::RemoveMember(ManagerSet* pManagerSet, const String& sCharac
     }
 
     // Remove member
-    UnequipAllItems(sCharacterID);
+    UnequipAllItems(pManagerSet, sCharacterID);
     FreeTargetType(GetMemberByID(sCharacterID).GetCharacterTargetType());
     Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
     character.GetBasicData().SetPartyID({});
-    character.RegenerateCharacterData();
+    character.RegenerateCharacterData(pManagerSet);
     GetMembers().erase(sCharacterID);
     return true;
 }
@@ -383,7 +384,7 @@ Bool CharacterParty::AddRandomItems(
             if(!randomTreeIndex.empty())
             {
                 UInt uAmount = GetRandomIntValue<Int>(iAmountStart, iAmountEnd);
-                Bool bSuccess = AddItemByTreeIndex(randomTreeIndex, uAmount);
+                Bool bSuccess = AddItemByTreeIndex(pManagerSet, randomTreeIndex, uAmount);
                 if(bSuccess)
                 {
                     LOG_FORMAT_STATEMENT("Added item '{}' to party '{}' by amount {}",
@@ -405,7 +406,7 @@ Bool CharacterParty::AddItemByLeaf(
     UInt uAmount)
 {
     TreeIndex treeIndex = pManagerSet->GetItemManager().ResolveItemLeafIntoIndex(sLeaf);
-    return AddItemByTreeIndex(treeIndex, uAmount);
+    return AddItemByTreeIndex(pManagerSet, treeIndex, uAmount);
 }
 
 Bool CharacterParty::AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
@@ -462,7 +463,7 @@ Bool CharacterParty::AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex
 Bool CharacterParty::RemoveItemByLeaf(ManagerSet* pManagerSet, const String& sLeaf, UInt uAmount)
 {
     TreeIndex treeIndex = pManagerSet->GetItemManager().ResolveItemLeafIntoIndex(sLeaf);
-    return RemoveItemByTreeIndex(treeIndex, uAmount);
+    return RemoveItemByTreeIndex(pManagerSet, treeIndex, uAmount);
 }
 
 Bool CharacterParty::RemoveItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
@@ -544,7 +545,7 @@ TreeIndex CharacterParty::GetBestUnequippedItem(ManagerSet* pManagerSet, const S
     UInt uShieldCount = 0;
     if(!IsNoneTypeForEnum<CharacterWeaponSetType>(sWeaponSet))
     {
-        uShieldCount = GetMemberByID(sCharacterID).GetEquippedShieldCount(sWeaponSet);
+        uShieldCount = GetMemberByID(sCharacterID).GetEquippedShieldCount(pManagerSet, sWeaponSet);
     }
 
     // Look at each of the matching, unequipped items the party has and find the best one
@@ -589,7 +590,7 @@ TreeIndex CharacterParty::GetBestUnequippedItem(ManagerSet* pManagerSet, const S
     return bestItem;
 }
 
-Bool CharacterParty::EquipItem(const String& sCharacterID, const String& sLeaf, const String& sSlot)
+Bool CharacterParty::EquipItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot)
 {
     // Get the item and character
     CharacterPartyItem& item = GetItemByLeaf(sLeaf);
@@ -611,7 +612,7 @@ Bool CharacterParty::EquipItem(const String& sCharacterID, const String& sLeaf, 
             item.GetEquipCount());
         return false;
     }
-    if(!member.CanAddEquippedItem(item.GetItemTreeIndex()))
+    if(!member.CanAddEquippedItem(pManagerSet, item.GetItemTreeIndex()))
     {
         ERROR_FORMAT_STATEMENT("Member '{}' in party '{}' cannot equip item '{}'",
             sCharacterID.c_str(),
@@ -621,7 +622,7 @@ Bool CharacterParty::EquipItem(const String& sCharacterID, const String& sLeaf, 
     }
 
     // Mark the item as being equipped
-    if(!member.AddEquippedItem(item.GetItemTreeIndex(), sSlot) || !item.EquipAmount(1))
+    if(!member.AddEquippedItem(pManagerSet, item.GetItemTreeIndex(), sSlot) || !item.EquipAmount(1))
     {
         ERROR_FORMAT_STATEMENT("Member '{}' in party '{}' was not able to equip item '{}' to slot '{}'",
             sCharacterID.c_str(),
@@ -633,7 +634,7 @@ Bool CharacterParty::EquipItem(const String& sCharacterID, const String& sLeaf, 
     return true;
 }
 
-Bool CharacterParty::UnequipItem(const String& sCharacterID, const String& sLeaf, const String& sSlot)
+Bool CharacterParty::UnequipItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot)
 {
     // Get the item and character
     CharacterPartyItem& item = GetItemByLeaf(sLeaf);
@@ -655,7 +656,7 @@ Bool CharacterParty::UnequipItem(const String& sCharacterID, const String& sLeaf
             item.GetEquipCount());
         return false;
     }
-    if(!member.CanRemoveEquippedItem(item.GetItemTreeIndex()))
+    if(!member.CanRemoveEquippedItem(pManagerSet, item.GetItemTreeIndex()))
     {
         ERROR_FORMAT_STATEMENT("Member '{}' in party '{}' cannot unequip item '{}'",
             sCharacterID.c_str(),
@@ -665,7 +666,7 @@ Bool CharacterParty::UnequipItem(const String& sCharacterID, const String& sLeaf
     }
 
     // Mark the item as being equipped
-    if(!member.RemoveEquippedItem(item.GetItemTreeIndex(), sSlot) || !item.UnequipAmount(1))
+    if(!member.RemoveEquippedItem(pManagerSet, item.GetItemTreeIndex(), sSlot) || !item.UnequipAmount(1))
     {
         ERROR_FORMAT_STATEMENT("Member '{}' in party '{}' was not able to unequip item '{}' to slot '{}'",
             sCharacterID.c_str(),
@@ -677,23 +678,23 @@ Bool CharacterParty::UnequipItem(const String& sCharacterID, const String& sLeaf
     return true;
 }
 
-Bool CharacterParty::EquipBestItems(const String& sCharacterID)
+Bool CharacterParty::EquipBestItems(ManagerSet* pManagerSet, const String& sCharacterID)
 {
     // First unequip all that character's items
-    UnequipAllItems(sCharacterID);
+    UnequipAllItems(pManagerSet, sCharacterID);
 
     // Get the best available item for each equipment slot
     for(const String& sEquipType : CharacterEquipmentType::_names())
     {
         // Get best item for this slot
-        TreeIndex bestItemForSlot = GetBestUnequippedItem(sCharacterID, sEquipType);
+        TreeIndex bestItemForSlot = GetBestUnequippedItem(pManagerSet, sCharacterID, sEquipType);
         if(bestItemForSlot.empty())
         {
             continue;
         }
 
         // Try equipping
-        if(!EquipItem(sCharacterID, bestItemForSlot.GetLeaf(), sEquipType))
+        if(!EquipItem(pManagerSet, sCharacterID, bestItemForSlot.GetLeaf(), sEquipType))
         {
             continue;
         }
@@ -701,16 +702,16 @@ Bool CharacterParty::EquipBestItems(const String& sCharacterID)
     return true;
 }
 
-Bool CharacterParty::EquipBestItemsForAllMembers()
+Bool CharacterParty::EquipBestItemsForAllMembers(ManagerSet* pManagerSet)
 {
     for(auto& member : GetMembers())
     {
-        EquipBestItems(member.first);
+        EquipBestItems(pManagerSet, member.first);
     }
     return true;
 }
 
-Bool CharacterParty::UnequipAllItems(const String& sCharacterID)
+Bool CharacterParty::UnequipAllItems(ManagerSet* pManagerSet, const String& sCharacterID)
 {
     // Get the member
     CharacterPartyMember& member = GetMemberByID(sCharacterID);
@@ -720,6 +721,7 @@ Bool CharacterParty::UnequipAllItems(const String& sCharacterID)
     for(auto&& equippedItem : member.GetEquippedItems())
     {
         Bool bSuccess = UnequipItem(
+            pManagerSet,
             sCharacterID,
             equippedItem.GetItemTreeIndex().GetLeaf(),
             equippedItem.GetItemSlot());
@@ -728,11 +730,11 @@ Bool CharacterParty::UnequipAllItems(const String& sCharacterID)
     return bAtLeastOneSuccess;
 }
 
-Bool CharacterParty::UnequipAllItemsForAllMembers()
+Bool CharacterParty::UnequipAllItemsForAllMembers(ManagerSet* pManagerSet)
 {
     for(auto& member : GetMembers())
     {
-        UnequipAllItems(member.first);
+        UnequipAllItems(pManagerSet, member.first);
     }
     return true;
 }

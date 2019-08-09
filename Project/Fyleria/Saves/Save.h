@@ -5,6 +5,9 @@
 #define _GECKO_SAVE_H_
 
 // Internal includes
+#include "Character/Character.h"
+#include "CharacterParty/CharacterParty.h"
+#include "Utility/Json.h"
 #include "Utility/Macros.h"
 #include "Utility/Enum.h"
 

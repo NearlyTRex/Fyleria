@@ -188,8 +188,8 @@ Bool StatChange::DoesMeetItemEquippedRequirements(
     }
 
     // Get equipped item counts
-    const UInt uActualWeaponCount = partyMember.GetEquippedWeaponCount(sWeaponSet);
-    const UInt uActualShieldCount = partyMember.GetEquippedShieldCount(sWeaponSet);
+    const UInt uActualWeaponCount = partyMember.GetEquippedWeaponCount(pManagerSet, sWeaponSet);
+    const UInt uActualShieldCount = partyMember.GetEquippedShieldCount(pManagerSet, sWeaponSet);
 
     // Get some info regarding this change
     const UInt uChangeRequiredWeaponCount = GetRequiredEquippedWeaponCount();
@@ -358,7 +358,7 @@ Bool StatChange::DoesMeetActiveRequirements(
     // Only check attack/defend if they are the attacker/defender referenced by the action
     if(DoesHaveItemEquippedRequirements())
     {
-        return DoesMeetItemEquippedRequirements(sCharacterID, sWeaponSet);
+        return DoesMeetItemEquippedRequirements(pManagerSet, sCharacterID, sWeaponSet);
     }
     else if(DoesHaveItemUsedRequirements())
     {
@@ -447,7 +447,7 @@ void StatChange::ResolveTargetPlaceholders(
     const CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
     // Get resolved target types
-    String sSelfTargetType = character.GetCharacterTargetType();
+    String sSelfTargetType = character.GetCharacterTargetType(pManagerSet);
     StringArray vSourceTargetTypes = battleData.ResolveTargetPlaceholder(sSelfTargetType, GetSourceTargetType());
     StringArray vDestTargetTypes = battleData.ResolveTargetPlaceholder(sSelfTargetType, GetDestinationTargetType());
 
@@ -572,22 +572,22 @@ void from_json(const Json& jsonData, StatChange& obj)
     SET_OBJ_DATA(StatChangeEntries, StatChangeEntryArray);
 }
 
-const StatChangeArray& GetStatChangesFromTreeIndex(const String& sTreeIndexType, const TreeIndex& treeIndex)
+const StatChangeArray& GetStatChangesFromTreeIndex(ManagerSet* pManagerSet, const String& sTreeIndexType, const TreeIndex& treeIndex)
 {
     const CharacterTreeIndexType eTreeIndexType = GetEnumFromString<CharacterTreeIndexType>(sTreeIndexType);
     switch(eTreeIndexType)
     {
         case CharacterTreeIndexType::Skill:
-            return GetStatChangesFromSkillTreeIndex(treeIndex);
+            return GetStatChangesFromSkillTreeIndex(pManagerSet, treeIndex);
         case CharacterTreeIndexType::Item:
-            return GetStatChangesFromItemTreeIndex(treeIndex);
+            return GetStatChangesFromItemTreeIndex(pManagerSet, treeIndex);
         default:
             break;
     }
     THROW_RUNTIME_ERROR("Invalid or unknown tree index type requested: " + sTreeIndexType);
 }
 
-const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeIndex)
+const StatChangeArray& GetStatChangesFromSkillTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex)
 {
     const SkillTreeType eSkillTreeType = GetEnumFromStringOrNone<SkillTreeType>(treeIndex.GetTree());
     switch(eSkillTreeType)
@@ -610,7 +610,7 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeInd
     THROW_RUNTIME_ERROR("Invalid or unknown tree index requested: " + treeIndex.GetTreeBranchLeafType());
 }
 
-const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeIndex)
+const StatChangeArray& GetStatChangesFromItemTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex)
 {
     const ItemTreeType eItemTreeType = GetEnumFromStringOrNone<ItemTreeType>(treeIndex.GetTree());
     switch(eItemTreeType)

@@ -16,7 +16,7 @@ class SceneToolSave : public Scene
 public:
 
     // Constructor
-    SceneToolSave();
+    SceneToolSave(ManagerSet* pManagerSet);
 
     // Destructor
     virtual ~SceneToolSave();

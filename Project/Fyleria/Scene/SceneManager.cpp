@@ -19,7 +19,7 @@ SceneManager::~SceneManager()
 {
 }
 
-void SceneManager::AddScene(const String& sSceneID)
+void SceneManager::AddScene(ManagerSet* pManagerSet, const String& sSceneID)
 {
     // Only add if it is not already added
     if (!DoesSceneExist(sSceneID))
@@ -64,13 +64,13 @@ void SceneManager::AddScene(const String& sSceneID)
             AddScene(sSceneID, STDMakeSharedPtr<SceneToolMain>());
             break;
         case SceneType::ToolCharacter:
-            AddScene(sSceneID, STDMakeSharedPtr<SceneToolCharacter>());
+            AddScene(sSceneID, STDMakeSharedPtr<SceneToolCharacter>(pManagerSet));
             break;
         case SceneType::ToolParty:
-            AddScene(sSceneID, STDMakeSharedPtr<SceneToolParty>());
+            AddScene(sSceneID, STDMakeSharedPtr<SceneToolParty>(pManagerSet));
             break;
         case SceneType::ToolSave:
-            AddScene(sSceneID, STDMakeSharedPtr<SceneToolSave>());
+            AddScene(sSceneID, STDMakeSharedPtr<SceneToolSave>(pManagerSet));
             break;
         default:
             break;
@@ -95,7 +95,7 @@ void SceneManager::RemoveScene(const String& sSceneID)
 void SceneManager::SwitchToScene(ManagerSet* pManagerSet, const String& sSceneID)
 {
     // Add scene if necessary
-    AddScene(sSceneID);
+    AddScene(pManagerSet, sSceneID);
 
     // Skip if it still does not exist
     if(!DoesSceneExist(sSceneID))

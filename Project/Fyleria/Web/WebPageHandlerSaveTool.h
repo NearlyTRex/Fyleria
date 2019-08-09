@@ -16,7 +16,7 @@ class WebPageHandlerSaveTool : public WebPageHandler
 public:
 
     // Constructors
-    WebPageHandlerSaveTool();
+    WebPageHandlerSaveTool(ManagerSet* pManagerSet);
 
     // Destructor
     virtual ~WebPageHandlerSaveTool();

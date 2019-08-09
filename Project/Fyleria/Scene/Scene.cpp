@@ -51,7 +51,7 @@ Bool Scene::ParseMessage(ManagerSet* pManagerSet, const String& sMessage, String
 Bool Scene::HandleMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs)
 {
     // Parse message
-    if(!ParseMessage(sMessage, sFunction, vArgs))
+    if(!ParseMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
         return false;
     }
@@ -66,13 +66,10 @@ Bool Scene::HandleMessage(ManagerSet* pManagerSet, const String& sMessage, Strin
     switch(eFunctionType)
     {
         case SceneMessageFunctionType::SwitchToScene:
-            pManagerSet->GetSceneManager().SwitchToScene(sArg1);
+            pManagerSet->GetSceneManager().SwitchToScene(pManagerSet, sArg1);
             return true;
         case SceneMessageFunctionType::SubmitForm:
-            ProcessForm(sArg1, sArg2);
-            SetHtmlContent(GetPageContent());
-            return true;
-        case SceneMessageFunctionType::ReloadPage:
+            ProcessForm(pManagerSet, sArg1, sArg2);
             SetHtmlContent(GetPageContent());
             return true;
         default:
@@ -105,7 +102,7 @@ void Scene::ProcessForm(ManagerSet* pManagerSet, const String& sAction, const St
             tParameters.insert({"action", sAction});
 
             // Update page content
-            GetPageHandler()->UpdatePageContent(tParameters);
+            GetPageHandler()->UpdatePageContent(pManagerSet, tParameters);
             SetPageContent(GetPageHandler()->GetPageContent());
         }
         catch(STDException& e)

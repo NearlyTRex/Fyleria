@@ -14,7 +14,7 @@ CharacterManager::CharacterManager()
 {
 }
 
-String CharacterManager::LoadCharacter(const Character& character, Bool bRegenerateData)
+String CharacterManager::LoadCharacter(ManagerSet* pManagerSet, const Character& character, Bool bRegenerateData)
 {
     // Check if character ID is valid
     const String& sCharacterID = character.GetCharacterID();
@@ -27,12 +27,12 @@ String CharacterManager::LoadCharacter(const Character& character, Bool bRegener
     GetCharacters().insert({sCharacterID, character});
     if(bRegenerateData)
     {
-        GetCharacters().at(sCharacterID).RegenerateCharacterData();
+        GetCharacters().at(sCharacterID).RegenerateCharacterData(pManagerSet);
     }
     return sCharacterID;
 }
 
-String CharacterManager::LoadCharacterFromFile(const String& sFilename, const String& sType, Bool bRegenerateData)
+String CharacterManager::LoadCharacterFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData)
 {
     // Deserialize file into character data
     Json jsonData;
@@ -43,7 +43,7 @@ String CharacterManager::LoadCharacterFromFile(const String& sFilename, const St
     }
 
     // Load character
-    return LoadCharacter(jsonData.get<Character>(), bRegenerateData);
+    return LoadCharacter(pManagerSet, jsonData.get<Character>(), bRegenerateData);
 }
 
 void CharacterManager::SaveCharacterToFile(const String& sCharacterID, const String& sFilename, const String& sType)
@@ -91,7 +91,7 @@ Bool CharacterManager::DoesCharacterExist(const String& sCharacterID) const
     return (iSearch != GetCharacters().end());
 }
 
-void CharacterManager::GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator)
+void CharacterManager::GenerateCharacter(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterGenerator& generator)
 {
     // Log start
     LOG_FORMAT_STATEMENT("Generating character (CharacterID = '{}') ...", sCharacterID.c_str());
@@ -108,7 +108,7 @@ void CharacterManager::GenerateCharacter(const String& sCharacterID, const Chara
     newCharacter.SetBasicData(generator.GenerateBasicData(sCharacterID));
     newCharacter.SetProgressData(generator.GenerateProgressData());
     newCharacter.SetSkillData(generator.GenerateSkillData());
-    newCharacter.RegenerateCharacterData();
+    newCharacter.RegenerateCharacterData(pManagerSet);
 }
 
 Bool CharacterManager::IsValidCharacterID(const String& sCharacterID) const
@@ -176,7 +176,7 @@ void CharacterManager::ApplyStatChange(
     // Get character IDs
     StringArray vSourceCharIDs;
     StringArray vDestCharIDs;
-    if(!change.GetResolvedCharacterArrays(vSourceCharIDs, vDestCharIDs))
+    if(!change.GetResolvedCharacterArrays(pManagerSet, vSourceCharIDs, vDestCharIDs))
     {
         LOG_FORMAT_STATEMENT("Invalid character IDs (Skill = '{}', "
                              "Item = '{}', "

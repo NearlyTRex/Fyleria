@@ -21,7 +21,7 @@ SceneCraftingMenu::~SceneCraftingMenu()
 void SceneCraftingMenu::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
-    SetPostCallback(STDBindFunc(&SceneCraftingMenu::OnMessageReceived, this, STDPlaceholder1));
+    SetPostCallback(STDBindFunc(&SceneCraftingMenu::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(PAGE_FILE_CRAFTING_MENU);
@@ -48,7 +48,7 @@ void SceneCraftingMenu::OnMessageReceived(ManagerSet* pManagerSet, const String&
     StringArray vArgs;
 
     // Handle common messages
-    if(Scene::HandleMessage(sMessage, sFunction, vArgs))
+    if(Scene::HandleMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
         return;
     }

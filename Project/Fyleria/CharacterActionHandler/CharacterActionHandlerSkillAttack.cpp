@@ -191,29 +191,29 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     return result;
 }
 
-Bool CharacterActionHandlerSkillAttack::Setup(CharacterAction& action)
+Bool CharacterActionHandlerSkillAttack::Setup(ManagerSet* pManagerSet, CharacterAction& action)
 {
     // Prepare character IDs
-    action.PrepareCharacterIDs();
+    action.PrepareCharacterIDs(pManagerSet);
 
     // Setup destination characters
     for(const CharacterActionEntry& entry : action.GetActionEntries())
     {
         for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
         {
-            HandleBattleActionDefendSetup(sDestCharID, action);
+            HandleBattleActionDefendSetup(pManagerSet, sDestCharID, action);
         }
     }
 
     // Setup source character
-    HandleBattleActionAttackSetup(action.GetSourceCharacterID(), action);
+    HandleBattleActionAttackSetup(pManagerSet, action.GetSourceCharacterID(), action);
     return true;
 }
 
-Bool CharacterActionHandlerSkillAttack::Finish(CharacterAction& action)
+Bool CharacterActionHandlerSkillAttack::Finish(ManagerSet* pManagerSet, CharacterAction& action)
 {
     // Check characters
-    if(!action.AreAllCharacterIDsValid())
+    if(!action.AreAllCharacterIDsValid(pManagerSet))
     {
         return false;
     }
@@ -223,19 +223,19 @@ Bool CharacterActionHandlerSkillAttack::Finish(CharacterAction& action)
     {
         for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
         {
-            HandleBattleActionFinished(sDestCharID, action);
+            HandleBattleActionFinished(pManagerSet, sDestCharID, action);
         }
     }
 
     // Finish source character action
-    HandleBattleActionFinished(action.GetSourceCharacterID(), action);
+    HandleBattleActionFinished(pManagerSet, action.GetSourceCharacterID(), action);
     return true;
 }
 
-Bool CharacterActionHandlerSkillAttack::GenerateResult(CharacterAction& action)
+Bool CharacterActionHandlerSkillAttack::GenerateResult(ManagerSet* pManagerSet, CharacterAction& action)
 {
     // Check characters
-    if(!action.AreAllCharacterIDsValid())
+    if(!action.AreAllCharacterIDsValid(pManagerSet))
     {
         return false;
     }
@@ -250,7 +250,7 @@ Bool CharacterActionHandlerSkillAttack::GenerateResult(CharacterAction& action)
         {
             for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
             {
-                CharacterActionResult result = GetSkillAttackResult(action, entry, sDestCharID);
+                CharacterActionResult result = GetSkillAttackResult(pManagerSet, action, entry, sDestCharID);
                 entry.GetResults().insert({sDestCharID, result});
             }
         }
@@ -258,10 +258,10 @@ Bool CharacterActionHandlerSkillAttack::GenerateResult(CharacterAction& action)
     return true;
 }
 
-Bool CharacterActionHandlerSkillAttack::ApplyResult(CharacterAction& action)
+Bool CharacterActionHandlerSkillAttack::ApplyResult(ManagerSet* pManagerSet, CharacterAction& action)
 {
     // Check characters
-    if(!action.AreAllCharacterIDsValid())
+    if(!action.AreAllCharacterIDsValid(pManagerSet))
     {
         return false;
     }
@@ -276,7 +276,7 @@ Bool CharacterActionHandlerSkillAttack::ApplyResult(CharacterAction& action)
         {
             // Send entry damage to character
             iEntryDamage = it->second.GetFinalDamage();
-            HandleBattleTakingDamage(it->first, iEntryDamage);
+            HandleBattleTakingDamage(pManagerSet, it->first, iEntryDamage);
         }
 
         // Add to final damage that the source character applied
@@ -284,10 +284,10 @@ Bool CharacterActionHandlerSkillAttack::ApplyResult(CharacterAction& action)
     }
 
     // Send final damage to source character so they can record how much they gave
-    HandleBattleGivingDamage(action.GetSourceCharacterID(), iFinalDamage);
+    HandleBattleGivingDamage(pManagerSet, action.GetSourceCharacterID(), iFinalDamage);
 
     // Notify source character that their action was applied
-    HandleBattleActionApplied(action.GetSourceCharacterID(), action);
+    HandleBattleActionApplied(pManagerSet, action.GetSourceCharacterID(), action);
     return true;
 }
 

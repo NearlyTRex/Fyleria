@@ -21,7 +21,7 @@ SceneCredits::~SceneCredits()
 void SceneCredits::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
-    SetPostCallback(STDBindFunc(&SceneCredits::OnMessageReceived, this, STDPlaceholder1));
+    SetPostCallback(STDBindFunc(&SceneCredits::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(PAGE_FILE_CREDITS);
@@ -48,7 +48,7 @@ void SceneCredits::OnMessageReceived(ManagerSet* pManagerSet, const String& sMes
     StringArray vArgs;
 
     // Handle common messages
-    if(Scene::HandleMessage(sMessage, sFunction, vArgs))
+    if(Scene::HandleMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
         return;
     }

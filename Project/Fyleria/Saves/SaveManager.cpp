@@ -144,7 +144,7 @@ void SaveManager::CollectSaveData(
     const String& sPartyID)
 {
     const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
-    CollectSaveData(sSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
+    CollectSaveData(pManagerSet, sSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
 }
 
 void SaveManager::CollectSaveData(
@@ -161,7 +161,7 @@ void SaveManager::CollectSaveData(
     {
         // Add party
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
-        party.RegenerateCharacterData();
+        party.RegenerateCharacterData(pManagerSet);
         vParties.push_back(party);
 
         // Add members of this party
@@ -191,13 +191,13 @@ void SaveManager::DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot)
     // Load characters
     for(const Character& character : save.GetCharacters())
     {
-        pManagerSet->GetCharacterManager().LoadCharacter(character, false);
+        pManagerSet->GetCharacterManager().LoadCharacter(pManagerSet, character, false);
     }
 
     // Load parties
     for(const CharacterParty& party : save.GetParties())
     {
-        pManagerSet->GetCharacterPartyManager().LoadParty(party, true);
+        pManagerSet->GetCharacterPartyManager().LoadParty(pManagerSet, party, true);
     }
 }
 

@@ -21,7 +21,7 @@ SceneCharacterCreation::~SceneCharacterCreation()
 void SceneCharacterCreation::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
-    SetPostCallback(STDBindFunc(&SceneCharacterCreation::OnMessageReceived, this, STDPlaceholder1));
+    SetPostCallback(STDBindFunc(&SceneCharacterCreation::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(PAGE_FILE_CHARACTER_CREATION);
@@ -48,7 +48,7 @@ void SceneCharacterCreation::OnMessageReceived(ManagerSet* pManagerSet, const St
     StringArray vArgs;
 
     // Handle common messages
-    if(Scene::HandleMessage(sMessage, sFunction, vArgs))
+    if(Scene::HandleMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
         return;
     }

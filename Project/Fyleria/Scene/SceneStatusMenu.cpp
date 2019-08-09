@@ -21,7 +21,7 @@ SceneStatusMenu::~SceneStatusMenu()
 void SceneStatusMenu::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
-    SetPostCallback(STDBindFunc(&SceneStatusMenu::OnMessageReceived, this, STDPlaceholder1));
+    SetPostCallback(STDBindFunc(&SceneStatusMenu::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(PAGE_FILE_STATUS_MENU);
@@ -48,7 +48,7 @@ void SceneStatusMenu::OnMessageReceived(ManagerSet* pManagerSet, const String& s
     StringArray vArgs;
 
     // Handle common messages
-    if(Scene::HandleMessage(sMessage, sFunction, vArgs))
+    if(Scene::HandleMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
         return;
     }

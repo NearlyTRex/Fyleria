@@ -21,7 +21,7 @@ SceneShop::~SceneShop()
 void SceneShop::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
-    SetPostCallback(STDBindFunc(&SceneShop::OnMessageReceived, this, STDPlaceholder1));
+    SetPostCallback(STDBindFunc(&SceneShop::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(PAGE_FILE_SHOP);
@@ -48,7 +48,7 @@ void SceneShop::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessag
     StringArray vArgs;
 
     // Handle common messages
-    if(Scene::HandleMessage(sMessage, sFunction, vArgs))
+    if(Scene::HandleMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
         return;
     }

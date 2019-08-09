@@ -70,7 +70,7 @@ Bool Battle::IsBattleOver(ManagerSet* pManagerSet, const String& sPartyID) const
 
     // Check if able to fight
     const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
-    return party.IsPartyAbleToFight();
+    return party.IsPartyAbleToFight(pManagerSet);
 }
 
 Bool Battle::IsBattleWon(ManagerSet* pManagerSet) const
@@ -105,39 +105,39 @@ void Battle::FinishedAddingActions()
     SetCurrentActionIndex(0);
 }
 
-void Battle::RunCurrentActionSetup()
+void Battle::RunCurrentActionSetup(ManagerSet* pManagerSet)
 {
     CharacterAction& action = GetCurrentAction();
     if(IsSkillAttackAction(action))
     {
-        GetSkillAttackHandler().Setup(action);
+        GetSkillAttackHandler().Setup(pManagerSet, action);
     }
 }
 
-void Battle::RunCurrentActionFinish()
+void Battle::RunCurrentActionFinish(ManagerSet* pManagerSet)
 {
     CharacterAction& action = GetCurrentAction();
     if(IsSkillAttackAction(action))
     {
-        GetSkillAttackHandler().Finish(action);
+        GetSkillAttackHandler().Finish(pManagerSet, action);
     }
 }
 
-void Battle::RunCurrentActionGenerateResult()
+void Battle::RunCurrentActionGenerateResult(ManagerSet* pManagerSet)
 {
     CharacterAction& action = GetCurrentAction();
     if(IsSkillAttackAction(action))
     {
-        GetSkillAttackHandler().GenerateResult(action);
+        GetSkillAttackHandler().GenerateResult(pManagerSet, action);
     }
 }
 
-void Battle::RunCurrentActionApplyResult()
+void Battle::RunCurrentActionApplyResult(ManagerSet* pManagerSet)
 {
     CharacterAction& action = GetCurrentAction();
     if(IsSkillAttackAction(action))
     {
-        GetSkillAttackHandler().ApplyResult(action);
+        GetSkillAttackHandler().ApplyResult(pManagerSet, action);
     }
 }
 

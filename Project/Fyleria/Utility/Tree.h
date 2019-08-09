@@ -74,17 +74,21 @@ public:
     }
 
     // Get leaf
-    T& GetLeaf(const String& sBranchName, const String& sLeafName)
+    const T& GetLeaf(const String& sBranchName, const String& sLeafName) const
     {
         if(!HasLeaf(sBranchName, sLeafName))
         {
             THROW_RUNTIME_ERROR("Specified leaf '" + sLeafName + "' on branch '" + sBranchName + "' was not found");
         }
-        return m_tBranches[sBranchName][sLeafName];
+        return m_tBranches.at(sBranchName).at(sLeafName);
+    }
+    T& GetLeaf(const String& sBranchName, const String& sLeafName)
+    {
+        return const_cast<T&>(static_cast<const Tree<T>&>(*this).GetLeaf(sBranchName, sLeafName));
     }
 
     // Get leaf
-    T& GetLeaf(const String& sLeafName)
+    const T& GetLeaf(const String& sLeafName) const
     {
         String sBranchName = GetBranchFromLeaf(sLeafName);
         if(sBranchName.empty())
@@ -93,21 +97,33 @@ public:
         }
         return GetLeaf(sBranchName, sLeafName);
     }
+    T& GetLeaf(const String& sLeafName)
+    {
+        return const_cast<T&>(static_cast<const Tree<T>&>(*this).GetLeaf(sLeafName));
+    }
 
     // Get leaf
-    T& GetLeaf(const TreeIndex& index)
+    const T& GetLeaf(const TreeIndex& index) const
     {
         return GetLeaf(index.GetBranch(), index.GetLeaf());
     }
+    T& GetLeaf(const TreeIndex& index)
+    {
+        return const_cast<T&>(static_cast<const Tree<T>&>(*this).GetLeaf(index));
+    }
 
     // Get numbered leaf
-    T& GetNumberedLeaf(const String& sBranchName, const String& sLeafBase, Int iLeafNumber)
+    const T& GetNumberedLeaf(const String& sBranchName, const String& sLeafBase, Int iLeafNumber) const
     {
         return GetLeaf(sBranchName, GetLeafNameFromNumber(sLeafBase, iLeafNumber));
     }
+    T& GetNumberedLeaf(const String& sBranchName, const String& sLeafBase, Int iLeafNumber)
+    {
+        return const_cast<T&>(static_cast<const Tree<T>&>(*this).GetNumberedLeaf(sBranchName, sLeafBase, iLeafNumber));
+    }
 
     // Get all leaves
-    TreeIndexArray GetAllLeaves(const String& sBranchName)
+    TreeIndexArray GetAllLeaves(const String& sBranchName) const
     {
         // Check branch
         TreeIndexArray vLeaves;
@@ -123,7 +139,7 @@ public:
         }
 
         // Look at all the leaves
-        for(LeafTypeIterator it = m_tBranches[sBranchName].begin(); it != m_tBranches[sBranchName].end(); it++)
+        for(auto it = m_tBranches.at(sBranchName).cbegin(); it != m_tBranches.at(sBranchName).cend(); it++)
         {
             // Add new leaf
             vLeaves.push_back(TreeIndex(GetTreeType(), sBranchName, it->first));
@@ -132,7 +148,7 @@ public:
     }
 
     // Get all unique leaves under the given number
-    TreeIndexArray GetLeavesUnderNumber(const String& sBranchName, const String& sLeafBase, Int iLeafNumber, Bool bUniqueOnly)
+    TreeIndexArray GetLeavesUnderNumber(const String& sBranchName, const String& sLeafBase, Int iLeafNumber, Bool bUniqueOnly) const
     {
         // Check branch
         TreeIndexArray vLeaves;
@@ -155,7 +171,7 @@ public:
             if(bUniqueOnly)
             {
                 // Get leaf
-                T& leaf = GetNumberedLeaf(sBranchName, sLeafBase, i);
+                const T& leaf = GetNumberedLeaf(sBranchName, sLeafBase, i);
 
                 // Skip if we already have a matching class
                 String sClass = leaf.GetSkillType() + String("_") + leaf.GetDataClass();
@@ -176,41 +192,41 @@ public:
     }
 
     // Check if a branch exists
-    Bool HasBranch(const String& sBranchName)
+    Bool HasBranch(const String& sBranchName) const
     {
         return (m_tBranches.find(sBranchName) != m_tBranches.end());
     }
 
     // Check if a leaf exists
-    Bool HasLeaf(const String& sBranchName, const String& sLeafName)
+    Bool HasLeaf(const String& sBranchName, const String& sLeafName) const
     {
         return (m_tBranches.find(sBranchName) != m_tBranches.end() &&
-                m_tBranches[sBranchName].find(sLeafName) != m_tBranches[sBranchName].end());
+                m_tBranches.at(sBranchName).find(sLeafName) != m_tBranches.at(sBranchName).end());
     }
 
     // Check if a numbered leaf exists
-    Bool HasLeaf(const String& sBranchName, const String& sLeafBase, Int iLeafNumber)
+    Bool HasLeaf(const String& sBranchName, const String& sLeafBase, Int iLeafNumber) const
     {
         return HasLeaf(sBranchName, GetLeafNameFromNumber(sLeafBase, iLeafNumber));
     }
 
     // Check if a leaf exists
-    Bool HasLeaf(const String& sLeafName)
+    Bool HasLeaf(const String& sLeafName) const
     {
         return HasLeaf(GetBranchFromLeaf(sLeafName), sLeafName);
     }
 
     // Check if a leaf exists
-    Bool HasLeaf(const TreeIndex& index)
+    Bool HasLeaf(const TreeIndex& index) const
     {
         return HasLeaf(index.GetBranch(), index.GetLeaf());
     }
 
     // Get branch name from leaf name
-    String GetBranchFromLeaf(const String& sLeafName)
+    String GetBranchFromLeaf(const String& sLeafName) const
     {
         String sBranchName("");
-        for(auto it = m_tBranches.begin(); it != m_tBranches.end(); ++it)
+        for(auto it = m_tBranches.cbegin(); it != m_tBranches.cend(); ++it)
         {
             if(HasLeaf(it->first, sLeafName))
             {
@@ -222,7 +238,7 @@ public:
     }
 
     // Get leaf name from base and number
-    String GetLeafNameFromNumber(const String& sLeafBase, Int iLeafNumber)
+    String GetLeafNameFromNumber(const String& sLeafBase, Int iLeafNumber) const
     {
         return sLeafBase + String(STDToString(iLeafNumber));
     }

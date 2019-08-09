@@ -58,7 +58,9 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(
     TreeIndex secondaryItemIndex;
     StringArray vPrimaryActionTypes;
     StringArray vSecondaryActionTypes;
-    if(!partyMember.GetHandInfoByWeaponSet(sWeaponSet,
+    if(!partyMember.GetHandInfoByWeaponSet(
+        pManagerSet,
+        sWeaponSet,
         primaryItemIndex,
         secondaryItemIndex,
         vPrimaryActionTypes,
@@ -81,7 +83,7 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(
     }
 
     // Setup new actions
-    for(auto& newAction : CreateBaseActions(sCharacterID, sWeaponSet))
+    for(auto& newAction : CreateBaseActions(pManagerSet, sCharacterID, sWeaponSet))
     {
         // Ambidextrous - Twin Attack
         // Ambidextrous - Split Focus

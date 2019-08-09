@@ -181,7 +181,9 @@ Bool SkillData::DoesMeetActionRequirements(
     TreeIndex secondaryItemIndex;
     StringArray vPrimaryActionTypes;
     StringArray vSecondaryActionTypes;
-    if(!partyMember.GetHandInfoByWeaponSet(sWeaponSet,
+    if(!partyMember.GetHandInfoByWeaponSet(
+        pManagerSet,
+        sWeaponSet,
         primaryItemIndex,
         secondaryItemIndex,
         vPrimaryActionTypes,
@@ -195,7 +197,7 @@ Bool SkillData::DoesMeetActionRequirements(
     {
         if(change.DoesHaveItemEquippedRequirements())
         {
-            return change.DoesMeetItemEquippedRequirements(sCharacterID, sWeaponSet);
+            return change.DoesMeetItemEquippedRequirements(pManagerSet, sCharacterID, sWeaponSet);
         }
         else if(change.DoesHaveAttackRequirements() && !vPrimaryActionTypes.empty())
         {
@@ -233,7 +235,7 @@ CharacterActionArray SkillData::CreateBaseActions(
         newAction.SetCostHP(GetSkillCostHP());
         newAction.SetWeaponSet(sWeaponSet);
         newAction.SetSkillTreeIndex(GetSkillTreeIndex());
-        newAction.SetSourceTargetType(character.GetCharacterTargetType());
+        newAction.SetSourceTargetType(character.GetCharacterTargetType(pManagerSet));
         newAction.SetSourceCharacterID(sCharacterID);
         vNewActions.push_back(newAction);
     }

@@ -6,6 +6,7 @@
 #include "Character/CharacterTypes.h"
 #include "Utility/Errors.h"
 #include "Utility/Constants.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -14,7 +15,7 @@ CharacterPartyManager::CharacterPartyManager()
 {
 }
 
-String CharacterPartyManager::LoadParty(const CharacterParty& party, Bool bRegenerateData)
+String CharacterPartyManager::LoadParty(ManagerSet* pManagerSet, const CharacterParty& party, Bool bRegenerateData)
 {
     // Check if party ID is valid
     const String& sPartyID = party.GetPartyID();
@@ -34,12 +35,12 @@ String CharacterPartyManager::LoadParty(const CharacterParty& party, Bool bRegen
     GetParties().insert({sPartyID, party});
     if(bRegenerateData)
     {
-        GetParties().at(sPartyID).RegenerateCharacterData();
+        GetParties().at(sPartyID).RegenerateCharacterData(pManagerSet);
     }
     return sPartyID;
 }
 
-String CharacterPartyManager::LoadPartyFromFile(const String& sFilename, const String& sType, Bool bRegenerateData)
+String CharacterPartyManager::LoadPartyFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData)
 {
     // Deserialize file into party data
     Json jsonData;
@@ -50,7 +51,7 @@ String CharacterPartyManager::LoadPartyFromFile(const String& sFilename, const S
     }
 
     // Load party
-    return LoadParty(jsonData.get<CharacterParty>(), bRegenerateData);
+    return LoadParty(pManagerSet, jsonData.get<CharacterParty>(), bRegenerateData);
 }
 
 void CharacterPartyManager::SavePartyToFile(const String& sPartyID, const String& sFilename, const String& sType)

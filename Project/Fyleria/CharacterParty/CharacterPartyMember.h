@@ -35,8 +35,8 @@ public:
     Bool CanRemoveEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index) const;
 
     // Add/remove equipped items
-    Bool AddEquippedItem(const TreeIndex& index, const String& sEquipSlot);
-    Bool RemoveEquippedItem(const TreeIndex& index, const String& sEquipSlot);
+    Bool AddEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index, const String& sEquipSlot);
+    Bool RemoveEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index, const String& sEquipSlot);
 
     // Get primary/secondary hand info
     Bool GetHandInfoByWeaponSet(

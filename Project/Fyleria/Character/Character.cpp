@@ -53,6 +53,7 @@ void Character::Clear()
 }
 
 void Character::RegenerateCharacterData(
+    ManagerSet* pManagerSet,
     Bool bUpdateEquipmentRatings /*= true*/,
     Bool bUpdateAvailableChanges /*= true*/,
     Bool bUpdateAvailableActions /*= true*/,
@@ -66,13 +67,13 @@ void Character::RegenerateCharacterData(
     GetBattleDataActives().Clear();
 
     // Update character data
-    if(bUpdateEquipmentRatings) { UpdateEquipmentRatings(); }
-    if(bUpdateAvailableChanges) { UpdateAvailableChanges(); }
-    if(bUpdateAvailableActions) { UpdateAvailableActions(); }
-    if(bUpdateAvailableAP) { UpdateAvailableAP(); }
+    if(bUpdateEquipmentRatings) { UpdateEquipmentRatings(pManagerSet); }
+    if(bUpdateAvailableChanges) { UpdateAvailableChanges(pManagerSet); }
+    if(bUpdateAvailableActions) { UpdateAvailableActions(pManagerSet); }
+    if(bUpdateAvailableAP) { UpdateAvailableAP(pManagerSet); }
 
     // Apply passives
-    ApplyPassiveChanges();
+    ApplyPassiveChanges(pManagerSet);
 
     // Display the new data
 #ifdef DEBUG
@@ -126,9 +127,9 @@ CharacterPartyEquippedItemArray Character::GetEquippedItems(ManagerSet* pManager
     return characterPartyMember.GetEquippedItems();
 }
 
-TreeIndex Character::GetEquippedItemByType(const String& sEquipmentType) const
+TreeIndex Character::GetEquippedItemByType(ManagerSet* pManagerSet, const String& sEquipmentType) const
 {
-    auto vEquippedItems = GetEquippedItems();
+    auto vEquippedItems = GetEquippedItems(pManagerSet);
     if(vEquippedItems.empty())
     {
         return TreeIndex();
@@ -199,41 +200,31 @@ CharacterBattleData& Character::GetBattleDataSegment(const String& sSegment)
     return const_cast<CharacterBattleData&>(static_cast<const Character&>(*this).GetBattleDataSegment(sSegment));
 }
 
-Bool Character::operator==(const Character& other) const
-{
-    return (Json(*this) == Json(other));
-}
-
-Bool Character::operator!=(const Character& other) const
-{
-    return not operator==(other);
-}
-
-void Character::UpdateEquipmentRatings()
+void Character::UpdateEquipmentRatings(ManagerSet* pManagerSet)
 {
     // Update equipment ratings
-    GetBattleData().UpdateEquipmentRatings(GetCharacterID(), (+CharacterSegmentType::Base)._to_string());
+    GetBattleData().UpdateEquipmentRatings(pManagerSet, GetCharacterID(), (+CharacterSegmentType::Base)._to_string());
 }
 
-void Character::UpdateAvailableChanges()
+void Character::UpdateAvailableChanges(ManagerSet* pManagerSet)
 {
     // Update available changes
-    GetStatChangeData().UpdateAvailableChanges(GetCharacterID());
+    GetStatChangeData().UpdateAvailableChanges(pManagerSet, GetCharacterID());
 }
 
-void Character::UpdateAvailableActions()
+void Character::UpdateAvailableActions(ManagerSet* pManagerSet)
 {
     // Update available actions
-    GetActionData().UpdateAvailableActions(GetCharacterID());
+    GetActionData().UpdateAvailableActions(pManagerSet, GetCharacterID());
 }
 
-void Character::UpdateAvailableAP()
+void Character::UpdateAvailableAP(ManagerSet* pManagerSet)
 {
     // Update available AP
-    GetActionData().UpdateAvailableAP(GetCharacterID());
+    GetActionData().UpdateAvailableAP(pManagerSet, GetCharacterID());
 }
 
-void Character::ApplyPassiveChanges()
+void Character::ApplyPassiveChanges(ManagerSet* pManagerSet)
 {
     // Data sources should come from base but apply to passive
     const String sSourceSegment("Base");
@@ -252,21 +243,21 @@ void Character::ApplyPassiveChanges()
         }
         for(const TreeIndex& treeIndex : GetStatChangeData().GetPassiveChanges(sTreeIndexType))
         {
-            for(StatChange change : GetStatChangesFromTreeIndex(sTreeIndexType, treeIndex))
+            for(StatChange change : GetStatChangesFromTreeIndex(pManagerSet, sTreeIndexType, treeIndex))
             {
                 // Resolve target placeholders
-                change.ResolveTargetPlaceholders(GetCharacterID(), sSourceSegment);
+                change.ResolveTargetPlaceholders(pManagerSet, GetCharacterID(), sSourceSegment);
 
                 // Apply change
                 Bool bAllChangesApplied = false;
                 Bool bAtLeastOneChange = false;
-                pManagerSet->GetCharacterManager().ApplyStatChange(sDestSegment, change, bAllChangesApplied, bAtLeastOneChange);
+                pManagerSet->GetCharacterManager().ApplyStatChange(pManagerSet, sDestSegment, change, bAllChangesApplied, bAtLeastOneChange);
             }
         }
     }
 }
 
-void Character::ApplyActiveChanges(const CharacterAction& action)
+void Character::ApplyActiveChanges(ManagerSet* pManagerSet, const CharacterAction& action)
 {
     // Data sources should come from passive but apply to active
     const String sSourceSegment("Passive");
@@ -285,10 +276,11 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
         }
         for(const TreeIndex& treeIndex : GetStatChangeData().GetActiveChanges(sTreeIndexType))
         {
-            for(const StatChange& change : GetStatChangesFromTreeIndex(sTreeIndexType, treeIndex))
+            for(const StatChange& change : GetStatChangesFromTreeIndex(pManagerSet, sTreeIndexType, treeIndex))
             {
                 // Ignore active changes that do not meet requirements
-                if(!change.DoesMeetActiveRequirements(GetCharacterID(), GetCharacterTargetType(), GetWeaponSet(), action))
+                if(!change.DoesMeetActiveRequirements(
+                    pManagerSet, GetCharacterID(), GetCharacterTargetType(pManagerSet), GetWeaponSet(), action))
                 {
                     continue;
                 }
@@ -297,24 +289,35 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
                 StatChange localStatChange(change);
 
                 // Resolve target placeholders
-                localStatChange.ResolveTargetPlaceholders(GetCharacterID(), sSourceSegment);
+                localStatChange.ResolveTargetPlaceholders(pManagerSet, GetCharacterID(), sSourceSegment);
 
                 // Apply change
                 Bool bAllChangesApplied = false;
                 Bool bAtLeastOneChange = false;
-                pManagerSet->GetCharacterManager().ApplyStatChange(sDestSegment, localStatChange, bAllChangesApplied, bAtLeastOneChange);
+                pManagerSet->GetCharacterManager().ApplyStatChange(
+                    pManagerSet, sDestSegment, localStatChange, bAllChangesApplied, bAtLeastOneChange);
             }
         }
     }
 
     // Apply prolonged stat changes
-    GetStatChangeData().ApplyProlongedStatChanges(GetCharacterID(), sDestSegment);
+    GetStatChangeData().ApplyProlongedStatChanges(pManagerSet, GetCharacterID(), sDestSegment);
 }
 
 void Character::ClearActiveChanges()
 {
     GetProgressDataActives().Clear();
     GetBattleDataActives().Clear();
+}
+
+Bool Character::operator==(const Character& other) const
+{
+    return (Json(*this) == Json(other));
+}
+
+Bool Character::operator!=(const Character& other) const
+{
+    return not operator==(other);
 }
 
 void to_json(Json& jsonData, const Character& obj)

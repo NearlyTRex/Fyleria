@@ -72,7 +72,7 @@ void CharacterBattleData::AdvanceRound(
     }
 
     // Apply new status
-    ApplyNewStatus(sCharacterID, sProgressSegment);
+    ApplyNewStatus(pManagerSet, sCharacterID, sProgressSegment);
 
     // Clear this round's damage
     SetDamageGivenThisRound(0);
@@ -101,7 +101,7 @@ void CharacterBattleData::FinishBattle(
     }
 
     // Apply new status
-    ApplyNewStatus(sCharacterID, sProgressSegment);
+    ApplyNewStatus(pManagerSet, sCharacterID, sProgressSegment);
 
     // Apply regeneration
     Bool bCanRegenHP = CanRegenerateFromStat((+CharacterProgressStatType_Int::HealthRegen)._to_string());
@@ -147,7 +147,7 @@ void CharacterBattleData::UpdateEquipmentRatings(
     }
 
     // Get equipped items
-    const CharacterPartyEquippedItemArray vEquippedItems = character.GetEquippedItems();
+    const CharacterPartyEquippedItemArray vEquippedItems = character.GetEquippedItems(pManagerSet);
     if(vEquippedItems.empty())
     {
         return;

@@ -15,7 +15,7 @@ class SceneToolCharacter : public Scene
 public:
 
     // Constructor
-    SceneToolCharacter();
+    SceneToolCharacter(ManagerSet* pManagerSet);
 
     // Destructor
     virtual ~SceneToolCharacter();

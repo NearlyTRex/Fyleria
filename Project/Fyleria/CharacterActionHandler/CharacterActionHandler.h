@@ -25,10 +25,10 @@ public:
     virtual ~CharacterActionHandler();
 
     // Stages for running the action
-    virtual Bool Setup(CharacterAction& action) = 0;
-    virtual Bool Finish(CharacterAction& action) = 0;
-    virtual Bool GenerateResult(CharacterAction& action) = 0;
-    virtual Bool ApplyResult(CharacterAction& action) = 0;
+    virtual Bool Setup(ManagerSet* pManagerSet, CharacterAction& action) = 0;
+    virtual Bool Finish(ManagerSet* pManagerSet, CharacterAction& action) = 0;
+    virtual Bool GenerateResult(ManagerSet* pManagerSet, CharacterAction& action) = 0;
+    virtual Bool ApplyResult(ManagerSet* pManagerSet, CharacterAction& action) = 0;
 };
 
 // Typedef

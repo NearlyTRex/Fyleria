@@ -13,7 +13,7 @@
 namespace Gecko
 {
 
-WebPageHandlerSaveTool::WebPageHandlerSaveTool()
+WebPageHandlerSaveTool::WebPageHandlerSaveTool(ManagerSet* pManagerSet)
     : WebPageHandler()
 {
     // Set template
@@ -22,7 +22,7 @@ WebPageHandlerSaveTool::WebPageHandlerSaveTool()
     SetPageTemplate(sTemplateContents);
 
     // Update page
-    UpdatePageContent({});
+    UpdatePageContent(pManagerSet, {});
 }
 
 WebPageHandlerSaveTool::~WebPageHandlerSaveTool()
@@ -69,6 +69,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const St
     else if(sAction == "collect_save_data_single")
     {
         pManagerSet->GetSaveManager().CollectSaveData(
+            pManagerSet,
             sCollectSaveDataSingle_SaveSlotType,
             sCollectSaveDataSingle_PartyID
         );
@@ -77,6 +78,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const St
     {
         StringArray vPartyIDs = ConvertStringToTokenArray(sCollectSaveDataMultiple_PartyIDs, ", ");
         pManagerSet->GetSaveManager().CollectSaveData(
+            pManagerSet,
             sCollectSaveDataMultiple_SaveSlotType,
             vPartyIDs,
             sCollectSaveDataMultiple_Description,
@@ -86,6 +88,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const St
     else if(sAction == "disperse_save_data")
     {
         pManagerSet->GetSaveManager().DisperseSaveData(
+            pManagerSet,
             sDisperseSaveData_SaveSlotType
         );
     }

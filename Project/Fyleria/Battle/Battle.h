@@ -53,10 +53,10 @@ public:
     void FinishedAddingActions();
 
     // Action stages
-    void RunCurrentActionSetup();
-    void RunCurrentActionFinish();
-    void RunCurrentActionGenerateResult();
-    void RunCurrentActionApplyResult();
+    void RunCurrentActionSetup(ManagerSet* pManagerSet);
+    void RunCurrentActionFinish(ManagerSet* pManagerSet);
+    void RunCurrentActionGenerateResult(ManagerSet* pManagerSet);
+    void RunCurrentActionApplyResult(ManagerSet* pManagerSet);
     void FinishedWithCurrentAction();
 
     // Get action

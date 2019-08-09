@@ -44,7 +44,7 @@ public:
     virtual ~SceneManager();
 
     // Add scene
-    void AddScene(const String& sSceneID);
+    void AddScene(ManagerSet* pManagerSet, const String& sSceneID);
     void AddScene(const String& sSceneID, const SceneSharedPtr& pScene);
 
     // Remove scene

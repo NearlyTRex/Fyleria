@@ -37,56 +37,60 @@ public:
     void UnloadItemTreesFromMemory();
 
     // Determine if item data exists
-    Bool DoesItemDataExist(const TreeIndex& treeIndex);
-    Bool DoesItemDataArmorExist(const TreeIndex& treeIndex);
-    Bool DoesItemDataIngredientExist(const TreeIndex& treeIndex);
-    Bool DoesItemDataPotionExist(const TreeIndex& treeIndex);
-    Bool DoesItemDataWeaponExist(const TreeIndex& treeIndex);
+    Bool DoesItemDataExist(const TreeIndex& treeIndex) const;
+    Bool DoesItemDataArmorExist(const TreeIndex& treeIndex) const;
+    Bool DoesItemDataIngredientExist(const TreeIndex& treeIndex) const;
+    Bool DoesItemDataPotionExist(const TreeIndex& treeIndex) const;
+    Bool DoesItemDataWeaponExist(const TreeIndex& treeIndex) const;
 
     // Retrieve item data
-    const ItemDataArmor& RetrieveItemDataArmor(const TreeIndex& treeIndex);
-    const ItemDataIngredient& RetrieveItemDataIngredient(const TreeIndex& treeIndex);
-    const ItemDataPotion& RetrieveItemDataPotion(const TreeIndex& treeIndex);
-    const ItemDataWeapon& RetrieveItemDataWeapon(const TreeIndex& treeIndex);
+    const ItemDataArmor& RetrieveItemDataArmor(const TreeIndex& treeIndex) const;
+    const ItemDataIngredient& RetrieveItemDataIngredient(const TreeIndex& treeIndex) const;
+    const ItemDataPotion& RetrieveItemDataPotion(const TreeIndex& treeIndex) const;
+    const ItemDataWeapon& RetrieveItemDataWeapon(const TreeIndex& treeIndex) const;
 
     // Retrieve item type
-    String RetrieveItemType(const TreeIndex& treeIndex);
+    String RetrieveItemType(const TreeIndex& treeIndex) const;
 
     // Get item lists
-    TreeIndexArray GetAllArmorItems();
-    TreeIndexArray GetAllIngredientItems();
-    TreeIndexArray GetAllPotionItems();
-    TreeIndexArray GetAllWeaponItems();
-    TreeIndexArray GetAllEquippedItems(ManagerSet* pManagerSet, const String& sCharID);
+    TreeIndexArray GetAllArmorItems() const;
+    TreeIndexArray GetAllIngredientItems() const;
+    TreeIndexArray GetAllPotionItems() const;
+    TreeIndexArray GetAllWeaponItems() const;
+    TreeIndexArray GetAllEquippedItems(ManagerSet* pManagerSet, const String& sCharID) const;
 
     // Resolve leaf into index
-    TreeIndex ResolveItemLeafIntoIndex(const String& sLeaf);
+    TreeIndex ResolveItemLeafIntoIndex(const String& sLeaf) const;
 
     // Determine if item is actionable
-    Bool IsItemActionable(const TreeIndex& treeIndex);
+    Bool IsItemActionable(const TreeIndex& treeIndex) const;
 
     // Generate character actions
-    Bool GenerateItemCharacterActions(const TreeIndex& treeIndex,
+    Bool GenerateItemCharacterActions(
+        ManagerSet* pManagerSet,
+        const TreeIndex& treeIndex,
         const String& sCharacterID,
         const String& sWeaponSet,
-        CharacterActionArray& vActions);
+        CharacterActionArray& vActions) const;
 
     // Check "better" quality
-    Bool IsArmorBetter(const TreeIndex& index1, const TreeIndex& index2);
-    Bool IsWeaponBetter(const TreeIndex& index1, const TreeIndex& index2);
+    Bool IsArmorBetter(const TreeIndex& index1, const TreeIndex& index2) const;
+    Bool IsWeaponBetter(const TreeIndex& index1, const TreeIndex& index2) const;
 
     // Check item type
-    Bool IsItemWeapon(const TreeIndex& treeIndex);
-    Bool IsItemShield(const TreeIndex& treeIndex);
+    Bool IsItemWeapon(const TreeIndex& treeIndex) const;
+    Bool IsItemShield(const TreeIndex& treeIndex) const;
 
     // Get action types
-    StringArray GetActionTypes(const TreeIndex& treeIndex);
+    StringArray GetActionTypes(const TreeIndex& treeIndex) const;
 
     // Get stat changes
-    void FillItemStatChangeArrays(const TreeIndexArray& vItemDataArray,
+    void FillItemStatChangeArrays(
+        ManagerSet* pManagerSet,
+        const TreeIndexArray& vItemDataArray,
         TreeIndexArray& vPassives,
         TreeIndexArray& vActives,
-        TreeIndexArray& vActionables);
+        TreeIndexArray& vActionables) const;
 
     // Item trees
     MAKE_RAW_TYPE_ACCESSORS(ItemTreeArmor, ItemTreeArmor);

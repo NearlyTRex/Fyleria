@@ -21,7 +21,7 @@ SceneSaveMenu::~SceneSaveMenu()
 void SceneSaveMenu::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
-    SetPostCallback(STDBindFunc(&SceneSaveMenu::OnMessageReceived, this, STDPlaceholder1));
+    SetPostCallback(STDBindFunc(&SceneSaveMenu::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(PAGE_FILE_SAVE_MENU);
@@ -48,7 +48,7 @@ void SceneSaveMenu::OnMessageReceived(ManagerSet* pManagerSet, const String& sMe
     StringArray vArgs;
 
     // Handle common messages
-    if(Scene::HandleMessage(sMessage, sFunction, vArgs))
+    if(Scene::HandleMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
         return;
     }

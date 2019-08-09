@@ -29,10 +29,10 @@ public:
         const String& sDestCharID) const;
 
     // Stages for running the action
-    virtual Bool Setup(CharacterAction& action) override;
-    virtual Bool Finish(CharacterAction& action) override;
-    virtual Bool GenerateResult(CharacterAction& action) override;
-    virtual Bool ApplyResult(CharacterAction& action) override;
+    virtual Bool Setup(ManagerSet* pManagerSet, CharacterAction& action) override;
+    virtual Bool Finish(ManagerSet* pManagerSet, CharacterAction& action) override;
+    virtual Bool GenerateResult(ManagerSet* pManagerSet, CharacterAction& action) override;
+    virtual Bool ApplyResult(ManagerSet* pManagerSet, CharacterAction& action) override;
 };
 
 // Typedef

@@ -64,6 +64,7 @@ void HandleBattleTally(ManagerSet* pManagerSet, const String& sCharacterID)
     // - Update equipment ratings, because equipment does not change
     // - Update available AP, because you only refill AP when resting
     character.RegenerateCharacterData(
+        pManagerSet,
         false, /* bUpdateEquipmentRatings */
         true, /* bUpdateAvailableChanges */
         true, /* bUpdateAvailableActions */

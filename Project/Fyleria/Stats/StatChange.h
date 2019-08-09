@@ -136,9 +136,9 @@ void to_json(Json& jsonData, const StatChange& obj);
 void from_json(const Json& jsonData, StatChange& obj);
 
 // Get stat changes from the given tree nodes
-const StatChangeArray& GetStatChangesFromTreeIndex(const String& sTreeIndexType, const TreeIndex& treeIndex);
-const StatChangeArray& GetStatChangesFromSkillTreeIndex(const TreeIndex& treeIndex);
-const StatChangeArray& GetStatChangesFromItemTreeIndex(const TreeIndex& treeIndex);
+const StatChangeArray& GetStatChangesFromTreeIndex(ManagerSet* pManagerSet, const String& sTreeIndexType, const TreeIndex& treeIndex);
+const StatChangeArray& GetStatChangesFromSkillTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex);
+const StatChangeArray& GetStatChangesFromItemTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex);
 
 };
 

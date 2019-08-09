@@ -70,11 +70,13 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(
     TreeIndex secondaryItemIndex;
     StringArray vPrimaryActionTypes;
     StringArray vSecondaryActionTypes;
-    if(!partyMember.GetHandInfoByWeaponSet(sWeaponSet,
-       primaryItemIndex,
-       secondaryItemIndex,
-       vPrimaryActionTypes,
-       vSecondaryActionTypes))
+    if(!partyMember.GetHandInfoByWeaponSet(
+        pManagerSet,
+        sWeaponSet,
+        primaryItemIndex,
+        secondaryItemIndex,
+        vPrimaryActionTypes,
+        vSecondaryActionTypes))
     {
         return vNewActions;
     }
@@ -146,7 +148,7 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(
     }
 
     // Setup new actions
-    for(auto& newAction : CreateBaseActions(sCharacterID, sWeaponSet))
+    for(auto& newAction : CreateBaseActions(pManagerSet, sCharacterID, sWeaponSet))
     {
         // Create new actions out of each combination
         for(const ActionCombination& combination : vCombinations)

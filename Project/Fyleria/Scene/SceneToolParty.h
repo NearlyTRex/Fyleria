@@ -16,7 +16,7 @@ class SceneToolParty : public Scene
 public:
 
     // Constructor
-    SceneToolParty();
+    SceneToolParty(ManagerSet* pManagerSet);
 
     // Destructor
     virtual ~SceneToolParty();

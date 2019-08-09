@@ -21,7 +21,7 @@ SceneToolMain::~SceneToolMain()
 void SceneToolMain::Start(ManagerSet* pManagerSet)
 {
     // Register callbacks
-    SetPostCallback(STDBindFunc(&SceneToolMain::OnMessageReceived, this, STDPlaceholder1));
+    SetPostCallback(STDBindFunc(&SceneToolMain::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
     LoadHtmlFromFile(PAGE_FILE_TOOL_MAIN);
@@ -48,7 +48,7 @@ void SceneToolMain::OnMessageReceived(ManagerSet* pManagerSet, const String& sMe
     StringArray vArgs;
 
     // Handle common messages
-    if(Scene::HandleMessage(sMessage, sFunction, vArgs))
+    if(Scene::HandleMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
         return;
     }

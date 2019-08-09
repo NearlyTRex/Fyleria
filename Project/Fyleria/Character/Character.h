@@ -37,6 +37,7 @@ public:
 
     // Regenerate character data
     void RegenerateCharacterData(
+        ManagerSet* pManagerSet,
         Bool bUpdateEquipmentRatings = true,
         Bool bUpdateAvailableChanges = true,
         Bool bUpdateAvailableActions = true,
@@ -59,7 +60,7 @@ public:
     CharacterPartyEquippedItemArray GetEquippedItems(ManagerSet* pManagerSet) const;
 
     // Get individual equipped items by type
-    TreeIndex GetEquippedItemByType(const String& sEquipmentType) const;
+    TreeIndex GetEquippedItemByType(ManagerSet* pManagerSet, const String& sEquipmentType) const;
 
     // Get available actions
     const CharacterActionArray& GetAvailableActions() const;
@@ -116,21 +117,21 @@ public:
     // Update equipment ratings
     // This pulls equipment and current attack/defense percents and fills
     // ratings for all equipment
-    void UpdateEquipmentRatings();
+    void UpdateEquipmentRatings(ManagerSet* pManagerSet);
 
     // Update available passive and active changes
     // This pulls all earned skills and equipped items and generates a list
     // of active and passive changes that can be applied
-    void UpdateAvailableChanges();
+    void UpdateAvailableChanges(ManagerSet* pManagerSet);
 
     // Update available actions
     // This polls the list of active changes and creates a list of
     // character actions that can be used as the basis for selectable actions
-    void UpdateAvailableActions();
+    void UpdateAvailableActions(ManagerSet* pManagerSet);
 
     // Update available AP
     // This searches the skills for ones that give AP and updates each type
-    void UpdateAvailableAP();
+    void UpdateAvailableAP(ManagerSet* pManagerSet);
 
     // Apply passive changes
     // Copy base data into passive data and apply each passive stat change

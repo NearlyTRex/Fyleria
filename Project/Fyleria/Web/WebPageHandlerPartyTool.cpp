@@ -14,7 +14,7 @@
 namespace Gecko
 {
 
-WebPageHandlerPartyTool::WebPageHandlerPartyTool()
+WebPageHandlerPartyTool::WebPageHandlerPartyTool(ManagerSet* pManagerSet)
     : WebPageHandler()
 {
     // Set template
@@ -23,7 +23,7 @@ WebPageHandlerPartyTool::WebPageHandlerPartyTool()
     SetPageTemplate(sTemplateContents);
 
     // Update page
-    UpdatePageContent({});
+    UpdatePageContent(pManagerSet, {});
 }
 
 WebPageHandlerPartyTool::~WebPageHandlerPartyTool()
@@ -99,12 +99,14 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     if(sAction == "load_party_from_json")
     {
         sPartyToDisplay = pManagerSet->GetCharacterPartyManager().LoadParty(
+            pManagerSet,
             CharacterParty(sLoadPartyFromJson_Textarea), true
         );
     }
     else if(sAction == "load_party_from_file")
     {
         sPartyToDisplay = pManagerSet->GetCharacterPartyManager().LoadPartyFromFile(
+            pManagerSet,
             sLoadPartyFromFile_Filename, sLoadPartyFromFile_FileType, true
         );
     }
@@ -152,6 +154,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sAddMember_PartyID);
         party.AddMember(
+            pManagerSet,
             sAddMember_CharID
         );
         sPartyToDisplay = sAddMember_PartyID;
@@ -160,6 +163,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sRemoveMember_PartyID);
         party.RemoveMember(
+            pManagerSet,
             sRemoveMember_CharID
         );
         sPartyToDisplay = sRemoveMember_PartyID;
@@ -186,6 +190,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sAddItem_PartyID);
         party.AddItemByLeaf(
+            pManagerSet,
             sAddItem_ItemName,
             BoostLexicalCast<UInt>(sAddItem_ItemAmount)
         );
@@ -195,6 +200,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sAddRandomItems_PartyID);
         party.AddRandomItems(
+            pManagerSet,
             {sAddRandomItems_ItemTreeType},
             BoostLexicalCast<Int>(sAddRandomItems_ItemCount),
             BoostLexicalCast<Int>(sAddRandomItems_ItemAmount),
@@ -206,6 +212,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sRemoveItem_PartyID);
         party.RemoveItemByLeaf(
+            pManagerSet,
             sRemoveItem_ItemName,
             BoostLexicalCast<UInt>(sRemoveItem_ItemAmount)
         );
@@ -215,6 +222,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sEquipItem_PartyID);
         party.EquipItem(
+            pManagerSet,
             sEquipItem_CharID,
             sEquipItem_ItemName,
             sEquipItem_CharacterEquipmentType
@@ -225,6 +233,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sUnequipItem_PartyID);
         party.UnequipItem(
+            pManagerSet,
             sUnequipItem_CharID,
             sUnequipItem_ItemName,
             sUnequipItem_CharacterEquipmentType
@@ -235,6 +244,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sEquipBestItems_PartyID);
         party.EquipBestItems(
+            pManagerSet,
             sEquipBestItems_CharID
         );
         sPartyToDisplay = sEquipBestItems_PartyID;
@@ -243,6 +253,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sUnequipBestItems_PartyID);
         party.UnequipAllItems(
+            pManagerSet,
             sUnequipBestItems_CharID
         );
         sPartyToDisplay = sUnequipBestItems_PartyID;
@@ -250,13 +261,13 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     else if(sAction == "equip_best_items_all_members")
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sEquipBestItemsAllMembers_PartyID);
-        party.EquipBestItemsForAllMembers();
+        party.EquipBestItemsForAllMembers(pManagerSet);
         sPartyToDisplay = sEquipBestItemsAllMembers_PartyID;
     }
     else if(sAction == "unequip_best_items_all_members")
     {
         CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sUnequipBestItemsAllMembers_PartyID);
-        party.UnequipAllItemsForAllMembers();
+        party.UnequipAllItemsForAllMembers(pManagerSet);
         sPartyToDisplay = sUnequipBestItemsAllMembers_PartyID;
     }
     else if(sAction == "display_party")

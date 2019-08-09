@@ -46,13 +46,24 @@ void CharacterStatChangeData::UpdateAvailableChanges(ManagerSet* pManagerSet, co
     TreeIndexArray vSkillPassives;
     TreeIndexArray vSkillActives;
     TreeIndexArray vSkillActionables;
-    pManagerSet->GetSkillManager().FillSkillStatChangeArrays(sCharacterID, vSkillPassives, vSkillActives, vSkillActionables, true);
+    pManagerSet->GetSkillManager().FillSkillStatChangeArrays(
+        pManagerSet,
+        sCharacterID,
+        vSkillPassives,
+        vSkillActives,
+        vSkillActionables,
+        true);
 
     // Fill item indices
     TreeIndexArray vItemPassives;
     TreeIndexArray vItemActives;
     TreeIndexArray vItemActionables;
-    pManagerSet->GetItemManager().FillItemStatChangeArrays(pManagerSet->GetItemManager().GetAllEquippedItems(sCharacterID), vItemPassives, vItemActives, vItemActionables);
+    pManagerSet->GetItemManager().FillItemStatChangeArrays(
+        pManagerSet,
+        pManagerSet->GetItemManager().GetAllEquippedItems(pManagerSet, sCharacterID),
+        vItemPassives,
+        vItemActives,
+        vItemActionables);
 
     // Add to stored changes
     SetPassiveSkillDataArray(vSkillPassives);

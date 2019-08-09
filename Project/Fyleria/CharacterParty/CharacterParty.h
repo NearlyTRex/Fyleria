@@ -39,7 +39,7 @@ public:
     );
 
     // Determine if party is able to fight
-    Bool IsPartyAbleToFight() const;
+    Bool IsPartyAbleToFight(ManagerSet* pManagerSet) const;
 
     // Determine if party is full
     Bool IsPartyFull() const;
@@ -118,22 +118,22 @@ public:
     TreeIndex GetBestUnequippedItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSlot) const;
 
     // Equip item
-    Bool EquipItem(const String& sCharacterID, const String& sLeaf, const String& sSlot);
+    Bool EquipItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot);
 
     // Unequip item
-    Bool UnequipItem(const String& sCharacterID, const String& sLeaf, const String& sSlot);
+    Bool UnequipItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot);
 
     // Equip best items for the given member
-    Bool EquipBestItems(const String& sCharacterID);
+    Bool EquipBestItems(ManagerSet* pManagerSet, const String& sCharacterID);
 
     // Equip best items for all members
-    Bool EquipBestItemsForAllMembers();
+    Bool EquipBestItemsForAllMembers(ManagerSet* pManagerSet);
 
     // Unequip all items for the given member
-    Bool UnequipAllItems(const String& sCharacterID);
+    Bool UnequipAllItems(ManagerSet* pManagerSet, const String& sCharacterID);
 
     // Unequip all items for all members
-    Bool UnequipAllItemsForAllMembers();
+    Bool UnequipAllItemsForAllMembers(ManagerSet* pManagerSet);
 
     // Get member count
     UInt GetMemberCount() const;

@@ -34,7 +34,7 @@ private:
     Bool Finalize();
 
     // Managers
-    MAKE_RAW_TYPE_ACCESSORS(Managers, STDSharedPtr<ManagerSet>);
+    MAKE_RAW_TYPE_ACCESSORS(Managers, ManagerSetSharedPtr);
 };
 
 };

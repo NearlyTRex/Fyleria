@@ -3,13 +3,19 @@
 
 // Internal includes
 #include "Skills/SkillManager.h"
+#include "Character/Character.h"
 #include "Stats/StatChange.h"
 #include "Utility/Constants.h"
 #include "Utility/FantasyName.h"
 #include "Utility/Json.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
+
+SkillManager::SkillManager()
+{
+}
 
 template <class T>
 void PostProcessSkills(T& tree, const TreeIndexArray& vTreeIndices)
@@ -127,62 +133,62 @@ void SkillManager::UnloadSkillTreesFromMemory()
     GetSkillTreeWeapon().ClearAllData();
 }
 
-Bool SkillManager::DoesSkillDataAffinityExist(const TreeIndex& treeIndex)
+Bool SkillManager::DoesSkillDataAffinityExist(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeAffinity().HasLeaf(treeIndex);
 }
 
-Bool SkillManager::DoesSkillDataAlchemyExist(const TreeIndex& treeIndex)
+Bool SkillManager::DoesSkillDataAlchemyExist(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeAlchemy().HasLeaf(treeIndex);
 }
 
-Bool SkillManager::DoesSkillDataBreakdownExist(const TreeIndex& treeIndex)
+Bool SkillManager::DoesSkillDataBreakdownExist(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeBreakdown().HasLeaf(treeIndex);
 }
 
-Bool SkillManager::DoesSkillDataCombatExist(const TreeIndex& treeIndex)
+Bool SkillManager::DoesSkillDataCombatExist(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeCombat().HasLeaf(treeIndex);
 }
 
-Bool SkillManager::DoesSkillDataCraftingExist(const TreeIndex& treeIndex)
+Bool SkillManager::DoesSkillDataCraftingExist(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeCrafting().HasLeaf(treeIndex);
 }
 
-Bool SkillManager::DoesSkillDataWeaponExist(const TreeIndex& treeIndex)
+Bool SkillManager::DoesSkillDataWeaponExist(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeWeapon().HasLeaf(treeIndex);
 }
 
-const SkillDataAffinity& SkillManager::RetrieveSkillDataAffinity(const TreeIndex& treeIndex)
+const SkillDataAffinity& SkillManager::RetrieveSkillDataAffinity(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeAffinity().GetLeaf(treeIndex);
 }
 
-const SkillDataAlchemy& SkillManager::RetrieveSkillDataAlchemy(const TreeIndex& treeIndex)
+const SkillDataAlchemy& SkillManager::RetrieveSkillDataAlchemy(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeAlchemy().GetLeaf(treeIndex);
 }
 
-const SkillDataBreakdown& SkillManager::RetrieveSkillDataBreakdown(const TreeIndex& treeIndex)
+const SkillDataBreakdown& SkillManager::RetrieveSkillDataBreakdown(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeBreakdown().GetLeaf(treeIndex);
 }
 
-const SkillDataCombat& SkillManager::RetrieveSkillDataCombat(const TreeIndex& treeIndex)
+const SkillDataCombat& SkillManager::RetrieveSkillDataCombat(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeCombat().GetLeaf(treeIndex);
 }
 
-const SkillDataCrafting& SkillManager::RetrieveSkillDataCrafting(const TreeIndex& treeIndex)
+const SkillDataCrafting& SkillManager::RetrieveSkillDataCrafting(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeCrafting().GetLeaf(treeIndex);
 }
 
-const SkillDataWeapon& SkillManager::RetrieveSkillDataWeapon(const TreeIndex& treeIndex)
+const SkillDataWeapon& SkillManager::RetrieveSkillDataWeapon(const TreeIndex& treeIndex) const
 {
     return GetSkillTreeWeapon().GetLeaf(treeIndex);
 }
@@ -203,7 +209,7 @@ void AddSkillLeavesProgress(const T& tree, const String& sBranchName, const Char
     vLeaves.insert(vLeaves.end(), vNewLeaves.begin(), vNewLeaves.end());
 }
 
-TreeIndexArray SkillManager::GetAllAffinitySkills()
+TreeIndexArray SkillManager::GetAllAffinitySkills() const
 {
     TreeIndexArray vFinal;
     AddAllSkillLeaves<SkillTreeAffinity>(GetSkillTreeAffinity(), "Holy", vFinal);
@@ -221,7 +227,7 @@ TreeIndexArray SkillManager::GetAllAffinitySkills()
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetAllAlchemySkills()
+TreeIndexArray SkillManager::GetAllAlchemySkills() const
 {
     TreeIndexArray vFinal;
     AddAllSkillLeaves<SkillTreeAlchemy>(GetSkillTreeAlchemy(), "Alchemist", vFinal);
@@ -231,7 +237,7 @@ TreeIndexArray SkillManager::GetAllAlchemySkills()
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetAllBreakdownSkills()
+TreeIndexArray SkillManager::GetAllBreakdownSkills() const
 {
     TreeIndexArray vFinal;
     AddAllSkillLeaves<SkillTreeBreakdown>(GetSkillTreeBreakdown(), "Bowbane", vFinal);
@@ -247,7 +253,7 @@ TreeIndexArray SkillManager::GetAllBreakdownSkills()
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetAllCombatSkills()
+TreeIndexArray SkillManager::GetAllCombatSkills() const
 {
     TreeIndexArray vFinal;
     AddAllSkillLeaves<SkillTreeCombat>(GetSkillTreeCombat(), "Ambidextrous", vFinal);
@@ -261,7 +267,7 @@ TreeIndexArray SkillManager::GetAllCombatSkills()
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetAllCraftingSkills()
+TreeIndexArray SkillManager::GetAllCraftingSkills() const
 {
     TreeIndexArray vFinal;
     AddAllSkillLeaves<SkillTreeCrafting>(GetSkillTreeCrafting(), "Bowsmith", vFinal);
@@ -277,7 +283,7 @@ TreeIndexArray SkillManager::GetAllCraftingSkills()
     return vFinal;
 }
 
-TreeIndexArray SkillManager::GetAllWeaponSkills()
+TreeIndexArray SkillManager::GetAllWeaponSkills() const
 {
     TreeIndexArray vFinal;
     AddAllSkillLeaves<SkillTreeWeapon>(GetSkillTreeWeapon(), "Bash", vFinal);
@@ -310,7 +316,7 @@ TreeIndexArray SkillManager::GetAllWeaponSkills()
 TreeIndexArray SkillManager::GetAffinitySkills(
     ManagerSet* pManagerSet,
     const String& sCharID,
-    Bool bUniqueOnly /*= false*/)
+    Bool bUniqueOnly /*= false*/) const
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -335,7 +341,7 @@ TreeIndexArray SkillManager::GetAffinitySkills(
 TreeIndexArray SkillManager::GetAlchemySkills(
     ManagerSet* pManagerSet,
     const String& sCharID,
-    Bool bUniqueOnly /*= false*/)
+    Bool bUniqueOnly /*= false*/) const
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -352,7 +358,7 @@ TreeIndexArray SkillManager::GetAlchemySkills(
 TreeIndexArray SkillManager::GetBreakdownSkills(
     ManagerSet* pManagerSet,
     const String& sCharID,
-    Bool bUniqueOnly /*= false*/)
+    Bool bUniqueOnly /*= false*/) const
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -375,7 +381,7 @@ TreeIndexArray SkillManager::GetBreakdownSkills(
 TreeIndexArray SkillManager::GetCombatSkills(
     ManagerSet* pManagerSet,
     const String& sCharID,
-    Bool bUniqueOnly /*= false*/)
+    Bool bUniqueOnly /*= false*/) const
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -396,7 +402,7 @@ TreeIndexArray SkillManager::GetCombatSkills(
 TreeIndexArray SkillManager::GetCraftingSkills(
     ManagerSet* pManagerSet,
     const String& sCharID,
-    Bool bUniqueOnly /*= false*/)
+    Bool bUniqueOnly /*= false*/) const
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -419,7 +425,7 @@ TreeIndexArray SkillManager::GetCraftingSkills(
 TreeIndexArray SkillManager::GetWeaponSkills(
     ManagerSet* pManagerSet,
     const String& sCharID,
-    Bool bUniqueOnly /*= false*/)
+    Bool bUniqueOnly /*= false*/) const
 {
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -453,7 +459,7 @@ TreeIndexArray SkillManager::GetWeaponSkills(
     return vFinal;
 }
 
-String SkillManager::GetSkillType(const TreeIndex& treeIndex)
+String SkillManager::GetSkillType(const TreeIndex& treeIndex) const
 {
     if(DoesSkillDataAffinityExist(treeIndex))
     {
@@ -482,7 +488,7 @@ String SkillManager::GetSkillType(const TreeIndex& treeIndex)
     return GetNoneTypeForEnum<SkillTreeType>();
 }
 
-Bool SkillManager::IsBaseWeaponSkill(const TreeIndex& treeIndex)
+Bool SkillManager::IsBaseWeaponSkill(const TreeIndex& treeIndex) const
 {
     if(DoesSkillDataWeaponExist(treeIndex))
     {
@@ -497,7 +503,7 @@ Bool SkillManager::IsBaseWeaponSkill(const TreeIndex& treeIndex)
     return false;
 }
 
-Bool SkillManager::IsSkillActionable(const TreeIndex& treeIndex)
+Bool SkillManager::IsSkillActionable(const TreeIndex& treeIndex) const
 {
     if(DoesSkillDataCombatExist(treeIndex))
     {
@@ -510,17 +516,19 @@ Bool SkillManager::IsSkillActionable(const TreeIndex& treeIndex)
     return false;
 }
 
-Bool SkillManager::GenerateSkillCharacterActions(const TreeIndex& treeIndex,
+Bool SkillManager::GenerateSkillCharacterActions(
+    ManagerSet* pManagerSet,
+    const TreeIndex& treeIndex,
     const String& sCharacterID,
     const String& sWeaponSet,
-    CharacterActionArray& vActions)
+    CharacterActionArray& vActions) const
 {
     if(DoesSkillDataCombatExist(treeIndex))
     {
         const SkillDataCombat& skillData = RetrieveSkillDataCombat(treeIndex);
-        if(skillData.IsActionable() && skillData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
+        if(skillData.IsActionable() && skillData.DoesMeetActionRequirements(pManagerSet, sCharacterID, sWeaponSet))
         {
-            CharacterActionArray vNewActions = skillData.CreateCombatActions(sCharacterID, sWeaponSet);
+            CharacterActionArray vNewActions = skillData.CreateCombatActions(pManagerSet, sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
             return true;
         }
@@ -528,9 +536,9 @@ Bool SkillManager::GenerateSkillCharacterActions(const TreeIndex& treeIndex,
     else if(DoesSkillDataWeaponExist(treeIndex))
     {
         const SkillDataWeapon& skillData = RetrieveSkillDataWeapon(treeIndex);
-        if(skillData.IsActionable() && skillData.DoesMeetActionRequirements(sCharacterID, sWeaponSet))
+        if(skillData.IsActionable() && skillData.DoesMeetActionRequirements(pManagerSet, sCharacterID, sWeaponSet))
         {
-            CharacterActionArray vNewActions = skillData.CreateWeaponActions(sCharacterID, sWeaponSet);
+            CharacterActionArray vNewActions = skillData.CreateWeaponActions(pManagerSet, sCharacterID, sWeaponSet);
             vActions.insert(vActions.end(), vNewActions.begin(), vNewActions.end());
             return true;
         }
@@ -538,20 +546,22 @@ Bool SkillManager::GenerateSkillCharacterActions(const TreeIndex& treeIndex,
     return false;
 }
 
-void SkillManager::FillSkillStatChangeArrays(const String& sCharID,
+void SkillManager::FillSkillStatChangeArrays(
+    ManagerSet* pManagerSet,
+    const String& sCharID,
     TreeIndexArray& vPassives,
     TreeIndexArray& vActives,
     TreeIndexArray& vActionables,
-    Bool bUniqueOnly /*= false*/)
+    Bool bUniqueOnly /*= false*/) const
 {
     // Get all skill datas
     TreeIndexArray vSkillDataArray;
-    TreeIndexArray vSkillDataAffinityArray = GetAffinitySkills(sCharID, bUniqueOnly);
-    TreeIndexArray vSkillDataAlchemyArray = GetAlchemySkills(sCharID, bUniqueOnly);
-    TreeIndexArray vSkillDataBreakdownArray = GetBreakdownSkills(sCharID, bUniqueOnly);
-    TreeIndexArray vSkillDataCombatArray = GetCombatSkills(sCharID, bUniqueOnly);
-    TreeIndexArray vSkillDataCraftingArray = GetCraftingSkills(sCharID, bUniqueOnly);
-    TreeIndexArray vSkillDataWeaponArray = GetWeaponSkills(sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataAffinityArray = GetAffinitySkills(pManagerSet, sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataAlchemyArray = GetAlchemySkills(pManagerSet, sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataBreakdownArray = GetBreakdownSkills(pManagerSet, sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataCombatArray = GetCombatSkills(pManagerSet, sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataCraftingArray = GetCraftingSkills(pManagerSet, sCharID, bUniqueOnly);
+    TreeIndexArray vSkillDataWeaponArray = GetWeaponSkills(pManagerSet, sCharID, bUniqueOnly);
     vSkillDataArray.insert(vSkillDataArray.end(), vSkillDataAffinityArray.begin(), vSkillDataAffinityArray.end());
     vSkillDataArray.insert(vSkillDataArray.end(), vSkillDataAlchemyArray.begin(), vSkillDataAlchemyArray.end());
     vSkillDataArray.insert(vSkillDataArray.end(), vSkillDataBreakdownArray.begin(), vSkillDataBreakdownArray.end());
@@ -576,7 +586,7 @@ void SkillManager::FillSkillStatChangeArrays(const String& sCharID,
         }
         else if(!bIsActionable && !bIsBaseWeaponSkill && !bIsAlreadyUsed)
         {
-            for(const StatChange& statChange : GetStatChangesFromSkillTreeIndex(treeIndex))
+            for(const StatChange& statChange : GetStatChangesFromSkillTreeIndex(pManagerSet, treeIndex))
             {
                 if(statChange.IsPassive())
                 {

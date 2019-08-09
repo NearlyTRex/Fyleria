@@ -16,7 +16,7 @@ class WebPageHandlerPartyTool : public WebPageHandler
 public:
 
     // Constructors
-    WebPageHandlerPartyTool();
+    WebPageHandlerPartyTool(ManagerSet* pManagerSet);
 
     // Destructor
     virtual ~WebPageHandlerPartyTool();

@@ -28,11 +28,11 @@ public:
 
     // Load a character and return the character ID
     // This will overwrite any existing matching data
-    String LoadCharacter(const Character& character, Bool bRegenerateData);
+    String LoadCharacter(ManagerSet* pManagerSet, const Character& character, Bool bRegenerateData);
 
     // Load a character from a file and return the character ID
     // This will overwrite any existing matching data
-    String LoadCharacterFromFile(const String& sFilename, const String& sType, Bool bRegenerateData);
+    String LoadCharacterFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData);
 
     // Save a character to file
     void SaveCharacterToFile(const String& sCharacterID, const String& sFilename, const String& sType);
@@ -47,7 +47,7 @@ public:
     Bool DoesCharacterExist(const String& sCharacterID) const;
 
     // Generate a character
-    void GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator);
+    void GenerateCharacter(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterGenerator& generator);
 
     // Check if character ID is valid
     Bool IsValidCharacterID(const String& sCharacterID) const;
