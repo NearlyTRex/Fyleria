@@ -48,8 +48,7 @@ int main(int argc, char** argv)
 
         // Run application
         Gecko::Application app;
-        app.Run();
-        return EXIT_SUCCESS;
+        return app.Run();
     }
     catch (STDException& e)
     {

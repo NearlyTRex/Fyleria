@@ -23,7 +23,7 @@ public:
     virtual ~Application();
 
     // Run application
-    void Run();
+    Int Run();
 
 private:
 

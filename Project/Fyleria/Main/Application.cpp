@@ -21,7 +21,7 @@ Application::~Application()
 {
 }
 
-void Application::Run()
+Int Application::Run()
 {
     // Create managers
     SetManagers(STDMakeSharedPtr<ManagerSet>());
@@ -29,7 +29,7 @@ void Application::Run()
     // Initialize
     if(!Initialize())
     {
-        return;
+        return EXIT_FAILURE;
     }
 
     // Main loop
@@ -48,7 +48,13 @@ void Application::Run()
     while(MainWindow::GetInstance()->GetBrowserEngine()->GetIsShuttingDown() == false);
 
     // Finalize
-    Finalize();
+    if(!Finalize())
+    {
+        return EXIT_FAILURE;
+    }
+
+    // Finished
+    return EXIT_SUCCESS;
 }
 
 Bool Application::Initialize()
