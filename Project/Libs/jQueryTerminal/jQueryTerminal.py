@@ -4,7 +4,7 @@
 # Steps
 CopyFileJQueryTerminalCss = 'CopyFile("css/jquery.terminal.min.css", "$(RootPath)/Data/Libs/jquery.terminal.min.css")'
 CopyFileJQueryTerminalJs = 'CopyFile("js/jquery.terminal.min.js", "$(RootPath)/Data/Libs/jquery.terminal.min.js")'
-CopyFileJQueryMousewheelJs = 'CopyFile("js/jquery.mousewheel-min.js", "$(RootPath)/Data/Libs/jquery.mousewheel-min.js")'
+CopyFileJQueryMousewheelJs = 'CopyFile("js/jquery.mousewheel-min.js", "$(RootPath)/Data/Libs/jquery.mousewheel.min.js")'
 
 # Library info
 Setup = {}
