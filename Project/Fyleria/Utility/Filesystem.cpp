@@ -169,7 +169,15 @@ String GetLogDirectory()
 String GetLogFile()
 {
     static TimeType uTime = STDTime(nullptr);
-    return "Log-" + BoostLexicalCast<String>(STDPutTime(STDLocalTime(&uTime), "%Y%m%d-%OH%OM%OS")) + ".txt";
+    String sFilename = "Log_";
+#if DEBUG
+    sFilename += "Debug_";
+#else
+    sFilename += "Release_";
+#endif
+    sFilename += BoostLexicalCast<String>(STDPutTime(STDLocalTime(&uTime), "%Y%m%d-%OH%OM%OS"));
+    sFilename += ".txt";
+    return sFilename;
 }
 
 };
