@@ -13,11 +13,3 @@
     };
     window.external.invoke(JSON.stringify(p));
 };})();
-
-(function(){window.ReloadPage=function(){
-    var p = {
-        Function:"ReloadPage",
-        Args:[]
-    };
-    window.external.invoke(JSON.stringify(p));
-};})();
