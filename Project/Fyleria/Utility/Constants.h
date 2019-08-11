@@ -169,9 +169,18 @@
 // Lib files
 #define LIB_FILE_COMMON_JS                          "Libs/common.js"
 #define LIB_FILE_BOOTSTRAP_CSS                      "Libs/bootstrap.min.css"
+#define LIB_FILE_BOOTSTRAP_CSS_GRID                 "Libs/bootstrap-grid.min.css"
+#define LIB_FILE_BOOTSTRAP_CSS_REBOOT               "Libs/bootstrap-reboot.min.css"
 #define LIB_FILE_BOOTSTRAP_JS                       "Libs/bootstrap.min.js"
 #define LIB_FILE_JQUERY_JS                          "Libs/jquery.min.js"
+#define LIB_FILE_JQUERY_SLIM_JS                     "Libs/jquery.slim.min.js"
+#define LIB_FILE_JQUERY_MOUSEWHEEL_JS               "Libs/jquery.mousewheel.min.js"
+#define LIB_FILE_JQUERY_TERMINAL_CSS                "Libs/jquery.terminal.min.css"
+#define LIB_FILE_JQUERY_TERMINAL_JS                 "Libs/jquery.terminal.min.js"
+#define LIB_FILE_POLYFILL_KEYBOARD_JS               "Libs/polyfill.keyboard.min.js"
 #define LIB_FILE_PHASER_JS                          "Libs/phaser.min.js"
+#define LIB_FILE_PHASER_ARCADE_PHYSICS_JS           "Libs/phaser-arcade-physics.min.js"
+#define LIB_FILE_SCREENFULL_JS                      "Libs/screenfull.min.js"
 
 // Page files
 #define PAGE_FILE_INTRO                             "Pages/Intro.html"
