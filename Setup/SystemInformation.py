@@ -57,7 +57,7 @@ def GetSystemInformation(program_options, root_path):
         detect_build_bin = "devenv.com"
         detect_zip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Zip/bin/windows-x86-32/zip.exe"))
         detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/windows-x86-32/unzip.exe"))
-        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/orig/bin/release/premake5.exe"))
+        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/bin/windows-x86-32/premake5.exe"))
         detect_out_bin = "FyleriaMain_windows_" + detect_bitness + "_" + program_options.configuration + ".exe"
     info = SystemInformation()
     info.root_path = os.path.normpath(root_path)
@@ -67,7 +67,6 @@ def GetSystemInformation(program_options, root_path):
     info.unzip_bin = detect_unzip_bin
     info.premake_bin = detect_premake_bin
     info.out_bin = detect_out_bin
-    info.python3_libdir = os.path.normpath(os.path.join(root_path, "Project/Libs/Python3/orig/Lib"))
     info.is_32bits = not detect_64bits
     info.is_64bits = detect_64bits
     info.has_forced_platform = (
