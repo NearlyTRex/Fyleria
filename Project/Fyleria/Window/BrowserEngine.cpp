@@ -20,7 +20,7 @@ BrowserEngine::~BrowserEngine()
 void BrowserEngine::InjectStylesheet(const String& sStyle)
 {
     // Inject style
-    String sTag = "<style>" + sStyle + "</style>";
+    String sTag = "<style>" + sStyle + "</style>\n";
     SetInjectedStyles(GetInjectedStyles() + sTag);
 }
 
