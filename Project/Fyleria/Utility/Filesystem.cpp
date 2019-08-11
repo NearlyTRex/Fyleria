@@ -4,6 +4,7 @@
 // Internal includes
 #include "Utility/Filesystem.h"
 #include "Utility/Constants.h"
+#include "Utility/Converters.h"
 
 namespace Gecko
 {
@@ -26,6 +27,21 @@ Bool IsDirectory(const String& sPath)
 Bool IsSymbolicLink(const String& sPath)
 {
     return BoostFilesystemIsSymbolicLink(BoostFilesystemPath(sPath));
+}
+
+Bool IsPosixPath(const String& sPath)
+{
+    return (sPath.at(0) == '/');
+}
+
+Bool IsWindowsPath(const String& sPath)
+{
+    return (isalpha(sPath.at(0)) != 0) && (sPath.at(1) == ':');
+}
+
+Bool IsWindowsNetworkDriveLocation(const String& sPath)
+{
+    return (sPath.at(0) == '\\') && (sPath.at(1) == '\\');
 }
 
 Bool CreateNewDirectory(const String& sPath)
@@ -56,6 +72,18 @@ String GetAbsolutePath(const String& sPath)
 String GetCanonicalPath(const String& sPath)
 {
     return BoostFilesystemCanonical(BoostFilesystemPath(sPath)).string();
+}
+
+String GetUriPath(const String& sPath)
+{
+    const UByteArray vIgnoreChars = {'/', ':', '-', '_', '~', '.'};
+#if defined(PLATFORM_OS_WINDOWS)
+    const String sPrefix = IsWindowsNetworkDriveLocation(sPath) ? "file:" : "file:///";
+#else
+    const String sPrefix = FILE_URI_BASE;
+#endif
+    String sLocation = ConvertToUrlEncodedString(BoostReplaceAllCopy(sPath, "\\", "/"), vIgnoreChars);
+    return sPrefix + sLocation;
 }
 
 String JoinPaths(const String& sPath1, const String& sPath2)
@@ -89,9 +117,9 @@ String GetProgramDirectory()
 {
     BoostFilesystemPath sFullPath;
 #if defined(PLATFORM_OS_WINDOWS)
-    STDVector<WByte> vBuffer;
+    WByteArray vBuffer;
 #else
-    STDVector<Byte> vBuffer;
+    ByteArray vBuffer;
 #endif
     ULong uLength = 0;
     do

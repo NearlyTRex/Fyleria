@@ -43,6 +43,10 @@
 // Paths
 #define DEFAULT_MAX_PATH_SIZE                       256
 
+// Injected file tokens
+#define INJECTED_STYLES_TOKEN                       "$INJECTED_STYLES$"
+#define INJECTED_SCRIPTS_TOKEN                      "$INJECTED_SCRIPTS$"
+
 // File URI base
 #define FILE_URI_BASE                               "file://"
 

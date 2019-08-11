@@ -22,6 +22,15 @@ Bool IsDirectory(const String& sPath);
 // Is path a symbolic link
 Bool IsSymbolicLink(const String& sPath);
 
+// Is path on a posix filesystem
+Bool IsPosixPath(const String& sPath);
+
+// Is path on a windows filesystem
+Bool IsWindowsPath(const String& sPath);
+
+// Is path on a windows network drive
+Bool IsWindowsNetworkDriveLocation(const String& sPath);
+
 // Create new directory
 Bool CreateNewDirectory(const String& sPath);
 
@@ -39,6 +48,9 @@ String GetAbsolutePath(const String& sPath);
 
 // Get canonical path
 String GetCanonicalPath(const String& sPath);
+
+// Get uri path
+String GetUriPath(const String& sPath);
 
 // Join paths together
 String JoinPaths(const String& sPath1, const String& sPath2);

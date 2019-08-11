@@ -5,7 +5,7 @@
 #include "Utility/Converters.h"
 #include "Utility/Boost.h"
 #include "Utility/Errors.h"
-#include "Utility/Uri.h"
+#include "Utility/Templates.h"
 
 namespace Gecko
 {
@@ -84,26 +84,20 @@ String ConvertToSimpleCaseString(const String& sString)
     return sStrString.str();
 }
 
-String ConvertToUrlEncodedString(const String& sString)
+String ConvertToUrlEncodedString(const String& sString, const UByteArray& vIgnoreChars)
 {
     OutputStringStream sStrStream;
     for(SizeType i = 0; i < sString.length(); i++)
     {
-        Short iVal = sString.at(i);
-        if(
-            iVal == 45 || // hyphen
-            (iVal >= 48 && iVal <= 57) || // 0-9
-            (iVal >= 65 && iVal <= 90) || // A-Z
-            iVal == 95 || // underscore
-            (iVal >= 97 && iVal <= 122) || // a-z
-            iVal == 126 // tilde
-        )
+        Bool bIsAlphaNumeric = (isalnum(sString.at(i)) != 0);
+        Bool bIsIgnored = DoesVectorIntersectElement<UByte>(vIgnoreChars, sString.at(i));
+        if(bIsAlphaNumeric || bIsIgnored)
         {
             sStrStream << sString.at(i);
         }
         else
         {
-            sStrStream << ConvertByteToHexString(sString.at(i));
+            sStrStream << "%" << ConvertByteToHexString(sString.at(i));
         }
     }
     return sStrStream.str();
@@ -132,7 +126,7 @@ String ConvertByteToHexString(UByte uByte)
 {
     Short iVal = uByte;
     StringStream sStrStream;
-    sStrStream << "%" << STDSetWidth(2) << STDSetFill('0') << STDHex << iVal;
+    sStrStream << STDSetWidth(2) << STDSetFill('0') << STDHex << iVal;
     return sStrStream.str();
 }
 
@@ -180,16 +174,6 @@ StringMap ConvertQueryStringToStringMap(const String& sQuery)
         }
     }
     return tMap;
-}
-
-String ConvertPathToFileUri(const String& sPath)
-{
-    STDVector<String::value_type> vPathChars((sPath.size() * 3) + 10, 0);
-    if(ParseFilenameAsUri(sPath.c_str(), vPathChars.data()) == 0)
-    {
-        return String(vPathChars.begin(), vPathChars.end());
-    }
-    return sPath;
 }
 
 String ConvertSizeToString(FixedSigned64 uSize)

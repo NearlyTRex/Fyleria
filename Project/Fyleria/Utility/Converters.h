@@ -23,7 +23,7 @@ String ConvertGameTimeToString(ULongLong uTime);
 String ConvertToSimpleCaseString(const String& sString);
 
 // Convert to url encoded string
-String ConvertToUrlEncodedString(const String& sString);
+String ConvertToUrlEncodedString(const String& sString, const UByteArray& vIgnoreChars);
 
 // Convert to url decoded string
 String ConvertToUrlDecodedString(const String& sString);
@@ -39,9 +39,6 @@ StringArray ConvertStringToTokenArray(const String& sString, const String& sChar
 
 // Convert query string to string map
 StringMap ConvertQueryStringToStringMap(const String& sQuery);
-
-// Convert path to file URI
-String ConvertPathToFileUri(const String& sPath);
 
 // Convert size to string containing the correct type
 String ConvertSizeToString(FixedSigned64 uSize);

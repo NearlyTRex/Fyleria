@@ -178,66 +178,6 @@ void BrowserEngineWebKitGtk::Navigate(const String& sUrl)
     webkit_web_view_load_uri(WEBKIT_WEB_VIEW(GetWebView()), sUrl.c_str());
 }
 
-void BrowserEngineWebKitGtk::InjectStylesheet(const String& sStyle)
-{
-    // Get manager
-    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(GetWebView()));
-
-    // Create user stylesheet
-    WebKitUserStyleSheet* pUserStyleSheet = webkit_user_style_sheet_new(
-        sStyle.c_str(),
-        WEBKIT_USER_CONTENT_INJECT_TOP_FRAME,
-        WEBKIT_USER_STYLE_LEVEL_USER,
-        NULL,
-        NULL);
-
-    // Add stylesheet
-    webkit_user_content_manager_add_style_sheet(pManager, pUserStyleSheet);
-    webkit_user_style_sheet_unref(pUserStyleSheet);
-}
-
-void BrowserEngineWebKitGtk::InjectStylesheetFile(const String& sFile)
-{
-    // Inject file contents
-    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
-    InjectStylesheet(sFileContents);
-}
-
-void BrowserEngineWebKitGtk::InjectJavascript(const String& sScript)
-{
-    // Get manager
-    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(GetWebView()));
-
-    // Create user script
-    WebKitUserScript* pUserScript = webkit_user_script_new(
-        sScript.c_str(),
-        WEBKIT_USER_CONTENT_INJECT_TOP_FRAME,
-        WEBKIT_USER_SCRIPT_INJECT_AT_DOCUMENT_START,
-        NULL,
-        NULL);
-
-    // Add script
-    webkit_user_content_manager_add_script(pManager, pUserScript);
-    webkit_user_script_unref(pUserScript);
-}
-
-void BrowserEngineWebKitGtk::InjectJavascriptFile(const String& sFile)
-{
-    // Inject file contents
-    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
-    InjectJavascript(sFileContents);
-}
-
-void BrowserEngineWebKitGtk::RemoveAllInjectedData()
-{
-    // Get manager
-    WebKitUserContentManager* pManager = webkit_web_view_get_user_content_manager(WEBKIT_WEB_VIEW(GetWebView()));
-
-    // Remove all injected data
-    webkit_user_content_manager_remove_all_style_sheets(pManager);
-    webkit_user_content_manager_remove_all_scripts(pManager);
-}
-
 static void JavascriptFinishedHandler(GObject* pObject, GAsyncResult* pAsyncResult, gpointer pUserData)
 {
     // Get finished javascript result
@@ -297,9 +237,12 @@ void BrowserEngineWebKitGtk::RunJavascript(const String& sScript)
 void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
 {
     // Set document html
+    String sHtmlContent(sHtml);
+    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, GetInjectedStyles());
+    BoostReplaceAll(sHtmlContent, INJECTED_SCRIPTS_TOKEN, GetInjectedScripts());
     webkit_web_view_load_html(
         WEBKIT_WEB_VIEW(GetWebView()),
-        sHtml.c_str(),
+        sHtmlContent.c_str(),
         FILE_URI_BASE);
 }
 

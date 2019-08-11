@@ -40,21 +40,6 @@ public:
     // Navigate to url
     virtual void Navigate(const String& sUrl) override;
 
-    // Inject stylesheet
-    virtual void InjectStylesheet(const String& sStyle) override;
-
-    // Inject stylesheet file
-    virtual void InjectStylesheetFile(const String& sFile) override;
-
-    // Inject javascript
-    virtual void InjectJavascript(const String& sScript) override;
-
-    // Inject javascript file
-    virtual void InjectJavascriptFile(const String& sFile) override;
-
-    // Remove all injected data
-    virtual void RemoveAllInjectedData() override;
-
     // Run javascript
     virtual void RunJavascript(const String& sScript) override;
 

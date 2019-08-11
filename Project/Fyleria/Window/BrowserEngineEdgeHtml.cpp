@@ -288,49 +288,17 @@ void BrowserEngineEdgeHtml::Navigate(const String& sUrl)
     GetWebViewControl().Navigate(winrt::Windows::Foundation::Uri::Uri(winrt::to_hstring(sUrl)));
 }
 
-void BrowserEngineEdgeHtml::InjectStylesheet(const String& sStyle)
-{
-    // Add to injectable stylesheets
-    SetInjectedStylesheets(GetInjectedStylesheets() + sStyle);
-}
-
-void BrowserEngineEdgeHtml::InjectStylesheetFile(const String& sFile)
-{
-    // Inject file contents
-    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
-    InjectStylesheet(sFileContents);
-}
-
-void BrowserEngineEdgeHtml::InjectJavascript(const String& sScript)
-{
-    // Add to injectable javascript
-    SetInjectedJavascript(GetInjectedJavascript() + sScript);
-}
-
-void BrowserEngineEdgeHtml::InjectJavascriptFile(const String& sFile)
-{
-    // Inject file contents
-    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
-    InjectJavascript(sFileContents);
-}
-
-void BrowserEngineEdgeHtml::RemoveAllInjectedData()
-{
-    // Clear injectable stylesheets
-    SetInjectedStylesheets("");
-
-    // Clear injectable javascript
-    SetInjectedJavascript("");
-}
-
 void BrowserEngineEdgeHtml::RunJavascript(const String& sScript)
 {
 }
 
 void BrowserEngineEdgeHtml::SetHtmlContent(const String& sHtml)
 {
-    // Navigate to the given html string
-    GetWebViewControl().NavigateToString(winrt::to_hstring(sHtml));
+    // Set document html
+    String sHtmlContent(sHtml);
+    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, GetInjectedStyles());
+    BoostReplaceAll(sHtmlContent, INJECTED_SCRIPTS_TOKEN, GetInjectedScripts());
+    GetWebViewControl().NavigateToString(winrt::to_hstring(sHtmlContent));
 }
 
 void BrowserEngineEdgeHtml::SetHtmlContentFile(const String& sFile)

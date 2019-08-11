@@ -39,19 +39,19 @@ public:
     virtual void Navigate(const String& sUrl) = 0;
 
     // Inject stylesheet
-    virtual void InjectStylesheet(const String& sStyle) = 0;
+    virtual void InjectStylesheet(const String& sStyle);
 
     // Inject stylesheet file
-    virtual void InjectStylesheetFile(const String& sFile) = 0;
+    virtual void InjectStylesheetFile(const String& sFile);
 
     // Inject javascript
-    virtual void InjectJavascript(const String& sScript) = 0;
+    virtual void InjectJavascript(const String& sScript);
 
     // Inject javascript file
-    virtual void InjectJavascriptFile(const String& sFile) = 0;
+    virtual void InjectJavascriptFile(const String& sFile);
 
     // Remove all injected data
-    virtual void RemoveAllInjectedData() = 0;
+    virtual void RemoveAllInjectedData();
 
     // Run javascript
     virtual void RunJavascript(const String& sScript) = 0;
@@ -79,6 +79,12 @@ public:
 
     // Run result (C++ -> Javascript) callback
     MAKE_RAW_TYPE_ACCESSORS(RunResultJavascriptCallback, JavascriptCallback);
+
+    // Injected styles
+    MAKE_RAW_TYPE_ACCESSORS(InjectedStyles, String);
+
+    // Injected scripts
+    MAKE_RAW_TYPE_ACCESSORS(InjectedScripts, String);
 };
 
 // Typedefs
