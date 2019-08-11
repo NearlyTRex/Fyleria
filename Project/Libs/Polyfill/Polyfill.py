@@ -3,7 +3,7 @@
 
 # Steps
 MinifyFilePolyfillKeyboardJs = 'MinifyFile("keyboard.js", "keyboard.min.js")'
-CopyFilePolyfillKeyboardJs = 'CopyFile("keyboard.min.js", "$(RootPath)/Data/Libs/keyboard.min.js")'
+CopyFilePolyfillKeyboardJs = 'CopyFile("keyboard.min.js", "$(RootPath)/Data/Libs/polyfill.keyboard.min.js")'
 
 # Library info
 Setup = {}
