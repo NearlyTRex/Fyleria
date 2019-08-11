@@ -19,6 +19,9 @@ def main():
     program_options = ProgramOptions.GetProgramOptions()
     system_info = SystemInformation.GetSystemInformation(program_options, os.path.dirname(os.path.abspath( __file__ )))
 
+    # Update module path
+    sys.path.append(os.path.join(system_info.root_path, "Project/Programs/JSMin/extra"))
+
     # Check Python
     if Utility.DetectPython(Utility.GetRequiredPythonVersion()) == False:
         Utility.ErrorStatement("Python %d.%d or higher is required to run this script" % Utility.GetRequiredPythonVersion())

@@ -2,7 +2,8 @@
 # Version: Gitmaster
 
 # Steps
-CopyFilePolyfillKeyboardJs = 'CopyFile("keyboard.js", "$(RootPath)/Data/Libs/keyboard.js")'
+MinifyFilePolyfillKeyboardJs = 'MinifyFile("keyboard.js", "keyboard.min.js")'
+CopyFilePolyfillKeyboardJs = 'CopyFile("keyboard.min.js", "$(RootPath)/Data/Libs/keyboard.min.js")'
 
 # Library info
 Setup = {}
@@ -10,4 +11,5 @@ Setup['url'] = "https://github.com/NearlyTRex/polyfill/archive/master.zip"
 Setup['extractdir'] = "polyfill-master"
 Setup['steps'] = {}
 Setup['steps']['all'] = []
+Setup['steps']['all'].append(MinifyFilePolyfillKeyboardJs)
 Setup['steps']['all'].append(CopyFilePolyfillKeyboardJs)

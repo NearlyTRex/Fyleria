@@ -94,6 +94,17 @@ def RunExtraSteps(steps, platform, root_path, flags):
         new_process = ResolvePaths(process)
         subprocess.call(new_process, shell=True)
 
+    # Minify file
+    def MinifyFile(src, dest):
+        new_src = ResolvePaths(src)
+        new_dest = ResolvePaths(dest)
+        import jsmin
+        if os.path.isfile(new_src) and not os.path.exists(new_dest):
+            with open(new_src, 'r') as input_file:
+                minified = jsmin.jsmin(input_file.read())
+                with open(new_dest, 'w') as output_file:
+                    output_file.write(minified)
+
     # Copy file
     def CopyFile(src, dest):
         new_src = ResolvePaths(src)
