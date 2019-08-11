@@ -45,6 +45,7 @@ def GetProgramOptions():
         'setup_python_libraries',
         'setup_javascript_libraries',
         'build_premake',
+        'build_jsmin',
         'build_tiled',
         'build_zip',
         'build_game',
