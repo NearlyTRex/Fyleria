@@ -37,7 +37,11 @@ int main(int argc, char** argv)
         }
 
         // Setup logging
-        SETUP_FILE_LOGGING(Log, Gecko::JoinPaths(Gecko::GetLogDirectory(), Gecko::GetLogFile()));
+#if defined(PLATFORM_OS_WINDOWS)
+        Gecko::SetupLogging(false, true);
+#else
+        Gecko::SetupLogging(true, true);
+#endif
 
         // Check data folder
         if(!Gecko::DoesPathExist(Gecko::GetDataDirectory()))

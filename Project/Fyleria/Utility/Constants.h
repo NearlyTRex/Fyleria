@@ -53,6 +53,9 @@
 // Starting URI
 #define STARTING_URI                                "about:blank"
 
+// Logger name
+#define LOGGER_NAME                                 "log"
+
 // Folders
 #define FOLDER_DATA                                 "Data"
 #define FOLDER_SAVE                                 "Save"
