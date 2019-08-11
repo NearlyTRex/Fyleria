@@ -55,7 +55,10 @@ def main():
     if do_setup_javascript_libraries or do_all:
         Project.SetupProject("Bootstrap", "Project/Libs", system_info, program_options)
         Project.SetupProject("jQuery", "Project/Libs", system_info, program_options)
+        Project.SetupProject("jQueryTerminal", "Project/Libs", system_info, program_options)
         Project.SetupProject("Phaser", "Project/Libs", system_info, program_options)
+        Project.SetupProject("Polyfill", "Project/Libs", system_info, program_options)
+        Project.SetupProject("Screenfull", "Project/Libs", system_info, program_options)
     if do_build_game or do_all:
         Project.BuildProject(system_info, program_options)
 ###########################################################################
