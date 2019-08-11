@@ -11,7 +11,6 @@ require "Libs/ObjectThreadsafe/ObjectThreadsafe"
 require "Libs/SpdLog/SpdLog"
 require "Libs/TinyXML2/TinyXML2"
 require "Libs/TMXParser/TMXParser"
-require "Libs/URIParser/URIParser"
 require "Libs/Zlib/Zlib"
 require "utility"
 
@@ -49,13 +48,11 @@ pic "On"
     includedirs(libModernCPPJson_includedirs)
     includedirs(libObjectThreadsafe_includedirs)
     includedirs(libSpdLog_includedirs)
-    includedirs(libURIParser_includedirs)
     includedirs(libZlib_includedirs)
     defines(appFyleria_defines)
     defines(libBackwardCPP_defines)
     defines(libBetterEnums_defines)
     defines(libBoost_defines)
-    defines(libURIParser_defines)
     files(appFyleria_sources)
     links(appFyleria_libs)
     links(libBackwardCPP_libs)
@@ -158,22 +155,6 @@ filter "configurations:Debug*"
     defines(libTMXParser_debugdefines)
 filter "configurations:Release*"
     defines(libTMXParser_releasedefines)
-
--- URIParser
-project "URIParser"
-language "C"
-pic "On"
-    kind(GetLibraryType())
-    includedirs(libURIParser_includedirs)
-    defines(libURIParser_defines)
-    files(libURIParser_sources)
-    links(libURIParser_libs)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("URIParser"))
-filter "configurations:Debug*"
-    defines(libURIParser_debugdefines)
-filter "configurations:Release*"
-    defines(libURIParser_releasedefines)
 
 -- Zlib
 project "Zlib"

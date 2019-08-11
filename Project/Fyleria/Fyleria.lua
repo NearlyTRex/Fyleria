@@ -43,7 +43,6 @@ appFyleria_libs = {
     "SpdLog",
     "TinyXML2",
     "TMXParser",
-    "URIParser",
     "Zlib"
 }
 if os.host() == "windows" then
