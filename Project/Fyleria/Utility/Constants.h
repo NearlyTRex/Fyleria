@@ -46,6 +46,7 @@
 // Injected file tokens
 #define INJECTED_STYLES_TOKEN                       "$INJECTED_STYLES$"
 #define INJECTED_SCRIPTS_TOKEN                      "$INJECTED_SCRIPTS$"
+#define INJECTED_MARKUP_TOKEN                       "$INJECTED_MARKUP$"
 
 // File URI base
 #define FILE_URI_BASE                               "file://"
@@ -168,6 +169,8 @@
 
 // Lib files
 #define LIB_FILE_COMMON_JS                          "Libs/common.js"
+#define LIB_FILE_DEBUG_JS                           "Libs/debug.js"
+#define LIB_FILE_DEBUG_HTML                         "Libs/debug.html"
 #define LIB_FILE_BOOTSTRAP_CSS                      "Libs/bootstrap.min.css"
 #define LIB_FILE_BOOTSTRAP_CSS_GRID                 "Libs/bootstrap-grid.min.css"
 #define LIB_FILE_BOOTSTRAP_CSS_REBOOT               "Libs/bootstrap-reboot.min.css"

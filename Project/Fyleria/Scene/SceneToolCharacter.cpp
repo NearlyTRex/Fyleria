@@ -26,10 +26,7 @@ void SceneToolCharacter::Start(ManagerSet* pManagerSet)
     SetPostCallback(STDBindFunc(&SceneToolCharacter::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
-    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
-    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
-    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
-    InjectJavascriptFile(LIB_FILE_COMMON_JS);
+    InjectCommonData();
     LoadHtmlFromHandler(GetPageHandler());
 }
 

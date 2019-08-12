@@ -61,11 +61,18 @@ void BrowserEngine::InjectUserJavascriptFile(const String& sFile)
     SetUserScripts(GetUserScripts() + sTag);
 }
 
+void BrowserEngine::InjectUserMarkup(const String& sMarkup)
+{
+    // Inject markup
+    SetUserMarkup(GetUserMarkup() + sMarkup);
+}
+
 void BrowserEngine::RemoveAllUserInjectedData()
 {
     // Clear injected styles and scripts
     GetUserStyles().clear();
     GetUserScripts().clear();
+    GetUserMarkup().clear();
 }
 
 void BrowserEngine::DefineJavascriptShortcut(const String& sFunction, const String& sArgs)

@@ -24,14 +24,7 @@ void SceneCharacterCreation::Start(ManagerSet* pManagerSet)
     SetPostCallback(STDBindFunc(&SceneCharacterCreation::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
-    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
-    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
-    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
-    InjectStylesheetFile(LIB_FILE_JQUERY_TERMINAL_CSS);
-    InjectJavascriptFile(LIB_FILE_JQUERY_TERMINAL_JS);
-    InjectJavascriptFile(LIB_FILE_JQUERY_MOUSEWHEEL_JS);
-    InjectJavascriptFile(LIB_FILE_POLYFILL_KEYBOARD_JS);
-    InjectJavascriptFile(LIB_FILE_COMMON_JS);
+    InjectCommonData();
     LoadHtmlFromFile(PAGE_FILE_CHARACTER_CREATION);
 }
 

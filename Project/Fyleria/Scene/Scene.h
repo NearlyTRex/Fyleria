@@ -65,6 +65,12 @@ protected:
     // Inject javascript file
     virtual void InjectJavascriptFile(const String& sFile);
 
+    // Inject html markup
+    virtual void InjectHtmlMarkup(const String& sMarkup);
+
+    // Inject common data
+    virtual void InjectCommonData();
+
     // Remove all injected data
     virtual void RemoveAllInjectedData();
 
@@ -87,6 +93,8 @@ protected:
     // Clear callbacks
     virtual void ClearPostCallback();
     virtual void ClearRunResultCallback();
+
+
 
     // Page content
     MAKE_RAW_TYPE_ACCESSORS(PageContent, String);

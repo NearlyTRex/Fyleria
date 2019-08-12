@@ -56,6 +56,9 @@ public:
     // Inject user javascript file
     virtual void InjectUserJavascriptFile(const String& sFile);
 
+    // Inject user markup
+    virtual void InjectUserMarkup(const String& sMarkup);
+
     // Remove all user injected data
     virtual void RemoveAllUserInjectedData();
 
@@ -97,6 +100,9 @@ public:
 
     // User scripts
     MAKE_RAW_TYPE_ACCESSORS(UserScripts, String);
+
+    // User markup
+    MAKE_RAW_TYPE_ACCESSORS(UserMarkup, String);
 };
 
 // Typedefs

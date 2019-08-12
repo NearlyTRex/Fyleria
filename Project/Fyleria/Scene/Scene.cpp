@@ -151,8 +151,39 @@ void Scene::InjectStylesheetFile(const String& sFile)
 
 void Scene::InjectJavascriptFile(const String& sFile)
 {
-    // Inject script file
+    // Inject javascript file
     MainWindow::GetInstance()->GetBrowserEngine()->InjectUserJavascriptFile(sFile);
+}
+
+void Scene::InjectHtmlMarkup(const String& sMarkup)
+{
+    // Inject html markup
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserMarkup(sMarkup);
+}
+
+void Scene::InjectCommonData()
+{
+    // Inject css
+    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
+#if DEBUG
+    InjectStylesheetFile(LIB_FILE_JQUERY_TERMINAL_CSS);
+#endif
+
+    // Inject javascript
+    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
+    InjectJavascriptFile(LIB_FILE_COMMON_JS);
+#if DEBUG
+    InjectJavascriptFile(LIB_FILE_JQUERY_TERMINAL_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_MOUSEWHEEL_JS);
+    InjectJavascriptFile(LIB_FILE_POLYFILL_KEYBOARD_JS);
+    InjectJavascriptFile(LIB_FILE_DEBUG_JS);
+#endif
+
+    // Inject markup
+#if DEBUG
+    InjectHtmlMarkup(GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), LIB_FILE_DEBUG_HTML)));
+#endif
 }
 
 void Scene::RemoveAllInjectedData()
