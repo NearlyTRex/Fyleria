@@ -38,9 +38,6 @@ public:
     // Navigate to url
     virtual void Navigate(const String& sUrl) = 0;
 
-    // Inject system stylesheet
-    virtual void InjectSystemStylesheet(const String& sStyle);
-
     // Inject system javascript
     virtual void InjectSystemJavascript(const String& sScript);
 
@@ -56,8 +53,11 @@ public:
     // Inject user javascript file
     virtual void InjectUserJavascriptFile(const String& sFile);
 
-    // Inject user markup
-    virtual void InjectUserMarkup(const String& sMarkup);
+    // Inject user html
+    virtual void InjectUserHtml(const String& sHtml);
+
+    // Inject user html file
+    virtual void InjectUserHtmlFile(const String& sFile);
 
     // Remove all user injected data
     virtual void RemoveAllUserInjectedData();
@@ -88,9 +88,6 @@ public:
 
     // Run result (C++ -> Javascript) callback
     MAKE_RAW_TYPE_ACCESSORS(RunResultJavascriptCallback, JavascriptCallback);
-
-    // System styles
-    MAKE_RAW_TYPE_ACCESSORS(SystemStyles, String);
 
     // System scripts
     MAKE_RAW_TYPE_ACCESSORS(SystemScripts, String);

@@ -65,8 +65,8 @@ protected:
     // Inject javascript file
     virtual void InjectJavascriptFile(const String& sFile);
 
-    // Inject html markup
-    virtual void InjectHtmlMarkup(const String& sMarkup);
+    // Inject html file
+    virtual void InjectHtmlFile(const String& sFile);
 
     // Inject common data
     virtual void InjectCommonData();

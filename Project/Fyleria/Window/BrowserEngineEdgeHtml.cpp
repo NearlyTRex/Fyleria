@@ -291,7 +291,7 @@ void BrowserEngineEdgeHtml::SetHtmlContent(const String& sHtml)
 {
     // Set document html
     String sHtmlContent(sHtml);
-    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, GetSystemStyles() + GetUserStyles());
+    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, GetUserStyles());
     BoostReplaceAll(sHtmlContent, INJECTED_SCRIPTS_TOKEN, GetSystemScripts() + GetUserScripts());
     BoostReplaceAll(sHtmlContent, INJECTED_MARKUP_TOKEN, GetUserMarkup());
     GetWebViewControl().NavigateToString(winrt::to_hstring(sHtmlContent));

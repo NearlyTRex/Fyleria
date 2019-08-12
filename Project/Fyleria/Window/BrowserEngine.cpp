@@ -17,13 +17,6 @@ BrowserEngine::~BrowserEngine()
 {
 }
 
-void BrowserEngine::InjectSystemStylesheet(const String& sStyle)
-{
-    // Inject style
-    String sTag = "<style>" + sStyle + "</style>\n";
-    SetSystemStyles(GetSystemStyles() + sTag);
-}
-
 void BrowserEngine::InjectSystemJavascript(const String& sScript)
 {
     // Inject script
@@ -61,10 +54,17 @@ void BrowserEngine::InjectUserJavascriptFile(const String& sFile)
     SetUserScripts(GetUserScripts() + sTag);
 }
 
-void BrowserEngine::InjectUserMarkup(const String& sMarkup)
+void BrowserEngine::InjectUserHtml(const String& sHtml)
 {
-    // Inject markup
-    SetUserMarkup(GetUserMarkup() + sMarkup);
+    // Inject html
+    SetUserMarkup(GetUserMarkup() + sHtml);
+}
+
+void BrowserEngine::InjectUserHtmlFile(const String& sFile)
+{
+    // Inject html
+    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
+    InjectUserHtml(sFileContents);
 }
 
 void BrowserEngine::RemoveAllUserInjectedData()

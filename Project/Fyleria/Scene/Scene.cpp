@@ -155,10 +155,10 @@ void Scene::InjectJavascriptFile(const String& sFile)
     MainWindow::GetInstance()->GetBrowserEngine()->InjectUserJavascriptFile(sFile);
 }
 
-void Scene::InjectHtmlMarkup(const String& sMarkup)
+void Scene::InjectHtmlFile(const String& sFile)
 {
-    // Inject html markup
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserMarkup(sMarkup);
+    // Inject html file
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserHtmlFile(sFile);
 }
 
 void Scene::InjectCommonData()
@@ -182,7 +182,7 @@ void Scene::InjectCommonData()
 
     // Inject markup
 #if DEBUG
-    InjectHtmlMarkup(GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), LIB_FILE_DEBUG_HTML)));
+    InjectHtmlFile(LIB_FILE_DEBUG_HTML);
 #endif
 }
 
