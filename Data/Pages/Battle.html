@@ -6,7 +6,6 @@ $INJECTED_SCRIPTS$
 .grid-container {
     display: grid;
     grid-template-areas:
-        'scene_selector scene_selector scene_selector scene_selector output_window output_window'
         'enemy_party_selector ally_party_selector setup_battle clear_battle output_window output_window'
         'enemy1_label enemy2_label enemy3_label enemy4_label output_window output_window'
         'enemy1_portrait enemy2_portrait enemy3_portrait enemy4_portrait output_window output_window'
@@ -26,7 +25,6 @@ $INJECTED_SCRIPTS$
 }
 
 .blank { grid-area: blank; }
-.scene_selector { grid-area: scene_selector; }
 .enemy_party_selector { grid-area: enemy_party_selector; }
 .ally_party_selector { grid-area: ally_party_selector; }
 .setup_battle { grid-area: setup_battle; }
@@ -85,11 +83,6 @@ $INJECTED_SCRIPTS$
 <body>
 $INJECTED_MARKUP$
 <div class="grid-container">
-    <select class="action_dropdown scene_selector" onchange="SwitchToScene(value)">
-        <option>Select Scene...</option>
-        <option value="MainMenu">MainMenu</option>
-    </select>
-
     <p id="enemy1_label" class="enemy1_label">Enemy 1</p>
     <p id="enemy2_label" class="enemy2_label">Enemy 2</p>
     <p id="enemy3_label" class="enemy3_label">Enemy 3</p>
