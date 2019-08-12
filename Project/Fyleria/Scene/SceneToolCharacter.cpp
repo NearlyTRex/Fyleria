@@ -27,6 +27,8 @@ void SceneToolCharacter::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData();
+    InjectStylesheetFile(PAGE_FILE_TOOL_CHARACTER_CSS);
+    InjectJavascriptFile(PAGE_FILE_TOOL_CHARACTER_JS);
     LoadHtmlFromHandler(GetPageHandler());
 }
 

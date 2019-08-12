@@ -25,7 +25,9 @@ void SceneShop::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData();
-    LoadHtmlFromFile(PAGE_FILE_SHOP);
+    InjectStylesheetFile(PAGE_FILE_SHOP_CSS);
+    InjectJavascriptFile(PAGE_FILE_SHOP_JS);
+    LoadHtmlFromFile(PAGE_FILE_SHOP_HTML);
 }
 
 void SceneShop::Finish(ManagerSet* pManagerSet)

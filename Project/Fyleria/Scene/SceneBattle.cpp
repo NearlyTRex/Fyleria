@@ -25,7 +25,9 @@ void SceneBattle::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData();
-    LoadHtmlFromFile(PAGE_FILE_BATTLE);
+    InjectStylesheetFile(PAGE_FILE_BATTLE_CSS);
+    InjectJavascriptFile(PAGE_FILE_BATTLE_JS);
+    LoadHtmlFromFile(PAGE_FILE_BATTLE_HTML);
 }
 
 void SceneBattle::Finish(ManagerSet* pManagerSet)

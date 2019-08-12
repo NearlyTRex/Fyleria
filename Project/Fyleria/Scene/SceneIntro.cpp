@@ -25,7 +25,9 @@ void SceneIntro::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData();
-    LoadHtmlFromFile(PAGE_FILE_INTRO);
+    InjectStylesheetFile(PAGE_FILE_INTRO_CSS);
+    InjectJavascriptFile(PAGE_FILE_INTRO_JS);
+    LoadHtmlFromFile(PAGE_FILE_INTRO_HTML);
 }
 
 void SceneIntro::Finish(ManagerSet* pManagerSet)

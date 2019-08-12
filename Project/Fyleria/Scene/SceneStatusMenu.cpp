@@ -25,7 +25,9 @@ void SceneStatusMenu::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData();
-    LoadHtmlFromFile(PAGE_FILE_STATUS_MENU);
+    InjectStylesheetFile(PAGE_FILE_STATUS_MENU_CSS);
+    InjectJavascriptFile(PAGE_FILE_STATUS_MENU_JS);
+    LoadHtmlFromFile(PAGE_FILE_STATUS_MENU_HTML);
 }
 
 void SceneStatusMenu::Finish(ManagerSet* pManagerSet)

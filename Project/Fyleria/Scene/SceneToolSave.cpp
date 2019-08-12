@@ -27,6 +27,8 @@ void SceneToolSave::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData();
+    InjectStylesheetFile(PAGE_FILE_TOOL_SAVE_CSS);
+    InjectJavascriptFile(PAGE_FILE_TOOL_SAVE_JS);
     LoadHtmlFromHandler(GetPageHandler());
 }
 
