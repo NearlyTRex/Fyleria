@@ -60,9 +60,6 @@ void SceneManager::AddScene(ManagerSet* pManagerSet, const String& sSceneID)
         case SceneType::Credits:
             AddScene(sSceneID, STDMakeSharedPtr<SceneCredits>());
             break;
-        case SceneType::ToolMain:
-            AddScene(sSceneID, STDMakeSharedPtr<SceneToolMain>());
-            break;
         case SceneType::ToolCharacter:
             AddScene(sSceneID, STDMakeSharedPtr<SceneToolCharacter>(pManagerSet));
             break;

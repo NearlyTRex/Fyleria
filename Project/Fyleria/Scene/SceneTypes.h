@@ -24,7 +24,6 @@ BETTER_ENUM(SceneType, Int,
     Battle,
     CharacterCreation,
     Credits,
-    ToolMain,
     ToolCharacter,
     ToolParty,
     ToolSave

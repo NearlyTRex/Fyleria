@@ -17,7 +17,6 @@
 #include "Scene/SceneBattle.h"
 #include "Scene/SceneCharacterCreation.h"
 #include "Scene/SceneCredits.h"
-#include "Scene/SceneToolMain.h"
 #include "Scene/SceneToolCharacter.h"
 #include "Scene/SceneToolParty.h"
 #include "Scene/SceneToolSave.h"

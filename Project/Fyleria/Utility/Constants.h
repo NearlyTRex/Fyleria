@@ -197,7 +197,6 @@
 #define PAGE_FILE_BATTLE                            "Pages/Battle.html"
 #define PAGE_FILE_CHARACTER_CREATION                "Pages/CharacterCreation.html"
 #define PAGE_FILE_CREDITS                           "Pages/Credits.html"
-#define PAGE_FILE_TOOL_MAIN                         "Pages/Tool.html"
 #define PAGE_FILE_TOOL_CHARACTER                    "Pages/ToolCharacter.html"
 #define PAGE_FILE_TOOL_PARTY                        "Pages/ToolParty.html"
 #define PAGE_FILE_TOOL_SAVE                         "Pages/ToolSave.html"
