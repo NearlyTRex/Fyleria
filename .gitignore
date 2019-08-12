@@ -46,7 +46,9 @@ __pycache__
 
 # Web
 *.min.css
+*.min.css.map
 *.min.js
+*.min.js.map
 
 # Folders
 Project/Build*
