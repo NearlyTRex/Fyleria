@@ -24,7 +24,18 @@ void SceneMap::Start(ManagerSet* pManagerSet)
     SetPostCallback(STDBindFunc(&SceneMap::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
+    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
+    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
+    InjectStylesheetFile(LIB_FILE_JQUERY_TERMINAL_CSS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_TERMINAL_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_MOUSEWHEEL_JS);
+    InjectJavascriptFile(LIB_FILE_POLYFILL_KEYBOARD_JS);
+    InjectJavascriptFile(LIB_FILE_COMMON_JS);
     LoadHtmlFromFile(PAGE_FILE_MAP);
+
+    // Clear page content
+    RemoveAllInjectedData();
 }
 
 void SceneMap::Finish(ManagerSet* pManagerSet)

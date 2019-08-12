@@ -17,41 +17,55 @@ BrowserEngine::~BrowserEngine()
 {
 }
 
-void BrowserEngine::InjectStylesheet(const String& sStyle)
+void BrowserEngine::InjectSystemStylesheet(const String& sStyle)
 {
     // Inject style
     String sTag = "<style>" + sStyle + "</style>\n";
-    SetInjectedStyles(GetInjectedStyles() + sTag);
+    SetSystemStyles(GetSystemStyles() + sTag);
 }
 
-void BrowserEngine::InjectStylesheetFile(const String& sFile)
+void BrowserEngine::InjectSystemJavascript(const String& sScript)
+{
+    // Inject script
+    String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
+    SetSystemScripts(GetSystemScripts() + sTag);
+}
+
+void BrowserEngine::InjectUserStylesheet(const String& sStyle)
+{
+    // Inject style
+    String sTag = "<style>" + sStyle + "</style>\n";
+    SetUserStyles(GetUserStyles() + sTag);
+}
+
+void BrowserEngine::InjectUserStylesheetFile(const String& sFile)
 {
     // Inject style
     String sUri = GetUriPath(JoinPathsCanonical(GetDataDirectory(), sFile));
     String sTag = "<link rel=\"stylesheet\" type=\"text/css\" href='" + sUri + "'>\n";
-    SetInjectedStyles(GetInjectedStyles() + sTag);
+    SetUserStyles(GetUserStyles() + sTag);
 }
 
-void BrowserEngine::InjectJavascript(const String& sScript)
+void BrowserEngine::InjectUserJavascript(const String& sScript)
 {
     // Inject script
     String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
-    SetInjectedScripts(GetInjectedScripts() + sTag);
+    SetUserScripts(GetUserScripts() + sTag);
 }
 
-void BrowserEngine::InjectJavascriptFile(const String& sFile)
+void BrowserEngine::InjectUserJavascriptFile(const String& sFile)
 {
     // Inject script
     String sUri = GetUriPath(JoinPathsCanonical(GetDataDirectory(), sFile));
     String sTag = "<script type=\"text/javascript\" src=\"" + sUri + "\"></script>\n";
-    SetInjectedScripts(GetInjectedScripts() + sTag);
+    SetUserScripts(GetUserScripts() + sTag);
 }
 
-void BrowserEngine::RemoveAllInjectedData()
+void BrowserEngine::RemoveAllUserInjectedData()
 {
-    // Clear styles and scripts
-    GetInjectedStyles().clear();
-    GetInjectedScripts().clear();
+    // Clear injected styles and scripts
+    GetUserStyles().clear();
+    GetUserScripts().clear();
 }
 
 void BrowserEngine::DefineJavascriptShortcut(const String& sFunction, const String& sArgs)

@@ -38,20 +38,26 @@ public:
     // Navigate to url
     virtual void Navigate(const String& sUrl) = 0;
 
-    // Inject stylesheet
-    virtual void InjectStylesheet(const String& sStyle);
+    // Inject system stylesheet
+    virtual void InjectSystemStylesheet(const String& sStyle);
 
-    // Inject stylesheet file
-    virtual void InjectStylesheetFile(const String& sFile);
+    // Inject system javascript
+    virtual void InjectSystemJavascript(const String& sScript);
 
-    // Inject javascript
-    virtual void InjectJavascript(const String& sScript);
+    // Inject user stylesheet
+    virtual void InjectUserStylesheet(const String& sStyle);
 
-    // Inject javascript file
-    virtual void InjectJavascriptFile(const String& sFile);
+    // Inject user stylesheet file
+    virtual void InjectUserStylesheetFile(const String& sFile);
 
-    // Remove all injected data
-    virtual void RemoveAllInjectedData();
+    // Inject user javascript
+    virtual void InjectUserJavascript(const String& sScript);
+
+    // Inject user javascript file
+    virtual void InjectUserJavascriptFile(const String& sFile);
+
+    // Remove all user injected data
+    virtual void RemoveAllUserInjectedData();
 
     // Run javascript
     virtual void RunJavascript(const String& sScript) = 0;
@@ -80,11 +86,17 @@ public:
     // Run result (C++ -> Javascript) callback
     MAKE_RAW_TYPE_ACCESSORS(RunResultJavascriptCallback, JavascriptCallback);
 
-    // Injected styles
-    MAKE_RAW_TYPE_ACCESSORS(InjectedStyles, String);
+    // System styles
+    MAKE_RAW_TYPE_ACCESSORS(SystemStyles, String);
 
-    // Injected scripts
-    MAKE_RAW_TYPE_ACCESSORS(InjectedScripts, String);
+    // System scripts
+    MAKE_RAW_TYPE_ACCESSORS(SystemScripts, String);
+
+    // User styles
+    MAKE_RAW_TYPE_ACCESSORS(UserStyles, String);
+
+    // User scripts
+    MAKE_RAW_TYPE_ACCESSORS(UserScripts, String);
 };
 
 // Typedefs

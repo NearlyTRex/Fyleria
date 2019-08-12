@@ -143,6 +143,24 @@ void Scene::LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler)
     }
 }
 
+void Scene::InjectStylesheetFile(const String& sFile)
+{
+    // Inject stylesheet file
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserStylesheetFile(sFile);
+}
+
+void Scene::InjectJavascriptFile(const String& sFile)
+{
+    // Inject script file
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserJavascriptFile(sFile);
+}
+
+void Scene::RemoveAllInjectedData()
+{
+    // Remove all injected data
+    MainWindow::GetInstance()->GetBrowserEngine()->RemoveAllUserInjectedData();
+}
+
 void Scene::RunJavascript(const String& sScript)
 {
     // Run javascript

@@ -94,12 +94,7 @@ Bool BrowserEngineWebKitGtk::Init(ManagerSet* pManagerSet, const String& sTitle,
     webkit_user_content_manager_register_script_message_handler(pManager, "external");
 
     // Inject starting javascript / css
-    InjectJavascript("window.external={invoke:function(s){window.webkit.messageHandlers.external.postMessage(s);}}");
-    InjectJavascriptFile(LIB_FILE_COMMON_JS);
-    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
-    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
-    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
-    InjectJavascriptFile(LIB_FILE_PHASER_JS);
+    InjectSystemJavascript("window.external={invoke:function(s){window.webkit.messageHandlers.external.postMessage(s);}}");
 
     // Add view
     gtk_container_add(GTK_CONTAINER(GetMainWindow()), GTK_WIDGET(GetWebView()));
@@ -238,8 +233,8 @@ void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
 {
     // Set document html
     String sHtmlContent(sHtml);
-    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, GetInjectedStyles());
-    BoostReplaceAll(sHtmlContent, INJECTED_SCRIPTS_TOKEN, GetInjectedScripts());
+    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, GetSystemStyles() + GetUserStyles());
+    BoostReplaceAll(sHtmlContent, INJECTED_SCRIPTS_TOKEN, GetSystemScripts() + GetUserScripts());
     webkit_web_view_load_html(
         WEBKIT_WEB_VIEW(GetWebView()),
         sHtmlContent.c_str(),

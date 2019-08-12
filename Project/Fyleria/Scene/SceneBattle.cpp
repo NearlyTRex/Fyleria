@@ -24,6 +24,14 @@ void SceneBattle::Start(ManagerSet* pManagerSet)
     SetPostCallback(STDBindFunc(&SceneBattle::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
+    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
+    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
+    InjectStylesheetFile(LIB_FILE_JQUERY_TERMINAL_CSS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_TERMINAL_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_MOUSEWHEEL_JS);
+    InjectJavascriptFile(LIB_FILE_POLYFILL_KEYBOARD_JS);
+    InjectJavascriptFile(LIB_FILE_COMMON_JS);
     LoadHtmlFromFile(PAGE_FILE_BATTLE);
 }
 
@@ -31,6 +39,9 @@ void SceneBattle::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
+
+    // Clear page content
+    RemoveAllInjectedData();
 }
 
 void SceneBattle::Update(ManagerSet* pManagerSet)

@@ -4,6 +4,7 @@
 // Internal includes
 #include "Scene/SceneToolCharacter.h"
 #include "Web/WebPageHandlerCharacterTool.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -25,6 +26,10 @@ void SceneToolCharacter::Start(ManagerSet* pManagerSet)
     SetPostCallback(STDBindFunc(&SceneToolCharacter::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
+    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
+    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
+    InjectJavascriptFile(LIB_FILE_COMMON_JS);
     LoadHtmlFromHandler(GetPageHandler());
 }
 
@@ -32,6 +37,9 @@ void SceneToolCharacter::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
+
+    // Clear page content
+    RemoveAllInjectedData();
 }
 
 void SceneToolCharacter::Update(ManagerSet* pManagerSet)

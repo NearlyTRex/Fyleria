@@ -59,6 +59,15 @@ protected:
     // Load html from handler
     virtual void LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler);
 
+    // Inject stylesheet file
+    virtual void InjectStylesheetFile(const String& sFile);
+
+    // Inject javascript file
+    virtual void InjectJavascriptFile(const String& sFile);
+
+    // Remove all injected data
+    virtual void RemoveAllInjectedData();
+
     // Run javascript
     virtual void RunJavascript(const String& sScript);
 

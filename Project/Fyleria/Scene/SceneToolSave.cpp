@@ -4,6 +4,7 @@
 // Internal includes
 #include "Scene/SceneToolSave.h"
 #include "Web/WebPageHandlerSaveTool.h"
+#include "Utility/Constants.h"
 
 namespace Gecko
 {
@@ -25,6 +26,10 @@ void SceneToolSave::Start(ManagerSet* pManagerSet)
     SetPostCallback(STDBindFunc(&SceneToolSave::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Load page content
+    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
+    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
+    InjectJavascriptFile(LIB_FILE_COMMON_JS);
     LoadHtmlFromHandler(GetPageHandler());
 }
 
@@ -32,6 +37,9 @@ void SceneToolSave::Finish(ManagerSet* pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
+
+    // Clear page content
+    RemoveAllInjectedData();
 }
 
 void SceneToolSave::Update(ManagerSet* pManagerSet)

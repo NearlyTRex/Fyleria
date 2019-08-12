@@ -191,12 +191,7 @@ Bool BrowserEngineEdgeHtml::Init(ManagerSet* pManagerSet, const String& sTitle, 
     );
 
     // Inject starting javascript / css
-    InjectJavascript("(function(){window.external.invoke = s => window.external.notify(s)})();");
-    InjectJavascriptFile(LIB_FILE_COMMON_JS);
-    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
-    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
-    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
-    InjectJavascriptFile(LIB_FILE_PHASER_JS);
+    InjectSystemJavascript("(function(){window.external.invoke = s => window.external.notify(s)})();");
 
     // Create web view control completion handler
     auto fnCompletionHandler = [this](const auto& sender, const auto& args)
@@ -296,8 +291,8 @@ void BrowserEngineEdgeHtml::SetHtmlContent(const String& sHtml)
 {
     // Set document html
     String sHtmlContent(sHtml);
-    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, GetInjectedStyles());
-    BoostReplaceAll(sHtmlContent, INJECTED_SCRIPTS_TOKEN, GetInjectedScripts());
+    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, GetSystemStyles() + GetUserStyles());
+    BoostReplaceAll(sHtmlContent, INJECTED_SCRIPTS_TOKEN, GetSystemScripts() + GetUserScripts());
     GetWebViewControl().NavigateToString(winrt::to_hstring(sHtmlContent));
 }
 
