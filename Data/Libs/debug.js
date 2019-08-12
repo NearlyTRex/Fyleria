@@ -10,11 +10,12 @@
             term.echo("No debug command handler set");
         };
         var settings = {
-            prompt: 'debug> ',
             name: 'Debug',
-            height: 100,
+            prompt: '$ ',
+            height: 200,
             enabled: false,
-            greetings: 'Fyleria debug console',
+            completion: true,
+            greetings: "Fyleria debug console.\nType 'help' to invoke help.\nType ~ to exit.",
             keypress: function(e) {
                 if (e.which == 96) {
                     return false;
@@ -43,9 +44,22 @@
     };
 })(jQuery);
 
+// Create commands
+var cmds = {
+    help: function() {
+        var command_list = ["clear"];
+        for(var key in cmds) {
+            command_list.push(key);
+        }
+        return "Available commands are " + command_list.join(", ");
+    },
+    switch: function(scene) {
+        SwitchToScene(scene);
+        return "Switching to scene '" + scene + "'"
+    }
+};
+
 // Attach debug console
 jQuery(document).ready(function($) {
-    $('#debug_console').debug_console(function(command, terminal) {
-        terminal.echo('you type command "' + command + '"');
-    });
+    $('#debug_console').debug_console(cmds);
 });
