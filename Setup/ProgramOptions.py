@@ -14,7 +14,6 @@ def GetProgramOptions():
     parser.add_argument('--force64', action='store_true', help='Force 64-bit steps')
     parser.add_argument('--forcelinux', action='store_true', help='Force Linux steps')
     parser.add_argument('--forcemacosx', action='store_true', help='Force MacOSX steps')
-    parser.add_argument('--forcebsd', action='store_true', help='Force BSD steps')
     parser.add_argument('--forcewindows', action='store_true', help='Force Windows steps')
     parser.add_argument('--forcewsl', action='store_true', help='Force Windows Subsystem for Linux steps')
     parser.add_argument('--forcecygwin', action='store_true', help='Force Cygwin steps')
@@ -42,7 +41,6 @@ def GetProgramOptions():
     parser.add_argument('mode', choices=[
         'all',
         'setup_cpp_libraries',
-        'setup_python_libraries',
         'setup_javascript_libraries',
         'build_premake',
         'build_jsmin',
@@ -56,7 +54,6 @@ def GetProgramOptions():
     options.force_64bits = args.force64
     options.force_linux = args.forcelinux
     options.force_macosx = args.forcemacosx
-    options.force_bsd = args.forcebsd
     options.force_windows = args.forcewindows
     options.force_wsl = args.forcewsl
     options.force_cygwin = args.forcecygwin
