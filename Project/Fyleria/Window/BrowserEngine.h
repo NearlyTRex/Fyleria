@@ -80,6 +80,9 @@ public:
     // Clear javascript shortcut
     virtual void ClearJavascriptShortcut(const String& sFunction);
 
+    // Managers
+    MAKE_PRIMITIVE_TYPE_ACCESSORS_INITIAL_VALUE(Managers, ManagerSet*, nullptr);
+
     // Shutting down
     MAKE_RAW_TYPE_ACCESSORS(IsShuttingDown, Bool);
 

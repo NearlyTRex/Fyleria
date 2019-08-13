@@ -120,8 +120,9 @@ HICON GetIconFromFile(const String& sPath)
 
 Bool BrowserEngineEdgeHtml::Init(ManagerSet* pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
-    // Check manager set
+    // Store manager set
     CHECK_MANAGER_SET_PTR(pManagerSet);
+    SetManagers(pManagerSet);
 
     // Initialize windows runtime to single thread
     winrt::init_apartment(winrt::apartment_type::single_threaded);
@@ -257,7 +258,7 @@ Bool BrowserEngineEdgeHtml::Init(ManagerSet* pManagerSet, const String& sTitle, 
         Navigate(STARTING_URI);
 
         // Switch to starting scene
-        pManagerSet->GetSceneManager().SwitchToScene((+SceneType::Intro)._to_string());
+        GetManagers()->GetSceneManager().SwitchToScene(GetManagers(), (+SceneType::Intro)._to_string());
     };
 
     // Create web view control process

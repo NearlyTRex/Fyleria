@@ -24,8 +24,9 @@ BrowserEngineWebKitGtk::~BrowserEngineWebKitGtk()
 
 Bool BrowserEngineWebKitGtk::Init(ManagerSet* pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
-    // Check manager set
+    // Store manager set
     CHECK_MANAGER_SET_PTR(pManagerSet);
+    SetManagers(pManagerSet);
 
     // Initialize gtk
     if(!gtk_init_check(0, nullptr))
@@ -157,7 +158,7 @@ Bool BrowserEngineWebKitGtk::Init(ManagerSet* pManagerSet, const String& sTitle,
     Navigate(STARTING_URI);
 
     // Switch to starting scene
-    pManagerSet->GetSceneManager().SwitchToScene(pManagerSet, (+SceneType::Intro)._to_string());
+    GetManagers()->GetSceneManager().SwitchToScene(GetManagers(), (+SceneType::Intro)._to_string());
     return true;
 }
 
