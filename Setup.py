@@ -49,6 +49,7 @@ def main():
         Project.SetupProject("BackwardCPP", "Project/Libs", system_info, program_options)
         Project.SetupProject("BetterEnums", "Project/Libs", system_info, program_options)
         Project.SetupProject("Boost", "Project/Libs", system_info, program_options)
+        Project.SetupProject("DateCPP", "Project/Libs", system_info, program_options)
         Project.SetupProject("FantasyName", "Project/Libs", system_info, program_options)
         Project.SetupProject("ImmutableString", "Project/Libs", system_info, program_options)
         Project.SetupProject("MicroPather", "Project/Libs", system_info, program_options)
