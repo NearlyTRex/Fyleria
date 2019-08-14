@@ -300,7 +300,7 @@ void BrowserEngineEdgeHtml::InjectUserStylesheet(const String& sStyle)
 
 void BrowserEngineEdgeHtml::InjectUserStylesheetFile(const String& sFile)
 {
-    // Inject html
+    // Inject style
     String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
     InjectUserStylesheet(sFileContents);
 }
@@ -314,7 +314,7 @@ void BrowserEngineEdgeHtml::InjectUserJavascript(const String& sScript)
 
 void BrowserEngineEdgeHtml::InjectUserJavascriptFile(const String& sFile)
 {
-    // Inject html
+    // Inject script
     String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
     InjectUserJavascript(sFileContents);
 }
