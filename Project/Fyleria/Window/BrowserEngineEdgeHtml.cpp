@@ -284,6 +284,62 @@ void BrowserEngineEdgeHtml::Navigate(const String& sUrl)
     GetWebViewControl().Navigate(winrt::Windows::Foundation::Uri::Uri(winrt::to_hstring(sUrl)));
 }
 
+void BrowserEngineEdgeHtml::InjectSystemJavascript(const String& sScript)
+{
+    // Inject script
+    String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
+    SetSystemScripts(GetSystemScripts() + sTag);
+}
+
+void BrowserEngineEdgeHtml::InjectUserStylesheet(const String& sStyle)
+{
+    // Inject style
+    String sTag = "<style>" + sStyle + "</style>\n";
+    SetUserStyles(GetUserStyles() + sTag);
+}
+
+void BrowserEngineEdgeHtml::InjectUserStylesheetFile(const String& sFile)
+{
+    // Inject html
+    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
+    InjectUserStylesheet(sFileContents);
+}
+
+void BrowserEngineEdgeHtml::InjectUserJavascript(const String& sScript)
+{
+    // Inject script
+    String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
+    SetUserScripts(GetUserScripts() + sTag);
+}
+
+void BrowserEngineEdgeHtml::InjectUserJavascriptFile(const String& sFile)
+{
+    // Inject html
+    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
+    InjectUserJavascript(sFileContents);
+}
+
+void BrowserEngineEdgeHtml::InjectUserHtml(const String& sHtml)
+{
+    // Inject html
+    SetUserMarkup(GetUserMarkup() + sHtml);
+}
+
+void BrowserEngineEdgeHtml::InjectUserHtmlFile(const String& sFile)
+{
+    // Inject html
+    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
+    InjectUserHtml(sFileContents);
+}
+
+void BrowserEngineEdgeHtml::RemoveAllUserInjectedData()
+{
+    // Remove all injected data
+    GetUserStyles().clear();
+    GetUserScripts().clear();
+    GetUserMarkup().clear();
+}
+
 void BrowserEngineEdgeHtml::RunJavascript(const String& sScript)
 {
 }

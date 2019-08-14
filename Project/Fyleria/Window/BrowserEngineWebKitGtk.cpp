@@ -174,6 +174,64 @@ void BrowserEngineWebKitGtk::Navigate(const String& sUrl)
     webkit_web_view_load_uri(WEBKIT_WEB_VIEW(GetWebView()), sUrl.c_str());
 }
 
+void BrowserEngineWebKitGtk::InjectSystemJavascript(const String& sScript)
+{
+    // Inject script
+    String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
+    SetSystemScripts(GetSystemScripts() + sTag);
+}
+
+void BrowserEngineWebKitGtk::InjectUserStylesheet(const String& sStyle)
+{
+    // Inject style
+    String sTag = "<style>" + sStyle + "</style>\n";
+    SetUserStyles(GetUserStyles() + sTag);
+}
+
+void BrowserEngineWebKitGtk::InjectUserStylesheetFile(const String& sFile)
+{
+    // Inject style
+    String sUri = GetUriPath(JoinPathsCanonical(GetDataDirectory(), sFile));
+    String sTag = "<link rel=\"stylesheet\" type=\"text/css\" href='" + sUri + "'>\n";
+    SetUserStyles(GetUserStyles() + sTag);
+}
+
+void BrowserEngineWebKitGtk::InjectUserJavascript(const String& sScript)
+{
+    // Inject script
+    String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
+    SetUserScripts(GetUserScripts() + sTag);
+}
+
+void BrowserEngineWebKitGtk::InjectUserJavascriptFile(const String& sFile)
+{
+    // Inject script
+    String sUri = GetUriPath(JoinPathsCanonical(GetDataDirectory(), sFile));
+    String sTag = "<script type=\"text/javascript\" src=\"" + sUri + "\"></script>\n";
+    SetUserScripts(GetUserScripts() + sTag);
+}
+
+void BrowserEngineWebKitGtk::InjectUserHtml(const String& sHtml)
+{
+    // Inject html
+    SetUserMarkup(GetUserMarkup() + sHtml);
+}
+
+void BrowserEngineWebKitGtk::InjectUserHtmlFile(const String& sFile)
+{
+    // Inject html
+    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
+    InjectUserHtml(sFileContents);
+}
+
+void BrowserEngineWebKitGtk::RemoveAllUserInjectedData()
+{
+    // Remove all injected data
+    GetUserStyles().clear();
+    GetUserScripts().clear();
+    GetUserMarkup().clear();
+}
+
 static void JavascriptFinishedHandler(GObject* pObject, GAsyncResult* pAsyncResult, gpointer pUserData)
 {
     // Get finished javascript result
