@@ -17,17 +17,11 @@ ConfigManager::ConfigManager()
 
 Bool ConfigManager::LoadConfig(const String& sName, const String& sFile)
 {
-    // Check if file exists
-    if(!DoesPathExist(sFile))
-    {
-        THROW_RUNTIME_ERROR("Path '" + sFile + "' could not be loaded for configuration");
-    }
-
     // Read json data into config object
     Json jsonData;
-    if(!ReadJsonFile(sFile, jsonData))
+    if(!ReadJsonFile(sFile, jsonData, GetDataDirectory()))
     {
-        return false;
+        THROW_RUNTIME_ERROR("Path '" + sFile + "' could not be loaded for configuration");
     }
 
     // Add config

@@ -60,13 +60,12 @@ Int Application::Run()
 Bool Application::Initialize()
 {
     // Load config data
-    String sConfigFile = JoinPathsCanonical(GetDataDirectory(), CONFIG_FILE);
-    LOG_FORMAT_STATEMENT("Loading config file '{}'", sConfigFile.c_str());
+    LOG_FORMAT_STATEMENT("Loading config file '{}'", CONFIG_FILE);
     GetManagers()->GetConfigManager().SetCurrentConfigName("Default");
-    if(!GetManagers()->GetConfigManager().LoadConfig("Default", sConfigFile))
+    if(!GetManagers()->GetConfigManager().LoadConfig("Default", CONFIG_FILE))
     {
         ERROR_FORMAT_STATEMENT("Could not load configuration file '{}'",
-            sConfigFile.c_str());
+            CONFIG_FILE);
         return false;
     }
 

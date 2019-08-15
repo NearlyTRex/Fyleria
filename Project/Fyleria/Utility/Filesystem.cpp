@@ -74,15 +74,16 @@ String GetCanonicalPath(const String& sPath)
     return BoostFilesystemCanonical(BoostFilesystemPath(sPath)).string();
 }
 
-String GetUriPath(const String& sPath)
+String GetUriPath(const String& sPath, const String& sFileRoot)
 {
+    const String sActualPath = JoinPaths(sFileRoot, sPath);
     const UByteArray vIgnoreChars = {'/', ':', '-', '_', '~', '.'};
 #if defined(PLATFORM_OS_WINDOWS)
-    const String sPrefix = IsWindowsNetworkDriveLocation(sPath) ? "file:" : "file:///";
+    const String sPrefix = IsWindowsNetworkDriveLocation(sActualPath) ? "file:" : "file:///";
 #else
     const String sPrefix = FILE_URI_BASE;
 #endif
-    String sLocation = ConvertToUrlEncodedString(BoostReplaceAllCopy(sPath, "\\", "/"), vIgnoreChars);
+    String sLocation = ConvertToUrlEncodedString(BoostReplaceAllCopy(sActualPath, "\\", "/"), vIgnoreChars);
     return sPrefix + sLocation;
 }
 
@@ -96,21 +97,102 @@ String JoinPathsCanonical(const String& sPath1, const String& sPath2)
     return GetCanonicalPath(JoinPaths(sPath1, sPath2));
 }
 
-String GetFileContentsAsString(const String& sPath)
+Bool ReadFileToString(const String& sPath, String& sString, const String& sFileRoot)
 {
-    InputFile inputFile(sPath, STDInputFileStreamFlagInput | STDInputFileStreamFlagBinary);
+    // Get actual path
+    const String sActualPath = JoinPaths(sFileRoot, sPath);
+    if(!DoesPathExist(sActualPath))
+    {
+        return false;
+    }
+
+    // Open file
+    InputFile inputFile(sActualPath.c_str(), STDIOSFlagInputOperations | STDIOSFlagBinaryMode);
+    if(!inputFile.is_open() && inputFile.good())
+    {
+        return false;
+    }
+
+    // Read string
     StringStream sBuffer;
     sBuffer << inputFile.rdbuf();
-    return sBuffer.str();
+    sString = sBuffer.str();
+
+    // Cleanup
+    inputFile.close();
+    return true;
 }
 
-UByteArray GetFileContentsAsByteArray(const String& sPath)
+Bool ReadFileToByteArray(const String& sPath, FixedUnsigned8Array& vBytes, const String& sFileRoot)
 {
-    InputFile inputFile(sPath, STDInputFileStreamFlagInput | STDInputFileStreamFlagBinary);
-    SizeType uSize = GetFileSize(sPath);
-    UByteArray vBuffer(uSize);
-    inputFile.read(reinterpret_cast<char*>(vBuffer.data()), uSize);
-    return vBuffer;
+    // Get actual path
+    const String sActualPath = JoinPaths(sFileRoot, sPath);
+    if(!DoesPathExist(sActualPath))
+    {
+        return false;
+    }
+
+    // Open file
+    InputFile inputFile(sActualPath.c_str(), STDIOSFlagInputOperations | STDIOSFlagBinaryMode);
+    if(!inputFile.is_open() && inputFile.good())
+    {
+        return false;
+    }
+
+    // Read bytes
+    SizeType uSize = GetFileSize(sActualPath);
+    vBytes.clear();
+    vBytes.resize(uSize);
+    inputFile.read(reinterpret_cast<char*>(vBytes.data()), uSize);
+
+    // Cleanup
+    inputFile.close();
+    return true;
+}
+
+Bool WriteStringToFile(const String& sPath, const String& sString, const String& sFileRoot)
+{
+    // Get actual path
+    const String sActualPath = JoinPaths(sFileRoot, sPath);
+
+    // Open file
+    OutputFile outputFile(sActualPath.c_str(), STDIOSFlagOutputOperations | STDIOSFlagBinaryMode | STDIOSFlagTruncate);
+    if(!outputFile.is_open() && outputFile.good())
+    {
+        return false;
+    }
+
+    // Write string
+    outputFile << sString;
+
+    // Cleanup
+    outputFile.close();
+    return true;
+}
+
+Bool WriteByteArrayToFile(const String& sPath, const FixedUnsigned8Array& vBytes, const String& sFileRoot)
+{
+    // Get actual path
+    const String sActualPath = JoinPaths(sFileRoot, sPath);
+
+    // Open file
+    OutputFile outputFile(sActualPath.c_str(), STDIOSFlagOutputOperations | STDIOSFlagBinaryMode | STDIOSFlagTruncate);
+    if(!outputFile.is_open() && outputFile.good())
+    {
+        return false;
+    }
+
+    // Write bytes
+    SizeType szLength = vBytes.size() * sizeof(FixedUnsigned8);
+    for(SizeType index = 0; index < szLength; index++)
+    {
+        Byte byte = vBytes[index];
+        outputFile.write(&byte, sizeof(Byte));
+    }
+
+    // Cleanup
+    outputFile.close();
+    return true;
 }
 
 String GetProgramDirectory()
@@ -154,6 +236,46 @@ String GetProgramDirectory()
 String GetDataDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA);
+}
+
+String GetDataCharactersDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_CHARACTERS);
+}
+
+String GetDataIconsDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_ICONS);
+}
+
+String GetDataItemsDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_ITEMS);
+}
+
+String GetDataLibsDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_LIBS);
+}
+
+String GetDataPagesDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_PAGES);
+}
+
+String GetDataPartiesDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_PARTIES);
+}
+
+String GetDataPortraitsDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_PORTRAITS);
+}
+
+String GetDataSkillsDirectory()
+{
+    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_SKILLS);
 }
 
 String GetSaveDirectory()

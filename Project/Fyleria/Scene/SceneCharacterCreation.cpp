@@ -25,9 +25,9 @@ void SceneCharacterCreation::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData();
-    InjectStylesheetFile(PAGE_FILE_CHARACTER_CREATION_CSS);
-    InjectJavascriptFile(PAGE_FILE_CHARACTER_CREATION_JS);
-    LoadHtmlFromFile(PAGE_FILE_CHARACTER_CREATION_HTML);
+    InjectStylesheetFile(PAGE_FILE_CHARACTER_CREATION_CSS, GetDataPagesDirectory());
+    InjectJavascriptFile(PAGE_FILE_CHARACTER_CREATION_JS, GetDataPagesDirectory());
+    SetHtmlContentFile(PAGE_FILE_CHARACTER_CREATION_HTML, GetDataPagesDirectory());
 }
 
 void SceneCharacterCreation::Finish(ManagerSet* pManagerSet)

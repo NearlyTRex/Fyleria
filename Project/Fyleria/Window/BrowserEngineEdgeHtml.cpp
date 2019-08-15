@@ -100,7 +100,13 @@ typedef struct
 HICON GetIconFromFile(const String& sPath)
 {
     // Get bytes from file
-    UByteArray vBytes = GetFileContentsAsByteArray(sPath);
+    FixedUnsigned8Array vBytes;
+    if(!ReadFileToByteArray(sPath, vBytes, GetDataIconsDirectory()))
+    {
+        return NULL;
+    }
+
+    // Make sure there are some bytes to use
     if(vBytes.empty())
     {
         return NULL;
@@ -133,7 +139,7 @@ Bool BrowserEngineEdgeHtml::Init(ManagerSet* pManagerSet, const String& sTitle, 
     const WString& sWindowClassName = L"WebView";
 
     // Register window class
-    HICON hIcon = GetIconFromFile(JoinPathsCanonical(GetDataDirectory(), ICON_FILE_MAIN_WINDOW));
+    HICON hIcon = GetIconFromFile(ICON_FILE_MAIN_WINDOW);
     windowClass.cbSize = sizeof(WNDCLASSEX);
     windowClass.hInstance = GetModuleHandle(nullptr);
     windowClass.lpszClassName = sWindowClassName.c_str();
@@ -298,11 +304,14 @@ void BrowserEngineEdgeHtml::InjectUserStylesheet(const String& sStyle)
     SetUserStyles(GetUserStyles() + sTag);
 }
 
-void BrowserEngineEdgeHtml::InjectUserStylesheetFile(const String& sFile)
+void BrowserEngineEdgeHtml::InjectUserStylesheetFile(const String& sFile, const String& sFileRoot)
 {
     // Inject style
-    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
-    InjectUserStylesheet(sFileContents);
+    String sFileContents;
+    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    {
+        InjectUserStylesheet(sFileContents);
+    }
 }
 
 void BrowserEngineEdgeHtml::InjectUserJavascript(const String& sScript)
@@ -312,11 +321,14 @@ void BrowserEngineEdgeHtml::InjectUserJavascript(const String& sScript)
     SetUserScripts(GetUserScripts() + sTag);
 }
 
-void BrowserEngineEdgeHtml::InjectUserJavascriptFile(const String& sFile)
+void BrowserEngineEdgeHtml::InjectUserJavascriptFile(const String& sFile, const String& sFileRoot)
 {
     // Inject script
-    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
-    InjectUserJavascript(sFileContents);
+    String sFileContents;
+    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    {
+        InjectUserJavascript(sFileContents);
+    }
 }
 
 void BrowserEngineEdgeHtml::InjectUserHtml(const String& sHtml)
@@ -325,11 +337,14 @@ void BrowserEngineEdgeHtml::InjectUserHtml(const String& sHtml)
     SetUserMarkup(GetUserMarkup() + sHtml);
 }
 
-void BrowserEngineEdgeHtml::InjectUserHtmlFile(const String& sFile)
+void BrowserEngineEdgeHtml::InjectUserHtmlFile(const String& sFile, const String& sFileRoot)
 {
     // Inject html
-    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
-    InjectUserHtml(sFileContents);
+    String sFileContents;
+    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    {
+        InjectUserHtml(sFileContents);
+    }
 }
 
 void BrowserEngineEdgeHtml::RemoveAllUserInjectedData()
@@ -354,11 +369,14 @@ void BrowserEngineEdgeHtml::SetHtmlContent(const String& sHtml)
     GetWebViewControl().NavigateToString(winrt::to_hstring(sHtmlContent));
 }
 
-void BrowserEngineEdgeHtml::SetHtmlContentFile(const String& sFile)
+void BrowserEngineEdgeHtml::SetHtmlContentFile(const String& sFile, const String& sFileRoot)
 {
     // Set document html
-    String sFileContents = GetFileContentsAsString(sFile);
-    SetHtmlContent(sFileContents);
+    String sFileContents;
+    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    {
+        SetHtmlContent(sFileContents);
+    }
 }
 
 void BrowserEngineEdgeHtml::RunMainLoopIteration(Bool bBlocking)

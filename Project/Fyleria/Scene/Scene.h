@@ -51,22 +51,19 @@ protected:
     virtual Bool HandleMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs);
 
     // Process form
-    virtual void ProcessForm(ManagerSet* pManagerSet, const String& sAction, const String& sParameters);
-
-    // Load html from file
-    virtual void LoadHtmlFromFile(const String& sFile);
+    virtual Bool ProcessForm(ManagerSet* pManagerSet, const String& sAction, const String& sParameters, String& sProcessedPage);
 
     // Load html from handler
     virtual void LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler);
 
     // Inject stylesheet file
-    virtual void InjectStylesheetFile(const String& sFile);
+    virtual void InjectStylesheetFile(const String& sFile, const String& sFileRoot);
 
     // Inject javascript file
-    virtual void InjectJavascriptFile(const String& sFile);
+    virtual void InjectJavascriptFile(const String& sFile, const String& sFileRoot);
 
     // Inject html file
-    virtual void InjectHtmlFile(const String& sFile);
+    virtual void InjectHtmlFile(const String& sFile, const String& sFileRoot);
 
     // Inject common data
     virtual void InjectCommonData();
@@ -79,6 +76,9 @@ protected:
 
     // Set html content
     virtual void SetHtmlContent(const String& sHtml);
+
+    // Set html content file
+    virtual void SetHtmlContentFile(const String& sFile, const String& sFileRoot);
 
     // Define javascript shortcut
     virtual void DefineJavascriptShortcut(const String& sFunction, const String& sArgs);
@@ -93,11 +93,6 @@ protected:
     // Clear callbacks
     virtual void ClearPostCallback();
     virtual void ClearRunResultCallback();
-
-
-
-    // Page content
-    MAKE_RAW_TYPE_ACCESSORS(PageContent, String);
 
     // Page handler
     MAKE_RAW_TYPE_ACCESSORS(PageHandler, WebPageHandlerSharedPtr);

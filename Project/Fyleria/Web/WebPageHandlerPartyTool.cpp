@@ -18,9 +18,11 @@ WebPageHandlerPartyTool::WebPageHandlerPartyTool(ManagerSet* pManagerSet)
     : WebPageHandler()
 {
     // Set template
-    String sTemplateFile = JoinPathsCanonical(GetDataDirectory(), PAGE_FILE_TOOL_PARTY_HTML);
-    String sTemplateContents = GetFileContentsAsString(sTemplateFile);
-    SetPageTemplate(sTemplateContents);
+    String sTemplateContents;
+    if(ReadFileToString(PAGE_FILE_TOOL_PARTY_HTML, sTemplateContents, GetDataPagesDirectory()))
+    {
+        SetPageTemplate(sTemplateContents);
+    }
 
     // Update page
     UpdatePageContent(pManagerSet, {});

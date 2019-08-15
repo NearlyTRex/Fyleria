@@ -13,12 +13,6 @@
 namespace Gecko
 {
 
-// Read a binary file into a string
-Bool ReadBinaryFile(const String& sFilename, FixedUnsigned8Array& vBytes);
-
-// Write a string to a binary file
-Bool WriteBinaryFile(const String& sFilename, const FixedUnsigned8Array& vBytes);
-
 // Determine if bytes represent a CBOR file
 Bool IsCBOR(const FixedUnsigned8Array& vBytes);
 
@@ -32,30 +26,28 @@ Bool RemoveCBORHeader(FixedUnsigned8Array& vBytes);
 Bool RemoveMsgPackHeader(FixedUnsigned8Array& vBytes);
 
 // Read serialized file
-Bool ReadSerializedFile(const String& sFilename, const String& sType, Json& jsonData);
+Bool ReadSerializedFile(const String& sFilename, const String& sType, Json& jsonData, const String& sFileRoot);
 
 // Read a file into a json object
-Bool ReadJsonFile(const String& sFilename, Json& jsonData);
-Bool ReadJsonFile(const String& sFilename, String& jsonString);
+Bool ReadJsonFile(const String& sFilename, Json& jsonData, const String& sFileRoot);
 
 // Read a CBOR file into a json object
-Bool ReadCBORFile(const String& sFilename, Json& jsonData);
+Bool ReadCBORFile(const String& sFilename, Json& jsonData, const String& sFileRoot);
 
 // Read a MsgPack file into a json object
-Bool ReadMsgPackFile(const String& sFilename, Json& jsonData);
+Bool ReadMsgPackFile(const String& sFilename, Json& jsonData, const String& sFileRoot);
 
 // Write serialized file
-Bool WriteSerializedFile(const String& sFilename, const String& sType, const Json& jsonData);
+Bool WriteSerializedFile(const String& sFilename, const String& sType, const Json& jsonData, const String& sFileRoot);
 
 // Write a json object to a file
-Bool WriteJsonFile(const String& sFilename, const Json& jsonData);
-Bool WriteJsonFile(const String& sFilename, const String& jsonString);
+Bool WriteJsonFile(const String& sFilename, const Json& jsonData, const String& sFileRoot);
 
 // Write a json object to a CBOR file
-Bool WriteCBORFile(const String& sFilename, const Json& jsonData);
+Bool WriteCBORFile(const String& sFilename, const Json& jsonData, const String& sFileRoot);
 
 // Write a json object to a MsgPack file
-Bool WriteMsgPackFile(const String& sFilename, const Json& jsonData);
+Bool WriteMsgPackFile(const String& sFilename, const Json& jsonData, const String& sFileRoot);
 
 };
 

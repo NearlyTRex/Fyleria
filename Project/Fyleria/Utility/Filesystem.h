@@ -50,7 +50,7 @@ String GetAbsolutePath(const String& sPath);
 String GetCanonicalPath(const String& sPath);
 
 // Get uri path
-String GetUriPath(const String& sPath);
+String GetUriPath(const String& sPath, const String& sFileRoot);
 
 // Join paths together
 String JoinPaths(const String& sPath1, const String& sPath2);
@@ -58,17 +58,31 @@ String JoinPaths(const String& sPath1, const String& sPath2);
 // Join paths together and get canonical result
 String JoinPathsCanonical(const String& sPath1, const String& sPath2);
 
-// Get file contents as string
-String GetFileContentsAsString(const String& sPath);
+// Read file to string
+Bool ReadFileToString(const String& sPath, String& sString, const String& sFileRoot);
 
-// Get file contents as byte array
-UByteArray GetFileContentsAsByteArray(const String& sPath);
+// Read file to byte array
+Bool ReadFileToByteArray(const String& sPath, FixedUnsigned8Array& vBytes, const String& sFileRoot);
+
+// Write string to file
+Bool WriteStringToFile(const String& sPath, const String& sString, const String& sFileRoot);
+
+// Write byte array to file
+Bool WriteByteArrayToFile(const String& sPath, const FixedUnsigned8Array& vBytes, const String& sFileRoot);
 
 // Get program directory
 String GetProgramDirectory();
 
-// Get data directory
+// Get data directories
 String GetDataDirectory();
+String GetDataCharactersDirectory();
+String GetDataIconsDirectory();
+String GetDataItemsDirectory();
+String GetDataLibsDirectory();
+String GetDataPagesDirectory();
+String GetDataPartiesDirectory();
+String GetDataPortraitsDirectory();
+String GetDataSkillsDirectory();
 
 // Get save directory
 String GetSaveDirectory();

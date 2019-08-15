@@ -25,9 +25,9 @@ void SceneMap::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData();
-    InjectStylesheetFile(PAGE_FILE_MAP_CSS);
-    InjectJavascriptFile(PAGE_FILE_MAP_JS);
-    LoadHtmlFromFile(PAGE_FILE_MAP_HTML);
+    InjectStylesheetFile(PAGE_FILE_MAP_CSS, GetDataPagesDirectory());
+    InjectJavascriptFile(PAGE_FILE_MAP_JS, GetDataPagesDirectory());
+    SetHtmlContentFile(PAGE_FILE_MAP_HTML, GetDataPagesDirectory());
 
     // Clear page content
     RemoveAllInjectedData();

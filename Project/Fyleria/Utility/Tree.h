@@ -38,21 +38,14 @@ public:
     }
 
     // Add branch
-    void AddBranch(const String& sBranchName, const String& sBranchFile)
+    void AddBranch(const String& sBranchName, const String& sBranchFile, const String& sFileRoot)
     {
         // Log loading of JSON data
         LOG_FORMAT_STATEMENT("Loading JSON file '{}' into branch {}", sBranchFile.c_str(), sBranchName.c_str());
 
-        // Check that the file exists first
-        if(!DoesPathExist(sBranchFile.c_str()))
-        {
-            ERROR_FORMAT_STATEMENT("JSON file '{}' does not exist!", sBranchFile.c_str());
-            return;
-        }
-
         // Read json data
         Json jsonData;
-        if(!ReadJsonFile(sBranchFile, jsonData))
+        if(!ReadJsonFile(sBranchFile, jsonData, sFileRoot))
         {
             ERROR_FORMAT_STATEMENT("Could not load data from '{}' as JSON", sBranchName.c_str());
         }
@@ -76,10 +69,6 @@ public:
     // Get leaf
     const T& GetLeaf(const String& sBranchName, const String& sLeafName) const
     {
-        if(!HasLeaf(sBranchName, sLeafName))
-        {
-            THROW_RUNTIME_ERROR("Specified leaf '" + sLeafName + "' on branch '" + sBranchName + "' was not found");
-        }
         return m_tBranches.at(sBranchName).at(sLeafName);
     }
     T& GetLeaf(const String& sBranchName, const String& sLeafName)
@@ -130,12 +119,6 @@ public:
         if(sBranchName.empty())
         {
             return vLeaves;
-        }
-
-        // Make sure branch exists
-        if(!HasBranch(sBranchName))
-        {
-            THROW_RUNTIME_ERROR("Specified branch '" + sBranchName + "' was not found");
         }
 
         // Look at all the leaves

@@ -45,19 +45,19 @@ public:
     virtual void InjectUserStylesheet(const String& sStyle) = 0;
 
     // Inject user stylesheet file
-    virtual void InjectUserStylesheetFile(const String& sFile) = 0;
+    virtual void InjectUserStylesheetFile(const String& sFile, const String& sFileRoot) = 0;
 
     // Inject user javascript
     virtual void InjectUserJavascript(const String& sScript) = 0;
 
     // Inject user javascript file
-    virtual void InjectUserJavascriptFile(const String& sFile) = 0;
+    virtual void InjectUserJavascriptFile(const String& sFile, const String& sFileRoot) = 0;
 
     // Inject user html
     virtual void InjectUserHtml(const String& sHtml) = 0;
 
     // Inject user html file
-    virtual void InjectUserHtmlFile(const String& sFile) = 0;
+    virtual void InjectUserHtmlFile(const String& sFile, const String& sFileRoot) = 0;
 
     // Remove all user injected data
     virtual void RemoveAllUserInjectedData() = 0;
@@ -69,7 +69,7 @@ public:
     virtual void SetHtmlContent(const String& sHtml) = 0;
 
     // Set html content file
-    virtual void SetHtmlContentFile(const String& sFile) = 0;
+    virtual void SetHtmlContentFile(const String& sFile, const String& sFileRoot) = 0;
 
     // Run main loop iteration
     virtual void RunMainLoopIteration(Bool bBlocking) = 0;

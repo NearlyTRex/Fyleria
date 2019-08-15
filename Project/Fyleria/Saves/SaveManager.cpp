@@ -215,7 +215,7 @@ void SaveManager::SaveToFile(const String& sSlot, const String& sFile, const Str
 {
     // Serialize save data to file
     Json jsonData = GetSave(sSlot);
-    Bool bSuccess = WriteSerializedFile(sFile, sType, jsonData);
+    Bool bSuccess = WriteSerializedFile(sFile, sType, jsonData, GetSaveDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Writing save '" + sSlot + "' to file '" + sFile + "' as type '" + sType + "' failed");
@@ -226,7 +226,7 @@ void SaveManager::LoadFromFile(const String& sSlot, const String& sFile, const S
 {
     // Deserialize file to save data
     Json jsonData;
-    Bool bSuccess = ReadSerializedFile(sFile, sType, jsonData);
+    Bool bSuccess = ReadSerializedFile(sFile, sType, jsonData, GetSaveDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Reading save '" + sSlot + "' from file '" + sFile + "' as type '" + sType + "' failed");

@@ -16,9 +16,11 @@ WebPageHandlerCharacterTool::WebPageHandlerCharacterTool(ManagerSet* pManagerSet
     : WebPageHandler()
 {
     // Set template
-    String sTemplateFile = JoinPathsCanonical(GetDataDirectory(), PAGE_FILE_TOOL_CHARACTER_HTML);
-    String sTemplateContents = GetFileContentsAsString(sTemplateFile);
-    SetPageTemplate(sTemplateContents);
+    String sTemplateContents;
+    if(ReadFileToString(PAGE_FILE_TOOL_CHARACTER_HTML, sTemplateContents, GetDataPagesDirectory()))
+    {
+        SetPageTemplate(sTemplateContents);
+    }
 
     // Update page
     UpdatePageContent(pManagerSet, {});

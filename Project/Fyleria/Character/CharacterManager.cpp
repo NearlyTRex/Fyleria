@@ -36,7 +36,7 @@ String CharacterManager::LoadCharacterFromFile(ManagerSet* pManagerSet, const St
 {
     // Deserialize file into character data
     Json jsonData;
-    Bool bSuccess = ReadSerializedFile(sFilename, sType, jsonData);
+    Bool bSuccess = ReadSerializedFile(sFilename, sType, jsonData, GetDataCharactersDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Unable to read file '" + sFilename + "' as type '" + sType + "'");
@@ -50,7 +50,7 @@ void CharacterManager::SaveCharacterToFile(const String& sCharacterID, const Str
 {
     // Serialize character data into file
     Json jsonData = GetSaveableData(GetCharacter(sCharacterID));
-    Bool bSuccess = WriteSerializedFile(sFilename, sType, jsonData);
+    Bool bSuccess = WriteSerializedFile(sFilename, sType, jsonData, GetDataCharactersDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Unable to write file '" + sFilename + "' as type '" + sType + "'");

@@ -25,9 +25,9 @@ void SceneCredits::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData();
-    InjectStylesheetFile(PAGE_FILE_CREDITS_CSS);
-    InjectJavascriptFile(PAGE_FILE_CREDITS_JS);
-    LoadHtmlFromFile(PAGE_FILE_CREDITS_HTML);
+    InjectStylesheetFile(PAGE_FILE_CREDITS_CSS, GetDataPagesDirectory());
+    InjectJavascriptFile(PAGE_FILE_CREDITS_JS, GetDataPagesDirectory());
+    SetHtmlContentFile(PAGE_FILE_CREDITS_HTML, GetDataPagesDirectory());
 }
 
 void SceneCredits::Finish(ManagerSet* pManagerSet)

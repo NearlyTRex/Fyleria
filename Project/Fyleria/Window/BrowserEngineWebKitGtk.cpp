@@ -188,10 +188,10 @@ void BrowserEngineWebKitGtk::InjectUserStylesheet(const String& sStyle)
     SetUserStyles(GetUserStyles() + sTag);
 }
 
-void BrowserEngineWebKitGtk::InjectUserStylesheetFile(const String& sFile)
+void BrowserEngineWebKitGtk::InjectUserStylesheetFile(const String& sFile, const String& sFileRoot)
 {
     // Inject style
-    String sUri = GetUriPath(JoinPathsCanonical(GetDataDirectory(), sFile));
+    String sUri = GetUriPath(sFile, sFileRoot);
     String sTag = "<link rel=\"stylesheet\" type=\"text/css\" href='" + sUri + "'>\n";
     SetUserStyles(GetUserStyles() + sTag);
 }
@@ -203,10 +203,10 @@ void BrowserEngineWebKitGtk::InjectUserJavascript(const String& sScript)
     SetUserScripts(GetUserScripts() + sTag);
 }
 
-void BrowserEngineWebKitGtk::InjectUserJavascriptFile(const String& sFile)
+void BrowserEngineWebKitGtk::InjectUserJavascriptFile(const String& sFile, const String& sFileRoot)
 {
     // Inject script
-    String sUri = GetUriPath(JoinPathsCanonical(GetDataDirectory(), sFile));
+    String sUri = GetUriPath(sFile, sFileRoot);
     String sTag = "<script type=\"text/javascript\" src=\"" + sUri + "\"></script>\n";
     SetUserScripts(GetUserScripts() + sTag);
 }
@@ -217,11 +217,14 @@ void BrowserEngineWebKitGtk::InjectUserHtml(const String& sHtml)
     SetUserMarkup(GetUserMarkup() + sHtml);
 }
 
-void BrowserEngineWebKitGtk::InjectUserHtmlFile(const String& sFile)
+void BrowserEngineWebKitGtk::InjectUserHtmlFile(const String& sFile, const String& sFileRoot)
 {
     // Inject html
-    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
-    InjectUserHtml(sFileContents);
+    String sFileContents;
+    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    {
+        InjectUserHtml(sFileContents);
+    }
 }
 
 void BrowserEngineWebKitGtk::RemoveAllUserInjectedData()
@@ -301,11 +304,14 @@ void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
         FILE_URI_BASE);
 }
 
-void BrowserEngineWebKitGtk::SetHtmlContentFile(const String& sFile)
+void BrowserEngineWebKitGtk::SetHtmlContentFile(const String& sFile, const String& sFileRoot)
 {
     // Set document html
-    String sFileContents = GetFileContentsAsString(sFile);
-    SetHtmlContent(sFileContents);
+    String sFileContents;
+    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    {
+        SetHtmlContent(sFileContents);
+    }
 }
 
 void BrowserEngineWebKitGtk::RunMainLoopIteration(Bool bBlocking)

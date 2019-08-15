@@ -69,44 +69,57 @@ Bool Scene::HandleMessage(ManagerSet* pManagerSet, const String& sMessage, Strin
     switch(eFunctionType)
     {
         case SceneMessageFunctionType::SwitchToScene:
+        {
             pManagerSet->GetSceneManager().SwitchToScene(pManagerSet, sArg1);
             return true;
+        }
         case SceneMessageFunctionType::SubmitForm:
-            ProcessForm(pManagerSet, sArg1, sArg2);
-            SetHtmlContent(GetPageContent());
+        {
+            String sProcessedPage;
+            if(ProcessForm(pManagerSet, sArg1, sArg2, sProcessedPage))
+            {
+                SetHtmlContent(sProcessedPage);
+            }
             return true;
+        }
         default:
+        {
             break;
+        }
     }
 
     // Nothing was handled
     return false;
 }
 
-void Scene::ProcessForm(ManagerSet* pManagerSet, const String& sAction, const String& sParameters)
+Bool Scene::ProcessForm(ManagerSet* pManagerSet, const String& sAction, const String& sParameters, String& sProcessedPage)
 {
     // Check input data
     if(sAction.empty() || sParameters.empty())
     {
         ERROR_STATEMENT("Invalid action or parameters");
-        return;
+        return false;
     }
 
     // Check page handler
     if(GetPageHandler())
     {
-        // Notify user
-        LOG_FORMAT_STATEMENT("Processing form action '{}'", sAction.c_str());
-
         try
         {
+            // Notify user
+            LOG_FORMAT_STATEMENT("Processing form action '{}'", sAction.c_str());
+
             // Get parameters
             StringMap tParameters = ConvertQueryStringToStringMap(sParameters);
             tParameters.insert({"action", sAction});
 
             // Update page content
             GetPageHandler()->UpdatePageContent(pManagerSet, tParameters);
-            SetPageContent(GetPageHandler()->GetPageContent());
+            sProcessedPage = GetPageHandler()->GetPageContent();
+
+            // Notify user
+            LOG_FORMAT_STATEMENT("Processing of action '{}' completed", sAction.c_str());
+            return true;
         }
         catch(STDException& e)
         {
@@ -118,18 +131,8 @@ void Scene::ProcessForm(ManagerSet* pManagerSet, const String& sAction, const St
             // Print exception
             ERROR_FORMAT_STATEMENT("Caught exception: '{}'", e.what().c_str());
         }
-
-        // Notify user
-        LOG_FORMAT_STATEMENT("Processing of action '{}' completed", sAction.c_str());
     }
-}
-
-void Scene::LoadHtmlFromFile(const String& sFile)
-{
-    // Load html file
-    String sFileContents = GetFileContentsAsString(JoinPathsCanonical(GetDataDirectory(), sFile));
-    SetPageContent(sFileContents);
-    SetHtmlContent(sFileContents);
+    return false;
 }
 
 void Scene::LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler)
@@ -138,51 +141,50 @@ void Scene::LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler)
     if(pHandler)
     {
         String sHandlerContents = pHandler->GetPageContent();
-        SetPageContent(sHandlerContents);
         SetHtmlContent(sHandlerContents);
     }
 }
 
-void Scene::InjectStylesheetFile(const String& sFile)
+void Scene::InjectStylesheetFile(const String& sFile, const String& sFileRoot)
 {
     // Inject stylesheet file
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserStylesheetFile(sFile);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserStylesheetFile(sFile, sFileRoot);
 }
 
-void Scene::InjectJavascriptFile(const String& sFile)
+void Scene::InjectJavascriptFile(const String& sFile, const String& sFileRoot)
 {
     // Inject javascript file
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserJavascriptFile(sFile);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserJavascriptFile(sFile, sFileRoot);
 }
 
-void Scene::InjectHtmlFile(const String& sFile)
+void Scene::InjectHtmlFile(const String& sFile, const String& sFileRoot)
 {
     // Inject html file
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserHtmlFile(sFile);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserHtmlFile(sFile, sFileRoot);
 }
 
 void Scene::InjectCommonData()
 {
     // Inject css
-    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS);
+    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS, GetDataLibsDirectory());
 #if DEBUG
-    InjectStylesheetFile(LIB_FILE_JQUERY_TERMINAL_CSS);
+    InjectStylesheetFile(LIB_FILE_JQUERY_TERMINAL_CSS, GetDataLibsDirectory());
 #endif
 
     // Inject javascript
-    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS);
-    InjectJavascriptFile(LIB_FILE_JQUERY_JS);
-    InjectJavascriptFile(LIB_FILE_COMMON_JS);
+    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS, GetDataLibsDirectory());
+    InjectJavascriptFile(LIB_FILE_JQUERY_JS, GetDataLibsDirectory());
+    InjectJavascriptFile(LIB_FILE_COMMON_JS, GetDataLibsDirectory());
 #if DEBUG
-    InjectJavascriptFile(LIB_FILE_JQUERY_TERMINAL_JS);
-    InjectJavascriptFile(LIB_FILE_JQUERY_MOUSEWHEEL_JS);
-    InjectJavascriptFile(LIB_FILE_POLYFILL_KEYBOARD_JS);
-    InjectJavascriptFile(LIB_FILE_DEBUG_JS);
+    InjectJavascriptFile(LIB_FILE_JQUERY_TERMINAL_JS, GetDataLibsDirectory());
+    InjectJavascriptFile(LIB_FILE_JQUERY_MOUSEWHEEL_JS, GetDataLibsDirectory());
+    InjectJavascriptFile(LIB_FILE_POLYFILL_KEYBOARD_JS, GetDataLibsDirectory());
+    InjectJavascriptFile(LIB_FILE_DEBUG_JS, GetDataLibsDirectory());
 #endif
 
     // Inject markup
 #if DEBUG
-    InjectHtmlFile(LIB_FILE_DEBUG_HTML);
+    InjectHtmlFile(LIB_FILE_DEBUG_HTML, GetDataLibsDirectory());
 #endif
 }
 
@@ -202,6 +204,12 @@ void Scene::SetHtmlContent(const String& sHtml)
 {
     // Set html
     MainWindow::GetInstance()->GetBrowserEngine()->SetHtmlContent(sHtml);
+}
+
+void Scene::SetHtmlContentFile(const String& sFile, const String& sFileRoot)
+{
+    // Set html content file
+    MainWindow::GetInstance()->GetBrowserEngine()->SetHtmlContentFile(sFile, sFileRoot);
 }
 
 void Scene::DefineJavascriptShortcut(const String& sFunction, const String& sArgs)

@@ -49,19 +49,19 @@ public:
     virtual void InjectUserStylesheet(const String& sStyle) override;
 
     // Inject user stylesheet file
-    virtual void InjectUserStylesheetFile(const String& sFile) override;
+    virtual void InjectUserStylesheetFile(const String& sFile, const String& sFileRoot) override;
 
     // Inject user javascript
     virtual void InjectUserJavascript(const String& sScript) override;
 
     // Inject user javascript file
-    virtual void InjectUserJavascriptFile(const String& sFile) override;
+    virtual void InjectUserJavascriptFile(const String& sFile, const String& sFileRoot) override;
 
     // Inject user html
     virtual void InjectUserHtml(const String& sHtml) override;
 
     // Inject user html file
-    virtual void InjectUserHtmlFile(const String& sFile) override;
+    virtual void InjectUserHtmlFile(const String& sFile, const String& sFileRoot) override;
 
     // Remove all user injected data
     virtual void RemoveAllUserInjectedData() override;
@@ -73,7 +73,7 @@ public:
     virtual void SetHtmlContent(const String& sHtml) override;
 
     // Set html content file
-    virtual void SetHtmlContentFile(const String& sFile) override;
+    virtual void SetHtmlContentFile(const String& sFile, const String& sFileRoot) override;
 
     // Run main loop iteration
     virtual void RunMainLoopIteration(Bool bBlocking) override;
