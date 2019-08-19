@@ -38,7 +38,6 @@ end
 -- Libs
 appFyleria_libs = {
     "Boost",
-    "Cachelot",
     "FantasyName",
     "MicroPather",
     "SpdLog",

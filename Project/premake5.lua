@@ -3,8 +3,8 @@ require "Fyleria/Fyleria"
 require "Libs/BackwardCPP/BackwardCPP"
 require "Libs/BetterEnums/BetterEnums"
 require "Libs/Boost/Boost"
-require "Libs/Cachelot/Cachelot"
 require "Libs/FantasyName/FantasyName"
+require "Libs/LRUCache/LRUCache"
 require "Libs/ImmutableString/ImmutableString"
 require "Libs/MicroPather/MicroPather"
 require "Libs/ModernCPPJson/ModernCPPJson"
@@ -43,10 +43,10 @@ pic "On"
     includedirs(appFyleria_includedirs)
     includedirs(libBackwardCPP_includedirs)
     includedirs(libBoost_includedirs)
-    includedirs(libCachelot_includedirs)
     includedirs(libFantasyName_includedirs)
     includedirs(libImmutableString_includedirs)
     includedirs(libBetterEnums_includedirs)
+    includedirs(libLRUCache_includedirs)
     includedirs(libModernCPPJson_includedirs)
     includedirs(libObjectThreadsafe_includedirs)
     includedirs(libSpdLog_includedirs)
@@ -55,6 +55,7 @@ pic "On"
     defines(libBackwardCPP_defines)
     defines(libBetterEnums_defines)
     defines(libBoost_defines)
+    defines(libLRUCache_defines)
     files(appFyleria_sources)
     links(appFyleria_libs)
     links(libBackwardCPP_libs)
@@ -79,23 +80,6 @@ filter "configurations:Debug*"
     defines(libBoost_debugdefines)
 filter "configurations:Release*"
     defines(libBoost_releasedefines)
-
--- Cachelot
-project "Cachelot"
-language "C++"
-pic "On"
-    kind(GetLibraryType())
-    includedirs(libCachelot_includedirs)
-    includedirs(libBoost_includedirs)
-    defines(libCachelot_defines)
-    defines(libBoost_defines)
-    files(libCachelot_sources)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("Cachelot"))
-filter "configurations:Debug*"
-    defines(libCachelot_debugdefines)
-filter "configurations:Release*"
-    defines(libCachelot_releasedefines)
 
 -- FantasyName
 project "FantasyName"

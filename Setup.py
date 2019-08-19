@@ -52,6 +52,7 @@ def main():
         Project.SetupProject("DateCPP", "Project/Libs", system_info, program_options)
         Project.SetupProject("FantasyName", "Project/Libs", system_info, program_options)
         Project.SetupProject("ImmutableString", "Project/Libs", system_info, program_options)
+        Project.SetupProject("LRUCache", "Project/Libs", system_info, program_options)
         Project.SetupProject("MicroPather", "Project/Libs", system_info, program_options)
         Project.SetupProject("ModernCPPJson", "Project/Libs", system_info, program_options)
         Project.SetupProject("ObjectThreadsafe", "Project/Libs", system_info, program_options)
