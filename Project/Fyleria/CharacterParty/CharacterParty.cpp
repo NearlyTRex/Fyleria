@@ -822,7 +822,7 @@ void CharacterParty::PausePlayTime()
         return;
     }
     STDTimePoint currentTimePoint = STDGetCurrentTimePoint();
-    ULongLong uDuration = STDGetTimePointDuration(currentTimePoint - GetLastTimePoint()).count();
+    ULongLong uDuration = STDDurationCast<STDTimeDurationSeconds>(currentTimePoint - GetLastTimePoint()).count();
     SetCurrentPlayTime(GetCurrentPlayTime() + uDuration);
     SetPlayTimePaused(true);
 }
@@ -847,7 +847,7 @@ ULongLong CharacterParty::GetPlayTime() const
     else
     {
         STDTimePoint currentTimePoint = STDGetCurrentTimePoint();
-        ULongLong uDuration = STDGetTimePointDuration(currentTimePoint - GetLastTimePoint()).count();
+        ULongLong uDuration = STDDurationCast<STDTimeDurationSeconds>(currentTimePoint - GetLastTimePoint()).count();
         return (GetCurrentPlayTime() + uDuration);
     }
 }
