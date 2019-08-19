@@ -35,7 +35,7 @@ public:
     MAKE_RAW_TYPE_ACCESSORS(CurrentConfigName, String);
 
     // Configuration map
-    MAKE_RAW_TYPE_ACCESSORS(LoadedConfigs, ConfigMappingType);
+    MAKE_RAW_TYPE_ACCESSORS(ConfigMap, ConfigMappingType);
 
     // Platforms
     Bool Is32Bit() const;

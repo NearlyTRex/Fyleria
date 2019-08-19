@@ -25,15 +25,15 @@ Bool ConfigManager::LoadConfig(const String& sName, const String& sFile)
     }
 
     // Add config
-    GetLoadedConfigs().insert({sName, Config(jsonData)});
+    GetConfigMap().insert({sName, Config(jsonData)});
     return true;
 }
 
 Bool ConfigManager::DoesConfigExist(const String& sName) const
 {
     // Determine if config exists
-    auto iSearch = GetLoadedConfigs().find(sName);
-    return (iSearch != GetLoadedConfigs().end());
+    auto iSearch = GetConfigMap().find(sName);
+    return (iSearch != GetConfigMap().end());
 }
 
 const Config& ConfigManager::GetConfig(const String& sName) const
@@ -41,12 +41,12 @@ const Config& ConfigManager::GetConfig(const String& sName) const
     // Check if config exists
     if(!DoesConfigExist(sName))
     {
-        THROW_RUNTIME_ERROR("Config with name '" + sName + "' was not registered");
+        THROW_RUNTIME_ERROR("Config with name '" + sName + "' was not found");
     }
 
     // Get config
-    auto iSearch = GetLoadedConfigs().find(sName);
-    if(iSearch != GetLoadedConfigs().end())
+    auto iSearch = GetConfigMap().find(sName);
+    if(iSearch != GetConfigMap().end())
     {
         return iSearch->second;
     }
