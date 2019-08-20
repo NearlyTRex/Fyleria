@@ -16,7 +16,7 @@ class TimedCache : public CacheInterface
 public:
 
     // Typedefs
-    typedef MemCacheTimedType<String, String> MemCacheType;
+    typedef RawMemCacheTimedType<String, String> MemCacheType;
     typedef STDSharedPtr<MemCacheType> MemCacheTypeSharedPtr;
 
     // Constructors

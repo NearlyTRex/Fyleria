@@ -18,6 +18,11 @@ BasicCache::~BasicCache()
 Bool BasicCache::Initialize(ULong uCapacity)
 {
     SetMemCache(STDMakeSharedPtr<MemCacheType>(uCapacity));
+    if(!GetMemCache())
+    {
+        return false;
+    }
+    return true;
 }
 
 Bool BasicCache::ContainsKey(const String& sKey)

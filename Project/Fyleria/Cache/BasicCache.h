@@ -16,7 +16,7 @@ class BasicCache : public CacheInterface
 public:
 
     // Typedefs
-    typedef MemCacheBasicType<String, String> MemCacheType;
+    typedef RawMemCacheBasicType<String, String> MemCacheType;
     typedef STDSharedPtr<MemCacheType> MemCacheTypeSharedPtr;
 
     // Constructors

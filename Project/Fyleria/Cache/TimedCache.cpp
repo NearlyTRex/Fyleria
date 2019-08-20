@@ -17,14 +17,20 @@ TimedCache::~TimedCache()
 
 Bool TimedCache::Initialize(ULong uCapacity, Double fTimeToLive)
 {
-    return false;
+    STDDuration<Double, STDRatioMilli> duration(fTimeToLive);
+    SetMemCache(STDMakeSharedPtr<MemCacheType>(duration, uCapacity));
+    if(!GetMemCache())
+    {
+        return false;
+    }
+    return true;
 }
 
 Bool TimedCache::ContainsKey(const String& sKey)
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->contains(sKey);
     }
     return false;
 }
@@ -33,7 +39,8 @@ Bool TimedCache::SetValue(const String& sKey, const String& sValue)
 {
     if(GetMemCache())
     {
-
+        GetMemCache()->insert(sKey, sValue);
+        return true;
     }
     return false;
 }
@@ -42,7 +49,8 @@ Bool TimedCache::GetValue(const String& sKey, String& sValue)
 {
     if(GetMemCache())
     {
-
+        sValue = GetMemCache()->lookup(sKey);
+        return true;
     }
     return false;
 }
@@ -51,7 +59,7 @@ Bool TimedCache::EraseValue(const String& sKey)
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->erase(sKey);
     }
     return false;
 }
@@ -60,7 +68,8 @@ Bool TimedCache::Shrink(SizeType uNewCapacity)
 {
     if(GetMemCache())
     {
-
+        GetMemCache()->shrink(uNewCapacity);
+        return true;
     }
     return false;
 }
@@ -69,7 +78,8 @@ Bool TimedCache::Resize(SizeType uNewCapacity)
 {
     if(GetMemCache())
     {
-
+        GetMemCache()->capacity(uNewCapacity);
+        return true;
     }
     return false;
 }
@@ -78,7 +88,7 @@ SizeType TimedCache::GetCapacity() const
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->capacity();
     }
     return 0;
 }
@@ -87,7 +97,7 @@ SizeType TimedCache::GetSize() const
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->size();
     }
     return 0;
 }
@@ -96,7 +106,7 @@ SizeType TimedCache::GetSpaceLeft() const
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->space_left();
     }
     return 0;
 }
@@ -105,7 +115,8 @@ Bool TimedCache::Clear()
 {
     if(GetMemCache())
     {
-
+        GetMemCache()->clear();
+        return true;
     }
     return false;
 }
@@ -114,7 +125,8 @@ Bool TimedCache::ClearExpired()
 {
     if(GetMemCache())
     {
-
+        GetMemCache()->clear_expired();
+        return true;
     }
     return false;
 }
@@ -123,7 +135,7 @@ Bool TimedCache::IsEmpty() const
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->is_empty();
     }
     return false;
 }
@@ -132,7 +144,7 @@ Bool TimedCache::IsFull() const
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->is_full();
     }
     return false;
 }
@@ -141,7 +153,7 @@ Bool TimedCache::IsExpired(const String& sKey) const
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->has_expired(sKey);
     }
     return false;
 }
@@ -150,7 +162,7 @@ Bool TimedCache::AreAllExpired() const
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->all_expired();
     }
     return false;
 }
@@ -159,7 +171,7 @@ Bool TimedCache::IsValid(const String& sKey) const
 {
     if(GetMemCache())
     {
-
+        return GetMemCache()->is_valid(GetMemCache()->find(sKey));
     }
     return false;
 }

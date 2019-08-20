@@ -8,7 +8,7 @@
 #include <lru/lru.hpp>
 
 // Cache types
-#define MemCacheBasicType LRU::Cache
-#define MemCacheTimedType LRU::TimedCache
+#define RawMemCacheBasicType LRU::Cache
+#define RawMemCacheTimedType LRU::TimedCache
 
 #endif
