@@ -6,6 +6,7 @@
 
 // Internal includes
 #include "Battle/BattleManager.h"
+#include "Cache/CacheManager.h"
 #include "Character/CharacterManager.h"
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Config/ConfigManager.h"
@@ -26,6 +27,7 @@ public:
 
     // Managers
     MAKE_RAW_TYPE_ACCESSORS(BattleManager, BattleManager);
+    MAKE_RAW_TYPE_ACCESSORS(CacheManager, CacheManager);
     MAKE_RAW_TYPE_ACCESSORS(CharacterManager, CharacterManager);
     MAKE_RAW_TYPE_ACCESSORS(CharacterPartyManager, CharacterPartyManager);
     MAKE_RAW_TYPE_ACCESSORS(ConfigManager, ConfigManager);

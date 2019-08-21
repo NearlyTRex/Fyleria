@@ -40,6 +40,13 @@
 #define DEFAULT_MAX_SCORING                         200
 #define DEFAULT_MAX_SKILL                           200
 
+// Caches
+#define CACHE_FILE_READER_ID                        100
+#define CACHE_FILE_READER_CAPACITY                  100
+#define CACHE_FILE_READER_TTL                       1000*60*60
+#define CACHE_FILE_SYSTEM_PATHS_ID                  200
+#define CACHE_FILE_SYSTEM_PATHS_CAPACITY            100
+
 // Paths
 #define DEFAULT_MAX_PATH_SIZE                       256
 

@@ -17,31 +17,37 @@ class CacheManager
 public:
 
     // Types
-    typedef STDUnorderedMap<String, BasicCache> BasicCacheMappingType;
-    typedef STDUnorderedMap<String, TimedCache> TimedCacheMappingType;
+    typedef STDUnorderedMap<ULong, BasicCache> BasicCacheMappingType;
+    typedef STDUnorderedMap<ULong, TimedCache> TimedCacheMappingType;
 
     // Constructors
     CacheManager();
 
     // Create basic cache
-    Bool CreateBasicCache(const String& sName, ULong uCapacity);
+    Bool CreateBasicCache(ULong uID, ULong uCapacity);
 
     // Create timed cache
-    Bool CreateTimedCache(const String& sName, ULong uCapacity, Double fTimeToLive);
+    Bool CreateTimedCache(ULong uID, ULong uCapacity, Double fTimeToLive);
+
+    // Remove basic cache
+    Bool RemoveBasicCache(ULong uID);
+
+    // Remove timed cache
+    Bool RemoveTimedCache(ULong uID);
 
     // Does a basic cache exist
-    Bool DoesBasicCacheExist(const String& sName) const;
+    Bool DoesBasicCacheExist(ULong uID) const;
 
     // Does a timed cache exist
-    Bool DoesTimedCacheExist(const String& sName) const;
+    Bool DoesTimedCacheExist(ULong uID) const;
 
     // Get basic cache
-    const BasicCache& GetBasicCache(const String& sName) const;
-    BasicCache& GetBasicCache(const String& sName);
+    const BasicCache& GetBasicCache(ULong uID) const;
+    BasicCache& GetBasicCache(ULong uID);
 
     // Get timed cache
-    const TimedCache& GetTimedCache(const String& sName) const;
-    TimedCache& GetTimedCache(const String& sName);
+    const TimedCache& GetTimedCache(ULong uID) const;
+    TimedCache& GetTimedCache(ULong uID);
 
     // Basic cache map
     MAKE_RAW_TYPE_ACCESSORS(BasicCacheMap, BasicCacheMappingType);
