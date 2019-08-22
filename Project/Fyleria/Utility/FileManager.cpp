@@ -2,79 +2,85 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 // Internal includes
-#include "Utility/Filesystem.h"
+#include "Utility/FileManager.h"
 #include "Utility/Constants.h"
 #include "Utility/Converters.h"
 
 namespace Gecko
 {
 
-Bool DoesPathExist(const String& sPath)
+FileManager::FileManager()
+{
+    GetTimedCache().Initialize(CACHE_FILE_SYSTEM_TIMED_ID, CACHE_FILE_SYSTEM_TIMED_CAPACITY, CACHE_FILE_SYSTEM_TIMED_TTL);
+    GetBasicCache().Initialize(CACHE_FILE_SYSTEM_BASIC_ID, CACHE_FILE_SYSTEM_BASIC_CAPACITY);
+}
+
+Bool FileManager::DoesPathExist(const String& sPath)
 {
     return BoostFilesystemExists(BoostFilesystemPath(sPath));
 }
 
-Bool IsFile(const String& sPath)
+Bool FileManager::IsFile(const String& sPath)
 {
     return BoostFilesystemIsFile(BoostFilesystemPath(sPath));
 }
 
-Bool IsDirectory(const String& sPath)
+Bool FileManager::IsDirectory(const String& sPath)
 {
     return BoostFilesystemIsDirectory(BoostFilesystemPath(sPath));
 }
 
-Bool IsSymbolicLink(const String& sPath)
+Bool FileManager::IsSymbolicLink(const String& sPath)
 {
     return BoostFilesystemIsSymbolicLink(BoostFilesystemPath(sPath));
 }
 
-Bool IsPosixPath(const String& sPath)
+Bool FileManager::IsPosixPath(const String& sPath)
 {
     return (sPath.at(0) == '/');
 }
 
-Bool IsWindowsPath(const String& sPath)
+Bool FileManager::IsWindowsPath(const String& sPath)
 {
     return (isalpha(sPath.at(0)) != 0) && (sPath.at(1) == ':');
 }
 
-Bool IsWindowsNetworkDriveLocation(const String& sPath)
+Bool FileManager::IsWindowsNetworkDriveLocation(const String& sPath)
 {
     return (sPath.at(0) == '\\') && (sPath.at(1) == '\\');
 }
 
-Bool CreateNewDirectory(const String& sPath)
+Bool FileManager::CreateNewDirectory(const String& sPath)
 {
     return BoostFilesystemCreateDirectory(BoostFilesystemPath(sPath));
 }
 
-Bool RemoveDirectoryAndFiles(const String& sPath)
+Bool FileManager::RemoveDirectoryAndFiles(const String& sPath)
 {
     return BoostFilesystemRemoveAll(BoostFilesystemPath(sPath)) > 0;
 }
 
-Bool RemoveFile(const String& sPath)
+Bool FileManager::RemoveFile(const String& sPath)
 {
     return BoostFilesystemRemove(BoostFilesystemPath(sPath));
 }
 
-SizeType GetFileSize(const String& sPath)
+SizeType FileManager::GetFileSize(const String& sPath)
 {
     return static_cast<SizeType>(BoostFilesystemFileSize(BoostFilesystemPath(sPath)));
 }
 
-String GetAbsolutePath(const String& sPath)
+String FileManager::GetAbsolutePath(const String& sPath)
 {
     return BoostFilesystemAbsolute(BoostFilesystemPath(sPath)).string();
 }
 
-String GetCanonicalPath(const String& sPath)
+String FileManager::GetCanonicalPath(const String& sPath)
 {
     return BoostFilesystemCanonical(BoostFilesystemPath(sPath)).string();
 }
 
-String GetUriPath(const String& sPath, const String& sFileRoot)
+String FileManager::GetUriPath(const String& sPath, const String& sFileRoot)
 {
     const String sActualPath = JoinPaths(sFileRoot, sPath);
     const UByteArray vIgnoreChars = {'/', ':', '-', '_', '~', '.'};
@@ -87,17 +93,17 @@ String GetUriPath(const String& sPath, const String& sFileRoot)
     return sPrefix + sLocation;
 }
 
-String JoinPaths(const String& sPath1, const String& sPath2)
+String FileManager::JoinPaths(const String& sPath1, const String& sPath2)
 {
     return (BoostFilesystemPath(sPath1) / BoostFilesystemPath(sPath2)).string();
 }
 
-String JoinPathsCanonical(const String& sPath1, const String& sPath2)
+String FileManager::JoinPathsCanonical(const String& sPath1, const String& sPath2)
 {
     return GetCanonicalPath(JoinPaths(sPath1, sPath2));
 }
 
-Bool ReadFileToString(const String& sPath, String& sString, const String& sFileRoot)
+Bool FileManager::ReadFileToString(const String& sPath, String& sString, const String& sFileRoot)
 {
     // Get actual path
     const String sActualPath = JoinPaths(sFileRoot, sPath);
@@ -123,7 +129,7 @@ Bool ReadFileToString(const String& sPath, String& sString, const String& sFileR
     return true;
 }
 
-Bool ReadFileToByteArray(const String& sPath, FixedUnsigned8Array& vBytes, const String& sFileRoot)
+Bool FileManager::ReadFileToByteArray(const String& sPath, FixedUnsigned8Array& vBytes, const String& sFileRoot)
 {
     // Get actual path
     const String sActualPath = JoinPaths(sFileRoot, sPath);
@@ -150,7 +156,7 @@ Bool ReadFileToByteArray(const String& sPath, FixedUnsigned8Array& vBytes, const
     return true;
 }
 
-Bool WriteStringToFile(const String& sPath, const String& sString, const String& sFileRoot)
+Bool FileManager::WriteStringToFile(const String& sPath, const String& sString, const String& sFileRoot)
 {
     // Get actual path
     const String sActualPath = JoinPaths(sFileRoot, sPath);
@@ -170,7 +176,7 @@ Bool WriteStringToFile(const String& sPath, const String& sString, const String&
     return true;
 }
 
-Bool WriteByteArrayToFile(const String& sPath, const FixedUnsigned8Array& vBytes, const String& sFileRoot)
+Bool FileManager::WriteByteArrayToFile(const String& sPath, const FixedUnsigned8Array& vBytes, const String& sFileRoot)
 {
     // Get actual path
     const String sActualPath = JoinPaths(sFileRoot, sPath);
@@ -195,8 +201,17 @@ Bool WriteByteArrayToFile(const String& sPath, const FixedUnsigned8Array& vBytes
     return true;
 }
 
-String GetProgramDirectory()
+String FileManager::GetProgramDirectory()
 {
+    if(GetBasicCache().ContainsKey(CACHE_KEY_PROGRAM_DIRECTORY))
+    {
+        String sProgramDirectory;
+        if(GetBasicCache().GetValue(CACHE_KEY_PROGRAM_DIRECTORY, sProgramDirectory))
+        {
+            return sProgramDirectory;
+        }
+    }
+
     BoostFilesystemPath sFullPath;
 #if defined(PLATFORM_OS_WINDOWS)
     WByteArray vBuffer;
@@ -230,65 +245,68 @@ String GetProgramDirectory()
     sFullPath = String(vBuffer.begin(), vBuffer.end());
 #endif
     sFullPath.remove_filename();
-    return GetAbsolutePath(sFullPath.string());
+
+    String sProgramDirectory = GetAbsolutePath(sFullPath.string());
+    GetBasicCache().SetValue(CACHE_KEY_PROGRAM_DIRECTORY, sProgramDirectory);
+    return sProgramDirectory;
 }
 
-String GetDataDirectory()
+String FileManager::GetDataDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA);
 }
 
-String GetDataCharactersDirectory()
+String FileManager::GetDataCharactersDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA_CHARACTERS);
 }
 
-String GetDataIconsDirectory()
+String FileManager::GetDataIconsDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA_ICONS);
 }
 
-String GetDataItemsDirectory()
+String FileManager::GetDataItemsDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA_ITEMS);
 }
 
-String GetDataLibsDirectory()
+String FileManager::GetDataLibsDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA_LIBS);
 }
 
-String GetDataPagesDirectory()
+String FileManager::GetDataPagesDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA_PAGES);
 }
 
-String GetDataPartiesDirectory()
+String FileManager::GetDataPartiesDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA_PARTIES);
 }
 
-String GetDataPortraitsDirectory()
+String FileManager::GetDataPortraitsDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA_PORTRAITS);
 }
 
-String GetDataSkillsDirectory()
+String FileManager::GetDataSkillsDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_DATA_SKILLS);
 }
 
-String GetSaveDirectory()
+String FileManager::GetSaveDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_SAVE);
 }
 
-String GetLogDirectory()
+String FileManager::GetLogDirectory()
 {
     return JoinPaths(GetProgramDirectory(), FOLDER_LOG);
 }
 
-String GetLogFile()
+String FileManager::GetLogFile()
 {
     static TimeType uTime = STDTime(nullptr);
     String sFilename = "Log_";
