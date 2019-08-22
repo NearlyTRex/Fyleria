@@ -41,11 +41,14 @@
 #define DEFAULT_MAX_SKILL                           200
 
 // Caches
-#define CACHE_FILE_READER_ID                        100
-#define CACHE_FILE_READER_CAPACITY                  100
-#define CACHE_FILE_READER_TTL                       1000*60*60
-#define CACHE_FILE_SYSTEM_PATHS_ID                  200
-#define CACHE_FILE_SYSTEM_PATHS_CAPACITY            100
+#define CACHE_FILE_SYSTEM_TIMED_ID                  100
+#define CACHE_FILE_SYSTEM_TIMED_CAPACITY            100
+#define CACHE_FILE_SYSTEM_TIMED_TTL                 1000*60*60
+#define CACHE_FILE_SYSTEM_BASIC_ID                  200
+#define CACHE_FILE_SYSTEM_BASIC_CAPACITY            100
+
+// Cache keys
+#define CACHE_KEY_PROGRAM_DIRECTORY                 1
 
 // Paths
 #define DEFAULT_MAX_PATH_SIZE                       256

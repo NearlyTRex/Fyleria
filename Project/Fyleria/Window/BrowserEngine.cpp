@@ -4,7 +4,7 @@
 // Internal includes
 #include "Window/BrowserEngine.h"
 #include "Scene/SceneTypes.h"
-#include "Utility/Filesystem.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {

@@ -10,6 +10,7 @@
 #include "Character/CharacterManager.h"
 #include "CharacterParty/CharacterPartyManager.h"
 #include "Config/ConfigManager.h"
+#include "File/FileManager.h"
 #include "Saves/SaveManager.h"
 #include "Scene/SceneManager.h"
 #include "Items/ItemManager.h"
@@ -35,6 +36,7 @@ public:
     MAKE_RAW_TYPE_ACCESSORS(SceneManager, SceneManager);
     MAKE_RAW_TYPE_ACCESSORS(ItemManager, ItemManager);
     MAKE_RAW_TYPE_ACCESSORS(SkillManager, SkillManager);
+    MAKE_RAW_TYPE_ACCESSORS(FileManager, FileManager);
 };
 
 // Typedef

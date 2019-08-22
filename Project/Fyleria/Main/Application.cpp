@@ -3,12 +3,12 @@
 
 // Internal includes
 #include "Main/Application.h"
+#include "File/FileManager.h"
 #include "Window/MainWindow.h"
 #include "Scene/SceneTypes.h"
 #include "Stats/StatNames.h"
 #include "Utility/Constants.h"
 #include "Utility/Logging.h"
-#include "Utility/Filesystem.h"
 
 namespace Gecko
 {
@@ -23,9 +23,6 @@ Application::~Application()
 
 Int Application::Run()
 {
-    // Create managers
-    SetManagers(STDMakeSharedPtr<ManagerSet>());
-
     // Initialize
     if(!Initialize())
     {

@@ -16,7 +16,7 @@ class BasicCache : public CacheInterface
 public:
 
     // Typedefs
-    typedef RawMemCacheBasicType<String, String> MemCacheType;
+    typedef RawMemCacheBasicType<Int, String> MemCacheType;
     typedef STDSharedPtr<MemCacheType> MemCacheTypeSharedPtr;
 
     // Constructors
@@ -29,16 +29,16 @@ public:
     virtual Bool Initialize(ULong uCapacity);
 
     // Determine if key exists
-    virtual Bool ContainsKey(const String& sKey) override;
+    virtual Bool ContainsKey(Int iKey) override;
 
     // Set value
-    virtual Bool SetValue(const String& sKey, const String& sValue) override;
+    virtual Bool SetValue(Int iKey, const String& sValue) override;
 
     // Get value
-    virtual Bool GetValue(const String& sKey, String& sValue) override;
+    virtual Bool GetValue(Int iKey, String& sValue) override;
 
     // Erase value
-    virtual Bool EraseValue(const String& sKey) override;
+    virtual Bool EraseValue(Int iKey) override;
 
     // Shrink to the given number of elements
     virtual Bool Shrink(SizeType uNewCapacity) override;
@@ -68,13 +68,13 @@ public:
     virtual Bool IsFull() const override;
 
     // Determine if the given value is expired
-    virtual Bool IsExpired(const String& sKey) const override;
+    virtual Bool IsExpired(Int iKey) const override;
 
     // Determine if all elements are expired
     virtual Bool AreAllExpired() const override;
 
     // Determine if the given value is valid
-    virtual Bool IsValid(const String& sKey) const override;
+    virtual Bool IsValid(Int iKey) const override;
 
     // Mem cache
     MAKE_RAW_TYPE_ACCESSORS(MemCache, MemCacheTypeSharedPtr);

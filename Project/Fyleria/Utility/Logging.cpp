@@ -9,50 +9,31 @@
 namespace Gecko
 {
 
-void SetupLogging(Bool bConsole, Bool bFile)
+void SetupLogging(const String& sFile)
 {
     // Set logging thread pool
     InitLoggingThreadPool(8192, 1);
 
-    // Get logging file
-    String sLoggingFile = Gecko::JoinPaths(Gecko::GetLogDirectory(), Gecko::GetLogFile());
-
     // Create logger
-    if(bConsole && bFile)
-    {
-        // Create console sink
-        auto pConsoleSink = STDMakeSharedPtr<ColorStdOutSinkType>();
-        pConsoleSink->set_level(LoggingLevelWarning);
-
-        // Create file sink
-        auto pFileSink = STDMakeSharedPtr<FileSinkType>(sLoggingFile, true);
-        pFileSink->set_level(LoggingLevelTrace);
-
-        // Create multi sink logger
-        STDVector<SinkPtrType> vSinks {pConsoleSink, pFileSink};
-        auto pMultiSinkLogger = STDMakeSharedPtr<AsyncLoggerType>(
-            LOGGER_NAME,
-            vSinks.begin(),
-            vSinks.end(),
-            LoggingThreadPool(),
-            LoggingAsyncOverflowPolicyBlock
-        );
-        SetDefaultLogger(pMultiSinkLogger);
-    }
-    else if(bConsole)
-    {
-        // Create console logger
-        auto pConsoleLogger = CreateStdOutColorLogger(LOGGER_NAME);
-        pConsoleLogger->set_level(LoggingLevelWarning);
-        SetDefaultLogger(pConsoleLogger);
-    }
-    else if(bFile)
-    {
-        // Create file logger
-        auto pFileLogger = CreateBasicLogger(LOGGER_NAME, sLoggingFile);
-        pFileLogger->set_level(LoggingLevelTrace);
-        SetDefaultLogger(pFileLogger);
-    }
+#if defined(PLATFORM_OS_WINDOWS)
+    auto pFileLogger = CreateBasicLogger(LOGGER_NAME, sFile);
+    pFileLogger->set_level(LoggingLevelTrace);
+    SetDefaultLogger(pFileLogger);
+#else
+    auto pConsoleSink = STDMakeSharedPtr<ColorStdOutSinkType>();
+    auto pFileSink = STDMakeSharedPtr<FileSinkType>(sFile, true);
+    pConsoleSink->set_level(LoggingLevelWarning);
+    pFileSink->set_level(LoggingLevelTrace);
+    STDVector<SinkPtrType> vSinks {pConsoleSink, pFileSink};
+    auto pMultiSinkLogger = STDMakeSharedPtr<AsyncLoggerType>(
+        LOGGER_NAME,
+        vSinks.begin(),
+        vSinks.end(),
+        LoggingThreadPool(),
+        LoggingAsyncOverflowPolicyBlock
+    );
+    SetDefaultLogger(pMultiSinkLogger);
+#endif
 }
 
 };

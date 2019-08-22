@@ -4,7 +4,6 @@
 // Internal includes
 #include "Window/BrowserEngineWebKitGtk.h"
 #include "Scene/SceneTypes.h"
-#include "Utility/Filesystem.h"
 #include "Utility/Constants.h"
 #include "Utility/ManagerSet.h"
 

@@ -25,40 +25,40 @@ Bool BasicCache::Initialize(ULong uCapacity)
     return true;
 }
 
-Bool BasicCache::ContainsKey(const String& sKey)
+Bool BasicCache::ContainsKey(Int iKey)
 {
     if(GetMemCache())
     {
-        return GetMemCache()->contains(sKey);
+        return GetMemCache()->contains(iKey);
     }
     return false;
 }
 
-Bool BasicCache::SetValue(const String& sKey, const String& sValue)
+Bool BasicCache::SetValue(Int iKey, const String& sValue)
 {
     if(GetMemCache())
     {
-        GetMemCache()->insert(sKey, sValue);
+        GetMemCache()->insert(iKey, sValue);
         return true;
     }
     return false;
 }
 
-Bool BasicCache::GetValue(const String& sKey, String& sValue)
+Bool BasicCache::GetValue(Int iKey, String& sValue)
 {
     if(GetMemCache())
     {
-        sValue = GetMemCache()->lookup(sKey);
+        sValue = GetMemCache()->lookup(iKey);
         return true;
     }
     return false;
 }
 
-Bool BasicCache::EraseValue(const String& sKey)
+Bool BasicCache::EraseValue(Int iKey)
 {
     if(GetMemCache())
     {
-        return GetMemCache()->erase(sKey);
+        return GetMemCache()->erase(iKey);
     }
     return false;
 }
@@ -143,7 +143,7 @@ Bool BasicCache::IsFull() const
     return false;
 }
 
-Bool BasicCache::IsExpired(const String& sKey) const
+Bool BasicCache::IsExpired(Int iKey) const
 {
     return false;
 }
@@ -153,11 +153,11 @@ Bool BasicCache::AreAllExpired() const
     return false;
 }
 
-Bool BasicCache::IsValid(const String& sKey) const
+Bool BasicCache::IsValid(Int iKey) const
 {
     if(GetMemCache())
     {
-        return GetMemCache()->is_valid(GetMemCache()->find(sKey));
+        return GetMemCache()->is_valid(GetMemCache()->find(iKey));
     }
     return false;
 }

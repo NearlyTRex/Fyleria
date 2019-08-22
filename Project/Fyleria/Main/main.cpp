@@ -24,27 +24,29 @@ int main(int argc, char** argv)
 
     try
     {
+        // Create manager set
+        auto pManagerSet = STDMakeSharedPtr<ManagerSet>();
+
+        // Get file manager
+        Gecko::FileManager& fileManager = pManagerSet->GetFileManager();
+
         // Create save folder
-        if(!Gecko::DoesPathExist(Gecko::GetSaveDirectory()))
+        if(!fileManager.DoesPathExist(fileManager.GetSaveDirectory()))
         {
-            Gecko::CreateNewDirectory(Gecko::GetSaveDirectory());
+            fileManager.CreateNewDirectory(fileManager.GetSaveDirectory());
         }
 
         // Create log folder
-        if(!Gecko::DoesPathExist(Gecko::GetLogDirectory()))
+        if(!fileManager.DoesPathExist(fileManager.GetLogDirectory()))
         {
-            Gecko::CreateNewDirectory(Gecko::GetLogDirectory());
+            fileManager.CreateNewDirectory(fileManager.GetLogDirectory());
         }
 
         // Setup logging
-#if defined(PLATFORM_OS_WINDOWS)
-        Gecko::SetupLogging(false, true);
-#else
-        Gecko::SetupLogging(true, true);
-#endif
+        Gecko::SetupLogging(fileManager.JoinPaths(fileManager.GetLogDirectory(), fileManager.GetLogFile()));
 
         // Check data folder
-        if(!Gecko::DoesPathExist(Gecko::GetDataDirectory()))
+        if(!fileManager.DoesPathExist(fileManager.GetDataDirectory()))
         {
             ERROR_STATEMENT("Missing data folder, stopping.");
             return EXIT_FAILURE;
@@ -52,6 +54,7 @@ int main(int argc, char** argv)
 
         // Run application
         Gecko::Application app;
+        app.SetManagers(pManagerSet);
         return app.Run();
     }
     catch (STDException& e)

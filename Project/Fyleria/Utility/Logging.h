@@ -80,7 +80,7 @@ namespace Gecko
 {
 
 // Setup logging
-void SetupLogging(Bool bConsole, Bool bFile);
+void SetupLogging(const String& sFile);
 
 };
 
