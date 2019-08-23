@@ -211,7 +211,11 @@ void SaveManager::DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot)
     }
 }
 
-void SaveManager::SaveToFile(const String& sSlot, const String& sFile, const String& sType)
+void SaveManager::SaveToFile(
+    ManagerSet* pManagerSet,
+    const String& sSlot,
+    const String& sFile,
+    const String& sType)
 {
     // Serialize save data to file
     Json jsonData = GetSave(sSlot);
@@ -222,7 +226,11 @@ void SaveManager::SaveToFile(const String& sSlot, const String& sFile, const Str
     }
 }
 
-void SaveManager::LoadFromFile(const String& sSlot, const String& sFile, const String& sType)
+void SaveManager::LoadFromFile(
+    ManagerSet* pManagerSet,
+    const String& sSlot,
+    const String& sFile,
+    const String& sType)
 {
     // Deserialize file to save data
     Json jsonData;
@@ -236,7 +244,12 @@ void SaveManager::LoadFromFile(const String& sSlot, const String& sFile, const S
     LoadSave(jsonData.get<Save>());
 }
 
-void SaveManager::SaveAllToDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType)
+void SaveManager::SaveAllToDirectory(
+    ManagerSet* pManagerSet,
+    const String& sDirectory,
+    const String& sBase,
+    const String& sExt,
+    const String& sType)
 {
     // Save each slot into a save file
     for(auto& sSlotName : GetEnumNames<SaveSlotType>())
@@ -250,7 +263,12 @@ void SaveManager::SaveAllToDirectory(const String& sDirectory, const String& sBa
     }
 }
 
-void SaveManager::LoadAllFromDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType)
+void SaveManager::LoadAllFromDirectory(
+    ManagerSet* pManagerSet,
+    const String& sDirectory,
+    const String& sBase,
+    const String& sExt,
+    const String& sType)
 {
     // Get save path
     String sSavePath = GetCanonicalPath(sDirectory);

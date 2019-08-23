@@ -29,42 +29,48 @@ void PostProcessItems(T& tree, const TreeIndexArray& vTreeIndices)
     }
 }
 
-void ItemManager::LoadItemTreesIntoMemory()
+void ItemManager::LoadItemTreesIntoMemory(ManagerSet* pManagerSet)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Items location
+    String sLocation = pManagerSet->GetFileManager().GetDataItemsDirectory();
+
     // Armor
-    GetItemTreeArmor().AddBranch("Chest", ITEM_FILE_ARMOR_CHEST, GetDataItemsDirectory());
-    GetItemTreeArmor().AddBranch("Feet", ITEM_FILE_ARMOR_FEET, GetDataItemsDirectory());
-    GetItemTreeArmor().AddBranch("Finger", ITEM_FILE_ARMOR_FINGER, GetDataItemsDirectory());
-    GetItemTreeArmor().AddBranch("Hands", ITEM_FILE_ARMOR_HANDS, GetDataItemsDirectory());
-    GetItemTreeArmor().AddBranch("Head", ITEM_FILE_ARMOR_HEAD, GetDataItemsDirectory());
-    GetItemTreeArmor().AddBranch("Neck", ITEM_FILE_ARMOR_NECK, GetDataItemsDirectory());
-    GetItemTreeArmor().AddBranch("Legs", ITEM_FILE_ARMOR_LEGS, GetDataItemsDirectory());
-    GetItemTreeArmor().AddBranch("Shield", ITEM_FILE_ARMOR_SHIELD, GetDataItemsDirectory());
+    GetItemTreeArmor().AddBranch("Chest", ITEM_FILE_ARMOR_CHEST, sLocation);
+    GetItemTreeArmor().AddBranch("Feet", ITEM_FILE_ARMOR_FEET, sLocation);
+    GetItemTreeArmor().AddBranch("Finger", ITEM_FILE_ARMOR_FINGER, sLocation);
+    GetItemTreeArmor().AddBranch("Hands", ITEM_FILE_ARMOR_HANDS, sLocation);
+    GetItemTreeArmor().AddBranch("Head", ITEM_FILE_ARMOR_HEAD, sLocation);
+    GetItemTreeArmor().AddBranch("Neck", ITEM_FILE_ARMOR_NECK, sLocation);
+    GetItemTreeArmor().AddBranch("Legs", ITEM_FILE_ARMOR_LEGS, sLocation);
+    GetItemTreeArmor().AddBranch("Shield", ITEM_FILE_ARMOR_SHIELD, sLocation);
 
     // Ingredient
-    GetItemTreeIngredient().AddBranch("Bar", ITEM_FILE_INGREDIENT_BAR, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Cloth", ITEM_FILE_INGREDIENT_CLOTH, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Crystal", ITEM_FILE_INGREDIENT_CRYSTAL, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Leather", ITEM_FILE_INGREDIENT_LEATHER, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Mail", ITEM_FILE_INGREDIENT_MAIL, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Plate", ITEM_FILE_INGREDIENT_PLATE, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Scale", ITEM_FILE_INGREDIENT_SCALE, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Screw", ITEM_FILE_INGREDIENT_SCREW, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Sheet", ITEM_FILE_INGREDIENT_SHEET, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Stud", ITEM_FILE_INGREDIENT_STUD, GetDataItemsDirectory());
-    GetItemTreeIngredient().AddBranch("Thread", ITEM_FILE_INGREDIENT_THREAD, GetDataItemsDirectory());
+    GetItemTreeIngredient().AddBranch("Bar", ITEM_FILE_INGREDIENT_BAR, sLocation);
+    GetItemTreeIngredient().AddBranch("Cloth", ITEM_FILE_INGREDIENT_CLOTH, sLocation);
+    GetItemTreeIngredient().AddBranch("Crystal", ITEM_FILE_INGREDIENT_CRYSTAL, sLocation);
+    GetItemTreeIngredient().AddBranch("Leather", ITEM_FILE_INGREDIENT_LEATHER, sLocation);
+    GetItemTreeIngredient().AddBranch("Mail", ITEM_FILE_INGREDIENT_MAIL, sLocation);
+    GetItemTreeIngredient().AddBranch("Plate", ITEM_FILE_INGREDIENT_PLATE, sLocation);
+    GetItemTreeIngredient().AddBranch("Scale", ITEM_FILE_INGREDIENT_SCALE, sLocation);
+    GetItemTreeIngredient().AddBranch("Screw", ITEM_FILE_INGREDIENT_SCREW, sLocation);
+    GetItemTreeIngredient().AddBranch("Sheet", ITEM_FILE_INGREDIENT_SHEET, sLocation);
+    GetItemTreeIngredient().AddBranch("Stud", ITEM_FILE_INGREDIENT_STUD, sLocation);
+    GetItemTreeIngredient().AddBranch("Thread", ITEM_FILE_INGREDIENT_THREAD, sLocation);
 
     // Potion
-    GetItemTreePotion().AddBranch("Energy", ITEM_FILE_POTION_ENERGY, GetDataItemsDirectory());
-    GetItemTreePotion().AddBranch("Heal", ITEM_FILE_POTION_HEAL, GetDataItemsDirectory());
-    GetItemTreePotion().AddBranch("Magic", ITEM_FILE_POTION_MAGIC, GetDataItemsDirectory());
-    GetItemTreePotion().AddBranch("Speed", ITEM_FILE_POTION_SPEED, GetDataItemsDirectory());
+    GetItemTreePotion().AddBranch("Energy", ITEM_FILE_POTION_ENERGY, sLocation);
+    GetItemTreePotion().AddBranch("Heal", ITEM_FILE_POTION_HEAL, sLocation);
+    GetItemTreePotion().AddBranch("Magic", ITEM_FILE_POTION_MAGIC, sLocation);
+    GetItemTreePotion().AddBranch("Speed", ITEM_FILE_POTION_SPEED, sLocation);
 
     // Weapon
-    GetItemTreeWeapon().AddBranch("Blunt", ITEM_FILE_WEAPON_BLUNT, GetDataItemsDirectory());
-    GetItemTreeWeapon().AddBranch("Mage", ITEM_FILE_WEAPON_MAGE, GetDataItemsDirectory());
-    GetItemTreeWeapon().AddBranch("Pierce", ITEM_FILE_WEAPON_PIERCE, GetDataItemsDirectory());
-    GetItemTreeWeapon().AddBranch("Slash", ITEM_FILE_WEAPON_SLASH, GetDataItemsDirectory());
+    GetItemTreeWeapon().AddBranch("Blunt", ITEM_FILE_WEAPON_BLUNT, sLocation);
+    GetItemTreeWeapon().AddBranch("Mage", ITEM_FILE_WEAPON_MAGE, sLocation);
+    GetItemTreeWeapon().AddBranch("Pierce", ITEM_FILE_WEAPON_PIERCE, sLocation);
+    GetItemTreeWeapon().AddBranch("Slash", ITEM_FILE_WEAPON_SLASH, sLocation);
 
     // Post process item data
     PostProcessItems<ItemTreeArmor>(GetItemTreeArmor(), GetAllArmorItems());

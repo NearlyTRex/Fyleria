@@ -190,7 +190,7 @@ void BrowserEngineWebKitGtk::InjectUserStylesheet(const String& sStyle)
 void BrowserEngineWebKitGtk::InjectUserStylesheetFile(const String& sFile, const String& sFileRoot)
 {
     // Inject style
-    String sUri = GetUriPath(sFile, sFileRoot);
+    String sUri = GetManagers()->GetFileManager().GetUriPath(sFile, sFileRoot);
     String sTag = "<link rel=\"stylesheet\" type=\"text/css\" href='" + sUri + "'>\n";
     SetUserStyles(GetUserStyles() + sTag);
 }
@@ -205,7 +205,7 @@ void BrowserEngineWebKitGtk::InjectUserJavascript(const String& sScript)
 void BrowserEngineWebKitGtk::InjectUserJavascriptFile(const String& sFile, const String& sFileRoot)
 {
     // Inject script
-    String sUri = GetUriPath(sFile, sFileRoot);
+    String sUri = GetManagers()->GetFileManager().GetUriPath(sFile, sFileRoot);
     String sTag = "<script type=\"text/javascript\" src=\"" + sUri + "\"></script>\n";
     SetUserScripts(GetUserScripts() + sTag);
 }
@@ -220,7 +220,7 @@ void BrowserEngineWebKitGtk::InjectUserHtmlFile(const String& sFile, const Strin
 {
     // Inject html
     String sFileContents;
-    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    if(GetManagers()->GetFileManager().ReadFileToString(sFile, sFileContents, sFileRoot))
     {
         InjectUserHtml(sFileContents);
     }
@@ -307,7 +307,7 @@ void BrowserEngineWebKitGtk::SetHtmlContentFile(const String& sFile, const Strin
 {
     // Set document html
     String sFileContents;
-    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    if(GetManagers()->GetFileManager().ReadFileToString(sFile, sFileContents, sFileRoot))
     {
         SetHtmlContent(sFileContents);
     }

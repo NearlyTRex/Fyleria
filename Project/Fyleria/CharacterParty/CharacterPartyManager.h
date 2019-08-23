@@ -30,7 +30,7 @@ public:
     String LoadPartyFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData);
 
     // Save a party to file
-    void SavePartyToFile(const String& sPartyID, const String& sFilename, const String& sType);
+    void SavePartyToFile(ManagerSet* pManagerSet, const String& sPartyID, const String& sFilename, const String& sType);
 
     // Create a party
     void CreateParty(const String& sPartyID, const String& sPartyType, Bool bSetAsCurrent = false);

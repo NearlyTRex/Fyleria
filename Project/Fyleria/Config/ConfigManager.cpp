@@ -5,8 +5,8 @@
 #include "Config/ConfigManager.h"
 #include "Utility/Errors.h"
 #include "Utility/Converters.h"
-#include "Utility/Filesystem.h"
 #include "Utility/Serialization.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -15,11 +15,11 @@ ConfigManager::ConfigManager()
 {
 }
 
-Bool ConfigManager::LoadConfig(const String& sName, const String& sFile)
+Bool ConfigManager::LoadConfig(ManagerSet* pManagerSet, const String& sName, const String& sFile)
 {
     // Read json data into config object
     Json jsonData;
-    if(!ReadJsonFile(sFile, jsonData, GetDataDirectory()))
+    if(!ReadJsonFile(sFile, jsonData, pManagerSet->GetFileManager().GetDataDirectory()))
     {
         THROW_RUNTIME_ERROR("Path '" + sFile + "' could not be loaded for configuration");
     }

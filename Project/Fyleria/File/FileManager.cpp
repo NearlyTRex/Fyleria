@@ -11,8 +11,8 @@ namespace Gecko
 
 FileManager::FileManager()
 {
-    GetTimedCache().Initialize(CACHE_FILE_SYSTEM_TIMED_ID, CACHE_FILE_SYSTEM_TIMED_CAPACITY, CACHE_FILE_SYSTEM_TIMED_TTL);
-    GetBasicCache().Initialize(CACHE_FILE_SYSTEM_BASIC_ID, CACHE_FILE_SYSTEM_BASIC_CAPACITY);
+    GetTimedCache().Initialize(CACHE_FILE_SYSTEM_TIMED_CAPACITY, CACHE_FILE_SYSTEM_TIMED_TTL);
+    GetBasicCache().Initialize(CACHE_FILE_SYSTEM_BASIC_CAPACITY);
 }
 
 Bool FileManager::DoesPathExist(const String& sPath)

@@ -307,7 +307,7 @@ void BrowserEngineEdgeHtml::InjectUserStylesheetFile(const String& sFile, const 
 {
     // Inject style
     String sFileContents;
-    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    if(GetManagers()->GetFileManager().ReadFileToString(sFile, sFileContents, sFileRoot))
     {
         InjectUserStylesheet(sFileContents);
     }
@@ -324,7 +324,7 @@ void BrowserEngineEdgeHtml::InjectUserJavascriptFile(const String& sFile, const 
 {
     // Inject script
     String sFileContents;
-    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    if(GetManagers()->GetFileManager().ReadFileToString(sFile, sFileContents, sFileRoot))
     {
         InjectUserJavascript(sFileContents);
     }
@@ -340,7 +340,7 @@ void BrowserEngineEdgeHtml::InjectUserHtmlFile(const String& sFile, const String
 {
     // Inject html
     String sFileContents;
-    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    if(GetManagers()->GetFileManager().ReadFileToString(sFile, sFileContents, sFileRoot))
     {
         InjectUserHtml(sFileContents);
     }
@@ -372,7 +372,7 @@ void BrowserEngineEdgeHtml::SetHtmlContentFile(const String& sFile, const String
 {
     // Set document html
     String sFileContents;
-    if(ReadFileToString(sFile, sFileContents, sFileRoot))
+    if(GetManagers()->GetFileManager().ReadFileToString(sFile, sFileContents, sFileRoot))
     {
         SetHtmlContent(sFileContents);
     }

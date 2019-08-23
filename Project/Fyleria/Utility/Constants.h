@@ -41,10 +41,8 @@
 #define DEFAULT_MAX_SKILL                           200
 
 // Caches
-#define CACHE_FILE_SYSTEM_TIMED_ID                  100
 #define CACHE_FILE_SYSTEM_TIMED_CAPACITY            100
-#define CACHE_FILE_SYSTEM_TIMED_TTL                 1000*60*60
-#define CACHE_FILE_SYSTEM_BASIC_ID                  200
+#define CACHE_FILE_SYSTEM_TIMED_TTL                 1000*60*60*1.0
 #define CACHE_FILE_SYSTEM_BASIC_CAPACITY            100
 
 // Cache keys

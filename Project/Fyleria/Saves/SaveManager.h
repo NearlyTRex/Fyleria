@@ -78,16 +78,34 @@ public:
     void DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot);
 
     // Save to file
-    void SaveToFile(const String& sSlot, const String& sFile, const String& sType);
+    void SaveToFile(
+        ManagerSet* pManagerSet,
+        const String& sSlot,
+        const String& sFile,
+        const String& sType);
 
     // Load to file
-    void LoadFromFile(const String& sSlot, const String& sFile, const String& sType);
+    void LoadFromFile(
+        ManagerSet* pManagerSet,
+        const String& sSlot,
+        const String& sFile,
+        const String& sType);
 
     // Save all to the given directory
-    void SaveAllToDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType);
+    void SaveAllToDirectory(
+        ManagerSet* pManagerSet,
+        const String& sDirectory,
+        const String& sBase,
+        const String& sExt,
+        const String& sType);
 
     // Load all from the given directory
-    void LoadAllFromDirectory(const String& sDirectory, const String& sBase, const String& sExt, const String& sType);
+    void LoadAllFromDirectory(
+        ManagerSet* pManagerSet,
+        const String& sDirectory,
+        const String& sBase,
+        const String& sExt,
+        const String& sType);
 
     // Initialize all save slots
     void InitializeAllSaveSlots();

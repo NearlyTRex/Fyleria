@@ -31,87 +31,93 @@ void PostProcessSkills(T& tree, const TreeIndexArray& vTreeIndices)
     }
 }
 
-void SkillManager::LoadSkillTreesIntoMemory()
+void SkillManager::LoadSkillTreesIntoMemory(ManagerSet* pManagerSet)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Skills location
+    String sLocation = pManagerSet->GetFileManager().GetDataSkillsDirectory();
+
     // Affinity
-    GetSkillTreeAffinity().AddBranch("Blood", SKILL_FILE_AFFINITY_BLOOD, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Dark", SKILL_FILE_AFFINITY_DARK, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Earth", SKILL_FILE_AFFINITY_EARTH, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Fire", SKILL_FILE_AFFINITY_FIRE, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Flesh", SKILL_FILE_AFFINITY_FLESH, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Force", SKILL_FILE_AFFINITY_FORCE, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Holy", SKILL_FILE_AFFINITY_HOLY, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Ice", SKILL_FILE_AFFINITY_ICE, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Light", SKILL_FILE_AFFINITY_LIGHT, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Mind", SKILL_FILE_AFFINITY_MIND, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Shock", SKILL_FILE_AFFINITY_SHOCK, GetDataSkillsDirectory());
-    GetSkillTreeAffinity().AddBranch("Wind", SKILL_FILE_AFFINITY_WIND, GetDataSkillsDirectory());
+    GetSkillTreeAffinity().AddBranch("Blood", SKILL_FILE_AFFINITY_BLOOD, sLocation);
+    GetSkillTreeAffinity().AddBranch("Dark", SKILL_FILE_AFFINITY_DARK, sLocation);
+    GetSkillTreeAffinity().AddBranch("Earth", SKILL_FILE_AFFINITY_EARTH, sLocation);
+    GetSkillTreeAffinity().AddBranch("Fire", SKILL_FILE_AFFINITY_FIRE, sLocation);
+    GetSkillTreeAffinity().AddBranch("Flesh", SKILL_FILE_AFFINITY_FLESH, sLocation);
+    GetSkillTreeAffinity().AddBranch("Force", SKILL_FILE_AFFINITY_FORCE, sLocation);
+    GetSkillTreeAffinity().AddBranch("Holy", SKILL_FILE_AFFINITY_HOLY, sLocation);
+    GetSkillTreeAffinity().AddBranch("Ice", SKILL_FILE_AFFINITY_ICE, sLocation);
+    GetSkillTreeAffinity().AddBranch("Light", SKILL_FILE_AFFINITY_LIGHT, sLocation);
+    GetSkillTreeAffinity().AddBranch("Mind", SKILL_FILE_AFFINITY_MIND, sLocation);
+    GetSkillTreeAffinity().AddBranch("Shock", SKILL_FILE_AFFINITY_SHOCK, sLocation);
+    GetSkillTreeAffinity().AddBranch("Wind", SKILL_FILE_AFFINITY_WIND, sLocation);
 
     // Alchemy
-    GetSkillTreeAlchemy().AddBranch("Alchemist", SKILL_FILE_ALCHEMY_ALCHEMIST, GetDataSkillsDirectory());
-    GetSkillTreeAlchemy().AddBranch("Chemist", SKILL_FILE_ALCHEMY_CHEMIST, GetDataSkillsDirectory());
-    GetSkillTreeAlchemy().AddBranch("Energist", SKILL_FILE_ALCHEMY_ENERGIST, GetDataSkillsDirectory());
-    GetSkillTreeAlchemy().AddBranch("Healer", SKILL_FILE_ALCHEMY_HEALER, GetDataSkillsDirectory());
+    GetSkillTreeAlchemy().AddBranch("Alchemist", SKILL_FILE_ALCHEMY_ALCHEMIST, sLocation);
+    GetSkillTreeAlchemy().AddBranch("Chemist", SKILL_FILE_ALCHEMY_CHEMIST, sLocation);
+    GetSkillTreeAlchemy().AddBranch("Energist", SKILL_FILE_ALCHEMY_ENERGIST, sLocation);
+    GetSkillTreeAlchemy().AddBranch("Healer", SKILL_FILE_ALCHEMY_HEALER, sLocation);
 
     // Breakdown
-    GetSkillTreeBreakdown().AddBranch("Bowbane", SKILL_FILE_BREAKDOWN_BOWBANE, GetDataSkillsDirectory());
-    GetSkillTreeBreakdown().AddBranch("Goldbane", SKILL_FILE_BREAKDOWN_GOLDBANE, GetDataSkillsDirectory());
-    GetSkillTreeBreakdown().AddBranch("Hammerbane", SKILL_FILE_BREAKDOWN_HAMMERBANE, GetDataSkillsDirectory());
-    GetSkillTreeBreakdown().AddBranch("Platebane", SKILL_FILE_BREAKDOWN_PLATEBANE, GetDataSkillsDirectory());
-    GetSkillTreeBreakdown().AddBranch("Scalebane", SKILL_FILE_BREAKDOWN_SCALEBANE, GetDataSkillsDirectory());
-    GetSkillTreeBreakdown().AddBranch("Shieldbane", SKILL_FILE_BREAKDOWN_SHIELDBANE, GetDataSkillsDirectory());
-    GetSkillTreeBreakdown().AddBranch("Spellbane", SKILL_FILE_BREAKDOWN_SPELLBANE, GetDataSkillsDirectory());
-    GetSkillTreeBreakdown().AddBranch("StudRemover", SKILL_FILE_BREAKDOWN_STUDREMOVER, GetDataSkillsDirectory());
-    GetSkillTreeBreakdown().AddBranch("Swordbane", SKILL_FILE_BREAKDOWN_SWORDBANE, GetDataSkillsDirectory());
-    GetSkillTreeBreakdown().AddBranch("Threadbare", SKILL_FILE_BREAKDOWN_THREADBARE, GetDataSkillsDirectory());
+    GetSkillTreeBreakdown().AddBranch("Bowbane", SKILL_FILE_BREAKDOWN_BOWBANE, sLocation);
+    GetSkillTreeBreakdown().AddBranch("Goldbane", SKILL_FILE_BREAKDOWN_GOLDBANE, sLocation);
+    GetSkillTreeBreakdown().AddBranch("Hammerbane", SKILL_FILE_BREAKDOWN_HAMMERBANE, sLocation);
+    GetSkillTreeBreakdown().AddBranch("Platebane", SKILL_FILE_BREAKDOWN_PLATEBANE, sLocation);
+    GetSkillTreeBreakdown().AddBranch("Scalebane", SKILL_FILE_BREAKDOWN_SCALEBANE, sLocation);
+    GetSkillTreeBreakdown().AddBranch("Shieldbane", SKILL_FILE_BREAKDOWN_SHIELDBANE, sLocation);
+    GetSkillTreeBreakdown().AddBranch("Spellbane", SKILL_FILE_BREAKDOWN_SPELLBANE, sLocation);
+    GetSkillTreeBreakdown().AddBranch("StudRemover", SKILL_FILE_BREAKDOWN_STUDREMOVER, sLocation);
+    GetSkillTreeBreakdown().AddBranch("Swordbane", SKILL_FILE_BREAKDOWN_SWORDBANE, sLocation);
+    GetSkillTreeBreakdown().AddBranch("Threadbare", SKILL_FILE_BREAKDOWN_THREADBARE, sLocation);
 
     // Combat
-    GetSkillTreeCombat().AddBranch("Ambidextrous", SKILL_FILE_COMBAT_AMBIDEXTROUS, GetDataSkillsDirectory());
-    GetSkillTreeCombat().AddBranch("Avatar", SKILL_FILE_COMBAT_AVATAR, GetDataSkillsDirectory());
-    GetSkillTreeCombat().AddBranch("Barbarian", SKILL_FILE_COMBAT_BARBARIAN, GetDataSkillsDirectory());
-    GetSkillTreeCombat().AddBranch("Blademaster", SKILL_FILE_COMBAT_BLADEMASTER, GetDataSkillsDirectory());
-    GetSkillTreeCombat().AddBranch("Focused", SKILL_FILE_COMBAT_FOCUSED, GetDataSkillsDirectory());
-    GetSkillTreeCombat().AddBranch("Mage", SKILL_FILE_COMBAT_MAGE, GetDataSkillsDirectory());
-    GetSkillTreeCombat().AddBranch("Rogue", SKILL_FILE_COMBAT_ROGUE, GetDataSkillsDirectory());
-    GetSkillTreeCombat().AddBranch("Stalwart", SKILL_FILE_COMBAT_STALWART, GetDataSkillsDirectory());
+    GetSkillTreeCombat().AddBranch("Ambidextrous", SKILL_FILE_COMBAT_AMBIDEXTROUS, sLocation);
+    GetSkillTreeCombat().AddBranch("Avatar", SKILL_FILE_COMBAT_AVATAR, sLocation);
+    GetSkillTreeCombat().AddBranch("Barbarian", SKILL_FILE_COMBAT_BARBARIAN, sLocation);
+    GetSkillTreeCombat().AddBranch("Blademaster", SKILL_FILE_COMBAT_BLADEMASTER, sLocation);
+    GetSkillTreeCombat().AddBranch("Focused", SKILL_FILE_COMBAT_FOCUSED, sLocation);
+    GetSkillTreeCombat().AddBranch("Mage", SKILL_FILE_COMBAT_MAGE, sLocation);
+    GetSkillTreeCombat().AddBranch("Rogue", SKILL_FILE_COMBAT_ROGUE, sLocation);
+    GetSkillTreeCombat().AddBranch("Stalwart", SKILL_FILE_COMBAT_STALWART, sLocation);
 
     // Crafting
-    GetSkillTreeCrafting().AddBranch("Bowsmith", SKILL_FILE_CRAFTING_BOWSMITH, GetDataSkillsDirectory());
-    GetSkillTreeCrafting().AddBranch("Goldsmith", SKILL_FILE_CRAFTING_GOLDSMITH, GetDataSkillsDirectory());
-    GetSkillTreeCrafting().AddBranch("Hammersmith", SKILL_FILE_CRAFTING_HAMMERSMITH, GetDataSkillsDirectory());
-    GetSkillTreeCrafting().AddBranch("Platesmith", SKILL_FILE_CRAFTING_PLATESMITH, GetDataSkillsDirectory());
-    GetSkillTreeCrafting().AddBranch("Scalesmith", SKILL_FILE_CRAFTING_SCALESMITH, GetDataSkillsDirectory());
-    GetSkillTreeCrafting().AddBranch("Shieldsmith", SKILL_FILE_CRAFTING_SHIELDSMITH, GetDataSkillsDirectory());
-    GetSkillTreeCrafting().AddBranch("Spellsmith", SKILL_FILE_CRAFTING_SPELLSMITH, GetDataSkillsDirectory());
-    GetSkillTreeCrafting().AddBranch("Swordsmith", SKILL_FILE_CRAFTING_SWORDSMITH, GetDataSkillsDirectory());
-    GetSkillTreeCrafting().AddBranch("Tanner", SKILL_FILE_CRAFTING_TANNER, GetDataSkillsDirectory());
-    GetSkillTreeCrafting().AddBranch("Weaver", SKILL_FILE_CRAFTING_WEAVER, GetDataSkillsDirectory());
+    GetSkillTreeCrafting().AddBranch("Bowsmith", SKILL_FILE_CRAFTING_BOWSMITH, sLocation);
+    GetSkillTreeCrafting().AddBranch("Goldsmith", SKILL_FILE_CRAFTING_GOLDSMITH, sLocation);
+    GetSkillTreeCrafting().AddBranch("Hammersmith", SKILL_FILE_CRAFTING_HAMMERSMITH, sLocation);
+    GetSkillTreeCrafting().AddBranch("Platesmith", SKILL_FILE_CRAFTING_PLATESMITH, sLocation);
+    GetSkillTreeCrafting().AddBranch("Scalesmith", SKILL_FILE_CRAFTING_SCALESMITH, sLocation);
+    GetSkillTreeCrafting().AddBranch("Shieldsmith", SKILL_FILE_CRAFTING_SHIELDSMITH, sLocation);
+    GetSkillTreeCrafting().AddBranch("Spellsmith", SKILL_FILE_CRAFTING_SPELLSMITH, sLocation);
+    GetSkillTreeCrafting().AddBranch("Swordsmith", SKILL_FILE_CRAFTING_SWORDSMITH, sLocation);
+    GetSkillTreeCrafting().AddBranch("Tanner", SKILL_FILE_CRAFTING_TANNER, sLocation);
+    GetSkillTreeCrafting().AddBranch("Weaver", SKILL_FILE_CRAFTING_WEAVER, sLocation);
 
     // Weapon
-    GetSkillTreeWeapon().AddBranch("Bash", SKILL_FILE_WEAPON_BASH, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Block", SKILL_FILE_WEAPON_BLOCK, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Break", SKILL_FILE_WEAPON_BREAK, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Cleave", SKILL_FILE_WEAPON_CLEAVE, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Counter", SKILL_FILE_WEAPON_COUNTER, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Crack", SKILL_FILE_WEAPON_CRACK, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("CriticalShot", SKILL_FILE_WEAPON_CRITICALSHOT, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Crush", SKILL_FILE_WEAPON_CRUSH, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Decapitate", SKILL_FILE_WEAPON_DECAPITATE, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Dodge", SKILL_FILE_WEAPON_DODGE, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Drill", SKILL_FILE_WEAPON_DRILL, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Impact", SKILL_FILE_WEAPON_IMPACT, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Impale", SKILL_FILE_WEAPON_IMPALE, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Parry", SKILL_FILE_WEAPON_PARRY, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Pierce", SKILL_FILE_WEAPON_PIERCE, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Riposte", SKILL_FILE_WEAPON_RIPOSTE, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Rush", SKILL_FILE_WEAPON_RUSH, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Sever", SKILL_FILE_WEAPON_SEVER, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Shoot", SKILL_FILE_WEAPON_SHOOT, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Slash", SKILL_FILE_WEAPON_SLASH, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Slice", SKILL_FILE_WEAPON_SLICE, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Slit", SKILL_FILE_WEAPON_SLIT, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("Smash", SKILL_FILE_WEAPON_SMASH, GetDataSkillsDirectory());
-    GetSkillTreeWeapon().AddBranch("StealthStrike", SKILL_FILE_WEAPON_STEALTHSTRIKE, GetDataSkillsDirectory());
+    GetSkillTreeWeapon().AddBranch("Bash", SKILL_FILE_WEAPON_BASH, sLocation);
+    GetSkillTreeWeapon().AddBranch("Block", SKILL_FILE_WEAPON_BLOCK, sLocation);
+    GetSkillTreeWeapon().AddBranch("Break", SKILL_FILE_WEAPON_BREAK, sLocation);
+    GetSkillTreeWeapon().AddBranch("Cleave", SKILL_FILE_WEAPON_CLEAVE, sLocation);
+    GetSkillTreeWeapon().AddBranch("Counter", SKILL_FILE_WEAPON_COUNTER, sLocation);
+    GetSkillTreeWeapon().AddBranch("Crack", SKILL_FILE_WEAPON_CRACK, sLocation);
+    GetSkillTreeWeapon().AddBranch("CriticalShot", SKILL_FILE_WEAPON_CRITICALSHOT, sLocation);
+    GetSkillTreeWeapon().AddBranch("Crush", SKILL_FILE_WEAPON_CRUSH, sLocation);
+    GetSkillTreeWeapon().AddBranch("Decapitate", SKILL_FILE_WEAPON_DECAPITATE, sLocation);
+    GetSkillTreeWeapon().AddBranch("Dodge", SKILL_FILE_WEAPON_DODGE, sLocation);
+    GetSkillTreeWeapon().AddBranch("Drill", SKILL_FILE_WEAPON_DRILL, sLocation);
+    GetSkillTreeWeapon().AddBranch("Impact", SKILL_FILE_WEAPON_IMPACT, sLocation);
+    GetSkillTreeWeapon().AddBranch("Impale", SKILL_FILE_WEAPON_IMPALE, sLocation);
+    GetSkillTreeWeapon().AddBranch("Parry", SKILL_FILE_WEAPON_PARRY, sLocation);
+    GetSkillTreeWeapon().AddBranch("Pierce", SKILL_FILE_WEAPON_PIERCE, sLocation);
+    GetSkillTreeWeapon().AddBranch("Riposte", SKILL_FILE_WEAPON_RIPOSTE, sLocation);
+    GetSkillTreeWeapon().AddBranch("Rush", SKILL_FILE_WEAPON_RUSH, sLocation);
+    GetSkillTreeWeapon().AddBranch("Sever", SKILL_FILE_WEAPON_SEVER, sLocation);
+    GetSkillTreeWeapon().AddBranch("Shoot", SKILL_FILE_WEAPON_SHOOT, sLocation);
+    GetSkillTreeWeapon().AddBranch("Slash", SKILL_FILE_WEAPON_SLASH, sLocation);
+    GetSkillTreeWeapon().AddBranch("Slice", SKILL_FILE_WEAPON_SLICE, sLocation);
+    GetSkillTreeWeapon().AddBranch("Slit", SKILL_FILE_WEAPON_SLIT, sLocation);
+    GetSkillTreeWeapon().AddBranch("Smash", SKILL_FILE_WEAPON_SMASH, sLocation);
+    GetSkillTreeWeapon().AddBranch("StealthStrike", SKILL_FILE_WEAPON_STEALTHSTRIKE, sLocation);
 
     // Post process skill data
     PostProcessSkills<SkillTreeAffinity>(GetSkillTreeAffinity(), GetAllAffinitySkills());

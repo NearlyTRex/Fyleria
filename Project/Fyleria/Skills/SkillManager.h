@@ -37,7 +37,7 @@ public:
     SkillManager();
 
     // Load/unload skill trees into memory
-    void LoadSkillTreesIntoMemory();
+    void LoadSkillTreesIntoMemory(ManagerSet* pManagerSet);
     void UnloadSkillTreesFromMemory();
 
     // Determine if skill data exists

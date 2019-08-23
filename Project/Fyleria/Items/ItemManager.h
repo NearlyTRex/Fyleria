@@ -33,7 +33,7 @@ public:
     ItemManager();
 
     // Load/unload item trees into memory
-    void LoadItemTreesIntoMemory();
+    void LoadItemTreesIntoMemory(ManagerSet* pManagerSet);
     void UnloadItemTreesFromMemory();
 
     // Determine if item data exists

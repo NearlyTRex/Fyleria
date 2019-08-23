@@ -12,6 +12,9 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
 // Config
 class Config
 {

@@ -59,7 +59,7 @@ Bool Application::Initialize()
     // Load config data
     LOG_FORMAT_STATEMENT("Loading config file '{}'", CONFIG_FILE);
     GetManagers()->GetConfigManager().SetCurrentConfigName("Default");
-    if(!GetManagers()->GetConfigManager().LoadConfig("Default", CONFIG_FILE))
+    if(!GetManagers()->GetConfigManager().LoadConfig(GetManagers().get(), "Default", CONFIG_FILE))
     {
         ERROR_FORMAT_STATEMENT("Could not load configuration file '{}'",
             CONFIG_FILE);
@@ -73,8 +73,8 @@ Bool Application::Initialize()
 
     // Load trees into memory
     LOG_STATEMENT("Loading trees into memory...");
-    GetManagers()->GetSkillManager().LoadSkillTreesIntoMemory();
-    GetManagers()->GetItemManager().LoadItemTreesIntoMemory();
+    GetManagers()->GetSkillManager().LoadSkillTreesIntoMemory(GetManagers().get());
+    GetManagers()->GetItemManager().LoadItemTreesIntoMemory(GetManagers().get());
     LOG_STATEMENT("Finished loading trees into memory");
 
     // Initialize window

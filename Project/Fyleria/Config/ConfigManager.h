@@ -22,7 +22,7 @@ public:
     ConfigManager();
 
     // Load config
-    Bool LoadConfig(const String& sName, const String& sFile);
+    Bool LoadConfig(ManagerSet* pManagerSet, const String& sName, const String& sFile);
 
     // Does a config exist
     Bool DoesConfigExist(const String& sName) const;

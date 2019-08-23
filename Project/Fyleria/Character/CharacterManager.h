@@ -35,7 +35,7 @@ public:
     String LoadCharacterFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData);
 
     // Save a character to file
-    void SaveCharacterToFile(const String& sCharacterID, const String& sFilename, const String& sType);
+    void SaveCharacterToFile(ManagerSet* pManagerSet, const String& sCharacterID, const String& sFilename, const String& sType);
 
     // Create a character
     void CreateCharacter(const String& sCharacterID);

@@ -4,7 +4,6 @@
 // Internal includes
 #include "Utility/Constants.h"
 #include "Utility/Logging.h"
-#include "Utility/Filesystem.h"
 
 namespace Gecko
 {
