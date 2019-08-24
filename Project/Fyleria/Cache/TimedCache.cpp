@@ -26,40 +26,40 @@ Bool TimedCache::Initialize(ULong uCapacity, Double fTimeToLive)
     return true;
 }
 
-Bool TimedCache::ContainsKey(Int iKey)
+Bool TimedCache::ContainsKey(const CacheKeyType& key)
 {
     if(GetMemCache())
     {
-        return GetMemCache()->contains(iKey);
+        return GetMemCache()->contains(key);
     }
     return false;
 }
 
-Bool TimedCache::SetValue(Int iKey, const String& sValue)
+Bool TimedCache::SetValue(const CacheKeyType& key, const String& sValue)
 {
     if(GetMemCache())
     {
-        GetMemCache()->insert(iKey, sValue);
+        GetMemCache()->insert(key, sValue);
         return true;
     }
     return false;
 }
 
-Bool TimedCache::GetValue(Int iKey, String& sValue)
+Bool TimedCache::GetValue(const CacheKeyType& key, String& sValue)
 {
     if(GetMemCache())
     {
-        sValue = GetMemCache()->lookup(iKey);
+        sValue = GetMemCache()->lookup(key);
         return true;
     }
     return false;
 }
 
-Bool TimedCache::EraseValue(Int iKey)
+Bool TimedCache::EraseValue(const CacheKeyType& key)
 {
     if(GetMemCache())
     {
-        return GetMemCache()->erase(iKey);
+        return GetMemCache()->erase(key);
     }
     return false;
 }
@@ -149,11 +149,11 @@ Bool TimedCache::IsFull() const
     return false;
 }
 
-Bool TimedCache::IsExpired(Int iKey) const
+Bool TimedCache::IsExpired(const CacheKeyType& key) const
 {
     if(GetMemCache())
     {
-        return GetMemCache()->has_expired(iKey);
+        return GetMemCache()->has_expired(key);
     }
     return false;
 }
@@ -167,11 +167,11 @@ Bool TimedCache::AreAllExpired() const
     return false;
 }
 
-Bool TimedCache::IsValid(Int iKey) const
+Bool TimedCache::IsValid(const CacheKeyType& key) const
 {
     if(GetMemCache())
     {
-        return GetMemCache()->is_valid(GetMemCache()->find(iKey));
+        return GetMemCache()->is_valid(GetMemCache()->find(key));
     }
     return false;
 }
