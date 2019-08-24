@@ -35,7 +35,7 @@ void ItemManager::LoadItemTreesIntoMemory(ManagerSet* pManagerSet)
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Items location
-    String sLocation = pManagerSet->GetFileManager().GetDataItemsDirectory();
+    String sLocation = pManagerSet->GetFileManager()->GetDataItemsDirectory();
 
     // Create file loader
     auto fnFileLoader = [&](const String& sBranchFile, const String& sFileRoot) -> Json
@@ -239,13 +239,13 @@ TreeIndexArray ItemManager::GetAllEquippedItems(ManagerSet* pManagerSet, const S
 
     // Check character existence
     TreeIndexArray vFinal;
-    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharID))
+    if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharID))
     {
         return vFinal;
     }
 
     // Get items
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharID);
     for(auto& item : character.GetEquippedItems(pManagerSet))
     {
         vFinal.push_back(item.GetItemTreeIndex());

@@ -163,20 +163,20 @@ Bool SkillData::DoesMeetActionRequirements(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Check character
-    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
         return false;
     }
 
     // Get character
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())
     {
         return false;
     }
 
     // Get party
-    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(character.GetPartyID());
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager()->GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
     // Get action types
@@ -224,13 +224,13 @@ CharacterActionArray SkillData::CreateBaseActions(
 
     // Check character
     CharacterActionArray vNewActions;
-    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
     }
 
     // Get character
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
     // Create actions
     for(auto& sType : GetRunTypes())

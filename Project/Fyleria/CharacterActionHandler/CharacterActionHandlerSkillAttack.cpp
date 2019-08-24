@@ -33,8 +33,8 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
 
     // Get character data
     const String& sSourceCharID = action.GetSourceCharacterID();
-    const Character& sourceCharacter = pManagerSet->GetCharacterManager().GetCharacter(sSourceCharID);
-    const Character& destCharacter = pManagerSet->GetCharacterManager().GetCharacter(sDestCharID);
+    const Character& sourceCharacter = pManagerSet->GetCharacterManager()->GetCharacter(sSourceCharID);
+    const Character& destCharacter = pManagerSet->GetCharacterManager()->GetCharacter(sDestCharID);
     const CharacterBattleData& sourceBattleData = sourceCharacter.GetBattleDataActives();
     const CharacterBattleData& destBattleData = destCharacter.GetBattleDataActives();
 

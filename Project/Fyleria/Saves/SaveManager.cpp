@@ -147,7 +147,7 @@ void SaveManager::CollectSaveData(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Collect save data from party
-    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager()->GetPartyByID(sPartyID);
     CollectSaveData(pManagerSet, sSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
 }
 
@@ -167,14 +167,14 @@ void SaveManager::CollectSaveData(
     for (auto& sPartyID : vPartyIDs)
     {
         // Add party
-        CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
+        CharacterParty& party = pManagerSet->GetCharacterPartyManager()->GetPartyByID(sPartyID);
         party.RegenerateCharacterData(pManagerSet);
         vParties.push_back(party);
 
         // Add members of this party
         for(auto& member : party.GetMembers())
         {
-            vCharacters.push_back(pManagerSet->GetCharacterManager().GetCharacter(member.first));
+            vCharacters.push_back(pManagerSet->GetCharacterManager()->GetCharacter(member.first));
         }
     }
 
@@ -201,13 +201,13 @@ void SaveManager::DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot)
     // Load characters
     for(const Character& character : save.GetCharacters())
     {
-        pManagerSet->GetCharacterManager().LoadCharacter(pManagerSet, character, false);
+        pManagerSet->GetCharacterManager()->LoadCharacter(pManagerSet, character, false);
     }
 
     // Load parties
     for(const CharacterParty& party : save.GetParties())
     {
-        pManagerSet->GetCharacterPartyManager().LoadParty(pManagerSet, party, true);
+        pManagerSet->GetCharacterPartyManager()->LoadParty(pManagerSet, party, true);
     }
 }
 
@@ -222,7 +222,7 @@ void SaveManager::SaveToFile(
 
     // Serialize save data to file
     Json jsonData = GetSave(sSlot);
-    Bool bSuccess = WriteSerializedFile(pManagerSet, sFile, sType, jsonData, pManagerSet->GetFileManager().GetSaveDirectory());
+    Bool bSuccess = WriteSerializedFile(pManagerSet, sFile, sType, jsonData, pManagerSet->GetFileManager()->GetSaveDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Writing save '" + sSlot + "' to file '" + sFile + "' as type '" + sType + "' failed");
@@ -240,7 +240,7 @@ void SaveManager::LoadFromFile(
 
     // Deserialize file to save data
     Json jsonData;
-    Bool bSuccess = ReadSerializedFile(pManagerSet, sFile, sType, jsonData, pManagerSet->GetFileManager().GetSaveDirectory());
+    Bool bSuccess = ReadSerializedFile(pManagerSet, sFile, sType, jsonData, pManagerSet->GetFileManager()->GetSaveDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Reading save '" + sSlot + "' from file '" + sFile + "' as type '" + sType + "' failed");
@@ -267,7 +267,7 @@ void SaveManager::SaveAllToDirectory(
         {
             continue;
         }
-        String sPath = pManagerSet->GetFileManager().JoinPaths(sDirectory, sBase + sSlotName + String(".") + sExt);
+        String sPath = pManagerSet->GetFileManager()->JoinPaths(sDirectory, sBase + sSlotName + String(".") + sExt);
         SaveToFile(pManagerSet, sSlotName, String(sPath), sType);
     }
 }
@@ -283,7 +283,7 @@ void SaveManager::LoadAllFromDirectory(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Get save path
-    String sSavePath = pManagerSet->GetFileManager().GetCanonicalPath(sDirectory);
+    String sSavePath = pManagerSet->GetFileManager()->GetCanonicalPath(sDirectory);
 
     // Load each slot from a save file
     for(auto& sSlotName : GetEnumNames<SaveSlotType>())
@@ -292,8 +292,8 @@ void SaveManager::LoadAllFromDirectory(
         {
             continue;
         }
-        String sPath = pManagerSet->GetFileManager().JoinPaths(sSavePath, sBase + sSlotName + String(".") + sExt);
-        if(pManagerSet->GetFileManager().DoesPathExist(sPath))
+        String sPath = pManagerSet->GetFileManager()->JoinPaths(sSavePath, sBase + sSlotName + String(".") + sExt);
+        if(pManagerSet->GetFileManager()->DoesPathExist(sPath))
         {
             LoadFromFile(pManagerSet, sSlotName, String(sPath), sType);
         }

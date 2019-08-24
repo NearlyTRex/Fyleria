@@ -157,7 +157,7 @@ Bool BrowserEngineWebKitGtk::Init(ManagerSet* pManagerSet, const String& sTitle,
     Navigate(STARTING_URI);
 
     // Switch to starting scene
-    GetManagers()->GetSceneManager().SwitchToScene(GetManagers(), (+SceneType::Intro)._to_string());
+    GetManagers()->GetSceneManager()->SwitchToScene(GetManagers(), (+SceneType::Intro)._to_string());
     return true;
 }
 
@@ -190,7 +190,7 @@ void BrowserEngineWebKitGtk::InjectUserStylesheet(const String& sStyle)
 void BrowserEngineWebKitGtk::InjectUserStylesheetFile(const String& sFile, const String& sFileRoot)
 {
     // Inject style
-    String sUri = GetManagers()->GetFileManager().GetUriPath(sFile, sFileRoot);
+    String sUri = GetManagers()->GetFileManager()->GetUriPath(sFile, sFileRoot);
     String sTag = "<link rel=\"stylesheet\" type=\"text/css\" href='" + sUri + "'>\n";
     SetUserStyles(GetUserStyles() + sTag);
 }
@@ -205,7 +205,7 @@ void BrowserEngineWebKitGtk::InjectUserJavascript(const String& sScript)
 void BrowserEngineWebKitGtk::InjectUserJavascriptFile(const String& sFile, const String& sFileRoot)
 {
     // Inject script
-    String sUri = GetManagers()->GetFileManager().GetUriPath(sFile, sFileRoot);
+    String sUri = GetManagers()->GetFileManager()->GetUriPath(sFile, sFileRoot);
     String sTag = "<script type=\"text/javascript\" src=\"" + sUri + "\"></script>\n";
     SetUserScripts(GetUserScripts() + sTag);
 }
@@ -220,7 +220,7 @@ void BrowserEngineWebKitGtk::InjectUserHtmlFile(const String& sFile, const Strin
 {
     // Inject html
     String sFileContents;
-    if(GetManagers()->GetFileManager().ReadFileToString(sFile, sFileContents, sFileRoot))
+    if(GetManagers()->GetFileManager()->ReadFileToString(sFile, sFileContents, sFileRoot))
     {
         InjectUserHtml(sFileContents);
     }
@@ -307,7 +307,7 @@ void BrowserEngineWebKitGtk::SetHtmlContentFile(const String& sFile, const Strin
 {
     // Set document html
     String sFileContents;
-    if(GetManagers()->GetFileManager().ReadFileToString(sFile, sFileContents, sFileRoot))
+    if(GetManagers()->GetFileManager()->ReadFileToString(sFile, sFileContents, sFileRoot))
     {
         SetHtmlContent(sFileContents);
     }

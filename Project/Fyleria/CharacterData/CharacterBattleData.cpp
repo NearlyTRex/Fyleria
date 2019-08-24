@@ -34,7 +34,7 @@ void CharacterBattleData::ApplyNewStatus(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Get character info
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
 
     // Update status
@@ -65,7 +65,7 @@ void CharacterBattleData::AdvanceRound(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Get character info
-    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
 
     // Apply regeneration
@@ -100,7 +100,7 @@ void CharacterBattleData::FinishBattle(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Get character info
-    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
 
     // Update character health if they are "dead"
@@ -152,7 +152,7 @@ void CharacterBattleData::UpdateEquipmentRatings(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Get character
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())
     {
         return;
@@ -210,8 +210,8 @@ void CharacterBattleData::UpdateEquipmentRatings(
         {
             case ItemTreeType::Armor:
             {
-                const Bool bIsShield = pManagerSet->GetItemManager().IsItemShield(equippedItem.GetItemTreeIndex());
-                const ItemDataArmor& itemArmor = pManagerSet->GetItemManager().RetrieveItemDataArmor(equippedItem.GetItemTreeIndex());
+                const Bool bIsShield = pManagerSet->GetItemManager()->IsItemShield(equippedItem.GetItemTreeIndex());
+                const ItemDataArmor& itemArmor = pManagerSet->GetItemManager()->RetrieveItemDataArmor(equippedItem.GetItemTreeIndex());
                 if(bIsShield && bValidEquipLeft)
                 {
                     fShieldLeft_BluntDefendPercent = itemArmor.GetBluntDefendPercent();
@@ -237,7 +237,7 @@ void CharacterBattleData::UpdateEquipmentRatings(
             }
             case ItemTreeType::Weapon:
             {
-                const ItemDataWeapon& itemWeapon = pManagerSet->GetItemManager().RetrieveItemDataWeapon(equippedItem.GetItemTreeIndex());
+                const ItemDataWeapon& itemWeapon = pManagerSet->GetItemManager()->RetrieveItemDataWeapon(equippedItem.GetItemTreeIndex());
                 if(bValidEquipLeft)
                 {
                     fWeaponLeft_BluntAttackPercent = itemWeapon.GetBluntAttackPercent();

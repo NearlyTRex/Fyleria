@@ -70,7 +70,7 @@ Bool Scene::HandleMessage(ManagerSet* pManagerSet, const String& sMessage, Strin
     {
         case SceneMessageFunctionType::SwitchToScene:
         {
-            pManagerSet->GetSceneManager().SwitchToScene(pManagerSet, sArg1);
+            pManagerSet->GetSceneManager()->SwitchToScene(pManagerSet, sArg1);
             return true;
         }
         case SceneMessageFunctionType::SubmitForm:
@@ -169,7 +169,7 @@ void Scene::InjectCommonData(ManagerSet* pManagerSet)
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Libs location
-    String sLocation = pManagerSet->GetFileManager().GetDataLibsDirectory();
+    String sLocation = pManagerSet->GetFileManager()->GetDataLibsDirectory();
 
     // Inject css
     InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS, sLocation);

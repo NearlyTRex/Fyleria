@@ -75,7 +75,7 @@ Bool ItemData::DoesMeetActionRequirements(ManagerSet* pManagerSet, const String&
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Check character
-    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
         return false;
     }
@@ -102,13 +102,13 @@ CharacterActionArray ItemData::CreateBaseActions(ManagerSet* pManagerSet, const 
 
     // Check character
     CharacterActionArray vNewActions;
-    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
     }
 
     // Get character
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
     // Create actions
     for(auto& sType : GetRunTypes())

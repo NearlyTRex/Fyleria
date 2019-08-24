@@ -33,10 +33,10 @@ Int Application::Run()
     do
     {
         // Handle scene
-        if(!GetManagers()->GetSceneManager().GetCurrentSceneID().empty())
+        if(!GetManagers()->GetSceneManager()->GetCurrentSceneID().empty())
         {
-            GetManagers()->GetSceneManager().GetCurrentScene()->Input(GetManagers().get());
-            GetManagers()->GetSceneManager().GetCurrentScene()->Update(GetManagers().get());
+            GetManagers()->GetSceneManager()->GetCurrentScene()->Input(GetManagers().get());
+            GetManagers()->GetSceneManager()->GetCurrentScene()->Update(GetManagers().get());
         }
 
         // Handle browser main loop
@@ -58,8 +58,8 @@ Bool Application::Initialize()
 {
     // Load config data
     LOG_FORMAT_STATEMENT("Loading config file '{}'", CONFIG_FILE);
-    GetManagers()->GetConfigManager().SetCurrentConfigName("Default");
-    if(!GetManagers()->GetConfigManager().LoadConfig(GetManagers().get(), "Default", CONFIG_FILE))
+    GetManagers()->GetConfigManager()->SetCurrentConfigName("Default");
+    if(!GetManagers()->GetConfigManager()->LoadConfig(GetManagers().get(), "Default", CONFIG_FILE))
     {
         ERROR_FORMAT_STATEMENT("Could not load configuration file '{}'",
             CONFIG_FILE);
@@ -73,14 +73,14 @@ Bool Application::Initialize()
 
     // Load trees into memory
     LOG_STATEMENT("Loading trees into memory...");
-    GetManagers()->GetSkillManager().LoadSkillTreesIntoMemory(GetManagers().get());
-    GetManagers()->GetItemManager().LoadItemTreesIntoMemory(GetManagers().get());
+    GetManagers()->GetSkillManager()->LoadSkillTreesIntoMemory(GetManagers().get());
+    GetManagers()->GetItemManager()->LoadItemTreesIntoMemory(GetManagers().get());
     LOG_STATEMENT("Finished loading trees into memory");
 
     // Initialize window
     LOG_STATEMENT("Initializing window");
-    Int iScreenWidth = GetManagers()->GetConfigManager().GetCurrentConfig().GetScreenWidth();
-    Int iScreenHeight = GetManagers()->GetConfigManager().GetCurrentConfig().GetScreenHeight();
+    Int iScreenWidth = GetManagers()->GetConfigManager()->GetCurrentConfig().GetScreenWidth();
+    Int iScreenHeight = GetManagers()->GetConfigManager()->GetCurrentConfig().GetScreenHeight();
     if(!MainWindow::GetInstance()->GetBrowserEngine()->Init(GetManagers().get(), APPLICATION_NAME_SHORT, iScreenWidth, iScreenHeight, true))
     {
         ERROR_STATEMENT("Unable to initialize window");
@@ -94,8 +94,8 @@ Bool Application::Finalize()
 {
     // Unload trees from memory
     LOG_STATEMENT("Unloading trees from memory...");
-    GetManagers()->GetSkillManager().UnloadSkillTreesFromMemory();
-    GetManagers()->GetItemManager().UnloadItemTreesFromMemory();
+    GetManagers()->GetSkillManager()->UnloadSkillTreesFromMemory();
+    GetManagers()->GetItemManager()->UnloadItemTreesFromMemory();
     LOG_STATEMENT("Finished unloading trees from memory");
     return true;
 }

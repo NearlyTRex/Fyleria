@@ -108,7 +108,7 @@ String Character::GetCharacterTargetType(ManagerSet* pManagerSet) const
     }
 
     // Get target type
-    const CharacterParty& characterParty = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
+    const CharacterParty& characterParty = pManagerSet->GetCharacterPartyManager()->GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetCharacterTargetType();
 }
@@ -132,7 +132,7 @@ CharacterPartyEquippedItemArray Character::GetEquippedItems(ManagerSet* pManager
     }
 
     // Get equipped items
-    const CharacterParty& characterParty = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
+    const CharacterParty& characterParty = pManagerSet->GetCharacterPartyManager()->GetPartyByID(sPartyID);
     const CharacterPartyMember& characterPartyMember = characterParty.GetMemberByID(sCharacterID);
     return characterPartyMember.GetEquippedItems();
 }
@@ -264,7 +264,7 @@ void Character::ApplyPassiveChanges(ManagerSet* pManagerSet)
                 // Apply change
                 Bool bAllChangesApplied = false;
                 Bool bAtLeastOneChange = false;
-                pManagerSet->GetCharacterManager().ApplyStatChange(pManagerSet, sDestSegment, change, bAllChangesApplied, bAtLeastOneChange);
+                pManagerSet->GetCharacterManager()->ApplyStatChange(pManagerSet, sDestSegment, change, bAllChangesApplied, bAtLeastOneChange);
             }
         }
     }
@@ -310,7 +310,7 @@ void Character::ApplyActiveChanges(ManagerSet* pManagerSet, const CharacterActio
                 // Apply change
                 Bool bAllChangesApplied = false;
                 Bool bAtLeastOneChange = false;
-                pManagerSet->GetCharacterManager().ApplyStatChange(
+                pManagerSet->GetCharacterManager()->ApplyStatChange(
                     pManagerSet, sDestSegment, localStatChange, bAllChangesApplied, bAtLeastOneChange);
             }
         }

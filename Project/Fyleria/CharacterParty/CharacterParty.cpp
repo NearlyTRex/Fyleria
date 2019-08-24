@@ -41,7 +41,7 @@ void CharacterParty::RegenerateCharacterData(
     // Regenerate all members
     for(auto& member : GetMembers())
     {
-        pManagerSet->GetCharacterManager().GetCharacter(member.first).RegenerateCharacterData(
+        pManagerSet->GetCharacterManager()->GetCharacter(member.first).RegenerateCharacterData(
             pManagerSet,
             bUpdateEquipmentRatings,
             bUpdateAvailableChanges,
@@ -124,7 +124,7 @@ Bool CharacterParty::AddMember(ManagerSet* pManagerSet, const String& sCharacter
     newMember.SetCharacterTargetType(GetNextAvailableTargetType());
     GetMembers().insert({sCharacterID, newMember});
     UseTargetType(newMember.GetCharacterTargetType());
-    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     character.GetBasicData().SetPartyID(GetPartyID());
     character.RegenerateCharacterData(pManagerSet);
     return true;
@@ -145,7 +145,7 @@ Bool CharacterParty::RemoveMember(ManagerSet* pManagerSet, const String& sCharac
     // Remove member
     UnequipAllItems(pManagerSet, sCharacterID);
     FreeTargetType(GetMemberByID(sCharacterID).GetCharacterTargetType());
-    Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     character.GetBasicData().SetPartyID({});
     character.RegenerateCharacterData(pManagerSet);
     GetMembers().erase(sCharacterID);
@@ -319,7 +319,7 @@ UInt CharacterParty::GetStatusMemberCount(
     const CharacterStatusType eStatusType = GetEnumFromStringOrNone<CharacterStatusType>(sStatus);
     for(auto& member : GetMembers())
     {
-        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(member.first);
+        const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(member.first);
         const CharacterBattleData& battleData = character.GetBattleData();
         switch(eStatusType)
         {
@@ -357,10 +357,10 @@ Bool CharacterParty::AddRandomItems(
         iAmountEnd);
 
     // Get lists of all items
-    TreeIndexArray vAllArmors = pManagerSet->GetItemManager().GetAllArmorItems();
-    TreeIndexArray vAllIngredients = pManagerSet->GetItemManager().GetAllIngredientItems();
-    TreeIndexArray vAllPotions = pManagerSet->GetItemManager().GetAllPotionItems();
-    TreeIndexArray vAllWeapons = pManagerSet->GetItemManager().GetAllWeaponItems();
+    TreeIndexArray vAllArmors = pManagerSet->GetItemManager()->GetAllArmorItems();
+    TreeIndexArray vAllIngredients = pManagerSet->GetItemManager()->GetAllIngredientItems();
+    TreeIndexArray vAllPotions = pManagerSet->GetItemManager()->GetAllPotionItems();
+    TreeIndexArray vAllWeapons = pManagerSet->GetItemManager()->GetAllWeaponItems();
 
     // Shuffle item lists
     ShuffleVector<TreeIndex>(vAllArmors);
@@ -426,7 +426,7 @@ Bool CharacterParty::AddItemByLeaf(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Resolve and add item
-    TreeIndex treeIndex = pManagerSet->GetItemManager().ResolveItemLeafIntoIndex(sLeaf);
+    TreeIndex treeIndex = pManagerSet->GetItemManager()->ResolveItemLeafIntoIndex(sLeaf);
     return AddItemByTreeIndex(pManagerSet, treeIndex, uAmount);
 }
 
@@ -443,7 +443,7 @@ Bool CharacterParty::AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex
     }
 
     // Check if it exists
-    if(!pManagerSet->GetItemManager().DoesItemDataExist(treeIndex))
+    if(!pManagerSet->GetItemManager()->DoesItemDataExist(treeIndex))
     {
         ERROR_FORMAT_STATEMENT("Tree index '{}' was not found", treeIndex.GetTreeBranchLeafType().c_str());
         return false;
@@ -467,7 +467,7 @@ Bool CharacterParty::AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex
     }
     else
     {
-        String sItemType = pManagerSet->GetItemManager().RetrieveItemType(treeIndex);
+        String sItemType = pManagerSet->GetItemManager()->RetrieveItemType(treeIndex);
         StringArray vEquipTypes = ConvertItemTypeToCharacterEquipTypes(sItemType);
         CharacterPartyItem newItem;
         newItem.SetItemTreeIndex(treeIndex);
@@ -493,7 +493,7 @@ Bool CharacterParty::RemoveItemByLeaf(ManagerSet* pManagerSet, const String& sLe
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Resolve and add item
-    TreeIndex treeIndex = pManagerSet->GetItemManager().ResolveItemLeafIntoIndex(sLeaf);
+    TreeIndex treeIndex = pManagerSet->GetItemManager()->ResolveItemLeafIntoIndex(sLeaf);
     return RemoveItemByTreeIndex(pManagerSet, treeIndex, uAmount);
 }
 
@@ -510,7 +510,7 @@ Bool CharacterParty::RemoveItemByTreeIndex(ManagerSet* pManagerSet, const TreeIn
     }
 
     // Check item existence
-    if(!pManagerSet->GetItemManager().DoesItemDataExist(treeIndex))
+    if(!pManagerSet->GetItemManager()->DoesItemDataExist(treeIndex))
     {
         ERROR_FORMAT_STATEMENT("Tree index '{}' was not found", treeIndex.GetTreeBranchLeafType().c_str());
         return false;
@@ -592,7 +592,7 @@ TreeIndex CharacterParty::GetBestUnequippedItem(ManagerSet* pManagerSet, const S
     // Look at each of the matching, unequipped items the party has and find the best one
     for(auto& item : GetItems())
     {
-        if(uShieldCount == 1 && pManagerSet->GetItemManager().IsItemShield(item.second.GetItemTreeIndex()))
+        if(uShieldCount == 1 && pManagerSet->GetItemManager()->IsItemShield(item.second.GetItemTreeIndex()))
         {
             continue;
         }
@@ -613,11 +613,11 @@ TreeIndex CharacterParty::GetBestUnequippedItem(ManagerSet* pManagerSet, const S
             continue;
         }
 
-        Bool bIsArmor = pManagerSet->GetItemManager().DoesItemDataArmorExist(item.second.GetItemTreeIndex());
-        Bool bIsWeapon = pManagerSet->GetItemManager().DoesItemDataWeaponExist(item.second.GetItemTreeIndex());
+        Bool bIsArmor = pManagerSet->GetItemManager()->DoesItemDataArmorExist(item.second.GetItemTreeIndex());
+        Bool bIsWeapon = pManagerSet->GetItemManager()->DoesItemDataWeaponExist(item.second.GetItemTreeIndex());
         if(
-            (bIsArmor && pManagerSet->GetItemManager().IsArmorBetter(item.second.GetItemTreeIndex(), bestItem)) ||
-            (bIsWeapon && pManagerSet->GetItemManager().IsWeaponBetter(item.second.GetItemTreeIndex(), bestItem)))
+            (bIsArmor && pManagerSet->GetItemManager()->IsArmorBetter(item.second.GetItemTreeIndex(), bestItem)) ||
+            (bIsWeapon && pManagerSet->GetItemManager()->IsWeaponBetter(item.second.GetItemTreeIndex(), bestItem)))
         {
             bestItem = item.second.GetItemTreeIndex();
         }

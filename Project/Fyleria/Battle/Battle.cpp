@@ -69,7 +69,7 @@ Bool Battle::IsBattleOver(ManagerSet* pManagerSet, const String& sPartyID) const
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Check if able to fight
-    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(sPartyID);
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager()->GetPartyByID(sPartyID);
     return party.IsPartyAbleToFight(pManagerSet);
 }
 

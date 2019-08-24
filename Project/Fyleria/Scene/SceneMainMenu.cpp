@@ -28,7 +28,7 @@ void SceneMainMenu::Start(ManagerSet* pManagerSet)
     SetPostCallback(STDBindFunc(&SceneMainMenu::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Page location
-    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+    String sLocation = pManagerSet->GetFileManager()->GetDataPagesDirectory();
 
     // Load page content
     InjectCommonData(pManagerSet);

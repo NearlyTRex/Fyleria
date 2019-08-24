@@ -40,20 +40,20 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(
 
     // Check character
     CharacterActionArray vNewActions;
-    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
     }
 
     // Get character
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())
     {
         return vNewActions;
     }
 
     // Get party
-    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(character.GetPartyID());
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager()->GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
     // Get equipped item information
@@ -73,8 +73,8 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(
     }
 
     // Get item types
-    const String sPrimaryItemType = pManagerSet->GetItemManager().RetrieveItemType(primaryItemIndex);
-    const String sSecondaryItemType = pManagerSet->GetItemManager().RetrieveItemType(secondaryItemIndex);
+    const String sPrimaryItemType = pManagerSet->GetItemManager()->RetrieveItemType(primaryItemIndex);
+    const String sSecondaryItemType = pManagerSet->GetItemManager()->RetrieveItemType(secondaryItemIndex);
     const String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
     const String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
     const String sActionNoneType = GetNoneTypeForEnum<CharacterActionType>();
@@ -131,7 +131,7 @@ CharacterActionArray SkillDataCombat::CreateCombatActions(
         {
             // Create entry
             CharacterActionEntry newEntry;
-            Bool bUsePrimary = (sPrimaryItemActionType != sActionNoneType && pManagerSet->GetItemManager().IsItemShield(primaryItemIndex));
+            Bool bUsePrimary = (sPrimaryItemActionType != sActionNoneType && pManagerSet->GetItemManager()->IsItemShield(primaryItemIndex));
             const String sActionTypeToUse = (bUsePrimary) ? sPrimaryItemActionType : sSecondaryItemActionType;
             const String sHandTypeToUse = (bUsePrimary) ? sHandPrimaryType : sHandSecondaryType;
             newEntry.SetActionTypes({sActionTypeToUse});

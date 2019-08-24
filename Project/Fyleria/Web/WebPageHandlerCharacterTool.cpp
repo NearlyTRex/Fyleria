@@ -19,11 +19,11 @@ WebPageHandlerCharacterTool::WebPageHandlerCharacterTool(ManagerSet* pManagerSet
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Page location
-    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+    String sLocation = pManagerSet->GetFileManager()->GetDataPagesDirectory();
 
     // Set template
     String sTemplateContents;
-    if(pManagerSet->GetFileManager().ReadFileToString(PAGE_FILE_TOOL_CHARACTER_HTML, sTemplateContents, sLocation))
+    if(pManagerSet->GetFileManager()->ReadFileToString(PAGE_FILE_TOOL_CHARACTER_HTML, sTemplateContents, sLocation))
     {
         SetPageTemplate(sTemplateContents);
     }
@@ -214,21 +214,21 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     // Check action
     if(sAction == "load_character_from_json")
     {
-        sCharacterToDisplay = pManagerSet->GetCharacterManager().LoadCharacter(
+        sCharacterToDisplay = pManagerSet->GetCharacterManager()->LoadCharacter(
             pManagerSet,
             Character(sLoadCharacterFromJson_Textarea), true
         );
     }
     else if(sAction == "load_character_from_file")
     {
-        sCharacterToDisplay = pManagerSet->GetCharacterManager().LoadCharacterFromFile(
+        sCharacterToDisplay = pManagerSet->GetCharacterManager()->LoadCharacterFromFile(
             pManagerSet,
             sLoadCharacterFromFile_Filename, sLoadCharacterFromFile_FileType, true
         );
     }
     else if(sAction == "save_character_to_file")
     {
-        pManagerSet->GetCharacterManager().SaveCharacterToFile(
+        pManagerSet->GetCharacterManager()->SaveCharacterToFile(
             pManagerSet,
             sSaveCharacterToFile_CharID,
             sSaveCharacterToFile_Filename,
@@ -238,14 +238,14 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     }
     else if(sAction == "unload_character")
     {
-        pManagerSet->GetCharacterManager().UnloadCharacter(
+        pManagerSet->GetCharacterManager()->UnloadCharacter(
             sUnloadCharacter_CharID
         );
         sCharacterToDisplay = sUnloadCharacter_CharID;
     }
     else if(sAction == "generate_character")
     {
-        pManagerSet->GetCharacterManager().GenerateCharacter(
+        pManagerSet->GetCharacterManager()->GenerateCharacter(
             pManagerSet,
             sGenerateCharacter_CharID,
             CharacterGenerator(sGenerateCharacter_Textarea)
@@ -256,7 +256,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     {
         CharacterGenerator generator;
         generator.RandomizeAll();
-        pManagerSet->GetCharacterManager().GenerateCharacter(
+        pManagerSet->GetCharacterManager()->GenerateCharacter(
             pManagerSet,
             sGenerateRandomCharacter_CharID,
             generator
@@ -265,13 +265,13 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     }
     else if(sAction == "regenerate_character_data")
     {
-        Character& character = pManagerSet->GetCharacterManager().GetCharacter(sRegenerateCharacterData_CharID);
+        Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sRegenerateCharacterData_CharID);
         character.RegenerateCharacterData(pManagerSet);
         sCharacterToDisplay = sRegenerateCharacterData_CharID;
     }
     else if(sAction == "create_character")
     {
-        pManagerSet->GetCharacterManager().CreateCharacter(
+        pManagerSet->GetCharacterManager()->CreateCharacter(
             sCreateCharacter_CharID
         );
         sCharacterToDisplay = sCreateCharacter_CharID;
@@ -282,7 +282,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     }
     else if(sAction == "save_character")
     {
-        Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterDetails_CharID);
+        Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterDetails_CharID);
         CharacterActionData& actionData = character.GetActionData();
         actionData.SetSlashPoints(BoostLexicalCast<Int>(sCharacterDetails_Slash_ActionPoints));
         actionData.SetSeverPoints(BoostLexicalCast<Int>(sCharacterDetails_Sever_ActionPoints));
@@ -418,14 +418,14 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     }
 
     // Get all character IDs
-    String sAllCharacterIDs = ConcatStringVector(pManagerSet->GetCharacterManager().GetAllCharacterIDs());
+    String sAllCharacterIDs = ConcatStringVector(pManagerSet->GetCharacterManager()->GetAllCharacterIDs());
 
     // Display character
     if(!sCharacterToDisplay.empty())
     {
         const String sSkillTreeIndexType = (+CharacterTreeIndexType::Skill)._to_string();
         const String sItemTreeIndexType = (+CharacterTreeIndexType::Item)._to_string();
-        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterToDisplay);
+        const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterToDisplay);
         sCharacterDetails_Chest = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Chest)._to_string()).GetLeaf();
         sCharacterDetails_Feet = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Feet)._to_string()).GetLeaf();
         sCharacterDetails_Hands = character.GetEquippedItemByType(pManagerSet, (+CharacterEquipmentType::Hands)._to_string()).GetLeaf();

@@ -46,26 +46,26 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(
 
     // Skip base actions
     CharacterActionArray vNewActions;
-    if(pManagerSet->GetSkillManager().IsBaseWeaponSkill(GetSkillTreeIndex()))
+    if(pManagerSet->GetSkillManager()->IsBaseWeaponSkill(GetSkillTreeIndex()))
     {
         return vNewActions;
     }
 
     // Check character
-    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
         return vNewActions;
     }
 
     // Get character
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())
     {
         return vNewActions;
     }
 
     // Get party
-    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(character.GetPartyID());
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager()->GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
     // Get equipped item information
@@ -101,8 +101,8 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(
     }
 
     // Get item types
-    const String sPrimaryItemType = pManagerSet->GetItemManager().RetrieveItemType(primaryItemIndex);
-    const String sSecondaryItemType = pManagerSet->GetItemManager().RetrieveItemType(secondaryItemIndex);
+    const String sPrimaryItemType = pManagerSet->GetItemManager()->RetrieveItemType(primaryItemIndex);
+    const String sSecondaryItemType = pManagerSet->GetItemManager()->RetrieveItemType(secondaryItemIndex);
     const String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
     const String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
     const String sActionNoneType = GetNoneTypeForEnum<CharacterActionType>();

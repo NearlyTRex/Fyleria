@@ -116,7 +116,7 @@ Bool CharacterAction::AreAllCharacterIDsValid(ManagerSet* pManagerSet) const
     // Check them all to see if they exist
     for(const String& sCharacterID : vAllCharacterIDs)
     {
-        if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
+        if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
         {
             return false;
         }
@@ -136,7 +136,7 @@ Bool CharacterAction::PrepareCharacterIDs(ManagerSet* pManagerSet)
         StringArray vSourceCharIDs;
         String sSourceTargetType = GetSourceTargetType();
         String sSourcePartyType = ConvertCharacterTargetTypeToCharacterPartyType(sSourceTargetType);
-        pManagerSet->GetCharacterPartyManager().GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
+        pManagerSet->GetCharacterPartyManager()->GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
         if(vSourceCharIDs.empty())
         {
             return false;
@@ -153,7 +153,7 @@ Bool CharacterAction::PrepareCharacterIDs(ManagerSet* pManagerSet)
         StringArray vDestCharIDs;
         String sDestTargetType = entry.GetDestinationTargetType();
         String sDestPartyType = ConvertCharacterTargetTypeToCharacterPartyType(sDestTargetType);
-        pManagerSet->GetCharacterPartyManager().GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
+        pManagerSet->GetCharacterPartyManager()->GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
         if(vDestCharIDs.empty())
         {
             return false;

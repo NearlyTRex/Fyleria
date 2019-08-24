@@ -110,7 +110,7 @@ Bool ReadJsonFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonDa
 
     // Read file contents
     String sJsonString;
-    if(!pManagerSet->GetFileManager().ReadFileToString(sFilename, sJsonString, sFileRoot))
+    if(!pManagerSet->GetFileManager()->ReadFileToString(sFilename, sJsonString, sFileRoot))
     {
         return false;
     }
@@ -127,7 +127,7 @@ Bool ReadCBORFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonDa
 
     // Read file contents
     FixedUnsigned8Array vBytes;
-    if(!pManagerSet->GetFileManager().ReadFileToByteArray(sFilename, vBytes, sFileRoot))
+    if(!pManagerSet->GetFileManager()->ReadFileToByteArray(sFilename, vBytes, sFileRoot))
     {
         return false;
     }
@@ -150,7 +150,7 @@ Bool ReadMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, Json& jso
 
     // Read file contents
     FixedUnsigned8Array vBytes;
-    if(!pManagerSet->GetFileManager().ReadFileToByteArray(sFilename, vBytes, sFileRoot))
+    if(!pManagerSet->GetFileManager()->ReadFileToByteArray(sFilename, vBytes, sFileRoot))
     {
         return false;
     }
@@ -198,7 +198,7 @@ Bool WriteJsonFile(ManagerSet* pManagerSet, const String& sFilename, const Json&
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Write json file
-    return pManagerSet->GetFileManager().WriteStringToFile(sFilename, jsonData.dump(4), sFileRoot);
+    return pManagerSet->GetFileManager()->WriteStringToFile(sFilename, jsonData.dump(4), sFileRoot);
 }
 
 Bool WriteCBORFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot)
@@ -210,7 +210,7 @@ Bool WriteCBORFile(ManagerSet* pManagerSet, const String& sFilename, const Json&
     FixedUnsigned8Array vFileBytes = vBinaryMarkersCBR;
     FixedUnsigned8Array vJsonBytes = JsonToCBOR(jsonData);
     vFileBytes.insert(vFileBytes.end(), vJsonBytes.begin(), vJsonBytes.end());
-    return pManagerSet->GetFileManager().WriteByteArrayToFile(sFilename, vFileBytes, sFileRoot);
+    return pManagerSet->GetFileManager()->WriteByteArrayToFile(sFilename, vFileBytes, sFileRoot);
 }
 
 Bool WriteMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot)
@@ -222,7 +222,7 @@ Bool WriteMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, const Js
     FixedUnsigned8Array vFileBytes = vBinaryMarkersMSG;
     FixedUnsigned8Array vJsonBytes = JsonToMsgPack(jsonData);
     vFileBytes.insert(vFileBytes.end(), vJsonBytes.begin(), vJsonBytes.end());
-    return pManagerSet->GetFileManager().WriteByteArrayToFile(sFilename, vFileBytes, sFileRoot);
+    return pManagerSet->GetFileManager()->WriteByteArrayToFile(sFilename, vFileBytes, sFileRoot);
 }
 
 };

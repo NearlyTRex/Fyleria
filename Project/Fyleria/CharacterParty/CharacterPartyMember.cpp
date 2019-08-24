@@ -40,7 +40,7 @@ UInt CharacterPartyMember::GetEquippedWeaponCount(ManagerSet* pManagerSet, const
     UInt uWeapon2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
     {
-        if(!pManagerSet->GetItemManager().IsItemWeapon(progressItem.GetItemTreeIndex()))
+        if(!pManagerSet->GetItemManager()->IsItemWeapon(progressItem.GetItemTreeIndex()))
         {
             continue;
         }
@@ -75,7 +75,7 @@ UInt CharacterPartyMember::GetEquippedShieldCount(ManagerSet* pManagerSet, const
     UInt uShield2Count = 0;
     for(auto&& progressItem : GetEquippedItems())
     {
-        if(!pManagerSet->GetItemManager().IsItemShield(progressItem.GetItemTreeIndex()))
+        if(!pManagerSet->GetItemManager()->IsItemShield(progressItem.GetItemTreeIndex()))
         {
             continue;
         }
@@ -107,7 +107,7 @@ Bool CharacterPartyMember::CanAddEquippedItem(ManagerSet* pManagerSet, const Tre
 
     // Check item type
     const UInt uItemCount = GetEquippedItemTypeCount(index);
-    const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager().RetrieveItemType(index));
+    const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager()->RetrieveItemType(index));
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -138,7 +138,7 @@ Bool CharacterPartyMember::CanRemoveEquippedItem(ManagerSet* pManagerSet, const 
 
     // Check item type
     const UInt uItemCount = GetEquippedItemTypeCount(index);
-    const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager().RetrieveItemType(index));
+    const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager()->RetrieveItemType(index));
     switch(eItemType)
     {
         case ItemType::WeaponPierce:
@@ -226,7 +226,7 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(
         {
             case ItemTreeType::Armor:
             {
-                const Bool bIsShield = pManagerSet->GetItemManager().IsItemShield(progressItem.GetItemTreeIndex());
+                const Bool bIsShield = pManagerSet->GetItemManager()->IsItemShield(progressItem.GetItemTreeIndex());
                 if(bIsShield && bValidEquipLeft)
                 {
                     itemIndexLeft = progressItem.GetItemTreeIndex();
@@ -255,7 +255,7 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(
     }
 
     // Translate left/right to primary/secondary
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(GetCharacterID());
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(GetCharacterID());
     const CharacterHandednessType eHandedness = GetEnumFromString<CharacterHandednessType>(character.GetBasicData().GetHandedness());
     switch(eHandedness)
     {
@@ -272,8 +272,8 @@ Bool CharacterPartyMember::GetHandInfoByWeaponSet(
     }
 
     // Fill action types
-    vPrimaryActionTypes = pManagerSet->GetItemManager().GetActionTypes(primaryItemIndex);
-    vSecondaryActionTypes = pManagerSet->GetItemManager().GetActionTypes(secondaryItemIndex);
+    vPrimaryActionTypes = pManagerSet->GetItemManager()->GetActionTypes(primaryItemIndex);
+    vSecondaryActionTypes = pManagerSet->GetItemManager()->GetActionTypes(secondaryItemIndex);
     return (!primaryItemIndex.empty() || !secondaryItemIndex.empty());
 }
 

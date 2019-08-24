@@ -37,7 +37,7 @@ void SkillManager::LoadSkillTreesIntoMemory(ManagerSet* pManagerSet)
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Skills location
-    String sLocation = pManagerSet->GetFileManager().GetDataSkillsDirectory();
+    String sLocation = pManagerSet->GetFileManager()->GetDataSkillsDirectory();
 
     // Create file loader
     auto fnFileLoader = [&](const String& sBranchFile, const String& sFileRoot) -> Json
@@ -346,7 +346,7 @@ TreeIndexArray SkillManager::GetAffinitySkills(
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeAffinity>(GetSkillTreeAffinity(), "Holy", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeAffinity>(GetSkillTreeAffinity(), "Fire", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeAffinity>(GetSkillTreeAffinity(), "Ice", character, vFinal, bUniqueOnly);
@@ -375,7 +375,7 @@ TreeIndexArray SkillManager::GetAlchemySkills(
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeAlchemy>(GetSkillTreeAlchemy(), "Alchemist", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeAlchemy>(GetSkillTreeAlchemy(), "Chemist", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeAlchemy>(GetSkillTreeAlchemy(), "Energist", character, vFinal, bUniqueOnly);
@@ -396,7 +396,7 @@ TreeIndexArray SkillManager::GetBreakdownSkills(
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeBreakdown>(GetSkillTreeBreakdown(), "Bowbane", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeBreakdown>(GetSkillTreeBreakdown(), "Goldbane", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeBreakdown>(GetSkillTreeBreakdown(), "Hammerbane", character, vFinal, bUniqueOnly);
@@ -423,7 +423,7 @@ TreeIndexArray SkillManager::GetCombatSkills(
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeCombat>(GetSkillTreeCombat(), "Ambidextrous", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeCombat>(GetSkillTreeCombat(), "Avatar", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeCombat>(GetSkillTreeCombat(), "Barbarian", character, vFinal, bUniqueOnly);
@@ -448,7 +448,7 @@ TreeIndexArray SkillManager::GetCraftingSkills(
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeCrafting>(GetSkillTreeCrafting(), "Bowsmith", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeCrafting>(GetSkillTreeCrafting(), "Goldsmith", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeCrafting>(GetSkillTreeCrafting(), "Hammersmith", character, vFinal, bUniqueOnly);
@@ -475,7 +475,7 @@ TreeIndexArray SkillManager::GetWeaponSkills(
     TreeIndexArray vFinal;
     if(!sCharID.empty())
     {
-        const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharID);
+        const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharID);
         AddSkillLeavesProgress<SkillTreeWeapon>(GetSkillTreeWeapon(), "Bash", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeWeapon>(GetSkillTreeWeapon(), "Block", character, vFinal, bUniqueOnly);
         AddSkillLeavesProgress<SkillTreeWeapon>(GetSkillTreeWeapon(), "Break", character, vFinal, bUniqueOnly);

@@ -30,7 +30,7 @@ void SceneToolCharacter::Start(ManagerSet* pManagerSet)
     SetPostCallback(STDBindFunc(&SceneToolCharacter::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Page location
-    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+    String sLocation = pManagerSet->GetFileManager()->GetDataPagesDirectory();
 
     // Load page content
     InjectCommonData(pManagerSet);

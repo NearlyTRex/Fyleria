@@ -49,7 +49,7 @@ void CharacterStatChangeData::UpdateAvailableChanges(ManagerSet* pManagerSet, co
     TreeIndexArray vSkillPassives;
     TreeIndexArray vSkillActives;
     TreeIndexArray vSkillActionables;
-    pManagerSet->GetSkillManager().FillSkillStatChangeArrays(
+    pManagerSet->GetSkillManager()->FillSkillStatChangeArrays(
         pManagerSet,
         sCharacterID,
         vSkillPassives,
@@ -61,9 +61,9 @@ void CharacterStatChangeData::UpdateAvailableChanges(ManagerSet* pManagerSet, co
     TreeIndexArray vItemPassives;
     TreeIndexArray vItemActives;
     TreeIndexArray vItemActionables;
-    pManagerSet->GetItemManager().FillItemStatChangeArrays(
+    pManagerSet->GetItemManager()->FillItemStatChangeArrays(
         pManagerSet,
-        pManagerSet->GetItemManager().GetAllEquippedItems(pManagerSet, sCharacterID),
+        pManagerSet->GetItemManager()->GetAllEquippedItems(pManagerSet, sCharacterID),
         vItemPassives,
         vItemActives,
         vItemActionables);
@@ -210,15 +210,15 @@ void CharacterStatChangeData::ApplyProlongedStatChanges(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Get character
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
     // Apply stat change
-    Int iCurrentRound = pManagerSet->GetBattleManager().GetCurrentBattle().GetCurrentRoundIndex();
+    Int iCurrentRound = pManagerSet->GetBattleManager()->GetCurrentBattle().GetCurrentRoundIndex();
     Int iCurrentAttack = character.GetBattleData().GetAttackCounter();
     Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     for(auto& entry : GetProlongedStatChangeEntries(iCurrentRound, iCurrentAttack, iCurrentDefend))
     {
-        pManagerSet->GetCharacterManager().ApplyStatChangeEntry(sSegment, entry);
+        pManagerSet->GetCharacterManager()->ApplyStatChangeEntry(sSegment, entry);
     }
 }
 

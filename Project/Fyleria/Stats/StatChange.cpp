@@ -167,27 +167,27 @@ Bool StatChange::DoesMeetItemEquippedRequirements(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Check character
-    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
         return false;
     }
 
     // Get character
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())
     {
         return false;
     }
 
     // Get party
-    const CharacterParty& party = pManagerSet->GetCharacterPartyManager().GetPartyByID(character.GetPartyID());
+    const CharacterParty& party = pManagerSet->GetCharacterPartyManager()->GetPartyByID(character.GetPartyID());
     const CharacterPartyMember& partyMember = party.GetMemberByID(sCharacterID);
 
     // Get equipped item types
     StringArray vEquippedItemTypes;
     for(auto&& item : partyMember.GetEquippedItems())
     {
-        vEquippedItemTypes.push_back(pManagerSet->GetItemManager().RetrieveItemType(item.GetItemTreeIndex()));
+        vEquippedItemTypes.push_back(pManagerSet->GetItemManager()->RetrieveItemType(item.GetItemTreeIndex()));
     }
 
     // Get equipped item counts
@@ -368,7 +368,7 @@ Bool StatChange::DoesMeetActiveRequirements(
     }
     else if(DoesHaveItemUsedRequirements())
     {
-        return DoesMeetItemUsedRequirements(pManagerSet->GetItemManager().GetActionTypes(GetItemTreeIndex()));
+        return DoesMeetItemUsedRequirements(pManagerSet->GetItemManager()->GetActionTypes(GetItemTreeIndex()));
     }
     else if(DoesHaveAttackRequirements() && bSelfIsActionSender)
     {
@@ -430,13 +430,13 @@ Bool StatChange::GetResolvedCharacterArrays(
     String sDestTargetType = GetDestinationTargetType();
     String sSourcePartyType = ConvertCharacterTargetTypeToCharacterPartyType(sSourceTargetType);
     String sDestPartyType = ConvertCharacterTargetTypeToCharacterPartyType(sDestTargetType);
-    if(pManagerSet->GetCharacterPartyManager().DoesPartyExistByType(sSourcePartyType))
+    if(pManagerSet->GetCharacterPartyManager()->DoesPartyExistByType(sSourcePartyType))
     {
-        pManagerSet->GetCharacterPartyManager().GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
+        pManagerSet->GetCharacterPartyManager()->GetPartyByType(sSourcePartyType).GetCharacterIDsFromTargetType(sSourceTargetType, vSourceCharIDs);
     }
-    if(pManagerSet->GetCharacterPartyManager().DoesPartyExistByType(sDestPartyType))
+    if(pManagerSet->GetCharacterPartyManager()->DoesPartyExistByType(sDestPartyType))
     {
-        pManagerSet->GetCharacterPartyManager().GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
+        pManagerSet->GetCharacterPartyManager()->GetPartyByType(sDestPartyType).GetCharacterIDsFromTargetType(sDestTargetType, vDestCharIDs);
     }
     return (!vSourceCharIDs.empty() || !vDestCharIDs.empty());
 }
@@ -450,13 +450,13 @@ void StatChange::ResolveTargetPlaceholders(
     CHECK_MANAGER_SET_PTR(pManagerSet);
 
     // Check character first
-    if(!pManagerSet->GetCharacterManager().DoesCharacterExist(sCharacterID))
+    if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
         return;
     }
 
     // Get battle data
-    const Character& character = pManagerSet->GetCharacterManager().GetCharacter(sCharacterID);
+    const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     const CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
 
     // Get resolved target types
@@ -610,17 +610,17 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(ManagerSet* pManagerSet,
     switch(eSkillTreeType)
     {
         case SkillTreeType::Affinity:
-            return pManagerSet->GetSkillManager().RetrieveSkillDataAffinity(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager()->RetrieveSkillDataAffinity(treeIndex).GetStatChanges();
         case SkillTreeType::Alchemy:
-            return pManagerSet->GetSkillManager().RetrieveSkillDataAlchemy(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager()->RetrieveSkillDataAlchemy(treeIndex).GetStatChanges();
         case SkillTreeType::Crafting:
-            return pManagerSet->GetSkillManager().RetrieveSkillDataCrafting(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager()->RetrieveSkillDataCrafting(treeIndex).GetStatChanges();
         case SkillTreeType::Breakdown:
-            return pManagerSet->GetSkillManager().RetrieveSkillDataBreakdown(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager()->RetrieveSkillDataBreakdown(treeIndex).GetStatChanges();
         case SkillTreeType::Combat:
-            return pManagerSet->GetSkillManager().RetrieveSkillDataCombat(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager()->RetrieveSkillDataCombat(treeIndex).GetStatChanges();
         case SkillTreeType::Weapon:
-            return pManagerSet->GetSkillManager().RetrieveSkillDataWeapon(treeIndex).GetStatChanges();
+            return pManagerSet->GetSkillManager()->RetrieveSkillDataWeapon(treeIndex).GetStatChanges();
         default:
             break;
     }
@@ -637,13 +637,13 @@ const StatChangeArray& GetStatChangesFromItemTreeIndex(ManagerSet* pManagerSet, 
     switch(eItemTreeType)
     {
         case ItemTreeType::Armor:
-            return pManagerSet->GetItemManager().RetrieveItemDataArmor(treeIndex).GetStatChanges();
+            return pManagerSet->GetItemManager()->RetrieveItemDataArmor(treeIndex).GetStatChanges();
         case ItemTreeType::Ingredient:
-            return pManagerSet->GetItemManager().RetrieveItemDataIngredient(treeIndex).GetStatChanges();
+            return pManagerSet->GetItemManager()->RetrieveItemDataIngredient(treeIndex).GetStatChanges();
         case ItemTreeType::Potion:
-            return pManagerSet->GetItemManager().RetrieveItemDataPotion(treeIndex).GetStatChanges();
+            return pManagerSet->GetItemManager()->RetrieveItemDataPotion(treeIndex).GetStatChanges();
         case ItemTreeType::Weapon:
-            return pManagerSet->GetItemManager().RetrieveItemDataWeapon(treeIndex).GetStatChanges();
+            return pManagerSet->GetItemManager()->RetrieveItemDataWeapon(treeIndex).GetStatChanges();
         default:
             break;
     }

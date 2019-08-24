@@ -28,7 +28,7 @@ void SceneBattle::Start(ManagerSet* pManagerSet)
     SetPostCallback(STDBindFunc(&SceneBattle::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Page location
-    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+    String sLocation = pManagerSet->GetFileManager()->GetDataPagesDirectory();
 
     // Load page content
     InjectCommonData(pManagerSet);

@@ -40,7 +40,7 @@ String CharacterManager::LoadCharacterFromFile(ManagerSet* pManagerSet, const St
     // Deserialize file into character data
     Json jsonData;
     Bool bSuccess = ReadSerializedFile(
-        pManagerSet, sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataCharactersDirectory());
+        pManagerSet, sFilename, sType, jsonData, pManagerSet->GetFileManager()->GetDataCharactersDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Unable to read file '" + sFilename + "' as type '" + sType + "'");
@@ -58,7 +58,7 @@ void CharacterManager::SaveCharacterToFile(ManagerSet* pManagerSet, const String
     // Serialize character data into file
     Json jsonData = GetSaveableData(GetCharacter(sCharacterID));
     Bool bSuccess = WriteSerializedFile(
-        pManagerSet, sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataCharactersDirectory());
+        pManagerSet, sFilename, sType, jsonData, pManagerSet->GetFileManager()->GetDataCharactersDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Unable to write file '" + sFilename + "' as type '" + sType + "'");
@@ -256,14 +256,14 @@ void CharacterManager::ApplyStatChange(
         if(!bApplyAllEntries && (localEntry.GetRound() > 1 || localEntry.GetAttack() > 1 || localEntry.GetDefend() > 1))
         {
             // Get character
-            Character& character = pManagerSet->GetCharacterManager().GetCharacter(sSourceCharID);
+            Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sSourceCharID);
 
             // Create prolonged stat change
             ProlongedStatChange prolongedStatChange;
             prolongedStatChange.SetStatChangeEntry(localEntry);
             if(localEntry.GetRound() > 1)
             {
-                prolongedStatChange.SetRound(pManagerSet->GetBattleManager().GetCurrentBattle().GetCurrentRoundIndex() + localEntry.GetRound());
+                prolongedStatChange.SetRound(pManagerSet->GetBattleManager()->GetCurrentBattle().GetCurrentRoundIndex() + localEntry.GetRound());
             }
             else if(localEntry.GetAttack() > 1)
             {

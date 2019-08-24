@@ -22,7 +22,7 @@ Bool ConfigManager::LoadConfig(ManagerSet* pManagerSet, const String& sName, con
 
     // Read json data into config object
     Json jsonData;
-    if(!ReadJsonFile(pManagerSet, sFile, jsonData, pManagerSet->GetFileManager().GetDataDirectory()))
+    if(!ReadJsonFile(pManagerSet, sFile, jsonData, pManagerSet->GetFileManager()->GetDataDirectory()))
     {
         THROW_RUNTIME_ERROR("Path '" + sFile + "' could not be loaded for configuration");
     }
