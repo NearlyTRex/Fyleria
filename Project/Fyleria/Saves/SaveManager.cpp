@@ -217,9 +217,12 @@ void SaveManager::SaveToFile(
     const String& sFile,
     const String& sType)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Serialize save data to file
     Json jsonData = GetSave(sSlot);
-    Bool bSuccess = WriteSerializedFile(sFile, sType, jsonData, GetSaveDirectory());
+    Bool bSuccess = WriteSerializedFile(pManagerSet, sFile, sType, jsonData, pManagerSet->GetFileManager().GetSaveDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Writing save '" + sSlot + "' to file '" + sFile + "' as type '" + sType + "' failed");
@@ -232,9 +235,12 @@ void SaveManager::LoadFromFile(
     const String& sFile,
     const String& sType)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Deserialize file to save data
     Json jsonData;
-    Bool bSuccess = ReadSerializedFile(sFile, sType, jsonData, GetSaveDirectory());
+    Bool bSuccess = ReadSerializedFile(pManagerSet, sFile, sType, jsonData, pManagerSet->GetFileManager().GetSaveDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Reading save '" + sSlot + "' from file '" + sFile + "' as type '" + sType + "' failed");
@@ -251,6 +257,9 @@ void SaveManager::SaveAllToDirectory(
     const String& sExt,
     const String& sType)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Save each slot into a save file
     for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {
@@ -258,8 +267,8 @@ void SaveManager::SaveAllToDirectory(
         {
             continue;
         }
-        String sPath = JoinPaths(sDirectory, sBase + sSlotName + String(".") + sExt);
-        SaveToFile(sSlotName, String(sPath), sType);
+        String sPath = pManagerSet->GetFileManager().JoinPaths(sDirectory, sBase + sSlotName + String(".") + sExt);
+        SaveToFile(pManagerSet, sSlotName, String(sPath), sType);
     }
 }
 
@@ -270,8 +279,11 @@ void SaveManager::LoadAllFromDirectory(
     const String& sExt,
     const String& sType)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Get save path
-    String sSavePath = GetCanonicalPath(sDirectory);
+    String sSavePath = pManagerSet->GetFileManager().GetCanonicalPath(sDirectory);
 
     // Load each slot from a save file
     for(auto& sSlotName : GetEnumNames<SaveSlotType>())
@@ -280,10 +292,10 @@ void SaveManager::LoadAllFromDirectory(
         {
             continue;
         }
-        String sPath = JoinPaths(sSavePath, sBase + sSlotName + String(".") + sExt);
-        if(DoesPathExist(sPath))
+        String sPath = pManagerSet->GetFileManager().JoinPaths(sSavePath, sBase + sSlotName + String(".") + sExt);
+        if(pManagerSet->GetFileManager().DoesPathExist(sPath))
         {
-            LoadFromFile(sSlotName, String(sPath), sType);
+            LoadFromFile(pManagerSet, sSlotName, String(sPath), sType);
         }
     }
 }

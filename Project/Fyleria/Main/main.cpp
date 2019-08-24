@@ -8,7 +8,6 @@
 #include "Utility/Standard.h"
 #include "Utility/Boost.h"
 #include "Utility/StackTrace.h"
-#include "Utility/Filesystem.h"
 
 // Main
 #if defined(PLATFORM_OS_WINDOWS)
@@ -25,7 +24,7 @@ int main(int argc, char** argv)
     try
     {
         // Create manager set
-        auto pManagerSet = STDMakeSharedPtr<ManagerSet>();
+        auto pManagerSet = STDMakeSharedPtr<Gecko::ManagerSet>();
 
         // Get file manager
         Gecko::FileManager& fileManager = pManagerSet->GetFileManager();

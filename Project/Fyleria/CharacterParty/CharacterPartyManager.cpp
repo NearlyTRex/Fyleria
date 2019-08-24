@@ -42,9 +42,13 @@ String CharacterPartyManager::LoadParty(ManagerSet* pManagerSet, const Character
 
 String CharacterPartyManager::LoadPartyFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Deserialize file into party data
     Json jsonData;
-    Bool bSuccess = ReadSerializedFile(sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataPartiesDirectory());
+    Bool bSuccess = ReadSerializedFile(
+        pManagerSet, sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataPartiesDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Unable to read file '" + sFilename + "' as type '" + sType + "'");
@@ -56,9 +60,13 @@ String CharacterPartyManager::LoadPartyFromFile(ManagerSet* pManagerSet, const S
 
 void CharacterPartyManager::SavePartyToFile(ManagerSet* pManagerSet, const String& sPartyID, const String& sFilename, const String& sType)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Serialize party data into file
     Json jsonData = GetPartyByID(sPartyID);
-    Bool bSuccess = WriteSerializedFile(sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataPartiesDirectory());
+    Bool bSuccess = WriteSerializedFile(
+        pManagerSet, sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataPartiesDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Unable to write file '" + sFilename + "' as type '" + sType + "'");

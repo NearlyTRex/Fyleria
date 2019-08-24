@@ -5,6 +5,7 @@
 #include "Scene/SceneIntro.h"
 #include "Window/MainWindow.h"
 #include "Utility/Constants.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -20,14 +21,20 @@ SceneIntro::~SceneIntro()
 
 void SceneIntro::Start(ManagerSet* pManagerSet)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneIntro::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
+    // Page location
+    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+
     // Load page content
-    InjectCommonData();
-    InjectStylesheetFile(PAGE_FILE_INTRO_CSS, GetDataPagesDirectory());
-    InjectJavascriptFile(PAGE_FILE_INTRO_JS, GetDataPagesDirectory());
-    SetHtmlContentFile(PAGE_FILE_INTRO_HTML, GetDataPagesDirectory());
+    InjectCommonData(pManagerSet);
+    InjectStylesheetFile(PAGE_FILE_INTRO_CSS, sLocation);
+    InjectJavascriptFile(PAGE_FILE_INTRO_JS, sLocation);
+    SetHtmlContentFile(PAGE_FILE_INTRO_HTML, sLocation);
 }
 
 void SceneIntro::Finish(ManagerSet* pManagerSet)

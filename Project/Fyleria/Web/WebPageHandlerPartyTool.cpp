@@ -17,9 +17,15 @@ namespace Gecko
 WebPageHandlerPartyTool::WebPageHandlerPartyTool(ManagerSet* pManagerSet)
     : WebPageHandler()
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Page location
+    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+
     // Set template
     String sTemplateContents;
-    if(ReadFileToString(PAGE_FILE_TOOL_PARTY_HTML, sTemplateContents, GetDataPagesDirectory()))
+    if(pManagerSet->GetFileManager().ReadFileToString(PAGE_FILE_TOOL_PARTY_HTML, sTemplateContents, sLocation))
     {
         SetPageTemplate(sTemplateContents);
     }
@@ -118,6 +124,7 @@ void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const S
     else if(sAction == "save_party_to_file")
     {
         pManagerSet->GetCharacterPartyManager().SavePartyToFile(
+            pManagerSet,
             sSavePartyToFile_PartyID,
             sSavePartyToFile_Filename,
             sSavePartyToFile_FileType

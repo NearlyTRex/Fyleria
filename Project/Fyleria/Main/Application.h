@@ -25,8 +25,6 @@ public:
     // Run application
     Int Run();
 
-private:
-
     // Initialize
     Bool Initialize();
 

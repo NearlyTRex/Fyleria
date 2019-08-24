@@ -13,6 +13,9 @@
 namespace Gecko
 {
 
+// Manager set
+class ManagerSet;
+
 // Determine if bytes represent a CBOR file
 Bool IsCBOR(const FixedUnsigned8Array& vBytes);
 
@@ -26,28 +29,38 @@ Bool RemoveCBORHeader(FixedUnsigned8Array& vBytes);
 Bool RemoveMsgPackHeader(FixedUnsigned8Array& vBytes);
 
 // Read serialized file
-Bool ReadSerializedFile(const String& sFilename, const String& sType, Json& jsonData, const String& sFileRoot);
+Bool ReadSerializedFile(
+    ManagerSet* pManagerSet,
+    const String& sFilename,
+    const String& sType,
+    Json& jsonData,
+    const String& sFileRoot);
 
 // Read a file into a json object
-Bool ReadJsonFile(const String& sFilename, Json& jsonData, const String& sFileRoot);
+Bool ReadJsonFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot);
 
 // Read a CBOR file into a json object
-Bool ReadCBORFile(const String& sFilename, Json& jsonData, const String& sFileRoot);
+Bool ReadCBORFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot);
 
 // Read a MsgPack file into a json object
-Bool ReadMsgPackFile(const String& sFilename, Json& jsonData, const String& sFileRoot);
+Bool ReadMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot);
 
 // Write serialized file
-Bool WriteSerializedFile(const String& sFilename, const String& sType, const Json& jsonData, const String& sFileRoot);
+Bool WriteSerializedFile(
+    ManagerSet* pManagerSet,
+    const String& sFilename,
+    const String& sType,
+    const Json& jsonData,
+    const String& sFileRoot);
 
 // Write a json object to a file
-Bool WriteJsonFile(const String& sFilename, const Json& jsonData, const String& sFileRoot);
+Bool WriteJsonFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot);
 
 // Write a json object to a CBOR file
-Bool WriteCBORFile(const String& sFilename, const Json& jsonData, const String& sFileRoot);
+Bool WriteCBORFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot);
 
 // Write a json object to a MsgPack file
-Bool WriteMsgPackFile(const String& sFilename, const Json& jsonData, const String& sFileRoot);
+Bool WriteMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot);
 
 };
 

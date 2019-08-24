@@ -15,9 +15,15 @@ namespace Gecko
 WebPageHandlerCharacterTool::WebPageHandlerCharacterTool(ManagerSet* pManagerSet)
     : WebPageHandler()
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Page location
+    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+
     // Set template
     String sTemplateContents;
-    if(ReadFileToString(PAGE_FILE_TOOL_CHARACTER_HTML, sTemplateContents, GetDataPagesDirectory()))
+    if(pManagerSet->GetFileManager().ReadFileToString(PAGE_FILE_TOOL_CHARACTER_HTML, sTemplateContents, sLocation))
     {
         SetPageTemplate(sTemplateContents);
     }
@@ -223,6 +229,7 @@ void WebPageHandlerCharacterTool::UpdatePageContent(ManagerSet* pManagerSet, con
     else if(sAction == "save_character_to_file")
     {
         pManagerSet->GetCharacterManager().SaveCharacterToFile(
+            pManagerSet,
             sSaveCharacterToFile_CharID,
             sSaveCharacterToFile_Filename,
             sSaveCharacterToFile_FileType

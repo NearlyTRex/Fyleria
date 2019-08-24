@@ -163,28 +163,34 @@ void Scene::InjectHtmlFile(const String& sFile, const String& sFileRoot)
     MainWindow::GetInstance()->GetBrowserEngine()->InjectUserHtmlFile(sFile, sFileRoot);
 }
 
-void Scene::InjectCommonData()
+void Scene::InjectCommonData(ManagerSet* pManagerSet)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Libs location
+    String sLocation = pManagerSet->GetFileManager().GetDataLibsDirectory();
+
     // Inject css
-    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS, GetDataLibsDirectory());
+    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS, sLocation);
 #if DEBUG
-    InjectStylesheetFile(LIB_FILE_JQUERY_TERMINAL_CSS, GetDataLibsDirectory());
+    InjectStylesheetFile(LIB_FILE_JQUERY_TERMINAL_CSS, sLocation);
 #endif
 
     // Inject javascript
-    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS, GetDataLibsDirectory());
-    InjectJavascriptFile(LIB_FILE_JQUERY_JS, GetDataLibsDirectory());
-    InjectJavascriptFile(LIB_FILE_COMMON_JS, GetDataLibsDirectory());
+    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS, sLocation);
+    InjectJavascriptFile(LIB_FILE_JQUERY_JS, sLocation);
+    InjectJavascriptFile(LIB_FILE_COMMON_JS, sLocation);
 #if DEBUG
-    InjectJavascriptFile(LIB_FILE_JQUERY_TERMINAL_JS, GetDataLibsDirectory());
-    InjectJavascriptFile(LIB_FILE_JQUERY_MOUSEWHEEL_JS, GetDataLibsDirectory());
-    InjectJavascriptFile(LIB_FILE_POLYFILL_KEYBOARD_JS, GetDataLibsDirectory());
-    InjectJavascriptFile(LIB_FILE_DEBUG_JS, GetDataLibsDirectory());
+    InjectJavascriptFile(LIB_FILE_JQUERY_TERMINAL_JS, sLocation);
+    InjectJavascriptFile(LIB_FILE_JQUERY_MOUSEWHEEL_JS, sLocation);
+    InjectJavascriptFile(LIB_FILE_POLYFILL_KEYBOARD_JS, sLocation);
+    InjectJavascriptFile(LIB_FILE_DEBUG_JS, sLocation);
 #endif
 
     // Inject markup
 #if DEBUG
-    InjectHtmlFile(LIB_FILE_DEBUG_HTML, GetDataLibsDirectory());
+    InjectHtmlFile(LIB_FILE_DEBUG_HTML, sLocation);
 #endif
 }
 

@@ -5,6 +5,7 @@
 #include "Scene/SceneCraftingMenu.h"
 #include "Window/MainWindow.h"
 #include "Utility/Constants.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -20,14 +21,20 @@ SceneCraftingMenu::~SceneCraftingMenu()
 
 void SceneCraftingMenu::Start(ManagerSet* pManagerSet)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneCraftingMenu::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
+    // Page location
+    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+
     // Load page content
-    InjectCommonData();
-    InjectStylesheetFile(PAGE_FILE_CRAFTING_MENU_CSS, GetDataPagesDirectory());
-    InjectJavascriptFile(PAGE_FILE_CRAFTING_MENU_JS, GetDataPagesDirectory());
-    SetHtmlContentFile(PAGE_FILE_CRAFTING_MENU_HTML, GetDataPagesDirectory());
+    InjectCommonData(pManagerSet);
+    InjectStylesheetFile(PAGE_FILE_CRAFTING_MENU_CSS, sLocation);
+    InjectJavascriptFile(PAGE_FILE_CRAFTING_MENU_JS, sLocation);
+    SetHtmlContentFile(PAGE_FILE_CRAFTING_MENU_HTML, sLocation);
 }
 
 void SceneCraftingMenu::Finish(ManagerSet* pManagerSet)

@@ -5,6 +5,7 @@
 #include "Scene/SceneToolCharacter.h"
 #include "Web/WebPageHandlerCharacterTool.h"
 #include "Utility/Constants.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -22,13 +23,19 @@ SceneToolCharacter::~SceneToolCharacter()
 
 void SceneToolCharacter::Start(ManagerSet* pManagerSet)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneToolCharacter::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
+    // Page location
+    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+
     // Load page content
-    InjectCommonData();
-    InjectStylesheetFile(PAGE_FILE_TOOL_CHARACTER_CSS, GetDataPagesDirectory());
-    InjectJavascriptFile(PAGE_FILE_TOOL_CHARACTER_JS, GetDataPagesDirectory());
+    InjectCommonData(pManagerSet);
+    InjectStylesheetFile(PAGE_FILE_TOOL_CHARACTER_CSS, sLocation);
+    InjectJavascriptFile(PAGE_FILE_TOOL_CHARACTER_JS, sLocation);
     LoadHtmlFromHandler(GetPageHandler());
 }
 

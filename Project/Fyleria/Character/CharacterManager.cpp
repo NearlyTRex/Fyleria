@@ -34,9 +34,13 @@ String CharacterManager::LoadCharacter(ManagerSet* pManagerSet, const Character&
 
 String CharacterManager::LoadCharacterFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Deserialize file into character data
     Json jsonData;
-    Bool bSuccess = ReadSerializedFile(sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataCharactersDirectory());
+    Bool bSuccess = ReadSerializedFile(
+        pManagerSet, sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataCharactersDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Unable to read file '" + sFilename + "' as type '" + sType + "'");
@@ -48,9 +52,13 @@ String CharacterManager::LoadCharacterFromFile(ManagerSet* pManagerSet, const St
 
 void CharacterManager::SaveCharacterToFile(ManagerSet* pManagerSet, const String& sCharacterID, const String& sFilename, const String& sType)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Serialize character data into file
     Json jsonData = GetSaveableData(GetCharacter(sCharacterID));
-    Bool bSuccess = WriteSerializedFile(sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataCharactersDirectory());
+    Bool bSuccess = WriteSerializedFile(
+        pManagerSet, sFilename, sType, jsonData, pManagerSet->GetFileManager().GetDataCharactersDirectory());
     if(!bSuccess)
     {
         THROW_RUNTIME_ERROR("Unable to write file '" + sFilename + "' as type '" + sType + "'");

@@ -16,9 +16,15 @@ namespace Gecko
 WebPageHandlerSaveTool::WebPageHandlerSaveTool(ManagerSet* pManagerSet)
     : WebPageHandler()
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
+    // Page location
+    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+
     // Set template
     String sTemplateContents;
-    if(ReadFileToString(PAGE_FILE_TOOL_SAVE_HTML, sTemplateContents, GetDataPagesDirectory()))
+    if(pManagerSet->GetFileManager().ReadFileToString(PAGE_FILE_TOOL_SAVE_HTML, sTemplateContents, sLocation))
     {
         SetPageTemplate(sTemplateContents);
     }
@@ -112,6 +118,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const St
     else if(sAction == "load_from_file")
     {
         pManagerSet->GetSaveManager().LoadFromFile(
+            pManagerSet,
             sLoadFromFile_SaveSlotType,
             sLoadFromFile_Filename,
             sLoadFromFile_FileType
@@ -120,6 +127,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const St
     else if(sAction == "save_to_file")
     {
         pManagerSet->GetSaveManager().SaveToFile(
+            pManagerSet,
             sSaveToFile_SaveSlotType,
             sSaveToFile_Filename,
             sSaveToFile_FileType
@@ -128,6 +136,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const St
     else if(sAction == "load_all_from_dir")
     {
         pManagerSet->GetSaveManager().LoadAllFromDirectory(
+            pManagerSet,
             sLoadAllFromDir_Directory,
             sLoadAllFromDir_Basename,
             sLoadAllFromDir_Extension,
@@ -137,6 +146,7 @@ void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const St
     else if(sAction == "save_all_to_dir")
     {
         pManagerSet->GetSaveManager().SaveAllToDirectory(
+            pManagerSet,
             sSaveAllToDir_Directory,
             sSaveAllToDir_Basename,
             sSaveAllToDir_Extension,

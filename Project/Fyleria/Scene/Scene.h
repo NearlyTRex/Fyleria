@@ -66,7 +66,7 @@ protected:
     virtual void InjectHtmlFile(const String& sFile, const String& sFileRoot);
 
     // Inject common data
-    virtual void InjectCommonData();
+    virtual void InjectCommonData(ManagerSet* pManagerSet);
 
     // Remove all injected data
     virtual void RemoveAllInjectedData();

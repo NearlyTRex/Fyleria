@@ -17,9 +17,12 @@ ConfigManager::ConfigManager()
 
 Bool ConfigManager::LoadConfig(ManagerSet* pManagerSet, const String& sName, const String& sFile)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Read json data into config object
     Json jsonData;
-    if(!ReadJsonFile(sFile, jsonData, pManagerSet->GetFileManager().GetDataDirectory()))
+    if(!ReadJsonFile(pManagerSet, sFile, jsonData, pManagerSet->GetFileManager().GetDataDirectory()))
     {
         THROW_RUNTIME_ERROR("Path '" + sFile + "' could not be loaded for configuration");
     }

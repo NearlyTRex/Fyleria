@@ -37,18 +37,8 @@ public:
     }
 
     // Add branch
-    void AddBranch(const String& sBranchName, const String& sBranchFile, const String& sFileRoot)
+    void AddBranch(const String& sBranchName, const Json& jsonData)
     {
-        // Log loading of JSON data
-        LOG_FORMAT_STATEMENT("Loading JSON file '{}' into branch {}", sBranchFile.c_str(), sBranchName.c_str());
-
-        // Read json data
-        Json jsonData;
-        if(!ReadJsonFile(sBranchFile, jsonData, sFileRoot))
-        {
-            ERROR_FORMAT_STATEMENT("Could not load data from '{}' as JSON", sBranchName.c_str());
-        }
-
         // Add branches
         for(auto it = jsonData.begin(); it != jsonData.end(); it++)
         {

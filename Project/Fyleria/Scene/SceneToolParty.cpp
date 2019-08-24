@@ -5,6 +5,7 @@
 #include "Scene/SceneToolParty.h"
 #include "Web/WebPageHandlerPartyTool.h"
 #include "Utility/Constants.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -22,13 +23,19 @@ SceneToolParty::~SceneToolParty()
 
 void SceneToolParty::Start(ManagerSet* pManagerSet)
 {
+    // Check manager set
+    CHECK_MANAGER_SET_PTR(pManagerSet);
+
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneToolParty::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
+    // Page location
+    String sLocation = pManagerSet->GetFileManager().GetDataPagesDirectory();
+
     // Load page content
-    InjectCommonData();
-    InjectStylesheetFile(PAGE_FILE_TOOL_PARTY_CSS, GetDataPagesDirectory());
-    InjectJavascriptFile(PAGE_FILE_TOOL_PARTY_JS, GetDataPagesDirectory());
+    InjectCommonData(pManagerSet);
+    InjectStylesheetFile(PAGE_FILE_TOOL_PARTY_CSS, sLocation);
+    InjectJavascriptFile(PAGE_FILE_TOOL_PARTY_JS, sLocation);
     LoadHtmlFromHandler(GetPageHandler());
 }
 
