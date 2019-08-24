@@ -26,7 +26,7 @@ Bool TimedCache::Initialize(ULong uCapacity, Double fTimeToLive)
     return true;
 }
 
-Bool TimedCache::ContainsKey(const CacheKeyType& key)
+Bool TimedCache::ContainsKey(const CacheKey& key)
 {
     if(GetMemCache())
     {
@@ -35,7 +35,7 @@ Bool TimedCache::ContainsKey(const CacheKeyType& key)
     return false;
 }
 
-Bool TimedCache::SetValue(const CacheKeyType& key, const String& sValue)
+Bool TimedCache::SetValue(const CacheKey& key, const String& sValue)
 {
     if(GetMemCache())
     {
@@ -45,7 +45,7 @@ Bool TimedCache::SetValue(const CacheKeyType& key, const String& sValue)
     return false;
 }
 
-Bool TimedCache::GetValue(const CacheKeyType& key, String& sValue)
+Bool TimedCache::GetValue(const CacheKey& key, String& sValue)
 {
     if(GetMemCache())
     {
@@ -55,7 +55,7 @@ Bool TimedCache::GetValue(const CacheKeyType& key, String& sValue)
     return false;
 }
 
-Bool TimedCache::EraseValue(const CacheKeyType& key)
+Bool TimedCache::EraseValue(const CacheKey& key)
 {
     if(GetMemCache())
     {
@@ -149,7 +149,7 @@ Bool TimedCache::IsFull() const
     return false;
 }
 
-Bool TimedCache::IsExpired(const CacheKeyType& key) const
+Bool TimedCache::IsExpired(const CacheKey& key) const
 {
     if(GetMemCache())
     {
@@ -167,7 +167,7 @@ Bool TimedCache::AreAllExpired() const
     return false;
 }
 
-Bool TimedCache::IsValid(const CacheKeyType& key) const
+Bool TimedCache::IsValid(const CacheKey& key) const
 {
     if(GetMemCache())
     {

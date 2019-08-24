@@ -103,10 +103,10 @@ public:
     String GetLogFile();
 
     // File reader cache
-    MAKE_RAW_TYPE_ACCESSORS(TimedCache, TimedCache);
+    MAKE_RAW_TYPE_ACCESSORS(FileReaderCache, TimedCache);
 
     // Filesystem cache
-    MAKE_RAW_TYPE_ACCESSORS(BasicCache, BasicCache);
+    MAKE_RAW_TYPE_ACCESSORS(FilesystemCache, BasicCache);
 };
 
 };

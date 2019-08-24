@@ -19,16 +19,16 @@ class CacheInterface
 public:
 
     // Determine if key exists
-    virtual Bool ContainsKey(const CacheKeyType& key) = 0;
+    virtual Bool ContainsKey(const CacheKey& key) = 0;
 
     // Set value
-    virtual Bool SetValue(const CacheKeyType& key, const String& sValue) = 0;
+    virtual Bool SetValue(const CacheKey& key, const String& sValue) = 0;
 
     // Get value
-    virtual Bool GetValue(const CacheKeyType& key, String& sValue) = 0;
+    virtual Bool GetValue(const CacheKey& key, String& sValue) = 0;
 
     // Erase value
-    virtual Bool EraseValue(const CacheKeyType& key) = 0;
+    virtual Bool EraseValue(const CacheKey& key) = 0;
 
     // Shrink to the given number of elements
     virtual Bool Shrink(SizeType uNewCapacity) = 0;
@@ -58,13 +58,13 @@ public:
     virtual Bool IsFull() const = 0;
 
     // Determine if the given value is expired
-    virtual Bool IsExpired(const CacheKeyType& key) const = 0;
+    virtual Bool IsExpired(const CacheKey& key) const = 0;
 
     // Determine if all elements are expired
     virtual Bool AreAllExpired() const = 0;
 
     // Determine if the given value is valid
-    virtual Bool IsValid(const CacheKeyType& key) const = 0;
+    virtual Bool IsValid(const CacheKey& key) const = 0;
 };
 
 };

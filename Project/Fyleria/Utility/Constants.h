@@ -41,12 +41,13 @@
 #define DEFAULT_MAX_SKILL                           200
 
 // Caches
-#define CACHE_FILE_SYSTEM_TIMED_CAPACITY            100
-#define CACHE_FILE_SYSTEM_TIMED_TTL                 1000*60*60*1.0
-#define CACHE_FILE_SYSTEM_BASIC_CAPACITY            100
+#define CACHE_FILE_MANAGER_TIMED_CAPACITY           100
+#define CACHE_FILE_MANAGER_TIMED_TTL                1000*60*60*1.0
+#define CACHE_FILE_MANAGER_BASIC_CAPACITY           100
 
 // Cache keys
 #define CACHE_KEY_PROGRAM_DIRECTORY                 1
+#define CACHE_KEY_LOG_FILE                          2
 
 // Paths
 #define DEFAULT_MAX_PATH_SIZE                       256
