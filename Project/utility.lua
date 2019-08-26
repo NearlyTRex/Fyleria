@@ -114,7 +114,12 @@ function GetAppType()
     end
 end
 
--- Get library type
-function GetLibraryType()
+-- Get static library type
+function GetStaticLibraryType()
     return "StaticLib"
+end
+
+-- Get shared library type
+function GetSharedLibraryType()
+    return "SharedLib"
 end

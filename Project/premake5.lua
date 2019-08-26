@@ -3,15 +3,16 @@ require "Fyleria/Fyleria"
 require "Libs/BackwardCPP/BackwardCPP"
 require "Libs/BetterEnums/BetterEnums"
 require "Libs/Boost/Boost"
+require "Libs/Cairo/Cairo"
 require "Libs/FantasyName/FantasyName"
+require "Libs/FreeType2/FreeType2"
 require "Libs/LRUCache/LRUCache"
 require "Libs/ImmutableString/ImmutableString"
 require "Libs/MicroPather/MicroPather"
 require "Libs/ModernCPPJson/ModernCPPJson"
 require "Libs/ObjectThreadsafe/ObjectThreadsafe"
+require "Libs/Pixman/Pixman"
 require "Libs/SpdLog/SpdLog"
-require "Libs/TinyXML2/TinyXML2"
-require "Libs/TMXParser/TMXParser"
 require "Libs/Zlib/Zlib"
 require "utility"
 
@@ -70,7 +71,7 @@ filter "configurations:Release*"
 project "Boost"
 language "C++"
 pic "On"
-    kind(GetLibraryType())
+    kind(GetStaticLibraryType())
     includedirs(libBoost_includedirs)
     defines(libBoost_defines)
     files(libBoost_sources)
@@ -81,11 +82,31 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libBoost_releasedefines)
 
+-- Cairo
+project "Cairo"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libCairo_buildoptions)
+    linkoptions(libCairo_linkoptions)
+    includedirs(libCairo_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libPixman_includedirs)
+    defines(libCairo_defines)
+    files(libCairo_sources)
+    links(libCairo_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Cairo"))
+filter "configurations:Debug*"
+    defines(libCairo_debugdefines)
+filter "configurations:Release*"
+    defines(libCairo_releasedefines)
+
 -- FantasyName
 project "FantasyName"
 language "C++"
 pic "On"
-    kind(GetLibraryType())
+    kind(GetStaticLibraryType())
     includedirs(libFantasyName_includedirs)
     defines(libFantasyName_defines)
     files(libFantasyName_sources)
@@ -96,11 +117,28 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libFantasyName_releasedefines)
 
+-- FreeType2
+project "FreeType2"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libFreeType2_buildoptions)
+    linkoptions(libFreeType2_linkoptions)
+    includedirs(libFreeType2_includedirs)
+    defines(libFreeType2_defines)
+    files(libFreeType2_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("FreeType2"))
+filter "configurations:Debug*"
+    defines(libFreeType2_debugdefines)
+filter "configurations:Release*"
+    defines(libFreeType2_releasedefines)
+
 -- MicroPather
 project "MicroPather"
 language "C++"
 pic "On"
-    kind(GetLibraryType())
+    kind(GetStaticLibraryType())
     includedirs(libMicroPather_includedirs)
     defines(libMicroPather_defines)
     files(libMicroPather_sources)
@@ -111,11 +149,28 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libMicroPather_releasedefines)
 
+-- Pixman
+project "Pixman"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libPixman_buildoptions)
+    linkoptions(libPixman_linkoptions)
+    includedirs(libPixman_includedirs)
+    defines(libPixman_defines)
+    files(libPixman_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Pixman"))
+filter "configurations:Debug*"
+    defines(libPixman_debugdefines)
+filter "configurations:Release*"
+    defines(libPixman_releasedefines)
+
 -- SpdLog
 project "SpdLog"
 language "C++"
 pic "On"
-    kind(GetLibraryType())
+    kind(GetStaticLibraryType())
     includedirs(libSpdLog_includedirs)
     defines(libSpdLog_defines)
     files(libSpdLog_sources)
@@ -126,44 +181,11 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libSpdLog_releasedefines)
 
--- TinyXML2
-project "TinyXML2"
-language "C++"
-pic "On"
-    kind(GetLibraryType())
-    includedirs(libTinyXML2_includedirs)
-    defines(libTinyXML2_defines)
-    files(libTinyXML2_sources)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("TinyXML2"))
-filter "configurations:Debug*"
-    defines(libTinyXML2_debugdefines)
-filter "configurations:Release*"
-    defines(libTinyXML2_releasedefines)
-
--- TMXParser
-project "TMXParser"
-language "C++"
-pic "On"
-    kind(GetLibraryType())
-    includedirs(libTMXParser_includedirs)
-    includedirs(libTinyXML2_includedirs)
-    includedirs(libZlib_includedirs)
-    defines(libTMXParser_defines)
-    files(libTMXParser_sources)
-    links(libTMXParser_libs)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("TMXParser"))
-filter "configurations:Debug*"
-    defines(libTMXParser_debugdefines)
-filter "configurations:Release*"
-    defines(libTMXParser_releasedefines)
-
 -- Zlib
 project "Zlib"
 language "C"
 pic "On"
-    kind(GetLibraryType())
+    kind(GetStaticLibraryType())
     includedirs(libZlib_includedirs)
     defines(libZlib_defines)
     files(libZlib_sources)

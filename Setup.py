@@ -50,6 +50,8 @@ def main():
         Project.SetupProject("BetterEnums", "Project/Libs", system_info, program_options)
         Project.SetupProject("Boost", "Project/Libs", system_info, program_options)
         Project.SetupProject("DateCPP", "Project/Libs", system_info, program_options)
+        Project.SetupProject("Cairo", "Project/Libs", system_info, program_options)
+        Project.SetupProject("EAWebKit", "Project/Libs", system_info, program_options)
         Project.SetupProject("FantasyName", "Project/Libs", system_info, program_options)
         Project.SetupProject("ImmutableString", "Project/Libs", system_info, program_options)
         Project.SetupProject("LRUCache", "Project/Libs", system_info, program_options)
@@ -57,8 +59,6 @@ def main():
         Project.SetupProject("ModernCPPJson", "Project/Libs", system_info, program_options)
         Project.SetupProject("ObjectThreadsafe", "Project/Libs", system_info, program_options)
         Project.SetupProject("SpdLog", "Project/Libs", system_info, program_options)
-        Project.SetupProject("TinyXML2", "Project/Libs", system_info, program_options)
-        Project.SetupProject("TMXParser", "Project/Libs", system_info, program_options)
         Project.SetupProject("Zlib", "Project/Libs", system_info, program_options)
     if do_setup_javascript_libraries or do_all:
         Project.SetupProject("Bootstrap", "Project/Libs", system_info, program_options)

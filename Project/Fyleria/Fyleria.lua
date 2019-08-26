@@ -38,11 +38,10 @@ end
 -- Libs
 appFyleria_libs = {
     "Boost",
+    "Cairo",
     "FantasyName",
     "MicroPather",
     "SpdLog",
-    "TinyXML2",
-    "TMXParser",
     "Zlib"
 }
 if os.host() == "windows" then
