@@ -59,6 +59,7 @@ def main():
         Project.SetupProject("ModernCPPJson", "Project/Libs", system_info, program_options)
         Project.SetupProject("ObjectThreadsafe", "Project/Libs", system_info, program_options)
         Project.SetupProject("SpdLog", "Project/Libs", system_info, program_options)
+        Project.SetupProject("WebKitGTK", "Project/Libs", system_info, program_options)
         Project.SetupProject("Zlib", "Project/Libs", system_info, program_options)
     if do_setup_javascript_libraries or do_all:
         Project.SetupProject("Bootstrap", "Project/Libs", system_info, program_options)

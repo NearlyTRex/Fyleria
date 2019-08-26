@@ -13,6 +13,7 @@ require "Libs/ModernCPPJson/ModernCPPJson"
 require "Libs/ObjectThreadsafe/ObjectThreadsafe"
 require "Libs/Pixman/Pixman"
 require "Libs/SpdLog/SpdLog"
+require "Libs/WebKitGTK/WebKitGTK"
 require "Libs/Zlib/Zlib"
 require "utility"
 
@@ -180,6 +181,42 @@ filter "configurations:Debug*"
     defines(libSpdLog_debugdefines)
 filter "configurations:Release*"
     defines(libSpdLog_releasedefines)
+
+-- WebKitGTK
+project "WebKitGTK"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libWebKitGTK_buildoptions_WebKitGTK)
+    linkoptions(libWebKitGTK_linkoptions_WebKitGTK)
+    includedirs(libWebKitGTK_includedirs_WebKitGTK)
+    defines(libWebKitGTK_defines_WebKitGTK)
+    files(libWebKitGTK_sources_WebKitGTK)
+    links(libWebKitGTK_libs_WebKitGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("WebKitGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WebKitGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WebKitGTK)
+
+-- JavaScriptCoreGTK
+project "JavaScriptCoreGTK"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libWebKitGTK_buildoptions_JavaScriptCoreGTK)
+    linkoptions(libWebKitGTK_linkoptions_JavaScriptCoreGTK)
+    includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
+    defines(libWebKitGTK_defines_JavaScriptCoreGTK)
+    files(libWebKitGTK_sources_JavaScriptCoreGTK)
+    links(libWebKitGTK_libs_JavaScriptCoreGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("JavaScriptCoreGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_JavaScriptCoreGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_JavaScriptCoreGTK)
 
 -- Zlib
 project "Zlib"
