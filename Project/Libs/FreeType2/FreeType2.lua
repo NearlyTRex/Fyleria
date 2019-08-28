@@ -6,9 +6,11 @@ libFreeType2_incdir = libFreeType2_origdir .. "include/"
 
 -- Includes
 libFreeType2_includedirs = {
-    libFreeType2_incdir,
-    libFreeType2_extradir .. "linux/"
+    libFreeType2_incdir
 }
+if os.host() == "linux" then
+    table.insert(libFreeType2_includedirs, libFreeType2_extradir .. "linux/")
+end
 
 -- Defines
 libFreeType2_defines = {

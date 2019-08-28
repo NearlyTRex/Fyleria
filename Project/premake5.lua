@@ -3,17 +3,33 @@ require "Fyleria/Fyleria"
 require "Libs/BackwardCPP/BackwardCPP"
 require "Libs/BetterEnums/BetterEnums"
 require "Libs/Boost/Boost"
+require "Libs/Brotli/Brotli"
 require "Libs/Cairo/Cairo"
+require "Libs/Curl/Curl"
 require "Libs/FantasyName/FantasyName"
 require "Libs/FreeType2/FreeType2"
-require "Libs/LRUCache/LRUCache"
+require "Libs/GCrypt/GCrypt"
+require "Libs/GPGError/GPGError"
+require "Libs/Harbuzz/Harbuzz"
+require "Libs/Icu/Icu"
 require "Libs/ImmutableString/ImmutableString"
+require "Libs/JpegTurbo/JpegTurbo"
+require "Libs/LibreSSL/LibreSSL"
+require "Libs/LRUCache/LRUCache"
 require "Libs/MicroPather/MicroPather"
 require "Libs/ModernCPPJson/ModernCPPJson"
 require "Libs/ObjectThreadsafe/ObjectThreadsafe"
+require "Libs/OpenCFLite/OpenCFLite"
 require "Libs/Pixman/Pixman"
+require "Libs/PNG/PNG"
+require "Libs/PSL/PSL"
+require "Libs/PThreadsWin32"
 require "Libs/SpdLog/SpdLog"
+require "Libs/SQLite/SQLite"
 require "Libs/WebKitGTK/WebKitGTK"
+require "Libs/Webp/Webp"
+require "Libs/XML2/XML2"
+require "Libs/XSLT/XSLT"
 require "Libs/Zlib/Zlib"
 require "utility"
 
@@ -166,6 +182,24 @@ filter "configurations:Debug*"
     defines(libPixman_debugdefines)
 filter "configurations:Release*"
     defines(libPixman_releasedefines)
+
+-- PNG
+project "PNG"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libPNG_buildoptions)
+    linkoptions(libPNG_linkoptions)
+    includedirs(libPNG_includedirs)
+    includedirs(libZlib_includedirs)
+    defines(libPNG_defines)
+    files(libPNG_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("PNG"))
+filter "configurations:Debug*"
+    defines(libPNG_debugdefines)
+filter "configurations:Release*"
+    defines(libPNG_releasedefines)
 
 -- SpdLog
 project "SpdLog"
