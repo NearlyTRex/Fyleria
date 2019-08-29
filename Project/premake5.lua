@@ -10,6 +10,7 @@ require "Libs/FantasyName/FantasyName"
 require "Libs/FreeType2/FreeType2"
 require "Libs/GCrypt/GCrypt"
 require "Libs/GPGError/GPGError"
+require "Libs/Glib/Glib"
 require "Libs/Harbuzz/Harbuzz"
 require "Libs/Icu/Icu"
 require "Libs/ImmutableString/ImmutableString"
@@ -24,6 +25,7 @@ require "Libs/Pixman/Pixman"
 require "Libs/PNG/PNG"
 require "Libs/PSL/PSL"
 require "Libs/PThreadsWin32"
+require "Libs/Soup/Soup"
 require "Libs/SpdLog/SpdLog"
 require "Libs/SQLite/SQLite"
 require "Libs/WebKitGTK/WebKitGTK"
@@ -201,6 +203,23 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libPNG_releasedefines)
 
+-- Soup
+project "Soup"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    includedirs(libSoup_includedirs)
+    includedirs(libGlib_includedirs)
+    includedirs(libXML2_includedirs)
+    defines(libSoup_defines)
+    files(libSoup_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Soup"))
+filter "configurations:Debug*"
+    defines(libSoup_debugdefines)
+filter "configurations:Release*"
+    defines(libSoup_releasedefines)
+
 -- SpdLog
 project "SpdLog"
 language "C++"
@@ -251,6 +270,21 @@ filter "configurations:Debug*"
     defines(libWebKitGTK_debugdefines_JavaScriptCoreGTK)
 filter "configurations:Release*"
     defines(libWebKitGTK_releasedefines_JavaScriptCoreGTK)
+
+-- XML2
+project "XML2"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    includedirs(libXML2_includedirs)
+    defines(libXML2_defines)
+    files(libXML2_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("XML2"))
+filter "configurations:Debug*"
+    defines(libXML2_debugdefines)
+filter "configurations:Release*"
+    defines(libXML2_releasedefines)
 
 -- Zlib
 project "Zlib"

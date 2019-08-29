@@ -65,6 +65,7 @@ Project/Libs/EAWebKit/orig
 Project/Libs/FantasyName/orig
 Project/Libs/FreeType2/orig
 Project/Libs/GCrypt/orig
+Project/Libs/Glib/orig
 Project/Libs/GPGError/orig
 Project/Libs/Harbuzz/orig
 Project/Libs/Icu/orig
@@ -85,6 +86,7 @@ Project/Libs/PThreadsWin32/orig
 Project/Libs/ObjectThreadsafe/orig
 Project/Libs/OpenCFLite/orig
 Project/Libs/Screenfull/orig
+Project/Libs/Soup/orig
 Project/Libs/SpdLog/orig
 Project/Libs/SQLite/orig
 Project/Libs/TinyXML2/orig
