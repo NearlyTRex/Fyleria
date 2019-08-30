@@ -105,7 +105,7 @@ filter "configurations:Release*"
 project "Cairo"
 language "C"
 pic "On"
-    kind(GetSharedLibraryType())
+    kind(GetStaticLibraryType())
     buildoptions(libCairo_buildoptions)
     linkoptions(libCairo_linkoptions)
     includedirs(libCairo_includedirs)
@@ -152,6 +152,21 @@ filter "configurations:Debug*"
     defines(libFreeType2_debugdefines)
 filter "configurations:Release*"
     defines(libFreeType2_releasedefines)
+
+-- JpegTurbo
+project "JpegTurbo"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    includedirs(libJpegTurbo_includedirs)
+    defines(libJpegTurbo_defines)
+    files(libJpegTurbo_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("JpegTurbo"))
+filter "configurations:Debug*"
+    defines(libJpegTurbo_debugdefines)
+filter "configurations:Release*"
+    defines(libJpegTurbo_releasedefines)
 
 -- MicroPather
 project "MicroPather"
