@@ -13,6 +13,9 @@ libGlib_includedirs = {
     libGlib_incdir .. "gobject/",
 }
 if os.host() == "linux" then
+    table.insert(libGlib_includedirs, "/usr/include/libmount")
+    table.insert(libGlib_includedirs, "/usr/include/blkid")
+    table.insert(libGlib_includedirs, "/usr/include/uuid")
     table.insert(libGlib_includedirs, libGlib_extradir .. "linux/")
     table.insert(libGlib_includedirs, libGlib_extradir .. "linux/gio/")
     table.insert(libGlib_includedirs, libGlib_extradir .. "linux/glib/")
@@ -20,16 +23,60 @@ if os.host() == "linux" then
     table.insert(libGlib_includedirs, libGlib_extradir .. "linux/gobject/")
 end
 
--- Defines
-libGlib_defines = {
+-- Defines (Gio)
+libGlib_defines_gio = {
+    "_FILE_OFFSET_BITS=64",
+    "_GNU_SOURCE",
+    "GIO_COMPILATION",
+    "GIO_MODULE_DIR=\"modules\""
 }
-libGlib_debugdefines = {
+libGlib_debugdefines_gio = {
+    "G_ENABLE_DEBUG"
 }
-libGlib_releasedefines = {
+libGlib_releasedefines_gio = {
+}
+
+-- Defines (Glib)
+libGlib_defines_glib = {
+    "_FILE_OFFSET_BITS=64",
+    "_GNU_SOURCE",
+    "GLIB_COMPILATION",
+    "GLIB_CHARSETALIAS_DIR=\"lib\""
+}
+libGlib_debugdefines_glib = {
+    "G_ENABLE_DEBUG"
+}
+libGlib_releasedefines_glib = {
+}
+
+-- Defines (Gmodule)
+libGlib_defines_gmodule = {
+    "_FILE_OFFSET_BITS=64",
+    "_GNU_SOURCE"
+}
+libGlib_debugdefines_gmodule = {
+    "G_ENABLE_DEBUG"
+}
+libGlib_releasedefines_gmodule = {
+}
+
+-- Defines (Gobject)
+libGlib_defines_gobject = {
+    "_FILE_OFFSET_BITS=64",
+    "_GNU_SOURCE",
+    "GOBJECT_COMPILATION"
+}
+libGlib_debugdefines_gobject = {
+    "G_ENABLE_DEBUG"
+}
+libGlib_releasedefines_gobject = {
 }
 
 -- Options
 libGlib_buildoptions = {
+    "-std=gnu89",
+    "-fvisibility=hidden",
+    "-fno-strict-aliasing"
 }
 libGlib_linkoptions = {
 }

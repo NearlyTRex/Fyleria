@@ -153,6 +153,74 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libFreeType2_releasedefines)
 
+-- Gio
+project "Gio"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libGlib_buildoptions)
+    linkoptions(libGlib_linkoptions)
+    includedirs(libGlib_includedirs)
+    defines(libGlib_defines_gio)
+    files(libGlib_sources_gio)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Gio"))
+filter "configurations:Debug*"
+    defines(libGlib_debugdefines_gio)
+filter "configurations:Release*"
+    defines(libGlib_releasedefines_gio)
+
+-- Glib
+project "Glib"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libGlib_buildoptions)
+    linkoptions(libGlib_linkoptions)
+    includedirs(libGlib_includedirs)
+    defines(libGlib_defines_glib)
+    files(libGlib_sources_glib)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Glib"))
+filter "configurations:Debug*"
+    defines(libGlib_debugdefines_glib)
+filter "configurations:Release*"
+    defines(libGlib_releasedefines_glib)
+
+-- Gmodule
+project "Gmodule"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libGlib_buildoptions)
+    linkoptions(libGlib_linkoptions)
+    includedirs(libGlib_includedirs)
+    defines(libGlib_defines_gmodule)
+    files(libGlib_sources_gmodule)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Gmodule"))
+filter "configurations:Debug*"
+    defines(libGlib_debugdefines_gmodule)
+filter "configurations:Release*"
+    defines(libGlib_releasedefines_gmodule)
+
+-- Gobject
+project "Gobject"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libGlib_buildoptions)
+    linkoptions(libGlib_linkoptions)
+    includedirs(libGlib_includedirs)
+    defines(libGlib_defines_gobject)
+    files(libGlib_sources_gobject)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Gobject"))
+filter "configurations:Debug*"
+    defines(libGlib_debugdefines_gobject)
+filter "configurations:Release*"
+    defines(libGlib_releasedefines_gobject)
+
 -- JpegTurbo
 project "JpegTurbo"
 language "C"
