@@ -318,6 +318,40 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libSpdLog_releasedefines)
 
+-- WTFGTK
+project "WTFGTK"
+language "C++"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libWebKitGTK_buildoptions_WTFGTK)
+    linkoptions(libWebKitGTK_linkoptions_WTFGTK)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
+    defines(libWebKitGTK_defines_WTFGTK)
+    files(libWebKitGTK_sources_WTFGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("WTFGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WTFGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WTFGTK)
+
+-- WebCoreGTK
+project "WebCoreGTK"
+language "C++"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libWebKitGTK_buildoptions_WebCoreGTK)
+    linkoptions(libWebKitGTK_linkoptions_WebCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+    defines(libWebKitGTK_defines_WebCoreGTK)
+    files(libWebKitGTK_sources_WebCoreGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("WebCoreGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WebCoreGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WebCoreGTK)
+
 -- WebKitGTK
 project "WebKitGTK"
 language "C++"
