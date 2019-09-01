@@ -1,28 +1,28 @@
 -- Configuration
-libHarbuzz_extradir = "Libs/Harbuzz/extra/"
-libHarbuzz_origdir = "Libs/Harbuzz/orig/"
-libHarbuzz_srcdir = libHarbuzz_origdir
-libHarbuzz_incdir = libHarbuzz_origdir
+libHarfbuzz_extradir = "Libs/Harfbuzz/extra/"
+libHarfbuzz_origdir = "Libs/Harfbuzz/orig/"
+libHarfbuzz_srcdir = libHarfbuzz_origdir
+libHarfbuzz_incdir = libHarfbuzz_origdir
 
 -- Includes
-libHarbuzz_includedirs = {
-    libHarbuzz_incdir,
+libHarfbuzz_includedirs = {
+    libHarfbuzz_incdir,
 }
 
 -- Defines
-libHarbuzz_defines = {
+libHarfbuzz_defines = {
 }
-libHarbuzz_debugdefines = {
+libHarfbuzz_debugdefines = {
 }
-libHarbuzz_releasedefines = {
+libHarfbuzz_releasedefines = {
 }
 
 -- Options
-libHarbuzz_buildoptions = {
+libHarfbuzz_buildoptions = {
 }
-libHarbuzz_linkoptions = {
+libHarfbuzz_linkoptions = {
 }
 
 -- Sources
-libHarbuzz_sources = {
+libHarfbuzz_sources = {
 }
