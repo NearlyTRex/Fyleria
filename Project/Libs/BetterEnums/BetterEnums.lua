@@ -12,7 +12,7 @@ libBetterEnums_includedirs = {
 
 -- Defines
 libBetterEnums_defines = {
-    "BETTER_ENUMS_MACRO_FILE \"enum_macros.h\""
+    "BETTER_ENUMS_MACRO_FILE=\"enum_macros.h\""
 }
 libBetterEnums_debugdefines = {
 }
