@@ -7,13 +7,44 @@ libWebKitGTK_incdir = libWebKitGTK_origdir
 -- Includes (WTFGTK)
 libWebKitGTK_includedirs_WTFGTK = {
     libWebKitGTK_incdir,
-    libWebKitGTK_incdir .. "Source/WTF"
+    libWebKitGTK_incdir .. "Source/WTF",
+    libWebKitGTK_incdir .. "DerivedSources/ForwardingHeaders/wtf"
 }
 
 -- Includes (WebCoreGTK)
 libWebKitGTK_includedirs_WebCoreGTK = {
-    libWebKitGTK_incdir
+    libWebKitGTK_incdir,
+    libWebKitGTK_incdir .. "Source",
+    libWebKitGTK_incdir .. "Source/WebCore",
+    libWebKitGTK_incdir .. "Source/WebCore/platform",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/animation",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/cairo",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/freetype",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/harfbuzz",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/opentype",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/transforms",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/image-decoders",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/text",
+    libWebKitGTK_incdir .. "Source/WebCore/rendering/style",
+    libWebKitGTK_incdir .. "Source/WebCore/css",
+    libWebKitGTK_incdir .. "Source/WebCore/dom",
+    libWebKitGTK_incdir .. "Source/WebCore/style",
+    libWebKitGTK_incdir .. "Source/WTF",
+    libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/src",
+    libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/src/common/third_party/base",
+    libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/include",
+    libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/include/KHR",
+    libWebKitGTK_incdir .. "DerivedSources/ForwardingHeaders",
+    libWebKitGTK_incdir .. "DerivedSources/ForwardingHeaders/WebCore",
+    libWebKitGTK_incdir .. "DerivedSources/ForwardingHeaders/wtf",
+    libWebKitGTK_incdir .. "DerivedSources/WebCore"
 }
+if os.host() == "linux" then
+    table.insert(libWebKitGTK_includedirs_WebCoreGTK, "/usr/include/gtk-3.0")
+    table.insert(libWebKitGTK_includedirs_WebCoreGTK, "/usr/include/gdk-pixbuf-2.0")
+    table.insert(libWebKitGTK_includedirs_WebCoreGTK, "/usr/include/pango-1.0")
+end
 
 -- Includes (WebKitGTK)
 libWebKitGTK_includedirs_WebKitGTK = {
@@ -28,19 +59,36 @@ libWebKitGTK_includedirs_JavaScriptCoreGTK = {
 -- Defines (WTFGTK)
 libWebKitGTK_defines_WTFGTK = {
     "HAVE_CONFIG_H",
-    "BUILDING_WITH_CMAKE"
+    "BUILDING_GTK__",
+    "BUILDING_WTF",
+    "BUILDING_WITH_CMAKE",
+    "JSC_GLIB_API_ENABLED",
+    "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
+    "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
 libWebKitGTK_debugdefines_WTFGTK = {
 }
 libWebKitGTK_releasedefines_WTFGTK = {
+    "NDEBUG"
 }
 
 -- Defines (WebCoreGTK)
 libWebKitGTK_defines_WebCoreGTK = {
+    "HAVE_CONFIG_H",
+    "ANGLE_ENABLE_ESSL",
+    "ANGLE_ENABLE_GLSL",
+    "BUILDING_GTK__",
+    "BUILDING_WEBKIT",
+    "BUILDING_WITH_CMAKE",
+    "JSC_GLIB_API_ENABLED",
+    "STATICALLY_LINKED_WITH_PAL",
+    "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
+    "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
 libWebKitGTK_debugdefines_WebCoreGTK = {
 }
 libWebKitGTK_releasedefines_WebCoreGTK = {
+    "NDEBUG"
 }
 
 -- Defines (WebKitGTK)
@@ -61,12 +109,18 @@ libWebKitGTK_releasedefines_JavaScriptCoreGTK = {
 
 -- Options (WTFGTK)
 libWebKitGTK_buildoptions_WTFGTK = {
+    "-fno-strict-aliasing",
+    "-fno-exceptions",
+    "-fno-rtti"
 }
 libWebKitGTK_linkoptions_WTFGTK = {
 }
 
 -- Options (WebCoreGTK)
 libWebKitGTK_buildoptions_WebCoreGTK = {
+    "-fno-strict-aliasing",
+    "-fno-exceptions",
+    "-fno-rtti"
 }
 libWebKitGTK_linkoptions_WebCoreGTK = {
 }

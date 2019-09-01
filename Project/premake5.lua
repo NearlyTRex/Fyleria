@@ -11,7 +11,7 @@ require "Libs/FreeType2/FreeType2"
 require "Libs/GCrypt/GCrypt"
 require "Libs/GPGError/GPGError"
 require "Libs/Glib/Glib"
-require "Libs/Harbuzz/Harbuzz"
+require "Libs/Harfbuzz/Harfbuzz"
 require "Libs/Icu/Icu"
 require "Libs/ImmutableString/ImmutableString"
 require "Libs/JpegTurbo/JpegTurbo"
@@ -221,6 +221,23 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libGlib_releasedefines_gobject)
 
+-- Harfbuzz
+project "Harfbuzz"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    includedirs(libHarfbuzz_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libGlib_includedirs)
+    defines(libHarfbuzz_defines)
+    files(libHarfbuzz_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Harfbuzz"))
+filter "configurations:Debug*"
+    defines(libHarfbuzz_debugdefines)
+filter "configurations:Release*"
+    defines(libHarfbuzz_releasedefines)
+
 -- JpegTurbo
 project "JpegTurbo"
 language "C"
@@ -326,6 +343,7 @@ pic "On"
     buildoptions(libWebKitGTK_buildoptions_WTFGTK)
     linkoptions(libWebKitGTK_linkoptions_WTFGTK)
     includedirs(libWebKitGTK_includedirs_WTFGTK)
+    includedirs(libGlib_includedirs)
     defines(libWebKitGTK_defines_WTFGTK)
     files(libWebKitGTK_sources_WTFGTK)
     targetdir(GetLibraryTargetDirectory())
@@ -343,6 +361,11 @@ pic "On"
     buildoptions(libWebKitGTK_buildoptions_WebCoreGTK)
     linkoptions(libWebKitGTK_linkoptions_WebCoreGTK)
     includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+    includedirs(libGlib_includedirs)
+    includedirs(libSoup_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libHarfbuzz_includedirs)
     defines(libWebKitGTK_defines_WebCoreGTK)
     files(libWebKitGTK_sources_WebCoreGTK)
     targetdir(GetLibraryTargetDirectory())
@@ -360,6 +383,7 @@ pic "On"
     buildoptions(libWebKitGTK_buildoptions_WebKitGTK)
     linkoptions(libWebKitGTK_linkoptions_WebKitGTK)
     includedirs(libWebKitGTK_includedirs_WebKitGTK)
+    includedirs(libGlib_includedirs)
     defines(libWebKitGTK_defines_WebKitGTK)
     files(libWebKitGTK_sources_WebKitGTK)
     links(libWebKitGTK_libs_WebKitGTK)
@@ -378,6 +402,7 @@ pic "On"
     buildoptions(libWebKitGTK_buildoptions_JavaScriptCoreGTK)
     linkoptions(libWebKitGTK_linkoptions_JavaScriptCoreGTK)
     includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
+    includedirs(libGlib_includedirs)
     defines(libWebKitGTK_defines_JavaScriptCoreGTK)
     files(libWebKitGTK_sources_JavaScriptCoreGTK)
     links(libWebKitGTK_libs_JavaScriptCoreGTK)
