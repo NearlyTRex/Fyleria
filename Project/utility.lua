@@ -61,8 +61,13 @@ function GetSystemArchitecture()
     return os_name .. "_" .. arch_name
 end
 
--- Get C++ dialect
-function GetCppDialect()
+-- Get C++ 14 dialect
+function GetCpp14Dialect()
+    return "C++14"
+end
+
+-- Get C++ 17 dialect
+function GetCpp17Dialect()
     return "C++17"
 end
 

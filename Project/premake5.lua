@@ -38,7 +38,6 @@ require "utility"
 -- Create solution
 workspace "all"
     startproject "Fyleria"
-    cppdialect(GetCppDialect())
     location(GetBuildLocation())
     toolset(GetBuildToolset())
     configurations { "Debug32", "Release32", "Debug64", "Release64" }
@@ -58,6 +57,7 @@ project "Fyleria"
 language "C++"
 pic "On"
     kind(GetAppType())
+    cppdialect(GetCpp17Dialect())
     buildoptions(appFyleria_buildoptions)
     linkoptions(appFyleria_linkoptions)
     includedirs(appFyleria_includedirs)
@@ -91,6 +91,7 @@ project "Boost"
 language "C++"
 pic "On"
     kind(GetStaticLibraryType())
+    cppdialect(GetCpp17Dialect())
     includedirs(libBoost_includedirs)
     defines(libBoost_defines)
     files(libBoost_sources)
@@ -106,6 +107,7 @@ project "Cairo"
 language "C"
 pic "On"
     kind(GetStaticLibraryType())
+    cppdialect(GetCpp17Dialect())
     buildoptions(libCairo_buildoptions)
     linkoptions(libCairo_linkoptions)
     includedirs(libCairo_includedirs)
@@ -126,6 +128,7 @@ project "FantasyName"
 language "C++"
 pic "On"
     kind(GetStaticLibraryType())
+    cppdialect(GetCpp17Dialect())
     includedirs(libFantasyName_includedirs)
     defines(libFantasyName_defines)
     files(libFantasyName_sources)
@@ -258,6 +261,7 @@ project "MicroPather"
 language "C++"
 pic "On"
     kind(GetStaticLibraryType())
+    cppdialect(GetCpp17Dialect())
     includedirs(libMicroPather_includedirs)
     defines(libMicroPather_defines)
     files(libMicroPather_sources)
@@ -325,6 +329,7 @@ project "SpdLog"
 language "C++"
 pic "On"
     kind(GetStaticLibraryType())
+    cppdialect(GetCpp17Dialect())
     includedirs(libSpdLog_includedirs)
     defines(libSpdLog_defines)
     files(libSpdLog_sources)
@@ -339,7 +344,8 @@ filter "configurations:Release*"
 project "WTFGTK"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WTFGTK)
     linkoptions(libWebKitGTK_linkoptions_WTFGTK)
     includedirs(libWebKitGTK_includedirs_WTFGTK)
@@ -357,7 +363,8 @@ filter "configurations:Release*"
 project "WebCoreGTK"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WebCoreGTK)
     linkoptions(libWebKitGTK_linkoptions_WebCoreGTK)
     includedirs(libWebKitGTK_includedirs_WebCoreGTK)
@@ -366,6 +373,7 @@ pic "On"
     includedirs(libCairo_includedirs)
     includedirs(libFreeType2_includedirs)
     includedirs(libHarfbuzz_includedirs)
+    includedirs(libXML2_includedirs)
     defines(libWebKitGTK_defines_WebCoreGTK)
     files(libWebKitGTK_sources_WebCoreGTK)
     targetdir(GetLibraryTargetDirectory())
@@ -380,6 +388,7 @@ project "WebKitGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WebKitGTK)
     linkoptions(libWebKitGTK_linkoptions_WebKitGTK)
     includedirs(libWebKitGTK_includedirs_WebKitGTK)
@@ -399,6 +408,7 @@ project "JavaScriptCoreGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_JavaScriptCoreGTK)
     linkoptions(libWebKitGTK_linkoptions_JavaScriptCoreGTK)
     includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)

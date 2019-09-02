@@ -6,31 +6,111 @@ libWebKitGTK_incdir = libWebKitGTK_origdir
 
 -- Includes (WTFGTK)
 libWebKitGTK_includedirs_WTFGTK = {
-    libWebKitGTK_incdir,
     libWebKitGTK_incdir .. "Source/WTF",
     libWebKitGTK_incdir .. "DerivedSources/ForwardingHeaders/wtf"
 }
+if os.host() == "linux" then
+    table.insert(libWebKitGTK_includedirs_WTFGTK, libWebKitGTK_extradir .. "linux/")
+end
 
 -- Includes (WebCoreGTK)
 libWebKitGTK_includedirs_WebCoreGTK = {
-    libWebKitGTK_incdir,
     libWebKitGTK_incdir .. "Source",
     libWebKitGTK_incdir .. "Source/WebCore",
+    libWebKitGTK_incdir .. "Source/WebCore/accessibility",
+    libWebKitGTK_incdir .. "Source/WebCore/animation",
+    libWebKitGTK_incdir .. "Source/WebCore/bindings",
+    libWebKitGTK_incdir .. "Source/WebCore/bindings/js",
+    libWebKitGTK_incdir .. "Source/WebCore/bridge",
+    libWebKitGTK_incdir .. "Source/WebCore/bridge/c",
+    libWebKitGTK_incdir .. "Source/WebCore/bridge/jsc",
+    libWebKitGTK_incdir .. "Source/WebCore/contentextensions",
+    libWebKitGTK_incdir .. "Source/WebCore/css",
+    libWebKitGTK_incdir .. "Source/WebCore/cssjit",
+    libWebKitGTK_incdir .. "Source/WebCore/css/parser",
+    libWebKitGTK_incdir .. "Source/WebCore/css/typedom",
+    libWebKitGTK_incdir .. "Source/WebCore/dom",
+    libWebKitGTK_incdir .. "Source/WebCore/domjit",
+    libWebKitGTK_incdir .. "Source/WebCore/dom/messageports",
+    libWebKitGTK_incdir .. "Source/WebCore/editing",
+    libWebKitGTK_incdir .. "Source/WebCore/fileapi",
+    libWebKitGTK_incdir .. "Source/WebCore/html",
+    libWebKitGTK_incdir .. "Source/WebCore/html/canvas",
+    libWebKitGTK_incdir .. "Source/WebCore/html/parser",
+    libWebKitGTK_incdir .. "Source/WebCore/html/track",
+    libWebKitGTK_incdir .. "Source/WebCore/html/shadow",
+    libWebKitGTK_incdir .. "Source/WebCore/inspector",
+    libWebKitGTK_incdir .. "Source/WebCore/loader",
+    libWebKitGTK_incdir .. "Source/WebCore/loader/appcache",
+    libWebKitGTK_incdir .. "Source/WebCore/loader/cache",
+    libWebKitGTK_incdir .. "Source/WebCore/mathml",
+    libWebKitGTK_incdir .. "Source/WebCore/page",
+    libWebKitGTK_incdir .. "Source/WebCore/page/animation",
+    libWebKitGTK_incdir .. "Source/WebCore/PAL/pal/crypto",
+    libWebKitGTK_incdir .. "Source/WebCore/PAL/pal/system",
     libWebKitGTK_incdir .. "Source/WebCore/platform",
     libWebKitGTK_incdir .. "Source/WebCore/platform/animation",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/audio",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/gtk",
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics",
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/cairo",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/displaylists",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/egl",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/glx",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/filters",
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/freetype",
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/harfbuzz",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/nicosia",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/nicosia/cairo",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/nicosia/texmap",
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/opentype",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/texmap",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/texmap/coordinated",
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/transforms",
     libWebKitGTK_incdir .. "Source/WebCore/platform/image-decoders",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/image-decoders/bmp",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/image-decoders/gif",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/image-decoders/ico",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/image-decoders/jpeg",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/image-decoders/png",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/image-decoders/webp",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/mediacapabilities",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/network",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/sql",
     libWebKitGTK_incdir .. "Source/WebCore/platform/text",
+    libWebKitGTK_incdir .. "Source/WebCore/platform/vr",
+    libWebKitGTK_incdir .. "Source/WebCore/plugins",
+    libWebKitGTK_incdir .. "Source/WebCore/rendering",
+    libWebKitGTK_incdir .. "Source/WebCore/rendering/line",
+    libWebKitGTK_incdir .. "Source/WebCore/rendering/mathml",
+    libWebKitGTK_incdir .. "Source/WebCore/rendering/shapes",
     libWebKitGTK_incdir .. "Source/WebCore/rendering/style",
-    libWebKitGTK_incdir .. "Source/WebCore/css",
-    libWebKitGTK_incdir .. "Source/WebCore/dom",
+    libWebKitGTK_incdir .. "Source/WebCore/rendering/svg",
+    libWebKitGTK_incdir .. "Source/WebCore/rendering/updating",
+    libWebKitGTK_incdir .. "Source/WebCore/storage",
     libWebKitGTK_incdir .. "Source/WebCore/style",
+    libWebKitGTK_incdir .. "Source/WebCore/svg",
+    libWebKitGTK_incdir .. "Source/WebCore/svg/animation",
+    libWebKitGTK_incdir .. "Source/WebCore/svg/graphics",
+    libWebKitGTK_incdir .. "Source/WebCore/svg/graphics/filters",
+    libWebKitGTK_incdir .. "Source/WebCore/svg/properties",
+    libWebKitGTK_incdir .. "Source/WebCore/workers",
+    libWebKitGTK_incdir .. "Source/WebCore/workers/service",
+    libWebKitGTK_incdir .. "Source/WebCore/worklets",
+    libWebKitGTK_incdir .. "Source/WebCore/xml",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/beacon",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/cache",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/entriesapi",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/fetch",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/mediacapabilities",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/mediastream",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/streams",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/webdatabase",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/webdriver",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/websockets",
+    libWebKitGTK_incdir .. "Source/WebCore/Modules/webvr",
     libWebKitGTK_incdir .. "Source/WTF",
+    libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE",
     libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/src",
     libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/src/common/third_party/base",
     libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/include",
@@ -41,19 +121,19 @@ libWebKitGTK_includedirs_WebCoreGTK = {
     libWebKitGTK_incdir .. "DerivedSources/WebCore"
 }
 if os.host() == "linux" then
+    table.insert(libWebKitGTK_includedirs_WebCoreGTK, libWebKitGTK_extradir .. "linux/")
     table.insert(libWebKitGTK_includedirs_WebCoreGTK, "/usr/include/gtk-3.0")
     table.insert(libWebKitGTK_includedirs_WebCoreGTK, "/usr/include/gdk-pixbuf-2.0")
     table.insert(libWebKitGTK_includedirs_WebCoreGTK, "/usr/include/pango-1.0")
+    table.insert(libWebKitGTK_includedirs_WebCoreGTK, "/usr/include/atk-1.0")
 end
 
 -- Includes (WebKitGTK)
 libWebKitGTK_includedirs_WebKitGTK = {
-    libWebKitGTK_incdir
 }
 
 -- Includes (JavaScriptCoreGTK)
 libWebKitGTK_includedirs_JavaScriptCoreGTK = {
-    libWebKitGTK_incdir
 }
 
 -- Defines (WTFGTK)
@@ -109,6 +189,8 @@ libWebKitGTK_releasedefines_JavaScriptCoreGTK = {
 
 -- Options (WTFGTK)
 libWebKitGTK_buildoptions_WTFGTK = {
+    "-msse2",
+    "-mfpmath=sse",
     "-fno-strict-aliasing",
     "-fno-exceptions",
     "-fno-rtti"
@@ -118,6 +200,8 @@ libWebKitGTK_linkoptions_WTFGTK = {
 
 -- Options (WebCoreGTK)
 libWebKitGTK_buildoptions_WebCoreGTK = {
+    "-msse2",
+    "-mfpmath=sse",
     "-fno-strict-aliasing",
     "-fno-exceptions",
     "-fno-rtti"
@@ -127,12 +211,16 @@ libWebKitGTK_linkoptions_WebCoreGTK = {
 
 -- Options (WebKitGTK)
 libWebKitGTK_buildoptions_WebKitGTK = {
+    "-msse2",
+    "-mfpmath=sse"
 }
 libWebKitGTK_linkoptions_WebKitGTK = {
 }
 
 -- Options (JavaScriptCoreGTK)
 libWebKitGTK_buildoptions_JavaScriptCoreGTK = {
+    "-msse2",
+    "-mfpmath=sse"
 }
 libWebKitGTK_linkoptions_JavaScriptCoreGTK = {
 }
