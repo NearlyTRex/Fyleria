@@ -204,4 +204,16 @@ static inline int isSSE2Present()
     return 1;
 }
 
+#ifndef EGL_WAYLAND_BUFFER_WL
+#define EGL_WAYLAND_BUFFER_WL 0x31D5
+#endif
+
+#ifndef EGL_WAYLAND_PLANE_WL
+#define EGL_WAYLAND_PLANE_WL 0x31D6
+#endif
+
+#ifndef EGL_WAYLAND_Y_INVERTED_WL
+#define EGL_WAYLAND_Y_INVERTED_WL 0x31DB
+#endif
+
 #endif /* CMAKECONFIG_H */

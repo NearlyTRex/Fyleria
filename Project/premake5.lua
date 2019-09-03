@@ -63,7 +63,9 @@ pic "On"
     includedirs(appFyleria_includedirs)
     includedirs(libBackwardCPP_includedirs)
     includedirs(libBoost_includedirs)
+    includedirs(libCairo_includedirs)
     includedirs(libFantasyName_includedirs)
+    includedirs(libGlib_includedirs)
     includedirs(libImmutableString_includedirs)
     includedirs(libBetterEnums_includedirs)
     includedirs(libLRUCache_includedirs)
@@ -344,8 +346,8 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libSpdLog_releasedefines)
 
--- WTFGTK
-project "WTFGTK"
+-- WebTemplateFrameworkGTK
+project "WebTemplateFrameworkGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
@@ -357,7 +359,7 @@ pic "On"
     defines(libWebKitGTK_defines_WTFGTK)
     files(libWebKitGTK_sources_WTFGTK)
     targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("WTFGTK"))
+    targetname(GetTargetName("WebTemplateFrameworkGTK"))
 filter "configurations:Debug*"
     defines(libWebKitGTK_debugdefines_WTFGTK)
 filter "configurations:Release*"
@@ -372,6 +374,7 @@ pic "On"
     buildoptions(libWebKitGTK_buildoptions_WebCoreGTK)
     linkoptions(libWebKitGTK_linkoptions_WebCoreGTK)
     includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
     includedirs(libGlib_includedirs)
     includedirs(libSoup_includedirs)
     includedirs(libCairo_includedirs)
@@ -396,6 +399,9 @@ pic "On"
     buildoptions(libWebKitGTK_buildoptions_WebKitGTK)
     linkoptions(libWebKitGTK_linkoptions_WebKitGTK)
     includedirs(libWebKitGTK_includedirs_WebKitGTK)
+    includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+    includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
     includedirs(libGlib_includedirs)
     includedirs(libSoup_includedirs)
     includedirs(libCairo_includedirs)
@@ -420,6 +426,8 @@ pic "On"
     buildoptions(libWebKitGTK_buildoptions_JavaScriptCoreGTK)
     linkoptions(libWebKitGTK_linkoptions_JavaScriptCoreGTK)
     includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
     includedirs(libGlib_includedirs)
     defines(libWebKitGTK_defines_JavaScriptCoreGTK)
     files(libWebKitGTK_sources_JavaScriptCoreGTK)
