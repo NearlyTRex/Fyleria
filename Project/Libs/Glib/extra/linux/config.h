@@ -390,8 +390,6 @@
 
 #define USE_SYSTEM_PRINTF
 
-#define _GLIB_EXTERN __attribute__((visibility("default"))) extern
-
 #define _GNU_SOURCE 1
 
 #define gl_extern_inline 

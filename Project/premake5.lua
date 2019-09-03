@@ -166,6 +166,7 @@ pic "On"
     includedirs(libGlib_includedirs)
     defines(libGlib_defines_gio)
     files(libGlib_sources_gio)
+    links(libGlib_libs_gio)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Gio"))
 filter "configurations:Debug*"
@@ -183,6 +184,7 @@ pic "On"
     includedirs(libGlib_includedirs)
     defines(libGlib_defines_glib)
     files(libGlib_sources_glib)
+    links(libGlib_libs_glib)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Glib"))
 filter "configurations:Debug*"
@@ -200,6 +202,7 @@ pic "On"
     includedirs(libGlib_includedirs)
     defines(libGlib_defines_gmodule)
     files(libGlib_sources_gmodule)
+    links(libGlib_libs_gmodule)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Gmodule"))
 filter "configurations:Debug*"
@@ -217,6 +220,7 @@ pic "On"
     includedirs(libGlib_includedirs)
     defines(libGlib_defines_gobject)
     files(libGlib_sources_gobject)
+    links(libGlib_libs_gobject)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Gobject"))
 filter "configurations:Debug*"
@@ -393,6 +397,10 @@ pic "On"
     linkoptions(libWebKitGTK_linkoptions_WebKitGTK)
     includedirs(libWebKitGTK_includedirs_WebKitGTK)
     includedirs(libGlib_includedirs)
+    includedirs(libSoup_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libHarfbuzz_includedirs)
     defines(libWebKitGTK_defines_WebKitGTK)
     files(libWebKitGTK_sources_WebKitGTK)
     links(libWebKitGTK_libs_WebKitGTK)

@@ -81,6 +81,22 @@ libGlib_buildoptions = {
 libGlib_linkoptions = {
 }
 
+-- Libs (Gio)
+libGlib_libs_gio = {
+}
+
+-- Libs (Glib)
+libGlib_libs_glib = {
+}
+
+-- Libs (Gmodule)
+libGlib_libs_gmodule = {
+}
+
+-- Libs (Gobject)
+libGlib_libs_gobject = {
+}
+
 -- Sources
 libGlib_sources_gio = {
     libGlib_srcdir .. "gio/gaction.c",
