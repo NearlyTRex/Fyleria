@@ -15,5 +15,3 @@
 
 #define PACKAGE_VERSION "2.67.92"
 
-#define _SOUP_EXTERN __attribute__((visibility("default"))) extern
-
