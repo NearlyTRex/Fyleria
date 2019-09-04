@@ -64,6 +64,7 @@ pic "On"
     includedirs(libBackwardCPP_includedirs)
     includedirs(libBoost_includedirs)
     includedirs(libCairo_includedirs)
+    includedirs(libSoup_includedirs)
     includedirs(libFantasyName_includedirs)
     includedirs(libGlib_includedirs)
     includedirs(libImmutableString_includedirs)
