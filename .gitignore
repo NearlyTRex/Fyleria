@@ -63,6 +63,7 @@ Project/Libs/Cairo/orig
 Project/Libs/Curl/orig
 Project/Libs/EAWebKit/orig
 Project/Libs/FantasyName/orig
+Project/Libs/FFI/orig
 Project/Libs/FreeType2/orig
 Project/Libs/GCrypt/orig
 Project/Libs/Glib/orig
@@ -85,6 +86,7 @@ Project/Libs/PSL/orig
 Project/Libs/PThreadsWin32/orig
 Project/Libs/ObjectThreadsafe/orig
 Project/Libs/OpenCFLite/orig
+Project/Libs/PCRE/orig
 Project/Libs/Screenfull/orig
 Project/Libs/Soup/orig
 Project/Libs/SpdLog/orig
