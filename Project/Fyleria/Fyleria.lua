@@ -31,23 +31,33 @@ if os.host() == "windows" then
 elseif os.host() == "linux" then
     table.insert(appFyleria_buildoptions, "-Wall")
     table.insert(appFyleria_buildoptions, "-Wfatal-errors")
-    table.insert(appFyleria_buildoptions, "`pkg-config --cflags gtk+-3.0 webkit2gtk-4.0`")
-    table.insert(appFyleria_linkoptions, "`pkg-config --libs gtk+-3.0 webkit2gtk-4.0`")
 end
 
 -- Libs
 appFyleria_libs = {
     "Boost",
-    "Cairo",
     "FantasyName",
     "MicroPather",
-    "SpdLog",
-    "Zlib"
+    "SpdLog"
 }
 if os.host() == "windows" then
     table.insert(appFyleria_libs, "windowsapp")
 elseif os.host() == "linux" then
     table.insert(appFyleria_libs, "pthread")
+    table.insert(appFyleria_libs, "gtk-3")
+    table.insert(appFyleria_libs, "ffi")
+    table.insert(appFyleria_libs, "pcre")
+    table.insert(appFyleria_libs, "Cairo")
+    table.insert(appFyleria_libs, "FreeType2")
+    table.insert(appFyleria_libs, "Glib")
+    table.insert(appFyleria_libs, "JpegTurbo")
+    table.insert(appFyleria_libs, "Pixman")
+    table.insert(appFyleria_libs, "PNG")
+    table.insert(appFyleria_libs, "Soup")
+    table.insert(appFyleria_libs, "XML2")
+    table.insert(appFyleria_libs, "Zlib")
+    table.insert(appFyleria_libs, "JavaScriptCoreGTK")
+    table.insert(appFyleria_libs, "WebKitGTK")
 end
 
 -- Sources

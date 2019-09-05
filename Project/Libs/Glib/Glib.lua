@@ -23,53 +23,20 @@ if os.host() == "linux" then
     table.insert(libGlib_includedirs, libGlib_extradir .. "linux/gobject/")
 end
 
--- Defines (Gio)
-libGlib_defines_gio = {
-    "_FILE_OFFSET_BITS=64",
-    "_GNU_SOURCE",
-    "GIO_COMPILATION",
-    "GIO_MODULE_DIR=\"modules\""
-}
-libGlib_debugdefines_gio = {
-    "G_ENABLE_DEBUG"
-}
-libGlib_releasedefines_gio = {
-}
-
--- Defines (Glib)
-libGlib_defines_glib = {
+-- Defines
+libGlib_defines = {
     "_FILE_OFFSET_BITS=64",
     "_GNU_SOURCE",
     "GLIB_COMPILATION",
-    "GLIB_CHARSETALIAS_DIR=\"lib\""
+    "GIO_COMPILATION",
+    "GOBJECT_COMPILATION",
+    "GLIB_CHARSETALIAS_DIR=\"lib\"",
+    "GIO_MODULE_DIR=\"modules\"",
 }
-libGlib_debugdefines_glib = {
+libGlib_debugdefines = {
     "G_ENABLE_DEBUG"
 }
-libGlib_releasedefines_glib = {
-}
-
--- Defines (Gmodule)
-libGlib_defines_gmodule = {
-    "_FILE_OFFSET_BITS=64",
-    "_GNU_SOURCE"
-}
-libGlib_debugdefines_gmodule = {
-    "G_ENABLE_DEBUG"
-}
-libGlib_releasedefines_gmodule = {
-}
-
--- Defines (Gobject)
-libGlib_defines_gobject = {
-    "_FILE_OFFSET_BITS=64",
-    "_GNU_SOURCE",
-    "GOBJECT_COMPILATION"
-}
-libGlib_debugdefines_gobject = {
-    "G_ENABLE_DEBUG"
-}
-libGlib_releasedefines_gobject = {
+libGlib_releasedefines = {
 }
 
 -- Options
@@ -81,24 +48,102 @@ libGlib_buildoptions = {
 libGlib_linkoptions = {
 }
 
--- Libs (Gio)
-libGlib_libs_gio = {
-}
-
--- Libs (Glib)
-libGlib_libs_glib = {
-}
-
--- Libs (Gmodule)
-libGlib_libs_gmodule = {
-}
-
--- Libs (Gobject)
-libGlib_libs_gobject = {
-}
-
 -- Sources
-libGlib_sources_gio = {
+libGlib_sources = {
+    libGlib_srcdir .. "glib/deprecated/gallocator.c",
+    libGlib_srcdir .. "glib/deprecated/gcache.c",
+    libGlib_srcdir .. "glib/deprecated/gcompletion.c",
+    libGlib_srcdir .. "glib/deprecated/grel.c",
+    libGlib_srcdir .. "glib/deprecated/gthread-deprecated.c",
+    libGlib_srcdir .. "glib/garcbox.c",
+    libGlib_srcdir .. "glib/garray.c",
+    libGlib_srcdir .. "glib/gasyncqueue.c",
+    libGlib_srcdir .. "glib/gatomic.c",
+    libGlib_srcdir .. "glib/gbacktrace.c",
+    libGlib_srcdir .. "glib/gbase64.c",
+    libGlib_srcdir .. "glib/gbitlock.c",
+    libGlib_srcdir .. "glib/gbookmarkfile.c",
+    libGlib_srcdir .. "glib/gbytes.c",
+    libGlib_srcdir .. "glib/gcharset.c",
+    libGlib_srcdir .. "glib/gchecksum.c",
+    libGlib_srcdir .. "glib/gconvert.c",
+    libGlib_srcdir .. "glib/gdataset.c",
+    libGlib_srcdir .. "glib/gdate.c",
+    libGlib_srcdir .. "glib/gdatetime.c",
+    libGlib_srcdir .. "glib/gdir.c",
+    libGlib_srcdir .. "glib/genviron.c",
+    libGlib_srcdir .. "glib/gerror.c",
+    libGlib_srcdir .. "glib/gfileutils.c",
+    libGlib_srcdir .. "glib/ggettext.c",
+    libGlib_srcdir .. "glib/ghash.c",
+    libGlib_srcdir .. "glib/ghmac.c",
+    libGlib_srcdir .. "glib/ghook.c",
+    libGlib_srcdir .. "glib/ghostutils.c",
+    libGlib_srcdir .. "glib/giochannel.c",
+    libGlib_srcdir .. "glib/giounix.c",
+    libGlib_srcdir .. "glib/gkeyfile.c",
+    libGlib_srcdir .. "glib/glib-init.c",
+    libGlib_srcdir .. "glib/glib-private.c",
+    libGlib_srcdir .. "glib/glib-unix.c",
+    libGlib_srcdir .. "glib/glist.c",
+    libGlib_srcdir .. "glib/gmain.c",
+    libGlib_srcdir .. "glib/gmappedfile.c",
+    libGlib_srcdir .. "glib/gmarkup.c",
+    libGlib_srcdir .. "glib/gmem.c",
+    libGlib_srcdir .. "glib/gmessages.c",
+    libGlib_srcdir .. "glib/gnode.c",
+    libGlib_srcdir .. "glib/goption.c",
+    libGlib_srcdir .. "glib/gpattern.c",
+    libGlib_srcdir .. "glib/gpoll.c",
+    libGlib_srcdir .. "glib/gprimes.c",
+    libGlib_srcdir .. "glib/gprintf.c",
+    libGlib_srcdir .. "glib/gqsort.c",
+    libGlib_srcdir .. "glib/gquark.c",
+    libGlib_srcdir .. "glib/gqueue.c",
+    libGlib_srcdir .. "glib/grand.c",
+    libGlib_srcdir .. "glib/grcbox.c",
+    libGlib_srcdir .. "glib/grefcount.c",
+    libGlib_srcdir .. "glib/grefstring.c",
+    libGlib_srcdir .. "glib/gregex.c",
+    libGlib_srcdir .. "glib/gscanner.c",
+    libGlib_srcdir .. "glib/gsequence.c",
+    libGlib_srcdir .. "glib/gshell.c",
+    libGlib_srcdir .. "glib/gslice.c",
+    libGlib_srcdir .. "glib/gslist.c",
+    libGlib_srcdir .. "glib/gspawn.c",
+    libGlib_srcdir .. "glib/gstdio.c",
+    libGlib_srcdir .. "glib/gstrfuncs.c",
+    libGlib_srcdir .. "glib/gstring.c",
+    libGlib_srcdir .. "glib/gstringchunk.c",
+    libGlib_srcdir .. "glib/gtester.c",
+    libGlib_srcdir .. "glib/gtestutils.c",
+    libGlib_srcdir .. "glib/gthread.c",
+    libGlib_srcdir .. "glib/gthreadpool.c",
+    libGlib_srcdir .. "glib/gthread-posix.c",
+    libGlib_srcdir .. "glib/gtimer.c",
+    libGlib_srcdir .. "glib/gtimezone.c",
+    libGlib_srcdir .. "glib/gtranslit.c",
+    libGlib_srcdir .. "glib/gtrashstack.c",
+    libGlib_srcdir .. "glib/gtree.c",
+    libGlib_srcdir .. "glib/gunibreak.c",
+    libGlib_srcdir .. "glib/gunicollate.c",
+    libGlib_srcdir .. "glib/gunidecomp.c",
+    libGlib_srcdir .. "glib/guniprop.c",
+    libGlib_srcdir .. "glib/gurifuncs.c",
+    libGlib_srcdir .. "glib/gutf8.c",
+    libGlib_srcdir .. "glib/gutils.c",
+    libGlib_srcdir .. "glib/guuid.c",
+    libGlib_srcdir .. "glib/gvariant.c",
+    libGlib_srcdir .. "glib/gvariant-core.c",
+    libGlib_srcdir .. "glib/gvariant-parser.c",
+    libGlib_srcdir .. "glib/gvariant-serialiser.c",
+    libGlib_srcdir .. "glib/gvarianttype.c",
+    libGlib_srcdir .. "glib/gvarianttypeinfo.c",
+    libGlib_srcdir .. "glib/gversion.c",
+    libGlib_srcdir .. "glib/gwakeup.c",
+    libGlib_srcdir .. "glib/gwakeup.c",
+    libGlib_srcdir .. "glib/gwakeup.c",
+    libGlib_srcdir .. "glib/libcharset/localcharset.c",
     libGlib_srcdir .. "gio/gaction.c",
     libGlib_srcdir .. "gio/gactiongroup.c",
     libGlib_srcdir .. "gio/gactiongroupexporter.c",
@@ -351,113 +396,8 @@ libGlib_sources_gio = {
     libGlib_srcdir .. "gio/xdgmime/xdgmimeicon.c",
     libGlib_srcdir .. "gio/xdgmime/xdgmimeint.c",
     libGlib_srcdir .. "gio/xdgmime/xdgmimemagic.c",
-    libGlib_srcdir .. "gio/xdgmime/xdgmimeparent.c"
-}
-if os.host() == "linux" then
-    table.insert(libGlib_sources_gio, libGlib_extradir .. "linux/gio/gdbus-daemon-generated.c")
-    table.insert(libGlib_sources_gio, libGlib_extradir .. "linux/gio/gioenumtypes.c")
-    table.insert(libGlib_sources_gio, libGlib_extradir .. "linux/gio/xdp-dbus.c")
-end
-libGlib_sources_glib = {
-    libGlib_srcdir .. "glib/deprecated/gallocator.c",
-    libGlib_srcdir .. "glib/deprecated/gcache.c",
-    libGlib_srcdir .. "glib/deprecated/gcompletion.c",
-    libGlib_srcdir .. "glib/deprecated/grel.c",
-    libGlib_srcdir .. "glib/deprecated/gthread-deprecated.c",
-    libGlib_srcdir .. "glib/garcbox.c",
-    libGlib_srcdir .. "glib/garray.c",
-    libGlib_srcdir .. "glib/gasyncqueue.c",
-    libGlib_srcdir .. "glib/gatomic.c",
-    libGlib_srcdir .. "glib/gbacktrace.c",
-    libGlib_srcdir .. "glib/gbase64.c",
-    libGlib_srcdir .. "glib/gbitlock.c",
-    libGlib_srcdir .. "glib/gbookmarkfile.c",
-    libGlib_srcdir .. "glib/gbytes.c",
-    libGlib_srcdir .. "glib/gcharset.c",
-    libGlib_srcdir .. "glib/gchecksum.c",
-    libGlib_srcdir .. "glib/gconvert.c",
-    libGlib_srcdir .. "glib/gdataset.c",
-    libGlib_srcdir .. "glib/gdate.c",
-    libGlib_srcdir .. "glib/gdatetime.c",
-    libGlib_srcdir .. "glib/gdir.c",
-    libGlib_srcdir .. "glib/genviron.c",
-    libGlib_srcdir .. "glib/gerror.c",
-    libGlib_srcdir .. "glib/gfileutils.c",
-    libGlib_srcdir .. "glib/ggettext.c",
-    libGlib_srcdir .. "glib/ghash.c",
-    libGlib_srcdir .. "glib/ghmac.c",
-    libGlib_srcdir .. "glib/ghook.c",
-    libGlib_srcdir .. "glib/ghostutils.c",
-    libGlib_srcdir .. "glib/giochannel.c",
-    libGlib_srcdir .. "glib/giounix.c",
-    libGlib_srcdir .. "glib/gkeyfile.c",
-    libGlib_srcdir .. "glib/glib-init.c",
-    libGlib_srcdir .. "glib/glib-private.c",
-    libGlib_srcdir .. "glib/glib-unix.c",
-    libGlib_srcdir .. "glib/glist.c",
-    libGlib_srcdir .. "glib/gmain.c",
-    libGlib_srcdir .. "glib/gmappedfile.c",
-    libGlib_srcdir .. "glib/gmarkup.c",
-    libGlib_srcdir .. "glib/gmem.c",
-    libGlib_srcdir .. "glib/gmessages.c",
-    libGlib_srcdir .. "glib/gnode.c",
-    libGlib_srcdir .. "glib/goption.c",
-    libGlib_srcdir .. "glib/gpattern.c",
-    libGlib_srcdir .. "glib/gpoll.c",
-    libGlib_srcdir .. "glib/gprimes.c",
-    libGlib_srcdir .. "glib/gprintf.c",
-    libGlib_srcdir .. "glib/gqsort.c",
-    libGlib_srcdir .. "glib/gquark.c",
-    libGlib_srcdir .. "glib/gqueue.c",
-    libGlib_srcdir .. "glib/grand.c",
-    libGlib_srcdir .. "glib/grcbox.c",
-    libGlib_srcdir .. "glib/grefcount.c",
-    libGlib_srcdir .. "glib/grefstring.c",
-    libGlib_srcdir .. "glib/gregex.c",
-    libGlib_srcdir .. "glib/gscanner.c",
-    libGlib_srcdir .. "glib/gsequence.c",
-    libGlib_srcdir .. "glib/gshell.c",
-    libGlib_srcdir .. "glib/gslice.c",
-    libGlib_srcdir .. "glib/gslist.c",
-    libGlib_srcdir .. "glib/gspawn.c",
-    libGlib_srcdir .. "glib/gstdio.c",
-    libGlib_srcdir .. "glib/gstrfuncs.c",
-    libGlib_srcdir .. "glib/gstring.c",
-    libGlib_srcdir .. "glib/gstringchunk.c",
-    libGlib_srcdir .. "glib/gtester.c",
-    libGlib_srcdir .. "glib/gtestutils.c",
-    libGlib_srcdir .. "glib/gthread.c",
-    libGlib_srcdir .. "glib/gthreadpool.c",
-    libGlib_srcdir .. "glib/gthread-posix.c",
-    libGlib_srcdir .. "glib/gtimer.c",
-    libGlib_srcdir .. "glib/gtimezone.c",
-    libGlib_srcdir .. "glib/gtranslit.c",
-    libGlib_srcdir .. "glib/gtrashstack.c",
-    libGlib_srcdir .. "glib/gtree.c",
-    libGlib_srcdir .. "glib/gunibreak.c",
-    libGlib_srcdir .. "glib/gunicollate.c",
-    libGlib_srcdir .. "glib/gunidecomp.c",
-    libGlib_srcdir .. "glib/guniprop.c",
-    libGlib_srcdir .. "glib/gurifuncs.c",
-    libGlib_srcdir .. "glib/gutf8.c",
-    libGlib_srcdir .. "glib/gutils.c",
-    libGlib_srcdir .. "glib/guuid.c",
-    libGlib_srcdir .. "glib/gvariant.c",
-    libGlib_srcdir .. "glib/gvariant-core.c",
-    libGlib_srcdir .. "glib/gvariant-parser.c",
-    libGlib_srcdir .. "glib/gvariant-serialiser.c",
-    libGlib_srcdir .. "glib/gvarianttype.c",
-    libGlib_srcdir .. "glib/gvarianttypeinfo.c",
-    libGlib_srcdir .. "glib/gversion.c",
-    libGlib_srcdir .. "glib/gwakeup.c",
-    libGlib_srcdir .. "glib/gwakeup.c",
-    libGlib_srcdir .. "glib/gwakeup.c",
-    libGlib_srcdir .. "glib/libcharset/localcharset.c"
-}
-libGlib_sources_gmodule = {
-    libGlib_srcdir .. "gmodule/gmodule.c"
-}
-libGlib_sources_gobject = {
+    libGlib_srcdir .. "gio/xdgmime/xdgmimeparent.c",
+    libGlib_srcdir .. "gmodule/gmodule.c",
     libGlib_srcdir .. "gobject/gatomicarray.c",
     libGlib_srcdir .. "gobject/gbinding.c",
     libGlib_srcdir .. "gobject/gboxed.c",
@@ -476,11 +416,12 @@ libGlib_sources_gobject = {
     libGlib_srcdir .. "gobject/gvaluearray.c",
     libGlib_srcdir .. "gobject/gvalue.c",
     libGlib_srcdir .. "gobject/gvaluetransform.c",
-    libGlib_srcdir .. "gobject/gvaluetypes.c"
-}
-if os.host() == "linux" then
-    table.insert(libGlib_sources_gobject, libGlib_extradir .. "linux/gobject/glib-enumtypes.c")
-end
-libGlib_sources_gthread = {
+    libGlib_srcdir .. "gobject/gvaluetypes.c",
     libGlib_srcdir .. "gthread/gthread-impl.c"
 }
+if os.host() == "linux" then
+    table.insert(libGlib_sources, libGlib_extradir .. "linux/gobject/glib-enumtypes.c")
+    table.insert(libGlib_sources, libGlib_extradir .. "linux/gio/gdbus-daemon-generated.c")
+    table.insert(libGlib_sources, libGlib_extradir .. "linux/gio/gioenumtypes.c")
+    table.insert(libGlib_sources, libGlib_extradir .. "linux/gio/xdp-dbus.c")
+end
