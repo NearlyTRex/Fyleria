@@ -45,9 +45,9 @@ if os.host() == "windows" then
 elseif os.host() == "linux" then
     table.insert(appFyleria_libs, "pthread")
     table.insert(appFyleria_libs, "gtk-3")
-    table.insert(appFyleria_libs, "ffi")
     table.insert(appFyleria_libs, "pcre")
     table.insert(appFyleria_libs, "Cairo")
+    table.insert(appFyleria_libs, "FFI")
     table.insert(appFyleria_libs, "FreeType2")
     table.insert(appFyleria_libs, "Glib")
     table.insert(appFyleria_libs, "JpegTurbo")

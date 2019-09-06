@@ -14,6 +14,8 @@ end
 
 -- Defines
 libFFI_defines = {
+    "HAVE_CONFIG_H",
+    "FFI_BUILDING"
 }
 libFFI_debugdefines = {
 }
@@ -22,11 +24,23 @@ libFFI_releasedefines = {
 
 -- Options
 libFFI_buildoptions = {
+    "-fomit-frame-pointer",
+    "-fstrict-aliasing",
+    "-ffast-math",
+    "-fexceptions",
+    "-march=core2"
 }
 libFFI_linkoptions = {
 }
 
 -- Sources
 libFFI_sources = {
-    libFFI_srcdir .. "types.c"
+    libFFI_srcdir .. "closures.c",
+    libFFI_srcdir .. "java_raw_api.c",
+    libFFI_srcdir .. "prep_cif.c",
+    libFFI_srcdir .. "raw_api.c",
+    libFFI_srcdir .. "types.c",
+    libFFI_srcdir .. "x86/ffi64.c",
+    libFFI_srcdir .. "x86/ffiw64.c",
+    libFFI_srcdir .. "x86/unix64.S",
 }
