@@ -23,6 +23,7 @@ require "Libs/ModernCPPJson/ModernCPPJson"
 require "Libs/ObjectThreadsafe/ObjectThreadsafe"
 require "Libs/OpenCFLite/OpenCFLite"
 require "Libs/Pixman/Pixman"
+require "Libs/PCRE/PCRE"
 require "Libs/PNG/PNG"
 require "Libs/PSL/PSL"
 require "Libs/PThreadsWin32"
@@ -294,6 +295,25 @@ if os.host() == "linux" then
         defines(libPixman_releasedefines)
 end
 
+-- PCRE
+if os.host() == "linux" then
+    project "PCRE"
+    language "C"
+    pic "On"
+        kind(GetStaticLibraryType())
+        buildoptions(libPCRE_buildoptions)
+        linkoptions(libPCRE_linkoptions)
+        includedirs(libPCRE_includedirs)
+        defines(libPCRE_defines)
+        files(libPCRE_sources)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("PCRE"))
+    filter "configurations:Debug*"
+        defines(libPCRE_debugdefines)
+    filter "configurations:Release*"
+        defines(libPCRE_releasedefines)
+end
+
 -- PNG
 if os.host() == "linux" then
     project "PNG"
@@ -333,12 +353,33 @@ if os.host() == "linux" then
         defines(libSoup_releasedefines)
 end
 
+-- SQLite
+if os.host() == "linux" then
+    project "SQLite"
+    language "C"
+    pic "On"
+        kind(GetStaticLibraryType())
+        buildoptions(libSQLite_buildoptions)
+        linkoptions(libSQLite_linkoptions)
+        includedirs(libSQLite_includedirs)
+        defines(libSQLite_defines)
+        files(libSQLite_sources)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("SQLite"))
+    filter "configurations:Debug*"
+        defines(libSQLite_debugdefines)
+    filter "configurations:Release*"
+        defines(libSQLite_releasedefines)
+end
+
 -- XML2
 if os.host() == "linux" then
     project "XML2"
     language "C"
     pic "On"
         kind(GetStaticLibraryType())
+        buildoptions(libXML2_buildoptions)
+        linkoptions(libXML2_linkoptions)
         includedirs(libXML2_includedirs)
         defines(libXML2_defines)
         files(libXML2_sources)
@@ -348,6 +389,26 @@ if os.host() == "linux" then
         defines(libXML2_debugdefines)
     filter "configurations:Release*"
         defines(libXML2_releasedefines)
+end
+
+-- XSLT
+if os.host() == "linux" then
+    project "XSLT"
+    language "C"
+    pic "On"
+        kind(GetStaticLibraryType())
+        buildoptions(libXSLT_buildoptions)
+        linkoptions(libXSLT_linkoptions)
+        includedirs(libXSLT_includedirs)
+        includedirs(libXML2_includedirs)
+        defines(libXSLT_defines)
+        files(libXSLT_sources)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("XSLT"))
+    filter "configurations:Debug*"
+        defines(libXSLT_debugdefines)
+    filter "configurations:Release*"
+        defines(libXSLT_releasedefines)
 end
 
 -- Zlib
@@ -405,10 +466,12 @@ if os.host() == "linux" then
         includedirs(libWebKitGTK_includedirs_public)
         includedirs(libGlib_includedirs)
         includedirs(libSoup_includedirs)
+        includedirs(libSQLite_includedirs)
         includedirs(libCairo_includedirs)
         includedirs(libFreeType2_includedirs)
         includedirs(libHarfbuzz_includedirs)
         includedirs(libXML2_includedirs)
+        includedirs(libXSLT_includedirs)
         defines(libWebKitGTK_defines_WebCoreGTK)
         files(libWebKitGTK_sources_WebCoreGTK)
         targetdir(GetLibraryTargetDirectory())

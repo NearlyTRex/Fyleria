@@ -533,7 +533,12 @@ libWebKitGTK_libs_WebKitGTK = {
     "EGL",
     "X11",
     "WTFGTK",
-    "WebCoreGTK"
+    "WebCoreGTK",
+    "JpegTurbo",
+    "Soup",
+    "SQLite",
+    "XML2",
+    "XSLT"
 }
 
 -- Sources (JavaScriptCoreGTK)

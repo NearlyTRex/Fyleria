@@ -14,6 +14,7 @@ end
 
 -- Defines
 libXML2_defines = {
+    "HAVE_CONFIG_H"
 }
 libXML2_debugdefines = {
 }
@@ -22,6 +23,7 @@ libXML2_releasedefines = {
 
 -- Options
 libXML2_buildoptions = {
+    "-fno-exceptions"
 }
 libXML2_linkoptions = {
 }
