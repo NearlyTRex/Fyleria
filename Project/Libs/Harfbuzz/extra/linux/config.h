@@ -59,10 +59,10 @@
 /* #undef HAVE_GRAPHITE2 */
 
 /* Have ICU library */
-/* #undef HAVE_ICU */
+#define HAVE_ICU 1
 
 /* Use hb-icu Unicode callbacks */
-/* #undef HAVE_ICU_BUILTIN */
+#define HAVE_ICU_BUILTIN 1
 
 /* Have Intel __sync_* atomic primitives */
 #define HAVE_INTEL_ATOMIC_PRIMITIVES 1

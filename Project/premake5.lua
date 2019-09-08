@@ -259,6 +259,23 @@ if os.host() == "linux" then
         defines(libHarfbuzz_releasedefines)
 end
 
+-- Icu
+if os.host() == "linux" then
+    project "Icu"
+    language "C++"
+    pic "On"
+        kind(GetStaticLibraryType())
+        includedirs(libIcu_includedirs)
+        defines(libIcu_defines)
+        files(libIcu_sources)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("Icu"))
+    filter "configurations:Debug*"
+        defines(libIcu_debugdefines)
+    filter "configurations:Release*"
+        defines(libIcu_releasedefines)
+end
+
 -- JpegTurbo
 if os.host() == "linux" then
     project "JpegTurbo"
@@ -268,6 +285,18 @@ if os.host() == "linux" then
         includedirs(libJpegTurbo_includedirs)
         defines(libJpegTurbo_defines)
         files(libJpegTurbo_sources)
+        if GetArchitecture() == "x86_64" then
+            files(libJpegTurbo_sources_x86_64)
+            filter {'files:**.asm'}
+            buildmessage '%{file.relpath}'
+            buildoutputs { '%{cfg.objdir}/%{file.basename}.o' }
+            buildcommands {
+                'nasm -felf64 -DELF -D__x86_64__ -o "%{cfg.objdir}/%{file.basename}.o" "%{file.relpath}" ' ..
+                    libJpegTurbo_asm_def ..
+                    libJpegTurbo_asm_inc_x86_64 ..
+                    libJpegTurbo_asm_inc_linux
+            }
+        end
         targetdir(GetLibraryTargetDirectory())
         targetname(GetTargetName("JpegTurbo"))
     filter "configurations:Debug*"
@@ -334,6 +363,25 @@ if os.host() == "linux" then
         defines(libPNG_releasedefines)
 end
 
+-- PSL
+if os.host() == "linux" then
+    project "PSL"
+    language "C"
+    pic "On"
+        kind(GetStaticLibraryType())
+        buildoptions(libPSL_buildoptions)
+        linkoptions(libPSL_linkoptions)
+        includedirs(libPSL_includedirs)
+        defines(libPSL_defines)
+        files(libPSL_sources)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("PSL"))
+    filter "configurations:Debug*"
+        defines(libPSL_debugdefines)
+    filter "configurations:Release*"
+        defines(libPSL_releasedefines)
+end
+
 -- Soup
 if os.host() == "linux" then
     project "Soup"
@@ -370,6 +418,25 @@ if os.host() == "linux" then
         defines(libSQLite_debugdefines)
     filter "configurations:Release*"
         defines(libSQLite_releasedefines)
+end
+
+-- Webp
+if os.host() == "linux" then
+    project "Webp"
+    language "C"
+    pic "On"
+        kind(GetStaticLibraryType())
+        buildoptions(libWebp_buildoptions)
+        linkoptions(libWebp_linkoptions)
+        includedirs(libWebp_includedirs)
+        defines(libWebp_defines)
+        files(libWebp_sources)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("Webp"))
+    filter "configurations:Debug*"
+        defines(libWebp_debugdefines)
+    filter "configurations:Release*"
+        defines(libWebp_releasedefines)
 end
 
 -- XML2

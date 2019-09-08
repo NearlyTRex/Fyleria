@@ -424,6 +424,7 @@ libWebKitGTK_defines_WebCoreGTK = {
     "BUILDING_WITH_CMAKE",
     "JSC_GLIB_API_ENABLED",
     "STATICALLY_LINKED_WITH_PAL",
+    "XDG_PREFIX=_wk_xdg",
     "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
@@ -523,6 +524,7 @@ libWebKitGTK_linkoptions_WTFGTK = {
 libWebKitGTK_libs_JavaScriptCoreGTK = {
     "WTFGTK",
     "WebCoreGTK",
+    "Icu"
 }
 
 -- Libs (WebKitGTK)
@@ -534,9 +536,13 @@ libWebKitGTK_libs_WebKitGTK = {
     "X11",
     "WTFGTK",
     "WebCoreGTK",
+    "Harfbuzz",
+    "Icu",
     "JpegTurbo",
+    "PSL",
     "Soup",
     "SQLite",
+    "Webp",
     "XML2",
     "XSLT"
 }

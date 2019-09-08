@@ -1,10 +1,9 @@
--- Get system architecture
-function GetSystemArchitecture()
-    local raw_os_name, raw_arch_name = '', ''
+-- Get architecture
+function GetArchitecture()
+    local raw_arch_name = ''
 
     -- LuaJIT shortcut
     if jit and jit.os and jit.arch then
-        raw_os_name = jit.os
         raw_arch_name = jit.arch
     else
         -- Is popen supported?
@@ -12,20 +11,64 @@ function GetSystemArchitecture()
         if popen_status then
             popen_result:close()
             -- Unix-based OS
-            raw_os_name = io.popen('uname -s','r'):read('*l')
             raw_arch_name = io.popen('uname -m','r'):read('*l')
         else
             -- Windows
-            local env_OS = os.getenv('OS')
             local env_ARCH = os.getenv('PROCESSOR_ARCHITECTURE')
-            if env_OS and env_ARCH then
-                raw_os_name, raw_arch_name = env_OS, env_ARCH
+            if env_ARCH then
+                raw_arch_name = env_ARCH
+            end
+        end
+    end
+
+    raw_arch_name = (raw_arch_name):lower()
+
+    local arch_patterns = {
+        ['^x86$'] = 'x86_32',
+        ['i[%d]86'] = 'x86_32',
+        ['amd64'] = 'x86_64',
+        ['x86_64'] = 'x86_64',
+        ['Power Macintosh'] = 'powerpc',
+        ['^arm'] = 'arm',
+        ['^mips'] = 'mips',
+    }
+
+    local arch_name = 'unknown'
+
+    for pattern, name in pairs(arch_patterns) do
+        if raw_arch_name:match(pattern) then
+            arch_name = name
+            break
+        end
+    end
+
+    return arch_name
+end
+
+-- Get operating system
+function GetOperatingSystem()
+    local raw_os_name = ''
+
+    -- LuaJIT shortcut
+    if jit and jit.os and jit.arch then
+        raw_os_name = jit.os
+    else
+        -- Is popen supported?
+        local popen_status, popen_result = pcall(io.popen, "")
+        if popen_status then
+            popen_result:close()
+            -- Unix-based OS
+            raw_os_name = io.popen('uname -s','r'):read('*l')
+        else
+            -- Windows
+            local env_OS = os.getenv('OS')
+            if env_OS then
+                raw_os_name = env_OS
             end
         end
     end
 
     raw_os_name = (raw_os_name):lower()
-    raw_arch_name = (raw_arch_name):lower()
 
     local os_patterns = {
         ['linux'] = 'linux',
@@ -36,14 +79,7 @@ function GetSystemArchitecture()
         ['^cygwin'] = 'windows',
     }
 
-    local arch_patterns = {
-        ['^x86$'] = 'x86_32',
-        ['i[%d]86'] = 'x86_32',
-        ['amd64'] = 'x86_64',
-        ['x86_64'] = 'x86_64',
-    }
-
-    local os_name, arch_name = 'unknown', 'unknown'
+    local os_name = 'unknown'
 
     for pattern, name in pairs(os_patterns) do
         if raw_os_name:match(pattern) then
@@ -51,14 +87,8 @@ function GetSystemArchitecture()
             break
         end
     end
-    for pattern, name in pairs(arch_patterns) do
-        if raw_arch_name:match(pattern) then
-            arch_name = name
-            break
-        end
-    end
 
-    return os_name .. "_" .. arch_name
+    return os_name
 end
 
 -- Get C++ 14 dialect
@@ -107,7 +137,7 @@ end
 
 -- Get target name
 function GetTargetName(target)
-    return target .. "_" .. GetSystemArchitecture()
+    return target .. "_" .. GetOperatingSystem() .. "_" .. GetArchitecture()
 end
 
 -- Get app type

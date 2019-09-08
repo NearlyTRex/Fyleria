@@ -6,11 +6,23 @@ libJpegTurbo_incdir = libJpegTurbo_origdir
 
 -- Includes
 libJpegTurbo_includedirs = {
-    libJpegTurbo_incdir,
+    libJpegTurbo_incdir
 }
+if os.host() == "linux" then
+    table.insert(libJpegTurbo_includedirs, libJpegTurbo_extradir .. "linux/")
+end
+
+-- Assembly
+libJpegTurbo_asm_def = "-DBMP_SUPPORTED -DPPM_SUPPORTED "
+libJpegTurbo_asm_inc_x86_64 =
+    "-I ../" .. libJpegTurbo_incdir .. "simd/nasm/ " ..
+    "-I ../" .. libJpegTurbo_incdir .. "simd/x86_64/ "
+libJpegTurbo_asm_inc_linux = "-I ../" .. libJpegTurbo_extradir .. "linux/ "
 
 -- Defines
 libJpegTurbo_defines = {
+    "BMP_SUPPORTED",
+    "PPM_SUPPORTED"
 }
 libJpegTurbo_debugdefines = {
 }
@@ -83,6 +95,35 @@ libJpegTurbo_sources = {
     libJpegTurbo_srcdir .. "rdbmp.c",
     libJpegTurbo_srcdir .. "rdppm.c",
     libJpegTurbo_srcdir .. "wrbmp.c",
-    libJpegTurbo_srcdir .. "wrppm.c"
-
+    libJpegTurbo_srcdir .. "wrppm.c",
+}
+libJpegTurbo_sources_x86_64 = {
+    libJpegTurbo_srcdir .. "simd/x86_64/jsimd.c",
+    libJpegTurbo_srcdir .. "simd/x86_64/jsimdcpu.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jfdctflt-sse.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jccolor-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jcgray-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jchuff-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jcphuff-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jcsample-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jdcolor-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jdmerge-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jdsample-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jfdctfst-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jfdctint-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jidctflt-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jidctfst-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jidctint-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jidctred-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jquantf-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jquanti-sse2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jccolor-avx2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jcgray-avx2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jcsample-avx2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jdcolor-avx2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jdmerge-avx2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jdsample-avx2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jfdctint-avx2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jidctint-avx2.asm",
+    libJpegTurbo_srcdir .. "simd/x86_64/jquanti-avx2.asm"
 }

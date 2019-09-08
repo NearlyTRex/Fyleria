@@ -6,7 +6,7 @@ libHarfbuzz_incdir = libHarfbuzz_origdir .. "src/"
 
 -- Includes
 libHarfbuzz_includedirs = {
-    libHarfbuzz_incdir,
+    libHarfbuzz_incdir
 }
 if os.host() == "linux" then
     table.insert(libHarfbuzz_includedirs, libHarfbuzz_extradir .. "linux/")
@@ -42,6 +42,7 @@ libHarfbuzz_sources = {
     libHarfbuzz_srcdir .. "hb-face.cc",
     libHarfbuzz_srcdir .. "hb-fallback-shape.cc",
     libHarfbuzz_srcdir .. "hb-font.cc",
+    libHarfbuzz_srcdir .. "hb-icu.cc",
     libHarfbuzz_srcdir .. "hb-map.cc",
     libHarfbuzz_srcdir .. "hb-ot-cff1-table.cc",
     libHarfbuzz_srcdir .. "hb-ot-cff2-table.cc",
