@@ -49,5 +49,5 @@ libPCRE_sources = {
     libPCRE_srcdir .. "pcre_valid_utf8.c",
     libPCRE_srcdir .. "pcre_version.c",
     libPCRE_srcdir .. "pcre_xclass.c",
-    libPCRE_srcdir .. "pcre_chartables.c",
+    libPCRE_srcdir .. "pcre_chartables.c.dist",
 }
