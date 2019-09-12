@@ -15,7 +15,9 @@ end
 -- Defines
 libPNG_defines = {
     "HAVE_CONFIG_H",
-    "PIC"
+    "PIC",
+    "PNGLIB_LIBNAME=\"PNG16_0\"",
+    "PNGLIB_VERSION=\"1.6.38.git\""
 }
 libPNG_debugdefines = {
 }
