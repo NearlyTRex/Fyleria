@@ -24,11 +24,6 @@ libFFI_releasedefines = {
 
 -- Options
 libFFI_buildoptions = {
-    "-fomit-frame-pointer",
-    "-fstrict-aliasing",
-    "-ffast-math",
-    "-fexceptions",
-    "-march=core2"
 }
 libFFI_linkoptions = {
 }
@@ -40,7 +35,9 @@ libFFI_sources = {
     libFFI_srcdir .. "prep_cif.c",
     libFFI_srcdir .. "raw_api.c",
     libFFI_srcdir .. "types.c",
+    libFFI_srcdir .. "x86/ffi.c",
     libFFI_srcdir .. "x86/ffi64.c",
     libFFI_srcdir .. "x86/ffiw64.c",
+    libFFI_srcdir .. "x86/win64.S",
     libFFI_srcdir .. "x86/unix64.S",
 }

@@ -42,7 +42,6 @@ libGlib_releasedefines = {
 -- Options
 libGlib_buildoptions = {
     "-std=gnu89",
-    "-fvisibility=hidden",
     "-fno-strict-aliasing"
 }
 libGlib_linkoptions = {

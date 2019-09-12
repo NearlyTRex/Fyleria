@@ -182,25 +182,6 @@ if os.host() == "linux" then
         defines(libCairo_releasedefines)
 end
 
--- FFI
-if os.host() == "linux" then
-    project "FFI"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libFFI_buildoptions)
-        linkoptions(libFFI_linkoptions)
-        includedirs(libFFI_includedirs)
-        defines(libFFI_defines)
-        files(libFFI_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("FFI"))
-    filter "configurations:Debug*"
-        defines(libFFI_debugdefines)
-    filter "configurations:Release*"
-        defines(libFFI_releasedefines)
-end
-
 -- FreeType2
 if os.host() == "linux" then
     project "FreeType2"
@@ -232,7 +213,9 @@ if os.host() == "linux" then
         includedirs(libGlib_includedirs)
         includedirs(libFFI_includedirs)
         defines(libGlib_defines)
+        defines(libFFI_defines)
         files(libGlib_sources)
+        files(libFFI_sources)
         targetdir(GetLibraryTargetDirectory())
         targetname(GetTargetName("Glib"))
     filter "configurations:Debug*"
