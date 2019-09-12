@@ -56,6 +56,7 @@ def main():
         Project.SetupProject("EAWebKit", "Project/Libs", system_info, program_options)
         Project.SetupProject("FantasyName", "Project/Libs", system_info, program_options)
         Project.SetupProject("FFI", "Project/Libs", system_info, program_options)
+        Project.SetupProject("Fontconfig", "Project/Libs", system_info, program_options)
         Project.SetupProject("FreeType2", "Project/Libs", system_info, program_options)
         Project.SetupProject("GCrypt", "Project/Libs", system_info, program_options)
         Project.SetupProject("GPGError", "Project/Libs", system_info, program_options)
