@@ -7,6 +7,7 @@ require "Libs/Brotli/Brotli"
 require "Libs/Cairo/Cairo"
 require "Libs/Curl/Curl"
 require "Libs/FantasyName/FantasyName"
+require "Libs/Fontconfig/Fontconfig"
 require "Libs/FFI/FFI"
 require "Libs/FreeType2/FreeType2"
 require "Libs/GCrypt/GCrypt"
@@ -169,6 +170,7 @@ if os.host() == "linux" then
         buildoptions(libCairo_buildoptions)
         linkoptions(libCairo_linkoptions)
         includedirs(libCairo_includedirs)
+        includedirs(libFontconfig_includedirs)
         includedirs(libFreeType2_includedirs)
         includedirs(libPixman_includedirs)
         defines(libCairo_defines)
@@ -180,6 +182,26 @@ if os.host() == "linux" then
         defines(libCairo_debugdefines)
     filter "configurations:Release*"
         defines(libCairo_releasedefines)
+end
+
+-- Fontconfig
+if os.host() == "linux" then
+    project "Fontconfig"
+    language "C"
+    pic "On"
+        kind(GetStaticLibraryType())
+        buildoptions(libFontconfig_buildoptions)
+        linkoptions(libFontconfig_linkoptions)
+        includedirs(libFontconfig_includedirs)
+        includedirs(libFreeType2_includedirs)
+        defines(libFontconfig_defines)
+        files(libFontconfig_sources)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("Fontconfig"))
+    filter "configurations:Debug*"
+        defines(libFontconfig_debugdefines)
+    filter "configurations:Release*"
+        defines(libFontconfig_releasedefines)
 end
 
 -- FreeType2
@@ -231,6 +253,7 @@ if os.host() == "linux" then
     pic "On"
         kind(GetStaticLibraryType())
         includedirs(libHarfbuzz_includedirs)
+        includedirs(libFontconfig_includedirs)
         includedirs(libFreeType2_includedirs)
         includedirs(libGlib_includedirs)
         defines(libHarfbuzz_defines)
@@ -575,6 +598,7 @@ if os.host() == "linux" then
         includedirs(libGlib_includedirs)
         includedirs(libSoup_includedirs)
         includedirs(libCairo_includedirs)
+        includedirs(libFontconfig_includedirs)
         includedirs(libFreeType2_includedirs)
         includedirs(libHarfbuzz_includedirs)
         defines(libWebKitGTK_defines_WebKitGTK)

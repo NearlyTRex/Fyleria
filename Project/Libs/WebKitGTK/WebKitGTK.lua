@@ -536,6 +536,7 @@ libWebKitGTK_libs_WebKitGTK = {
     "X11",
     "WTFGTK",
     "WebCoreGTK",
+    "Fontconfig",
     "Harfbuzz",
     "Icu",
     "JpegTurbo",
