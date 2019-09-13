@@ -6,7 +6,9 @@ libIcu_incdir = libIcu_origdir .. "icu4c/source/"
 
 -- Includes
 libIcu_includedirs = {
-    libIcu_incdir .. "common/"
+    libIcu_incdir .. "common/",
+    libIcu_incdir .. "i18n/",
+    libIcu_incdir .. "io/"
 }
 
 -- Defines
