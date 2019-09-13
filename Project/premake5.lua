@@ -194,6 +194,7 @@ if os.host() == "linux" then
         linkoptions(libFontconfig_linkoptions)
         includedirs(libFontconfig_includedirs)
         includedirs(libFreeType2_includedirs)
+        includedirs(libXML2_includedirs)
         defines(libFontconfig_defines)
         files(libFontconfig_sources)
         targetdir(GetLibraryTargetDirectory())
