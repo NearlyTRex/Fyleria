@@ -537,6 +537,7 @@ libWebKitGTK_libs_WebKitGTK = {
     "WTFGTK",
     "WebCoreGTK",
     "Fontconfig",
+    "GCrypt",
     "Harfbuzz",
     "Icu",
     "JpegTurbo",

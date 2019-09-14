@@ -225,6 +225,25 @@ if os.host() == "linux" then
         defines(libFreeType2_releasedefines)
 end
 
+-- GCrypt
+if os.host() == "linux" then
+    project "GCrypt"
+    language "C"
+    pic "On"
+        kind(GetStaticLibraryType())
+        buildoptions(libGCrypt_buildoptions)
+        linkoptions(libGCrypt_linkoptions)
+        includedirs(libGCrypt_includedirs)
+        defines(libGCrypt_defines)
+        files(libGCrypt_sources)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("GCrypt"))
+    filter "configurations:Debug*"
+        defines(libGCrypt_debugdefines)
+    filter "configurations:Release*"
+        defines(libGCrypt_releasedefines)
+end
+
 -- Glib
 if os.host() == "linux" then
     project "Glib"

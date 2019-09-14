@@ -1,15 +1,20 @@
 -- Configuration
 libGCrypt_extradir = "Libs/GCrypt/extra/"
 libGCrypt_origdir = "Libs/GCrypt/orig/"
-libGCrypt_srcdir = libGCrypt_origdir .. "src/"
-libGCrypt_incdir = libGCrypt_origdir .. "src/"
+libGCrypt_srcdir = libGCrypt_origdir
+libGCrypt_incdir = libGCrypt_origdir
 
 -- Includes
 libGCrypt_includedirs = {
     libGCrypt_incdir,
+    libGCrypt_incdir .. "cipher/",
+    libGCrypt_incdir .. "mpi/",
+    libGCrypt_incdir .. "src/"
 }
 if os.host() == "linux" then
     table.insert(libGCrypt_includedirs, libGCrypt_extradir .. "linux/")
+    table.insert(libGCrypt_includedirs, libGCrypt_extradir .. "linux/cipher/")
+    table.insert(libGCrypt_includedirs, libGCrypt_extradir .. "linux/mpi/")
     table.insert(libGCrypt_includedirs, libGCrypt_extradir .. "linux/src/")
 end
 
@@ -53,13 +58,13 @@ libGCrypt_sources = {
     libGCrypt_srcdir .. "mpi/mpiutil.c",
     libGCrypt_srcdir .. "mpi/ec.c",
     libGCrypt_srcdir .. "mpi/ec-ed25519.c",
-    libGCrypt_srcdir .. "mpi/mpih-add1-asm.S",
-    libGCrypt_srcdir .. "mpi/mpih-sub1-asm.S",
-    libGCrypt_srcdir .. "mpi/mpih-mul1-asm.S",
-    libGCrypt_srcdir .. "mpi/mpih-mul2-asm.S",
-    libGCrypt_srcdir .. "mpi/mpih-mul3-asm.S",
-    libGCrypt_srcdir .. "mpi/mpih-lshift-asm.S",
-    libGCrypt_srcdir .. "mpi/mpih-rshift-asm.S",
+    libGCrypt_srcdir .. "mpi/generic/mpih-add1.c",
+    libGCrypt_srcdir .. "mpi/generic/mpih-sub1.c",
+    libGCrypt_srcdir .. "mpi/generic/mpih-mul1.c",
+    libGCrypt_srcdir .. "mpi/generic/mpih-mul2.c",
+    libGCrypt_srcdir .. "mpi/generic/mpih-mul3.c",
+    libGCrypt_srcdir .. "mpi/generic/mpih-lshift.c",
+    libGCrypt_srcdir .. "mpi/generic/mpih-rshift.c",
     libGCrypt_srcdir .. "cipher/cipher.c",
     libGCrypt_srcdir .. "cipher/cipher-cbc.c",
     libGCrypt_srcdir .. "cipher/cipher-cfb.c",
