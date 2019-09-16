@@ -489,8 +489,8 @@ if os.host() == "linux" then
     pic "On"
         kind(GetStaticLibraryType())
         cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions_WTFGTK)
-        linkoptions(libWebKitGTK_linkoptions_WTFGTK)
+        buildoptions(libWebKitGTK_buildoptions)
+        linkoptions(libWebKitGTK_linkoptions)
         includedirs(libWebKitGTK_includedirs_WTFGTK)
         includedirs(libWebKitGTK_includedirs_public)
         includedirs(libGlib_includedirs)
@@ -512,8 +512,8 @@ if os.host() == "linux" then
     pic "On"
         kind(GetStaticLibraryType())
         cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions_WebCoreGTK)
-        linkoptions(libWebKitGTK_linkoptions_WebCoreGTK)
+        buildoptions(libWebKitGTK_buildoptions)
+        linkoptions(libWebKitGTK_linkoptions)
         includedirs(libWebKitGTK_includedirs_WebCoreGTK)
         includedirs(libWebKitGTK_includedirs_WTFGTK)
         includedirs(libWebKitGTK_includedirs_public)
@@ -543,10 +543,10 @@ if os.host() == "linux" then
     project "JavaScriptCoreGTK"
     language "C++"
     pic "On"
-        kind(GetStaticLibraryType())
+        kind(GetSharedLibraryType())
         cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions_JavaScriptCoreGTK)
-        linkoptions(libWebKitGTK_linkoptions_JavaScriptCoreGTK)
+        buildoptions(libWebKitGTK_buildoptions)
+        linkoptions(libWebKitGTK_linkoptions)
         includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
         includedirs(libWebKitGTK_includedirs_WebCoreGTK)
         includedirs(libWebKitGTK_includedirs_WTFGTK)
@@ -555,6 +555,7 @@ if os.host() == "linux" then
         includedirs(libIcu_includedirs)
         defines(libWebKitGTK_defines_JavaScriptCoreGTK)
         files(libWebKitGTK_sources_JavaScriptCoreGTK)
+        links(libWebKitGTK_libs_JavaScriptCoreGTK)
         targetdir(GetLibraryTargetDirectory())
         targetname(GetTargetName("JavaScriptCoreGTK"))
     filter "configurations:Debug*"
@@ -568,10 +569,10 @@ if os.host() == "linux" then
     project "WebKitGTK"
     language "C++"
     pic "On"
-        kind(GetStaticLibraryType())
+        kind(GetSharedLibraryType())
         cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions_WebKitGTK)
-        linkoptions(libWebKitGTK_linkoptions_WebKitGTK)
+        buildoptions(libWebKitGTK_buildoptions)
+        linkoptions(libWebKitGTK_linkoptions)
         includedirs(libWebKitGTK_includedirs_WebKitGTK)
         includedirs(libWebKitGTK_includedirs_WebCoreGTK)
         includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
@@ -586,6 +587,7 @@ if os.host() == "linux" then
         includedirs(libHarfbuzz_includedirs)
         defines(libWebKitGTK_defines_WebKitGTK)
         files(libWebKitGTK_sources_WebKitGTK)
+        links(libWebKitGTK_libs_WebKitGTK)
         targetdir(GetLibraryTargetDirectory())
         targetname(GetTargetName("WebKitGTK"))
     filter "configurations:Debug*"
