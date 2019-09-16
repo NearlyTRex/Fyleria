@@ -67,13 +67,11 @@ pic "On"
     includedirs(libBackwardCPP_includedirs)
     includedirs(libBoost_includedirs)
     includedirs(libFantasyName_includedirs)
-    if os.host() == "linux" then
-        includedirs(libGlib_includedirs)
-        includedirs(libCairo_includedirs)
-        includedirs(libSoup_includedirs)
-        includedirs(libZlib_includedirs)
-        includedirs(libWebKitGTK_includedirs_public)
-    end
+    includedirs(libGlib_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libSoup_includedirs)
+    includedirs(libZlib_includedirs)
+    includedirs(libWebKitGTK_includedirs_public)
     includedirs(libImmutableString_includedirs)
     includedirs(libBetterEnums_includedirs)
     includedirs(libLRUCache_includedirs)
