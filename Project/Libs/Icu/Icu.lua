@@ -13,6 +13,8 @@ libIcu_includedirs = {
 
 -- Defines
 libIcu_defines = {
+    "PIC",
+    "char16_t=uint16_t",
     "U_COMMON_IMPLEMENTATION",
     "U_I18N_IMPLEMENTATION",
     "U_IO_IMPLEMENTATION"
@@ -458,5 +460,7 @@ libIcu_sources = {
     libIcu_srcdir .. "io/sprintf.cpp",
     libIcu_srcdir .. "io/sscanf.cpp",
     libIcu_srcdir .. "io/ustream.cpp",
-    libIcu_srcdir .. "io/ucln_io.cpp"
+    libIcu_srcdir .. "io/ucln_io.cpp",
+    libIcu_extradir .. "icudt/icudt63l_dat.c",
+    libIcu_extradir .. "icudt/libicudataall.c"
 }
