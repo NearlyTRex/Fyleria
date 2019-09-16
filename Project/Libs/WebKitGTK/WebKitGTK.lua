@@ -77,7 +77,6 @@ libWebKitGTK_includedirs_JavaScriptCoreGTK = {
     libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/src/common/third_party/base",
     libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/include",
     libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/include/KHR",
-    libWebKitGTK_incdir .. "Source/ThirdParty/xdgmime/src",
     libWebKitGTK_incdir .. "Source/WebCore",
     libWebKitGTK_incdir .. "Source/WebCore/accessibility",
     libWebKitGTK_incdir .. "Source/WebCore/accessibility/atk",
@@ -424,7 +423,7 @@ libWebKitGTK_defines_WebCoreGTK = {
     "BUILDING_WITH_CMAKE",
     "JSC_GLIB_API_ENABLED",
     "STATICALLY_LINKED_WITH_PAL",
-    "XDG_PREFIX=_wk_xdg",
+    "XDG_PREFIX=_gio_xdg",
     "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
@@ -518,35 +517,6 @@ libWebKitGTK_buildoptions_WTFGTK = {
     "-fno-rtti"
 }
 libWebKitGTK_linkoptions_WTFGTK = {
-}
-
--- Libs (JavaScriptCoreGTK)
-libWebKitGTK_libs_JavaScriptCoreGTK = {
-    "WTFGTK",
-    "WebCoreGTK",
-    "Icu"
-}
-
--- Libs (WebKitGTK)
-libWebKitGTK_libs_WebKitGTK = {
-    "gtk-3",
-    "GL",
-    "GLU",
-    "EGL",
-    "X11",
-    "WTFGTK",
-    "WebCoreGTK",
-    "Fontconfig",
-    "GCrypt",
-    "Harfbuzz",
-    "Icu",
-    "JpegTurbo",
-    "PSL",
-    "Soup",
-    "SQLite",
-    "Webp",
-    "XML2",
-    "XSLT"
 }
 
 -- Sources (JavaScriptCoreGTK)
@@ -1303,14 +1273,6 @@ libWebKitGTK_sources_WebCoreGTK = {
     libWebKitGTK_srcdir .. "Source/ThirdParty/ANGLE/src/compiler/translator/util.cpp",
     libWebKitGTK_srcdir .. "Source/ThirdParty/ANGLE/src/libANGLE/Platform.cpp",
     libWebKitGTK_srcdir .. "Source/ThirdParty/ANGLE/src/third_party/compiler/ArrayBoundsClamper.cpp",
-    libWebKitGTK_srcdir .. "Source/ThirdParty/xdgmime/src/xdgmime.c",
-    libWebKitGTK_srcdir .. "Source/ThirdParty/xdgmime/src/xdgmimealias.c",
-    libWebKitGTK_srcdir .. "Source/ThirdParty/xdgmime/src/xdgmimecache.c",
-    libWebKitGTK_srcdir .. "Source/ThirdParty/xdgmime/src/xdgmimeglob.c",
-    libWebKitGTK_srcdir .. "Source/ThirdParty/xdgmime/src/xdgmimeicon.c",
-    libWebKitGTK_srcdir .. "Source/ThirdParty/xdgmime/src/xdgmimeint.c",
-    libWebKitGTK_srcdir .. "Source/ThirdParty/xdgmime/src/xdgmimemagic.c",
-    libWebKitGTK_srcdir .. "Source/ThirdParty/xdgmime/src/xdgmimeparent.c",
     libWebKitGTK_srcdir .. "Source/WebCore/accessibility/atk/WebKitAccessibleInterfaceAction.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/dom/DocumentTouch.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/dom/Touch.cpp",

@@ -25,10 +25,3 @@ end
 libBackwardCPP_sources = {
     libBackwardCPP_srcdir .. "backward.cpp",
 }
-
--- Libs
-libBackwardCPP_libs = {
-}
-if os.host() == "linux" then
-    table.insert(libBackwardCPP_libs, "dw")
-end

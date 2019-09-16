@@ -8,6 +8,7 @@ libGlib_incdir = libGlib_origdir
 libGlib_includedirs = {
     libGlib_incdir,
     libGlib_incdir .. "gio/",
+    libGlib_incdir .. "gio/xdgmime/",
     libGlib_incdir .. "glib/",
     libGlib_incdir .. "gmodule/",
     libGlib_incdir .. "gobject/",
@@ -32,6 +33,7 @@ libGlib_defines = {
     "GOBJECT_COMPILATION",
     "GLIB_CHARSETALIAS_DIR=\"lib\"",
     "GIO_MODULE_DIR=\"modules\"",
+    "XDG_PREFIX=_gio_xdg"
 }
 libGlib_debugdefines = {
     "G_ENABLE_DEBUG"
@@ -259,6 +261,14 @@ libGlib_sources = {
     libGlib_srcdir .. "gio/gio-tool-set.c",
     libGlib_srcdir .. "gio/gio-tool-trash.c",
     libGlib_srcdir .. "gio/gio-tool-tree.c",
+    libGlib_srcdir .. "gio/xdgmime/xdgmime.c",
+    libGlib_srcdir .. "gio/xdgmime/xdgmimealias.c",
+    libGlib_srcdir .. "gio/xdgmime/xdgmimecache.c",
+    libGlib_srcdir .. "gio/xdgmime/xdgmimeglob.c",
+    libGlib_srcdir .. "gio/xdgmime/xdgmimeicon.c",
+    libGlib_srcdir .. "gio/xdgmime/xdgmimeint.c",
+    libGlib_srcdir .. "gio/xdgmime/xdgmimemagic.c",
+    libGlib_srcdir .. "gio/xdgmime/xdgmimeparent.c",
     libGlib_srcdir .. "gio/gkeyfilesettingsbackend.c",
     libGlib_srcdir .. "gio/glib-compile-resources.c",
     libGlib_srcdir .. "gio/glib-compile-schemas.c",

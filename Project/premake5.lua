@@ -87,7 +87,6 @@ pic "On"
     defines(libLRUCache_defines)
     files(appFyleria_sources)
     links(appFyleria_libs)
-    links(libBackwardCPP_libs)
     targetdir(GetAppTargetDirectory())
     targetname(GetTargetName("FyleriaMain"))
 filter "configurations:Debug*"
@@ -159,369 +158,330 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libSpdLog_releasedefines)
 
---------------------- WebKitGTK Dependencies ---------------------
 -- Cairo
-if os.host() == "linux" then
-    project "Cairo"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        cppdialect(GetCpp17Dialect())
-        buildoptions(libCairo_buildoptions)
-        linkoptions(libCairo_linkoptions)
-        includedirs(libCairo_includedirs)
-        includedirs(libFontconfig_includedirs)
-        includedirs(libFreeType2_includedirs)
-        includedirs(libPixman_includedirs)
-        defines(libCairo_defines)
-        files(libCairo_sources)
-        links(libCairo_libs)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Cairo"))
-    filter "configurations:Debug*"
-        defines(libCairo_debugdefines)
-    filter "configurations:Release*"
-        defines(libCairo_releasedefines)
-end
+project "Cairo"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    cppdialect(GetCpp17Dialect())
+    buildoptions(libCairo_buildoptions)
+    linkoptions(libCairo_linkoptions)
+    includedirs(libCairo_includedirs)
+    includedirs(libFontconfig_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libPixman_includedirs)
+    defines(libCairo_defines)
+    files(libCairo_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Cairo"))
+filter "configurations:Debug*"
+    defines(libCairo_debugdefines)
+filter "configurations:Release*"
+    defines(libCairo_releasedefines)
 
 -- Fontconfig
-if os.host() == "linux" then
-    project "Fontconfig"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libFontconfig_buildoptions)
-        linkoptions(libFontconfig_linkoptions)
-        includedirs(libFontconfig_includedirs)
-        includedirs(libFreeType2_includedirs)
-        includedirs(libXML2_includedirs)
-        defines(libFontconfig_defines)
-        files(libFontconfig_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Fontconfig"))
-    filter "configurations:Debug*"
-        defines(libFontconfig_debugdefines)
-    filter "configurations:Release*"
-        defines(libFontconfig_releasedefines)
-end
+project "Fontconfig"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libFontconfig_buildoptions)
+    linkoptions(libFontconfig_linkoptions)
+    includedirs(libFontconfig_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libXML2_includedirs)
+    defines(libFontconfig_defines)
+    files(libFontconfig_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Fontconfig"))
+filter "configurations:Debug*"
+    defines(libFontconfig_debugdefines)
+filter "configurations:Release*"
+    defines(libFontconfig_releasedefines)
 
 -- FreeType2
-if os.host() == "linux" then
-    project "FreeType2"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libFreeType2_buildoptions)
-        linkoptions(libFreeType2_linkoptions)
-        includedirs(libFreeType2_includedirs)
-        includedirs(libPNG_includedirs)
-        defines(libFreeType2_defines)
-        files(libFreeType2_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("FreeType2"))
-    filter "configurations:Debug*"
-        defines(libFreeType2_debugdefines)
-    filter "configurations:Release*"
-        defines(libFreeType2_releasedefines)
-end
+project "FreeType2"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libFreeType2_buildoptions)
+    linkoptions(libFreeType2_linkoptions)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libPNG_includedirs)
+    defines(libFreeType2_defines)
+    files(libFreeType2_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("FreeType2"))
+filter "configurations:Debug*"
+    defines(libFreeType2_debugdefines)
+filter "configurations:Release*"
+    defines(libFreeType2_releasedefines)
 
 -- GCrypt
-if os.host() == "linux" then
-    project "GCrypt"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libGCrypt_buildoptions)
-        linkoptions(libGCrypt_linkoptions)
-        includedirs(libGCrypt_includedirs)
-        defines(libGCrypt_defines)
-        files(libGCrypt_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("GCrypt"))
-    filter "configurations:Debug*"
-        defines(libGCrypt_debugdefines)
-    filter "configurations:Release*"
-        defines(libGCrypt_releasedefines)
-end
+project "GCrypt"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libGCrypt_buildoptions)
+    linkoptions(libGCrypt_linkoptions)
+    includedirs(libGCrypt_includedirs)
+    defines(libGCrypt_defines)
+    files(libGCrypt_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("GCrypt"))
+filter "configurations:Debug*"
+    defines(libGCrypt_debugdefines)
+filter "configurations:Release*"
+    defines(libGCrypt_releasedefines)
 
 -- Glib
-if os.host() == "linux" then
-    project "Glib"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libGlib_buildoptions)
-        linkoptions(libGlib_linkoptions)
-        includedirs(libGlib_includedirs)
-        includedirs(libFFI_includedirs)
-        defines(libGlib_defines)
-        defines(libFFI_defines)
-        files(libGlib_sources)
-        files(libFFI_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Glib"))
-    filter "configurations:Debug*"
-        defines(libGlib_debugdefines)
-    filter "configurations:Release*"
-        defines(libGlib_releasedefines)
-end
+project "Glib"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libGlib_buildoptions)
+    linkoptions(libGlib_linkoptions)
+    includedirs(libGlib_includedirs)
+    includedirs(libFFI_includedirs)
+    defines(libGlib_defines)
+    defines(libFFI_defines)
+    files(libGlib_sources)
+    files(libFFI_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Glib"))
+filter "configurations:Debug*"
+    defines(libGlib_debugdefines)
+filter "configurations:Release*"
+    defines(libGlib_releasedefines)
 
 -- Harfbuzz
-if os.host() == "linux" then
-    project "Harfbuzz"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        includedirs(libHarfbuzz_includedirs)
-        includedirs(libFontconfig_includedirs)
-        includedirs(libFreeType2_includedirs)
-        includedirs(libGlib_includedirs)
-        defines(libHarfbuzz_defines)
-        files(libHarfbuzz_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Harfbuzz"))
-    filter "configurations:Debug*"
-        defines(libHarfbuzz_debugdefines)
-    filter "configurations:Release*"
-        defines(libHarfbuzz_releasedefines)
-end
+project "Harfbuzz"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    includedirs(libHarfbuzz_includedirs)
+    includedirs(libFontconfig_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libGlib_includedirs)
+    defines(libHarfbuzz_defines)
+    files(libHarfbuzz_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Harfbuzz"))
+filter "configurations:Debug*"
+    defines(libHarfbuzz_debugdefines)
+filter "configurations:Release*"
+    defines(libHarfbuzz_releasedefines)
 
 -- Icu
-if os.host() == "linux" then
-    project "Icu"
-    language "C++"
-    pic "On"
-        kind(GetStaticLibraryType())
-        includedirs(libIcu_includedirs)
-        defines(libIcu_defines)
-        files(libIcu_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Icu"))
-    filter "configurations:Debug*"
-        defines(libIcu_debugdefines)
-    filter "configurations:Release*"
-        defines(libIcu_releasedefines)
-end
+project "Icu"
+language "C++"
+pic "On"
+    kind(GetStaticLibraryType())
+    includedirs(libIcu_includedirs)
+    defines(libIcu_defines)
+    files(libIcu_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Icu"))
+filter "configurations:Debug*"
+    defines(libIcu_debugdefines)
+filter "configurations:Release*"
+    defines(libIcu_releasedefines)
 
 -- JpegTurbo
-if os.host() == "linux" then
-    project "JpegTurbo"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        includedirs(libJpegTurbo_includedirs)
-        defines(libJpegTurbo_defines)
-        files(libJpegTurbo_sources)
-        if GetArchitecture() == "x86_64" then
-            files(libJpegTurbo_sources_x86_64)
-            filter {'files:**.asm'}
-            buildmessage '%{file.relpath}'
-            buildoutputs { '%{cfg.objdir}/%{file.basename}.o' }
-            buildcommands {
-                'nasm -felf64 -DELF -D__x86_64__ -o "%{cfg.objdir}/%{file.basename}.o" "%{file.relpath}" ' ..
-                    libJpegTurbo_asm_def ..
-                    libJpegTurbo_asm_inc_x86_64 ..
-                    libJpegTurbo_asm_inc_linux
-            }
-        end
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("JpegTurbo"))
-    filter "configurations:Debug*"
-        defines(libJpegTurbo_debugdefines)
-    filter "configurations:Release*"
-        defines(libJpegTurbo_releasedefines)
-end
+project "JpegTurbo"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    includedirs(libJpegTurbo_includedirs)
+    defines(libJpegTurbo_defines)
+    files(libJpegTurbo_sources)
+    if GetArchitecture() == "x86_64" and os.host() == "linux" then
+        files(libJpegTurbo_sources_x86_64)
+        filter {'files:**.asm'}
+        buildmessage '%{file.relpath}'
+        buildoutputs { '%{cfg.objdir}/%{file.basename}.o' }
+        buildcommands {
+            'nasm -felf64 -DELF -D__x86_64__ -o "%{cfg.objdir}/%{file.basename}.o" "%{file.relpath}" ' ..
+                libJpegTurbo_asm_def ..
+                libJpegTurbo_asm_inc_x86_64 ..
+                libJpegTurbo_asm_inc_linux
+        }
+    end
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("JpegTurbo"))
+filter "configurations:Debug*"
+    defines(libJpegTurbo_debugdefines)
+filter "configurations:Release*"
+    defines(libJpegTurbo_releasedefines)
 
 -- Pixman
-if os.host() == "linux" then
-    project "Pixman"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libPixman_buildoptions)
-        linkoptions(libPixman_linkoptions)
-        includedirs(libPixman_includedirs)
-        defines(libPixman_defines)
-        files(libPixman_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Pixman"))
-    filter "configurations:Debug*"
-        defines(libPixman_debugdefines)
-    filter "configurations:Release*"
-        defines(libPixman_releasedefines)
-end
+project "Pixman"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libPixman_buildoptions)
+    linkoptions(libPixman_linkoptions)
+    includedirs(libPixman_includedirs)
+    defines(libPixman_defines)
+    files(libPixman_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Pixman"))
+filter "configurations:Debug*"
+    defines(libPixman_debugdefines)
+filter "configurations:Release*"
+    defines(libPixman_releasedefines)
 
 -- PCRE
-if os.host() == "linux" then
-    project "PCRE"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libPCRE_buildoptions)
-        linkoptions(libPCRE_linkoptions)
-        includedirs(libPCRE_includedirs)
-        defines(libPCRE_defines)
-        files(libPCRE_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("PCRE"))
-    filter "configurations:Debug*"
-        defines(libPCRE_debugdefines)
-    filter "configurations:Release*"
-        defines(libPCRE_releasedefines)
-end
+project "PCRE"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libPCRE_buildoptions)
+    linkoptions(libPCRE_linkoptions)
+    includedirs(libPCRE_includedirs)
+    defines(libPCRE_defines)
+    files(libPCRE_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("PCRE"))
+filter "configurations:Debug*"
+    defines(libPCRE_debugdefines)
+filter "configurations:Release*"
+    defines(libPCRE_releasedefines)
 
 -- PNG
-if os.host() == "linux" then
-    project "PNG"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libPNG_buildoptions)
-        linkoptions(libPNG_linkoptions)
-        includedirs(libPNG_includedirs)
-        includedirs(libZlib_includedirs)
-        defines(libPNG_defines)
-        files(libPNG_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("PNG"))
-    filter "configurations:Debug*"
-        defines(libPNG_debugdefines)
-    filter "configurations:Release*"
-        defines(libPNG_releasedefines)
-end
+project "PNG"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libPNG_buildoptions)
+    linkoptions(libPNG_linkoptions)
+    includedirs(libPNG_includedirs)
+    includedirs(libZlib_includedirs)
+    defines(libPNG_defines)
+    files(libPNG_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("PNG"))
+filter "configurations:Debug*"
+    defines(libPNG_debugdefines)
+filter "configurations:Release*"
+    defines(libPNG_releasedefines)
 
 -- PSL
-if os.host() == "linux" then
-    project "PSL"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libPSL_buildoptions)
-        linkoptions(libPSL_linkoptions)
-        includedirs(libPSL_includedirs)
-        defines(libPSL_defines)
-        files(libPSL_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("PSL"))
-    filter "configurations:Debug*"
-        defines(libPSL_debugdefines)
-    filter "configurations:Release*"
-        defines(libPSL_releasedefines)
-end
+project "PSL"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libPSL_buildoptions)
+    linkoptions(libPSL_linkoptions)
+    includedirs(libPSL_includedirs)
+    defines(libPSL_defines)
+    files(libPSL_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("PSL"))
+filter "configurations:Debug*"
+    defines(libPSL_debugdefines)
+filter "configurations:Release*"
+    defines(libPSL_releasedefines)
 
 -- Soup
-if os.host() == "linux" then
-    project "Soup"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        includedirs(libSoup_includedirs)
-        includedirs(libGlib_includedirs)
-        includedirs(libXML2_includedirs)
-        defines(libSoup_defines)
-        files(libSoup_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Soup"))
-    filter "configurations:Debug*"
-        defines(libSoup_debugdefines)
-    filter "configurations:Release*"
-        defines(libSoup_releasedefines)
-end
+project "Soup"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    includedirs(libSoup_includedirs)
+    includedirs(libGlib_includedirs)
+    includedirs(libXML2_includedirs)
+    defines(libSoup_defines)
+    files(libSoup_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Soup"))
+filter "configurations:Debug*"
+    defines(libSoup_debugdefines)
+filter "configurations:Release*"
+    defines(libSoup_releasedefines)
 
 -- SQLite
-if os.host() == "linux" then
-    project "SQLite"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libSQLite_buildoptions)
-        linkoptions(libSQLite_linkoptions)
-        includedirs(libSQLite_includedirs)
-        defines(libSQLite_defines)
-        files(libSQLite_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("SQLite"))
-    filter "configurations:Debug*"
-        defines(libSQLite_debugdefines)
-    filter "configurations:Release*"
-        defines(libSQLite_releasedefines)
-end
+project "SQLite"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libSQLite_buildoptions)
+    linkoptions(libSQLite_linkoptions)
+    includedirs(libSQLite_includedirs)
+    defines(libSQLite_defines)
+    files(libSQLite_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("SQLite"))
+filter "configurations:Debug*"
+    defines(libSQLite_debugdefines)
+filter "configurations:Release*"
+    defines(libSQLite_releasedefines)
 
 -- Webp
-if os.host() == "linux" then
-    project "Webp"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libWebp_buildoptions)
-        linkoptions(libWebp_linkoptions)
-        includedirs(libWebp_includedirs)
-        defines(libWebp_defines)
-        files(libWebp_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Webp"))
-    filter "configurations:Debug*"
-        defines(libWebp_debugdefines)
-    filter "configurations:Release*"
-        defines(libWebp_releasedefines)
-end
+project "Webp"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libWebp_buildoptions)
+    linkoptions(libWebp_linkoptions)
+    includedirs(libWebp_includedirs)
+    defines(libWebp_defines)
+    files(libWebp_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Webp"))
+filter "configurations:Debug*"
+    defines(libWebp_debugdefines)
+filter "configurations:Release*"
+    defines(libWebp_releasedefines)
 
 -- XML2
-if os.host() == "linux" then
-    project "XML2"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libXML2_buildoptions)
-        linkoptions(libXML2_linkoptions)
-        includedirs(libXML2_includedirs)
-        defines(libXML2_defines)
-        files(libXML2_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("XML2"))
-    filter "configurations:Debug*"
-        defines(libXML2_debugdefines)
-    filter "configurations:Release*"
-        defines(libXML2_releasedefines)
-end
+project "XML2"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libXML2_buildoptions)
+    linkoptions(libXML2_linkoptions)
+    includedirs(libXML2_includedirs)
+    defines(libXML2_defines)
+    files(libXML2_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("XML2"))
+filter "configurations:Debug*"
+    defines(libXML2_debugdefines)
+filter "configurations:Release*"
+    defines(libXML2_releasedefines)
 
 -- XSLT
-if os.host() == "linux" then
-    project "XSLT"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        buildoptions(libXSLT_buildoptions)
-        linkoptions(libXSLT_linkoptions)
-        includedirs(libXSLT_includedirs)
-        includedirs(libXML2_includedirs)
-        defines(libXSLT_defines)
-        files(libXSLT_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("XSLT"))
-    filter "configurations:Debug*"
-        defines(libXSLT_debugdefines)
-    filter "configurations:Release*"
-        defines(libXSLT_releasedefines)
-end
+project "XSLT"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    buildoptions(libXSLT_buildoptions)
+    linkoptions(libXSLT_linkoptions)
+    includedirs(libXSLT_includedirs)
+    includedirs(libXML2_includedirs)
+    defines(libXSLT_defines)
+    files(libXSLT_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("XSLT"))
+filter "configurations:Debug*"
+    defines(libXSLT_debugdefines)
+filter "configurations:Release*"
+    defines(libXSLT_releasedefines)
 
 -- Zlib
-if os.host() == "linux" then
-    project "Zlib"
-    language "C"
-    pic "On"
-        kind(GetStaticLibraryType())
-        includedirs(libZlib_includedirs)
-        defines(libZlib_defines)
-        files(libZlib_sources)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Zlib"))
-    filter "configurations:Debug*"
-        defines(libZlib_debugdefines)
-    filter "configurations:Release*"
-        defines(libZlib_releasedefines)
-end
---------------------- WebKitGTK Dependencies ---------------------
+project "Zlib"
+language "C"
+pic "On"
+    kind(GetStaticLibraryType())
+    includedirs(libZlib_includedirs)
+    defines(libZlib_defines)
+    files(libZlib_sources)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Zlib"))
+filter "configurations:Debug*"
+    defines(libZlib_debugdefines)
+filter "configurations:Release*"
+    defines(libZlib_releasedefines)
 
 --------------------- WebKitGTK ---------------------
 -- WTFGTK
@@ -585,7 +545,7 @@ if os.host() == "linux" then
     project "JavaScriptCoreGTK"
     language "C++"
     pic "On"
-        kind(GetSharedLibraryType())
+        kind(GetStaticLibraryType())
         cppdialect(GetCpp14Dialect())
         buildoptions(libWebKitGTK_buildoptions_JavaScriptCoreGTK)
         linkoptions(libWebKitGTK_linkoptions_JavaScriptCoreGTK)
@@ -597,7 +557,6 @@ if os.host() == "linux" then
         includedirs(libIcu_includedirs)
         defines(libWebKitGTK_defines_JavaScriptCoreGTK)
         files(libWebKitGTK_sources_JavaScriptCoreGTK)
-        links(libWebKitGTK_libs_JavaScriptCoreGTK)
         targetdir(GetLibraryTargetDirectory())
         targetname(GetTargetName("JavaScriptCoreGTK"))
     filter "configurations:Debug*"
@@ -611,7 +570,7 @@ if os.host() == "linux" then
     project "WebKitGTK"
     language "C++"
     pic "On"
-        kind(GetSharedLibraryType())
+        kind(GetStaticLibraryType())
         cppdialect(GetCpp14Dialect())
         buildoptions(libWebKitGTK_buildoptions_WebKitGTK)
         linkoptions(libWebKitGTK_linkoptions_WebKitGTK)
@@ -629,7 +588,6 @@ if os.host() == "linux" then
         includedirs(libHarfbuzz_includedirs)
         defines(libWebKitGTK_defines_WebKitGTK)
         files(libWebKitGTK_sources_WebKitGTK)
-        links(libWebKitGTK_libs_WebKitGTK)
         targetdir(GetLibraryTargetDirectory())
         targetname(GetTargetName("WebKitGTK"))
     filter "configurations:Debug*"

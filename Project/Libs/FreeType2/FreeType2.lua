@@ -61,6 +61,7 @@ libFreeType2_sources = {
     libFreeType2_srcdir .. "cache/ftcache.c",
     libFreeType2_srcdir .. "cff/cff.c",
     libFreeType2_srcdir .. "cid/type1cid.c",
+    libFreeType2_srcdir .. "gzip/ftgzip.c",
     libFreeType2_srcdir .. "lzw/ftlzw.c",
     libFreeType2_srcdir .. "pcf/pcf.c",
     libFreeType2_srcdir .. "pfr/pfr.c",

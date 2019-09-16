@@ -20,8 +20,7 @@ end
 
 -- Defines
 libGCrypt_defines = {
-    "HAVE_CONFIG_H",
-    "STANDALONE"
+    "HAVE_CONFIG_H"
 }
 libGCrypt_debugdefines = {
 }

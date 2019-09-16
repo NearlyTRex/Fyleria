@@ -135,7 +135,7 @@ typedef unsigned long guintptr;
 #endif
 
 #define G_HAVE_GROWING_STACK 0
-#define G_HAVE_GNUC_VISIBILITY 1
+#define G_HAVE_GNUC_VISIBILITY 0
 
 #ifndef _MSC_VER
 # define G_HAVE_GNUC_VARARGS 1
