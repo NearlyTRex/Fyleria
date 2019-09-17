@@ -11,17 +11,25 @@ libIcu_includedirs = {
     libIcu_incdir .. "io/"
 }
 
--- Defines
-libIcu_defines = {
-    "PIC",
-    "char16_t=uint16_t",
+-- Defines (Icu)
+libIcu_defines_Icu = {
     "U_COMMON_IMPLEMENTATION",
     "U_I18N_IMPLEMENTATION",
     "U_IO_IMPLEMENTATION"
 }
-libIcu_debugdefines = {
+libIcu_debugdefines_Icu = {
 }
-libIcu_releasedefines = {
+libIcu_releasedefines_Icu = {
+}
+
+-- Defines (Icu Data)
+libIcu_defines_IcuData = {
+    "PIC",
+    "char16_t=uint16_t"
+}
+libIcu_debugdefines_IcuData = {
+}
+libIcu_releasedefines_IcuData = {
 }
 
 -- Options
@@ -30,12 +38,16 @@ libIcu_buildoptions = {
 libIcu_linkoptions = {
 }
 
--- Libs
-libIcu_libs = {
+-- Libs (Icu)
+libIcu_libs_Icu = {
 }
 
--- Sources
-libIcu_sources = {
+-- Libs (Icu Data)
+libIcu_libs_IcuData = {
+}
+
+-- Sources (Icu)
+libIcu_sources_Icu = {
     libIcu_srcdir .. "common/errorcode.cpp",
     libIcu_srcdir .. "common/putil.cpp",
     libIcu_srcdir .. "common/umath.cpp",
@@ -464,7 +476,11 @@ libIcu_sources = {
     libIcu_srcdir .. "io/sprintf.cpp",
     libIcu_srcdir .. "io/sscanf.cpp",
     libIcu_srcdir .. "io/ustream.cpp",
-    libIcu_srcdir .. "io/ucln_io.cpp",
+    libIcu_srcdir .. "io/ucln_io.cpp"
+}
+
+-- Sources (Icu Data)
+libIcu_sources_IcuData = {
     libIcu_extradir .. "icudt/icudt63l_dat.c",
     libIcu_extradir .. "icudt/libicudataall.c"
 }
