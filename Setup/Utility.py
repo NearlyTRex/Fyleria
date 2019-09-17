@@ -112,6 +112,14 @@ def RunExtraSteps(steps, platform, root_path, flags):
         if os.path.isfile(new_src) and not os.path.exists(new_dest):
             shutil.copyfile(new_src, new_dest)
 
+    # Make symlink
+    def MakeSymlink(src, dest):
+        new_src = ResolvePaths(src)
+        new_dest = ResolvePaths(dest)
+        if os.path.islink(new_dest):
+            os.unlink(new_dest)
+        os.symlink(new_src, new_dest)
+
     # Make directory
     def MakeDirectory(dest):
         new_dest = ResolvePaths(dest)
