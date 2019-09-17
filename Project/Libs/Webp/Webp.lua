@@ -2,11 +2,11 @@
 libWebp_extradir = "Libs/Webp/extra/"
 libWebp_origdir = "Libs/Webp/orig/"
 libWebp_srcdir = libWebp_origdir ..  "src/"
-libWebp_incdir = libWebp_origdir
+libWebp_incdir = libWebp_origdir .. "src/"
 
 -- Includes
 libWebp_includedirs = {
-    libWebp_incdir,
+    libWebp_incdir
 }
 if os.host() == "linux" then
     table.insert(libWebp_includedirs, libWebp_extradir .. "linux/")
