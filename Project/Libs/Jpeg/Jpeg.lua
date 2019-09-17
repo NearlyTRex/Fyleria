@@ -14,7 +14,6 @@ end
 
 -- Defines
 libJpeg_defines = {
-    "HAVE_CONFIG_H"
 }
 libJpeg_debugdefines = {
 }
