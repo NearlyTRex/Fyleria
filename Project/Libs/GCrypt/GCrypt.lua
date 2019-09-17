@@ -182,9 +182,6 @@ libGCrypt_sources = {
     libGCrypt_srcdir .. "random/rndjent.c",
     libGCrypt_srcdir .. "random/rndhw.c",
     libGCrypt_srcdir .. "random/rndlinux.c",
-    libGCrypt_srcdir .. "src/dumpsexp.c",
-    libGCrypt_srcdir .. "src/hmac256.c",
-    libGCrypt_srcdir .. "src/mpicalc.c",
     libGCrypt_srcdir .. "src/visibility.c",
     libGCrypt_srcdir .. "src/misc.c",
     libGCrypt_srcdir .. "src/global.c",
@@ -194,7 +191,6 @@ libGCrypt_sources = {
     libGCrypt_srcdir .. "src/secmem.c",
     libGCrypt_srcdir .. "src/missing-string.c",
     libGCrypt_srcdir .. "src/fips.c",
-    libGCrypt_srcdir .. "src/hmac256.c",
     libGCrypt_srcdir .. "src/context.c",
     libGCrypt_srcdir .. "src/hwf-x86.c"
 }
