@@ -66,14 +66,5 @@ libFontconfig_sources = {
     libFontconfig_srcdir .. "src/fcstr.c",
     libFontconfig_srcdir .. "src/fcweight.c",
     libFontconfig_srcdir .. "src/fcxml.c",
-    libFontconfig_srcdir .. "src/ftglue.c",
-    libFontconfig_srcdir .. "fc-cache/fc-cache.c",
-    libFontconfig_srcdir .. "fc-cat/fc-cat.c",
-    libFontconfig_srcdir .. "fc-conflist/fc-conflist.c",
-    libFontconfig_srcdir .. "fc-list/fc-list.c",
-    libFontconfig_srcdir .. "fc-match/fc-match.c",
-    libFontconfig_srcdir .. "fc-pattern/fc-pattern.c",
-    libFontconfig_srcdir .. "fc-query/fc-query.c",
-    libFontconfig_srcdir .. "fc-scan/fc-scan.c",
-    libFontconfig_srcdir .. "fc-validate/fc-validate.c"
+    libFontconfig_srcdir .. "src/ftglue.c"
 }
