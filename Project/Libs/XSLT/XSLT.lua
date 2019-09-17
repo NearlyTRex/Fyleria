@@ -2,7 +2,7 @@
 libXSLT_extradir = "Libs/XSLT/extra/"
 libXSLT_origdir = "Libs/XSLT/orig/"
 libXSLT_srcdir = libXSLT_origdir .. "libxslt/"
-libXSLT_incdir = libXSLT_origdir .. "libxslt/"
+libXSLT_incdir = libXSLT_origdir
 
 -- Includes
 libXSLT_includedirs = {
