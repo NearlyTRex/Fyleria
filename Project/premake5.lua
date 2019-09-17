@@ -16,6 +16,7 @@ require "Libs/Glib/Glib"
 require "Libs/Harfbuzz/Harfbuzz"
 require "Libs/Icu/Icu"
 require "Libs/ImmutableString/ImmutableString"
+require "Libs/Jpeg/Jpeg"
 require "Libs/JpegTurbo/JpegTurbo"
 require "Libs/LibreSSL/LibreSSL"
 require "Libs/LRUCache/LRUCache"
@@ -96,11 +97,12 @@ filter "configurations:Release*"
 project "Boost"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp17Dialect())
     includedirs(libBoost_includedirs)
     defines(libBoost_defines)
     files(libBoost_sources)
+    links(libBoost_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Boost"))
 filter "configurations:Debug*"
@@ -112,11 +114,12 @@ filter "configurations:Release*"
 project "FantasyName"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp17Dialect())
     includedirs(libFantasyName_includedirs)
     defines(libFantasyName_defines)
     files(libFantasyName_sources)
+    links(libFantasyName_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("FantasyName"))
 filter "configurations:Debug*"
@@ -128,11 +131,12 @@ filter "configurations:Release*"
 project "MicroPather"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp17Dialect())
     includedirs(libMicroPather_includedirs)
     defines(libMicroPather_defines)
     files(libMicroPather_sources)
+    links(libMicroPather_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("MicroPather"))
 filter "configurations:Debug*"
@@ -144,11 +148,12 @@ filter "configurations:Release*"
 project "SpdLog"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp17Dialect())
     includedirs(libSpdLog_includedirs)
     defines(libSpdLog_defines)
     files(libSpdLog_sources)
+    links(libSpdLog_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("SpdLog"))
 filter "configurations:Debug*"
@@ -160,7 +165,7 @@ filter "configurations:Release*"
 project "Cairo"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp17Dialect())
     buildoptions(libCairo_buildoptions)
     linkoptions(libCairo_linkoptions)
@@ -170,6 +175,7 @@ pic "On"
     includedirs(libPixman_includedirs)
     defines(libCairo_defines)
     files(libCairo_sources)
+    links(libCairo_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Cairo"))
 filter "configurations:Debug*"
@@ -177,11 +183,29 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libCairo_releasedefines)
 
+-- FFI
+project "FFI"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libFFI_buildoptions)
+    linkoptions(libFFI_linkoptions)
+    includedirs(libFFI_includedirs)
+    defines(libFFI_defines)
+    files(libFFI_sources)
+    links(libFFI_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("FFI"))
+filter "configurations:Debug*"
+    defines(libFFI_debugdefines)
+filter "configurations:Release*"
+    defines(libFreeType2_releasedefines)
+
 -- Fontconfig
 project "Fontconfig"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libFontconfig_buildoptions)
     linkoptions(libFontconfig_linkoptions)
     includedirs(libFontconfig_includedirs)
@@ -189,6 +213,7 @@ pic "On"
     includedirs(libXML2_includedirs)
     defines(libFontconfig_defines)
     files(libFontconfig_sources)
+    links(libFontconfig_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Fontconfig"))
 filter "configurations:Debug*"
@@ -200,13 +225,14 @@ filter "configurations:Release*"
 project "FreeType2"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libFreeType2_buildoptions)
     linkoptions(libFreeType2_linkoptions)
     includedirs(libFreeType2_includedirs)
     includedirs(libPNG_includedirs)
     defines(libFreeType2_defines)
     files(libFreeType2_sources)
+    links(libFreeType2_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("FreeType2"))
 filter "configurations:Debug*"
@@ -218,12 +244,13 @@ filter "configurations:Release*"
 project "GCrypt"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libGCrypt_buildoptions)
     linkoptions(libGCrypt_linkoptions)
     includedirs(libGCrypt_includedirs)
     defines(libGCrypt_defines)
     files(libGCrypt_sources)
+    links(libGCrypt_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("GCrypt"))
 filter "configurations:Debug*"
@@ -235,15 +262,14 @@ filter "configurations:Release*"
 project "Glib"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libGlib_buildoptions)
     linkoptions(libGlib_linkoptions)
     includedirs(libGlib_includedirs)
     includedirs(libFFI_includedirs)
     defines(libGlib_defines)
-    defines(libFFI_defines)
     files(libGlib_sources)
-    files(libFFI_sources)
+    links(libGlib_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Glib"))
 filter "configurations:Debug*"
@@ -255,13 +281,14 @@ filter "configurations:Release*"
 project "Harfbuzz"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     includedirs(libHarfbuzz_includedirs)
     includedirs(libFontconfig_includedirs)
     includedirs(libFreeType2_includedirs)
     includedirs(libGlib_includedirs)
     defines(libHarfbuzz_defines)
     files(libHarfbuzz_sources)
+    links(libHarfbuzz_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Harfbuzz"))
 filter "configurations:Debug*"
@@ -273,10 +300,11 @@ filter "configurations:Release*"
 project "Icu"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     includedirs(libIcu_includedirs)
     defines(libIcu_defines)
     files(libIcu_sources)
+    links(libIcu_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Icu"))
 filter "configurations:Debug*"
@@ -284,43 +312,33 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libIcu_releasedefines)
 
--- JpegTurbo
-project "JpegTurbo"
+-- Jpeg
+project "Jpeg"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
-    includedirs(libJpegTurbo_includedirs)
-    defines(libJpegTurbo_defines)
-    files(libJpegTurbo_sources)
-    if GetArchitecture() == "x86_64" and os.host() == "linux" then
-        files(libJpegTurbo_sources_x86_64)
-        filter {'files:**.asm'}
-        buildmessage '%{file.relpath}'
-        buildoutputs { '%{cfg.objdir}/%{file.basename}.o' }
-        buildcommands {
-            'nasm -felf64 -DELF -D__x86_64__ -o "%{cfg.objdir}/%{file.basename}.o" "%{file.relpath}" ' ..
-                libJpegTurbo_asm_def ..
-                libJpegTurbo_asm_inc_x86_64 ..
-                libJpegTurbo_asm_inc_linux
-        }
-    end
+    kind(GetSharedLibraryType())
+    includedirs(libJpeg_includedirs)
+    defines(libJpeg_defines)
+    files(libJpeg_sources)
+    links(libJpeg_libs)
     targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("JpegTurbo"))
+    targetname(GetTargetName("Jpeg"))
 filter "configurations:Debug*"
-    defines(libJpegTurbo_debugdefines)
+    defines(libJpeg_debugdefines)
 filter "configurations:Release*"
-    defines(libJpegTurbo_releasedefines)
+    defines(libJpeg_releasedefines)
 
 -- Pixman
 project "Pixman"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libPixman_buildoptions)
     linkoptions(libPixman_linkoptions)
     includedirs(libPixman_includedirs)
     defines(libPixman_defines)
     files(libPixman_sources)
+    links(libPixman_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Pixman"))
 filter "configurations:Debug*"
@@ -332,12 +350,13 @@ filter "configurations:Release*"
 project "PCRE"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libPCRE_buildoptions)
     linkoptions(libPCRE_linkoptions)
     includedirs(libPCRE_includedirs)
     defines(libPCRE_defines)
     files(libPCRE_sources)
+    links(libPCRE_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("PCRE"))
 filter "configurations:Debug*"
@@ -349,13 +368,14 @@ filter "configurations:Release*"
 project "PNG"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libPNG_buildoptions)
     linkoptions(libPNG_linkoptions)
     includedirs(libPNG_includedirs)
     includedirs(libZlib_includedirs)
     defines(libPNG_defines)
     files(libPNG_sources)
+    links(libPNG_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("PNG"))
 filter "configurations:Debug*"
@@ -367,12 +387,13 @@ filter "configurations:Release*"
 project "PSL"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libPSL_buildoptions)
     linkoptions(libPSL_linkoptions)
     includedirs(libPSL_includedirs)
     defines(libPSL_defines)
     files(libPSL_sources)
+    links(libPSL_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("PSL"))
 filter "configurations:Debug*"
@@ -384,12 +405,13 @@ filter "configurations:Release*"
 project "Soup"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     includedirs(libSoup_includedirs)
     includedirs(libGlib_includedirs)
     includedirs(libXML2_includedirs)
     defines(libSoup_defines)
     files(libSoup_sources)
+    links(libSoup_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Soup"))
 filter "configurations:Debug*"
@@ -401,12 +423,13 @@ filter "configurations:Release*"
 project "SQLite"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libSQLite_buildoptions)
     linkoptions(libSQLite_linkoptions)
     includedirs(libSQLite_includedirs)
     defines(libSQLite_defines)
     files(libSQLite_sources)
+    links(libSQLite_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("SQLite"))
 filter "configurations:Debug*"
@@ -418,12 +441,13 @@ filter "configurations:Release*"
 project "Webp"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libWebp_buildoptions)
     linkoptions(libWebp_linkoptions)
     includedirs(libWebp_includedirs)
     defines(libWebp_defines)
     files(libWebp_sources)
+    links(libWebp_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Webp"))
 filter "configurations:Debug*"
@@ -435,12 +459,13 @@ filter "configurations:Release*"
 project "XML2"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libXML2_buildoptions)
     linkoptions(libXML2_linkoptions)
     includedirs(libXML2_includedirs)
     defines(libXML2_defines)
     files(libXML2_sources)
+    links(libXML2_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("XML2"))
 filter "configurations:Debug*"
@@ -452,13 +477,14 @@ filter "configurations:Release*"
 project "XSLT"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     buildoptions(libXSLT_buildoptions)
     linkoptions(libXSLT_linkoptions)
     includedirs(libXSLT_includedirs)
     includedirs(libXML2_includedirs)
     defines(libXSLT_defines)
     files(libXSLT_sources)
+    links(libXSLT_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("XSLT"))
 filter "configurations:Debug*"
@@ -470,10 +496,11 @@ filter "configurations:Release*"
 project "Zlib"
 language "C"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     includedirs(libZlib_includedirs)
     defines(libZlib_defines)
     files(libZlib_sources)
+    links(libZlib_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Zlib"))
 filter "configurations:Debug*"
@@ -487,16 +514,17 @@ if os.host() == "linux" then
     project "WTFGTK"
     language "C++"
     pic "On"
-        kind(GetStaticLibraryType())
+        kind(GetSharedLibraryType())
         cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions)
-        linkoptions(libWebKitGTK_linkoptions)
+        buildoptions(libWebKitGTK_buildoptions_Libraries)
+        linkoptions(libWebKitGTK_linkoptions_Libraries)
         includedirs(libWebKitGTK_includedirs_WTFGTK)
         includedirs(libWebKitGTK_includedirs_public)
         includedirs(libGlib_includedirs)
         includedirs(libIcu_includedirs)
         defines(libWebKitGTK_defines_WTFGTK)
         files(libWebKitGTK_sources_WTFGTK)
+        links(libWebKitGTK_libs_WTFGTK)
         targetdir(GetLibraryTargetDirectory())
         targetname(GetTargetName("WTFGTK"))
     filter "configurations:Debug*"
@@ -510,10 +538,10 @@ if os.host() == "linux" then
     project "WebCoreGTK"
     language "C++"
     pic "On"
-        kind(GetStaticLibraryType())
+        kind(GetSharedLibraryType())
         cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions)
-        linkoptions(libWebKitGTK_linkoptions)
+        buildoptions(libWebKitGTK_buildoptions_Libraries)
+        linkoptions(libWebKitGTK_linkoptions_Libraries)
         includedirs(libWebKitGTK_includedirs_WebCoreGTK)
         includedirs(libWebKitGTK_includedirs_WTFGTK)
         includedirs(libWebKitGTK_includedirs_public)
@@ -530,6 +558,7 @@ if os.host() == "linux" then
         includedirs(libXSLT_includedirs)
         defines(libWebKitGTK_defines_WebCoreGTK)
         files(libWebKitGTK_sources_WebCoreGTK)
+        links(libWebKitGTK_libs_WebCoreGTK)
         targetdir(GetLibraryTargetDirectory())
         targetname(GetTargetName("WebCoreGTK"))
     filter "configurations:Debug*"
@@ -545,8 +574,8 @@ if os.host() == "linux" then
     pic "On"
         kind(GetSharedLibraryType())
         cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions)
-        linkoptions(libWebKitGTK_linkoptions)
+        buildoptions(libWebKitGTK_buildoptions_Libraries)
+        linkoptions(libWebKitGTK_linkoptions_Libraries)
         includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
         includedirs(libWebKitGTK_includedirs_WebCoreGTK)
         includedirs(libWebKitGTK_includedirs_WTFGTK)
@@ -571,8 +600,8 @@ if os.host() == "linux" then
     pic "On"
         kind(GetSharedLibraryType())
         cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions)
-        linkoptions(libWebKitGTK_linkoptions)
+        buildoptions(libWebKitGTK_buildoptions_Libraries)
+        linkoptions(libWebKitGTK_linkoptions_Libraries)
         includedirs(libWebKitGTK_includedirs_WebKitGTK)
         includedirs(libWebKitGTK_includedirs_WebCoreGTK)
         includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
@@ -590,6 +619,31 @@ if os.host() == "linux" then
         links(libWebKitGTK_libs_WebKitGTK)
         targetdir(GetLibraryTargetDirectory())
         targetname(GetTargetName("WebKitGTK"))
+    filter "configurations:Debug*"
+        defines(libWebKitGTK_debugdefines_WebKitGTK)
+    filter "configurations:Release*"
+        defines(libWebKitGTK_releasedefines_WebKitGTK)
+end
+
+-- NetworkProcessGTK
+if os.host() == "linux" then
+    project "NetworkProcessGTK"
+    language "C++"
+    pic "On"
+        kind(GetAppType())
+        cppdialect(GetCpp14Dialect())
+        buildoptions(libWebKitGTK_buildoptions_Processes)
+        linkoptions(libWebKitGTK_linkoptions_Processes)
+        includedirs(libWebKitGTK_includedirs_WebKitGTK)
+        includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+        includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
+        includedirs(libWebKitGTK_includedirs_WTFGTK)
+        includedirs(libWebKitGTK_includedirs_public)
+        defines(libWebKitGTK_defines_WebKitGTK)
+        files(libWebKitGTK_sources_NetworkProcess)
+        links(libWebKitGTK_libs_Processes)
+        targetdir(GetAppTargetDirectory())
+        targetname(GetTargetName("NetworkProcessGTK"))
     filter "configurations:Debug*"
         defines(libWebKitGTK_debugdefines_WebKitGTK)
     filter "configurations:Release*"
