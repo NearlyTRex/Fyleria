@@ -302,15 +302,31 @@ language "C++"
 pic "On"
     kind(GetSharedLibraryType())
     includedirs(libIcu_includedirs)
-    defines(libIcu_defines)
-    files(libIcu_sources)
-    links(libIcu_libs)
+    defines(libIcu_defines_Icu)
+    files(libIcu_sources_Icu)
+    links(libIcu_libs_Icu)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Icu"))
 filter "configurations:Debug*"
-    defines(libIcu_debugdefines)
+    defines(libIcu_debugdefines_Icu)
 filter "configurations:Release*"
-    defines(libIcu_releasedefines)
+    defines(libIcu_releasedefines_Icu)
+
+-- Icu Data
+project "IcuData"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    includedirs(libIcu_includedirs)
+    defines(libIcu_defines_IcuData)
+    files(libIcu_sources_IcuData)
+    links(libIcu_libs_IcuData)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("IcuData"))
+filter "configurations:Debug*"
+    defines(libIcu_debugdefines_IcuData)
+filter "configurations:Release*"
+    defines(libIcu_releasedefines_IcuData)
 
 -- Jpeg
 project "Jpeg"
@@ -409,6 +425,8 @@ pic "On"
     includedirs(libSoup_includedirs)
     includedirs(libGlib_includedirs)
     includedirs(libXML2_includedirs)
+    includedirs(libSQLite_includedirs)
+    includedirs(libPSL_includedirs)
     defines(libSoup_defines)
     files(libSoup_sources)
     links(libSoup_libs)
@@ -549,6 +567,9 @@ if os.host() == "linux" then
         includedirs(libIcu_includedirs)
         includedirs(libSoup_includedirs)
         includedirs(libSQLite_includedirs)
+        includedirs(libJpeg_includedirs)
+        includedirs(libPNG_includedirs)
+        includedirs(libWebp_includedirs)
         includedirs(libCairo_includedirs)
         includedirs(libFontconfig_includedirs)
         includedirs(libFreeType2_includedirs)
@@ -610,6 +631,7 @@ if os.host() == "linux" then
         includedirs(libGlib_includedirs)
         includedirs(libIcu_includedirs)
         includedirs(libSoup_includedirs)
+        includedirs(libSQLite_includedirs)
         includedirs(libCairo_includedirs)
         includedirs(libFontconfig_includedirs)
         includedirs(libFreeType2_includedirs)
