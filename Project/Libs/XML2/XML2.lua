@@ -14,7 +14,8 @@ end
 
 -- Defines
 libXML2_defines = {
-    "HAVE_CONFIG_H"
+    "HAVE_CONFIG_H",
+    "LIBXML_STATIC"
 }
 libXML2_debugdefines = {
 }
