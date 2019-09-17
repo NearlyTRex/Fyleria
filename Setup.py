@@ -53,7 +53,6 @@ def main():
         Project.SetupProject("DateCPP", "Project/Libs", system_info, program_options)
         Project.SetupProject("Cairo", "Project/Libs", system_info, program_options)
         Project.SetupProject("Curl", "Project/Libs", system_info, program_options)
-        Project.SetupProject("EAWebKit", "Project/Libs", system_info, program_options)
         Project.SetupProject("FantasyName", "Project/Libs", system_info, program_options)
         Project.SetupProject("FFI", "Project/Libs", system_info, program_options)
         Project.SetupProject("Fontconfig", "Project/Libs", system_info, program_options)
