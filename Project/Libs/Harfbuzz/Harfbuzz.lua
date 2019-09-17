@@ -31,6 +31,10 @@ libHarfbuzz_buildoptions = {
 libHarfbuzz_linkoptions = {
 }
 
+-- Libs
+libHarfbuzz_libs = {
+}
+
 -- Sources
 libHarfbuzz_sources = {
     libHarfbuzz_srcdir .. "hb-aat-layout.cc",

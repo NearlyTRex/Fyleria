@@ -18,3 +18,13 @@ libBetterEnums_debugdefines = {
 }
 libBetterEnums_releasedefines = {
 }
+
+-- Options
+libBetterEnums_buildoptions = {
+}
+libBetterEnums_linkoptions = {
+}
+
+-- Libs
+libBetterEnums_libs = {
+}

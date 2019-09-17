@@ -24,6 +24,16 @@ libZlib_releasedefines = {
     "NDEBUG"
 }
 
+-- Libs
+libZlib_libs = {
+}
+
+-- Options
+libZlib_buildoptions = {
+}
+libZlib_linkoptions = {
+}
+
 -- Sources
 libZlib_sources = {
     libZlib_srcdir .. "adler32.c",

@@ -30,6 +30,10 @@ libIcu_buildoptions = {
 libIcu_linkoptions = {
 }
 
+-- Libs
+libIcu_libs = {
+}
+
 -- Sources
 libIcu_sources = {
     libIcu_srcdir .. "common/errorcode.cpp",

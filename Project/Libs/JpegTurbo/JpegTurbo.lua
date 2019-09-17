@@ -35,6 +35,10 @@ libJpegTurbo_buildoptions = {
 libJpegTurbo_linkoptions = {
 }
 
+-- Libs
+libJpegTurbo_libs = {
+}
+
 -- Sources
 libJpegTurbo_sources = {
     libJpegTurbo_srcdir .. "jcapimin.c",

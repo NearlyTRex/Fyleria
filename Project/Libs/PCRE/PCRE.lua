@@ -27,6 +27,10 @@ libPCRE_buildoptions = {
 libPCRE_linkoptions = {
 }
 
+-- Libs
+libPCRE_libs = {
+}
+
 -- Sources
 libPCRE_sources = {
     libPCRE_srcdir .. "pcre_byte_order.c",

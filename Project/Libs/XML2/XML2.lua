@@ -28,6 +28,10 @@ libXML2_buildoptions = {
 libXML2_linkoptions = {
 }
 
+-- Libs
+libXML2_libs = {
+}
+
 -- Sources
 libXML2_sources = {
     libXML2_srcdir .. "buf.c",

@@ -16,3 +16,13 @@ libModernCPPJson_debugdefines = {
 }
 libModernCPPJson_releasedefines = {
 }
+
+-- Libs
+libModernCPPJson_libs = {
+}
+
+-- Options
+libModernCPPJson_buildoptions = {
+}
+libModernCPPJson_linkoptions = {
+}

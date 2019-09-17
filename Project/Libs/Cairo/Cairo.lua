@@ -32,6 +32,10 @@ elseif os.host() == "linux" then
     table.insert(libCairo_buildoptions, "-Wno-attributes")
 end
 
+-- Libs
+libCairo_libs = {
+}
+
 -- Sources
 libCairo_sources = {
     libCairo_srcdir .. "cairo.c",

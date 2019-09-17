@@ -16,3 +16,13 @@ libLRUCache_debugdefines = {
 }
 libLRUCache_releasedefines = {
 }
+
+-- Libs
+libLRUCache_libs = {
+}
+
+-- Options
+libLRUCache_buildoptions = {
+}
+libLRUCache_linkoptions = {
+}

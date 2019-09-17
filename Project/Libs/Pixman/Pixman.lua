@@ -30,6 +30,10 @@ if os.host() == "linux" then
     table.insert(libPixman_buildoptions, "-mssse3")
 end
 
+-- Libs
+libPixman_libs = {
+}
+
 -- Sources
 libPixman_sources = {
     libPixman_srcdir .. "pixman.c",

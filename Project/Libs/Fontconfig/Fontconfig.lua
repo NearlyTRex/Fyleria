@@ -32,6 +32,10 @@ libFontconfig_buildoptions = {
 libFontconfig_linkoptions = {
 }
 
+-- Libs
+libFontconfig_libs = {
+}
+
 -- Sources
 libFontconfig_sources = {
     libFontconfig_srcdir .. "src/fcarch.c",

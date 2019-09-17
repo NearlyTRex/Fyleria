@@ -30,6 +30,10 @@ if os.host() == "linux" then
     table.insert(libWebp_buildoptions, "-msse2")
 end
 
+-- Libs
+libWebp_libs = {
+}
+
 -- Sources
 libWebp_sources = {
     libWebp_srcdir .. "dec/alpha_dec.c",

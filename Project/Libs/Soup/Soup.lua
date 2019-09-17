@@ -33,6 +33,10 @@ libSoup_buildoptions = {
 libSoup_linkoptions = {
 }
 
+-- Libs
+libSoup_libs = {
+}
+
 -- Sources
 libSoup_sources = {
     libSoup_srcdir .. "soup-address.c",

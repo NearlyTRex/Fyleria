@@ -49,6 +49,10 @@ libGlib_buildoptions = {
 libGlib_linkoptions = {
 }
 
+-- Libs
+libGlib_libs = {
+}
+
 -- Sources
 libGlib_sources = {
     libGlib_srcdir .. "glib/deprecated/gallocator.c",

@@ -23,6 +23,10 @@ libCurl_buildoptions = {
 libCurl_linkoptions = {
 }
 
+-- Libs
+libCurl_libs = {
+}
+
 -- Sources
 libCurl_sources = {
 }

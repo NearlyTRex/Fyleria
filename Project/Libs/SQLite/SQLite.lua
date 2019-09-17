@@ -36,6 +36,10 @@ libSQLite_buildoptions = {
 libSQLite_linkoptions = {
 }
 
+-- Libs
+libSQLite_libs = {
+}
+
 -- Sources
 libSQLite_sources = {
     libSQLite_extradir .. "sqlite3.c"

@@ -16,3 +16,13 @@ libObjectThreadsafe_debugdefines = {
 }
 libObjectThreadsafe_releasedefines = {
 }
+
+-- Libs
+libObjectThreadsafe_libs = {
+}
+
+-- Options
+libObjectThreadsafe_buildoptions = {
+}
+libObjectThreadsafe_linkoptions = {
+}

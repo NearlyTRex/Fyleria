@@ -23,6 +23,10 @@ libPThreadsWin32_buildoptions = {
 libPThreadsWin32_linkoptions = {
 }
 
+-- Libs
+libPThreadsWin32_libs = {
+}
+
 -- Sources
 libPThreadsWin32_sources = {
 }

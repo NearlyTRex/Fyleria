@@ -23,6 +23,10 @@ libGPGError_buildoptions = {
 libGPGError_linkoptions = {
 }
 
+-- Libs
+libGPGError_libs = {
+}
+
 -- Sources
 libGPGError_sources = {
 }

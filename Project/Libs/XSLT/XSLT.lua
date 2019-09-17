@@ -28,6 +28,10 @@ libXSLT_buildoptions = {
 libXSLT_linkoptions = {
 }
 
+-- Libs
+libXSLT_libs = {
+}
+
 -- Sources
 libXSLT_sources = {
     libXSLT_srcdir .. "attributes.c",

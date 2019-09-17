@@ -27,6 +27,10 @@ libGCrypt_debugdefines = {
 libGCrypt_releasedefines = {
 }
 
+-- Libs
+libGCrypt_libs = {
+}
+
 -- Options
 libGCrypt_buildoptions = {
     "-fvisibility=hidden",

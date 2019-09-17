@@ -23,6 +23,10 @@ libBrotli_buildoptions = {
 libBrotli_linkoptions = {
 }
 
+-- Libs
+libBrotli_libs = {
+}
+
 -- Sources
 libBrotli_sources = {
 }

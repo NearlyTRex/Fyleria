@@ -34,6 +34,10 @@ if os.host() == "linux" then
     table.insert(libFreeType2_buildoptions, "-fvisibility=hidden -pedantic -ansi")
 end
 
+-- Libs
+libFreeType2_libs = {
+}
+
 -- Sources
 libFreeType2_sources = {
     libFreeType2_srcdir .. "autofit/autofit.c",

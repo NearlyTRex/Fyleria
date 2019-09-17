@@ -28,6 +28,10 @@ libFFI_buildoptions = {
 libFFI_linkoptions = {
 }
 
+-- Libs
+libFFI_libs = {
+}
+
 -- Sources
 libFFI_sources = {
     libFFI_srcdir .. "closures.c",

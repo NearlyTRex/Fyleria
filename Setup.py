@@ -64,7 +64,7 @@ def main():
         Project.SetupProject("Harfbuzz", "Project/Libs", system_info, program_options)
         Project.SetupProject("Icu", "Project/Libs", system_info, program_options)
         Project.SetupProject("ImmutableString", "Project/Libs", system_info, program_options)
-        Project.SetupProject("JpegTurbo", "Project/Libs", system_info, program_options)
+        Project.SetupProject("Jpeg", "Project/Libs", system_info, program_options)
         Project.SetupProject("LibreSSL", "Project/Libs", system_info, program_options)
         Project.SetupProject("LRUCache", "Project/Libs", system_info, program_options)
         Project.SetupProject("MicroPather", "Project/Libs", system_info, program_options)

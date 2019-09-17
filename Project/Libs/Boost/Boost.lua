@@ -18,6 +18,12 @@ libBoost_debugdefines = {
 libBoost_releasedefines = {
 }
 
+-- Options
+libBoost_buildoptions = {
+}
+libBoost_linkoptions = {
+}
+
 -- Libs
 libBoost_libs = {
 }

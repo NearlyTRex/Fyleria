@@ -32,6 +32,10 @@ libPSL_buildoptions = {
 libPSL_linkoptions = {
 }
 
+-- Libs
+libPSL_libs = {
+}
+
 -- Sources
 libPSL_sources = {
     libPSL_srcdir .. "lookup_string_in_fixed_set.c",

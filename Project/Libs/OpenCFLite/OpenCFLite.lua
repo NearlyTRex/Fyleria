@@ -23,6 +23,16 @@ libOpenCFLite_buildoptions = {
 libOpenCFLite_linkoptions = {
 }
 
+-- Libs
+libOpenCFLite_libs = {
+}
+
+-- Options
+libOpenCFLite_buildoptions = {
+}
+libOpenCFLite_linkoptions = {
+}
+
 -- Sources
 libOpenCFLite_sources = {
 }

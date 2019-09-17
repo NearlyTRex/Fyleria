@@ -21,6 +21,16 @@ if os.host() == "linux" then
     table.insert(libBackwardCPP_defines, "BACKWARD_HAS_UNWIND=1")
 end
 
+-- Options
+libBackwardCPP_buildoptions = {
+}
+libBackwardCPP_linkoptions = {
+}
+
+-- Libs
+libBackwardCPP_libs = {
+}
+
 -- Sources
 libBackwardCPP_sources = {
     libBackwardCPP_srcdir .. "backward.cpp",

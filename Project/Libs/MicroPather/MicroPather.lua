@@ -18,6 +18,16 @@ libMicroPather_debugdefines = {
 libMicroPather_releasedefines = {
 }
 
+-- Libs
+libMicroPather_libs = {
+}
+
+-- Options
+libMicroPather_buildoptions = {
+}
+libMicroPather_linkoptions = {
+}
+
 -- Sources
 libMicroPather_sources = {
     libMicroPather_srcdir .. "micropather.cpp"

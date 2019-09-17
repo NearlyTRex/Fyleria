@@ -18,6 +18,16 @@ libSpdLog_debugdefines = {
 libSpdLog_releasedefines = {
 }
 
+-- Libs
+libSpdLog_libs = {
+}
+
+-- Options
+libSpdLog_buildoptions = {
+}
+libSpdLog_linkoptions = {
+}
+
 -- Sources
 libSpdLog_sources = {
     libSpdLog_srcdir .. "**.cpp"

@@ -16,3 +16,13 @@ libDateCPP_debugdefines = {
 }
 libDateCPP_releasedefines = {
 }
+
+-- Options
+libDateCPP_buildoptions = {
+}
+libDateCPP_linkoptions = {
+}
+
+-- Libs
+libDateCPP_libs = {
+}

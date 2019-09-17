@@ -18,6 +18,16 @@ libFantasyName_debugdefines = {
 libFantasyName_releasedefines = {
 }
 
+-- Options
+libFantasyName_buildoptions = {
+}
+libFantasyName_linkoptions = {
+}
+
+-- Libs
+libFantasyName_libs = {
+}
+
 -- Sources
 libFantasyName_sources = {
     libFantasyName_srcdir .. "namegen.cc",

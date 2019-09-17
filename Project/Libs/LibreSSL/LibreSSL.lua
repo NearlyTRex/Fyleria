@@ -23,6 +23,10 @@ libLibreSSL_buildoptions = {
 libLibreSSL_linkoptions = {
 }
 
+-- Libs
+libLibreSSL_libs = {
+}
+
 -- Sources
 libLibreSSL_sources = {
 }

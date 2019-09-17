@@ -17,3 +17,13 @@ libImmutableString_debugdefines = {
 }
 libImmutableString_releasedefines = {
 }
+
+-- Options
+libImmutableString_buildoptions = {
+}
+libImmutableString_linkoptions = {
+}
+
+-- Libs
+libImmutableString_libs = {
+}

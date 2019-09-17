@@ -30,6 +30,10 @@ libPNG_buildoptions = {
 libPNG_linkoptions = {
 }
 
+-- Libs
+libPNG_libs = {
+}
+
 -- Sources
 libPNG_sources = {
     libPNG_srcdir .. "png.c",
