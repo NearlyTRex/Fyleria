@@ -171,6 +171,23 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libSpdLog_releasedefines)
 
+-- Atk
+project "Atk"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp17Dialect())
+    includedirs(libAtk_includedirs)
+    defines(libAtk_defines)
+    files(libAtk_sources)
+    links(libAtk_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Atk"))
+filter "configurations:Debug*"
+    defines(libAtk_debugdefines)
+filter "configurations:Release*"
+    defines(libAtk_releasedefines)
+
 -- Cairo
 project "Cairo"
 language "C"
@@ -208,6 +225,24 @@ pic "On"
     targetname(GetTargetName("ElfUtils"))
 filter "configurations:Debug*"
     defines(libElfUtils_debugdefines)
+filter "configurations:Release*"
+    defines(libFreeType2_releasedefines)
+
+-- Epoxy
+project "Epoxy"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libEpoxy_buildoptions)
+    linkoptions(libEpoxy_linkoptions)
+    includedirs(libEpoxy_includedirs)
+    defines(libEpoxy_defines)
+    files(libEpoxy_sources)
+    links(libEpoxy_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Epoxy"))
+filter "configurations:Debug*"
+    defines(libEpoxy_debugdefines)
 filter "configurations:Release*"
     defines(libFreeType2_releasedefines)
 
