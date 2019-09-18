@@ -76,6 +76,7 @@ pic "On"
     includedirs(appFyleria_includedirs)
     includedirs(libBackwardCPP_includedirs)
     includedirs(libBoost_includedirs)
+    includedirs(libElfUtils_includedirs)
     includedirs(libFantasyName_includedirs)
     includedirs(libGlib_includedirs)
     includedirs(libCairo_includedirs)
@@ -191,6 +192,24 @@ filter "configurations:Debug*"
     defines(libCairo_debugdefines)
 filter "configurations:Release*"
     defines(libCairo_releasedefines)
+
+-- ElfUtils
+project "ElfUtils"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libElfUtils_buildoptions)
+    linkoptions(libElfUtils_linkoptions)
+    includedirs(libElfUtils_includedirs)
+    defines(libElfUtils_defines)
+    files(libElfUtils_sources)
+    links(libElfUtils_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("ElfUtils"))
+filter "configurations:Debug*"
+    defines(libElfUtils_debugdefines)
+filter "configurations:Release*"
+    defines(libFreeType2_releasedefines)
 
 -- FFI
 project "FFI"
