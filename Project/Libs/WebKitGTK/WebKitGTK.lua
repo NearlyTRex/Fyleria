@@ -6,11 +6,6 @@ libWebKitGTK_incdir = libWebKitGTK_origdir
 
 -- Includes (Public)
 libWebKitGTK_includedirs_public = {
-    "/usr/include/gtk-3.0",
-    "/usr/include/gtk-3.0/unix-print",
-    "/usr/include/gdk-pixbuf-2.0",
-    "/usr/include/pango-1.0",
-    "/usr/include/atk-1.0",
     libWebKitGTK_incdir .. "DerivedSources/webkit2gtk",
     libWebKitGTK_incdir .. "DerivedSources/webkit2gtk/webkit2",
     libWebKitGTK_incdir .. "DerivedSources/ForwardingHeaders",

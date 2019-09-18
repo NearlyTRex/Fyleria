@@ -14,9 +14,6 @@ libGlib_includedirs = {
     libGlib_incdir .. "gobject/",
 }
 if os.host() == "linux" then
-    table.insert(libGlib_includedirs, "/usr/include/libmount")
-    table.insert(libGlib_includedirs, "/usr/include/blkid")
-    table.insert(libGlib_includedirs, "/usr/include/uuid")
     table.insert(libGlib_includedirs, libGlib_extradir .. "linux/")
     table.insert(libGlib_includedirs, libGlib_extradir .. "linux/gio/")
     table.insert(libGlib_includedirs, libGlib_extradir .. "linux/glib/")
