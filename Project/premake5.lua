@@ -607,6 +607,88 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libZlib_releasedefines)
 
+--------------------- GTK ---------------------
+-- Gdk
+if os.host() == "linux" then
+    project "Gdk"
+    language "C"
+    pic "On"
+        kind(GetSharedLibraryType())
+        buildoptions(libGtk_buildoptions)
+        linkoptions(libGtk_linkoptions)
+        includedirs(libGtk_includedirs)
+        defines(libGtk_defines_Gdk)
+        files(libGtk_sources_Gdk)
+        links(libGtk_libs_Gdk)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("Gdk"))
+    filter "configurations:Debug*"
+        defines(libGtk_debugdefines_Gdk)
+    filter "configurations:Release*"
+        defines(libGtk_releasedefines_Gdk)
+end
+
+-- Gsk
+if os.host() == "linux" then
+    project "Gsk"
+    language "C"
+    pic "On"
+        kind(GetSharedLibraryType())
+        buildoptions(libGtk_buildoptions)
+        linkoptions(libGtk_linkoptions)
+        includedirs(libGtk_includedirs)
+        defines(libGtk_defines_Gsk)
+        files(libGtk_sources_Gsk)
+        links(libGtk_libs_Gsk)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("Gsk"))
+    filter "configurations:Debug*"
+        defines(libGtk_debugdefines_Gsk)
+    filter "configurations:Release*"
+        defines(libGtk_releasedefines_Gsk)
+end
+
+-- Gtk
+if os.host() == "linux" then
+    project "Gtk"
+    language "C"
+    pic "On"
+        kind(GetSharedLibraryType())
+        buildoptions(libGtk_buildoptions)
+        linkoptions(libGtk_linkoptions)
+        includedirs(libGtk_includedirs)
+        defines(libGtk_defines_Gtk)
+        files(libGtk_sources_Gtk)
+        links(libGtk_libs_Gtk)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("Gtk"))
+    filter "configurations:Debug*"
+        defines(libGtk_debugdefines_Gtk)
+    filter "configurations:Release*"
+        defines(libGtk_releasedefines_Gtk)
+end
+
+-- GtkCss
+if os.host() == "linux" then
+    project "GtkCss"
+    language "C"
+    pic "On"
+        kind(GetSharedLibraryType())
+        buildoptions(libGtk_buildoptions)
+        linkoptions(libGtk_linkoptions)
+        includedirs(libGtk_includedirs)
+        defines(libGtk_defines_GtkCss)
+        files(libGtk_sources_GtkCss)
+        links(libGtk_libs_GtkCss)
+        targetdir(GetLibraryTargetDirectory())
+        targetname(GetTargetName("GtkCss"))
+    filter "configurations:Debug*"
+        defines(libGtk_debugdefines_GtkCss)
+    filter "configurations:Release*"
+        defines(libGtk_releasedefines_GtkCss)
+end
+--------------------- GTK ---------------------
+
 --------------------- WebKitGTK ---------------------
 -- WTFGTK
 if os.host() == "linux" then
