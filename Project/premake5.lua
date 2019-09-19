@@ -340,6 +340,24 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libGlib_releasedefines)
 
+-- Graphene
+project "Graphene"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGraphene_buildoptions)
+    linkoptions(libGraphene_linkoptions)
+    includedirs(libGraphene_includedirs)
+    defines(libGraphene_defines)
+    files(libGraphene_sources)
+    links(libGraphene_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Graphene"))
+filter "configurations:Debug*"
+    defines(libGraphene_debugdefines)
+filter "configurations:Release*"
+    defines(libGraphene_releasedefines)
+
 -- Harfbuzz
 project "Harfbuzz"
 language "C"
