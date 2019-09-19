@@ -407,6 +407,24 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libJpeg_releasedefines)
 
+-- Pango
+project "Pango"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libPango_buildoptions)
+    linkoptions(libPango_linkoptions)
+    includedirs(libPango_includedirs)
+    defines(libPango_defines)
+    files(libPango_sources)
+    links(libPango_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Pango"))
+filter "configurations:Debug*"
+    defines(libPango_debugdefines)
+filter "configurations:Release*"
+    defines(libPango_releasedefines)
+
 -- Pixman
 project "Pixman"
 language "C"
