@@ -60,6 +60,7 @@ def main():
         Project.SetupProject("FFI", "Project/Libs", system_info, program_options)
         Project.SetupProject("Fontconfig", "Project/Libs", system_info, program_options)
         Project.SetupProject("FreeType2", "Project/Libs", system_info, program_options)
+        Project.SetupProject("Fribidi", "Project/Libs", system_info, program_options)
         Project.SetupProject("GCrypt", "Project/Libs", system_info, program_options)
         Project.SetupProject("GdkPixbuf", "Project/Libs", system_info, program_options)
         Project.SetupProject("Glib", "Project/Libs", system_info, program_options)
