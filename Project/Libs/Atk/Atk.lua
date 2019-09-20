@@ -6,10 +6,12 @@ libAtk_incdir = libAtk_origdir
 
 -- Includes
 libAtk_includedirs = {
-    libAtk_incdir
+    libAtk_incdir,
+    libAtk_incdir .. "atk/"
 }
 if os.host() == "linux" then
     table.insert(libAtk_includedirs, libAtk_extradir .. "linux/")
+    table.insert(libAtk_includedirs, libAtk_extradir .. "linux/atk/")
 end
 
 -- Defines

@@ -6,10 +6,13 @@ libEpoxy_incdir = libEpoxy_origdir .. "include/"
 
 -- Includes
 libEpoxy_includedirs = {
-    libEpoxy_incdir
+    libEpoxy_incdir,
+    libEpoxy_srcdir
 }
 if os.host() == "linux" then
     table.insert(libEpoxy_includedirs, libEpoxy_extradir .. "linux/")
+    table.insert(libEpoxy_includedirs, libEpoxy_extradir .. "linux/include/")
+    table.insert(libEpoxy_includedirs, libEpoxy_extradir .. "linux/src/")
 end
 
 -- Defines

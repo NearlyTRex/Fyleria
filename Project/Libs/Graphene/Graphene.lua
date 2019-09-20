@@ -10,6 +10,8 @@ libGraphene_includedirs = {
 }
 if os.host() == "linux" then
     table.insert(libGraphene_includedirs, libGraphene_extradir .. "linux/")
+    table.insert(libGraphene_includedirs, libGraphene_extradir .. "linux/include/")
+    table.insert(libGraphene_includedirs, libGraphene_extradir .. "linux/src/")
 end
 
 -- Defines
