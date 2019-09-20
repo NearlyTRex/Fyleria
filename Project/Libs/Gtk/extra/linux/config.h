@@ -141,10 +141,10 @@
 #define HAVE_UNISTD_H 1
 
 /* Have the XCOMPOSITE X extension */
-#undef HAVE_XCOMPOSITE
+#define HAVE_XCOMPOSITE
 
 /* Have the Xcursor library */
-#undef HAVE_XCURSOR
+#define HAVE_XCURSOR
 
 /* Have the XDAMAGE X extension */
 #define HAVE_XDAMAGE

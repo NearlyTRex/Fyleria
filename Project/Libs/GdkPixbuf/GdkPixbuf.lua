@@ -8,6 +8,9 @@ libGdkPixbuf_incdir = libGdkPixbuf_origdir
 libGdkPixbuf_includedirs = {
     libGdkPixbuf_incdir
 }
+if os.host() == "linux" then
+    table.insert(libGdkPixbuf_includedirs, libGdkPixbuf_extradir .. "linux/")
+end
 
 -- Defines
 libGdkPixbuf_defines = {

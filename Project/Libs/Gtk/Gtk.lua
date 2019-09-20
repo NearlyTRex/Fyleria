@@ -6,11 +6,11 @@ libGtk_incdir = libGtk_origdir
 
 -- Includes
 libGtk_includedirs = {
-    libGtk_incdir
+    libGtk_incdir,
+    libGtk_incdir .. "gdk/",
+    libGtk_extradir .. "linux/",
+    libGtk_extradir .. "linux/gdk/",
 }
-if os.host() == "linux" then
-    table.insert(libGtk_includedirs, libGtk_extradir .. "linux/")
-end
 
 -- Defines (Gdk)
 libGtk_defines_Gdk = {
@@ -26,9 +26,11 @@ libGtk_defines_Gdk = {
     "GDK_COMPILATION"
 }
 libGtk_debugdefines_Gdk = {
-    "G_ENABLE_DEBUG"
+    "G_ENABLE_DEBUG",
+    "G_ENABLE_CONSISTENCY_CHECKS"
 }
 libGtk_releasedefines_Gdk = {
+    "G_DISABLE_CAST_CHECKS"
 }
 
 -- Defines (Gsk)
@@ -45,9 +47,11 @@ libGtk_defines_Gsk = {
     "GSK_COMPILATION"
 }
 libGtk_debugdefines_Gsk = {
-    "G_ENABLE_DEBUG"
+    "G_ENABLE_DEBUG",
+    "G_ENABLE_CONSISTENCY_CHECKS"
 }
 libGtk_releasedefines_Gsk = {
+    "G_DISABLE_CAST_CHECKS"
 }
 
 -- Defines (Gtk)
@@ -68,9 +72,11 @@ libGtk_defines_Gtk = {
     "GTK_COMPILATION"
 }
 libGtk_debugdefines_Gtk = {
-    "G_ENABLE_DEBUG"
+    "G_ENABLE_DEBUG",
+    "G_ENABLE_CONSISTENCY_CHECKS"
 }
 libGtk_releasedefines_Gtk = {
+    "G_DISABLE_CAST_CHECKS"
 }
 
 -- Defines (GtkCss)
@@ -87,9 +93,11 @@ libGtk_defines_GtkCss = {
     "GTK_CSS_COMPILATION"
 }
 libGtk_debugdefines_GtkCss = {
-    "G_ENABLE_DEBUG"
+    "G_ENABLE_DEBUG",
+    "G_ENABLE_CONSISTENCY_CHECKS"
 }
 libGtk_releasedefines_GtkCss = {
+    "G_DISABLE_CAST_CHECKS"
 }
 
 -- Options
@@ -192,12 +200,10 @@ libGtk_sources_Gdk = {
     libGtk_srcdir .. "gdk/x11/gdkxftdefaults.c",
     libGtk_srcdir .. "gdk/x11/gdkxid.c",
     libGtk_srcdir .. "gdk/x11/xsettings-client.c",
+    libGtk_extradir .. "linux/gdk/gdkenumtypes.c",
+    libGtk_extradir .. "linux/gdk/gdkmarshalers.c",
+    libGtk_extradir .. "linux/gdk/gdkresources.c"
 }
-if os.host() == "linux" then
-    table.insert(libGtk_sources_Gdk, libGtk_extradir .. "linux/gdk/gdkenumtypes.c")
-    table.insert(libGtk_sources_Gdk, libGtk_extradir .. "linux/gdk/gdkmarshalers.c")
-    table.insert(libGtk_sources_Gdk, libGtk_extradir .. "linux/gdk/gdkresources.c")
-end
 
 -- Sources (Gsk)
 libGtk_sources_Gsk = {
@@ -226,11 +232,9 @@ libGtk_sources_Gsk = {
     libGtk_srcdir .. "gsk/gskrendernodeparser.c",
     libGtk_srcdir .. "gsk/gskroundedrect.c",
     libGtk_srcdir .. "gsk/gsktransform.c",
+    libGtk_extradir .. "linux/gsk/gskenumtypes.c",
+    libGtk_extradir .. "linux/gsk/gskresources.c"
 }
-if os.host() == "linux" then
-    table.insert(libGtk_sources_Gsk, libGtk_extradir .. "linux/gsk/gskenumtypes.c")
-    table.insert(libGtk_sources_Gsk, libGtk_extradir .. "linux/gsk/gskresources.c")
-end
 
 -- Sources (Gtk)
 libGtk_sources_Gtk = {
@@ -739,14 +743,12 @@ libGtk_sources_Gtk = {
     libGtk_srcdir .. "gtk/inspector/window.c",
     libGtk_srcdir .. "gtk/language-names.c",
     libGtk_srcdir .. "gtk/script-names.c",
+    libGtk_extradir .. "linux/gtk/gtkdbusgenerated.c",
+    libGtk_extradir .. "linux/gtk/gtkmarshalers.c",
+    libGtk_extradir .. "linux/gtk/gtkprivatetypebuiltins.c",
+    libGtk_extradir .. "linux/gtk/gtkresources.c",
+    libGtk_extradir .. "linux/gtk/gtktypebuiltins.c"
 }
-if os.host() == "linux" then
-    table.insert(libGtk_sources_Gtk, libGtk_extradir .. "linux/gtk/gtkdbusgenerated.c")
-    table.insert(libGtk_sources_Gtk, libGtk_extradir .. "linux/gtk/gtkmarshalers.c")
-    table.insert(libGtk_sources_Gtk, libGtk_extradir .. "linux/gtk/gtkprivatetypebuiltins.c")
-    table.insert(libGtk_sources_Gtk, libGtk_extradir .. "linux/gtk/gtkresources.c")
-    table.insert(libGtk_sources_Gtk, libGtk_extradir .. "linux/gtk/gtktypebuiltins.c")
-end
 
 -- Sources (GtkCss)
 libGtk_sources_GtkCss = {
@@ -757,7 +759,5 @@ libGtk_sources_GtkCss = {
     libGtk_srcdir .. "gtk/css/gtkcssparser.c",
     libGtk_srcdir .. "gtk/css/gtkcsssection.c",
     libGtk_srcdir .. "gtk/css/gtkcsstokenizer.c",
+    libGtk_extradir .. "linux/gtk/css/gtkcssenumtypes.c"
 }
-if os.host() == "linux" then
-    table.insert(libGtk_sources_GtkCss, libGtk_extradir .. "linux/gtk/css/gtkcssenumtypes.c")
-end

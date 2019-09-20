@@ -305,6 +305,24 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libFreeType2_releasedefines)
 
+-- Fribidi
+project "Fribidi"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libFribidi_buildoptions)
+    linkoptions(libFribidi_linkoptions)
+    includedirs(libFribidi_includedirs)
+    defines(libFribidi_defines)
+    files(libFribidi_sources)
+    links(libFribidi_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Fribidi"))
+filter "configurations:Debug*"
+    defines(libFribidi_debugdefines)
+filter "configurations:Release*"
+    defines(libFribidi_releasedefines)
+
 -- GCrypt
 project "GCrypt"
 language "C"
@@ -632,229 +650,244 @@ filter "configurations:Release*"
 
 --------------------- GTK ---------------------
 -- Gdk
-if os.host() == "linux" then
-    project "Gdk"
-    language "C"
-    pic "On"
-        kind(GetSharedLibraryType())
-        buildoptions(libGtk_buildoptions)
-        linkoptions(libGtk_linkoptions)
-        includedirs(libGtk_includedirs)
-        defines(libGtk_defines_Gdk)
-        files(libGtk_sources_Gdk)
-        links(libGtk_libs_Gdk)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Gdk"))
-    filter "configurations:Debug*"
-        defines(libGtk_debugdefines_Gdk)
-    filter "configurations:Release*"
-        defines(libGtk_releasedefines_Gdk)
-end
+project "Gdk"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGtk_buildoptions)
+    linkoptions(libGtk_linkoptions)
+    includedirs(libGtk_includedirs)
+    includedirs(libGdkPixbuf_includedirs)
+    includedirs(libGlib_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libPango_includedirs)
+    includedirs(libHarfbuzz_includedirs)
+    includedirs(libFribidi_includedirs)
+    defines(libGtk_defines_Gdk)
+    files(libGtk_sources_Gdk)
+    links(libGtk_libs_Gdk)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Gdk"))
+filter "configurations:Debug*"
+    defines(libGtk_debugdefines_Gdk)
+filter "configurations:Release*"
+    defines(libGtk_releasedefines_Gdk)
+
+-- GdkPixbuf
+project "GdkPixbuf"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGdkPixbuf_buildoptions)
+    linkoptions(libGdkPixbuf_linkoptions)
+    includedirs(libGdkPixbuf_includedirs)
+    defines(libGdkPixbuf_defines)
+    files(libGdkPixbuf_sources)
+    links(libGdkPixbuf_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("GdkPixbuf"))
+filter "configurations:Debug*"
+    defines(libGdkPixbuf_debugdefines)
+filter "configurations:Release*"
+    defines(libGdkPixbuf_releasedefines)
 
 -- Gsk
-if os.host() == "linux" then
-    project "Gsk"
-    language "C"
-    pic "On"
-        kind(GetSharedLibraryType())
-        buildoptions(libGtk_buildoptions)
-        linkoptions(libGtk_linkoptions)
-        includedirs(libGtk_includedirs)
-        defines(libGtk_defines_Gsk)
-        files(libGtk_sources_Gsk)
-        links(libGtk_libs_Gsk)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Gsk"))
-    filter "configurations:Debug*"
-        defines(libGtk_debugdefines_Gsk)
-    filter "configurations:Release*"
-        defines(libGtk_releasedefines_Gsk)
-end
+project "Gsk"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGtk_buildoptions)
+    linkoptions(libGtk_linkoptions)
+    includedirs(libGtk_includedirs)
+    defines(libGtk_defines_Gsk)
+    files(libGtk_sources_Gsk)
+    links(libGtk_libs_Gsk)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Gsk"))
+filter "configurations:Debug*"
+    defines(libGtk_debugdefines_Gsk)
+filter "configurations:Release*"
+    defines(libGtk_releasedefines_Gsk)
 
 -- Gtk
-if os.host() == "linux" then
-    project "Gtk"
-    language "C"
-    pic "On"
-        kind(GetSharedLibraryType())
-        buildoptions(libGtk_buildoptions)
-        linkoptions(libGtk_linkoptions)
-        includedirs(libGtk_includedirs)
-        defines(libGtk_defines_Gtk)
-        files(libGtk_sources_Gtk)
-        links(libGtk_libs_Gtk)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("Gtk"))
-    filter "configurations:Debug*"
-        defines(libGtk_debugdefines_Gtk)
-    filter "configurations:Release*"
-        defines(libGtk_releasedefines_Gtk)
-end
+project "Gtk"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGtk_buildoptions)
+    linkoptions(libGtk_linkoptions)
+    includedirs(libGtk_includedirs)
+    includedirs(libGlib_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libHarfbuzz_includedirs)
+    includedirs(libPango_includedirs)
+    defines(libGtk_defines_Gtk)
+    files(libGtk_sources_Gtk)
+    links(libGtk_libs_Gtk)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Gtk"))
+filter "configurations:Debug*"
+    defines(libGtk_debugdefines_Gtk)
+filter "configurations:Release*"
+    defines(libGtk_releasedefines_Gtk)
 
 -- GtkCss
-if os.host() == "linux" then
-    project "GtkCss"
-    language "C"
-    pic "On"
-        kind(GetSharedLibraryType())
-        buildoptions(libGtk_buildoptions)
-        linkoptions(libGtk_linkoptions)
-        includedirs(libGtk_includedirs)
-        defines(libGtk_defines_GtkCss)
-        files(libGtk_sources_GtkCss)
-        links(libGtk_libs_GtkCss)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("GtkCss"))
-    filter "configurations:Debug*"
-        defines(libGtk_debugdefines_GtkCss)
-    filter "configurations:Release*"
-        defines(libGtk_releasedefines_GtkCss)
-end
+project "GtkCss"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGtk_buildoptions)
+    linkoptions(libGtk_linkoptions)
+    includedirs(libGtk_includedirs)
+    defines(libGtk_defines_GtkCss)
+    files(libGtk_sources_GtkCss)
+    links(libGtk_libs_GtkCss)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("GtkCss"))
+filter "configurations:Debug*"
+    defines(libGtk_debugdefines_GtkCss)
+filter "configurations:Release*"
+    defines(libGtk_releasedefines_GtkCss)
 --------------------- GTK ---------------------
 
 --------------------- WebKitGTK ---------------------
 -- WTFGTK
-if os.host() == "linux" then
-    project "WTFGTK"
-    language "C++"
-    pic "On"
-        kind(GetSharedLibraryType())
-        cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions_Libraries)
-        linkoptions(libWebKitGTK_linkoptions_Libraries)
-        includedirs(libWebKitGTK_includedirs_WTFGTK)
-        includedirs(libWebKitGTK_includedirs_public)
-        includedirs(libGlib_includedirs)
-        includedirs(libIcu_includedirs)
-        defines(libWebKitGTK_defines_WTFGTK)
-        files(libWebKitGTK_sources_WTFGTK)
-        links(libWebKitGTK_libs_WTFGTK)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("WTFGTK"))
-    filter "configurations:Debug*"
-        defines(libWebKitGTK_debugdefines_WTFGTK)
-    filter "configurations:Release*"
-        defines(libWebKitGTK_releasedefines_WTFGTK)
-end
+project "WTFGTK"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_Libraries)
+    linkoptions(libWebKitGTK_linkoptions_Libraries)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
+    includedirs(libWebKitGTK_includedirs_public)
+    includedirs(libGlib_includedirs)
+    includedirs(libIcu_includedirs)
+    defines(libWebKitGTK_defines_WTFGTK)
+    files(libWebKitGTK_sources_WTFGTK)
+    links(libWebKitGTK_libs_External)
+    links(libWebKitGTK_libs_WTFGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("WTFGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WTFGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WTFGTK)
 
 -- WebCoreGTK
-if os.host() == "linux" then
-    project "WebCoreGTK"
-    language "C++"
-    pic "On"
-        kind(GetSharedLibraryType())
-        cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions_Libraries)
-        linkoptions(libWebKitGTK_linkoptions_Libraries)
-        includedirs(libWebKitGTK_includedirs_WebCoreGTK)
-        includedirs(libWebKitGTK_includedirs_WTFGTK)
-        includedirs(libWebKitGTK_includedirs_public)
-        includedirs(libGlib_includedirs)
-        includedirs(libIcu_includedirs)
-        includedirs(libSoup_includedirs)
-        includedirs(libSQLite_includedirs)
-        includedirs(libJpeg_includedirs)
-        includedirs(libPNG_includedirs)
-        includedirs(libWebp_includedirs)
-        includedirs(libCairo_includedirs)
-        includedirs(libFontconfig_includedirs)
-        includedirs(libFreeType2_includedirs)
-        includedirs(libGCrypt_includedirs)
-        includedirs(libHarfbuzz_includedirs)
-        includedirs(libXML2_includedirs)
-        includedirs(libXSLT_includedirs)
-        defines(libWebKitGTK_defines_WebCoreGTK)
-        files(libWebKitGTK_sources_WebCoreGTK)
-        links(libWebKitGTK_libs_WebCoreGTK)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("WebCoreGTK"))
-    filter "configurations:Debug*"
-        defines(libWebKitGTK_debugdefines_WebCoreGTK)
-    filter "configurations:Release*"
-        defines(libWebKitGTK_releasedefines_WebCoreGTK)
-end
+project "WebCoreGTK"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_Libraries)
+    linkoptions(libWebKitGTK_linkoptions_Libraries)
+    includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
+    includedirs(libWebKitGTK_includedirs_public)
+    includedirs(libGlib_includedirs)
+    includedirs(libIcu_includedirs)
+    includedirs(libSoup_includedirs)
+    includedirs(libSQLite_includedirs)
+    includedirs(libJpeg_includedirs)
+    includedirs(libPNG_includedirs)
+    includedirs(libWebp_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libFontconfig_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libGCrypt_includedirs)
+    includedirs(libHarfbuzz_includedirs)
+    includedirs(libXML2_includedirs)
+    includedirs(libXSLT_includedirs)
+    defines(libWebKitGTK_defines_WebCoreGTK)
+    files(libWebKitGTK_sources_WebCoreGTK)
+    links(libWebKitGTK_libs_External)
+    links(libWebKitGTK_libs_WebCoreGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("WebCoreGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WebCoreGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WebCoreGTK)
 
 -- JavaScriptCoreGTK
-if os.host() == "linux" then
-    project "JavaScriptCoreGTK"
-    language "C++"
-    pic "On"
-        kind(GetSharedLibraryType())
-        cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions_Libraries)
-        linkoptions(libWebKitGTK_linkoptions_Libraries)
-        includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
-        includedirs(libWebKitGTK_includedirs_WebCoreGTK)
-        includedirs(libWebKitGTK_includedirs_WTFGTK)
-        includedirs(libWebKitGTK_includedirs_public)
-        includedirs(libGlib_includedirs)
-        includedirs(libIcu_includedirs)
-        defines(libWebKitGTK_defines_JavaScriptCoreGTK)
-        files(libWebKitGTK_sources_JavaScriptCoreGTK)
-        links(libWebKitGTK_libs_JavaScriptCoreGTK)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("JavaScriptCoreGTK"))
-    filter "configurations:Debug*"
-        defines(libWebKitGTK_debugdefines_JavaScriptCoreGTK)
-    filter "configurations:Release*"
-        defines(libWebKitGTK_releasedefines_JavaScriptCoreGTK)
-end
+project "JavaScriptCoreGTK"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_Libraries)
+    linkoptions(libWebKitGTK_linkoptions_Libraries)
+    includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
+    includedirs(libWebKitGTK_includedirs_public)
+    includedirs(libGlib_includedirs)
+    includedirs(libIcu_includedirs)
+    defines(libWebKitGTK_defines_JavaScriptCoreGTK)
+    files(libWebKitGTK_sources_JavaScriptCoreGTK)
+    links(libWebKitGTK_libs_External)
+    links(libWebKitGTK_libs_JavaScriptCoreGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("JavaScriptCoreGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_JavaScriptCoreGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_JavaScriptCoreGTK)
 
 -- WebKitGTK
-if os.host() == "linux" then
-    project "WebKitGTK"
-    language "C++"
-    pic "On"
-        kind(GetSharedLibraryType())
-        cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions_Libraries)
-        linkoptions(libWebKitGTK_linkoptions_Libraries)
-        includedirs(libWebKitGTK_includedirs_WebKitGTK)
-        includedirs(libWebKitGTK_includedirs_WebCoreGTK)
-        includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
-        includedirs(libWebKitGTK_includedirs_WTFGTK)
-        includedirs(libWebKitGTK_includedirs_public)
-        includedirs(libGlib_includedirs)
-        includedirs(libIcu_includedirs)
-        includedirs(libSoup_includedirs)
-        includedirs(libSQLite_includedirs)
-        includedirs(libCairo_includedirs)
-        includedirs(libFontconfig_includedirs)
-        includedirs(libFreeType2_includedirs)
-        includedirs(libHarfbuzz_includedirs)
-        defines(libWebKitGTK_defines_WebKitGTK)
-        files(libWebKitGTK_sources_WebKitGTK)
-        links(libWebKitGTK_libs_WebKitGTK)
-        targetdir(GetLibraryTargetDirectory())
-        targetname(GetTargetName("WebKitGTK"))
-    filter "configurations:Debug*"
-        defines(libWebKitGTK_debugdefines_WebKitGTK)
-    filter "configurations:Release*"
-        defines(libWebKitGTK_releasedefines_WebKitGTK)
-end
+project "WebKitGTK"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_Libraries)
+    linkoptions(libWebKitGTK_linkoptions_Libraries)
+    includedirs(libWebKitGTK_includedirs_WebKitGTK)
+    includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+    includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
+    includedirs(libWebKitGTK_includedirs_public)
+    includedirs(libGlib_includedirs)
+    includedirs(libIcu_includedirs)
+    includedirs(libSoup_includedirs)
+    includedirs(libSQLite_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libFontconfig_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libHarfbuzz_includedirs)
+    defines(libWebKitGTK_defines_WebKitGTK)
+    files(libWebKitGTK_sources_WebKitGTK)
+    links(libWebKitGTK_libs_External)
+    links(libWebKitGTK_libs_WebKitGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("WebKitGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WebKitGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WebKitGTK)
 
 -- NetworkProcessGTK
-if os.host() == "linux" then
-    project "NetworkProcessGTK"
-    language "C++"
-    pic "On"
-        kind(GetAppType())
-        cppdialect(GetCpp14Dialect())
-        buildoptions(libWebKitGTK_buildoptions_Processes)
-        linkoptions(libWebKitGTK_linkoptions_Processes)
-        includedirs(libWebKitGTK_includedirs_WebKitGTK)
-        includedirs(libWebKitGTK_includedirs_WebCoreGTK)
-        includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
-        includedirs(libWebKitGTK_includedirs_WTFGTK)
-        includedirs(libWebKitGTK_includedirs_public)
-        defines(libWebKitGTK_defines_WebKitGTK)
-        files(libWebKitGTK_sources_NetworkProcess)
-        links(libWebKitGTK_libs_Processes)
-        targetdir(GetAppTargetDirectory())
-        targetname(GetTargetName("NetworkProcessGTK"))
-    filter "configurations:Debug*"
-        defines(libWebKitGTK_debugdefines_WebKitGTK)
-    filter "configurations:Release*"
-        defines(libWebKitGTK_releasedefines_WebKitGTK)
-end
+project "NetworkProcessGTK"
+language "C++"
+pic "On"
+    kind(GetAppType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_Processes)
+    linkoptions(libWebKitGTK_linkoptions_Processes)
+    includedirs(libWebKitGTK_includedirs_WebKitGTK)
+    includedirs(libWebKitGTK_includedirs_WebCoreGTK)
+    includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
+    includedirs(libWebKitGTK_includedirs_public)
+    defines(libWebKitGTK_defines_WebKitGTK)
+    files(libWebKitGTK_sources_NetworkProcess)
+    links(libWebKitGTK_libs_External)
+    links(libWebKitGTK_libs_Processes)
+    targetdir(GetAppTargetDirectory())
+    targetname(GetTargetName("NetworkProcessGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WebKitGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WebKitGTK)
 --------------------- WebKitGTK ---------------------

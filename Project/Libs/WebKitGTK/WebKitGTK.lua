@@ -442,10 +442,10 @@ libWebKitGTK_defines_WebKitGTK = {
     "WebKit_EXPORTS",
     "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
     "WEBKITGTK_API_VERSION_STRING=\"4.0\"",
-    "DATADIR=\"webkit/share\"",
-    "LOCALEDIR=\"webkit/share/locale\"",
-    "LIBDIR=\"webkit/lib\"",
-    "PKGLIBEXECDIR=\"webkit/bin\""
+    "DATADIR=\"data\"",
+    "LOCALEDIR=\"locale\"",
+    "LIBDIR=\"lib\"",
+    "PKGLIBEXECDIR=\"libexec\""
 }
 libWebKitGTK_debugdefines_WebKitGTK = {
 }
@@ -492,6 +492,14 @@ libWebKitGTK_linkoptions_Libraries = {
 libWebKitGTK_linkoptions_Processes = {
 }
 
+-- Libs (WTFGTK)
+libWebKitGTK_libs_WTFGTK = {
+}
+
+-- Libs (WebCoreGTK)
+libWebKitGTK_libs_WebCoreGTK = {
+}
+
 -- Libs (JavaScriptCoreGTK)
 libWebKitGTK_libs_JavaScriptCoreGTK = {
     "WebCoreGTK",
@@ -501,51 +509,7 @@ libWebKitGTK_libs_JavaScriptCoreGTK = {
 -- Libs (WebKitGTK)
 libWebKitGTK_libs_WebKitGTK = {
     "WebCoreGTK",
-    "WTFGTK",
-    "Cairo",
-    "Fontconfig",
-    "FreeType2",
-    "GCrypt",
-    "Glib",
-    "Harfbuzz",
-    "Icu",
-    "IcuData",
-    "Jpeg",
-    "PCRE",
-    "Pixman",
-    "PNG",
-    "Soup",
-    "PSL",
-    "Glib",
-    "PCRE",
-    "SQLite",
-    "Webp",
-    "XML2",
-    "XSLT",
-    "Zlib",
-    -- "dw",
-    -- "dl",
-    -- "rt",
-    -- "mount",
-    -- "selinux",
-    -- "uuid",
-    -- "resolv",
-    -- "lzma",
-    -- "atk-1.0",
-    -- "gtk-3",
-    -- "gdk-3",
-    -- "gdk_pixbuf-2.0",
-    -- "gpg-error",
-    -- "pthread",
-    -- "pango-1.0",
-    -- "GL",
-    -- "GLU",
-    -- "EGL",
-    -- "X11",
-    -- "Xcomposite",
-    -- "Xdamage",
-    -- "Xext",
-    -- "Xrender"
+    "WTFGTK"
 }
 
 -- Libs (Processes)
@@ -553,53 +517,60 @@ libWebKitGTK_libs_Processes = {
     "JavaScriptCoreGTK",
     "WebKitGTK",
     "WebCoreGTK",
-    "WTFGTK",
-    "JavaScriptCoreGTK",
-    "WTFGTK",
+    "WTFGTK"
+}
+
+-- Libs (External)
+libWebKitGTK_libs_External = {
+    "Atk",
     "Cairo",
+    "Epoxy",
+    "ElfUtils",
     "Fontconfig",
     "FreeType2",
     "GCrypt",
     "Glib",
+    "Gdk",
+    "GdkPixbuf",
+    "Graphene",
+    "Gsk",
+    "Gtk",
+    "GtkCss",
     "Harfbuzz",
     "Icu",
     "IcuData",
-    "JpegTurbo",
+    "Jpeg",
+    "Pango",
     "PCRE",
     "Pixman",
     "PNG",
-    "Soup",
     "PSL",
-    "Glib",
-    "PCRE",
+    "Soup",
     "SQLite",
     "Webp",
     "XML2",
     "XSLT",
-    "Zlib",
-    -- "dw",
-    -- "dl",
-    -- "rt",
-    -- "mount",
-    -- "selinux",
-    -- "uuid",
-    -- "resolv",
-    -- "lzma",
-    -- "atk-1.0",
-    -- "gtk-3",
-    -- "gdk-3",
-    -- "gdk_pixbuf-2.0",
-    -- "gpg-error",
-    -- "pthread",
-    -- "pango-1.0",
-    -- "GL",
-    -- "GLU",
-    -- "EGL",
-    -- "X11",
-    -- "Xcomposite",
-    -- "Xdamage",
-    -- "Xext",
-    -- "Xrender"
+    "Zlib"
+}
+
+-- Libs (System)
+libWebKitGTK_libs_System = {
+    "dl",
+    "dw",
+    "rt",
+    "mount",
+    "uuid",
+    "pthread",
+    "selinux",
+    "resolv",
+    "GL",
+    "GLU",
+    "EGL",
+    "X11",
+    "Xcomposite",
+    "Xdamage",
+    "Xext",
+    "Xrender"
 }
 
 -- Sources (JavaScriptCoreGTK)
