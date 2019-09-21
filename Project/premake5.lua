@@ -199,6 +199,7 @@ pic "On"
     buildoptions(libCairo_buildoptions)
     linkoptions(libCairo_linkoptions)
     includedirs(libCairo_includedirs)
+    includedirs(libGlib_includedirs)
     includedirs(libFontconfig_includedirs)
     includedirs(libFreeType2_includedirs)
     includedirs(libPixman_includedirs)
@@ -350,6 +351,7 @@ pic "On"
     linkoptions(libGlib_linkoptions)
     includedirs(libGlib_includedirs)
     includedirs(libFFI_includedirs)
+    includedirs(libUtilLinux_includedirs)
     defines(libGlib_defines)
     files(libGlib_sources)
     links(libGlib_libs)
@@ -576,6 +578,24 @@ filter "configurations:Debug*"
     defines(libSQLite_debugdefines)
 filter "configurations:Release*"
     defines(libSQLite_releasedefines)
+
+-- UtilLinux
+project "UtilLinux"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libUtilLinux_buildoptions)
+    linkoptions(libUtilLinux_linkoptions)
+    includedirs(libUtilLinux_includedirs)
+    defines(libUtilLinux_defines)
+    files(libUtilLinux_sources)
+    links(libUtilLinux_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("UtilLinux"))
+filter "configurations:Debug*"
+    defines(libUtilLinux_debugdefines)
+filter "configurations:Release*"
+    defines(libUtilLinux_releasedefines)
 
 -- Webp
 project "Webp"
