@@ -8,10 +8,15 @@ libUtilLinux_incdir = libUtilLinux_origdir
 libUtilLinux_includedirs = {
     libUtilLinux_incdir,
     libUtilLinux_incdir .. "lib/",
-    libUtilLinux_incdir .. "libblkid/",
-    libUtilLinux_incdir .. "libmount/",
-    libUtilLinux_incdir .. "libuuid/"
+    libUtilLinux_incdir .. "libblkid/src/",
+    libUtilLinux_incdir .. "libmount/src/",
+    libUtilLinux_incdir .. "libuuid/src/"
 }
+if os.host() == "linux" then
+    table.insert(libUtilLinux_includedirs, libUtilLinux_extradir .. "linux/")
+    table.insert(libUtilLinux_includedirs, libUtilLinux_extradir .. "linux/libblkid/src/")
+    table.insert(libUtilLinux_includedirs, libUtilLinux_extradir .. "linux/libmount/src/")
+end
 
 -- Defines
 libUtilLinux_defines = {

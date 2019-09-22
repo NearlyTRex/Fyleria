@@ -6,7 +6,9 @@ libCairo_incdir = libCairo_origdir
 
 -- Includes
 libCairo_includedirs = {
-    libCairo_incdir .. "src"
+    libCairo_incdir .. "src",
+    libCairo_incdir .. "util/cairo-gobject/",
+    libCairo_incdir .. "util/cairo-script/"
 }
 if os.host() == "linux" then
     table.insert(libCairo_includedirs, libCairo_extradir .. "linux/")

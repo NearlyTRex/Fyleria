@@ -1,6 +1,7 @@
 -- Imports
 require "Fyleria/Fyleria"
 require "Libs/Atk/Atk"
+require "Libs/AtkBridge/AtkBridge"
 require "Libs/BackwardCPP/BackwardCPP"
 require "Libs/BetterEnums/BetterEnums"
 require "Libs/Boost/Boost"
@@ -189,6 +190,23 @@ filter "configurations:Debug*"
     defines(libAtk_debugdefines)
 filter "configurations:Release*"
     defines(libAtk_releasedefines)
+
+-- AtkBridge
+project "AtkBridge"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp17Dialect())
+    includedirs(libAtkBridge_includedirs)
+    defines(libAtkBridge_defines)
+    files(libAtkBridge_sources)
+    links(libAtkBridge_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("AtkBridge"))
+filter "configurations:Debug*"
+    defines(libAtkBridge_debugdefines)
+filter "configurations:Release*"
+    defines(libAtkBridge_releasedefines)
 
 -- Cairo
 project "Cairo"
@@ -458,6 +476,9 @@ pic "On"
     includedirs(libPango_includedirs)
     includedirs(libHarfbuzz_includedirs)
     includedirs(libGlib_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libFribidi_includedirs)
+    includedirs(libCairo_includedirs)
     defines(libPango_defines)
     files(libPango_sources)
     links(libPango_libs)
@@ -680,6 +701,8 @@ pic "On"
     includedirs(libGdkPixbuf_includedirs)
     includedirs(libGlib_includedirs)
     includedirs(libCairo_includedirs)
+    includedirs(libEpoxy_includedirs)
+    includedirs(libGraphene_includedirs)
     includedirs(libPango_includedirs)
     includedirs(libHarfbuzz_includedirs)
     includedirs(libFribidi_includedirs)
@@ -701,6 +724,7 @@ pic "On"
     buildoptions(libGdkPixbuf_buildoptions)
     linkoptions(libGdkPixbuf_linkoptions)
     includedirs(libGdkPixbuf_includedirs)
+    includedirs(libGlib_includedirs)
     defines(libGdkPixbuf_defines)
     files(libGdkPixbuf_sources)
     links(libGdkPixbuf_libs)
@@ -719,6 +743,14 @@ pic "On"
     buildoptions(libGtk_buildoptions)
     linkoptions(libGtk_linkoptions)
     includedirs(libGtk_includedirs)
+    includedirs(libGlib_includedirs)
+    includedirs(libGraphene_includedirs)
+    includedirs(libGdkPixbuf_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libEpoxy_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libPango_includedirs)
+    includedirs(libHarfbuzz_includedirs)
     defines(libGtk_defines_Gsk)
     files(libGtk_sources_Gsk)
     links(libGtk_libs_Gsk)
@@ -738,7 +770,13 @@ pic "On"
     linkoptions(libGtk_linkoptions)
     includedirs(libGtk_includedirs)
     includedirs(libGlib_includedirs)
+    includedirs(libGraphene_includedirs)
+    includedirs(libGdkPixbuf_includedirs)
+    includedirs(libAtk_includedirs)
+    includedirs(libAtkBridge_includedirs)
     includedirs(libCairo_includedirs)
+    includedirs(libEpoxy_includedirs)
+    includedirs(libFreeType2_includedirs)
     includedirs(libHarfbuzz_includedirs)
     includedirs(libPango_includedirs)
     defines(libGtk_defines_Gtk)
@@ -759,6 +797,7 @@ pic "On"
     buildoptions(libGtk_buildoptions)
     linkoptions(libGtk_linkoptions)
     includedirs(libGtk_includedirs)
+    includedirs(libGlib_includedirs)
     defines(libGtk_defines_GtkCss)
     files(libGtk_sources_GtkCss)
     links(libGtk_libs_GtkCss)
@@ -806,6 +845,7 @@ pic "On"
     includedirs(libWebKitGTK_includedirs_WTFGTK)
     includedirs(libWebKitGTK_includedirs_public)
     includedirs(libGlib_includedirs)
+    includedirs(libGtk_includedirs)
     includedirs(libIcu_includedirs)
     includedirs(libSoup_includedirs)
     includedirs(libSQLite_includedirs)

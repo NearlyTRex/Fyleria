@@ -53,6 +53,7 @@ __pycache__
 # Folders
 Project/Build*
 Project/Libs/Atk/orig
+Project/Libs/AtkBridge/orig
 Project/Libs/BackwardCPP/orig
 Project/Libs/BetterEnums/orig
 Project/Libs/Boost/orig

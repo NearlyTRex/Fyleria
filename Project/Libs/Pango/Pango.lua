@@ -6,10 +6,12 @@ libPango_incdir = libPango_origdir
 
 -- Includes
 libPango_includedirs = {
-    libPango_incdir
+    libPango_incdir,
+    libPango_incdir .. "pango/"
 }
 if os.host() == "linux" then
     table.insert(libPango_includedirs, libPango_extradir .. "linux/")
+    table.insert(libPango_includedirs, libPango_extradir .. "linux/pango/")
 end
 
 -- Defines
