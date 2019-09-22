@@ -16,6 +16,7 @@ if os.host() == "linux" then
     table.insert(libUtilLinux_includedirs, libUtilLinux_extradir .. "linux/")
     table.insert(libUtilLinux_includedirs, libUtilLinux_extradir .. "linux/libblkid/src/")
     table.insert(libUtilLinux_includedirs, libUtilLinux_extradir .. "linux/libmount/src/")
+    table.insert(libUtilLinux_includedirs, libUtilLinux_extradir .. "linux/libuuid/src/")
 end
 
 -- Defines
