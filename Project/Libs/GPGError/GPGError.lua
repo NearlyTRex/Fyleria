@@ -16,7 +16,8 @@ end
 -- Defines
 libGPGError_defines = {
     "HAVE_CONFIG_H",
-    "LOCALEDIR=\"locale\""
+    "LOCALEDIR=\"locale\"",
+    "PKGDATADIR=\"data\""
 }
 libGPGError_debugdefines = {
 }
