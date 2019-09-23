@@ -218,6 +218,7 @@ pic "On"
     linkoptions(libCairo_linkoptions)
     includedirs(libCairo_includedirs)
     includedirs(libGlib_includedirs)
+    includedirs(libPNG_includedirs)
     includedirs(libFontconfig_includedirs)
     includedirs(libFreeType2_includedirs)
     includedirs(libPixman_includedirs)
@@ -294,6 +295,8 @@ pic "On"
     linkoptions(libFontconfig_linkoptions)
     includedirs(libFontconfig_includedirs)
     includedirs(libFreeType2_includedirs)
+    includedirs(libUtilLinux_includedirs)
+    includedirs(libIcu_includedirs)
     includedirs(libXML2_includedirs)
     defines(libFontconfig_defines)
     files(libFontconfig_sources)
@@ -350,6 +353,7 @@ pic "On"
     buildoptions(libGCrypt_buildoptions)
     linkoptions(libGCrypt_linkoptions)
     includedirs(libGCrypt_includedirs)
+    includedirs(libGPGError_includedirs)
     defines(libGCrypt_defines)
     files(libGCrypt_sources)
     links(libGCrypt_libs)
@@ -359,6 +363,24 @@ filter "configurations:Debug*"
     defines(libGCrypt_debugdefines)
 filter "configurations:Release*"
     defines(libGCrypt_releasedefines)
+
+-- GPGError
+project "GPGError"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGPGError_buildoptions)
+    linkoptions(libGPGError_linkoptions)
+    includedirs(libGPGError_includedirs)
+    defines(libGPGError_defines)
+    files(libGPGError_sources)
+    links(libGPGError_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("GPGError"))
+filter "configurations:Debug*"
+    defines(libGPGError_debugdefines)
+filter "configurations:Release*"
+    defines(libGPGError_releasedefines)
 
 -- Glib
 project "Glib"
@@ -408,6 +430,7 @@ pic "On"
     includedirs(libFontconfig_includedirs)
     includedirs(libFreeType2_includedirs)
     includedirs(libGlib_includedirs)
+    includedirs(libIcu_includedirs)
     defines(libHarfbuzz_defines)
     files(libHarfbuzz_sources)
     links(libHarfbuzz_libs)
@@ -477,6 +500,7 @@ pic "On"
     includedirs(libHarfbuzz_includedirs)
     includedirs(libGlib_includedirs)
     includedirs(libFreeType2_includedirs)
+    includedirs(libFontconfig_includedirs)
     includedirs(libFribidi_includedirs)
     includedirs(libCairo_includedirs)
     defines(libPango_defines)
@@ -572,6 +596,7 @@ pic "On"
     includedirs(libXML2_includedirs)
     includedirs(libSQLite_includedirs)
     includedirs(libPSL_includedirs)
+    includedirs(libIcu_includedirs)
     defines(libSoup_defines)
     files(libSoup_sources)
     links(libSoup_libs)
@@ -644,6 +669,7 @@ pic "On"
     buildoptions(libXML2_buildoptions)
     linkoptions(libXML2_linkoptions)
     includedirs(libXML2_includedirs)
+    includedirs(libIcu_includedirs)
     defines(libXML2_defines)
     files(libXML2_sources)
     links(libXML2_libs)
@@ -663,6 +689,7 @@ pic "On"
     linkoptions(libXSLT_linkoptions)
     includedirs(libXSLT_includedirs)
     includedirs(libXML2_includedirs)
+    includedirs(libIcu_includedirs)
     defines(libXSLT_defines)
     files(libXSLT_sources)
     links(libXSLT_libs)
@@ -706,6 +733,7 @@ pic "On"
     includedirs(libPango_includedirs)
     includedirs(libHarfbuzz_includedirs)
     includedirs(libFribidi_includedirs)
+    includedirs(libFontconfig_includedirs)
     defines(libGtk_defines_Gdk)
     files(libGtk_sources_Gdk)
     links(libGtk_libs_Gdk)
@@ -749,6 +777,7 @@ pic "On"
     includedirs(libCairo_includedirs)
     includedirs(libEpoxy_includedirs)
     includedirs(libFreeType2_includedirs)
+    includedirs(libFontconfig_includedirs)
     includedirs(libPango_includedirs)
     includedirs(libHarfbuzz_includedirs)
     defines(libGtk_defines_Gsk)
@@ -777,6 +806,7 @@ pic "On"
     includedirs(libCairo_includedirs)
     includedirs(libEpoxy_includedirs)
     includedirs(libFreeType2_includedirs)
+    includedirs(libFontconfig_includedirs)
     includedirs(libHarfbuzz_includedirs)
     includedirs(libPango_includedirs)
     defines(libGtk_defines_Gtk)
