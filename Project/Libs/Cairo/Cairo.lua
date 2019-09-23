@@ -12,6 +12,7 @@ libCairo_includedirs = {
 }
 if os.host() == "linux" then
     table.insert(libCairo_includedirs, libCairo_extradir .. "linux/")
+    table.insert(libCairo_includedirs, libCairo_extradir .. "linux/src/")
 end
 
 -- Defines
