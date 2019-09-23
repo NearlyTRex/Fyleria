@@ -523,6 +523,7 @@ libWebKitGTK_libs_Processes = {
 -- Libs (External)
 libWebKitGTK_libs_External = {
     "Atk",
+    "AtkBridge",
     "Cairo",
     "Epoxy",
     "ElfUtils",

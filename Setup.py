@@ -48,6 +48,7 @@ def main():
     if do_setup_cpp_libraries or do_all:
         Project.SetupProject("Atk", "Project/Libs", system_info, program_options)
         Project.SetupProject("AtkBridge", "Project/Libs", system_info, program_options)
+        Project.SetupProject("AtkCore", "Project/Libs", system_info, program_options)
         Project.SetupProject("BackwardCPP", "Project/Libs", system_info, program_options)
         Project.SetupProject("BetterEnums", "Project/Libs", system_info, program_options)
         Project.SetupProject("Boost", "Project/Libs", system_info, program_options)

@@ -7,9 +7,12 @@ libAtkBridge_incdir = libAtkBridge_origdir
 -- Includes
 libAtkBridge_includedirs = {
     libAtkBridge_incdir,
-    libAtkBridge_incdir .. "atk-adaptor/"
+    libAtkBridge_incdir .. "atk-adaptor/",
+    libAtkBridge_incdir .. "atk-adaptor/adaptors/",
 }
 if os.host() == "linux" then
+    table.insert(libAtkBridge_includedirs, "/usr/include/dbus-1.0/")
+    table.insert(libAtkBridge_includedirs, "/usr/lib/x86_64-linux-gnu/dbus-1.0/include/")
     table.insert(libAtkBridge_includedirs, libAtkBridge_extradir .. "linux/")
 end
 

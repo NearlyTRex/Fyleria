@@ -2,12 +2,14 @@
 require "Fyleria/Fyleria"
 require "Libs/Atk/Atk"
 require "Libs/AtkBridge/AtkBridge"
+require "Libs/AtkCore/AtkCore"
 require "Libs/BackwardCPP/BackwardCPP"
 require "Libs/BetterEnums/BetterEnums"
 require "Libs/Boost/Boost"
 require "Libs/Brotli/Brotli"
 require "Libs/Cairo/Cairo"
 require "Libs/Curl/Curl"
+require "Libs/DateCPP/DateCPP"
 require "Libs/ElfUtils/ElfUtils"
 require "Libs/Epoxy/Epoxy"
 require "Libs/FantasyName/FantasyName"
@@ -105,74 +107,6 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(appFyleria_releasedefines)
 
--- Boost
-project "Boost"
-language "C++"
-pic "On"
-    kind(GetSharedLibraryType())
-    cppdialect(GetCpp17Dialect())
-    includedirs(libBoost_includedirs)
-    defines(libBoost_defines)
-    files(libBoost_sources)
-    links(libBoost_libs)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("Boost"))
-filter "configurations:Debug*"
-    defines(libBoost_debugdefines)
-filter "configurations:Release*"
-    defines(libBoost_releasedefines)
-
--- FantasyName
-project "FantasyName"
-language "C++"
-pic "On"
-    kind(GetSharedLibraryType())
-    cppdialect(GetCpp17Dialect())
-    includedirs(libFantasyName_includedirs)
-    defines(libFantasyName_defines)
-    files(libFantasyName_sources)
-    links(libFantasyName_libs)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("FantasyName"))
-filter "configurations:Debug*"
-    defines(libFantasyName_debugdefines)
-filter "configurations:Release*"
-    defines(libFantasyName_releasedefines)
-
--- MicroPather
-project "MicroPather"
-language "C++"
-pic "On"
-    kind(GetSharedLibraryType())
-    cppdialect(GetCpp17Dialect())
-    includedirs(libMicroPather_includedirs)
-    defines(libMicroPather_defines)
-    files(libMicroPather_sources)
-    links(libMicroPather_libs)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("MicroPather"))
-filter "configurations:Debug*"
-    defines(libMicroPather_debugdefines)
-filter "configurations:Release*"
-    defines(libMicroPather_releasedefines)
-
--- SpdLog
-project "SpdLog"
-language "C++"
-pic "On"
-    kind(GetSharedLibraryType())
-    cppdialect(GetCpp17Dialect())
-    includedirs(libSpdLog_includedirs)
-    defines(libSpdLog_defines)
-    files(libSpdLog_sources)
-    links(libSpdLog_libs)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("SpdLog"))
-filter "configurations:Debug*"
-    defines(libSpdLog_debugdefines)
-filter "configurations:Release*"
-    defines(libSpdLog_releasedefines)
-
 -- Atk
 project "Atk"
 language "C"
@@ -198,6 +132,9 @@ pic "On"
     kind(GetSharedLibraryType())
     cppdialect(GetCpp17Dialect())
     includedirs(libAtkBridge_includedirs)
+    includedirs(libAtk_includedirs)
+    includedirs(libAtkCore_includedirs)
+    includedirs(libGlib_includedirs)
     defines(libAtkBridge_defines)
     files(libAtkBridge_sources)
     links(libAtkBridge_libs)
@@ -207,6 +144,40 @@ filter "configurations:Debug*"
     defines(libAtkBridge_debugdefines)
 filter "configurations:Release*"
     defines(libAtkBridge_releasedefines)
+
+-- AtkCore
+project "AtkCore"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp17Dialect())
+    includedirs(libAtkCore_includedirs)
+    defines(libAtkCore_defines)
+    files(libAtkCore_sources)
+    links(libAtkCore_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("AtkCore"))
+filter "configurations:Debug*"
+    defines(libAtkCore_debugdefines)
+filter "configurations:Release*"
+    defines(libAtkCore_releasedefines)
+
+-- Boost
+project "Boost"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp17Dialect())
+    includedirs(libBoost_includedirs)
+    defines(libBoost_defines)
+    files(libBoost_sources)
+    links(libBoost_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Boost"))
+filter "configurations:Debug*"
+    defines(libBoost_debugdefines)
+filter "configurations:Release*"
+    defines(libBoost_releasedefines)
 
 -- Cairo
 project "Cairo"
@@ -267,6 +238,23 @@ filter "configurations:Debug*"
     defines(libEpoxy_debugdefines)
 filter "configurations:Release*"
     defines(libFreeType2_releasedefines)
+
+-- FantasyName
+project "FantasyName"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp17Dialect())
+    includedirs(libFantasyName_includedirs)
+    defines(libFantasyName_defines)
+    files(libFantasyName_sources)
+    links(libFantasyName_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("FantasyName"))
+filter "configurations:Debug*"
+    defines(libFantasyName_debugdefines)
+filter "configurations:Release*"
+    defines(libFantasyName_releasedefines)
 
 -- FFI
 project "FFI"
@@ -344,6 +332,127 @@ filter "configurations:Debug*"
     defines(libFribidi_debugdefines)
 filter "configurations:Release*"
     defines(libFribidi_releasedefines)
+
+-- Gdk
+project "Gdk"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGtk_buildoptions)
+    linkoptions(libGtk_linkoptions)
+    includedirs(libGtk_includedirs)
+    includedirs(libGdkPixbuf_includedirs)
+    includedirs(libGlib_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libEpoxy_includedirs)
+    includedirs(libGraphene_includedirs)
+    includedirs(libPango_includedirs)
+    includedirs(libHarfbuzz_includedirs)
+    includedirs(libFribidi_includedirs)
+    includedirs(libFontconfig_includedirs)
+    defines(libGtk_defines_Gdk)
+    files(libGtk_sources_Gdk)
+    links(libGtk_libs_Gdk)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Gdk"))
+filter "configurations:Debug*"
+    defines(libGtk_debugdefines_Gdk)
+filter "configurations:Release*"
+    defines(libGtk_releasedefines_Gdk)
+
+-- GdkPixbuf
+project "GdkPixbuf"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGdkPixbuf_buildoptions)
+    linkoptions(libGdkPixbuf_linkoptions)
+    includedirs(libGdkPixbuf_includedirs)
+    includedirs(libGlib_includedirs)
+    defines(libGdkPixbuf_defines)
+    files(libGdkPixbuf_sources)
+    links(libGdkPixbuf_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("GdkPixbuf"))
+filter "configurations:Debug*"
+    defines(libGdkPixbuf_debugdefines)
+filter "configurations:Release*"
+    defines(libGdkPixbuf_releasedefines)
+
+-- Gsk
+project "Gsk"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGtk_buildoptions)
+    linkoptions(libGtk_linkoptions)
+    includedirs(libGtk_includedirs)
+    includedirs(libGlib_includedirs)
+    includedirs(libGraphene_includedirs)
+    includedirs(libGdkPixbuf_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libEpoxy_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libFontconfig_includedirs)
+    includedirs(libPango_includedirs)
+    includedirs(libHarfbuzz_includedirs)
+    defines(libGtk_defines_Gsk)
+    files(libGtk_sources_Gsk)
+    links(libGtk_libs_Gsk)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Gsk"))
+filter "configurations:Debug*"
+    defines(libGtk_debugdefines_Gsk)
+filter "configurations:Release*"
+    defines(libGtk_releasedefines_Gsk)
+
+-- Gtk
+project "Gtk"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGtk_buildoptions)
+    linkoptions(libGtk_linkoptions)
+    includedirs(libGtk_includedirs)
+    includedirs(libGlib_includedirs)
+    includedirs(libGraphene_includedirs)
+    includedirs(libGdkPixbuf_includedirs)
+    includedirs(libAtk_includedirs)
+    includedirs(libAtkBridge_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libEpoxy_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libFontconfig_includedirs)
+    includedirs(libHarfbuzz_includedirs)
+    includedirs(libPango_includedirs)
+    defines(libGtk_defines_Gtk)
+    files(libGtk_sources_Gtk)
+    links(libGtk_libs_Gtk)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("Gtk"))
+filter "configurations:Debug*"
+    defines(libGtk_debugdefines_Gtk)
+filter "configurations:Release*"
+    defines(libGtk_releasedefines_Gtk)
+
+-- GtkCss
+project "GtkCss"
+language "C"
+pic "On"
+    kind(GetSharedLibraryType())
+    buildoptions(libGtk_buildoptions)
+    linkoptions(libGtk_linkoptions)
+    includedirs(libGtk_includedirs)
+    includedirs(libGlib_includedirs)
+    defines(libGtk_defines_GtkCss)
+    files(libGtk_sources_GtkCss)
+    links(libGtk_libs_GtkCss)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("GtkCss"))
+filter "configurations:Debug*"
+    defines(libGtk_debugdefines_GtkCss)
+filter "configurations:Release*"
+    defines(libGtk_releasedefines_GtkCss)
 
 -- GCrypt
 project "GCrypt"
@@ -489,6 +598,23 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libJpeg_releasedefines)
 
+-- MicroPather
+project "MicroPather"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp17Dialect())
+    includedirs(libMicroPather_includedirs)
+    defines(libMicroPather_defines)
+    files(libMicroPather_sources)
+    links(libMicroPather_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("MicroPather"))
+filter "configurations:Debug*"
+    defines(libMicroPather_debugdefines)
+filter "configurations:Release*"
+    defines(libMicroPather_releasedefines)
+
 -- Pango
 project "Pango"
 language "C"
@@ -607,6 +733,23 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libSoup_releasedefines)
 
+-- SpdLog
+project "SpdLog"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp17Dialect())
+    includedirs(libSpdLog_includedirs)
+    defines(libSpdLog_defines)
+    files(libSpdLog_sources)
+    links(libSpdLog_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("SpdLog"))
+filter "configurations:Debug*"
+    defines(libSpdLog_debugdefines)
+filter "configurations:Release*"
+    defines(libSpdLog_releasedefines)
+
 -- SQLite
 project "SQLite"
 language "C"
@@ -715,129 +858,6 @@ filter "configurations:Debug*"
     defines(libZlib_debugdefines)
 filter "configurations:Release*"
     defines(libZlib_releasedefines)
-
---------------------- GTK ---------------------
--- Gdk
-project "Gdk"
-language "C"
-pic "On"
-    kind(GetSharedLibraryType())
-    buildoptions(libGtk_buildoptions)
-    linkoptions(libGtk_linkoptions)
-    includedirs(libGtk_includedirs)
-    includedirs(libGdkPixbuf_includedirs)
-    includedirs(libGlib_includedirs)
-    includedirs(libCairo_includedirs)
-    includedirs(libEpoxy_includedirs)
-    includedirs(libGraphene_includedirs)
-    includedirs(libPango_includedirs)
-    includedirs(libHarfbuzz_includedirs)
-    includedirs(libFribidi_includedirs)
-    includedirs(libFontconfig_includedirs)
-    defines(libGtk_defines_Gdk)
-    files(libGtk_sources_Gdk)
-    links(libGtk_libs_Gdk)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("Gdk"))
-filter "configurations:Debug*"
-    defines(libGtk_debugdefines_Gdk)
-filter "configurations:Release*"
-    defines(libGtk_releasedefines_Gdk)
-
--- GdkPixbuf
-project "GdkPixbuf"
-language "C"
-pic "On"
-    kind(GetSharedLibraryType())
-    buildoptions(libGdkPixbuf_buildoptions)
-    linkoptions(libGdkPixbuf_linkoptions)
-    includedirs(libGdkPixbuf_includedirs)
-    includedirs(libGlib_includedirs)
-    defines(libGdkPixbuf_defines)
-    files(libGdkPixbuf_sources)
-    links(libGdkPixbuf_libs)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("GdkPixbuf"))
-filter "configurations:Debug*"
-    defines(libGdkPixbuf_debugdefines)
-filter "configurations:Release*"
-    defines(libGdkPixbuf_releasedefines)
-
--- Gsk
-project "Gsk"
-language "C"
-pic "On"
-    kind(GetSharedLibraryType())
-    buildoptions(libGtk_buildoptions)
-    linkoptions(libGtk_linkoptions)
-    includedirs(libGtk_includedirs)
-    includedirs(libGlib_includedirs)
-    includedirs(libGraphene_includedirs)
-    includedirs(libGdkPixbuf_includedirs)
-    includedirs(libCairo_includedirs)
-    includedirs(libEpoxy_includedirs)
-    includedirs(libFreeType2_includedirs)
-    includedirs(libFontconfig_includedirs)
-    includedirs(libPango_includedirs)
-    includedirs(libHarfbuzz_includedirs)
-    defines(libGtk_defines_Gsk)
-    files(libGtk_sources_Gsk)
-    links(libGtk_libs_Gsk)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("Gsk"))
-filter "configurations:Debug*"
-    defines(libGtk_debugdefines_Gsk)
-filter "configurations:Release*"
-    defines(libGtk_releasedefines_Gsk)
-
--- Gtk
-project "Gtk"
-language "C"
-pic "On"
-    kind(GetSharedLibraryType())
-    buildoptions(libGtk_buildoptions)
-    linkoptions(libGtk_linkoptions)
-    includedirs(libGtk_includedirs)
-    includedirs(libGlib_includedirs)
-    includedirs(libGraphene_includedirs)
-    includedirs(libGdkPixbuf_includedirs)
-    includedirs(libAtk_includedirs)
-    includedirs(libAtkBridge_includedirs)
-    includedirs(libCairo_includedirs)
-    includedirs(libEpoxy_includedirs)
-    includedirs(libFreeType2_includedirs)
-    includedirs(libFontconfig_includedirs)
-    includedirs(libHarfbuzz_includedirs)
-    includedirs(libPango_includedirs)
-    defines(libGtk_defines_Gtk)
-    files(libGtk_sources_Gtk)
-    links(libGtk_libs_Gtk)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("Gtk"))
-filter "configurations:Debug*"
-    defines(libGtk_debugdefines_Gtk)
-filter "configurations:Release*"
-    defines(libGtk_releasedefines_Gtk)
-
--- GtkCss
-project "GtkCss"
-language "C"
-pic "On"
-    kind(GetSharedLibraryType())
-    buildoptions(libGtk_buildoptions)
-    linkoptions(libGtk_linkoptions)
-    includedirs(libGtk_includedirs)
-    includedirs(libGlib_includedirs)
-    defines(libGtk_defines_GtkCss)
-    files(libGtk_sources_GtkCss)
-    links(libGtk_libs_GtkCss)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("GtkCss"))
-filter "configurations:Debug*"
-    defines(libGtk_debugdefines_GtkCss)
-filter "configurations:Release*"
-    defines(libGtk_releasedefines_GtkCss)
---------------------- GTK ---------------------
 
 --------------------- WebKitGTK ---------------------
 -- WTFGTK
