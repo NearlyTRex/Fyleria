@@ -485,7 +485,7 @@ libWebKitGTK_buildoptions_Processes = {
     "-fno-exceptions",
     "-fno-rtti",
     "-ffp-contract=off",
-    "-include ../" .. libWebKitGTK_srcdir .. "Source/WebKit/WebKit2Prefix.h"
+    "-include WebKit2Prefix.h"
 }
 libWebKitGTK_linkoptions_Libraries = {
 }
@@ -524,11 +524,14 @@ libWebKitGTK_libs_Processes = {
 libWebKitGTK_libs_External = {
     "Atk",
     "AtkBridge",
+    "AtkCore",
     "Cairo",
-    "Epoxy",
     "ElfUtils",
+    "Epoxy",
+    "FFI",
     "Fontconfig",
     "FreeType2",
+    "Fribidi",
     "GCrypt",
     "Gdk",
     "GdkPixbuf",
@@ -549,6 +552,7 @@ libWebKitGTK_libs_External = {
     "PSL",
     "Soup",
     "SQLite",
+    "UtilLinux",
     "Webp",
     "XML2",
     "XSLT",
