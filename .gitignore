@@ -54,6 +54,7 @@ __pycache__
 Project/Build*
 Project/Libs/Atk/orig
 Project/Libs/AtkBridge/orig
+Project/Libs/AtkCore/orig
 Project/Libs/BackwardCPP/orig
 Project/Libs/BetterEnums/orig
 Project/Libs/Boost/orig
