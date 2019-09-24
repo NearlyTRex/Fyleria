@@ -9,6 +9,8 @@ libAtkCore_includedirs = {
     libAtkCore_incdir
 }
 if os.host() == "linux" then
+    table.insert(libAtkCore_includedirs, "/usr/include/dbus-1.0/")
+    table.insert(libAtkCore_includedirs, "/usr/lib/x86_64-linux-gnu/dbus-1.0/include/")
     table.insert(libAtkCore_includedirs, libAtkCore_extradir .. "linux/")
     table.insert(libAtkCore_includedirs, libAtkCore_extradir .. "linux/atspi/")
 end

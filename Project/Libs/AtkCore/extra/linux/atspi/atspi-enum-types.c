@@ -3,12 +3,12 @@
 
 #include "atspi-enum-types.h"
 /* enumerations from "atspi-constants.h" */
-#include "/home/donna/Repositories/trunk/Project/Libs/AtkCore/orig/_build/../atspi/atspi-constants.h"
+#include "atspi/atspi-constants.h"
 GType
 atspi_locale_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -42,7 +42,7 @@ GType
 atspi_coord_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -67,7 +67,7 @@ GType
 atspi_collection_sort_order_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -107,7 +107,7 @@ GType
 atspi_collection_match_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -141,7 +141,7 @@ GType
 atspi_collection_tree_traversal_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -169,7 +169,7 @@ GType
 atspi_component_layer_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -212,7 +212,7 @@ GType
 atspi_text_boundary_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -249,7 +249,7 @@ GType
 atspi_text_granularity_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -280,7 +280,7 @@ GType
 atspi_text_clip_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -308,7 +308,7 @@ GType
 atspi_state_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -459,7 +459,7 @@ GType
 atspi_key_event_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -481,7 +481,7 @@ GType
 atspi_event_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -509,7 +509,7 @@ GType
 atspi_key_synth_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -546,7 +546,7 @@ GType
 atspi_modifier_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -586,7 +586,7 @@ GType
 atspi_relation_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -674,7 +674,7 @@ GType
 atspi_role_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -1074,7 +1074,7 @@ GType
 atspi_cache_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GFlagsValue values[] = {
@@ -1126,7 +1126,7 @@ GType
 atspi_scroll_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GEnumValue values[] = {
@@ -1160,12 +1160,12 @@ atspi_scroll_type_get_type (void)
 	return the_type;
 }
 /* enumerations from "atspi-types.h" */
-#include "/home/donna/Repositories/trunk/Project/Libs/AtkCore/orig/_build/../atspi/atspi-types.h"
+#include "atspi/atspi-types.h"
 GType
 atspi_key_listener_sync_type_get_type (void)
 {
 	static GType the_type = 0;
-	
+
 	if (the_type == 0)
 	{
 		static const GFlagsValue values[] = {
@@ -1191,4 +1191,3 @@ atspi_key_listener_sync_type_get_type (void)
 }
 
 /* Generated data ends here */
-
