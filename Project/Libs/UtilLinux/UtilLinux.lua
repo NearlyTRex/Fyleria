@@ -7,6 +7,7 @@ libUtilLinux_incdir = libUtilLinux_origdir
 -- Includes
 libUtilLinux_includedirs = {
     libUtilLinux_incdir,
+    libUtilLinux_incdir .. "include/",
     libUtilLinux_incdir .. "lib/",
     libUtilLinux_incdir .. "libblkid/src/",
     libUtilLinux_incdir .. "libmount/src/",
@@ -34,7 +35,8 @@ libUtilLinux_releasedefines = {
 -- Options
 libUtilLinux_buildoptions = {
     "-fsigned-char",
-    "-fno-common"
+    "-fno-common",
+    "-include config.h"
 }
 libUtilLinux_linkoptions = {
 }
