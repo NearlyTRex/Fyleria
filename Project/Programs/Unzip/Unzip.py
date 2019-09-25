@@ -6,6 +6,6 @@ Setup = {}
 Setup['url'] = "https://github.com/NearlyTRex/unzip/archive/master.zip"
 Setup['extractdir'] = "unzip-master"
 Setup['steps'] = {}
-Setup['steps']['windows'] = []
-Setup['steps']['windows'].append('RunProcess("cmake .")')
-Setup['steps']['windows'].append('RunProcess("make")')
+Setup['steps']['all'] = []
+Setup['steps']['all'].append('RunProcess("cmake .")')
+Setup['steps']['all'].append('RunProcess("make")')
