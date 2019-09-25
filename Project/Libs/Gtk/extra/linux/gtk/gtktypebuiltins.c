@@ -4,7 +4,201 @@
 #include "config.h"
 #include "gtk.h"
 #include "gtkprivate.h"
-/* enumerations from "gtkaboutdialog.h" */
+/* enumerations from "gtk/deprecated/gtkrc.h" */
+GType
+gtk_rc_flags_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GTK_RC_FG, "GTK_RC_FG", "fg" },
+        { GTK_RC_BG, "GTK_RC_BG", "bg" },
+        { GTK_RC_TEXT, "GTK_RC_TEXT", "text" },
+        { GTK_RC_BASE, "GTK_RC_BASE", "base" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GtkRcFlags"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
+gtk_rc_token_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_RC_TOKEN_INVALID, "GTK_RC_TOKEN_INVALID", "invalid" },
+        { GTK_RC_TOKEN_INCLUDE, "GTK_RC_TOKEN_INCLUDE", "include" },
+        { GTK_RC_TOKEN_NORMAL, "GTK_RC_TOKEN_NORMAL", "normal" },
+        { GTK_RC_TOKEN_ACTIVE, "GTK_RC_TOKEN_ACTIVE", "active" },
+        { GTK_RC_TOKEN_PRELIGHT, "GTK_RC_TOKEN_PRELIGHT", "prelight" },
+        { GTK_RC_TOKEN_SELECTED, "GTK_RC_TOKEN_SELECTED", "selected" },
+        { GTK_RC_TOKEN_INSENSITIVE, "GTK_RC_TOKEN_INSENSITIVE", "insensitive" },
+        { GTK_RC_TOKEN_FG, "GTK_RC_TOKEN_FG", "fg" },
+        { GTK_RC_TOKEN_BG, "GTK_RC_TOKEN_BG", "bg" },
+        { GTK_RC_TOKEN_TEXT, "GTK_RC_TOKEN_TEXT", "text" },
+        { GTK_RC_TOKEN_BASE, "GTK_RC_TOKEN_BASE", "base" },
+        { GTK_RC_TOKEN_XTHICKNESS, "GTK_RC_TOKEN_XTHICKNESS", "xthickness" },
+        { GTK_RC_TOKEN_YTHICKNESS, "GTK_RC_TOKEN_YTHICKNESS", "ythickness" },
+        { GTK_RC_TOKEN_FONT, "GTK_RC_TOKEN_FONT", "font" },
+        { GTK_RC_TOKEN_FONTSET, "GTK_RC_TOKEN_FONTSET", "fontset" },
+        { GTK_RC_TOKEN_FONT_NAME, "GTK_RC_TOKEN_FONT_NAME", "font-name" },
+        { GTK_RC_TOKEN_BG_PIXMAP, "GTK_RC_TOKEN_BG_PIXMAP", "bg-pixmap" },
+        { GTK_RC_TOKEN_PIXMAP_PATH, "GTK_RC_TOKEN_PIXMAP_PATH", "pixmap-path" },
+        { GTK_RC_TOKEN_STYLE, "GTK_RC_TOKEN_STYLE", "style" },
+        { GTK_RC_TOKEN_BINDING, "GTK_RC_TOKEN_BINDING", "binding" },
+        { GTK_RC_TOKEN_BIND, "GTK_RC_TOKEN_BIND", "bind" },
+        { GTK_RC_TOKEN_WIDGET, "GTK_RC_TOKEN_WIDGET", "widget" },
+        { GTK_RC_TOKEN_WIDGET_CLASS, "GTK_RC_TOKEN_WIDGET_CLASS", "widget-class" },
+        { GTK_RC_TOKEN_CLASS, "GTK_RC_TOKEN_CLASS", "class" },
+        { GTK_RC_TOKEN_LOWEST, "GTK_RC_TOKEN_LOWEST", "lowest" },
+        { GTK_RC_TOKEN_GTK, "GTK_RC_TOKEN_GTK", "gtk" },
+        { GTK_RC_TOKEN_APPLICATION, "GTK_RC_TOKEN_APPLICATION", "application" },
+        { GTK_RC_TOKEN_THEME, "GTK_RC_TOKEN_THEME", "theme" },
+        { GTK_RC_TOKEN_RC, "GTK_RC_TOKEN_RC", "rc" },
+        { GTK_RC_TOKEN_HIGHEST, "GTK_RC_TOKEN_HIGHEST", "highest" },
+        { GTK_RC_TOKEN_ENGINE, "GTK_RC_TOKEN_ENGINE", "engine" },
+        { GTK_RC_TOKEN_MODULE_PATH, "GTK_RC_TOKEN_MODULE_PATH", "module-path" },
+        { GTK_RC_TOKEN_IM_MODULE_PATH, "GTK_RC_TOKEN_IM_MODULE_PATH", "im-module-path" },
+        { GTK_RC_TOKEN_IM_MODULE_FILE, "GTK_RC_TOKEN_IM_MODULE_FILE", "im-module-file" },
+        { GTK_RC_TOKEN_STOCK, "GTK_RC_TOKEN_STOCK", "stock" },
+        { GTK_RC_TOKEN_LTR, "GTK_RC_TOKEN_LTR", "ltr" },
+        { GTK_RC_TOKEN_RTL, "GTK_RC_TOKEN_RTL", "rtl" },
+        { GTK_RC_TOKEN_COLOR, "GTK_RC_TOKEN_COLOR", "color" },
+        { GTK_RC_TOKEN_UNBIND, "GTK_RC_TOKEN_UNBIND", "unbind" },
+        { GTK_RC_TOKEN_LAST, "GTK_RC_TOKEN_LAST", "last" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkRcTokenType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
+gtk_path_priority_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_PATH_PRIO_LOWEST, "GTK_PATH_PRIO_LOWEST", "lowest" },
+        { GTK_PATH_PRIO_GTK, "GTK_PATH_PRIO_GTK", "gtk" },
+        { GTK_PATH_PRIO_APPLICATION, "GTK_PATH_PRIO_APPLICATION", "application" },
+        { GTK_PATH_PRIO_THEME, "GTK_PATH_PRIO_THEME", "theme" },
+        { GTK_PATH_PRIO_RC, "GTK_PATH_PRIO_RC", "rc" },
+        { GTK_PATH_PRIO_HIGHEST, "GTK_PATH_PRIO_HIGHEST", "highest" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkPathPriorityType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
+gtk_path_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_PATH_WIDGET, "GTK_PATH_WIDGET", "widget" },
+        { GTK_PATH_WIDGET_CLASS, "GTK_PATH_WIDGET_CLASS", "widget-class" },
+        { GTK_PATH_CLASS, "GTK_PATH_CLASS", "class" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkPathType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/deprecated/gtkstyle.h" */
+GType
+gtk_expander_style_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_EXPANDER_COLLAPSED, "GTK_EXPANDER_COLLAPSED", "collapsed" },
+        { GTK_EXPANDER_SEMI_COLLAPSED, "GTK_EXPANDER_SEMI_COLLAPSED", "semi-collapsed" },
+        { GTK_EXPANDER_SEMI_EXPANDED, "GTK_EXPANDER_SEMI_EXPANDED", "semi-expanded" },
+        { GTK_EXPANDER_EXPANDED, "GTK_EXPANDER_EXPANDED", "expanded" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkExpanderStyle"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/deprecated/gtktable.h" */
+GType
+gtk_attach_options_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GTK_EXPAND, "GTK_EXPAND", "expand" },
+        { GTK_SHRINK, "GTK_SHRINK", "shrink" },
+        { GTK_FILL, "GTK_FILL", "fill" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GtkAttachOptions"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/deprecated/gtkuimanager.h" */
+GType
+gtk_ui_manager_item_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GTK_UI_MANAGER_AUTO, "GTK_UI_MANAGER_AUTO", "auto" },
+        { GTK_UI_MANAGER_MENUBAR, "GTK_UI_MANAGER_MENUBAR", "menubar" },
+        { GTK_UI_MANAGER_MENU, "GTK_UI_MANAGER_MENU", "menu" },
+        { GTK_UI_MANAGER_TOOLBAR, "GTK_UI_MANAGER_TOOLBAR", "toolbar" },
+        { GTK_UI_MANAGER_PLACEHOLDER, "GTK_UI_MANAGER_PLACEHOLDER", "placeholder" },
+        { GTK_UI_MANAGER_POPUP, "GTK_UI_MANAGER_POPUP", "popup" },
+        { GTK_UI_MANAGER_MENUITEM, "GTK_UI_MANAGER_MENUITEM", "menuitem" },
+        { GTK_UI_MANAGER_TOOLITEM, "GTK_UI_MANAGER_TOOLITEM", "toolitem" },
+        { GTK_UI_MANAGER_SEPARATOR, "GTK_UI_MANAGER_SEPARATOR", "separator" },
+        { GTK_UI_MANAGER_ACCELERATOR, "GTK_UI_MANAGER_ACCELERATOR", "accelerator" },
+        { GTK_UI_MANAGER_POPUP_WITH_ACCELS, "GTK_UI_MANAGER_POPUP_WITH_ACCELS", "popup-with-accels" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GtkUIManagerItemType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkaboutdialog.h" */
 GType
 gtk_license_get_type (void)
 {
@@ -37,7 +231,7 @@ gtk_license_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkaccelgroup.h" */
+/* enumerations from "gtk/gtkaccelgroup.h" */
 GType
 gtk_accel_flags_get_type (void)
 {
@@ -58,7 +252,7 @@ gtk_accel_flags_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkapplication.h" */
+/* enumerations from "gtk/gtkapplication.h" */
 GType
 gtk_application_inhibit_flags_get_type (void)
 {
@@ -80,7 +274,7 @@ gtk_application_inhibit_flags_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkassistant.h" */
+/* enumerations from "gtk/gtkassistant.h" */
 GType
 gtk_assistant_page_type_get_type (void)
 {
@@ -104,7 +298,31 @@ gtk_assistant_page_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkbuilder.h" */
+/* enumerations from "gtk/gtkbbox.h" */
+GType
+gtk_button_box_style_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_BUTTONBOX_SPREAD, "GTK_BUTTONBOX_SPREAD", "spread" },
+        { GTK_BUTTONBOX_EDGE, "GTK_BUTTONBOX_EDGE", "edge" },
+        { GTK_BUTTONBOX_START, "GTK_BUTTONBOX_START", "start" },
+        { GTK_BUTTONBOX_END, "GTK_BUTTONBOX_END", "end" },
+        { GTK_BUTTONBOX_CENTER, "GTK_BUTTONBOX_CENTER", "center" },
+        { GTK_BUTTONBOX_EXPAND, "GTK_BUTTONBOX_EXPAND", "expand" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkButtonBoxStyle"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkbuilder.h" */
 GType
 gtk_builder_error_get_type (void)
 {
@@ -136,7 +354,7 @@ gtk_builder_error_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkcalendar.h" */
+/* enumerations from "gtk/gtkcalendar.h" */
 GType
 gtk_calendar_display_options_get_type (void)
 {
@@ -159,7 +377,7 @@ gtk_calendar_display_options_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkcellrenderer.h" */
+/* enumerations from "gtk/gtkcellrenderer.h" */
 GType
 gtk_cell_renderer_state_get_type (void)
 {
@@ -204,7 +422,7 @@ gtk_cell_renderer_mode_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkcellrendereraccel.h" */
+/* enumerations from "gtk/gtkcellrendereraccel.h" */
 GType
 gtk_cell_renderer_accel_mode_get_type (void)
 {
@@ -224,7 +442,79 @@ gtk_cell_renderer_accel_mode_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkdebug.h" */
+/* enumerations from "gtk/gtkcontainer.h" */
+GType
+gtk_resize_mode_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_RESIZE_PARENT, "GTK_RESIZE_PARENT", "parent" },
+        { GTK_RESIZE_QUEUE, "GTK_RESIZE_QUEUE", "queue" },
+        { GTK_RESIZE_IMMEDIATE, "GTK_RESIZE_IMMEDIATE", "immediate" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkResizeMode"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkcssprovider.h" */
+GType
+gtk_css_provider_error_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_CSS_PROVIDER_ERROR_FAILED, "GTK_CSS_PROVIDER_ERROR_FAILED", "failed" },
+        { GTK_CSS_PROVIDER_ERROR_SYNTAX, "GTK_CSS_PROVIDER_ERROR_SYNTAX", "syntax" },
+        { GTK_CSS_PROVIDER_ERROR_IMPORT, "GTK_CSS_PROVIDER_ERROR_IMPORT", "import" },
+        { GTK_CSS_PROVIDER_ERROR_NAME, "GTK_CSS_PROVIDER_ERROR_NAME", "name" },
+        { GTK_CSS_PROVIDER_ERROR_DEPRECATED, "GTK_CSS_PROVIDER_ERROR_DEPRECATED", "deprecated" },
+        { GTK_CSS_PROVIDER_ERROR_UNKNOWN_VALUE, "GTK_CSS_PROVIDER_ERROR_UNKNOWN_VALUE", "unknown-value" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkCssProviderError"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkcsssection.h" */
+GType
+gtk_css_section_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_CSS_SECTION_DOCUMENT, "GTK_CSS_SECTION_DOCUMENT", "document" },
+        { GTK_CSS_SECTION_IMPORT, "GTK_CSS_SECTION_IMPORT", "import" },
+        { GTK_CSS_SECTION_COLOR_DEFINITION, "GTK_CSS_SECTION_COLOR_DEFINITION", "color-definition" },
+        { GTK_CSS_SECTION_BINDING_SET, "GTK_CSS_SECTION_BINDING_SET", "binding-set" },
+        { GTK_CSS_SECTION_RULESET, "GTK_CSS_SECTION_RULESET", "ruleset" },
+        { GTK_CSS_SECTION_SELECTOR, "GTK_CSS_SECTION_SELECTOR", "selector" },
+        { GTK_CSS_SECTION_DECLARATION, "GTK_CSS_SECTION_DECLARATION", "declaration" },
+        { GTK_CSS_SECTION_VALUE, "GTK_CSS_SECTION_VALUE", "value" },
+        { GTK_CSS_SECTION_KEYFRAMES, "GTK_CSS_SECTION_KEYFRAMES", "keyframes" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkCssSectionType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkdebug.h" */
 GType
 gtk_debug_flag_get_type (void)
 {
@@ -233,9 +523,13 @@ gtk_debug_flag_get_type (void)
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
       static const GFlagsValue values[] = {
+        { GTK_DEBUG_MISC, "GTK_DEBUG_MISC", "misc" },
+        { GTK_DEBUG_PLUGSOCKET, "GTK_DEBUG_PLUGSOCKET", "plugsocket" },
         { GTK_DEBUG_TEXT, "GTK_DEBUG_TEXT", "text" },
         { GTK_DEBUG_TREE, "GTK_DEBUG_TREE", "tree" },
+        { GTK_DEBUG_UPDATES, "GTK_DEBUG_UPDATES", "updates" },
         { GTK_DEBUG_KEYBINDINGS, "GTK_DEBUG_KEYBINDINGS", "keybindings" },
+        { GTK_DEBUG_MULTIHEAD, "GTK_DEBUG_MULTIHEAD", "multihead" },
         { GTK_DEBUG_MODULES, "GTK_DEBUG_MODULES", "modules" },
         { GTK_DEBUG_GEOMETRY, "GTK_DEBUG_GEOMETRY", "geometry" },
         { GTK_DEBUG_ICONTHEME, "GTK_DEBUG_ICONTHEME", "icontheme" },
@@ -244,13 +538,13 @@ gtk_debug_flag_get_type (void)
         { GTK_DEBUG_SIZE_REQUEST, "GTK_DEBUG_SIZE_REQUEST", "size-request" },
         { GTK_DEBUG_NO_CSS_CACHE, "GTK_DEBUG_NO_CSS_CACHE", "no-css-cache" },
         { GTK_DEBUG_BASELINES, "GTK_DEBUG_BASELINES", "baselines" },
+        { GTK_DEBUG_PIXEL_CACHE, "GTK_DEBUG_PIXEL_CACHE", "pixel-cache" },
+        { GTK_DEBUG_NO_PIXEL_CACHE, "GTK_DEBUG_NO_PIXEL_CACHE", "no-pixel-cache" },
         { GTK_DEBUG_INTERACTIVE, "GTK_DEBUG_INTERACTIVE", "interactive" },
         { GTK_DEBUG_TOUCHSCREEN, "GTK_DEBUG_TOUCHSCREEN", "touchscreen" },
         { GTK_DEBUG_ACTIONS, "GTK_DEBUG_ACTIONS", "actions" },
         { GTK_DEBUG_RESIZE, "GTK_DEBUG_RESIZE", "resize" },
         { GTK_DEBUG_LAYOUT, "GTK_DEBUG_LAYOUT", "layout" },
-        { GTK_DEBUG_SNAPSHOT, "GTK_DEBUG_SNAPSHOT", "snapshot" },
-        { GTK_DEBUG_CONSTRAINTS, "GTK_DEBUG_CONSTRAINTS", "constraints" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
@@ -260,7 +554,7 @@ gtk_debug_flag_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkdialog.h" */
+/* enumerations from "gtk/gtkdialog.h" */
 GType
 gtk_dialog_flags_get_type (void)
 {
@@ -309,7 +603,7 @@ gtk_response_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkdragdest.h" */
+/* enumerations from "gtk/gtkdragdest.h" */
 GType
 gtk_dest_defaults_get_type (void)
 {
@@ -331,33 +625,7 @@ gtk_dest_defaults_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkeditable.h" */
-GType
-gtk_editable_properties_get_type (void)
-{
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { GTK_EDITABLE_PROP_TEXT, "GTK_EDITABLE_PROP_TEXT", "prop-text" },
-        { GTK_EDITABLE_PROP_CURSOR_POSITION, "GTK_EDITABLE_PROP_CURSOR_POSITION", "prop-cursor-position" },
-        { GTK_EDITABLE_PROP_SELECTION_BOUND, "GTK_EDITABLE_PROP_SELECTION_BOUND", "prop-selection-bound" },
-        { GTK_EDITABLE_PROP_EDITABLE, "GTK_EDITABLE_PROP_EDITABLE", "prop-editable" },
-        { GTK_EDITABLE_PROP_WIDTH_CHARS, "GTK_EDITABLE_PROP_WIDTH_CHARS", "prop-width-chars" },
-        { GTK_EDITABLE_PROP_MAX_WIDTH_CHARS, "GTK_EDITABLE_PROP_MAX_WIDTH_CHARS", "prop-max-width-chars" },
-        { GTK_EDITABLE_PROP_XALIGN, "GTK_EDITABLE_PROP_XALIGN", "prop-xalign" },
-        { GTK_EDITABLE_NUM_PROPERTIES, "GTK_EDITABLE_NUM_PROPERTIES", "num-properties" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("GtkEditableProperties"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-/* enumerations from "gtkentry.h" */
+/* enumerations from "gtk/gtkentry.h" */
 GType
 gtk_entry_icon_position_get_type (void)
 {
@@ -377,7 +645,7 @@ gtk_entry_icon_position_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkenums.h" */
+/* enumerations from "gtk/gtkenums.h" */
 GType
 gtk_align_get_type (void)
 {
@@ -498,9 +766,13 @@ gtk_icon_size_get_type (void)
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
       static const GEnumValue values[] = {
-        { GTK_ICON_SIZE_INHERIT, "GTK_ICON_SIZE_INHERIT", "inherit" },
-        { GTK_ICON_SIZE_NORMAL, "GTK_ICON_SIZE_NORMAL", "normal" },
-        { GTK_ICON_SIZE_LARGE, "GTK_ICON_SIZE_LARGE", "large" },
+        { GTK_ICON_SIZE_INVALID, "GTK_ICON_SIZE_INVALID", "invalid" },
+        { GTK_ICON_SIZE_MENU, "GTK_ICON_SIZE_MENU", "menu" },
+        { GTK_ICON_SIZE_SMALL_TOOLBAR, "GTK_ICON_SIZE_SMALL_TOOLBAR", "small-toolbar" },
+        { GTK_ICON_SIZE_LARGE_TOOLBAR, "GTK_ICON_SIZE_LARGE_TOOLBAR", "large-toolbar" },
+        { GTK_ICON_SIZE_BUTTON, "GTK_ICON_SIZE_BUTTON", "button" },
+        { GTK_ICON_SIZE_DND, "GTK_ICON_SIZE_DND", "dnd" },
+        { GTK_ICON_SIZE_DIALOG, "GTK_ICON_SIZE_DIALOG", "dialog" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
@@ -684,25 +956,6 @@ gtk_orientation_get_type (void)
   return g_define_type_id__volatile;
 }
 GType
-gtk_overflow_get_type (void)
-{
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { GTK_OVERFLOW_VISIBLE, "GTK_OVERFLOW_VISIBLE", "visible" },
-        { GTK_OVERFLOW_HIDDEN, "GTK_OVERFLOW_HIDDEN", "hidden" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("GtkOverflow"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-GType
 gtk_pack_type_get_type (void)
 {
   static volatile gsize g_define_type_id__volatile = 0;
@@ -751,6 +1004,7 @@ gtk_relief_style_get_type (void)
     {
       static const GEnumValue values[] = {
         { GTK_RELIEF_NORMAL, "GTK_RELIEF_NORMAL", "normal" },
+        { GTK_RELIEF_HALF, "GTK_RELIEF_HALF", "half" },
         { GTK_RELIEF_NONE, "GTK_RELIEF_NONE", "none" },
         { 0, NULL, NULL }
       };
@@ -838,6 +1092,30 @@ gtk_shadow_type_get_type (void)
   return g_define_type_id__volatile;
 }
 GType
+gtk_state_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_STATE_NORMAL, "GTK_STATE_NORMAL", "normal" },
+        { GTK_STATE_ACTIVE, "GTK_STATE_ACTIVE", "active" },
+        { GTK_STATE_PRELIGHT, "GTK_STATE_PRELIGHT", "prelight" },
+        { GTK_STATE_SELECTED, "GTK_STATE_SELECTED", "selected" },
+        { GTK_STATE_INSENSITIVE, "GTK_STATE_INSENSITIVE", "insensitive" },
+        { GTK_STATE_INCONSISTENT, "GTK_STATE_INCONSISTENT", "inconsistent" },
+        { GTK_STATE_FOCUSED, "GTK_STATE_FOCUSED", "focused" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkStateType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
 gtk_toolbar_style_get_type (void)
 {
   static volatile gsize g_define_type_id__volatile = 0;
@@ -893,6 +1171,67 @@ gtk_sort_type_get_type (void)
       };
       GType g_define_type_id =
         g_enum_register_static (g_intern_static_string ("GtkSortType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
+gtk_im_preedit_style_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_IM_PREEDIT_NOTHING, "GTK_IM_PREEDIT_NOTHING", "nothing" },
+        { GTK_IM_PREEDIT_CALLBACK, "GTK_IM_PREEDIT_CALLBACK", "callback" },
+        { GTK_IM_PREEDIT_NONE, "GTK_IM_PREEDIT_NONE", "none" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkIMPreeditStyle"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
+gtk_im_status_style_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_IM_STATUS_NOTHING, "GTK_IM_STATUS_NOTHING", "nothing" },
+        { GTK_IM_STATUS_CALLBACK, "GTK_IM_STATUS_CALLBACK", "callback" },
+        { GTK_IM_STATUS_NONE, "GTK_IM_STATUS_NONE", "none" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkIMStatusStyle"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
+gtk_pack_direction_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_PACK_DIRECTION_LTR, "GTK_PACK_DIRECTION_LTR", "ltr" },
+        { GTK_PACK_DIRECTION_RTL, "GTK_PACK_DIRECTION_RTL", "rtl" },
+        { GTK_PACK_DIRECTION_TTB, "GTK_PACK_DIRECTION_TTB", "ttb" },
+        { GTK_PACK_DIRECTION_BTT, "GTK_PACK_DIRECTION_BTT", "btt" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkPackDirection"), values);
       g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
     }
 
@@ -1173,11 +1512,59 @@ gtk_state_flags_get_type (void)
         { GTK_STATE_FLAG_VISITED, "GTK_STATE_FLAG_VISITED", "visited" },
         { GTK_STATE_FLAG_CHECKED, "GTK_STATE_FLAG_CHECKED", "checked" },
         { GTK_STATE_FLAG_DROP_ACTIVE, "GTK_STATE_FLAG_DROP_ACTIVE", "drop-active" },
-        { GTK_STATE_FLAG_FOCUS_VISIBLE, "GTK_STATE_FLAG_FOCUS_VISIBLE", "focus-visible" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
         g_flags_register_static (g_intern_static_string ("GtkStateFlags"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
+gtk_region_flags_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GTK_REGION_EVEN, "GTK_REGION_EVEN", "even" },
+        { GTK_REGION_ODD, "GTK_REGION_ODD", "odd" },
+        { GTK_REGION_FIRST, "GTK_REGION_FIRST", "first" },
+        { GTK_REGION_LAST, "GTK_REGION_LAST", "last" },
+        { GTK_REGION_ONLY, "GTK_REGION_ONLY", "only" },
+        { GTK_REGION_SORTED, "GTK_REGION_SORTED", "sorted" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GtkRegionFlags"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
+gtk_junction_sides_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GTK_JUNCTION_NONE, "GTK_JUNCTION_NONE", "none" },
+        { GTK_JUNCTION_CORNER_TOPLEFT, "GTK_JUNCTION_CORNER_TOPLEFT", "corner-topleft" },
+        { GTK_JUNCTION_CORNER_TOPRIGHT, "GTK_JUNCTION_CORNER_TOPRIGHT", "corner-topright" },
+        { GTK_JUNCTION_CORNER_BOTTOMLEFT, "GTK_JUNCTION_CORNER_BOTTOMLEFT", "corner-bottomleft" },
+        { GTK_JUNCTION_CORNER_BOTTOMRIGHT, "GTK_JUNCTION_CORNER_BOTTOMRIGHT", "corner-bottomright" },
+        { GTK_JUNCTION_TOP, "GTK_JUNCTION_TOP", "top" },
+        { GTK_JUNCTION_BOTTOM, "GTK_JUNCTION_BOTTOM", "bottom" },
+        { GTK_JUNCTION_LEFT, "GTK_JUNCTION_LEFT", "left" },
+        { GTK_JUNCTION_RIGHT, "GTK_JUNCTION_RIGHT", "right" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GtkJunctionSides"), values);
       g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
     }
 
@@ -1307,25 +1694,6 @@ gtk_propagation_phase_get_type (void)
   return g_define_type_id__volatile;
 }
 GType
-gtk_propagation_limit_get_type (void)
-{
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { GTK_LIMIT_NONE, "GTK_LIMIT_NONE", "none" },
-        { GTK_LIMIT_SAME_NATIVE, "GTK_LIMIT_SAME_NATIVE", "same-native" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("GtkPropagationLimit"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-GType
 gtk_event_sequence_state_get_type (void)
 {
   static volatile gsize g_define_type_id__volatile = 0;
@@ -1385,140 +1753,7 @@ gtk_popover_constraint_get_type (void)
 
   return g_define_type_id__volatile;
 }
-GType
-gtk_places_open_flags_get_type (void)
-{
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GFlagsValue values[] = {
-        { GTK_PLACES_OPEN_NORMAL, "GTK_PLACES_OPEN_NORMAL", "normal" },
-        { GTK_PLACES_OPEN_NEW_TAB, "GTK_PLACES_OPEN_NEW_TAB", "new-tab" },
-        { GTK_PLACES_OPEN_NEW_WINDOW, "GTK_PLACES_OPEN_NEW_WINDOW", "new-window" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_flags_register_static (g_intern_static_string ("GtkPlacesOpenFlags"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-GType
-gtk_pick_flags_get_type (void)
-{
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GFlagsValue values[] = {
-        { GTK_PICK_DEFAULT, "GTK_PICK_DEFAULT", "default" },
-        { GTK_PICK_INSENSITIVE, "GTK_PICK_INSENSITIVE", "insensitive" },
-        { GTK_PICK_NON_TARGETABLE, "GTK_PICK_NON_TARGETABLE", "non-targetable" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_flags_register_static (g_intern_static_string ("GtkPickFlags"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-GType
-gtk_constraint_relation_get_type (void)
-{
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { GTK_CONSTRAINT_RELATION_LE, "GTK_CONSTRAINT_RELATION_LE", "le" },
-        { GTK_CONSTRAINT_RELATION_EQ, "GTK_CONSTRAINT_RELATION_EQ", "eq" },
-        { GTK_CONSTRAINT_RELATION_GE, "GTK_CONSTRAINT_RELATION_GE", "ge" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("GtkConstraintRelation"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-GType
-gtk_constraint_strength_get_type (void)
-{
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { GTK_CONSTRAINT_STRENGTH_REQUIRED, "GTK_CONSTRAINT_STRENGTH_REQUIRED", "required" },
-        { GTK_CONSTRAINT_STRENGTH_STRONG, "GTK_CONSTRAINT_STRENGTH_STRONG", "strong" },
-        { GTK_CONSTRAINT_STRENGTH_MEDIUM, "GTK_CONSTRAINT_STRENGTH_MEDIUM", "medium" },
-        { GTK_CONSTRAINT_STRENGTH_WEAK, "GTK_CONSTRAINT_STRENGTH_WEAK", "weak" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("GtkConstraintStrength"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-GType
-gtk_constraint_attribute_get_type (void)
-{
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { GTK_CONSTRAINT_ATTRIBUTE_NONE, "GTK_CONSTRAINT_ATTRIBUTE_NONE", "none" },
-        { GTK_CONSTRAINT_ATTRIBUTE_LEFT, "GTK_CONSTRAINT_ATTRIBUTE_LEFT", "left" },
-        { GTK_CONSTRAINT_ATTRIBUTE_RIGHT, "GTK_CONSTRAINT_ATTRIBUTE_RIGHT", "right" },
-        { GTK_CONSTRAINT_ATTRIBUTE_TOP, "GTK_CONSTRAINT_ATTRIBUTE_TOP", "top" },
-        { GTK_CONSTRAINT_ATTRIBUTE_BOTTOM, "GTK_CONSTRAINT_ATTRIBUTE_BOTTOM", "bottom" },
-        { GTK_CONSTRAINT_ATTRIBUTE_START, "GTK_CONSTRAINT_ATTRIBUTE_START", "start" },
-        { GTK_CONSTRAINT_ATTRIBUTE_END, "GTK_CONSTRAINT_ATTRIBUTE_END", "end" },
-        { GTK_CONSTRAINT_ATTRIBUTE_WIDTH, "GTK_CONSTRAINT_ATTRIBUTE_WIDTH", "width" },
-        { GTK_CONSTRAINT_ATTRIBUTE_HEIGHT, "GTK_CONSTRAINT_ATTRIBUTE_HEIGHT", "height" },
-        { GTK_CONSTRAINT_ATTRIBUTE_CENTER_X, "GTK_CONSTRAINT_ATTRIBUTE_CENTER_X", "center-x" },
-        { GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y, "GTK_CONSTRAINT_ATTRIBUTE_CENTER_Y", "center-y" },
-        { GTK_CONSTRAINT_ATTRIBUTE_BASELINE, "GTK_CONSTRAINT_ATTRIBUTE_BASELINE", "baseline" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("GtkConstraintAttribute"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-GType
-gtk_constraint_vfl_parser_error_get_type (void)
-{
-  static volatile gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL, "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_SYMBOL", "symbol" },
-        { GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE, "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_ATTRIBUTE", "attribute" },
-        { GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW, "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_VIEW", "view" },
-        { GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC, "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_METRIC", "metric" },
-        { GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY, "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_PRIORITY", "priority" },
-        { GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION, "GTK_CONSTRAINT_VFL_PARSER_ERROR_INVALID_RELATION", "relation" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("GtkConstraintVflParserError"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-/* enumerations from "gtkeventcontrollerscroll.h" */
+/* enumerations from "gtk/gtkeventcontrollerscroll.h" */
 GType
 gtk_event_controller_scroll_flags_get_type (void)
 {
@@ -1542,7 +1777,7 @@ gtk_event_controller_scroll_flags_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkfilechooser.h" */
+/* enumerations from "gtk/gtkfilechooser.h" */
 GType
 gtk_file_chooser_action_get_type (void)
 {
@@ -1605,7 +1840,7 @@ gtk_file_chooser_error_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkfilefilter.h" */
+/* enumerations from "gtk/gtkfilefilter.h" */
 GType
 gtk_file_filter_flags_get_type (void)
 {
@@ -1627,7 +1862,7 @@ gtk_file_filter_flags_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkfontchooser.h" */
+/* enumerations from "gtk/gtkfontchooser.h" */
 GType
 gtk_font_chooser_level_get_type (void)
 {
@@ -1650,7 +1885,7 @@ gtk_font_chooser_level_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkicontheme.h" */
+/* enumerations from "gtk/gtkicontheme.h" */
 GType
 gtk_icon_lookup_flags_get_type (void)
 {
@@ -1696,7 +1931,7 @@ gtk_icon_theme_error_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkiconview.h" */
+/* enumerations from "gtk/gtkiconview.h" */
 GType
 gtk_icon_view_drop_position_get_type (void)
 {
@@ -1720,7 +1955,7 @@ gtk_icon_view_drop_position_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkimage.h" */
+/* enumerations from "gtk/gtkimage.h" */
 GType
 gtk_image_type_get_type (void)
 {
@@ -1730,9 +1965,13 @@ gtk_image_type_get_type (void)
     {
       static const GEnumValue values[] = {
         { GTK_IMAGE_EMPTY, "GTK_IMAGE_EMPTY", "empty" },
+        { GTK_IMAGE_PIXBUF, "GTK_IMAGE_PIXBUF", "pixbuf" },
+        { GTK_IMAGE_STOCK, "GTK_IMAGE_STOCK", "stock" },
+        { GTK_IMAGE_ICON_SET, "GTK_IMAGE_ICON_SET", "icon-set" },
+        { GTK_IMAGE_ANIMATION, "GTK_IMAGE_ANIMATION", "animation" },
         { GTK_IMAGE_ICON_NAME, "GTK_IMAGE_ICON_NAME", "icon-name" },
         { GTK_IMAGE_GICON, "GTK_IMAGE_GICON", "gicon" },
-        { GTK_IMAGE_PAINTABLE, "GTK_IMAGE_PAINTABLE", "paintable" },
+        { GTK_IMAGE_SURFACE, "GTK_IMAGE_SURFACE", "surface" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
@@ -1742,7 +1981,28 @@ gtk_image_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkmessagedialog.h" */
+/* enumerations from "gtk/gtkmenu.h" */
+GType
+gtk_arrow_placement_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_ARROWS_BOTH, "GTK_ARROWS_BOTH", "both" },
+        { GTK_ARROWS_START, "GTK_ARROWS_START", "start" },
+        { GTK_ARROWS_END, "GTK_ARROWS_END", "end" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkArrowPlacement"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkmessagedialog.h" */
 GType
 gtk_buttons_type_get_type (void)
 {
@@ -1766,7 +2026,7 @@ gtk_buttons_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkmodelbutton.h" */
+/* enumerations from "gtk/gtkmodelbutton.h" */
 GType
 gtk_button_role_get_type (void)
 {
@@ -1778,7 +2038,6 @@ gtk_button_role_get_type (void)
         { GTK_BUTTON_ROLE_NORMAL, "GTK_BUTTON_ROLE_NORMAL", "normal" },
         { GTK_BUTTON_ROLE_CHECK, "GTK_BUTTON_ROLE_CHECK", "check" },
         { GTK_BUTTON_ROLE_RADIO, "GTK_BUTTON_ROLE_RADIO", "radio" },
-        { GTK_BUTTON_ROLE_TITLE, "GTK_BUTTON_ROLE_TITLE", "title" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
@@ -1788,7 +2047,7 @@ gtk_button_role_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtknotebook.h" */
+/* enumerations from "gtk/gtknotebook.h" */
 GType
 gtk_notebook_tab_get_type (void)
 {
@@ -1808,7 +2067,7 @@ gtk_notebook_tab_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkpadcontroller.h" */
+/* enumerations from "gtk/gtkpadcontroller.h" */
 GType
 gtk_pad_action_type_get_type (void)
 {
@@ -1829,26 +2088,28 @@ gtk_pad_action_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkpopovermenu.h" */
+/* enumerations from "gtk/gtkplacessidebar.h" */
 GType
-gtk_popover_menu_flags_get_type (void)
+gtk_places_open_flags_get_type (void)
 {
   static volatile gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
       static const GFlagsValue values[] = {
-        { GTK_POPOVER_MENU_NESTED, "GTK_POPOVER_MENU_NESTED", "nested" },
+        { GTK_PLACES_OPEN_NORMAL, "GTK_PLACES_OPEN_NORMAL", "normal" },
+        { GTK_PLACES_OPEN_NEW_TAB, "GTK_PLACES_OPEN_NEW_TAB", "new-tab" },
+        { GTK_PLACES_OPEN_NEW_WINDOW, "GTK_PLACES_OPEN_NEW_WINDOW", "new-window" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
-        g_flags_register_static (g_intern_static_string ("GtkPopoverMenuFlags"), values);
+        g_flags_register_static (g_intern_static_string ("GtkPlacesOpenFlags"), values);
       g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
     }
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkprintoperation.h" */
+/* enumerations from "gtk/gtkprintoperation.h" */
 GType
 gtk_print_status_get_type (void)
 {
@@ -1938,7 +2199,72 @@ gtk_print_error_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkrecentmanager.h" */
+/* enumerations from "gtk/gtkrecentchooser.h" */
+GType
+gtk_recent_sort_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_RECENT_SORT_NONE, "GTK_RECENT_SORT_NONE", "none" },
+        { GTK_RECENT_SORT_MRU, "GTK_RECENT_SORT_MRU", "mru" },
+        { GTK_RECENT_SORT_LRU, "GTK_RECENT_SORT_LRU", "lru" },
+        { GTK_RECENT_SORT_CUSTOM, "GTK_RECENT_SORT_CUSTOM", "custom" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkRecentSortType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+GType
+gtk_recent_chooser_error_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_RECENT_CHOOSER_ERROR_NOT_FOUND, "GTK_RECENT_CHOOSER_ERROR_NOT_FOUND", "not-found" },
+        { GTK_RECENT_CHOOSER_ERROR_INVALID_URI, "GTK_RECENT_CHOOSER_ERROR_INVALID_URI", "invalid-uri" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkRecentChooserError"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkrecentfilter.h" */
+GType
+gtk_recent_filter_flags_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GTK_RECENT_FILTER_URI, "GTK_RECENT_FILTER_URI", "uri" },
+        { GTK_RECENT_FILTER_DISPLAY_NAME, "GTK_RECENT_FILTER_DISPLAY_NAME", "display-name" },
+        { GTK_RECENT_FILTER_MIME_TYPE, "GTK_RECENT_FILTER_MIME_TYPE", "mime-type" },
+        { GTK_RECENT_FILTER_APPLICATION, "GTK_RECENT_FILTER_APPLICATION", "application" },
+        { GTK_RECENT_FILTER_GROUP, "GTK_RECENT_FILTER_GROUP", "group" },
+        { GTK_RECENT_FILTER_AGE, "GTK_RECENT_FILTER_AGE", "age" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GtkRecentFilterFlags"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkrecentmanager.h" */
 GType
 gtk_recent_manager_error_get_type (void)
 {
@@ -1963,7 +2289,7 @@ gtk_recent_manager_error_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkrevealer.h" */
+/* enumerations from "gtk/gtkrevealer.h" */
 GType
 gtk_revealer_transition_type_get_type (void)
 {
@@ -1978,10 +2304,6 @@ gtk_revealer_transition_type_get_type (void)
         { GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT, "GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT", "slide-left" },
         { GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP, "GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP", "slide-up" },
         { GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN, "GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN", "slide-down" },
-        { GTK_REVEALER_TRANSITION_TYPE_SWING_RIGHT, "GTK_REVEALER_TRANSITION_TYPE_SWING_RIGHT", "swing-right" },
-        { GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT, "GTK_REVEALER_TRANSITION_TYPE_SWING_LEFT", "swing-left" },
-        { GTK_REVEALER_TRANSITION_TYPE_SWING_UP, "GTK_REVEALER_TRANSITION_TYPE_SWING_UP", "swing-up" },
-        { GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN, "GTK_REVEALER_TRANSITION_TYPE_SWING_DOWN", "swing-down" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
@@ -1991,7 +2313,7 @@ gtk_revealer_transition_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkscrolledwindow.h" */
+/* enumerations from "gtk/gtkscrolledwindow.h" */
 GType
 gtk_corner_type_get_type (void)
 {
@@ -2034,7 +2356,29 @@ gtk_policy_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkshortcutsshortcut.h" */
+/* enumerations from "gtk/gtkselection.h" */
+GType
+gtk_target_flags_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GTK_TARGET_SAME_APP, "GTK_TARGET_SAME_APP", "same-app" },
+        { GTK_TARGET_SAME_WIDGET, "GTK_TARGET_SAME_WIDGET", "same-widget" },
+        { GTK_TARGET_OTHER_APP, "GTK_TARGET_OTHER_APP", "other-app" },
+        { GTK_TARGET_OTHER_WIDGET, "GTK_TARGET_OTHER_WIDGET", "other-widget" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GtkTargetFlags"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkshortcutsshortcut.h" */
 GType
 gtk_shortcut_type_get_type (void)
 {
@@ -2051,8 +2395,6 @@ gtk_shortcut_type_get_type (void)
         { GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT, "GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_LEFT", "gesture-two-finger-swipe-left" },
         { GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT, "GTK_SHORTCUT_GESTURE_TWO_FINGER_SWIPE_RIGHT", "gesture-two-finger-swipe-right" },
         { GTK_SHORTCUT_GESTURE, "GTK_SHORTCUT_GESTURE", "gesture" },
-        { GTK_SHORTCUT_GESTURE_SWIPE_LEFT, "GTK_SHORTCUT_GESTURE_SWIPE_LEFT", "gesture-swipe-left" },
-        { GTK_SHORTCUT_GESTURE_SWIPE_RIGHT, "GTK_SHORTCUT_GESTURE_SWIPE_RIGHT", "gesture-swipe-right" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
@@ -2062,7 +2404,7 @@ gtk_shortcut_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkspinbutton.h" */
+/* enumerations from "gtk/gtkspinbutton.h" */
 GType
 gtk_spin_button_update_policy_get_type (void)
 {
@@ -2106,7 +2448,7 @@ gtk_spin_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkstack.h" */
+/* enumerations from "gtk/gtkstack.h" */
 GType
 gtk_stack_transition_type_get_type (void)
 {
@@ -2135,9 +2477,6 @@ gtk_stack_transition_type_get_type (void)
         { GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP, "GTK_STACK_TRANSITION_TYPE_OVER_DOWN_UP", "over-down-up" },
         { GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT, "GTK_STACK_TRANSITION_TYPE_OVER_LEFT_RIGHT", "over-left-right" },
         { GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT, "GTK_STACK_TRANSITION_TYPE_OVER_RIGHT_LEFT", "over-right-left" },
-        { GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT, "GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT", "rotate-left" },
-        { GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT, "GTK_STACK_TRANSITION_TYPE_ROTATE_RIGHT", "rotate-right" },
-        { GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT, "GTK_STACK_TRANSITION_TYPE_ROTATE_LEFT_RIGHT", "rotate-left-right" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
@@ -2147,7 +2486,7 @@ gtk_stack_transition_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkstylecontext.h" */
+/* enumerations from "gtk/gtkstylecontext.h" */
 GType
 gtk_style_context_print_flags_get_type (void)
 {
@@ -2168,7 +2507,7 @@ gtk_style_context_print_flags_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtktextbuffer.h" */
+/* enumerations from "gtk/gtktextbuffer.h" */
 GType
 gtk_text_buffer_target_info_get_type (void)
 {
@@ -2189,7 +2528,7 @@ gtk_text_buffer_target_info_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtktextiter.h" */
+/* enumerations from "gtk/gtktextiter.h" */
 GType
 gtk_text_search_flags_get_type (void)
 {
@@ -2210,7 +2549,7 @@ gtk_text_search_flags_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtktextview.h" */
+/* enumerations from "gtk/gtktextview.h" */
 GType
 gtk_text_window_type_get_type (void)
 {
@@ -2243,6 +2582,8 @@ gtk_text_view_layer_get_type (void)
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
       static const GEnumValue values[] = {
+        { GTK_TEXT_VIEW_LAYER_BELOW, "GTK_TEXT_VIEW_LAYER_BELOW", "below" },
+        { GTK_TEXT_VIEW_LAYER_ABOVE, "GTK_TEXT_VIEW_LAYER_ABOVE", "above" },
         { GTK_TEXT_VIEW_LAYER_BELOW_TEXT, "GTK_TEXT_VIEW_LAYER_BELOW_TEXT", "below-text" },
         { GTK_TEXT_VIEW_LAYER_ABOVE_TEXT, "GTK_TEXT_VIEW_LAYER_ABOVE_TEXT", "above-text" },
         { 0, NULL, NULL }
@@ -2273,7 +2614,47 @@ gtk_text_extend_selection_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtktreemodel.h" */
+/* enumerations from "gtk/gtktoolbar.h" */
+GType
+gtk_toolbar_space_style_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_TOOLBAR_SPACE_EMPTY, "GTK_TOOLBAR_SPACE_EMPTY", "empty" },
+        { GTK_TOOLBAR_SPACE_LINE, "GTK_TOOLBAR_SPACE_LINE", "line" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkToolbarSpaceStyle"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtktoolpalette.h" */
+GType
+gtk_tool_palette_drag_targets_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GFlagsValue values[] = {
+        { GTK_TOOL_PALETTE_DRAG_ITEMS, "GTK_TOOL_PALETTE_DRAG_ITEMS", "items" },
+        { GTK_TOOL_PALETTE_DRAG_GROUPS, "GTK_TOOL_PALETTE_DRAG_GROUPS", "groups" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_flags_register_static (g_intern_static_string ("GtkToolPaletteDragTargets"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtktreemodel.h" */
 GType
 gtk_tree_model_flags_get_type (void)
 {
@@ -2293,7 +2674,7 @@ gtk_tree_model_flags_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtktreeview.h" */
+/* enumerations from "gtk/gtktreeview.h" */
 GType
 gtk_tree_view_drop_position_get_type (void)
 {
@@ -2315,7 +2696,7 @@ gtk_tree_view_drop_position_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtktreeviewcolumn.h" */
+/* enumerations from "gtk/gtktreeviewcolumn.h" */
 GType
 gtk_tree_view_column_sizing_get_type (void)
 {
@@ -2336,7 +2717,27 @@ gtk_tree_view_column_sizing_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "gtkwindow.h" */
+/* enumerations from "gtk/gtkwidget.h" */
+GType
+gtk_widget_help_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_WIDGET_HELP_TOOLTIP, "GTK_WIDGET_HELP_TOOLTIP", "tooltip" },
+        { GTK_WIDGET_HELP_WHATS_THIS, "GTK_WIDGET_HELP_WHATS_THIS", "whats-this" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkWidgetHelpType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+/* enumerations from "gtk/gtkwindow.h" */
 GType
 gtk_window_type_get_type (void)
 {
@@ -2356,7 +2757,28 @@ gtk_window_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
+GType
+gtk_window_position_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { GTK_WIN_POS_NONE, "GTK_WIN_POS_NONE", "none" },
+        { GTK_WIN_POS_CENTER, "GTK_WIN_POS_CENTER", "center" },
+        { GTK_WIN_POS_MOUSE, "GTK_WIN_POS_MOUSE", "mouse" },
+        { GTK_WIN_POS_CENTER_ALWAYS, "GTK_WIN_POS_CENTER_ALWAYS", "center-always" },
+        { GTK_WIN_POS_CENTER_ON_PARENT, "GTK_WIN_POS_CENTER_ON_PARENT", "center-on-parent" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GtkWindowPosition"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
 
 
 /* Generated data ends here */
-

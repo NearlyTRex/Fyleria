@@ -334,33 +334,6 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libFribidi_releasedefines)
 
--- Gdk
-project "Gdk"
-language "C"
-pic "On"
-    kind(GetSharedLibraryType())
-    buildoptions(libGtk_buildoptions)
-    linkoptions(libGtk_linkoptions)
-    includedirs(libGtk_includedirs)
-    includedirs(libGdkPixbuf_includedirs)
-    includedirs(libGlib_includedirs)
-    includedirs(libCairo_includedirs)
-    includedirs(libEpoxy_includedirs)
-    includedirs(libGraphene_includedirs)
-    includedirs(libPango_includedirs)
-    includedirs(libHarfbuzz_includedirs)
-    includedirs(libFribidi_includedirs)
-    includedirs(libFontconfig_includedirs)
-    defines(libGtk_defines_Gdk)
-    files(libGtk_sources_Gdk)
-    links(libGtk_libs_Gdk)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("Gdk"))
-filter "configurations:Debug*"
-    defines(libGtk_debugdefines_Gdk)
-filter "configurations:Release*"
-    defines(libGtk_releasedefines_Gdk)
-
 -- GdkPixbuf
 project "GdkPixbuf"
 language "C"
@@ -380,33 +353,6 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libGdkPixbuf_releasedefines)
 
--- Gsk
-project "Gsk"
-language "C"
-pic "On"
-    kind(GetSharedLibraryType())
-    buildoptions(libGtk_buildoptions)
-    linkoptions(libGtk_linkoptions)
-    includedirs(libGtk_includedirs)
-    includedirs(libGlib_includedirs)
-    includedirs(libGraphene_includedirs)
-    includedirs(libGdkPixbuf_includedirs)
-    includedirs(libCairo_includedirs)
-    includedirs(libEpoxy_includedirs)
-    includedirs(libFreeType2_includedirs)
-    includedirs(libFontconfig_includedirs)
-    includedirs(libPango_includedirs)
-    includedirs(libHarfbuzz_includedirs)
-    defines(libGtk_defines_Gsk)
-    files(libGtk_sources_Gsk)
-    links(libGtk_libs_Gsk)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("Gsk"))
-filter "configurations:Debug*"
-    defines(libGtk_debugdefines_Gsk)
-filter "configurations:Release*"
-    defines(libGtk_releasedefines_Gsk)
-
 -- Gtk
 project "Gtk"
 language "C"
@@ -423,37 +369,19 @@ pic "On"
     includedirs(libCairo_includedirs)
     includedirs(libEpoxy_includedirs)
     includedirs(libFreeType2_includedirs)
+    includedirs(libFribidi_includedirs)
     includedirs(libFontconfig_includedirs)
     includedirs(libHarfbuzz_includedirs)
     includedirs(libPango_includedirs)
-    defines(libGtk_defines_Gtk)
-    files(libGtk_sources_Gtk)
-    links(libGtk_libs_Gtk)
+    defines(libGtk_defines)
+    files(libGtk_sources)
+    links(libGtk_libs)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("Gtk"))
 filter "configurations:Debug*"
-    defines(libGtk_debugdefines_Gtk)
+    defines(libGtk_debugdefines)
 filter "configurations:Release*"
-    defines(libGtk_releasedefines_Gtk)
-
--- GtkCss
-project "GtkCss"
-language "C"
-pic "On"
-    kind(GetSharedLibraryType())
-    buildoptions(libGtk_buildoptions)
-    linkoptions(libGtk_linkoptions)
-    includedirs(libGtk_includedirs)
-    includedirs(libGlib_includedirs)
-    defines(libGtk_defines_GtkCss)
-    files(libGtk_sources_GtkCss)
-    links(libGtk_libs_GtkCss)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("GtkCss"))
-filter "configurations:Debug*"
-    defines(libGtk_debugdefines_GtkCss)
-filter "configurations:Release*"
-    defines(libGtk_releasedefines_GtkCss)
+    defines(libGtk_releasedefines)
 
 -- GCrypt
 project "GCrypt"
