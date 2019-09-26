@@ -37,12 +37,14 @@ end
 appFyleria_libs = {
 }
 if os.host() == "linux" then
-    table.insert(appFyleria_libs, "JavaScriptCoreGTK")
-    table.insert(appFyleria_libs, "WebKitGTK")
     table.insert(appFyleria_libs, "Boost")
     table.insert(appFyleria_libs, "FantasyName")
     table.insert(appFyleria_libs, "MicroPather")
     table.insert(appFyleria_libs, "SpdLog")
+    table.insert(appFyleria_libs, "Glib")
+    table.insert(appFyleria_libs, "Gtk")
+    table.insert(appFyleria_libs, "JavaScriptCoreGTK")
+    table.insert(appFyleria_libs, "WebKitGTK")
 end
 
 -- Sources
