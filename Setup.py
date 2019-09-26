@@ -100,7 +100,7 @@ def main():
     # Parse program options
     do_all = program_options.mode == "all"
     do_setup_cpp_libs = program_options.mode == "setup_cpp_libs"
-    do_setup_py_libs = (program_options.mode == "setup_py_libs" || program_options.mode == "setup_js_libs")
+    do_setup_py_libs = (program_options.mode == "setup_py_libs" or program_options.mode == "setup_js_libs")
     do_setup_js_libs = program_options.mode == "setup_js_libs"
     do_build_tools = program_options.mode == "build_tools"
     do_build_game = program_options.mode == "build_game"
