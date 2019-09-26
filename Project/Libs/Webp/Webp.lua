@@ -6,7 +6,8 @@ libWebp_incdir = libWebp_origdir
 
 -- Includes
 libWebp_includedirs = {
-    libWebp_incdir
+    libWebp_incdir,
+    libWebp_incdir .. "src/"
 }
 if os.host() == "linux" then
     table.insert(libWebp_includedirs, libWebp_extradir .. "linux/")
