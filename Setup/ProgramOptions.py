@@ -41,11 +41,8 @@ def GetProgramOptions():
     parser.add_argument('mode', choices=[
         'all',
         'setup_cpp_libraries',
-        'setup_javascript_libraries',
-        'build_premake',
-        'build_jsmin',
-        'build_tiled',
-        'build_zip',
+        'setup_js_libraries',
+        'build_tools',
         'build_game',
     ], help='Setup mode')
     args = parser.parse_args()

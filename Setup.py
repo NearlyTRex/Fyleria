@@ -27,81 +27,88 @@ def main():
         Utility.ErrorStatement("Python %d.%d or higher is required to run this script" % Utility.GetRequiredPythonVersion())
         sys.exit(-1)
 
+    # Project sets
+    projects_cpplibs = [
+        "Atk",
+        "AtkBridge",
+        "AtkCore",
+        "BackwardCPP",
+        "BetterEnums",
+        "Boost",
+        "Brotli",
+        "DateCPP",
+        "Cairo",
+        "Curl",
+        "ElfUtils",
+        "Epoxy",
+        "FantasyName",
+        "FFI",
+        "Fontconfig",
+        "FreeType2",
+        "Fribidi",
+        "GCrypt",
+        "GdkPixbuf",
+        "Glib",
+        "GPGError",
+        "Graphene",
+        "Gtk",
+        "Harfbuzz",
+        "Icu",
+        "ImmutableString",
+        "Jpeg",
+        "LibreSSL",
+        "LRUCache",
+        "MicroPather",
+        "ModernCPPJson",
+        "ObjectThreadsafe",
+        "OpenCFLite",
+        "Pango",
+        "Pixman",
+        "PCRE",
+        "PNG",
+        "PSL",
+        "PThreadsWin32",
+        "Soup",
+        "SpdLog",
+        "SQLite",
+        "UtilLinux",
+        "WebKitGTK",
+        "Webp",
+        "XkbCommon",
+        "XML2",
+        "XSLT",
+        "Zlib"
+    ]
+    projects_jslibs = [
+        "Bootstrap",
+        "jQuery",
+        "jQueryTerminal",
+        "Phaser",
+        "Polyfill",
+        "Screenfull"
+    ]
+    projects_tools = [
+        "Premake5",
+        "Zip",
+        "Unzip",
+        "Tiled"
+    ]
+
     # Parse program options
     do_all = program_options.mode == "all"
     do_setup_cpp_libraries = program_options.mode == "setup_cpp_libraries"
-    do_setup_javascript_libraries = program_options.mode == "setup_javascript_libraries"
-    do_build_premake = program_options.mode == "build_premake"
-    do_build_jsmin = program_options.mode == "build_jsmin"
-    do_build_tiled = program_options.mode == "build_tiled"
-    do_build_zip = program_options.mode == "build_zip"
+    do_setup_js_libraries = program_options.mode == "setup_js_libraries"
+    do_build_tools = program_options.mode == "build_tools"
     do_build_game = program_options.mode == "build_game"
-    if do_build_premake or do_all:
-        Project.SetupProject("Premake5", "Project/Programs", system_info, program_options)
-    if do_build_jsmin or do_all:
-        Project.SetupProject("JSMin", "Project/Programs", system_info, program_options)
-    if do_build_tiled or do_all:
-        Project.SetupProject("Tiled", "Project/Programs", system_info, program_options)
-    if do_build_zip or do_all:
-        Project.SetupProject("Zip", "Project/Programs", system_info, program_options)
-        Project.SetupProject("Unzip", "Project/Programs", system_info, program_options)
     if do_setup_cpp_libraries or do_all:
-        Project.SetupProject("Atk", "Project/Libs", system_info, program_options)
-        Project.SetupProject("AtkBridge", "Project/Libs", system_info, program_options)
-        Project.SetupProject("AtkCore", "Project/Libs", system_info, program_options)
-        Project.SetupProject("BackwardCPP", "Project/Libs", system_info, program_options)
-        Project.SetupProject("BetterEnums", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Boost", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Brotli", "Project/Libs", system_info, program_options)
-        Project.SetupProject("DateCPP", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Cairo", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Curl", "Project/Libs", system_info, program_options)
-        Project.SetupProject("ElfUtils", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Epoxy", "Project/Libs", system_info, program_options)
-        Project.SetupProject("FantasyName", "Project/Libs", system_info, program_options)
-        Project.SetupProject("FFI", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Fontconfig", "Project/Libs", system_info, program_options)
-        Project.SetupProject("FreeType2", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Fribidi", "Project/Libs", system_info, program_options)
-        Project.SetupProject("GCrypt", "Project/Libs", system_info, program_options)
-        Project.SetupProject("GdkPixbuf", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Glib", "Project/Libs", system_info, program_options)
-        Project.SetupProject("GPGError", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Graphene", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Gtk", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Harfbuzz", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Icu", "Project/Libs", system_info, program_options)
-        Project.SetupProject("ImmutableString", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Jpeg", "Project/Libs", system_info, program_options)
-        Project.SetupProject("LibreSSL", "Project/Libs", system_info, program_options)
-        Project.SetupProject("LRUCache", "Project/Libs", system_info, program_options)
-        Project.SetupProject("MicroPather", "Project/Libs", system_info, program_options)
-        Project.SetupProject("ModernCPPJson", "Project/Libs", system_info, program_options)
-        Project.SetupProject("ObjectThreadsafe", "Project/Libs", system_info, program_options)
-        Project.SetupProject("OpenCFLite", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Pango", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Pixman", "Project/Libs", system_info, program_options)
-        Project.SetupProject("PCRE", "Project/Libs", system_info, program_options)
-        Project.SetupProject("PNG", "Project/Libs", system_info, program_options)
-        Project.SetupProject("PSL", "Project/Libs", system_info, program_options)
-        Project.SetupProject("PThreadsWin32", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Soup", "Project/Libs", system_info, program_options)
-        Project.SetupProject("SpdLog", "Project/Libs", system_info, program_options)
-        Project.SetupProject("SQLite", "Project/Libs", system_info, program_options)
-        Project.SetupProject("UtilLinux", "Project/Libs", system_info, program_options)
-        Project.SetupProject("WebKitGTK", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Webp", "Project/Libs", system_info, program_options)
-        Project.SetupProject("XkbCommon", "Project/Libs", system_info, program_options)
-        Project.SetupProject("XML2", "Project/Libs", system_info, program_options)
-        Project.SetupProject("XSLT", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Zlib", "Project/Libs", system_info, program_options)
-    if do_setup_javascript_libraries or do_all:
-        Project.SetupProject("Bootstrap", "Project/Libs", system_info, program_options)
-        Project.SetupProject("jQuery", "Project/Libs", system_info, program_options)
-        Project.SetupProject("jQueryTerminal", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Phaser", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Polyfill", "Project/Libs", system_info, program_options)
-        Project.SetupProject("Screenfull", "Project/Libs", system_info, program_options)
+        for project in projects_cpplibs:
+            Project.SetupProject(project, "Project/Libs", system_info, program_options)
+    if do_setup_js_libraries or do_all:
+        for project in projects_jslibs:
+            Project.SetupProject(project, "Project/Libs", system_info, program_options)
+    if do_build_tools or do_all:
+        for project in projects_tools:
+            Project.SetupProject(project, "Project/Programs", system_info, program_options)
     if do_build_game or do_all:
         Project.BuildProject(system_info, program_options)
 ###########################################################################

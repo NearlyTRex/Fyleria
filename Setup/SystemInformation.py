@@ -41,23 +41,23 @@ def GetSystemInformation(program_options, root_path):
     if detect_linux or detect_wsl:
         detect_make_bin = "make"
         detect_build_bin = "make"
-        detect_zip_bin = "zip"
-        detect_unzip_bin = "unzip"
-        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/orig/bin/release/premake5"))
+        detect_zip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Zip/bin/linux_" + detect_bitness + "/zip"))
+        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/linux_" + detect_bitness + "/unzip"))
+        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/bin/linux_" + detect_bitness + "/premake5"))
         detect_out_bin = "FyleriaMain_linux_" + detect_bitness + "_" + program_options.configuration
     elif detect_macosx:
         detect_make_bin = "make"
         detect_build_bin = "xcodebuild"
-        detect_zip_bin = "zip"
-        detect_unzip_bin = "unzip"
-        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/orig/bin/release/premake5"))
+        detect_zip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Zip/bin/macosx_" + detect_bitness + "/zip"))
+        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/macosx_" + detect_bitness + "/unzip"))
+        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/bin/macosx_" + detect_bitness + "/premake5"))
         detect_out_bin = "FyleriaMain_macosx_" + detect_bitness + "_" + program_options.configuration
     elif detect_windows or detect_cygwin or detect_mingw:
         detect_make_bin = "nmake"
         detect_build_bin = "devenv.com"
-        detect_zip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Zip/bin/windows-x86-32/zip.exe"))
-        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/windows-x86-32/unzip.exe"))
-        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/bin/windows-x86-32/premake5.exe"))
+        detect_zip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Zip/bin/windows_" + detect_bitness + "/zip.exe"))
+        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/windows_" + detect_bitness + "/unzip.exe"))
+        detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/bin/windows_" + detect_bitness + "/premake5.exe"))
         detect_out_bin = "FyleriaMain_windows_" + detect_bitness + "_" + program_options.configuration + ".exe"
     info = SystemInformation()
     info.root_path = os.path.normpath(root_path)
