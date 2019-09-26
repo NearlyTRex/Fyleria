@@ -40,8 +40,9 @@ def GetProgramOptions():
     parser.add_argument('-v', '--verbose', action='store_true', help='Enable verbose messages')
     parser.add_argument('mode', choices=[
         'all',
-        'setup_cpp_libraries',
-        'setup_js_libraries',
+        'setup_cpp_libs',
+        'setup_py_libs',
+        'setup_js_libs',
         'build_tools',
         'build_game',
     ], help='Setup mode')

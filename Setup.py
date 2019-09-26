@@ -20,7 +20,7 @@ def main():
     system_info = SystemInformation.GetSystemInformation(program_options, os.path.dirname(os.path.abspath( __file__ )))
 
     # Update module path
-    sys.path.append(os.path.join(system_info.root_path, "Project/Programs/JSMin/extra"))
+    sys.path.append(os.path.join(system_info.root_path, "Project/Libs/PyJSMin/orig"))
 
     # Check Python
     if Utility.DetectPython(Utility.GetRequiredPythonVersion()) == False:
@@ -79,6 +79,9 @@ def main():
         "XSLT",
         "Zlib"
     ]
+    projects_pylibs = [
+        "PyJSMin"
+    ]
     projects_jslibs = [
         "Bootstrap",
         "jQuery",
@@ -96,14 +99,18 @@ def main():
 
     # Parse program options
     do_all = program_options.mode == "all"
-    do_setup_cpp_libraries = program_options.mode == "setup_cpp_libraries"
-    do_setup_js_libraries = program_options.mode == "setup_js_libraries"
+    do_setup_cpp_libs = program_options.mode == "setup_cpp_libs"
+    do_setup_py_libs = (program_options.mode == "setup_py_libs" || program_options.mode == "setup_js_libs")
+    do_setup_js_libs = program_options.mode == "setup_js_libs"
     do_build_tools = program_options.mode == "build_tools"
     do_build_game = program_options.mode == "build_game"
-    if do_setup_cpp_libraries or do_all:
+    if do_setup_cpp_libs or do_all:
         for project in projects_cpplibs:
             Project.SetupProject(project, "Project/Libs", system_info, program_options)
-    if do_setup_js_libraries or do_all:
+    if do_setup_py_libs or do_all:
+        for project in projects_pylibs:
+            Project.SetupProject(project, "Project/Libs", system_info, program_options)
+    if do_setup_js_libs or do_all:
         for project in projects_jslibs:
             Project.SetupProject(project, "Project/Libs", system_info, program_options)
     if do_build_tools or do_all:
