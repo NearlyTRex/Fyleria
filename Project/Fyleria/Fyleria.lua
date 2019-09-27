@@ -43,6 +43,9 @@ if os.host() == "linux" then
     table.insert(appFyleria_libs, "SpdLog")
     table.insert(appFyleria_libs, "Glib")
     table.insert(appFyleria_libs, "Gtk")
+    table.insert(appFyleria_libs, "GdkPixbuf")
+    table.insert(appFyleria_libs, "Epoxy")
+    table.insert(appFyleria_libs, "ElfUtils")
     table.insert(appFyleria_libs, "JavaScriptCoreGTK")
     table.insert(appFyleria_libs, "WebKitGTK")
 end
