@@ -59,7 +59,7 @@ libWebKitGTK_includedirs_JavaScriptCoreGTK = {
 }
 
 -- Includes (WebCoreGTK)
-    libWebKitGTK_includedirs_WebCoreGTK = {
+libWebKitGTK_includedirs_WebCoreGTK = {
     libWebKitGTK_incdir .. "DerivedSources",
     libWebKitGTK_incdir .. "DerivedSources/ForwardingHeaders/WebCore",
     libWebKitGTK_incdir .. "DerivedSources/ForwardingHeaders/ANGLE",
