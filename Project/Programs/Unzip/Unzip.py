@@ -1,11 +1,10 @@
-# Source: https://github.com/NearlyTRex/unzip
+# Source: https://github.com/NearlyTRex/infozip-unzip
 # Version: Gitmaster
 
 # Program info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/unzip/archive/master.zip"
-Setup['extractdir'] = "unzip-master"
+Setup['url'] = "https://github.com/NearlyTRex/infozip-unzip/archive/master.zip"
+Setup['extractdir'] = "infozip-unzip-master"
 Setup['steps'] = {}
-Setup['steps']['all'] = []
-Setup['steps']['all'].append('RunProcess("cmake .")')
-Setup['steps']['all'].append('RunProcess("make")')
+Setup['steps']['posix'] = []
+Setup['steps']['posix'].append('RunProcess("make -f unix/Makefile CC=gcc generic")')
