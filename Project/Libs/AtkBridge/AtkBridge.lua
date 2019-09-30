@@ -35,7 +35,11 @@ libAtkBridge_linkoptions = {
 
 -- Libs
 libAtkBridge_libs = {
+    "AtkCore"
 }
+if os.host() == "linux" then
+    table.insert(libAtkBridge_libs, "dbus-1")
+end
 
 -- Sources
 libAtkBridge_sources = {

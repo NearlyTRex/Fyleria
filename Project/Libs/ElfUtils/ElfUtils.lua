@@ -43,6 +43,9 @@ libElfUtils_linkoptions = {
 -- Libs
 libElfUtils_libs = {
 }
+if os.host() == "linux" then
+    table.insert(libElfUtils_libs, "ubsan")
+end
 
 -- Sources
 libElfUtils_sources = {

@@ -32,6 +32,9 @@ libAtkCore_linkoptions = {
 -- Libs
 libAtkCore_libs = {
 }
+if os.host() == "linux" then
+    table.insert(libAtkCore_libs, "dbus-1")
+end
 
 -- Sources
 libAtkCore_sources = {
@@ -61,6 +64,8 @@ libAtkCore_sources = {
     libAtkCore_srcdir .. "atspi/atspi-table-cell.c",
     libAtkCore_srcdir .. "atspi/atspi-text.c",
     libAtkCore_srcdir .. "atspi/atspi-value.c",
+    libAtkCore_srcdir .. "dbind/dbind-any.c",
+    libAtkCore_srcdir .. "dbind/dbind.c",
 }
 if os.host() == "linux" then
     table.insert(libAtkCore_sources, libAtkCore_extradir .. "linux/atspi/atspi-enum-types.c")

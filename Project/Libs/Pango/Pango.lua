@@ -42,6 +42,7 @@ libPango_linkoptions = {
 
 -- Libs
 libPango_libs = {
+    "Fribidi"
 }
 
 -- Sources

@@ -61,6 +61,7 @@ libUtilLinux_sources = {
     libUtilLinux_srcdir .. "lib/mbsalign.c",
     libUtilLinux_srcdir .. "lib/mbsedit.c",
     libUtilLinux_srcdir .. "lib/md5.c",
+    libUtilLinux_srcdir .. "lib/monotonic.c",
     libUtilLinux_srcdir .. "lib/pager.c",
     libUtilLinux_srcdir .. "lib/parse-date.c",
     libUtilLinux_srcdir .. "lib/pwdutils.c",

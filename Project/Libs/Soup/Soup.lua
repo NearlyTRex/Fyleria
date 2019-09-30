@@ -35,6 +35,7 @@ libSoup_linkoptions = {
 
 -- Libs
 libSoup_libs = {
+    "PSL"
 }
 
 -- Sources

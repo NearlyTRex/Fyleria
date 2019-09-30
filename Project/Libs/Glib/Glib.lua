@@ -48,7 +48,12 @@ libGlib_linkoptions = {
 
 -- Libs
 libGlib_libs = {
+    "FFI"
 }
+if os.host() == "linux" then
+    table.insert(libGlib_libs, "resolv")
+    table.insert(libGlib_libs, "selinux")
+end
 
 -- Sources
 libGlib_sources = {
@@ -117,7 +122,6 @@ libGlib_sources = {
     libGlib_srcdir .. "glib/gstrfuncs.c",
     libGlib_srcdir .. "glib/gstring.c",
     libGlib_srcdir .. "glib/gstringchunk.c",
-    libGlib_srcdir .. "glib/gtester.c",
     libGlib_srcdir .. "glib/gtestutils.c",
     libGlib_srcdir .. "glib/gthread.c",
     libGlib_srcdir .. "glib/gthreadpool.c",
@@ -241,22 +245,6 @@ libGlib_sources = {
     libGlib_srcdir .. "gio/giomodule-priv.c",
     libGlib_srcdir .. "gio/gioscheduler.c",
     libGlib_srcdir .. "gio/giostream.c",
-    libGlib_srcdir .. "gio/gio-tool-cat.c",
-    libGlib_srcdir .. "gio/gio-tool-copy.c",
-    libGlib_srcdir .. "gio/gio-tool-info.c",
-    libGlib_srcdir .. "gio/gio-tool-list.c",
-    libGlib_srcdir .. "gio/gio-tool-mime.c",
-    libGlib_srcdir .. "gio/gio-tool-mkdir.c",
-    libGlib_srcdir .. "gio/gio-tool-monitor.c",
-    libGlib_srcdir .. "gio/gio-tool-mount.c",
-    libGlib_srcdir .. "gio/gio-tool-move.c",
-    libGlib_srcdir .. "gio/gio-tool-open.c",
-    libGlib_srcdir .. "gio/gio-tool-remove.c",
-    libGlib_srcdir .. "gio/gio-tool-rename.c",
-    libGlib_srcdir .. "gio/gio-tool-save.c",
-    libGlib_srcdir .. "gio/gio-tool-set.c",
-    libGlib_srcdir .. "gio/gio-tool-trash.c",
-    libGlib_srcdir .. "gio/gio-tool-tree.c",
     libGlib_srcdir .. "gio/xdgmime/xdgmime.c",
     libGlib_srcdir .. "gio/xdgmime/xdgmimealias.c",
     libGlib_srcdir .. "gio/xdgmime/xdgmimecache.c",

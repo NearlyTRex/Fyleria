@@ -70,7 +70,17 @@ libGtk_linkoptions = {
 
 -- Libs
 libGtk_libs = {
+    "AtkBridge",
+    "Epoxy",
+    "GdkPixbuf"
 }
+if os.host() == "linux" then
+    table.insert(libGtk_libs, "Xcomposite")
+    table.insert(libGtk_libs, "Xcursor")
+    table.insert(libGtk_libs, "Xdamage")
+    table.insert(libGtk_libs, "Xi")
+    table.insert(libGtk_libs, "Xrandr")
+end
 
 -- Sources
 libGtk_sources = {
@@ -660,12 +670,6 @@ libGtk_sources = {
     libGtk_srcdir .. "gtk/inspector/treewalk.c",
     libGtk_srcdir .. "gtk/inspector/visual.c",
     libGtk_srcdir .. "gtk/inspector/window.c",
-    --libGtk_srcdir .. "gtk/language-names.c",
-    --libGtk_srcdir .. "gtk/queryimmodules.c",
-    --libGtk_srcdir .. "gtk/script-names.c",
-    --libGtk_srcdir .. "gtk/updateiconcache.c",
-    --libGtk_srcdir .. "libgail-util/gailmisc.c",
-    --libGtk_srcdir .. "libgail-util/gailtextutil.c",
     libGtk_srcdir .. "modules/input/gtkimcontextmultipress.c",
     libGtk_srcdir .. "modules/input/gtkimcontextthai.c",
     libGtk_srcdir .. "modules/input/gtkimcontextxim.c",

@@ -199,7 +199,6 @@ libWebKitGTK_includedirs_WebCoreGTK = {
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/texmap",
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/texmap/coordinated",
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/transforms",
-    libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/wayland",
     libWebKitGTK_incdir .. "Source/WebCore/platform/graphics/x11",
     libWebKitGTK_incdir .. "Source/WebCore/platform/gtk",
     libWebKitGTK_incdir .. "Source/WebCore/platform/image-decoders",
@@ -554,26 +553,6 @@ libWebKitGTK_libs_External = {
     "XML2",
     "XSLT",
     "Zlib"
-}
-
--- Libs (System)
-libWebKitGTK_libs_System = {
-    "dl",
-    "dw",
-    "rt",
-    "mount",
-    "uuid",
-    "pthread",
-    "selinux",
-    "resolv",
-    "GL",
-    "GLU",
-    "EGL",
-    "X11",
-    "Xcomposite",
-    "Xdamage",
-    "Xext",
-    "Xrender"
 }
 
 -- Sources (JavaScriptCoreGTK)
@@ -1393,7 +1372,6 @@ libWebKitGTK_sources_WebCoreGTK = {
     libWebKitGTK_srcdir .. "Source/WebCore/platform/graphics/cairo/BackingStoreBackendCairoX11.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/platform/graphics/cairo/CairoUtilities.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/platform/graphics/cairo/FontCairoHarfbuzzNG.cpp",
-    libWebKitGTK_srcdir .. "Source/WebCore/platform/graphics/egl/GLContextEGLWayland.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/platform/graphics/egl/GLContextEGLX11.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/platform/graphics/freetype/FontCustomPlatformDataFreeType.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/platform/graphics/freetype/FontPlatformDataFreeType.cpp",
@@ -1658,7 +1636,6 @@ libWebKitGTK_sources_WebKitGTK = {
     libWebKitGTK_srcdir .. "DerivedSources/WebKit/unified-sources/UnifiedSource-ffd8323f-1.cpp",
     libWebKitGTK_srcdir .. "DerivedSources/webkit2gtk/InspectorGResourceBundle.c",
     libWebKitGTK_srcdir .. "DerivedSources/webkit2gtk/WebKitResourcesGResourceBundle.c",
-    libWebKitGTK_srcdir .. "DerivedSources/webkit2gtk/WebKitWaylandClientProtocol.c",
     libWebKitGTK_srcdir .. "DerivedSources/webkit2gtk/webkit2/WebKitEnumTypes.cpp",
     libWebKitGTK_srcdir .. "DerivedSources/webkit2gtk/webkit2/WebKitWebProcessEnumTypes.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/NetworkProcess/ServiceWorker/WebSWOriginStore.cpp",
@@ -1806,14 +1783,12 @@ libWebKitGTK_sources_WebKitGTK = {
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/WebMemoryPressureHandler.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/cairo/BackingStoreCairo.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/AcceleratedBackingStore.cpp",
-    libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/AcceleratedBackingStoreWayland.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/AcceleratedBackingStoreX11.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/InputMethodFilter.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/RemoteWebInspectorProxyGtk.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/TextCheckerGtk.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/ViewGestureControllerGtk.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/ViewSnapshotStoreGtk.cpp",
-    libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/WaylandCompositor.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/WebColorPickerGtk.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/UIProcess/gtk/WebPageProxyGtk.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/WebProcess/InjectedBundle/API/glib/DOM/DOMObjectCache.cpp",
