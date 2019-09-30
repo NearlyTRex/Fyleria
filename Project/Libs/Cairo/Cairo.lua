@@ -44,6 +44,9 @@ end
 
 -- Libs
 libCairo_libs = {
+    "Fontconfig",
+    "Pixman",
+    "PNG"
 }
 if os.host() == "linux" then
     table.insert(libCairo_libs, "EGL")

@@ -501,58 +501,24 @@ libWebKitGTK_libs_WebCoreGTK = {
 
 -- Libs (JavaScriptCoreGTK)
 libWebKitGTK_libs_JavaScriptCoreGTK = {
-    "WebCoreGTK",
-    "WTFGTK"
 }
 
 -- Libs (WebKitGTK)
 libWebKitGTK_libs_WebKitGTK = {
     "WebCoreGTK",
-    "WTFGTK"
+    "JavaScriptCoreGTK",
+    "WTFGTK",
+    "Icu",
+    "Jpeg",
+    "Soup",
+    "SQLite",
+    "Webp",
+    "XSLT"
 }
 
 -- Libs (Processes)
 libWebKitGTK_libs_Processes = {
-    "JavaScriptCoreGTK",
-    "WebKitGTK",
-    "WebCoreGTK",
-    "WTFGTK"
-}
-
--- Libs (External)
-libWebKitGTK_libs_External = {
-    "Atk",
-    "AtkBridge",
-    "AtkCore",
-    "Cairo",
-    "ElfUtils",
-    "Epoxy",
-    "FFI",
-    "Fontconfig",
-    "FreeType2",
-    "Fribidi",
-    "GCrypt",
-    "GdkPixbuf",
-    "Glib",
-    "GPGError",
-    "Graphene",
-    "Gtk",
-    "Harfbuzz",
-    "Icu",
-    "IcuData",
-    "Jpeg",
-    "Pango",
-    "PCRE",
-    "Pixman",
-    "PNG",
-    "PSL",
-    "Soup",
-    "SQLite",
-    "UtilLinux",
-    "Webp",
-    "XML2",
-    "XSLT",
-    "Zlib"
+    "WebKitGTK"
 }
 
 -- Sources (JavaScriptCoreGTK)

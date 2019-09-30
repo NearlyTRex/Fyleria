@@ -31,6 +31,9 @@ libXML2_linkoptions = {
 
 -- Libs
 libXML2_libs = {
+    "Icu",
+    "IcuData",
+    "Zlib"
 }
 
 -- Sources

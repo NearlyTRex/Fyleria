@@ -30,6 +30,7 @@ libXSLT_linkoptions = {
 
 -- Libs
 libXSLT_libs = {
+    "XML2"
 }
 
 -- Sources

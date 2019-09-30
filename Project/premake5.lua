@@ -798,7 +798,7 @@ filter "configurations:Release*"
 project "WTFGTK"
 language "C++"
 pic "On"
-    kind(GetSharedLibraryType())
+    kind(GetStaticLibraryType())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_Libraries)
     linkoptions(libWebKitGTK_linkoptions_Libraries)
@@ -808,7 +808,6 @@ pic "On"
     includedirs(libIcu_includedirs)
     defines(libWebKitGTK_defines_WTFGTK)
     files(libWebKitGTK_sources_WTFGTK)
-    links(libWebKitGTK_libs_External)
     links(libWebKitGTK_libs_WTFGTK)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("WTFGTK"))
@@ -821,7 +820,7 @@ filter "configurations:Release*"
 project "WebCoreGTK"
 language "C++"
 pic "On"
-    kind(GetSharedLibraryType())
+    kind(GetStaticLibraryType())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_Libraries)
     linkoptions(libWebKitGTK_linkoptions_Libraries)
@@ -850,7 +849,6 @@ pic "On"
     includedirs(libXSLT_includedirs)
     defines(libWebKitGTK_defines_WebCoreGTK)
     files(libWebKitGTK_sources_WebCoreGTK)
-    links(libWebKitGTK_libs_External)
     links(libWebKitGTK_libs_WebCoreGTK)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("WebCoreGTK"))
@@ -863,7 +861,7 @@ filter "configurations:Release*"
 project "JavaScriptCoreGTK"
 language "C++"
 pic "On"
-    kind(GetSharedLibraryType())
+    kind(GetStaticLibraryType())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_Libraries)
     linkoptions(libWebKitGTK_linkoptions_Libraries)
@@ -875,7 +873,6 @@ pic "On"
     includedirs(libIcu_includedirs)
     defines(libWebKitGTK_defines_JavaScriptCoreGTK)
     files(libWebKitGTK_sources_JavaScriptCoreGTK)
-    links(libWebKitGTK_libs_External)
     links(libWebKitGTK_libs_JavaScriptCoreGTK)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("JavaScriptCoreGTK"))
@@ -911,7 +908,6 @@ pic "On"
     includedirs(libPango_includedirs)
     defines(libWebKitGTK_defines_WebKitGTK)
     files(libWebKitGTK_sources_WebKitGTK)
-    links(libWebKitGTK_libs_External)
     links(libWebKitGTK_libs_WebKitGTK)
     targetdir(GetLibraryTargetDirectory())
     targetname(GetTargetName("WebKitGTK"))

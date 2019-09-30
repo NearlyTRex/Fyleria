@@ -48,9 +48,11 @@ libGlib_linkoptions = {
 
 -- Libs
 libGlib_libs = {
-    "FFI"
+    "FFI",
+    "Zlib"
 }
 if os.host() == "linux" then
+    table.insert(libGlib_libs, "UtilLinux")
     table.insert(libGlib_libs, "resolv")
     table.insert(libGlib_libs, "selinux")
 end

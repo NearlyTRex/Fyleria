@@ -70,9 +70,13 @@ libGtk_linkoptions = {
 
 -- Libs
 libGtk_libs = {
+    "Atk",
     "AtkBridge",
+    "Cairo",
     "Epoxy",
-    "GdkPixbuf"
+    "GdkPixbuf",
+    "Harfbuzz",
+    "Pango"
 }
 if os.host() == "linux" then
     table.insert(libGtk_libs, "Xcomposite")

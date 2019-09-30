@@ -34,6 +34,7 @@ libFontconfig_linkoptions = {
 
 -- Libs
 libFontconfig_libs = {
+    "FreeType2"
 }
 
 -- Sources
