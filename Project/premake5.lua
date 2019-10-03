@@ -800,10 +800,9 @@ language "C++"
 pic "On"
     kind(GetStaticLibraryType())
     cppdialect(GetCpp14Dialect())
-    buildoptions(libWebKitGTK_buildoptions_Libraries)
-    linkoptions(libWebKitGTK_linkoptions_Libraries)
+    buildoptions(libWebKitGTK_buildoptions_WTFGTK)
+    linkoptions(libWebKitGTK_linkoptions_WTFGTK)
     includedirs(libWebKitGTK_includedirs_WTFGTK)
-    includedirs(libWebKitGTK_includedirs_public)
     includedirs(libGlib_includedirs)
     includedirs(libIcu_includedirs)
     defines(libWebKitGTK_defines_WTFGTK)
@@ -822,11 +821,9 @@ language "C++"
 pic "On"
     kind(GetStaticLibraryType())
     cppdialect(GetCpp14Dialect())
-    buildoptions(libWebKitGTK_buildoptions_Libraries)
-    linkoptions(libWebKitGTK_linkoptions_Libraries)
+    buildoptions(libWebKitGTK_buildoptions_WebCoreGTK)
+    linkoptions(libWebKitGTK_linkoptions_WebCoreGTK)
     includedirs(libWebKitGTK_includedirs_WebCoreGTK)
-    includedirs(libWebKitGTK_includedirs_WTFGTK)
-    includedirs(libWebKitGTK_includedirs_public)
     includedirs(libGlib_includedirs)
     includedirs(libGtk_includedirs)
     includedirs(libGdkPixbuf_includedirs)
@@ -857,18 +854,34 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libWebKitGTK_releasedefines_WebCoreGTK)
 
--- JavaScriptCoreGTK
-project "JavaScriptCoreGTK"
+-- ANGLESupportGTK
+project "ANGLESupportGTK"
 language "C++"
 pic "On"
     kind(GetStaticLibraryType())
     cppdialect(GetCpp14Dialect())
-    buildoptions(libWebKitGTK_buildoptions_Libraries)
-    linkoptions(libWebKitGTK_linkoptions_Libraries)
+    buildoptions(libWebKitGTK_buildoptions_ANGLESupportGTK)
+    linkoptions(libWebKitGTK_linkoptions_ANGLESupportGTK)
+    includedirs(libWebKitGTK_includedirs_ANGLESupportGTK)
+    defines(libWebKitGTK_defines_ANGLESupportGTK)
+    files(libWebKitGTK_sources_ANGLESupportGTK)
+    links(libWebKitGTK_libs_ANGLESupportGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("ANGLESupportGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_ANGLESupportGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_ANGLESupportGTK)
+
+-- JavaScriptCoreGTK
+project "JavaScriptCoreGTK"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_JavaScriptCoreGTK)
+    linkoptions(libWebKitGTK_linkoptions_JavaScriptCoreGTK)
     includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
-    includedirs(libWebKitGTK_includedirs_WebCoreGTK)
-    includedirs(libWebKitGTK_includedirs_WTFGTK)
-    includedirs(libWebKitGTK_includedirs_public)
     includedirs(libGlib_includedirs)
     includedirs(libIcu_includedirs)
     defines(libWebKitGTK_defines_JavaScriptCoreGTK)
@@ -887,13 +900,10 @@ language "C++"
 pic "On"
     kind(GetSharedLibraryType())
     cppdialect(GetCpp14Dialect())
-    buildoptions(libWebKitGTK_buildoptions_Libraries)
-    linkoptions(libWebKitGTK_linkoptions_Libraries)
+    buildoptions(libWebKitGTK_buildoptions_WebKitGTK)
+    linkoptions(libWebKitGTK_linkoptions_WebKitGTK)
     includedirs(libWebKitGTK_includedirs_WebKitGTK)
     includedirs(libWebKitGTK_includedirs_WebCoreGTK)
-    includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
-    includedirs(libWebKitGTK_includedirs_WTFGTK)
-    includedirs(libWebKitGTK_includedirs_public)
     includedirs(libGlib_includedirs)
     includedirs(libGtk_includedirs)
     includedirs(libGdkPixbuf_includedirs)
@@ -924,19 +934,15 @@ pic "On"
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_Processes)
     linkoptions(libWebKitGTK_linkoptions_Processes)
-    includedirs(libWebKitGTK_includedirs_WebKitGTK)
-    includedirs(libWebKitGTK_includedirs_WebCoreGTK)
-    includedirs(libWebKitGTK_includedirs_JavaScriptCoreGTK)
-    includedirs(libWebKitGTK_includedirs_WTFGTK)
-    includedirs(libWebKitGTK_includedirs_public)
-    defines(libWebKitGTK_defines_WebKitGTK)
+    includedirs(libWebKitGTK_includedirs_Processes)
+    defines(libWebKitGTK_defines_Processes)
     files(libWebKitGTK_sources_NetworkProcess)
     links(libWebKitGTK_libs_External)
     links(libWebKitGTK_libs_Processes)
     targetdir(GetAppTargetDirectory())
     targetname(GetTargetName("NetworkProcessGTK"))
 filter "configurations:Debug*"
-    defines(libWebKitGTK_debugdefines_WebKitGTK)
+    defines(libWebKitGTK_debugdefines_Processes)
 filter "configurations:Release*"
-    defines(libWebKitGTK_releasedefines_WebKitGTK)
+    defines(libWebKitGTK_releasedefines_Processes)
 --------------------- WebKitGTK ---------------------
