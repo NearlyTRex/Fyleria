@@ -794,27 +794,6 @@ filter "configurations:Release*"
     defines(libZlib_releasedefines)
 
 --------------------- WebKitGTK ---------------------
--- WTFGTK
-project "WTFGTK"
-language "C++"
-pic "On"
-    kind(GetStaticLibraryType())
-    cppdialect(GetCpp14Dialect())
-    buildoptions(libWebKitGTK_buildoptions_WTFGTK)
-    linkoptions(libWebKitGTK_linkoptions_WTFGTK)
-    includedirs(libWebKitGTK_includedirs_WTFGTK)
-    includedirs(libGlib_includedirs)
-    includedirs(libIcu_includedirs)
-    defines(libWebKitGTK_defines_WTFGTK)
-    files(libWebKitGTK_sources_WTFGTK)
-    links(libWebKitGTK_libs_WTFGTK)
-    targetdir(GetLibraryTargetDirectory())
-    targetname(GetTargetName("WTFGTK"))
-filter "configurations:Debug*"
-    defines(libWebKitGTK_debugdefines_WTFGTK)
-filter "configurations:Release*"
-    defines(libWebKitGTK_releasedefines_WTFGTK)
-
 -- WebCoreGTK
 project "WebCoreGTK"
 language "C++"
@@ -854,6 +833,31 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libWebKitGTK_releasedefines_WebCoreGTK)
 
+-- PALGTK
+project "PALGTK"
+language "C++"
+pic "On"
+    kind(GetStaticLibraryType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_PALGTK)
+    linkoptions(libWebKitGTK_linkoptions_PALGTK)
+    includedirs(libWebKitGTK_includedirs_PALGTK)
+    includedirs(libGlib_includedirs)
+    includedirs(libGtk_includedirs)
+    includedirs(libGdkPixbuf_includedirs)
+    includedirs(libPango_includedirs)
+    includedirs(libHarfbuzz_includedirs)
+    includedirs(libCairo_includedirs)
+    defines(libWebKitGTK_defines_PALGTK)
+    files(libWebKitGTK_sources_PALGTK)
+    links(libWebKitGTK_libs_PALGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("PALGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_PALGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_PALGTK)
+
 -- ANGLESupportGTK
 project "ANGLESupportGTK"
 language "C++"
@@ -872,6 +876,27 @@ filter "configurations:Debug*"
     defines(libWebKitGTK_debugdefines_ANGLESupportGTK)
 filter "configurations:Release*"
     defines(libWebKitGTK_releasedefines_ANGLESupportGTK)
+
+-- WTFGTK
+project "WTFGTK"
+language "C++"
+pic "On"
+    kind(GetStaticLibraryType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_WTFGTK)
+    linkoptions(libWebKitGTK_linkoptions_WTFGTK)
+    includedirs(libWebKitGTK_includedirs_WTFGTK)
+    includedirs(libGlib_includedirs)
+    includedirs(libIcu_includedirs)
+    defines(libWebKitGTK_defines_WTFGTK)
+    files(libWebKitGTK_sources_WTFGTK)
+    links(libWebKitGTK_libs_WTFGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("WTFGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WTFGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WTFGTK)
 
 -- JavaScriptCoreGTK
 project "JavaScriptCoreGTK"

@@ -255,6 +255,20 @@ libWebKitGTK_includedirs_WebCoreGTK = {
     libWebKitGTK_incdir .. "Source/ThirdParty",
 }
 
+-- Includes (PALGTK)
+libWebKitGTK_includedirs_PALGTK = {
+    libWebKitGTK_incdir .. "Source/WebCore/PAL",
+    libWebKitGTK_incdir .. "Source/WebCore/PAL/pal",
+    libWebKitGTK_incdir .. "Source/WebCore/PAL/pal/crypto",
+    libWebKitGTK_incdir .. "Source/WebCore/PAL/pal/system",
+    libWebKitGTK_incdir .. "Source/WebCore/PAL/pal/text",
+    libWebKitGTK_incdir .. "DerivedSources/ForwardingHeaders",
+    libWebKitGTK_incdir .. "Source/bmalloc",
+    libWebKitGTK_incdir,
+    libWebKitGTK_incdir .. "DerivedSources",
+    libWebKitGTK_incdir .. "Source/ThirdParty",
+}
+
 -- Includes (ANGLESupportGTK)
 libWebKitGTK_includedirs_ANGLESupportGTK = {
     libWebKitGTK_incdir,
@@ -442,6 +456,22 @@ libWebKitGTK_includedirs_ANGLESupportGTK = {
     libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/include",
     libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/src",
     libWebKitGTK_incdir .. "Source/ThirdParty/ANGLE/src/common/third_party/base",
+}
+
+-- Includes (WTFGTK)
+libWebKitGTK_includedirs_WTFGTK = {
+    libWebKitGTK_incdir .. "Source/bmalloc",
+    libWebKitGTK_incdir,
+    libWebKitGTK_incdir .. "DerivedSources",
+    libWebKitGTK_incdir .. "Source/ThirdParty",
+    libWebKitGTK_incdir .. "Source/WTF",
+    libWebKitGTK_incdir .. "Source/WTF/wtf",
+    libWebKitGTK_incdir .. "Source/WTF/wtf/dtoa",
+    libWebKitGTK_incdir .. "Source/WTF/wtf/persistence",
+    libWebKitGTK_incdir .. "Source/WTF/wtf/text",
+    libWebKitGTK_incdir .. "Source/WTF/wtf/text/icu",
+    libWebKitGTK_incdir .. "Source/WTF/wtf/threads",
+    libWebKitGTK_incdir .. "Source/WTF/wtf/unicode",
 }
 
 -- Includes (WebKitGTK)
@@ -766,22 +796,6 @@ libWebKitGTK_includedirs_WebKitGTK = {
     libWebKitGTK_incdir .. "Source/bmalloc",
     libWebKitGTK_incdir .. "DerivedSources",
     libWebKitGTK_incdir .. "Source/ThirdParty",
-}
-
--- Includes (WTFGTK)
-libWebKitGTK_includedirs_WTFGTK = {
-    libWebKitGTK_incdir .. "Source/bmalloc",
-    libWebKitGTK_incdir,
-    libWebKitGTK_incdir .. "DerivedSources",
-    libWebKitGTK_incdir .. "Source/ThirdParty",
-    libWebKitGTK_incdir .. "Source/WTF",
-    libWebKitGTK_incdir .. "Source/WTF/wtf",
-    libWebKitGTK_incdir .. "Source/WTF/wtf/dtoa",
-    libWebKitGTK_incdir .. "Source/WTF/wtf/persistence",
-    libWebKitGTK_incdir .. "Source/WTF/wtf/text",
-    libWebKitGTK_incdir .. "Source/WTF/wtf/text/icu",
-    libWebKitGTK_incdir .. "Source/WTF/wtf/threads",
-    libWebKitGTK_incdir .. "Source/WTF/wtf/unicode",
 }
 
 -- Includes (Processes)
@@ -1146,6 +1160,22 @@ libWebKitGTK_releasedefines_WebCoreGTK = {
     "NDEBUG"
 }
 
+-- Defines (PALGTK)
+libWebKitGTK_defines_PALGTK = {
+    "HAVE_CONFIG_H",
+    "BUILDING_GTK__",
+    "BUILDING_PAL",
+    "BUILDING_WITH_CMAKE",
+    "JSC_GLIB_API_ENABLED",
+    "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
+    "WEBKITGTK_API_VERSION_STRING=\"4.0\""
+}
+libWebKitGTK_debugdefines_PALGTK = {
+}
+libWebKitGTK_releasedefines_PALGTK = {
+    "NDEBUG"
+}
+
 -- Defines (ANGLESupportGTK)
 libWebKitGTK_defines_ANGLESupportGTK = {
     "HAVE_CONFIG_H",
@@ -1162,6 +1192,22 @@ libWebKitGTK_defines_ANGLESupportGTK = {
 libWebKitGTK_debugdefines_ANGLESupportGTK = {
 }
 libWebKitGTK_releasedefines_ANGLESupportGTK = {
+    "NDEBUG"
+}
+
+-- Defines (WTFGTK)
+libWebKitGTK_defines_WTFGTK = {
+    "HAVE_CONFIG_H",
+    "BUILDING_GTK__",
+    "BUILDING_WTF",
+    "BUILDING_WITH_CMAKE",
+    "JSC_GLIB_API_ENABLED",
+    "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
+    "WEBKITGTK_API_VERSION_STRING=\"4.0\""
+}
+libWebKitGTK_debugdefines_WTFGTK = {
+}
+libWebKitGTK_releasedefines_WTFGTK = {
     "NDEBUG"
 }
 
@@ -1190,22 +1236,6 @@ libWebKitGTK_releasedefines_WebKitGTK = {
     "NDEBUG"
 }
 
--- Defines (WTFGTK)
-libWebKitGTK_defines_WTFGTK = {
-    "HAVE_CONFIG_H",
-    "BUILDING_GTK__",
-    "BUILDING_WTF",
-    "BUILDING_WITH_CMAKE",
-    "JSC_GLIB_API_ENABLED",
-    "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
-    "WEBKITGTK_API_VERSION_STRING=\"4.0\""
-}
-libWebKitGTK_debugdefines_WTFGTK = {
-}
-libWebKitGTK_releasedefines_WTFGTK = {
-    "NDEBUG"
-}
-
 -- Defines (Processes)
 libWebKitGTK_defines_Processes = {
     "HAVE_CONFIG_H",
@@ -1230,17 +1260,22 @@ libWebKitGTK_releasedefines_Processes = {
 }
 
 -- Options
-libWebKitGTK_buildoptions_WTFGTK = {
-    "-fno-strict-aliasing",
-    "-fno-exceptions",
-    "-fno-rtti"
-}
 libWebKitGTK_buildoptions_WebCoreGTK = {
     "-fno-strict-aliasing",
     "-fno-exceptions",
     "-fno-rtti"
 }
+libWebKitGTK_buildoptions_PALGTK = {
+    "-fno-strict-aliasing",
+    "-fno-exceptions",
+    "-fno-rtti"
+}
 libWebKitGTK_buildoptions_ANGLESupportGTK = {
+    "-fno-strict-aliasing",
+    "-fno-exceptions",
+    "-fno-rtti"
+}
+libWebKitGTK_buildoptions_WTFGTK = {
     "-fno-strict-aliasing",
     "-fno-exceptions",
     "-fno-rtti"
@@ -1263,11 +1298,14 @@ libWebKitGTK_buildoptions_Processes = {
     "-fno-rtti",
     "-include WebKit2Prefix.h"
 }
-libWebKitGTK_linkoptions_WTFGTK = {
-}
+
 libWebKitGTK_linkoptions_WebCoreGTK = {
 }
+libWebKitGTK_linkoptions_PALGTK = {
+}
 libWebKitGTK_linkoptions_ANGLESupportGTK = {
+}
+libWebKitGTK_linkoptions_WTFGTK = {
 }
 libWebKitGTK_linkoptions_JavaScriptCoreGTK = {
 }
@@ -1277,15 +1315,19 @@ libWebKitGTK_linkoptions_Processes = {
 }
 
 -- Libs
-libWebKitGTK_libs_WTFGTK = {
-}
 libWebKitGTK_libs_WebCoreGTK = {
 }
+libWebKitGTK_libs_PALGTK = {
+}
 libWebKitGTK_libs_ANGLESupportGTK = {
+}
+libWebKitGTK_libs_WTFGTK = {
 }
 libWebKitGTK_libs_JavaScriptCoreGTK = {
 }
 libWebKitGTK_libs_WebKitGTK = {
+    "PALGTK",
+    "ANGLESupportGTK",
     "WebCoreGTK",
     "WTFGTK",
     "Icu",
@@ -2075,6 +2117,10 @@ libWebKitGTK_sources_WebCoreGTK = {
     libWebKitGTK_srcdir .. "Source/WebCore/platform/gtk/ScrollbarThemeGtk.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/platform/gtk/WidgetGtk.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/rendering/RenderThemeGtk.cpp",
+}
+
+-- Sources (PALGTK)
+libWebKitGTK_sources_PALGTK = {
     libWebKitGTK_srcdir .. "Source/WebCore/PAL/pal/FileSizeFormatter.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/PAL/pal/Logging.cpp",
     libWebKitGTK_srcdir .. "Source/WebCore/PAL/pal/SessionID.cpp",
@@ -2218,6 +2264,138 @@ libWebKitGTK_sources_ANGLESupportGTK = {
     libWebKitGTK_srcdir .. "Source/ThirdParty/ANGLE/src/compiler/translator/util.cpp",
     libWebKitGTK_srcdir .. "Source/ThirdParty/ANGLE/src/libANGLE/Platform.cpp",
     libWebKitGTK_srcdir .. "Source/ThirdParty/ANGLE/src/third_party/compiler/ArrayBoundsClamper.cpp",
+}
+
+-- Sources (WTFGTK)
+libWebKitGTK_sources_WTFGTK = {
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ASCIICType.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/Assertions.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/AutomaticThread.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/BitVector.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/CPUTime.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ClockType.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/CompilationThread.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ConcurrentPtrHashSet.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/CountingLock.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/CrossThreadCopier.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/CrossThreadTaskHandler.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/CryptographicUtilities.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/CryptographicallyRandomNumber.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/CurrentTime.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/DataLog.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/DateMath.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/FastBitVector.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/FastMalloc.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/FilePrintStream.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/FileSystem.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/FunctionDispatcher.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/Gigacage.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/GlobalVersion.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/GregorianDateTime.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/HashTable.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/HexNumber.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/JSONValues.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/JSValueMalloc.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/Language.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/Lock.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/LockedPrintStream.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/Logger.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/MD5.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/MainThread.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/MediaTime.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/MemoryPressureHandler.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/MetaAllocator.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/MonotonicTime.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/NumberOfCores.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/OSRandomSource.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ObjectIdentifier.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/PageBlock.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ParallelHelperPool.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ParallelJobsGeneric.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ParkingLot.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/PrintStream.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ProcessPrivilege.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/RAMSize.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/RandomDevice.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/RandomNumber.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ReadWriteLock.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/RefCountedLeakCounter.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/RunLoop.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/SHA1.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/Seconds.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/SixCharacterHash.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/StackBounds.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/StackPointer.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/StackStats.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/StackTrace.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/StringPrintStream.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ThreadGroup.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/ThreadMessage.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/Threading.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/TimeWithDynamicClockType.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/TimingScope.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/URL.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/URLHelpers.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/URLParser.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/UUID.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/UniStdExtras.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/WTFAssertions.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/WallTime.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/WordLock.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/WorkQueue.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/WorkerPool.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/bignum-dtoa.cc",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/bignum.cc",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/cached-powers.cc",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/diy-fp.cc",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/double-conversion.cc",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/fast-dtoa.cc",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/fixed-dtoa.cc",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/strtod.cc",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/generic/MainThreadGeneric.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/generic/WorkQueueGeneric.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/FileSystemGlib.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/GLibUtilities.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/GRefPtr.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/RunLoopGLib.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/URLGLib.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/linux/CurrentProcessMemoryStatus.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/linux/MemoryFootprintLinux.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/linux/MemoryPressureHandlerLinux.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/persistence/PersistentCoders.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/persistence/PersistentDecoder.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/persistence/PersistentEncoder.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/posix/OSAllocatorPOSIX.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/posix/ThreadingPOSIX.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/ASCIILiteral.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/AtomicString.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/AtomicStringImpl.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/AtomicStringTable.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/Base64.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/CString.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/ExternalStringImpl.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/LineEnding.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/StringBuilder.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/StringBuilderJSON.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/StringImpl.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/StringView.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/SymbolImpl.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/SymbolRegistry.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/TextBreakIterator.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/TextStream.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/WTFString.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/icu/UTextProvider.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/icu/UTextProviderUTF16.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/unix/TextBreakIteratorInternalICUUnix.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/threads/BinarySemaphore.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/threads/Signals.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/unicode/CollatorDefault.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/unicode/UTF8Conversion.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/unicode/icu/CollatorICU.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/unix/CPUTimeUnix.cpp",
+    libWebKitGTK_srcdir .. "Source/WTF/wtf/unix/LanguageUnix.cpp",
 }
 
 -- Sources (WebKitGTK)
@@ -2575,138 +2753,6 @@ libWebKitGTK_sources_WebKitGTK = {
     libWebKitGTK_srcdir .. "Source/WebKit/WebProcess/Plugins/WebPluginInfoProvider.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/WebProcess/WebPage/WebPage.cpp",
     libWebKitGTK_srcdir .. "Source/WebKit/WebProcess/WebPage/gtk/AcceleratedSurfaceX11.cpp",
-}
-
--- Sources (WTFGTK)
-libWebKitGTK_sources_WTFGTK = {
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ASCIICType.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/Assertions.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/AutomaticThread.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/BitVector.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/CPUTime.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ClockType.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/CompilationThread.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ConcurrentPtrHashSet.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/CountingLock.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/CrossThreadCopier.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/CrossThreadTaskHandler.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/CryptographicUtilities.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/CryptographicallyRandomNumber.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/CurrentTime.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/DataLog.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/DateMath.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/FastBitVector.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/FastMalloc.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/FilePrintStream.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/FileSystem.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/FunctionDispatcher.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/Gigacage.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/GlobalVersion.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/GregorianDateTime.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/HashTable.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/HexNumber.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/JSONValues.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/JSValueMalloc.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/Language.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/Lock.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/LockedPrintStream.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/Logger.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/MD5.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/MainThread.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/MediaTime.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/MemoryPressureHandler.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/MetaAllocator.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/MonotonicTime.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/NumberOfCores.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/OSRandomSource.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ObjectIdentifier.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/PageBlock.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ParallelHelperPool.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ParallelJobsGeneric.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ParkingLot.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/PrintStream.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ProcessPrivilege.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/RAMSize.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/RandomDevice.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/RandomNumber.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ReadWriteLock.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/RefCountedLeakCounter.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/RunLoop.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/SHA1.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/Seconds.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/SixCharacterHash.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/StackBounds.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/StackPointer.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/StackStats.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/StackTrace.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/StringPrintStream.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ThreadGroup.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/ThreadMessage.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/Threading.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/TimeWithDynamicClockType.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/TimingScope.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/URL.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/URLHelpers.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/URLParser.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/UUID.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/UniStdExtras.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/WTFAssertions.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/WallTime.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/WordLock.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/WorkQueue.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/WorkerPool.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/bignum-dtoa.cc",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/bignum.cc",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/cached-powers.cc",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/diy-fp.cc",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/double-conversion.cc",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/fast-dtoa.cc",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/fixed-dtoa.cc",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/dtoa/strtod.cc",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/generic/MainThreadGeneric.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/generic/WorkQueueGeneric.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/FileSystemGlib.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/GLibUtilities.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/GRefPtr.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/RunLoopGLib.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/glib/URLGLib.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/linux/CurrentProcessMemoryStatus.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/linux/MemoryFootprintLinux.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/linux/MemoryPressureHandlerLinux.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/persistence/PersistentCoders.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/persistence/PersistentDecoder.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/persistence/PersistentEncoder.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/posix/OSAllocatorPOSIX.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/posix/ThreadingPOSIX.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/ASCIILiteral.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/AtomicString.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/AtomicStringImpl.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/AtomicStringTable.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/Base64.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/CString.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/ExternalStringImpl.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/LineEnding.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/StringBuilder.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/StringBuilderJSON.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/StringImpl.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/StringView.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/SymbolImpl.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/SymbolRegistry.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/TextBreakIterator.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/TextStream.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/WTFString.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/icu/UTextProvider.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/icu/UTextProviderLatin1.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/icu/UTextProviderUTF16.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/text/unix/TextBreakIteratorInternalICUUnix.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/threads/BinarySemaphore.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/threads/Signals.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/unicode/CollatorDefault.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/unicode/UTF8Conversion.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/unicode/icu/CollatorICU.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/unix/CPUTimeUnix.cpp",
-    libWebKitGTK_srcdir .. "Source/WTF/wtf/unix/LanguageUnix.cpp",
 }
 
 -- Sources (Processes)
