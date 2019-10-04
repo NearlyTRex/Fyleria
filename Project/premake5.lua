@@ -845,6 +845,8 @@ pic "On"
     includedirs(libGlib_includedirs)
     includedirs(libGtk_includedirs)
     includedirs(libGdkPixbuf_includedirs)
+    includedirs(libGCrypt_includedirs)
+    includedirs(libGPGError_includedirs)
     includedirs(libPango_includedirs)
     includedirs(libHarfbuzz_includedirs)
     includedirs(libCairo_includedirs)
