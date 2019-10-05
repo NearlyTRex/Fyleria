@@ -833,6 +833,34 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libWebKitGTK_releasedefines_WebCoreGTK)
 
+-- WebCorePlatformGTK
+project "WebCorePlatformGTK"
+language "C++"
+pic "On"
+    kind(GetStaticLibraryType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_WebCorePlatformGTK)
+    linkoptions(libWebKitGTK_linkoptions_WebCorePlatformGTK)
+    includedirs(libWebKitGTK_includedirs_WebCorePlatformGTK)
+    includedirs(libGlib_includedirs)
+    includedirs(libGtk_includedirs)
+    includedirs(libGdkPixbuf_includedirs)
+    includedirs(libAtk_includedirs)
+    includedirs(libSoup_includedirs)
+    includedirs(libPango_includedirs)
+    includedirs(libCairo_includedirs)
+    includedirs(libFreeType2_includedirs)
+    includedirs(libHarfbuzz_includedirs)
+    defines(libWebKitGTK_defines_WebCorePlatformGTK)
+    files(libWebKitGTK_sources_WebCorePlatformGTK)
+    links(libWebKitGTK_libs_WebCorePlatformGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("WebCorePlatformGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WebCorePlatformGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WebCorePlatformGTK)
+
 -- PALGTK
 project "PALGTK"
 language "C++"

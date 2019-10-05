@@ -45,6 +45,7 @@ if os.host() == "linux" then
     table.insert(appFyleria_libs, "Gtk")
     table.insert(appFyleria_libs, "ElfUtils")
     table.insert(appFyleria_libs, "WebKitGTK")
+    table.insert(appFyleria_libs, "JavaScriptCoreGTK")
     table.insert(appFyleria_libs, "pthread")
 end
 
