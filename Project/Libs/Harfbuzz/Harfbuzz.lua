@@ -33,6 +33,8 @@ libHarfbuzz_linkoptions = {
 
 -- Libs
 libHarfbuzz_libs = {
+    "Icu",
+    "IcuData"
 }
 
 -- Sources

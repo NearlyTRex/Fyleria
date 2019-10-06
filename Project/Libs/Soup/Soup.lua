@@ -35,7 +35,9 @@ libSoup_linkoptions = {
 
 -- Libs
 libSoup_libs = {
-    "PSL"
+    "SQLite",
+    "PSL",
+    "XML2"
 }
 
 -- Sources
