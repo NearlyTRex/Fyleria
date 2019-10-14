@@ -1,4 +1,4 @@
-# Source: https://github.com/NearlyTRex/WebKit_GTK_standalone
+# Source: https://github.com/NearlyTRex/WebKitGTK
 # Version: Gitmaster
 
 # Steps
@@ -9,8 +9,8 @@ MakeSymlinkWebProcess2 = 'MakeSymlink("$(RootPath)/Project/Libs/WebKitGTK/orig/S
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/WebKit_GTK_standalone/archive/master.zip"
-Setup['extractdir'] = "WebKit_GTK_standalone-master"
+Setup['url'] = "https://github.com/NearlyTRex/WebKitGTK/archive/master.zip"
+Setup['extractdir'] = "WebKitGTK-master"
 Setup['steps'] = {}
 Setup['steps']['all'] = []
 Setup['steps']['all'].append(MakeSymlinkJSC)

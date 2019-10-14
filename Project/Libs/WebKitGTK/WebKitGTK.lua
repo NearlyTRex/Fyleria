@@ -1340,6 +1340,7 @@ libWebKitGTK_defines_WebCoreGTK = {
     "BUILDING_WITH_CMAKE",
     "JSC_GLIB_API_ENABLED",
     "STATICALLY_LINKED_WITH_PAL",
+    "STATICALLY_LINKED_WITH_WTF",
     "XDG_PREFIX=_gio_xdg",
     "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
@@ -1359,6 +1360,7 @@ libWebKitGTK_defines_WebCorePlatformGTK = {
     "BUILDING_WITH_CMAKE",
     "JSC_GLIB_API_ENABLED",
     "STATICALLY_LINKED_WITH_PAL",
+    "STATICALLY_LINKED_WITH_WTF",
     "XDG_PREFIX=_gio_xdg",
     "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
@@ -1395,6 +1397,7 @@ libWebKitGTK_defines_ANGLESupportGTK = {
     "ANGLE_ENABLE_GLSL",
     "JSC_GLIB_API_ENABLED",
     "STATICALLY_LINKED_WITH_PAL",
+    "STATICALLY_LINKED_WITH_WTF",
     "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
@@ -1532,8 +1535,11 @@ libWebKitGTK_linkoptions_Processes = {
 
 -- Libs
 libWebKitGTK_libs_WebCoreGTK = {
+    "WTFGTK",
+    "FreeType2"
 }
 libWebKitGTK_libs_WebCorePlatformGTK = {
+    "WTFGTK"
 }
 libWebKitGTK_libs_PALGTK = {
 }
@@ -1548,11 +1554,13 @@ libWebKitGTK_libs_JavaScriptCoreGTK = {
 libWebKitGTK_libs_WebKitGTK = {
     "WebCoreGTK",
     "WebCorePlatformGTK",
-    "WebCoreGTK",
+    "JavaScriptCoreGTK",
     "ANGLESupportGTK",
     "PALGTK",
-    "JavaScriptCoreGTK",
     "WTFGTK",
+    "Cairo",
+    "Glib",
+    "Gtk",
     "Icu",
     "Jpeg",
     "Soup",
@@ -1562,7 +1570,9 @@ libWebKitGTK_libs_WebKitGTK = {
 }
 libWebKitGTK_libs_Processes = {
     "WebKitGTK",
-    "JavaScriptCoreGTK"
+    "JavaScriptCoreGTK",
+    "GCrypt",
+    "GPGError"
 }
 
 -- Sources (JavaScriptCoreGTK)

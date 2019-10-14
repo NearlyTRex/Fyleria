@@ -798,7 +798,7 @@ filter "configurations:Release*"
 project "WebCoreGTK"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WebCoreGTK)
     linkoptions(libWebKitGTK_linkoptions_WebCoreGTK)
@@ -837,7 +837,7 @@ filter "configurations:Release*"
 project "WebCorePlatformGTK"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WebCorePlatformGTK)
     linkoptions(libWebKitGTK_linkoptions_WebCorePlatformGTK)
@@ -865,7 +865,7 @@ filter "configurations:Release*"
 project "PALGTK"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_PALGTK)
     linkoptions(libWebKitGTK_linkoptions_PALGTK)
@@ -892,7 +892,7 @@ filter "configurations:Release*"
 project "ANGLESupportGTK"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_ANGLESupportGTK)
     linkoptions(libWebKitGTK_linkoptions_ANGLESupportGTK)
@@ -911,7 +911,7 @@ filter "configurations:Release*"
 project "WTFGTK"
 language "C++"
 pic "On"
-    kind(GetStaticLibraryType())
+    kind(GetSharedLibraryType())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WTFGTK)
     linkoptions(libWebKitGTK_linkoptions_WTFGTK)
@@ -990,6 +990,8 @@ pic "On"
     buildoptions(libWebKitGTK_buildoptions_Processes)
     linkoptions(libWebKitGTK_linkoptions_Processes)
     includedirs(libWebKitGTK_includedirs_Processes)
+    includedirs(libGCrypt_includedirs)
+    includedirs(libGPGError_includedirs)
     defines(libWebKitGTK_defines_Processes)
     files(libWebKitGTK_sources_NetworkProcess)
     links(libWebKitGTK_libs_External)
