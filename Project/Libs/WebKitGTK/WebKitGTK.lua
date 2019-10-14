@@ -2993,12 +2993,12 @@ libWebKitGTK_sources_WebKitGTK = {
 }
 
 -- Sources (Processes)
-libWebKitGTK_sources_NetworkProcess = {
+libWebKitGTK_sources_NetworkProcessGTK = {
     libWebKitGTK_srcdir .. "Source/WebKit/NetworkProcess/EntryPoint/unix/NetworkProcessMain.cpp"
 }
-libWebKitGTK_sources_PluginProcess = {
+libWebKitGTK_sources_PluginProcessGTK = {
     libWebKitGTK_srcdir .. "Source/WebKit/PluginProcess/EntryPoint/unix/PluginProcessMain.cpp"
 }
-libWebKitGTK_sources_WebProcess = {
+libWebKitGTK_sources_WebProcessGTK = {
     libWebKitGTK_srcdir .. "Source/WebKit/WebProcess/EntryPoint/unix/WebProcessMain.cpp"
 }

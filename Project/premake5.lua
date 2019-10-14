@@ -993,11 +993,53 @@ pic "On"
     includedirs(libGCrypt_includedirs)
     includedirs(libGPGError_includedirs)
     defines(libWebKitGTK_defines_Processes)
-    files(libWebKitGTK_sources_NetworkProcess)
+    files(libWebKitGTK_sources_NetworkProcessGTK)
     links(libWebKitGTK_libs_External)
     links(libWebKitGTK_libs_Processes)
     targetdir(GetAppTargetDirectory())
     targetname(GetTargetName("NetworkProcessGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_Processes)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_Processes)
+
+-- PluginProcessGTK
+project "PluginProcessGTK"
+language "C++"
+pic "On"
+    kind(GetAppType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_Processes)
+    linkoptions(libWebKitGTK_linkoptions_Processes)
+    includedirs(libWebKitGTK_includedirs_Processes)
+    defines(libWebKitGTK_defines_Processes)
+    files(libWebKitGTK_sources_PluginProcessGTK)
+    links(libWebKitGTK_libs_External)
+    links(libWebKitGTK_libs_Processes)
+    targetdir(GetAppTargetDirectory())
+    targetname(GetTargetName("PluginProcessGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_Processes)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_Processes)
+
+-- WebProcessGTK
+project "WebProcessGTK"
+language "C++"
+pic "On"
+    kind(GetAppType())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_Processes)
+    linkoptions(libWebKitGTK_linkoptions_Processes)
+    includedirs(libWebKitGTK_includedirs_Processes)
+    includedirs(libGCrypt_includedirs)
+    includedirs(libGPGError_includedirs)
+    defines(libWebKitGTK_defines_Processes)
+    files(libWebKitGTK_sources_WebProcessGTK)
+    links(libWebKitGTK_libs_External)
+    links(libWebKitGTK_libs_Processes)
+    targetdir(GetAppTargetDirectory())
+    targetname(GetTargetName("WebProcessGTK"))
 filter "configurations:Debug*"
     defines(libWebKitGTK_debugdefines_Processes)
 filter "configurations:Release*"
