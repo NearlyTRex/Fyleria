@@ -74,6 +74,7 @@ project "Fyleria"
 language "C++"
 pic "On"
     kind(GetAppType())
+    runpathdirs(GetAppRunPaths())
     cppdialect(GetCpp17Dialect())
     buildoptions(appFyleria_buildoptions)
     linkoptions(appFyleria_linkoptions)
@@ -117,6 +118,7 @@ project "Atk"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp17Dialect())
     includedirs(libAtk_includedirs)
     includedirs(libGlib_includedirs)
@@ -135,6 +137,7 @@ project "AtkBridge"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp17Dialect())
     includedirs(libAtkBridge_includedirs)
     includedirs(libAtkCore_includedirs)
@@ -155,6 +158,7 @@ project "AtkCore"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp17Dialect())
     includedirs(libAtkCore_includedirs)
     includedirs(libGlib_includedirs)
@@ -173,6 +177,7 @@ project "Boost"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp17Dialect())
     includedirs(libBoost_includedirs)
     defines(libBoost_defines)
@@ -190,6 +195,7 @@ project "Cairo"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp17Dialect())
     buildoptions(libCairo_buildoptions)
     linkoptions(libCairo_linkoptions)
@@ -214,6 +220,7 @@ project "ElfUtils"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libElfUtils_buildoptions)
     linkoptions(libElfUtils_linkoptions)
     includedirs(libElfUtils_includedirs)
@@ -232,6 +239,7 @@ project "Epoxy"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libEpoxy_buildoptions)
     linkoptions(libEpoxy_linkoptions)
     includedirs(libEpoxy_includedirs)
@@ -250,6 +258,7 @@ project "FantasyName"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp17Dialect())
     includedirs(libFantasyName_includedirs)
     defines(libFantasyName_defines)
@@ -267,6 +276,7 @@ project "FFI"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libFFI_buildoptions)
     linkoptions(libFFI_linkoptions)
     includedirs(libFFI_includedirs)
@@ -285,6 +295,7 @@ project "Fontconfig"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libFontconfig_buildoptions)
     linkoptions(libFontconfig_linkoptions)
     includedirs(libFontconfig_includedirs)
@@ -307,6 +318,7 @@ project "FreeType2"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libFreeType2_buildoptions)
     linkoptions(libFreeType2_linkoptions)
     includedirs(libFreeType2_includedirs)
@@ -326,6 +338,7 @@ project "Fribidi"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libFribidi_buildoptions)
     linkoptions(libFribidi_linkoptions)
     includedirs(libFribidi_includedirs)
@@ -344,6 +357,7 @@ project "GdkPixbuf"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libGdkPixbuf_buildoptions)
     linkoptions(libGdkPixbuf_linkoptions)
     includedirs(libGdkPixbuf_includedirs)
@@ -363,6 +377,7 @@ project "Gtk"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libGtk_buildoptions)
     linkoptions(libGtk_linkoptions)
     includedirs(libGtk_includedirs)
@@ -393,6 +408,7 @@ project "GCrypt"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libGCrypt_buildoptions)
     linkoptions(libGCrypt_linkoptions)
     includedirs(libGCrypt_includedirs)
@@ -412,6 +428,7 @@ project "GPGError"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libGPGError_buildoptions)
     linkoptions(libGPGError_linkoptions)
     includedirs(libGPGError_includedirs)
@@ -430,6 +447,7 @@ project "Glib"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libGlib_buildoptions)
     linkoptions(libGlib_linkoptions)
     includedirs(libGlib_includedirs)
@@ -450,6 +468,7 @@ project "Graphene"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libGraphene_buildoptions)
     linkoptions(libGraphene_linkoptions)
     includedirs(libGraphene_includedirs)
@@ -469,6 +488,7 @@ project "Harfbuzz"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     includedirs(libHarfbuzz_includedirs)
     includedirs(libFontconfig_includedirs)
     includedirs(libFreeType2_includedirs)
@@ -489,6 +509,7 @@ project "Icu"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     includedirs(libIcu_includedirs)
     defines(libIcu_defines_Icu)
     files(libIcu_sources_Icu)
@@ -505,6 +526,7 @@ project "IcuData"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     includedirs(libIcu_includedirs)
     defines(libIcu_defines_IcuData)
     files(libIcu_sources_IcuData)
@@ -521,6 +543,7 @@ project "Jpeg"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     includedirs(libJpeg_includedirs)
     defines(libJpeg_defines)
     files(libJpeg_sources)
@@ -537,6 +560,7 @@ project "MicroPather"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp17Dialect())
     includedirs(libMicroPather_includedirs)
     defines(libMicroPather_defines)
@@ -554,6 +578,7 @@ project "Pango"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libPango_buildoptions)
     linkoptions(libPango_linkoptions)
     includedirs(libPango_includedirs)
@@ -578,6 +603,7 @@ project "Pixman"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libPixman_buildoptions)
     linkoptions(libPixman_linkoptions)
     includedirs(libPixman_includedirs)
@@ -596,6 +622,7 @@ project "PCRE"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libPCRE_buildoptions)
     linkoptions(libPCRE_linkoptions)
     includedirs(libPCRE_includedirs)
@@ -614,6 +641,7 @@ project "PNG"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libPNG_buildoptions)
     linkoptions(libPNG_linkoptions)
     includedirs(libPNG_includedirs)
@@ -633,6 +661,7 @@ project "PSL"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libPSL_buildoptions)
     linkoptions(libPSL_linkoptions)
     includedirs(libPSL_includedirs)
@@ -651,6 +680,7 @@ project "Soup"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     includedirs(libSoup_includedirs)
     includedirs(libGlib_includedirs)
     includedirs(libXML2_includedirs)
@@ -672,6 +702,7 @@ project "SpdLog"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp17Dialect())
     includedirs(libSpdLog_includedirs)
     defines(libSpdLog_defines)
@@ -689,6 +720,7 @@ project "SQLite"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libSQLite_buildoptions)
     linkoptions(libSQLite_linkoptions)
     includedirs(libSQLite_includedirs)
@@ -707,6 +739,7 @@ project "UtilLinux"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libUtilLinux_buildoptions)
     linkoptions(libUtilLinux_linkoptions)
     includedirs(libUtilLinux_includedirs)
@@ -725,6 +758,7 @@ project "Webp"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libWebp_buildoptions)
     linkoptions(libWebp_linkoptions)
     includedirs(libWebp_includedirs)
@@ -743,6 +777,7 @@ project "XML2"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libXML2_buildoptions)
     linkoptions(libXML2_linkoptions)
     includedirs(libXML2_includedirs)
@@ -762,6 +797,7 @@ project "XSLT"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     buildoptions(libXSLT_buildoptions)
     linkoptions(libXSLT_linkoptions)
     includedirs(libXSLT_includedirs)
@@ -782,6 +818,7 @@ project "Zlib"
 language "C"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     includedirs(libZlib_includedirs)
     defines(libZlib_defines)
     files(libZlib_sources)
@@ -799,6 +836,7 @@ project "WebCoreGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WebCoreGTK)
     linkoptions(libWebKitGTK_linkoptions_WebCoreGTK)
@@ -838,6 +876,7 @@ project "WebCorePlatformGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WebCorePlatformGTK)
     linkoptions(libWebKitGTK_linkoptions_WebCorePlatformGTK)
@@ -866,6 +905,7 @@ project "PALGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_PALGTK)
     linkoptions(libWebKitGTK_linkoptions_PALGTK)
@@ -893,6 +933,7 @@ project "ANGLESupportGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_ANGLESupportGTK)
     linkoptions(libWebKitGTK_linkoptions_ANGLESupportGTK)
@@ -912,6 +953,7 @@ project "WTFGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WTFGTK)
     linkoptions(libWebKitGTK_linkoptions_WTFGTK)
@@ -933,6 +975,7 @@ project "JavaScriptCoreGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_JavaScriptCoreGTK)
     linkoptions(libWebKitGTK_linkoptions_JavaScriptCoreGTK)
@@ -954,6 +997,7 @@ project "WebKitGTK"
 language "C++"
 pic "On"
     kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_WebKitGTK)
     linkoptions(libWebKitGTK_linkoptions_WebKitGTK)
@@ -986,6 +1030,7 @@ project "NetworkProcessGTK"
 language "C++"
 pic "On"
     kind(GetAppType())
+    runpathdirs(GetProcessRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_Processes)
     linkoptions(libWebKitGTK_linkoptions_Processes)
@@ -996,7 +1041,7 @@ pic "On"
     files(libWebKitGTK_sources_NetworkProcessGTK)
     links(libWebKitGTK_libs_External)
     links(libWebKitGTK_libs_Processes)
-    targetdir(GetAppTargetDirectory())
+    targetdir(GetProcessTargetDirectory())
     targetname(GetTargetName("NetworkProcessGTK"))
 filter "configurations:Debug*"
     defines(libWebKitGTK_debugdefines_Processes)
@@ -1008,6 +1053,7 @@ project "PluginProcessGTK"
 language "C++"
 pic "On"
     kind(GetAppType())
+    runpathdirs(GetProcessRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_Processes)
     linkoptions(libWebKitGTK_linkoptions_Processes)
@@ -1016,7 +1062,7 @@ pic "On"
     files(libWebKitGTK_sources_PluginProcessGTK)
     links(libWebKitGTK_libs_External)
     links(libWebKitGTK_libs_Processes)
-    targetdir(GetAppTargetDirectory())
+    targetdir(GetProcessTargetDirectory())
     targetname(GetTargetName("PluginProcessGTK"))
 filter "configurations:Debug*"
     defines(libWebKitGTK_debugdefines_Processes)
@@ -1028,6 +1074,7 @@ project "WebProcessGTK"
 language "C++"
 pic "On"
     kind(GetAppType())
+    runpathdirs(GetProcessRunPaths())
     cppdialect(GetCpp14Dialect())
     buildoptions(libWebKitGTK_buildoptions_Processes)
     linkoptions(libWebKitGTK_linkoptions_Processes)
@@ -1038,7 +1085,7 @@ pic "On"
     files(libWebKitGTK_sources_WebProcessGTK)
     links(libWebKitGTK_libs_External)
     links(libWebKitGTK_libs_Processes)
-    targetdir(GetAppTargetDirectory())
+    targetdir(GetProcessTargetDirectory())
     targetname(GetTargetName("WebProcessGTK"))
 filter "configurations:Debug*"
     defines(libWebKitGTK_debugdefines_Processes)

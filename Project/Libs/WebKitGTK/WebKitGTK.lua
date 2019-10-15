@@ -1,3 +1,6 @@
+-- Imports
+require "../../utility"
+
 -- Configuration
 libWebKitGTK_extradir = "Libs/WebKitGTK/extra/"
 libWebKitGTK_origdir = "Libs/WebKitGTK/orig/"
@@ -1437,14 +1440,19 @@ libWebKitGTK_defines_WebKitGTK = {
     "WebKit_EXPORTS",
     "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
     "WEBKITGTK_API_VERSION_STRING=\"4.0\"",
-    "DATADIR=\"data\"",
-    "LOCALEDIR=\"locale\"",
-    "LIBDIR=\"lib\"",
-    "PKGLIBEXECDIR=\"libexec\""
+    "LOCALEDIR=\"Locale\"",
+    "LIBDIR=\"Bin\"",
+    "PKGLIBEXECDIR=\"Bin\""
 }
 libWebKitGTK_debugdefines_WebKitGTK = {
+    "WEBKIT_PROCESSNAME_WEB=\"" .. GetTargetName("WebProcessGTK") .. GetTargetDebugSuffix() .. "\"",
+    "WEBKIT_PROCESSNAME_PLUGIN=\"" .. GetTargetName("PluginProcessGTK") .. GetTargetDebugSuffix() .. "\"",
+    "WEBKIT_PROCESSNAME_NETWORK=\"" .. GetTargetName("NetworkProcessGTK") .. GetTargetDebugSuffix() .. "\"",
 }
 libWebKitGTK_releasedefines_WebKitGTK = {
+    "WEBKIT_PROCESSNAME_WEB=\"" .. GetTargetName("WebProcessGTK") .. GetTargetReleaseSuffix() .. "\"",
+    "WEBKIT_PROCESSNAME_PLUGIN=\"" .. GetTargetName("PluginProcessGTK") .. GetTargetReleaseSuffix() .. "\"",
+    "WEBKIT_PROCESSNAME_NETWORK=\"" .. GetTargetName("NetworkProcessGTK") .. GetTargetReleaseSuffix() .. "\"",
     "NDEBUG"
 }
 
@@ -1459,11 +1467,7 @@ libWebKitGTK_defines_Processes = {
     "WEBKIT2_COMPILATION",
     "WEBKIT_DOM_USE_UNSTABLE_API",
     "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
-    "WEBKITGTK_API_VERSION_STRING=\"4.0\"",
-    "DATADIR=\"data\"",
-    "LOCALEDIR=\"locale\"",
-    "LIBDIR=\"lib\"",
-    "PKGLIBEXECDIR=\"libexec\""
+    "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
 libWebKitGTK_debugdefines_Processes = {
 }

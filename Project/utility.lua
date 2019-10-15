@@ -127,17 +127,40 @@ end
 
 -- Get application target directory
 function GetAppTargetDirectory()
-    return GetBuildLocation() .. "/App"
+    return ".."
 end
 
 -- Get library target directory
 function GetLibraryTargetDirectory()
-    return GetBuildLocation() .. "/Lib"
+    return "../Bin"
+end
+
+-- Get process target directory
+function GetProcessTargetDirectory()
+    return "../Bin"
 end
 
 -- Get target name
 function GetTargetName(target)
     return target .. "_" .. GetOperatingSystem() .. "_" .. GetArchitecture()
+end
+
+-- Get application run paths
+function GetAppRunPaths()
+    return {
+    }
+end
+
+-- Get library run paths
+function GetLibraryRunPaths()
+    return {
+    }
+end
+
+-- Get process run paths
+function GetProcessRunPaths()
+    return {
+    }
 end
 
 -- Get app type

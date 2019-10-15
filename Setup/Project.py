@@ -165,10 +165,4 @@ def BuildProject(system_info, program_options):
             build_release32_flag,
             build_release64_flag
         ], verbose_output=program_options.verbose)
-
-    # Copy output binary
-    output_binary = os.path.abspath(os.path.join("App", system_info.out_bin))
-    if os.path.exists(output_binary):
-        Utility.LogStatement("Copying output application " + output_binary + " to " + system_info.root_path)
-        shutil.copy(output_binary, system_info.root_path)
 ###########################################################################
