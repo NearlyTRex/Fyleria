@@ -1025,6 +1025,28 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libWebKitGTK_releasedefines_WebKitGTK)
 
+-- WebKitInjectedBundleGTK
+project "WebKitInjectedBundleGTK"
+language "C++"
+pic "On"
+    kind(GetSharedLibraryType())
+    runpathdirs(GetLibraryRunPaths())
+    cppdialect(GetCpp14Dialect())
+    buildoptions(libWebKitGTK_buildoptions_WebKitInjectedBundleGTK)
+    linkoptions(libWebKitGTK_linkoptions_WebKitInjectedBundleGTK)
+    includedirs(libWebKitGTK_includedirs_WebKitInjectedBundleGTK)
+    includedirs(libGlib_includedirs)
+    includedirs(libSoup_includedirs)
+    defines(libWebKitGTK_defines_WebKitInjectedBundleGTK)
+    files(libWebKitGTK_sources_WebKitInjectedBundleGTK)
+    links(libWebKitGTK_libs_WebKitInjectedBundleGTK)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("WebKitInjectedBundleGTK"))
+filter "configurations:Debug*"
+    defines(libWebKitGTK_debugdefines_WebKitInjectedBundleGTK)
+filter "configurations:Release*"
+    defines(libWebKitGTK_releasedefines_WebKitInjectedBundleGTK)
+
 -- NetworkProcessGTK
 project "NetworkProcessGTK"
 language "C++"
