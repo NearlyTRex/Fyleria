@@ -17,9 +17,9 @@ end
 libFontconfig_defines = {
     "HAVE_CONFIG_H",
     "PIC",
-    "FONTCONFIG_PATH=\"\"",
-    "FC_TEMPLATEDIR=\"\"",
-    "FC_CACHEDIR=\"\""
+    "FONTCONFIG_PATH=\"Data/Fontconfig\"",
+    "FC_TEMPLATEDIR=\"Data/Fontconfig/Templates\"",
+    "FC_CACHEDIR=\"Data/Fontconfig/Cache\""
 }
 libFontconfig_debugdefines = {
 }
