@@ -1771,14 +1771,16 @@ libWebKitGTK_defines_WebKitGTK = {
     "PKGLIBEXECDIR=\"Bin\""
 }
 libWebKitGTK_debugdefines_WebKitGTK = {
-    "WEBKIT_PROCESSNAME_WEB=\"" .. GetTargetName("WebProcessGTK") .. GetTargetDebugSuffix() .. "\"",
-    "WEBKIT_PROCESSNAME_PLUGIN=\"" .. GetTargetName("PluginProcessGTK") .. GetTargetDebugSuffix() .. "\"",
-    "WEBKIT_PROCESSNAME_NETWORK=\"" .. GetTargetName("NetworkProcessGTK") .. GetTargetDebugSuffix() .. "\"",
+    "WEBKIT_FILENAME_WEBPROCESS=\"" .. GetExecutableFilename("WebProcessGTK", "debug") .. "\"",
+    "WEBKIT_FILENAME_PLUGINPROCESS=\"" .. GetExecutableFilename("PluginProcessGTK", "debug") .. "\"",
+    "WEBKIT_FILENAME_NETWORKPROCESS=\"" .. GetExecutableFilename("NetworkProcessGTK", "debug") .. "\"",
+    "WEBKIT_FILENAME_INJECTED_BUNDLE_LIB=\"" .. GetSharedLibraryFilename("WebKitInjectedBundleGTK", "debug") .. "\"",
 }
 libWebKitGTK_releasedefines_WebKitGTK = {
-    "WEBKIT_PROCESSNAME_WEB=\"" .. GetTargetName("WebProcessGTK") .. GetTargetReleaseSuffix() .. "\"",
-    "WEBKIT_PROCESSNAME_PLUGIN=\"" .. GetTargetName("PluginProcessGTK") .. GetTargetReleaseSuffix() .. "\"",
-    "WEBKIT_PROCESSNAME_NETWORK=\"" .. GetTargetName("NetworkProcessGTK") .. GetTargetReleaseSuffix() .. "\"",
+    "WEBKIT_FILENAME_WEBPROCESS=\"" .. GetExecutableFilename("WebProcessGTK", "release") .. "\"",
+    "WEBKIT_FILENAME_PLUGINPROCESS=\"" .. GetExecutableFilename("PluginProcessGTK", "release") .. "\"",
+    "WEBKIT_FILENAME_NETWORKPROCESS=\"" .. GetExecutableFilename("NetworkProcessGTK", "release") .. "\"",
+    "WEBKIT_FILENAME_INJECTED_BUNDLE_LIB=\"" .. GetSharedLibraryFilename("WebKitInjectedBundleGTK", "release") .. "\"",
     "NDEBUG"
 }
 

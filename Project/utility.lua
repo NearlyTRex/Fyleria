@@ -181,3 +181,59 @@ end
 function GetSharedLibraryType()
     return "SharedLib"
 end
+
+-- Get executable extension
+function GetExecutableExtension()
+    if os.host() == "windows" then
+        return ".exe"
+    else
+        return ""
+    end
+end
+
+-- Get static library extension
+function GetStaticLibraryExtension()
+    if os.host() == "windows" then
+        return ".lib"
+    else
+        return ".a"
+    end
+end
+
+-- Get shared library extension
+function GetSharedLibraryExtension()
+    if os.host() == "windows" then
+        return ".dll"
+    elseif os.host() == "linux" then
+        return ".so"
+    elseif os.host() == "darwin" then
+        return ".dylib"
+    end
+end
+
+-- Get executable filename
+function GetExecutableFilename(target, mode)
+    if mode == "release" then
+        return GetTargetName(target) .. GetTargetReleaseSuffix() .. GetExecutableExtension()
+    elseif mode == "debug" then
+        return GetTargetName(target) .. GetTargetDebugSuffix() .. GetExecutableExtension()
+    end
+end
+
+-- Get static library filename
+function GetStaticLibraryFilename(target, mode)
+    if mode == "release" then
+        return "lib" .. GetTargetName(target) .. GetTargetReleaseSuffix() .. GetStaticLibraryExtension()
+    elseif mode == "debug" then
+        return "lib" .. GetTargetName(target) .. GetTargetDebugSuffix() .. GetStaticLibraryExtension()
+    end
+end
+
+-- Get shared library filename
+function GetSharedLibraryFilename(target, mode)
+    if mode == "release" then
+        return "lib" .. GetTargetName(target) .. GetTargetReleaseSuffix() .. GetSharedLibraryExtension()
+    elseif mode == "debug" then
+        return "lib" .. GetTargetName(target) .. GetTargetDebugSuffix() .. GetSharedLibraryExtension()
+    end
+end
