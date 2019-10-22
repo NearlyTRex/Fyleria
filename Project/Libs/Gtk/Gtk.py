@@ -1,5 +1,5 @@
 # Source: https://github.com/NearlyTRex/gtk/tree/gtk-3-24
-# Version: Gitmaster
+# Version: 3.2.4
 
 # Library info
 Setup = {}
