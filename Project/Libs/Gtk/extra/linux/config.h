@@ -270,14 +270,3 @@
 
 /* Define to `int' if <sys/types.h> doesn't define. */
 /* #undef uid_t */
-
-#define GTK_DATADIR "data"
-
-#define GTK_LIBDIR "lib"
-
-#define GTK_PRINT_BACKENDS "file"
-
-/* Define the location where the catalogs will be installed */
-#define GTK_LOCALEDIR "locale"
-
-#define ISO_CODES_PREFIX "iso"
