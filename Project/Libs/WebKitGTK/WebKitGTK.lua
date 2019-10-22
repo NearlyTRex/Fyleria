@@ -1655,6 +1655,8 @@ libWebKitGTK_defines_JavaScriptCoreGTK = {
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
 libWebKitGTK_debugdefines_JavaScriptCoreGTK = {
+    "NDEBUG",
+    "RELEASE_WITHOUT_OPTIMIZATIONS"
 }
 libWebKitGTK_releasedefines_JavaScriptCoreGTK = {
     "NDEBUG"
@@ -1675,6 +1677,8 @@ libWebKitGTK_defines_WebCoreGTK = {
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
 libWebKitGTK_debugdefines_WebCoreGTK = {
+    "NDEBUG",
+    "RELEASE_WITHOUT_OPTIMIZATIONS"
 }
 libWebKitGTK_releasedefines_WebCoreGTK = {
     "NDEBUG"
@@ -1694,9 +1698,11 @@ libWebKitGTK_defines_WebCorePlatformGTK = {
     "GETTEXT_PACKAGE=\"WebKit2GTK-4.0\"",
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
-libWebKitGTK_debugdefines_WebCoreGTK = {
+libWebKitGTK_debugdefines_WebCorePlatformGTK = {
+    "NDEBUG",
+    "RELEASE_WITHOUT_OPTIMIZATIONS"
 }
-libWebKitGTK_releasedefines_WebCoreGTK = {
+libWebKitGTK_releasedefines_WebCorePlatformGTK = {
     "NDEBUG"
 }
 
@@ -1711,6 +1717,8 @@ libWebKitGTK_defines_PALGTK = {
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
 libWebKitGTK_debugdefines_PALGTK = {
+    "NDEBUG",
+    "RELEASE_WITHOUT_OPTIMIZATIONS"
 }
 libWebKitGTK_releasedefines_PALGTK = {
     "NDEBUG"
@@ -1731,6 +1739,8 @@ libWebKitGTK_defines_ANGLESupportGTK = {
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
 libWebKitGTK_debugdefines_ANGLESupportGTK = {
+    "NDEBUG",
+    "RELEASE_WITHOUT_OPTIMIZATIONS"
 }
 libWebKitGTK_releasedefines_ANGLESupportGTK = {
     "NDEBUG"
@@ -1747,6 +1757,8 @@ libWebKitGTK_defines_WTFGTK = {
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
 libWebKitGTK_debugdefines_WTFGTK = {
+    "NDEBUG",
+    "RELEASE_WITHOUT_OPTIMIZATIONS"
 }
 libWebKitGTK_releasedefines_WTFGTK = {
     "NDEBUG"
@@ -1775,6 +1787,8 @@ libWebKitGTK_debugdefines_WebKitGTK = {
     "WEBKIT_FILENAME_PLUGINPROCESS=\"" .. GetExecutableFilename("PluginProcessGTK", "debug") .. "\"",
     "WEBKIT_FILENAME_NETWORKPROCESS=\"" .. GetExecutableFilename("NetworkProcessGTK", "debug") .. "\"",
     "WEBKIT_FILENAME_INJECTED_BUNDLE_LIB=\"" .. GetSharedLibraryFilename("WebKitInjectedBundleGTK", "debug") .. "\"",
+    "NDEBUG",
+    "RELEASE_WITHOUT_OPTIMIZATIONS"
 }
 libWebKitGTK_releasedefines_WebKitGTK = {
     "WEBKIT_FILENAME_WEBPROCESS=\"" .. GetExecutableFilename("WebProcessGTK", "release") .. "\"",
@@ -1802,6 +1816,8 @@ libWebKitGTK_defines_WebKitInjectedBundleGTK = {
     "PKGLIBEXECDIR=\"Bin\""
 }
 libWebKitGTK_debugdefines_WebKitInjectedBundleGTK = {
+    "NDEBUG",
+    "RELEASE_WITHOUT_OPTIMIZATIONS"
 }
 libWebKitGTK_releasedefines_WebKitInjectedBundleGTK = {
     "NDEBUG"
@@ -1821,6 +1837,8 @@ libWebKitGTK_defines_Processes = {
     "WEBKITGTK_API_VERSION_STRING=\"4.0\""
 }
 libWebKitGTK_debugdefines_Processes = {
+    "NDEBUG",
+    "RELEASE_WITHOUT_OPTIMIZATIONS"
 }
 libWebKitGTK_releasedefines_Processes = {
     "NDEBUG"
