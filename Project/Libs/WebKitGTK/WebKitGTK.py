@@ -1,5 +1,5 @@
 # Source: https://github.com/NearlyTRex/WebKitGTK
-# Version: Gitmaster
+# Version: 2.24.3
 
 # Steps
 MakeSymlinkJSC = 'MakeSymlink("$(RootPath)/Project/Libs/WebKitGTK/orig/Source/JavaScriptCore/API/glib", "$(RootPath)/Project/Libs/WebKitGTK/orig/DerivedSources/ForwardingHeaders/JavaScriptCore/glib/jsc")'
@@ -9,8 +9,8 @@ MakeSymlinkWebProcess2 = 'MakeSymlink("$(RootPath)/Project/Libs/WebKitGTK/orig/S
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/WebKitGTK/archive/master.zip"
-Setup['extractdir'] = "WebKitGTK-master"
+Setup['url'] = "https://github.com/NearlyTRex/WebKitGTK/archive/WebKitGTK-2.24.3.zip"
+Setup['extractdir'] = "WebKitGTK-WebKitGTK-2.24.3"
 Setup['steps'] = {}
 Setup['steps']['all'] = []
 Setup['steps']['all'].append(MakeSymlinkJSC)

@@ -1,8 +1,8 @@
-# Source: https://github.com/NearlyTRex/pango
-# Version: Gitmaster
+# Source: https://github.com/NearlyTRex/Pango
+# Version: 1.44.6-2
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/pango/archive/master.zip"
-Setup['extractdir'] = "pango-master"
+Setup['url'] = "https://github.com/NearlyTRex/Pango/archive/Pango-1.44.6-2.zip"
+Setup['extractdir'] = "Pango-Pango-1.44.6-2"
 Setup['steps'] = {}

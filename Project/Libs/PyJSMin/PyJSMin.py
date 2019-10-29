@@ -1,8 +1,8 @@
-# Source: https://github.com/NearlyTRex/pyjsmin
-# Version: Gitmaster
+# Source: https://github.com/NearlyTRex/PyJSMin
+# Version: 10242018
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/pyjsmin/archive/master.zip"
-Setup['extractdir'] = "pyjsmin-master"
+Setup['url'] = "https://github.com/NearlyTRex/PyJSMin/archive/JSMin-10242018.zip"
+Setup['extractdir'] = "PyJSMin-JSMin-10242018"
 Setup['steps'] = {}

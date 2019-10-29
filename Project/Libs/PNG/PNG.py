@@ -1,8 +1,8 @@
-# Source: https://github.com/NearlyTRex/libpng
-# Version: Gitmaster
+# Source: https://github.com/NearlyTRex/PNG
+# Version: 1.6.37
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/libpng/archive/libpng16.zip"
-Setup['extractdir'] = "libpng-libpng16"
+Setup['url'] = "https://github.com/NearlyTRex/PNG/archive/PNG-1.6.37.zip"
+Setup['extractdir'] = "PNG-PNG-1.6.37"
 Setup['steps'] = {}

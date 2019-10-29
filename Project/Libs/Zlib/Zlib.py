@@ -1,8 +1,8 @@
-# Source: https://github.com/NearlyTRex/zlib
-# Version: Gitmaster
+# Source: https://github.com/NearlyTRex/Zlib
+# Version: 1.2.11
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/zlib/archive/master.zip"
-Setup['extractdir'] = "zlib-master"
+Setup['url'] = "https://github.com/NearlyTRex/Zlib/archive/Zlib-1.2.11.zip"
+Setup['extractdir'] = "Zlib-Zlib-1.2.11"
 Setup['steps'] = {}
