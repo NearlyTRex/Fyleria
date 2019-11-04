@@ -1,8 +1,8 @@
-# Source: https://github.com/NearlyTRex/gtk/tree/gtk-3-24
-# Version: 3.2.4
+# Source: https://github.com/NearlyTRex/Gtk
+# Version: 3.24.11
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/gtk/archive/gtk-3-24.zip"
-Setup['extractdir'] = "gtk-gtk-3-24"
+Setup['url'] = "https://github.com/NearlyTRex/Gtk/archive/Gtk-3.24.11.zip"
+Setup['extractdir'] = "Gtk-Gtk-3.24.11"
 Setup['steps'] = {}

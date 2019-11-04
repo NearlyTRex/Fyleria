@@ -1,8 +1,8 @@
-# Source: https://github.com/NearlyTRex/cpp_immutable_string
-# Version: Gitmaster
+# Source: https://github.com/NearlyTRex/ImmutableString
+# Version: 09212013
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/cpp_immutable_string/archive/develop.zip"
-Setup['extractdir'] = "cpp_immutable_string-develop"
+Setup['url'] = "https://github.com/NearlyTRex/ImmutableString/archive/ImmutableString-09212013.zip"
+Setup['extractdir'] = "ImmutableString-ImmutableString-09212013"
 Setup['steps'] = {}

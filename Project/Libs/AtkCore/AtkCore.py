@@ -1,8 +1,8 @@
-# Source: https://github.com/NearlyTRex/at-spi2-core
-# Version: Gitmaster
+# Source: https://github.com/NearlyTRex/AtkCore
+# Version: 2.34.0
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/at-spi2-core/archive/master.zip"
-Setup['extractdir'] = "at-spi2-core-master"
+Setup['url'] = "https://github.com/NearlyTRex/AtkCore/archive/At-Spi2-Core-2.34.0.zip"
+Setup['extractdir'] = "AtkCore-At-Spi2-Core-2.34.0"
 Setup['steps'] = {}

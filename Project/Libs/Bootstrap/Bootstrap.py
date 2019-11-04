@@ -1,5 +1,5 @@
-# Source: https://github.com/NearlyTRex/bootstrap
-# Version: Gitmaster
+# Source: https://github.com/NearlyTRex/Bootstrap
+# Version: 4.3.1
 
 # Steps
 CopyFileBootstrapCss = 'CopyFile("dist/css/bootstrap.min.css", "$(RootPath)/Data/Libs/bootstrap.min.css")'
@@ -13,8 +13,8 @@ CopyFileBootstrapJsMap = 'CopyFile("dist/js/bootstrap.min.js.map", "$(RootPath)/
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/bootstrap/archive/master.zip"
-Setup['extractdir'] = "bootstrap-master"
+Setup['url'] = "https://github.com/NearlyTRex/Bootstrap/archive/Bootstrap-4.3.1.zip"
+Setup['extractdir'] = "Bootstrap-Bootstrap-4.3.1"
 Setup['steps'] = {}
 Setup['steps']['all'] = []
 Setup['steps']['all'].append(CopyFileBootstrapCss)

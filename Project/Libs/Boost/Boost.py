@@ -1,8 +1,8 @@
-# Source: https://www.boost.org/
-# Version: 1.69.0
+# Source: https://github.com/NearlyTRex/Boost
+# Version: 1.71.0
 
 # Library info
 Setup = {}
-Setup['url'] = "https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.zip"
-Setup['extractdir'] = "boost_1_69_0"
+Setup['url'] = "https://github.com/NearlyTRex/Boost/archive/Boost-1.71.0.zip"
+Setup['extractdir'] = "Boost-Boost-1.71.0"
 Setup['steps'] = {}

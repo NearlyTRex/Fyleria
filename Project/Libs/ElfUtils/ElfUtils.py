@@ -1,8 +1,8 @@
-# Source: https://github.com/NearlyTRex/elfutils
-# Version: Gitmaster
+# Source: https://github.com/NearlyTRex/ElfUtils
+# Version: 0.177
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/elfutils/archive/master.zip"
-Setup['extractdir'] = "elfutils-master"
+Setup['url'] = "https://github.com/NearlyTRex/ElfUtils/archive/ElfUtils-0.177.zip"
+Setup['extractdir'] = "ElfUtils-ElfUtils-0.177"
 Setup['steps'] = {}

@@ -1,8 +1,8 @@
-# Source: https://gitlab.freedesktop.org/pixman/pixman
-# Version: Gitmaster
+# Source: https://github.com/NearlyTRex/Pixman
+# Version: 0.38.4
 
 # Library info
 Setup = {}
-Setup['url'] = "https://gitlab.freedesktop.org/pixman/pixman/-/archive/master/pixman-master.zip"
-Setup['extractdir'] = "pixman-master"
+Setup['url'] = "https://github.com/NearlyTRex/Pixman/archive/Pixman-0.38.4.zip"
+Setup['extractdir'] = "Pixman-Pixman-0.38.4"
 Setup['steps'] = {}
