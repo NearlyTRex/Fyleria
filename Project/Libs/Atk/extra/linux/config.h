@@ -9,5 +9,5 @@
 
 #define HAVE_BIND_TEXTDOMAIN_CODESET 1
 
-#define VERSION "2.33.3"
+#define VERSION "2.35.1"
 
