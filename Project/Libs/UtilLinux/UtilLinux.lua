@@ -74,7 +74,6 @@ libUtilLinux_sources = {
     libUtilLinux_srcdir .. "lib/strv.c",
     libUtilLinux_srcdir .. "lib/sha1.c",
     libUtilLinux_srcdir .. "lib/signames.c",
-    libUtilLinux_srcdir .. "lib/caputils.c",
     libUtilLinux_srcdir .. "lib/linux_version.c",
     libUtilLinux_srcdir .. "lib/loopdev.c",
     libUtilLinux_srcdir .. "lib/plymouth-ctrl.c",
