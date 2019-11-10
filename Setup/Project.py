@@ -5,6 +5,8 @@ import importlib
 import shutil
 import subprocess
 from . import Utility
+from urllib.request import urlopen
+from urllib.parse import urlparse
 
 ###########################################################################
 # Setup project
@@ -19,9 +21,10 @@ def SetupProject(project_name, project_base_dir, system_info, program_options):
     module = importlib.import_module(project_name)
 
     # Generate archive info
-    archive_base = module.Setup['url'].split('/')[-1].split('.')[0]
-    archive_ext = module.Setup['url'].split('.')[-1]
-    archive_file = os.path.normpath(os.path.join(projectdir, archive_base + '.' + archive_ext))
+    parsed_url = urlparse(module.Setup['url'])
+    parsed_file = os.path.basename(parsed_url.path)
+    archive_base, archive_ext = os.path.splitext(parsed_file)
+    archive_file = os.path.normpath(os.path.join(projectdir, archive_base + archive_ext))
     archive_olddir = os.path.normpath(os.path.join(projectdir, module.Setup['extractdir']))
     archive_newdir = os.path.normpath(os.path.join(projectdir, "orig"))
 
@@ -41,7 +44,6 @@ def SetupProject(project_name, project_base_dir, system_info, program_options):
 
     # Download archive
     if should_download and not os.path.exists(archive_file):
-        from urllib.request import urlopen
         Utility.LogStatement("Downloading " + module.Setup['url'] + " to file " + archive_file)
         request = urlopen(module.Setup['url'])
         output = open(archive_file, "wb")
