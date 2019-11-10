@@ -74,7 +74,6 @@ def main():
         "UtilLinux",
         "WebKitGTK",
         "Webp",
-        "XkbCommon",
         "XML2",
         "XSLT",
         "Zlib"
