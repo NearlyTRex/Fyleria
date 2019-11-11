@@ -43,7 +43,7 @@
 /* #undef CAIRO_HAS_TEST_SURFACES */
 
 /* Define to 1 to enable cairo's cairo-trace feature */
-#define CAIRO_HAS_TRACE 1
+/* #undef CAIRO_HAS_TRACE */
 
 /* Define to 1 to disable certain code paths that rely heavily on double
    precision floating-point calculation */
