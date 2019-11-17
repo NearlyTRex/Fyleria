@@ -168,58 +168,58 @@ get_dispatch_table(void);
 
 enum egl_provider {
     egl_provider_terminator = 0,
-    PROVIDER_EGL_10,
-    PROVIDER_EGL_11,
-    PROVIDER_EGL_12,
-    PROVIDER_EGL_14,
-    PROVIDER_EGL_15,
-    PROVIDER_EGL_ANDROID_blob_cache,
-    PROVIDER_EGL_ANDROID_create_native_client_buffer,
-    PROVIDER_EGL_ANDROID_get_frame_timestamps,
-    PROVIDER_EGL_ANDROID_get_native_client_buffer,
-    PROVIDER_EGL_ANDROID_native_fence_sync,
-    PROVIDER_EGL_ANDROID_presentation_time,
-    PROVIDER_EGL_ANGLE_query_surface_pointer,
-    PROVIDER_EGL_EXT_compositor,
-    PROVIDER_EGL_EXT_device_base,
-    PROVIDER_EGL_EXT_device_enumeration,
-    PROVIDER_EGL_EXT_device_query,
-    PROVIDER_EGL_EXT_image_dma_buf_import_modifiers,
-    PROVIDER_EGL_EXT_output_base,
-    PROVIDER_EGL_EXT_platform_base,
-    PROVIDER_EGL_EXT_stream_consumer_egloutput,
-    PROVIDER_EGL_EXT_swap_buffers_with_damage,
-    PROVIDER_EGL_HI_clientpixmap,
-    PROVIDER_EGL_KHR_cl_event2,
-    PROVIDER_EGL_KHR_debug,
-    PROVIDER_EGL_KHR_display_reference,
-    PROVIDER_EGL_KHR_fence_sync,
-    PROVIDER_EGL_KHR_image,
-    PROVIDER_EGL_KHR_image_base,
-    PROVIDER_EGL_KHR_lock_surface,
-    PROVIDER_EGL_KHR_lock_surface3,
-    PROVIDER_EGL_KHR_partial_update,
-    PROVIDER_EGL_KHR_reusable_sync,
-    PROVIDER_EGL_KHR_stream,
-    PROVIDER_EGL_KHR_stream_attrib,
-    PROVIDER_EGL_KHR_stream_consumer_gltexture,
-    PROVIDER_EGL_KHR_stream_cross_process_fd,
-    PROVIDER_EGL_KHR_stream_fifo,
-    PROVIDER_EGL_KHR_stream_producer_eglsurface,
-    PROVIDER_EGL_KHR_swap_buffers_with_damage,
-    PROVIDER_EGL_KHR_wait_sync,
-    PROVIDER_EGL_MESA_drm_image,
-    PROVIDER_EGL_MESA_image_dma_buf_export,
-    PROVIDER_EGL_NOK_swap_region,
-    PROVIDER_EGL_NOK_swap_region2,
-    PROVIDER_EGL_NV_native_query,
-    PROVIDER_EGL_NV_post_sub_buffer,
-    PROVIDER_EGL_NV_stream_consumer_gltexture_yuv,
-    PROVIDER_EGL_NV_stream_metadata,
-    PROVIDER_EGL_NV_stream_reset,
-    PROVIDER_EGL_NV_stream_sync,
-    PROVIDER_EGL_NV_sync,
-    PROVIDER_EGL_NV_system_time,
+    EGL_10,
+    EGL_11,
+    EGL_12,
+    EGL_14,
+    EGL_15,
+    EGL_extension_EGL_ANDROID_blob_cache,
+    EGL_extension_EGL_ANDROID_create_native_client_buffer,
+    EGL_extension_EGL_ANDROID_get_frame_timestamps,
+    EGL_extension_EGL_ANDROID_get_native_client_buffer,
+    EGL_extension_EGL_ANDROID_native_fence_sync,
+    EGL_extension_EGL_ANDROID_presentation_time,
+    EGL_extension_EGL_ANGLE_query_surface_pointer,
+    EGL_extension_EGL_EXT_compositor,
+    EGL_extension_EGL_EXT_device_base,
+    EGL_extension_EGL_EXT_device_enumeration,
+    EGL_extension_EGL_EXT_device_query,
+    EGL_extension_EGL_EXT_image_dma_buf_import_modifiers,
+    EGL_extension_EGL_EXT_output_base,
+    EGL_extension_EGL_EXT_platform_base,
+    EGL_extension_EGL_EXT_stream_consumer_egloutput,
+    EGL_extension_EGL_EXT_swap_buffers_with_damage,
+    EGL_extension_EGL_HI_clientpixmap,
+    EGL_extension_EGL_KHR_cl_event2,
+    EGL_extension_EGL_KHR_debug,
+    EGL_extension_EGL_KHR_display_reference,
+    EGL_extension_EGL_KHR_fence_sync,
+    EGL_extension_EGL_KHR_image,
+    EGL_extension_EGL_KHR_image_base,
+    EGL_extension_EGL_KHR_lock_surface3,
+    EGL_extension_EGL_KHR_lock_surface,
+    EGL_extension_EGL_KHR_partial_update,
+    EGL_extension_EGL_KHR_reusable_sync,
+    EGL_extension_EGL_KHR_stream,
+    EGL_extension_EGL_KHR_stream_attrib,
+    EGL_extension_EGL_KHR_stream_consumer_gltexture,
+    EGL_extension_EGL_KHR_stream_cross_process_fd,
+    EGL_extension_EGL_KHR_stream_fifo,
+    EGL_extension_EGL_KHR_stream_producer_eglsurface,
+    EGL_extension_EGL_KHR_swap_buffers_with_damage,
+    EGL_extension_EGL_KHR_wait_sync,
+    EGL_extension_EGL_MESA_drm_image,
+    EGL_extension_EGL_MESA_image_dma_buf_export,
+    EGL_extension_EGL_NOK_swap_region2,
+    EGL_extension_EGL_NOK_swap_region,
+    EGL_extension_EGL_NV_native_query,
+    EGL_extension_EGL_NV_post_sub_buffer,
+    EGL_extension_EGL_NV_stream_consumer_gltexture_yuv,
+    EGL_extension_EGL_NV_stream_metadata,
+    EGL_extension_EGL_NV_stream_reset,
+    EGL_extension_EGL_NV_stream_sync,
+    EGL_extension_EGL_NV_sync,
+    EGL_extension_EGL_NV_system_time,
 } PACKED;
 ENDPACKED
 
@@ -229,109 +229,109 @@ static const char *enum_string =
     "EGL 12\0"
     "EGL 14\0"
     "EGL 15\0"
-    "EGL_ANDROID_blob_cache\0"
-    "EGL_ANDROID_create_native_client_buffer\0"
-    "EGL_ANDROID_get_frame_timestamps\0"
-    "EGL_ANDROID_get_native_client_buffer\0"
-    "EGL_ANDROID_native_fence_sync\0"
-    "EGL_ANDROID_presentation_time\0"
-    "EGL_ANGLE_query_surface_pointer\0"
-    "EGL_EXT_compositor\0"
-    "EGL_EXT_device_base\0"
-    "EGL_EXT_device_enumeration\0"
-    "EGL_EXT_device_query\0"
-    "EGL_EXT_image_dma_buf_import_modifiers\0"
-    "EGL_EXT_output_base\0"
-    "EGL_EXT_platform_base\0"
-    "EGL_EXT_stream_consumer_egloutput\0"
-    "EGL_EXT_swap_buffers_with_damage\0"
-    "EGL_HI_clientpixmap\0"
-    "EGL_KHR_cl_event2\0"
-    "EGL_KHR_debug\0"
-    "EGL_KHR_display_reference\0"
-    "EGL_KHR_fence_sync\0"
-    "EGL_KHR_image\0"
-    "EGL_KHR_image_base\0"
-    "EGL_KHR_lock_surface\0"
-    "EGL_KHR_lock_surface3\0"
-    "EGL_KHR_partial_update\0"
-    "EGL_KHR_reusable_sync\0"
-    "EGL_KHR_stream\0"
-    "EGL_KHR_stream_attrib\0"
-    "EGL_KHR_stream_consumer_gltexture\0"
-    "EGL_KHR_stream_cross_process_fd\0"
-    "EGL_KHR_stream_fifo\0"
-    "EGL_KHR_stream_producer_eglsurface\0"
-    "EGL_KHR_swap_buffers_with_damage\0"
-    "EGL_KHR_wait_sync\0"
-    "EGL_MESA_drm_image\0"
-    "EGL_MESA_image_dma_buf_export\0"
-    "EGL_NOK_swap_region\0"
-    "EGL_NOK_swap_region2\0"
-    "EGL_NV_native_query\0"
-    "EGL_NV_post_sub_buffer\0"
-    "EGL_NV_stream_consumer_gltexture_yuv\0"
-    "EGL_NV_stream_metadata\0"
-    "EGL_NV_stream_reset\0"
-    "EGL_NV_stream_sync\0"
-    "EGL_NV_sync\0"
-    "EGL_NV_system_time\0"
+    "EGL extension \"EGL_ANDROID_blob_cache\"\0"
+    "EGL extension \"EGL_ANDROID_create_native_client_buffer\"\0"
+    "EGL extension \"EGL_ANDROID_get_frame_timestamps\"\0"
+    "EGL extension \"EGL_ANDROID_get_native_client_buffer\"\0"
+    "EGL extension \"EGL_ANDROID_native_fence_sync\"\0"
+    "EGL extension \"EGL_ANDROID_presentation_time\"\0"
+    "EGL extension \"EGL_ANGLE_query_surface_pointer\"\0"
+    "EGL extension \"EGL_EXT_compositor\"\0"
+    "EGL extension \"EGL_EXT_device_base\"\0"
+    "EGL extension \"EGL_EXT_device_enumeration\"\0"
+    "EGL extension \"EGL_EXT_device_query\"\0"
+    "EGL extension \"EGL_EXT_image_dma_buf_import_modifiers\"\0"
+    "EGL extension \"EGL_EXT_output_base\"\0"
+    "EGL extension \"EGL_EXT_platform_base\"\0"
+    "EGL extension \"EGL_EXT_stream_consumer_egloutput\"\0"
+    "EGL extension \"EGL_EXT_swap_buffers_with_damage\"\0"
+    "EGL extension \"EGL_HI_clientpixmap\"\0"
+    "EGL extension \"EGL_KHR_cl_event2\"\0"
+    "EGL extension \"EGL_KHR_debug\"\0"
+    "EGL extension \"EGL_KHR_display_reference\"\0"
+    "EGL extension \"EGL_KHR_fence_sync\"\0"
+    "EGL extension \"EGL_KHR_image\"\0"
+    "EGL extension \"EGL_KHR_image_base\"\0"
+    "EGL extension \"EGL_KHR_lock_surface3\"\0"
+    "EGL extension \"EGL_KHR_lock_surface\"\0"
+    "EGL extension \"EGL_KHR_partial_update\"\0"
+    "EGL extension \"EGL_KHR_reusable_sync\"\0"
+    "EGL extension \"EGL_KHR_stream\"\0"
+    "EGL extension \"EGL_KHR_stream_attrib\"\0"
+    "EGL extension \"EGL_KHR_stream_consumer_gltexture\"\0"
+    "EGL extension \"EGL_KHR_stream_cross_process_fd\"\0"
+    "EGL extension \"EGL_KHR_stream_fifo\"\0"
+    "EGL extension \"EGL_KHR_stream_producer_eglsurface\"\0"
+    "EGL extension \"EGL_KHR_swap_buffers_with_damage\"\0"
+    "EGL extension \"EGL_KHR_wait_sync\"\0"
+    "EGL extension \"EGL_MESA_drm_image\"\0"
+    "EGL extension \"EGL_MESA_image_dma_buf_export\"\0"
+    "EGL extension \"EGL_NOK_swap_region2\"\0"
+    "EGL extension \"EGL_NOK_swap_region\"\0"
+    "EGL extension \"EGL_NV_native_query\"\0"
+    "EGL extension \"EGL_NV_post_sub_buffer\"\0"
+    "EGL extension \"EGL_NV_stream_consumer_gltexture_yuv\"\0"
+    "EGL extension \"EGL_NV_stream_metadata\"\0"
+    "EGL extension \"EGL_NV_stream_reset\"\0"
+    "EGL extension \"EGL_NV_stream_sync\"\0"
+    "EGL extension \"EGL_NV_sync\"\0"
+    "EGL extension \"EGL_NV_system_time\"\0"
      ;
 
 static const uint16_t enum_string_offsets[] = {
     -1, /* egl_provider_terminator, unused */
-    0, /* EGL 10 */
-    7, /* EGL 11 */
-    14, /* EGL 12 */
-    21, /* EGL 14 */
-    28, /* EGL 15 */
-    35, /* EGL_ANDROID_blob_cache */
-    58, /* EGL_ANDROID_create_native_client_buffer */
-    98, /* EGL_ANDROID_get_frame_timestamps */
-    131, /* EGL_ANDROID_get_native_client_buffer */
-    168, /* EGL_ANDROID_native_fence_sync */
-    198, /* EGL_ANDROID_presentation_time */
-    228, /* EGL_ANGLE_query_surface_pointer */
-    260, /* EGL_EXT_compositor */
-    279, /* EGL_EXT_device_base */
-    299, /* EGL_EXT_device_enumeration */
-    326, /* EGL_EXT_device_query */
-    347, /* EGL_EXT_image_dma_buf_import_modifiers */
-    386, /* EGL_EXT_output_base */
-    406, /* EGL_EXT_platform_base */
-    428, /* EGL_EXT_stream_consumer_egloutput */
-    462, /* EGL_EXT_swap_buffers_with_damage */
-    495, /* EGL_HI_clientpixmap */
-    515, /* EGL_KHR_cl_event2 */
-    533, /* EGL_KHR_debug */
-    547, /* EGL_KHR_display_reference */
-    573, /* EGL_KHR_fence_sync */
-    592, /* EGL_KHR_image */
-    606, /* EGL_KHR_image_base */
-    625, /* EGL_KHR_lock_surface */
-    646, /* EGL_KHR_lock_surface3 */
-    668, /* EGL_KHR_partial_update */
-    691, /* EGL_KHR_reusable_sync */
-    713, /* EGL_KHR_stream */
-    728, /* EGL_KHR_stream_attrib */
-    750, /* EGL_KHR_stream_consumer_gltexture */
-    784, /* EGL_KHR_stream_cross_process_fd */
-    816, /* EGL_KHR_stream_fifo */
-    836, /* EGL_KHR_stream_producer_eglsurface */
-    871, /* EGL_KHR_swap_buffers_with_damage */
-    904, /* EGL_KHR_wait_sync */
-    922, /* EGL_MESA_drm_image */
-    941, /* EGL_MESA_image_dma_buf_export */
-    971, /* EGL_NOK_swap_region */
-    991, /* EGL_NOK_swap_region2 */
-    1012, /* EGL_NV_native_query */
-    1032, /* EGL_NV_post_sub_buffer */
-    1055, /* EGL_NV_stream_consumer_gltexture_yuv */
-    1092, /* EGL_NV_stream_metadata */
-    1115, /* EGL_NV_stream_reset */
-    1135, /* EGL_NV_stream_sync */
-    1154, /* EGL_NV_sync */
-    1166, /* EGL_NV_system_time */
+    0, /* EGL_10 */
+    7, /* EGL_11 */
+    14, /* EGL_12 */
+    21, /* EGL_14 */
+    28, /* EGL_15 */
+    35, /* EGL_extension_EGL_ANDROID_blob_cache */
+    74, /* EGL_extension_EGL_ANDROID_create_native_client_buffer */
+    130, /* EGL_extension_EGL_ANDROID_get_frame_timestamps */
+    179, /* EGL_extension_EGL_ANDROID_get_native_client_buffer */
+    232, /* EGL_extension_EGL_ANDROID_native_fence_sync */
+    278, /* EGL_extension_EGL_ANDROID_presentation_time */
+    324, /* EGL_extension_EGL_ANGLE_query_surface_pointer */
+    372, /* EGL_extension_EGL_EXT_compositor */
+    407, /* EGL_extension_EGL_EXT_device_base */
+    443, /* EGL_extension_EGL_EXT_device_enumeration */
+    486, /* EGL_extension_EGL_EXT_device_query */
+    523, /* EGL_extension_EGL_EXT_image_dma_buf_import_modifiers */
+    578, /* EGL_extension_EGL_EXT_output_base */
+    614, /* EGL_extension_EGL_EXT_platform_base */
+    652, /* EGL_extension_EGL_EXT_stream_consumer_egloutput */
+    702, /* EGL_extension_EGL_EXT_swap_buffers_with_damage */
+    751, /* EGL_extension_EGL_HI_clientpixmap */
+    787, /* EGL_extension_EGL_KHR_cl_event2 */
+    821, /* EGL_extension_EGL_KHR_debug */
+    851, /* EGL_extension_EGL_KHR_display_reference */
+    893, /* EGL_extension_EGL_KHR_fence_sync */
+    928, /* EGL_extension_EGL_KHR_image */
+    958, /* EGL_extension_EGL_KHR_image_base */
+    993, /* EGL_extension_EGL_KHR_lock_surface3 */
+    1031, /* EGL_extension_EGL_KHR_lock_surface */
+    1068, /* EGL_extension_EGL_KHR_partial_update */
+    1107, /* EGL_extension_EGL_KHR_reusable_sync */
+    1145, /* EGL_extension_EGL_KHR_stream */
+    1176, /* EGL_extension_EGL_KHR_stream_attrib */
+    1214, /* EGL_extension_EGL_KHR_stream_consumer_gltexture */
+    1264, /* EGL_extension_EGL_KHR_stream_cross_process_fd */
+    1312, /* EGL_extension_EGL_KHR_stream_fifo */
+    1348, /* EGL_extension_EGL_KHR_stream_producer_eglsurface */
+    1399, /* EGL_extension_EGL_KHR_swap_buffers_with_damage */
+    1448, /* EGL_extension_EGL_KHR_wait_sync */
+    1482, /* EGL_extension_EGL_MESA_drm_image */
+    1517, /* EGL_extension_EGL_MESA_image_dma_buf_export */
+    1563, /* EGL_extension_EGL_NOK_swap_region2 */
+    1600, /* EGL_extension_EGL_NOK_swap_region */
+    1636, /* EGL_extension_EGL_NV_native_query */
+    1672, /* EGL_extension_EGL_NV_post_sub_buffer */
+    1711, /* EGL_extension_EGL_NV_stream_consumer_gltexture_yuv */
+    1764, /* EGL_extension_EGL_NV_stream_metadata */
+    1803, /* EGL_extension_EGL_NV_stream_reset */
+    1839, /* EGL_extension_EGL_NV_stream_sync */
+    1874, /* EGL_extension_EGL_NV_sync */
+    1902, /* EGL_extension_EGL_NV_system_time */
 };
 
 static const char entrypoint_strings[] = {
@@ -3539,215 +3539,213 @@ static void *egl_provider_resolver(const char *name,
 {
     int i;
     for (i = 0; providers[i] != egl_provider_terminator; i++) {
-        const char *provider_name = enum_string + enum_string_offsets[providers[i]];
         switch (providers[i]) {
-
-        case PROVIDER_EGL_10:
+        case EGL_10:
             if (true)
                 return epoxy_egl_dlsym(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_11:
+        case EGL_11:
             if (epoxy_conservative_egl_version() >= 11)
                 return epoxy_egl_dlsym(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_12:
+        case EGL_12:
             if (epoxy_conservative_egl_version() >= 12)
                 return epoxy_egl_dlsym(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_14:
+        case EGL_14:
             if (epoxy_conservative_egl_version() >= 14)
                 return epoxy_egl_dlsym(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_15:
+        case EGL_15:
             if (epoxy_conservative_egl_version() >= 15)
                 return epoxy_egl_dlsym(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_ANDROID_blob_cache:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_ANDROID_blob_cache:
+            if (epoxy_conservative_has_egl_extension("EGL_ANDROID_blob_cache"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_ANDROID_create_native_client_buffer:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_ANDROID_create_native_client_buffer:
+            if (epoxy_conservative_has_egl_extension("EGL_ANDROID_create_native_client_buffer"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_ANDROID_get_frame_timestamps:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_ANDROID_get_frame_timestamps:
+            if (epoxy_conservative_has_egl_extension("EGL_ANDROID_get_frame_timestamps"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_ANDROID_get_native_client_buffer:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_ANDROID_get_native_client_buffer:
+            if (epoxy_conservative_has_egl_extension("EGL_ANDROID_get_native_client_buffer"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_ANDROID_native_fence_sync:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_ANDROID_native_fence_sync:
+            if (epoxy_conservative_has_egl_extension("EGL_ANDROID_native_fence_sync"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_ANDROID_presentation_time:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_ANDROID_presentation_time:
+            if (epoxy_conservative_has_egl_extension("EGL_ANDROID_presentation_time"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_ANGLE_query_surface_pointer:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_ANGLE_query_surface_pointer:
+            if (epoxy_conservative_has_egl_extension("EGL_ANGLE_query_surface_pointer"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_EXT_compositor:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_EXT_compositor:
+            if (epoxy_conservative_has_egl_extension("EGL_EXT_compositor"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_EXT_device_base:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_EXT_device_base:
+            if (epoxy_conservative_has_egl_extension("EGL_EXT_device_base"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_EXT_device_enumeration:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_EXT_device_enumeration:
+            if (epoxy_conservative_has_egl_extension("EGL_EXT_device_enumeration"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_EXT_device_query:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_EXT_device_query:
+            if (epoxy_conservative_has_egl_extension("EGL_EXT_device_query"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_EXT_image_dma_buf_import_modifiers:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_EXT_image_dma_buf_import_modifiers:
+            if (epoxy_conservative_has_egl_extension("EGL_EXT_image_dma_buf_import_modifiers"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_EXT_output_base:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_EXT_output_base:
+            if (epoxy_conservative_has_egl_extension("EGL_EXT_output_base"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_EXT_platform_base:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_EXT_platform_base:
+            if (epoxy_conservative_has_egl_extension("EGL_EXT_platform_base"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_EXT_stream_consumer_egloutput:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_EXT_stream_consumer_egloutput:
+            if (epoxy_conservative_has_egl_extension("EGL_EXT_stream_consumer_egloutput"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_EXT_swap_buffers_with_damage:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_EXT_swap_buffers_with_damage:
+            if (epoxy_conservative_has_egl_extension("EGL_EXT_swap_buffers_with_damage"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_HI_clientpixmap:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_HI_clientpixmap:
+            if (epoxy_conservative_has_egl_extension("EGL_HI_clientpixmap"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_cl_event2:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_cl_event2:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_cl_event2"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_debug:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_debug:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_debug"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_display_reference:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_display_reference:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_display_reference"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_fence_sync:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_fence_sync:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_fence_sync"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_image:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_image:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_image"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_image_base:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_image_base:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_image_base"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_lock_surface:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_lock_surface3:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_lock_surface3"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_lock_surface3:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_lock_surface:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_lock_surface"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_partial_update:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_partial_update:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_partial_update"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_reusable_sync:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_reusable_sync:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_reusable_sync"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_stream:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_stream:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_stream"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_stream_attrib:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_stream_attrib:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_stream_attrib"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_stream_consumer_gltexture:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_stream_consumer_gltexture:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_stream_consumer_gltexture"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_stream_cross_process_fd:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_stream_cross_process_fd:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_stream_cross_process_fd"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_stream_fifo:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_stream_fifo:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_stream_fifo"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_stream_producer_eglsurface:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_stream_producer_eglsurface:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_stream_producer_eglsurface"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_swap_buffers_with_damage:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_swap_buffers_with_damage:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_swap_buffers_with_damage"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_KHR_wait_sync:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_KHR_wait_sync:
+            if (epoxy_conservative_has_egl_extension("EGL_KHR_wait_sync"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_MESA_drm_image:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_MESA_drm_image:
+            if (epoxy_conservative_has_egl_extension("EGL_MESA_drm_image"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_MESA_image_dma_buf_export:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_MESA_image_dma_buf_export:
+            if (epoxy_conservative_has_egl_extension("EGL_MESA_image_dma_buf_export"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NOK_swap_region:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NOK_swap_region2:
+            if (epoxy_conservative_has_egl_extension("EGL_NOK_swap_region2"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NOK_swap_region2:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NOK_swap_region:
+            if (epoxy_conservative_has_egl_extension("EGL_NOK_swap_region"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NV_native_query:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NV_native_query:
+            if (epoxy_conservative_has_egl_extension("EGL_NV_native_query"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NV_post_sub_buffer:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NV_post_sub_buffer:
+            if (epoxy_conservative_has_egl_extension("EGL_NV_post_sub_buffer"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NV_stream_consumer_gltexture_yuv:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NV_stream_consumer_gltexture_yuv:
+            if (epoxy_conservative_has_egl_extension("EGL_NV_stream_consumer_gltexture_yuv"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NV_stream_metadata:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NV_stream_metadata:
+            if (epoxy_conservative_has_egl_extension("EGL_NV_stream_metadata"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NV_stream_reset:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NV_stream_reset:
+            if (epoxy_conservative_has_egl_extension("EGL_NV_stream_reset"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NV_stream_sync:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NV_stream_sync:
+            if (epoxy_conservative_has_egl_extension("EGL_NV_stream_sync"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NV_sync:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NV_sync:
+            if (epoxy_conservative_has_egl_extension("EGL_NV_sync"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
-        case PROVIDER_EGL_NV_system_time:
-            if (epoxy_conservative_has_egl_extension(provider_name))
+        case EGL_extension_EGL_NV_system_time:
+            if (epoxy_conservative_has_egl_extension("EGL_NV_system_time"))
                 return eglGetProcAddress(entrypoint_strings + entrypoints[i]);
             break;
         case egl_provider_terminator:
@@ -3786,28 +3784,28 @@ egl_single_resolver(enum egl_provider provider, uint32_t entrypoint_offset)
 static PFNEGLBINDAPIPROC
 epoxy_eglBindAPI_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_12, 0 /* eglBindAPI */);
+    return egl_single_resolver(EGL_12, 0 /* eglBindAPI */);
 }
 
 static PFNEGLBINDTEXIMAGEPROC
 epoxy_eglBindTexImage_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_11, 11 /* eglBindTexImage */);
+    return egl_single_resolver(EGL_11, 11 /* eglBindTexImage */);
 }
 
 static PFNEGLCHOOSECONFIGPROC
 epoxy_eglChooseConfig_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 27 /* eglChooseConfig */);
+    return egl_single_resolver(EGL_10, 27 /* eglChooseConfig */);
 }
 
 static PFNEGLCLIENTWAITSYNCPROC
 epoxy_eglClientWaitSync_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_15,
-        PROVIDER_EGL_KHR_fence_sync,
-        PROVIDER_EGL_KHR_reusable_sync,
+        EGL_15,
+        EGL_extension_EGL_KHR_fence_sync,
+        EGL_extension_EGL_KHR_reusable_sync,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -3823,9 +3821,9 @@ static PFNEGLCLIENTWAITSYNCKHRPROC
 epoxy_eglClientWaitSyncKHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_fence_sync,
-        PROVIDER_EGL_KHR_reusable_sync,
-        PROVIDER_EGL_15,
+        EGL_extension_EGL_KHR_fence_sync,
+        EGL_extension_EGL_KHR_reusable_sync,
+        EGL_15,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -3840,87 +3838,87 @@ epoxy_eglClientWaitSyncKHR_resolver(void)
 static PFNEGLCLIENTWAITSYNCNVPROC
 epoxy_eglClientWaitSyncNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_sync, 82 /* eglClientWaitSyncNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_sync, 82 /* eglClientWaitSyncNV */);
 }
 
 static PFNEGLCOMPOSITORBINDTEXWINDOWEXTPROC
 epoxy_eglCompositorBindTexWindowEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_compositor, 102 /* eglCompositorBindTexWindowEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_compositor, 102 /* eglCompositorBindTexWindowEXT */);
 }
 
 static PFNEGLCOMPOSITORSETCONTEXTATTRIBUTESEXTPROC
 epoxy_eglCompositorSetContextAttributesEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_compositor, 132 /* eglCompositorSetContextAttributesEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_compositor, 132 /* eglCompositorSetContextAttributesEXT */);
 }
 
 static PFNEGLCOMPOSITORSETCONTEXTLISTEXTPROC
 epoxy_eglCompositorSetContextListEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_compositor, 169 /* eglCompositorSetContextListEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_compositor, 169 /* eglCompositorSetContextListEXT */);
 }
 
 static PFNEGLCOMPOSITORSETSIZEEXTPROC
 epoxy_eglCompositorSetSizeEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_compositor, 200 /* eglCompositorSetSizeEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_compositor, 200 /* eglCompositorSetSizeEXT */);
 }
 
 static PFNEGLCOMPOSITORSETWINDOWATTRIBUTESEXTPROC
 epoxy_eglCompositorSetWindowAttributesEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_compositor, 224 /* eglCompositorSetWindowAttributesEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_compositor, 224 /* eglCompositorSetWindowAttributesEXT */);
 }
 
 static PFNEGLCOMPOSITORSETWINDOWLISTEXTPROC
 epoxy_eglCompositorSetWindowListEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_compositor, 260 /* eglCompositorSetWindowListEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_compositor, 260 /* eglCompositorSetWindowListEXT */);
 }
 
 static PFNEGLCOMPOSITORSWAPPOLICYEXTPROC
 epoxy_eglCompositorSwapPolicyEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_compositor, 290 /* eglCompositorSwapPolicyEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_compositor, 290 /* eglCompositorSwapPolicyEXT */);
 }
 
 static PFNEGLCOPYBUFFERSPROC
 epoxy_eglCopyBuffers_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 317 /* eglCopyBuffers */);
+    return egl_single_resolver(EGL_10, 317 /* eglCopyBuffers */);
 }
 
 static PFNEGLCREATECONTEXTPROC
 epoxy_eglCreateContext_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 332 /* eglCreateContext */);
+    return egl_single_resolver(EGL_10, 332 /* eglCreateContext */);
 }
 
 static PFNEGLCREATEDRMIMAGEMESAPROC
 epoxy_eglCreateDRMImageMESA_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_MESA_drm_image, 349 /* eglCreateDRMImageMESA */);
+    return egl_single_resolver(EGL_extension_EGL_MESA_drm_image, 349 /* eglCreateDRMImageMESA */);
 }
 
 static PFNEGLCREATEFENCESYNCNVPROC
 epoxy_eglCreateFenceSyncNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_sync, 371 /* eglCreateFenceSyncNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_sync, 371 /* eglCreateFenceSyncNV */);
 }
 
 static PFNEGLCREATEIMAGEPROC
 epoxy_eglCreateImage_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_15, 392 /* eglCreateImage */);
+    return egl_single_resolver(EGL_15, 392 /* eglCreateImage */);
 }
 
 static PFNEGLCREATEIMAGEKHRPROC
 epoxy_eglCreateImageKHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_image,
-        PROVIDER_EGL_KHR_image_base,
+        EGL_extension_EGL_KHR_image,
+        EGL_extension_EGL_KHR_image_base,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -3934,93 +3932,93 @@ epoxy_eglCreateImageKHR_resolver(void)
 static PFNEGLCREATENATIVECLIENTBUFFERANDROIDPROC
 epoxy_eglCreateNativeClientBufferANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_create_native_client_buffer, 425 /* eglCreateNativeClientBufferANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_create_native_client_buffer, 425 /* eglCreateNativeClientBufferANDROID */);
 }
 
 static PFNEGLCREATEPBUFFERFROMCLIENTBUFFERPROC
 epoxy_eglCreatePbufferFromClientBuffer_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_12, 460 /* eglCreatePbufferFromClientBuffer */);
+    return egl_single_resolver(EGL_12, 460 /* eglCreatePbufferFromClientBuffer */);
 }
 
 static PFNEGLCREATEPBUFFERSURFACEPROC
 epoxy_eglCreatePbufferSurface_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 493 /* eglCreatePbufferSurface */);
+    return egl_single_resolver(EGL_10, 493 /* eglCreatePbufferSurface */);
 }
 
 static PFNEGLCREATEPIXMAPSURFACEPROC
 epoxy_eglCreatePixmapSurface_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 517 /* eglCreatePixmapSurface */);
+    return egl_single_resolver(EGL_10, 517 /* eglCreatePixmapSurface */);
 }
 
 static PFNEGLCREATEPIXMAPSURFACEHIPROC
 epoxy_eglCreatePixmapSurfaceHI_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_HI_clientpixmap, 540 /* eglCreatePixmapSurfaceHI */);
+    return egl_single_resolver(EGL_extension_EGL_HI_clientpixmap, 540 /* eglCreatePixmapSurfaceHI */);
 }
 
 static PFNEGLCREATEPLATFORMPIXMAPSURFACEPROC
 epoxy_eglCreatePlatformPixmapSurface_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_15, 565 /* eglCreatePlatformPixmapSurface */);
+    return egl_single_resolver(EGL_15, 565 /* eglCreatePlatformPixmapSurface */);
 }
 
 static PFNEGLCREATEPLATFORMPIXMAPSURFACEEXTPROC
 epoxy_eglCreatePlatformPixmapSurfaceEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_platform_base, 596 /* eglCreatePlatformPixmapSurfaceEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_platform_base, 596 /* eglCreatePlatformPixmapSurfaceEXT */);
 }
 
 static PFNEGLCREATEPLATFORMWINDOWSURFACEPROC
 epoxy_eglCreatePlatformWindowSurface_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_15, 630 /* eglCreatePlatformWindowSurface */);
+    return egl_single_resolver(EGL_15, 630 /* eglCreatePlatformWindowSurface */);
 }
 
 static PFNEGLCREATEPLATFORMWINDOWSURFACEEXTPROC
 epoxy_eglCreatePlatformWindowSurfaceEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_platform_base, 661 /* eglCreatePlatformWindowSurfaceEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_platform_base, 661 /* eglCreatePlatformWindowSurfaceEXT */);
 }
 
 static PFNEGLCREATESTREAMATTRIBKHRPROC
 epoxy_eglCreateStreamAttribKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_attrib, 695 /* eglCreateStreamAttribKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_attrib, 695 /* eglCreateStreamAttribKHR */);
 }
 
 static PFNEGLCREATESTREAMFROMFILEDESCRIPTORKHRPROC
 epoxy_eglCreateStreamFromFileDescriptorKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_cross_process_fd, 720 /* eglCreateStreamFromFileDescriptorKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_cross_process_fd, 720 /* eglCreateStreamFromFileDescriptorKHR */);
 }
 
 static PFNEGLCREATESTREAMKHRPROC
 epoxy_eglCreateStreamKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream, 757 /* eglCreateStreamKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream, 757 /* eglCreateStreamKHR */);
 }
 
 static PFNEGLCREATESTREAMPRODUCERSURFACEKHRPROC
 epoxy_eglCreateStreamProducerSurfaceKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_producer_eglsurface, 776 /* eglCreateStreamProducerSurfaceKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_producer_eglsurface, 776 /* eglCreateStreamProducerSurfaceKHR */);
 }
 
 static PFNEGLCREATESTREAMSYNCNVPROC
 epoxy_eglCreateStreamSyncNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_stream_sync, 810 /* eglCreateStreamSyncNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_stream_sync, 810 /* eglCreateStreamSyncNV */);
 }
 
 static PFNEGLCREATESYNCPROC
 epoxy_eglCreateSync_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_15,
-        PROVIDER_EGL_KHR_cl_event2,
+        EGL_15,
+        EGL_extension_EGL_KHR_cl_event2,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4035,8 +4033,8 @@ static PFNEGLCREATESYNC64KHRPROC
 epoxy_eglCreateSync64KHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_cl_event2,
-        PROVIDER_EGL_15,
+        EGL_extension_EGL_KHR_cl_event2,
+        EGL_15,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4051,8 +4049,8 @@ static PFNEGLCREATESYNCKHRPROC
 epoxy_eglCreateSyncKHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_fence_sync,
-        PROVIDER_EGL_KHR_reusable_sync,
+        EGL_extension_EGL_KHR_fence_sync,
+        EGL_extension_EGL_KHR_reusable_sync,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4066,28 +4064,28 @@ epoxy_eglCreateSyncKHR_resolver(void)
 static PFNEGLCREATEWINDOWSURFACEPROC
 epoxy_eglCreateWindowSurface_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 882 /* eglCreateWindowSurface */);
+    return egl_single_resolver(EGL_10, 882 /* eglCreateWindowSurface */);
 }
 
 static PFNEGLDEBUGMESSAGECONTROLKHRPROC
 epoxy_eglDebugMessageControlKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_debug, 905 /* eglDebugMessageControlKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_debug, 905 /* eglDebugMessageControlKHR */);
 }
 
 static PFNEGLDESTROYCONTEXTPROC
 epoxy_eglDestroyContext_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 931 /* eglDestroyContext */);
+    return egl_single_resolver(EGL_10, 931 /* eglDestroyContext */);
 }
 
 static PFNEGLDESTROYIMAGEPROC
 epoxy_eglDestroyImage_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_15,
-        PROVIDER_EGL_KHR_image,
-        PROVIDER_EGL_KHR_image_base,
+        EGL_15,
+        EGL_extension_EGL_KHR_image,
+        EGL_extension_EGL_KHR_image_base,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4103,9 +4101,9 @@ static PFNEGLDESTROYIMAGEKHRPROC
 epoxy_eglDestroyImageKHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_image,
-        PROVIDER_EGL_KHR_image_base,
-        PROVIDER_EGL_15,
+        EGL_extension_EGL_KHR_image,
+        EGL_extension_EGL_KHR_image_base,
+        EGL_15,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4120,22 +4118,22 @@ epoxy_eglDestroyImageKHR_resolver(void)
 static PFNEGLDESTROYSTREAMKHRPROC
 epoxy_eglDestroyStreamKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream, 984 /* eglDestroyStreamKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream, 984 /* eglDestroyStreamKHR */);
 }
 
 static PFNEGLDESTROYSURFACEPROC
 epoxy_eglDestroySurface_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1004 /* eglDestroySurface */);
+    return egl_single_resolver(EGL_10, 1004 /* eglDestroySurface */);
 }
 
 static PFNEGLDESTROYSYNCPROC
 epoxy_eglDestroySync_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_15,
-        PROVIDER_EGL_KHR_fence_sync,
-        PROVIDER_EGL_KHR_reusable_sync,
+        EGL_15,
+        EGL_extension_EGL_KHR_fence_sync,
+        EGL_extension_EGL_KHR_reusable_sync,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4151,9 +4149,9 @@ static PFNEGLDESTROYSYNCKHRPROC
 epoxy_eglDestroySyncKHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_fence_sync,
-        PROVIDER_EGL_KHR_reusable_sync,
-        PROVIDER_EGL_15,
+        EGL_extension_EGL_KHR_fence_sync,
+        EGL_extension_EGL_KHR_reusable_sync,
+        EGL_15,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4168,165 +4166,165 @@ epoxy_eglDestroySyncKHR_resolver(void)
 static PFNEGLDESTROYSYNCNVPROC
 epoxy_eglDestroySyncNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_sync, 1055 /* eglDestroySyncNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_sync, 1055 /* eglDestroySyncNV */);
 }
 
 static PFNEGLDUPNATIVEFENCEFDANDROIDPROC
 epoxy_eglDupNativeFenceFDANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_native_fence_sync, 1072 /* eglDupNativeFenceFDANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_native_fence_sync, 1072 /* eglDupNativeFenceFDANDROID */);
 }
 
 static PFNEGLEXPORTDMABUFIMAGEMESAPROC
 epoxy_eglExportDMABUFImageMESA_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_MESA_image_dma_buf_export, 1099 /* eglExportDMABUFImageMESA */);
+    return egl_single_resolver(EGL_extension_EGL_MESA_image_dma_buf_export, 1099 /* eglExportDMABUFImageMESA */);
 }
 
 static PFNEGLEXPORTDMABUFIMAGEQUERYMESAPROC
 epoxy_eglExportDMABUFImageQueryMESA_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_MESA_image_dma_buf_export, 1124 /* eglExportDMABUFImageQueryMESA */);
+    return egl_single_resolver(EGL_extension_EGL_MESA_image_dma_buf_export, 1124 /* eglExportDMABUFImageQueryMESA */);
 }
 
 static PFNEGLEXPORTDRMIMAGEMESAPROC
 epoxy_eglExportDRMImageMESA_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_MESA_drm_image, 1154 /* eglExportDRMImageMESA */);
+    return egl_single_resolver(EGL_extension_EGL_MESA_drm_image, 1154 /* eglExportDRMImageMESA */);
 }
 
 static PFNEGLFENCENVPROC
 epoxy_eglFenceNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_sync, 1176 /* eglFenceNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_sync, 1176 /* eglFenceNV */);
 }
 
 static PFNEGLGETCOMPOSITORTIMINGANDROIDPROC
 epoxy_eglGetCompositorTimingANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_get_frame_timestamps, 1187 /* eglGetCompositorTimingANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_get_frame_timestamps, 1187 /* eglGetCompositorTimingANDROID */);
 }
 
 static PFNEGLGETCOMPOSITORTIMINGSUPPORTEDANDROIDPROC
 epoxy_eglGetCompositorTimingSupportedANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_get_frame_timestamps, 1217 /* eglGetCompositorTimingSupportedANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_get_frame_timestamps, 1217 /* eglGetCompositorTimingSupportedANDROID */);
 }
 
 static PFNEGLGETCONFIGATTRIBPROC
 epoxy_eglGetConfigAttrib_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1256 /* eglGetConfigAttrib */);
+    return egl_single_resolver(EGL_10, 1256 /* eglGetConfigAttrib */);
 }
 
 static PFNEGLGETCONFIGSPROC
 epoxy_eglGetConfigs_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1275 /* eglGetConfigs */);
+    return egl_single_resolver(EGL_10, 1275 /* eglGetConfigs */);
 }
 
 static PFNEGLGETCURRENTCONTEXTPROC
 epoxy_eglGetCurrentContext_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_14, 1289 /* eglGetCurrentContext */);
+    return egl_single_resolver(EGL_14, 1289 /* eglGetCurrentContext */);
 }
 
 static PFNEGLGETCURRENTDISPLAYPROC
 epoxy_eglGetCurrentDisplay_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1310 /* eglGetCurrentDisplay */);
+    return egl_single_resolver(EGL_10, 1310 /* eglGetCurrentDisplay */);
 }
 
 static PFNEGLGETCURRENTSURFACEPROC
 epoxy_eglGetCurrentSurface_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1331 /* eglGetCurrentSurface */);
+    return egl_single_resolver(EGL_10, 1331 /* eglGetCurrentSurface */);
 }
 
 static PFNEGLGETDISPLAYPROC
 epoxy_eglGetDisplay_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1352 /* eglGetDisplay */);
+    return egl_single_resolver(EGL_10, 1352 /* eglGetDisplay */);
 }
 
 static PFNEGLGETERRORPROC
 epoxy_eglGetError_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1366 /* eglGetError */);
+    return egl_single_resolver(EGL_10, 1366 /* eglGetError */);
 }
 
 static PFNEGLGETFRAMETIMESTAMPSUPPORTEDANDROIDPROC
 epoxy_eglGetFrameTimestampSupportedANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_get_frame_timestamps, 1378 /* eglGetFrameTimestampSupportedANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_get_frame_timestamps, 1378 /* eglGetFrameTimestampSupportedANDROID */);
 }
 
 static PFNEGLGETFRAMETIMESTAMPSANDROIDPROC
 epoxy_eglGetFrameTimestampsANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_get_frame_timestamps, 1415 /* eglGetFrameTimestampsANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_get_frame_timestamps, 1415 /* eglGetFrameTimestampsANDROID */);
 }
 
 static PFNEGLGETNATIVECLIENTBUFFERANDROIDPROC
 epoxy_eglGetNativeClientBufferANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_get_native_client_buffer, 1444 /* eglGetNativeClientBufferANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_get_native_client_buffer, 1444 /* eglGetNativeClientBufferANDROID */);
 }
 
 static PFNEGLGETNEXTFRAMEIDANDROIDPROC
 epoxy_eglGetNextFrameIdANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_get_frame_timestamps, 1476 /* eglGetNextFrameIdANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_get_frame_timestamps, 1476 /* eglGetNextFrameIdANDROID */);
 }
 
 static PFNEGLGETOUTPUTLAYERSEXTPROC
 epoxy_eglGetOutputLayersEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_output_base, 1501 /* eglGetOutputLayersEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_output_base, 1501 /* eglGetOutputLayersEXT */);
 }
 
 static PFNEGLGETOUTPUTPORTSEXTPROC
 epoxy_eglGetOutputPortsEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_output_base, 1523 /* eglGetOutputPortsEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_output_base, 1523 /* eglGetOutputPortsEXT */);
 }
 
 static PFNEGLGETPLATFORMDISPLAYPROC
 epoxy_eglGetPlatformDisplay_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_15, 1544 /* eglGetPlatformDisplay */);
+    return egl_single_resolver(EGL_15, 1544 /* eglGetPlatformDisplay */);
 }
 
 static PFNEGLGETPLATFORMDISPLAYEXTPROC
 epoxy_eglGetPlatformDisplayEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_platform_base, 1566 /* eglGetPlatformDisplayEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_platform_base, 1566 /* eglGetPlatformDisplayEXT */);
 }
 
 static PFNEGLGETPROCADDRESSPROC
 epoxy_eglGetProcAddress_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1591 /* eglGetProcAddress */);
+    return egl_single_resolver(EGL_10, 1591 /* eglGetProcAddress */);
 }
 
 static PFNEGLGETSTREAMFILEDESCRIPTORKHRPROC
 epoxy_eglGetStreamFileDescriptorKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_cross_process_fd, 1609 /* eglGetStreamFileDescriptorKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_cross_process_fd, 1609 /* eglGetStreamFileDescriptorKHR */);
 }
 
 static PFNEGLGETSYNCATTRIBPROC
 epoxy_eglGetSyncAttrib_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_15, 1639 /* eglGetSyncAttrib */);
+    return egl_single_resolver(EGL_15, 1639 /* eglGetSyncAttrib */);
 }
 
 static PFNEGLGETSYNCATTRIBKHRPROC
 epoxy_eglGetSyncAttribKHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_fence_sync,
-        PROVIDER_EGL_KHR_reusable_sync,
+        EGL_extension_EGL_KHR_fence_sync,
+        EGL_extension_EGL_KHR_reusable_sync,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4340,39 +4338,39 @@ epoxy_eglGetSyncAttribKHR_resolver(void)
 static PFNEGLGETSYNCATTRIBNVPROC
 epoxy_eglGetSyncAttribNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_sync, 1676 /* eglGetSyncAttribNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_sync, 1676 /* eglGetSyncAttribNV */);
 }
 
 static PFNEGLGETSYSTEMTIMEFREQUENCYNVPROC
 epoxy_eglGetSystemTimeFrequencyNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_system_time, 1695 /* eglGetSystemTimeFrequencyNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_system_time, 1695 /* eglGetSystemTimeFrequencyNV */);
 }
 
 static PFNEGLGETSYSTEMTIMENVPROC
 epoxy_eglGetSystemTimeNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_system_time, 1723 /* eglGetSystemTimeNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_system_time, 1723 /* eglGetSystemTimeNV */);
 }
 
 static PFNEGLINITIALIZEPROC
 epoxy_eglInitialize_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1742 /* eglInitialize */);
+    return egl_single_resolver(EGL_10, 1742 /* eglInitialize */);
 }
 
 static PFNEGLLABELOBJECTKHRPROC
 epoxy_eglLabelObjectKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_debug, 1756 /* eglLabelObjectKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_debug, 1756 /* eglLabelObjectKHR */);
 }
 
 static PFNEGLLOCKSURFACEKHRPROC
 epoxy_eglLockSurfaceKHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_lock_surface,
-        PROVIDER_EGL_KHR_lock_surface3,
+        EGL_extension_EGL_KHR_lock_surface,
+        EGL_extension_EGL_KHR_lock_surface3,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4386,57 +4384,57 @@ epoxy_eglLockSurfaceKHR_resolver(void)
 static PFNEGLMAKECURRENTPROC
 epoxy_eglMakeCurrent_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1792 /* eglMakeCurrent */);
+    return egl_single_resolver(EGL_10, 1792 /* eglMakeCurrent */);
 }
 
 static PFNEGLOUTPUTLAYERATTRIBEXTPROC
 epoxy_eglOutputLayerAttribEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_output_base, 1807 /* eglOutputLayerAttribEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_output_base, 1807 /* eglOutputLayerAttribEXT */);
 }
 
 static PFNEGLOUTPUTPORTATTRIBEXTPROC
 epoxy_eglOutputPortAttribEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_output_base, 1831 /* eglOutputPortAttribEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_output_base, 1831 /* eglOutputPortAttribEXT */);
 }
 
 static PFNEGLPOSTSUBBUFFERNVPROC
 epoxy_eglPostSubBufferNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_post_sub_buffer, 1854 /* eglPostSubBufferNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_post_sub_buffer, 1854 /* eglPostSubBufferNV */);
 }
 
 static PFNEGLPRESENTATIONTIMEANDROIDPROC
 epoxy_eglPresentationTimeANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_presentation_time, 1873 /* eglPresentationTimeANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_presentation_time, 1873 /* eglPresentationTimeANDROID */);
 }
 
 static PFNEGLQUERYAPIPROC
 epoxy_eglQueryAPI_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_12, 1900 /* eglQueryAPI */);
+    return egl_single_resolver(EGL_12, 1900 /* eglQueryAPI */);
 }
 
 static PFNEGLQUERYCONTEXTPROC
 epoxy_eglQueryContext_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 1912 /* eglQueryContext */);
+    return egl_single_resolver(EGL_10, 1912 /* eglQueryContext */);
 }
 
 static PFNEGLQUERYDEBUGKHRPROC
 epoxy_eglQueryDebugKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_debug, 1928 /* eglQueryDebugKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_debug, 1928 /* eglQueryDebugKHR */);
 }
 
 static PFNEGLQUERYDEVICEATTRIBEXTPROC
 epoxy_eglQueryDeviceAttribEXT_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_EXT_device_base,
-        PROVIDER_EGL_EXT_device_query,
+        EGL_extension_EGL_EXT_device_base,
+        EGL_extension_EGL_EXT_device_query,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4451,8 +4449,8 @@ static PFNEGLQUERYDEVICESTRINGEXTPROC
 epoxy_eglQueryDeviceStringEXT_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_EXT_device_base,
-        PROVIDER_EGL_EXT_device_query,
+        EGL_extension_EGL_EXT_device_base,
+        EGL_extension_EGL_EXT_device_query,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4467,8 +4465,8 @@ static PFNEGLQUERYDEVICESEXTPROC
 epoxy_eglQueryDevicesEXT_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_EXT_device_base,
-        PROVIDER_EGL_EXT_device_enumeration,
+        EGL_extension_EGL_EXT_device_base,
+        EGL_extension_EGL_EXT_device_enumeration,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4483,10 +4481,10 @@ static PFNEGLQUERYDISPLAYATTRIBEXTPROC
 epoxy_eglQueryDisplayAttribEXT_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_EXT_device_base,
-        PROVIDER_EGL_EXT_device_query,
-        PROVIDER_EGL_KHR_display_reference,
-        PROVIDER_EGL_NV_stream_metadata,
+        EGL_extension_EGL_EXT_device_base,
+        EGL_extension_EGL_EXT_device_query,
+        EGL_extension_EGL_KHR_display_reference,
+        EGL_extension_EGL_NV_stream_metadata,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4503,10 +4501,10 @@ static PFNEGLQUERYDISPLAYATTRIBKHRPROC
 epoxy_eglQueryDisplayAttribKHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_display_reference,
-        PROVIDER_EGL_EXT_device_base,
-        PROVIDER_EGL_EXT_device_query,
-        PROVIDER_EGL_NV_stream_metadata,
+        EGL_extension_EGL_KHR_display_reference,
+        EGL_extension_EGL_EXT_device_base,
+        EGL_extension_EGL_EXT_device_query,
+        EGL_extension_EGL_NV_stream_metadata,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4523,10 +4521,10 @@ static PFNEGLQUERYDISPLAYATTRIBNVPROC
 epoxy_eglQueryDisplayAttribNV_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_NV_stream_metadata,
-        PROVIDER_EGL_EXT_device_base,
-        PROVIDER_EGL_EXT_device_query,
-        PROVIDER_EGL_KHR_display_reference,
+        EGL_extension_EGL_NV_stream_metadata,
+        EGL_extension_EGL_EXT_device_base,
+        EGL_extension_EGL_EXT_device_query,
+        EGL_extension_EGL_KHR_display_reference,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4542,267 +4540,267 @@ epoxy_eglQueryDisplayAttribNV_resolver(void)
 static PFNEGLQUERYDMABUFFORMATSEXTPROC
 epoxy_eglQueryDmaBufFormatsEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_image_dma_buf_import_modifiers, 2086 /* eglQueryDmaBufFormatsEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_image_dma_buf_import_modifiers, 2086 /* eglQueryDmaBufFormatsEXT */);
 }
 
 static PFNEGLQUERYDMABUFMODIFIERSEXTPROC
 epoxy_eglQueryDmaBufModifiersEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_image_dma_buf_import_modifiers, 2111 /* eglQueryDmaBufModifiersEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_image_dma_buf_import_modifiers, 2111 /* eglQueryDmaBufModifiersEXT */);
 }
 
 static PFNEGLQUERYNATIVEDISPLAYNVPROC
 epoxy_eglQueryNativeDisplayNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_native_query, 2138 /* eglQueryNativeDisplayNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_native_query, 2138 /* eglQueryNativeDisplayNV */);
 }
 
 static PFNEGLQUERYNATIVEPIXMAPNVPROC
 epoxy_eglQueryNativePixmapNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_native_query, 2162 /* eglQueryNativePixmapNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_native_query, 2162 /* eglQueryNativePixmapNV */);
 }
 
 static PFNEGLQUERYNATIVEWINDOWNVPROC
 epoxy_eglQueryNativeWindowNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_native_query, 2185 /* eglQueryNativeWindowNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_native_query, 2185 /* eglQueryNativeWindowNV */);
 }
 
 static PFNEGLQUERYOUTPUTLAYERATTRIBEXTPROC
 epoxy_eglQueryOutputLayerAttribEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_output_base, 2208 /* eglQueryOutputLayerAttribEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_output_base, 2208 /* eglQueryOutputLayerAttribEXT */);
 }
 
 static PFNEGLQUERYOUTPUTLAYERSTRINGEXTPROC
 epoxy_eglQueryOutputLayerStringEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_output_base, 2237 /* eglQueryOutputLayerStringEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_output_base, 2237 /* eglQueryOutputLayerStringEXT */);
 }
 
 static PFNEGLQUERYOUTPUTPORTATTRIBEXTPROC
 epoxy_eglQueryOutputPortAttribEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_output_base, 2266 /* eglQueryOutputPortAttribEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_output_base, 2266 /* eglQueryOutputPortAttribEXT */);
 }
 
 static PFNEGLQUERYOUTPUTPORTSTRINGEXTPROC
 epoxy_eglQueryOutputPortStringEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_output_base, 2294 /* eglQueryOutputPortStringEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_output_base, 2294 /* eglQueryOutputPortStringEXT */);
 }
 
 static PFNEGLQUERYSTREAMATTRIBKHRPROC
 epoxy_eglQueryStreamAttribKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_attrib, 2322 /* eglQueryStreamAttribKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_attrib, 2322 /* eglQueryStreamAttribKHR */);
 }
 
 static PFNEGLQUERYSTREAMKHRPROC
 epoxy_eglQueryStreamKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream, 2346 /* eglQueryStreamKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream, 2346 /* eglQueryStreamKHR */);
 }
 
 static PFNEGLQUERYSTREAMMETADATANVPROC
 epoxy_eglQueryStreamMetadataNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_stream_metadata, 2364 /* eglQueryStreamMetadataNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_stream_metadata, 2364 /* eglQueryStreamMetadataNV */);
 }
 
 static PFNEGLQUERYSTREAMTIMEKHRPROC
 epoxy_eglQueryStreamTimeKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_fifo, 2389 /* eglQueryStreamTimeKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_fifo, 2389 /* eglQueryStreamTimeKHR */);
 }
 
 static PFNEGLQUERYSTREAMU64KHRPROC
 epoxy_eglQueryStreamu64KHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream, 2411 /* eglQueryStreamu64KHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream, 2411 /* eglQueryStreamu64KHR */);
 }
 
 static PFNEGLQUERYSTRINGPROC
 epoxy_eglQueryString_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 2432 /* eglQueryString */);
+    return egl_single_resolver(EGL_10, 2432 /* eglQueryString */);
 }
 
 static PFNEGLQUERYSURFACEPROC
 epoxy_eglQuerySurface_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 2447 /* eglQuerySurface */);
+    return egl_single_resolver(EGL_10, 2447 /* eglQuerySurface */);
 }
 
 static PFNEGLQUERYSURFACE64KHRPROC
 epoxy_eglQuerySurface64KHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_lock_surface3, 2463 /* eglQuerySurface64KHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_lock_surface3, 2463 /* eglQuerySurface64KHR */);
 }
 
 static PFNEGLQUERYSURFACEPOINTERANGLEPROC
 epoxy_eglQuerySurfacePointerANGLE_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANGLE_query_surface_pointer, 2484 /* eglQuerySurfacePointerANGLE */);
+    return egl_single_resolver(EGL_extension_EGL_ANGLE_query_surface_pointer, 2484 /* eglQuerySurfacePointerANGLE */);
 }
 
 static PFNEGLRELEASETEXIMAGEPROC
 epoxy_eglReleaseTexImage_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_11, 2512 /* eglReleaseTexImage */);
+    return egl_single_resolver(EGL_11, 2512 /* eglReleaseTexImage */);
 }
 
 static PFNEGLRELEASETHREADPROC
 epoxy_eglReleaseThread_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_12, 2531 /* eglReleaseThread */);
+    return egl_single_resolver(EGL_12, 2531 /* eglReleaseThread */);
 }
 
 static PFNEGLRESETSTREAMNVPROC
 epoxy_eglResetStreamNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_stream_reset, 2548 /* eglResetStreamNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_stream_reset, 2548 /* eglResetStreamNV */);
 }
 
 static PFNEGLSETBLOBCACHEFUNCSANDROIDPROC
 epoxy_eglSetBlobCacheFuncsANDROID_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_ANDROID_blob_cache, 2565 /* eglSetBlobCacheFuncsANDROID */);
+    return egl_single_resolver(EGL_extension_EGL_ANDROID_blob_cache, 2565 /* eglSetBlobCacheFuncsANDROID */);
 }
 
 static PFNEGLSETDAMAGEREGIONKHRPROC
 epoxy_eglSetDamageRegionKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_partial_update, 2593 /* eglSetDamageRegionKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_partial_update, 2593 /* eglSetDamageRegionKHR */);
 }
 
 static PFNEGLSETSTREAMATTRIBKHRPROC
 epoxy_eglSetStreamAttribKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_attrib, 2615 /* eglSetStreamAttribKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_attrib, 2615 /* eglSetStreamAttribKHR */);
 }
 
 static PFNEGLSETSTREAMMETADATANVPROC
 epoxy_eglSetStreamMetadataNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_stream_metadata, 2637 /* eglSetStreamMetadataNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_stream_metadata, 2637 /* eglSetStreamMetadataNV */);
 }
 
 static PFNEGLSIGNALSYNCKHRPROC
 epoxy_eglSignalSyncKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_reusable_sync, 2660 /* eglSignalSyncKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_reusable_sync, 2660 /* eglSignalSyncKHR */);
 }
 
 static PFNEGLSIGNALSYNCNVPROC
 epoxy_eglSignalSyncNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_sync, 2677 /* eglSignalSyncNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_sync, 2677 /* eglSignalSyncNV */);
 }
 
 static PFNEGLSTREAMATTRIBKHRPROC
 epoxy_eglStreamAttribKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream, 2693 /* eglStreamAttribKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream, 2693 /* eglStreamAttribKHR */);
 }
 
 static PFNEGLSTREAMCONSUMERACQUIREATTRIBKHRPROC
 epoxy_eglStreamConsumerAcquireAttribKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_attrib, 2712 /* eglStreamConsumerAcquireAttribKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_attrib, 2712 /* eglStreamConsumerAcquireAttribKHR */);
 }
 
 static PFNEGLSTREAMCONSUMERACQUIREKHRPROC
 epoxy_eglStreamConsumerAcquireKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_consumer_gltexture, 2746 /* eglStreamConsumerAcquireKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_consumer_gltexture, 2746 /* eglStreamConsumerAcquireKHR */);
 }
 
 static PFNEGLSTREAMCONSUMERGLTEXTUREEXTERNALATTRIBSNVPROC
 epoxy_eglStreamConsumerGLTextureExternalAttribsNV_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NV_stream_consumer_gltexture_yuv, 2774 /* eglStreamConsumerGLTextureExternalAttribsNV */);
+    return egl_single_resolver(EGL_extension_EGL_NV_stream_consumer_gltexture_yuv, 2774 /* eglStreamConsumerGLTextureExternalAttribsNV */);
 }
 
 static PFNEGLSTREAMCONSUMERGLTEXTUREEXTERNALKHRPROC
 epoxy_eglStreamConsumerGLTextureExternalKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_consumer_gltexture, 2818 /* eglStreamConsumerGLTextureExternalKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_consumer_gltexture, 2818 /* eglStreamConsumerGLTextureExternalKHR */);
 }
 
 static PFNEGLSTREAMCONSUMEROUTPUTEXTPROC
 epoxy_eglStreamConsumerOutputEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_stream_consumer_egloutput, 2856 /* eglStreamConsumerOutputEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_stream_consumer_egloutput, 2856 /* eglStreamConsumerOutputEXT */);
 }
 
 static PFNEGLSTREAMCONSUMERRELEASEATTRIBKHRPROC
 epoxy_eglStreamConsumerReleaseAttribKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_attrib, 2883 /* eglStreamConsumerReleaseAttribKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_attrib, 2883 /* eglStreamConsumerReleaseAttribKHR */);
 }
 
 static PFNEGLSTREAMCONSUMERRELEASEKHRPROC
 epoxy_eglStreamConsumerReleaseKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_stream_consumer_gltexture, 2917 /* eglStreamConsumerReleaseKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_stream_consumer_gltexture, 2917 /* eglStreamConsumerReleaseKHR */);
 }
 
 static PFNEGLSURFACEATTRIBPROC
 epoxy_eglSurfaceAttrib_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_11, 2945 /* eglSurfaceAttrib */);
+    return egl_single_resolver(EGL_11, 2945 /* eglSurfaceAttrib */);
 }
 
 static PFNEGLSWAPBUFFERSPROC
 epoxy_eglSwapBuffers_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 2962 /* eglSwapBuffers */);
+    return egl_single_resolver(EGL_10, 2962 /* eglSwapBuffers */);
 }
 
 static PFNEGLSWAPBUFFERSREGION2NOKPROC
 epoxy_eglSwapBuffersRegion2NOK_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NOK_swap_region2, 2977 /* eglSwapBuffersRegion2NOK */);
+    return egl_single_resolver(EGL_extension_EGL_NOK_swap_region2, 2977 /* eglSwapBuffersRegion2NOK */);
 }
 
 static PFNEGLSWAPBUFFERSREGIONNOKPROC
 epoxy_eglSwapBuffersRegionNOK_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_NOK_swap_region, 3002 /* eglSwapBuffersRegionNOK */);
+    return egl_single_resolver(EGL_extension_EGL_NOK_swap_region, 3002 /* eglSwapBuffersRegionNOK */);
 }
 
 static PFNEGLSWAPBUFFERSWITHDAMAGEEXTPROC
 epoxy_eglSwapBuffersWithDamageEXT_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_EXT_swap_buffers_with_damage, 3026 /* eglSwapBuffersWithDamageEXT */);
+    return egl_single_resolver(EGL_extension_EGL_EXT_swap_buffers_with_damage, 3026 /* eglSwapBuffersWithDamageEXT */);
 }
 
 static PFNEGLSWAPBUFFERSWITHDAMAGEKHRPROC
 epoxy_eglSwapBuffersWithDamageKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_swap_buffers_with_damage, 3054 /* eglSwapBuffersWithDamageKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_swap_buffers_with_damage, 3054 /* eglSwapBuffersWithDamageKHR */);
 }
 
 static PFNEGLSWAPINTERVALPROC
 epoxy_eglSwapInterval_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_11, 3082 /* eglSwapInterval */);
+    return egl_single_resolver(EGL_11, 3082 /* eglSwapInterval */);
 }
 
 static PFNEGLTERMINATEPROC
 epoxy_eglTerminate_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 3098 /* eglTerminate */);
+    return egl_single_resolver(EGL_10, 3098 /* eglTerminate */);
 }
 
 static PFNEGLUNLOCKSURFACEKHRPROC
 epoxy_eglUnlockSurfaceKHR_resolver(void)
 {
     static const enum egl_provider providers[] = {
-        PROVIDER_EGL_KHR_lock_surface,
-        PROVIDER_EGL_KHR_lock_surface3,
+        EGL_extension_EGL_KHR_lock_surface,
+        EGL_extension_EGL_KHR_lock_surface3,
         egl_provider_terminator
     };
     static const uint32_t entrypoints[] = {
@@ -4816,31 +4814,31 @@ epoxy_eglUnlockSurfaceKHR_resolver(void)
 static PFNEGLWAITCLIENTPROC
 epoxy_eglWaitClient_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_12, 3131 /* eglWaitClient */);
+    return egl_single_resolver(EGL_12, 3131 /* eglWaitClient */);
 }
 
 static PFNEGLWAITGLPROC
 epoxy_eglWaitGL_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 3145 /* eglWaitGL */);
+    return egl_single_resolver(EGL_10, 3145 /* eglWaitGL */);
 }
 
 static PFNEGLWAITNATIVEPROC
 epoxy_eglWaitNative_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_10, 3155 /* eglWaitNative */);
+    return egl_single_resolver(EGL_10, 3155 /* eglWaitNative */);
 }
 
 static PFNEGLWAITSYNCPROC
 epoxy_eglWaitSync_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_15, 3169 /* eglWaitSync */);
+    return egl_single_resolver(EGL_15, 3169 /* eglWaitSync */);
 }
 
 static PFNEGLWAITSYNCKHRPROC
 epoxy_eglWaitSyncKHR_resolver(void)
 {
-    return egl_single_resolver(PROVIDER_EGL_KHR_wait_sync, 3181 /* eglWaitSyncKHR */);
+    return egl_single_resolver(EGL_extension_EGL_KHR_wait_sync, 3181 /* eglWaitSyncKHR */);
 }
 
 GEN_THUNKS_RET(EGLBoolean, eglBindAPI, (EGLenum api), (api))

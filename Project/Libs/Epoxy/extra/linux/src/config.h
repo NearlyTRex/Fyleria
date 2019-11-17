@@ -25,7 +25,6 @@
 
 #define PACKAGE_NAME "libepoxy"
 
-#define PACKAGE_STRING "libepoxy-1.5.4"
+#define PACKAGE_STRING "libepoxy-1.5.3"
 
-#define PACKAGE_VERSION "1.5.4"
-
+#define PACKAGE_VERSION "1.5.3"
