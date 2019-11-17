@@ -1,8 +1,8 @@
-# Source: https://github.com/NearlyTRex/BackwardCPP
+# Source: https://github.com/NearlyTRex/Backward
 # Version: 09252019
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/BackwardCPP/archive/BackwardCPP-09252019.zip"
-Setup['extractdir'] = "BackwardCPP-BackwardCPP-09252019"
+Setup['url'] = "https://github.com/NearlyTRex/Backward/archive/Backward-09252019.zip"
+Setup['extractdir'] = "Backward-Backward-09252019"
 Setup['steps'] = {}

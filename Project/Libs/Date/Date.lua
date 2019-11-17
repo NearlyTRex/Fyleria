@@ -1,28 +1,28 @@
 -- Configuration
-libDateCPP_extradir = "Libs/DateCPP/extra/"
-libDateCPP_origdir = "Libs/DateCPP/orig/"
-libDateCPP_srcdir = libDateCPP_origdir .. "src/"
-libDateCPP_incdir = libDateCPP_origdir .. "include/"
+libDate_extradir = "Libs/Date/extra/"
+libDate_origdir = "Libs/Date/orig/"
+libDate_srcdir = libDate_origdir .. "src/"
+libDate_incdir = libDate_origdir .. "include/"
 
 -- Includes
-libDateCPP_includedirs = {
-    libDateCPP_incdir
+libDate_includedirs = {
+    libDate_incdir
 }
 
 -- Defines
-libDateCPP_defines = {
+libDate_defines = {
 }
-libDateCPP_debugdefines = {
+libDate_debugdefines = {
 }
-libDateCPP_releasedefines = {
+libDate_releasedefines = {
 }
 
 -- Options
-libDateCPP_buildoptions = {
+libDate_buildoptions = {
 }
-libDateCPP_linkoptions = {
+libDate_linkoptions = {
 }
 
 -- Libs
-libDateCPP_libs = {
+libDate_libs = {
 }

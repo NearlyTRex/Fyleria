@@ -1,37 +1,37 @@
 -- Configuration
-libBackwardCPP_extradir = "Libs/BackwardCPP/extra/"
-libBackwardCPP_origdir = "Libs/BackwardCPP/orig/"
-libBackwardCPP_srcdir = libBackwardCPP_origdir
-libBackwardCPP_incdir = libBackwardCPP_origdir
+libBackward_extradir = "Libs/Backward/extra/"
+libBackward_origdir = "Libs/Backward/orig/"
+libBackward_srcdir = libBackward_origdir
+libBackward_incdir = libBackward_origdir
 
 -- Includes
-libBackwardCPP_includedirs = {
-    libBackwardCPP_incdir
+libBackward_includedirs = {
+    libBackward_incdir
 }
 
 -- Defines
-libBackwardCPP_defines = {
+libBackward_defines = {
 }
-libBackwardCPP_debugdefines = {
+libBackward_debugdefines = {
 }
-libBackwardCPP_releasedefines = {
+libBackward_releasedefines = {
 }
 if os.host() == "linux" then
-    table.insert(libBackwardCPP_defines, "BACKWARD_HAS_DW=1")
-    table.insert(libBackwardCPP_defines, "BACKWARD_HAS_UNWIND=1")
+    table.insert(libBackward_defines, "BACKWARD_HAS_DW=1")
+    table.insert(libBackward_defines, "BACKWARD_HAS_UNWIND=1")
 end
 
 -- Options
-libBackwardCPP_buildoptions = {
+libBackward_buildoptions = {
 }
-libBackwardCPP_linkoptions = {
+libBackward_linkoptions = {
 }
 
 -- Libs
-libBackwardCPP_libs = {
+libBackward_libs = {
 }
 
 -- Sources
-libBackwardCPP_sources = {
-    libBackwardCPP_srcdir .. "backward.cpp",
+libBackward_sources = {
+    libBackward_srcdir .. "backward.cpp",
 }

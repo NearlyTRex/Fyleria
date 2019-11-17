@@ -1,28 +1,28 @@
 -- Configuration
-libModernCPPJson_extradir = "Libs/ModernCPPJson/extra/"
-libModernCPPJson_origdir = "Libs/ModernCPPJson/orig/"
-libModernCPPJson_srcdir = libModernCPPJson_origdir .. "single_include/"
-libModernCPPJson_incdir = libModernCPPJson_origdir .. "single_include/"
+libJson_extradir = "Libs/Json/extra/"
+libJson_origdir = "Libs/Json/orig/"
+libJson_srcdir = libJson_origdir .. "single_include/"
+libJson_incdir = libJson_origdir .. "single_include/"
 
 -- Includes
-libModernCPPJson_includedirs = {
-    libModernCPPJson_incdir
+libJson_includedirs = {
+    libJson_incdir
 }
 
 -- Defines
-libModernCPPJson_defines = {
+libJson_defines = {
 }
-libModernCPPJson_debugdefines = {
+libJson_debugdefines = {
 }
-libModernCPPJson_releasedefines = {
+libJson_releasedefines = {
 }
 
 -- Libs
-libModernCPPJson_libs = {
+libJson_libs = {
 }
 
 -- Options
-libModernCPPJson_buildoptions = {
+libJson_buildoptions = {
 }
-libModernCPPJson_linkoptions = {
+libJson_linkoptions = {
 }
