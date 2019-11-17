@@ -3,13 +3,13 @@ require "Fyleria/Fyleria"
 require "Libs/Atk/Atk"
 require "Libs/AtkBridge/AtkBridge"
 require "Libs/AtkCore/AtkCore"
-require "Libs/BackwardCPP/BackwardCPP"
+require "Libs/Backward/Backward"
 require "Libs/BetterEnums/BetterEnums"
 require "Libs/Boost/Boost"
 require "Libs/Brotli/Brotli"
 require "Libs/Cairo/Cairo"
 require "Libs/Curl/Curl"
-require "Libs/DateCPP/DateCPP"
+require "Libs/Date/Date"
 require "Libs/ElfUtils/ElfUtils"
 require "Libs/Epoxy/Epoxy"
 require "Libs/FantasyName/FantasyName"
@@ -27,10 +27,10 @@ require "Libs/Harfbuzz/Harfbuzz"
 require "Libs/Icu/Icu"
 require "Libs/ImmutableString/ImmutableString"
 require "Libs/Jpeg/Jpeg"
+require "Libs/Json/Json"
 require "Libs/LibreSSL/LibreSSL"
 require "Libs/LRUCache/LRUCache"
 require "Libs/MicroPather/MicroPather"
-require "Libs/ModernCPPJson/ModernCPPJson"
 require "Libs/ObjectThreadsafe/ObjectThreadsafe"
 require "Libs/OpenCFLite/OpenCFLite"
 require "Libs/Pango/Pango"
@@ -77,7 +77,7 @@ pic "On"
     buildoptions(appFyleria_buildoptions)
     linkoptions(appFyleria_linkoptions)
     includedirs(appFyleria_includedirs)
-    includedirs(libBackwardCPP_includedirs)
+    includedirs(libBackward_includedirs)
     includedirs(libBoost_includedirs)
     includedirs(libElfUtils_includedirs)
     includedirs(libFantasyName_includedirs)
@@ -94,11 +94,11 @@ pic "On"
     includedirs(libImmutableString_includedirs)
     includedirs(libBetterEnums_includedirs)
     includedirs(libLRUCache_includedirs)
-    includedirs(libModernCPPJson_includedirs)
+    includedirs(libJson_includedirs)
     includedirs(libObjectThreadsafe_includedirs)
     includedirs(libSpdLog_includedirs)
     defines(appFyleria_defines)
-    defines(libBackwardCPP_defines)
+    defines(libBackward_defines)
     defines(libBetterEnums_defines)
     defines(libBoost_defines)
     defines(libLRUCache_defines)
