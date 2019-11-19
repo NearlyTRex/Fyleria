@@ -13,21 +13,21 @@
 
 #define ENABLE_NLS 1
 
-#define EXEEXT 
+#define EXEEXT
 
 #define GETTEXT_PACKAGE "glib20"
 
-#define GLIB_BINARY_AGE 6103
+#define GLIB_BINARY_AGE 6300
 
 #define GLIB_INTERFACE_AGE 0
 
-#define GLIB_LOCALE_DIR "/usr/local/share/locale"
+#define GLIB_LOCALE_DIR "locale"
 
 #define GLIB_MAJOR_VERSION 2
 
-#define GLIB_MICRO_VERSION 3
+#define GLIB_MICRO_VERSION 0
 
-#define GLIB_MINOR_VERSION 61
+#define GLIB_MINOR_VERSION 63
 
 #define G_VA_COPY va_copy
 
@@ -44,8 +44,6 @@
 #define HAVE_CLOCK_GETTIME 1
 
 #define HAVE_CODESET 1
-
-#define HAVE_DBUS1 1
 
 #define HAVE_DCGETTEXT 1
 
@@ -351,13 +349,13 @@
 
 #define PACKAGE_NAME "glib"
 
-#define PACKAGE_STRING "glib 2.61.3"
+#define PACKAGE_STRING "glib 2.63.0"
 
 #define PACKAGE_TARNAME "glib"
 
 #define PACKAGE_URL ""
 
-#define PACKAGE_VERSION "2.61.3"
+#define PACKAGE_VERSION "2.63.0"
 
 #define SIZEOF_CHAR 1
 
@@ -392,7 +390,6 @@
 
 #define _GNU_SOURCE 1
 
-#define gl_extern_inline 
+#define gl_extern_inline
 
-#define gl_unused 
-
+#define gl_unused

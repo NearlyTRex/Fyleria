@@ -109,8 +109,8 @@ typedef unsigned long guintptr;
 #define G_GUINTPTR_FORMAT       "lu"
 
 #define GLIB_MAJOR_VERSION 2
-#define GLIB_MINOR_VERSION 61
-#define GLIB_MICRO_VERSION 3
+#define GLIB_MINOR_VERSION 63
+#define GLIB_MICRO_VERSION 0
 
 #define G_OS_UNIX
 
@@ -135,7 +135,7 @@ typedef unsigned long guintptr;
 #endif
 
 #define G_HAVE_GROWING_STACK 0
-#define G_HAVE_GNUC_VISIBILITY 0
+#define G_HAVE_GNUC_VISIBILITY 1
 
 #ifndef _MSC_VER
 # define G_HAVE_GNUC_VARARGS 1
