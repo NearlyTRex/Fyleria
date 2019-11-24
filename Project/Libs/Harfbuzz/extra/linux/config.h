@@ -29,7 +29,7 @@
 /* #undef HAVE_DWRITE_H */
 
 /* Have fontconfig library */
-/* #undef HAVE_FONTCONFIG */
+#define HAVE_FONTCONFIG 1
 
 /* Have FreeType 2 library */
 #define HAVE_FREETYPE 1
@@ -53,7 +53,7 @@
 #define HAVE_GLIB 1
 
 /* Have gobject2 library */
-/* #undef HAVE_GOBJECT */
+#define HAVE_GOBJECT 1
 
 /* Have Graphite2 library */
 /* #undef HAVE_GRAPHITE2 */
@@ -90,6 +90,9 @@
 
 /* Have PTHREAD_PRIO_INHERIT. */
 #define HAVE_PTHREAD_PRIO_INHERIT 1
+
+/* Define to 1 if you have the `roundf' function. */
+/* #undef HAVE_ROUNDF */
 
 /* Define to 1 if you have the <sched.h> header file. */
 /* #undef HAVE_SCHED_H */
@@ -155,7 +158,7 @@
 #define PACKAGE_NAME "HarfBuzz"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "HarfBuzz 2.6.1"
+#define PACKAGE_STRING "HarfBuzz 2.6.2"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "harfbuzz"
@@ -164,7 +167,7 @@
 #define PACKAGE_URL "http://harfbuzz.org/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2.6.1"
+#define PACKAGE_VERSION "2.6.2"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
