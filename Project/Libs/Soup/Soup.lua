@@ -6,9 +6,7 @@ libSoup_incdir = libSoup_origdir
 
 -- Includes
 libSoup_includedirs = {
-    libSoup_incdir,
-    libSoup_extradir,
-    libSoup_extradir .. "libsoup/"
+    libSoup_incdir
 }
 if os.host() == "linux" then
     table.insert(libSoup_includedirs, libSoup_extradir .. "linux/")

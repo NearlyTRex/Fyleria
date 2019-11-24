@@ -7,11 +7,11 @@
 
 #define GETTEXT_PACKAGE "libsoup-2.4"
 
-#define HAVE_CURL
+#undef HAVE_CURL
 
 #define HAVE_GMTIME_R 1
 
-#define LOCALEDIR "/usr/local/share/locale"
+#define LOCALEDIR "locale"
 
-#define PACKAGE_VERSION "2.67.92"
+#define PACKAGE_VERSION "2.68.2"
 
