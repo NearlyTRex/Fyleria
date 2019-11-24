@@ -111,19 +111,6 @@ extern "C" {
 #endif
 
 /**
- * WITH_PROFILER:
- *
- * Activate the compilation of the profiler. Speed penalty
- * is insignifiant.
- * On by default unless --without-profiler is passed to configure
- */
-#if 1
-#ifndef WITH_PROFILER
-#define WITH_PROFILER
-#endif
-#endif
-
-/**
  * WITH_MODULES:
  *
  * Whether module support is configured into libxslt
@@ -133,7 +120,7 @@ extern "C" {
 #ifndef WITH_MODULES
 #define WITH_MODULES
 #endif
-#define LIBXSLT_DEFAULT_PLUGINS_PATH() "/usr/local/lib/libxslt-plugins"
+#define LIBXSLT_DEFAULT_PLUGINS_PATH() "plugins"
 #endif
 
 /**
@@ -142,6 +129,9 @@ extern "C" {
  * This macro is used to flag unused function parameters to GCC
  */
 #ifdef __GNUC__
+#ifdef HAVE_ANSIDECL_H
+#include <ansidecl.h>
+#endif
 #ifndef ATTRIBUTE_UNUSED
 #define ATTRIBUTE_UNUSED __attribute__((unused))
 #endif
