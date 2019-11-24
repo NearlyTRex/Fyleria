@@ -34,11 +34,11 @@
 #include <stdio.h>
 #include <time.h>
 
-#define PSL_VERSION "0.21.0"
+#define PSL_VERSION "0.20.2"
 #define PSL_VERSION_MAJOR 0
-#define PSL_VERSION_MINOR 21
-#define PSL_VERSION_PATCH 0
-#define PSL_VERSION_NUMBER 0x001500
+#define PSL_VERSION_MINOR 20
+#define PSL_VERSION_PATCH 2
+#define PSL_VERSION_NUMBER 0x001404
 
 /* support clang's __has_declspec_attribute attribute */
 #ifndef __has_declspec_attribute

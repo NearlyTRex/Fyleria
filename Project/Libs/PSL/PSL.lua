@@ -19,7 +19,7 @@ libPSL_defines = {
     "HAVE_CONFIG_H",
     "BUILDING_PSL",
     "PSL_STATIC",
-    "PSL_DISTFILE=\"Project/Libs/PSL/orig/list/public_suffix_list.dat\"",
+    "PSL_DISTFILE=\"Project/Libs/PSL/extra/list/public_suffix_list.dat\"",
 }
 libPSL_debugdefines = {
 }

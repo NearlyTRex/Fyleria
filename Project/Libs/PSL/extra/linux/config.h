@@ -17,8 +17,6 @@
 
 #define HAVE_CLOCK_GETTIME
 
-#define HAVE_DIRENT_H
-
 #define HAVE_FMEMOPEN
 
 #define HAVE_NL_LANGINFO
@@ -29,11 +27,10 @@
 
 #define HAVE_UNISTD_H
 
-#define PACKAGE_VERSION "0.21.0"
+#define PACKAGE_VERSION "0.20.2"
 
 #undef WITH_LIBICU
 
 #undef WITH_LIBIDN
 
 #undef WITH_LIBIDN2
-
