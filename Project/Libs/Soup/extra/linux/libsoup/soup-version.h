@@ -13,8 +13,8 @@
 G_BEGIN_DECLS
 
 #define SOUP_MAJOR_VERSION (2)
-#define SOUP_MINOR_VERSION (67)
-#define SOUP_MICRO_VERSION (92)
+#define SOUP_MINOR_VERSION (68)
+#define SOUP_MICRO_VERSION (2)
 
 #define SOUP_CHECK_VERSION(major, minor, micro) \
     (SOUP_MAJOR_VERSION > (major) || \
