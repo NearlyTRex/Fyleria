@@ -32,5 +32,3 @@
 /* Define if stdlib.h is available */
 #define HAVE_STDLIB_H
 
-#define _GRAPHENE_PUBLIC __attribute__((visibility("default"))) extern
-
