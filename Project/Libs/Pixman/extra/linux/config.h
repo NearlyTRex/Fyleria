@@ -101,7 +101,7 @@
 #define PACKAGE_NAME "pixman"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "pixman 0.38.5"
+#define PACKAGE_STRING "pixman 0.38.4"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "pixman"
@@ -110,7 +110,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.38.5"
+#define PACKAGE_VERSION "0.38.4"
 
 /* enable output that can be piped to gnuplot */
 /* #undef PIXMAN_GNUPLOT */
@@ -149,7 +149,7 @@
 /* #undef USE_MIPS_DSPR2 */
 
 /* use OpenMP in the test suite */
-#define USE_OPENMP 1
+/* #undef USE_OPENMP */
 
 /* use SSE2 compiler intrinsics */
 #define USE_SSE2 1
@@ -164,7 +164,7 @@
 #define USE_X86_MMX 1
 
 /* Version number of package */
-#define VERSION "0.38.5"
+#define VERSION "0.38.4"
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
    significant byte first (like Motorola and SPARC, unlike Intel). */
