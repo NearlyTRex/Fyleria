@@ -126,7 +126,7 @@
 #define WEBP_HAVE_SSE2 1
 
 /* Set to 1 if SSE4.1 is supported */
-//#define WEBP_HAVE_SSE41 1
+/* #undef WEBP_HAVE_SSE41 */
 
 /* Set to 1 if TIFF library is installed */
 /* #undef WEBP_HAVE_TIFF */
