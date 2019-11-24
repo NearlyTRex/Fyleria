@@ -27,26 +27,23 @@
 
 #define HAVE_GETPAGESIZE 1
 
-//#define HAVE_LIBTHAI 1
-
 #define HAVE_STRTOK_R 1
 
 #define HAVE_SYSCONF 1
 
 #define HAVE_SYS_MMAN_H 1
 
-#define HAVE_TH_BRK_FIND_BREAKS 1
-
 #define HAVE_UNISTD_H 1
 
-#define PANGO_BINARY_AGE 4405
+#define HAVE_XFT 1
 
-#define PANGO_INTERFACE_AGE 5
+#define PANGO_BINARY_AGE 4406
+
+#define PANGO_INTERFACE_AGE 6
 
 #define PANGO_VERSION_MAJOR 1
 
-#define PANGO_VERSION_MICRO 5
+#define PANGO_VERSION_MICRO 6
 
 #define PANGO_VERSION_MINOR 44
 
-#define _PANGO_EXTERN __attribute__((visibility("default"))) extern

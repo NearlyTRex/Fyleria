@@ -4,7 +4,7 @@
 #include "config.h"
 
 #include <pango.h>
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-attributes.h" */
+/* enumerations from "../pango/pango-attributes.h" */
 GType
 pango_attr_type_get_type (void)
 {
@@ -94,7 +94,7 @@ pango_show_flags_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-bidi-type.h" */
+/* enumerations from "../pango/pango-bidi-type.h" */
 GType
 pango_bidi_type_get_type (void)
 {
@@ -131,7 +131,7 @@ pango_bidi_type_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-coverage.h" */
+/* enumerations from "../pango/pango-coverage.h" */
 GType
 pango_coverage_level_get_type (void)
 {
@@ -153,7 +153,7 @@ pango_coverage_level_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-direction.h" */
+/* enumerations from "../pango/pango-direction.h" */
 GType
 pango_direction_get_type (void)
 {
@@ -178,7 +178,7 @@ pango_direction_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-font.h" */
+/* enumerations from "../pango/pango-font.h" */
 GType
 pango_style_get_type (void)
 {
@@ -298,7 +298,7 @@ pango_font_mask_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-glyph.h" */
+/* enumerations from "../pango/pango-glyph.h" */
 GType
 pango_shape_flags_get_type (void)
 {
@@ -318,7 +318,7 @@ pango_shape_flags_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-gravity.h" */
+/* enumerations from "../pango/pango-gravity.h" */
 GType
 pango_gravity_get_type (void)
 {
@@ -361,7 +361,7 @@ pango_gravity_hint_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-layout.h" */
+/* enumerations from "../pango/pango-layout.h" */
 GType
 pango_alignment_get_type (void)
 {
@@ -423,7 +423,7 @@ pango_ellipsize_mode_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-renderer.h" */
+/* enumerations from "../pango/pango-renderer.h" */
 GType
 pango_render_part_get_type (void)
 {
@@ -445,7 +445,7 @@ pango_render_part_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-script.h" */
+/* enumerations from "../pango/pango-script.h" */
 GType
 pango_script_get_type (void)
 {
@@ -581,7 +581,7 @@ pango_script_get_type (void)
 
   return g_define_type_id__volatile;
 }
-/* enumerations from "/home/donna/Repositories/fyleriadev/Project/Libs/Pango/orig/_build/../pango/pango-tabs.h" */
+/* enumerations from "../pango/pango-tabs.h" */
 GType
 pango_tab_align_get_type (void)
 {
@@ -602,4 +602,3 @@ pango_tab_align_get_type (void)
 }
 
 /* Generated data ends here */
-
