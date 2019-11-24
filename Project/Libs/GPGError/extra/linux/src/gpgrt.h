@@ -66,12 +66,12 @@
 #include <stdarg.h>
 
 /* The version string of this header. */
-#define GPG_ERROR_VERSION "1.37-unknown"
-#define GPGRT_VERSION     "1.37-unknown"
+#define GPG_ERROR_VERSION "1.36"
+#define GPGRT_VERSION     "1.36"
 
 /* The version number of this header. */
-#define GPG_ERROR_VERSION_NUMBER 0x012500
-#define GPGRT_VERSION_NUMBER     0x012500
+#define GPG_ERROR_VERSION_NUMBER 0x012400
+#define GPGRT_VERSION_NUMBER     0x012400
 
 
 #ifdef __GNUC__
@@ -434,10 +434,6 @@ typedef enum
     GPG_ERR_WRONG_NAME = 313,
     GPG_ERR_NO_AUTH = 314,
     GPG_ERR_BAD_AUTH = 315,
-    GPG_ERR_NO_KEYBOXD = 316,
-    GPG_ERR_KEYBOXD = 317,
-    GPG_ERR_NO_SERVICE = 318,
-    GPG_ERR_SERVICE = 319,
     GPG_ERR_SYSTEM_BUG = 666,
     GPG_ERR_DNS_UNKNOWN = 711,
     GPG_ERR_DNS_SECTION = 712,

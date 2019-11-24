@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* GIT commit id revision used to build this package */
-#define BUILD_REVISION "0000000"
+#define BUILD_REVISION "85f427f"
 
 /* The time this package was configured for a build */
 #define BUILD_TIMESTAMP "<none>"
@@ -86,9 +86,6 @@
 
 /* Define to 1 if you have the `mmap' function. */
 #define HAVE_MMAP 1
-
-/* Define to 1 if you have the <poll.h> header file. */
-#define HAVE_POLL_H 1
 
 /* Define if the <pthread.h> defines PTHREAD_MUTEX_RECURSIVE. */
 #define HAVE_PTHREAD_MUTEX_RECURSIVE 1
@@ -197,7 +194,7 @@
 #define PACKAGE_NAME "libgpg-error"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "libgpg-error 1.37-unknown"
+#define PACKAGE_STRING "libgpg-error 1.36"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "libgpg-error"
@@ -206,7 +203,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.37-unknown"
+#define PACKAGE_VERSION "1.36"
 
 /* Define if the pthread_in_use() detection is hard. */
 /* #undef PTHREAD_IN_USE_DETECTION_HARD */
@@ -284,7 +281,7 @@
 /* #undef USE_WINDOWS_THREADS */
 
 /* Version number of package */
-#define VERSION "1.37-unknown"
+#define VERSION "1.36"
 
 /* Expose all libc features (__DARWIN_C_FULL). */
 /* #undef _DARWIN_C_SOURCE */
@@ -344,4 +341,3 @@
 #define GPGRT_ENABLE_ES_MACROS 1
 #define GPGRT_ENABLE_LOG_MACROS 1
 #define GPGRT_ENABLE_ARGPARSE_MACROS 1
-
