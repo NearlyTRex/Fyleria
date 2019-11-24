@@ -13,7 +13,7 @@
 /* #undef AC_APPLE_UNIVERSAL_BUILD */
 
 /* GIT commit id revision used to build this package */
-#define BUILD_REVISION "0000000"
+#define BUILD_REVISION "56606331"
 
 /* The time this package was configured for a build */
 #define BUILD_TIMESTAMP "<none>"
@@ -54,9 +54,6 @@
 
 /* Enable support for Intel PCLMUL instructions. */
 #define ENABLE_PCLMUL_SUPPORT 1
-
-/* Enable support for Intel SHAEXT instructions. */
-#define ENABLE_SHAEXT_SUPPORT 1
 
 /* Enable support for Intel SSE4.1 instructions. */
 #define ENABLE_SSE41_SUPPORT 1
@@ -151,15 +148,6 @@
 /* defined if we must run on a stupid file system */
 /* #undef HAVE_DRIVE_LETTERS */
 
-/* Define to 1 if you have the `elf_aux_info' function. */
-/* #undef HAVE_ELF_AUX_INFO */
-
-/* Define to 1 if you have the `explicit_bzero' function. */
-#define HAVE_EXPLICIT_BZERO 1
-
-/* Define to 1 if you have the `explicit_memset' function. */
-/* #undef HAVE_EXPLICIT_MEMSET */
-
 /* Define to 1 if you have the `fcntl' function. */
 #define HAVE_FCNTL 1
 
@@ -168,9 +156,6 @@
 
 /* Define to 1 if you have the `ftruncate' function. */
 #define HAVE_FTRUNCATE 1
-
-/* Defined if underlying assembler supports for CFI directives */
-#define HAVE_GCC_ASM_CFI_DIRECTIVES 1
 
 /* Define if inline asm memory barrier is supported */
 #define HAVE_GCC_ASM_VOLATILE_MEMORY 1
@@ -224,20 +209,11 @@
 /* Defined if inline assembler supports PCLMUL instructions */
 #define HAVE_GCC_INLINE_ASM_PCLMUL 1
 
-/* Defined if inline assembler supports SHA Extensions instructions */
-#define HAVE_GCC_INLINE_ASM_SHAEXT 1
-
 /* Defined if inline assembler supports SSE4.1 instructions */
 #define HAVE_GCC_INLINE_ASM_SSE41 1
 
 /* Defined if inline assembler supports SSSE3 instructions */
 #define HAVE_GCC_INLINE_ASM_SSSE3 1
-
-/* Define to 1 if you have the `getauxval' function. */
-#define HAVE_GETAUXVAL 1
-
-/* Define to 1 if you have the `getentropy' function. */
-#define HAVE_GETENTROPY 1
 
 /* Define to 1 if you have the `gethrtime' function. */
 /* #undef HAVE_GETHRTIME */
@@ -315,9 +291,6 @@
 /* Define to 1 if you have the `strtoul' function. */
 #define HAVE_STRTOUL 1
 
-/* Defined if compiler has '__sync_synchronize' intrinsic */
-#define HAVE_SYNC_SYNCHRONIZE 1
-
 /* Define to 1 if you have the `syscall' function. */
 #define HAVE_SYSCALL 1
 
@@ -326,9 +299,6 @@
 
 /* Define to 1 if you have the `syslog' function. */
 #define HAVE_SYSLOG 1
-
-/* Define to 1 if you have the <sys/auxv.h> header file. */
-#define HAVE_SYS_AUXV_H 1
 
 /* Define to 1 if you have the <sys/capability.h> header file. */
 /* #undef HAVE_SYS_CAPABILITY_H */
@@ -400,7 +370,7 @@
 #define LIBGCRYPT_CIPHERS "arcfour:blowfish:cast5:des:aes:twofish:serpent:rfc2268:seed:camellia:idea:salsa20:gost28147:chacha20"
 
 /* List of available digest algorithms */
-#define LIBGCRYPT_DIGESTS "crc:gostr3411-94::md4:md5:rmd160:sha1:sha256:sha512:sha3:tiger:whirlpool:stribog:blake2:sm3"
+#define LIBGCRYPT_DIGESTS "crc:gostr3411-94::md4:md5:rmd160:sha1:sha256:sha512:sha3:tiger:whirlpool:stribog:blake2"
 
 /* List of available KDF algorithms */
 #define LIBGCRYPT_KDFS "s2k:pkdf2:scrypt"
@@ -421,17 +391,17 @@
 /* defined to the name of the weaker random device */
 #define NAME_OF_DEV_URANDOM "/dev/urandom"
 
-/* Name of package */
+/* Name of this package */
 #define PACKAGE "libgcrypt"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "https://bugs.gnupg.org"
+#define PACKAGE_BUGREPORT "http://bugs.gnupg.org"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "libgcrypt"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "libgcrypt 1.9.0-unknown"
+#define PACKAGE_STRING "libgcrypt 1.8.5"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "libgcrypt"
@@ -440,7 +410,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.9.0-unknown"
+#define PACKAGE_VERSION "1.8.5"
 
 /* A human readable text with the name of the OS */
 #define PRINTABLE_OS_NAME "GNU/Linux"
@@ -586,9 +556,6 @@
 /* Defined if this module should be included */
 #define USE_SHA512 1
 
-/* Defined if this module should be included */
-#define USE_SM3 1
-
 /* Enable extensions on AIX 3, Interix.  */
 #ifndef _ALL_SOURCE
 # define _ALL_SOURCE 1
@@ -620,8 +587,8 @@
 /* Defined if this module should be included */
 #define USE_WHIRLPOOL 1
 
-/* Version number of package */
-#define VERSION "1.9.0-unknown"
+/* Version of this package */
+#define VERSION "1.8.5"
 
 /* Defined if compiled symbols have a leading underscore */
 /* #undef WITH_SYMBOL_UNDERSCORE */
