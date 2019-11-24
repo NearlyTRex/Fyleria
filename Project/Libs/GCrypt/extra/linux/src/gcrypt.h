@@ -1,6 +1,6 @@
 /* gcrypt.h -  GNU Cryptographic Library Interface              -*- c -*-
- * Copyright (C) 1998-2018 Free Software Foundation, Inc.
- * Copyright (C) 2012-2018 g10 Code GmbH
+ * Copyright (C) 1998-2017 Free Software Foundation, Inc.
+ * Copyright (C) 2012-2017 g10 Code GmbH
  *
  * This file is part of Libgcrypt.
  *
@@ -62,11 +62,11 @@ extern "C" {
    return the same version.  The purpose of this macro is to let
    autoconf (using the AM_PATH_GCRYPT macro) check that this header
    matches the installed library.  */
-#define GCRYPT_VERSION "1.9.0-unknown"
+#define GCRYPT_VERSION "1.8.5"
 
 /* The version number of this header.  It may be used to handle minor
    API incompatibilities.  */
-#define GCRYPT_VERSION_NUMBER 0x010900
+#define GCRYPT_VERSION_NUMBER 0x010805
 
 
 /* Internal: We can't use the convenience macros for the multi
@@ -332,8 +332,7 @@ enum gcry_ctl_cmds
     GCRYCTL_DRBG_REINIT = 74,
     GCRYCTL_SET_TAGLEN = 75,
     GCRYCTL_GET_TAGLEN = 76,
-    GCRYCTL_REINIT_SYSCALL_CLAMP = 77,
-    GCRYCTL_AUTO_EXPAND_SECMEM = 78
+    GCRYCTL_REINIT_SYSCALL_CLAMP = 77
   };
 
 /* Perform various operations defined by CMD. */
@@ -588,9 +587,6 @@ gcry_mpi_t gcry_mpi_set (gcry_mpi_t w, const gcry_mpi_t u);
 /* Store the unsigned integer value U in W. */
 gcry_mpi_t gcry_mpi_set_ui (gcry_mpi_t w, unsigned long u);
 
-/* Store U as an unsigned int at W or return GPG_ERR_ERANGE. */
-gpg_error_t gcry_mpi_get_ui (unsigned int *w, gcry_mpi_t u);
-
 /* Swap the values of A and B. */
 void gcry_mpi_swap (gcry_mpi_t a, gcry_mpi_t b);
 
@@ -844,7 +840,6 @@ gcry_mpi_t _gcry_mpi_get_const (int no);
 #define mpi_snatch( w, u)      gcry_mpi_snatch( (w), (u) )
 #define mpi_set( w, u)         gcry_mpi_set( (w), (u) )
 #define mpi_set_ui( w, u)      gcry_mpi_set_ui( (w), (u) )
-#define mpi_get_ui( w, u)      gcry_mpi_get_ui( (w), (u) )
 #define mpi_abs( w )           gcry_mpi_abs( (w) )
 #define mpi_neg( w, u)         gcry_mpi_neg( (w), (u) )
 #define mpi_cmp( u, v )        gcry_mpi_cmp( (u), (v) )
@@ -971,8 +966,7 @@ enum gcry_cipher_modes
     GCRY_CIPHER_MODE_POLY1305 = 10,  /* Poly1305 based AEAD mode. */
     GCRY_CIPHER_MODE_OCB      = 11,  /* OCB3 mode.  */
     GCRY_CIPHER_MODE_CFB8     = 12,  /* Cipher feedback (8 bit mode). */
-    GCRY_CIPHER_MODE_XTS      = 13,  /* XTS mode.  */
-    GCRY_CIPHER_MODE_EAX      = 14   /* EAX mode.  */
+    GCRY_CIPHER_MODE_XTS      = 13  /* XTS mode.  */
   };
 
 /* Flags used with the open function. */
@@ -1197,28 +1191,6 @@ gcry_sexp_t gcry_pk_get_param (int algo, const char *name);
 /* Return an S-expression representing the context CTX.  */
 gcry_error_t gcry_pubkey_get_sexp (gcry_sexp_t *r_sexp,
                                    int mode, gcry_ctx_t ctx);
-
-/************************************
- *                                  *
- *    Modern ECC Functions          *
- *                                  *
- ************************************/
-
-/* The curves we support.  */
-enum gcry_ecc_curves
-  {
-    GCRY_ECC_CURVE25519 = 1,
-    GCRY_ECC_CURVE448   = 2
-  };
-
-/* Get the length of point to prepare buffer for the result.  */
-unsigned int gcry_ecc_get_algo_keylen (int algo);
-
-/* Convenience function to compute scalar multiplication of the
-   Montgomery form of curve.  */
-gpg_error_t gcry_ecc_mul_point (int algo, unsigned char *result,
-                                const unsigned char *scalar,
-                                const unsigned char *point);
 
 
 
@@ -1268,10 +1240,7 @@ enum gcry_md_algos
     GCRY_MD_BLAKE2S_256   = 322,
     GCRY_MD_BLAKE2S_224   = 323,
     GCRY_MD_BLAKE2S_160   = 324,
-    GCRY_MD_BLAKE2S_128   = 325,
-    GCRY_MD_SM3           = 326,
-    GCRY_MD_SHA512_256    = 327,
-    GCRY_MD_SHA512_224    = 328,
+    GCRY_MD_BLAKE2S_128   = 325
   };
 
 /* Flags used with the open function.  */
@@ -1457,18 +1426,6 @@ enum gcry_mac_algos
     GCRY_MAC_HMAC_SHA3_256      = 116,
     GCRY_MAC_HMAC_SHA3_384      = 117,
     GCRY_MAC_HMAC_SHA3_512      = 118,
-    GCRY_MAC_HMAC_GOSTR3411_CP  = 119,
-    GCRY_MAC_HMAC_BLAKE2B_512   = 120,
-    GCRY_MAC_HMAC_BLAKE2B_384   = 121,
-    GCRY_MAC_HMAC_BLAKE2B_256   = 122,
-    GCRY_MAC_HMAC_BLAKE2B_160   = 123,
-    GCRY_MAC_HMAC_BLAKE2S_256   = 124,
-    GCRY_MAC_HMAC_BLAKE2S_224   = 125,
-    GCRY_MAC_HMAC_BLAKE2S_160   = 126,
-    GCRY_MAC_HMAC_BLAKE2S_128   = 127,
-    GCRY_MAC_HMAC_SM3           = 128,
-    GCRY_MAC_HMAC_SHA512_256    = 129,
-    GCRY_MAC_HMAC_SHA512_224    = 130,
 
     GCRY_MAC_CMAC_AES           = 201,
     GCRY_MAC_CMAC_3DES          = 202,
