@@ -1,6 +1,6 @@
 -- Configuration
-libOpenCFLite_extradir = "Libs/OpenCFLite/extra/"
-libOpenCFLite_origdir = "Libs/OpenCFLite/orig/"
+libOpenCFLite_extradir = "Libs/C/OpenCFLite/extra/"
+libOpenCFLite_origdir = "Libs/C/OpenCFLite/orig/"
 libOpenCFLite_srcdir = libOpenCFLite_origdir
 libOpenCFLite_incdir = libOpenCFLite_origdir
 

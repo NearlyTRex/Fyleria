@@ -1,9 +1,9 @@
 -- Imports
-require "../../utility"
+require "../../../utility"
 
 -- Configuration
-libWebKitGTK_extradir = "Libs/WebKitGTK/extra/"
-libWebKitGTK_origdir = "Libs/WebKitGTK/orig/"
+libWebKitGTK_extradir = "Libs/C/WebKitGTK/extra/"
+libWebKitGTK_origdir = "Libs/C/WebKitGTK/orig/"
 libWebKitGTK_srcdir = libWebKitGTK_origdir
 libWebKitGTK_incdir = libWebKitGTK_origdir
 

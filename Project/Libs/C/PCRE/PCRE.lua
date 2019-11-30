@@ -1,6 +1,6 @@
 -- Configuration
-libPCRE_extradir = "Libs/PCRE/extra/"
-libPCRE_origdir = "Libs/PCRE/orig/"
+libPCRE_extradir = "Libs/C/PCRE/extra/"
+libPCRE_origdir = "Libs/C/PCRE/orig/"
 libPCRE_srcdir = libPCRE_origdir
 libPCRE_incdir = libPCRE_origdir
 

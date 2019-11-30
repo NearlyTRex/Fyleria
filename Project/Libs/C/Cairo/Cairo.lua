@@ -1,6 +1,6 @@
 -- Configuration
-libCairo_extradir = "Libs/Cairo/extra/"
-libCairo_origdir = "Libs/Cairo/orig/"
+libCairo_extradir = "Libs/C/Cairo/extra/"
+libCairo_origdir = "Libs/C/Cairo/orig/"
 libCairo_srcdir = libCairo_origdir
 libCairo_incdir = libCairo_origdir
 

@@ -1,6 +1,6 @@
 -- Configuration
-libJson_extradir = "Libs/Json/extra/"
-libJson_origdir = "Libs/Json/orig/"
+libJson_extradir = "Libs/C/Json/extra/"
+libJson_origdir = "Libs/C/Json/orig/"
 libJson_srcdir = libJson_origdir .. "single_include/"
 libJson_incdir = libJson_origdir .. "single_include/"
 

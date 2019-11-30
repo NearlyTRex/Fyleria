@@ -1,6 +1,6 @@
 -- Configuration
-libGtk_extradir = "Libs/Gtk/extra/"
-libGtk_origdir = "Libs/Gtk/orig/"
+libGtk_extradir = "Libs/C/Gtk/extra/"
+libGtk_origdir = "Libs/C/Gtk/orig/"
 libGtk_srcdir = libGtk_origdir
 libGtk_incdir = libGtk_origdir
 

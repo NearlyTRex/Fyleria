@@ -2,10 +2,10 @@
 # Version: 2.24.3
 
 # Steps
-MakeSymlinkJSC = 'MakeSymlink("$(RootPath)/Project/Libs/WebKitGTK/orig/Source/JavaScriptCore/API/glib", "$(RootPath)/Project/Libs/WebKitGTK/orig/DerivedSources/ForwardingHeaders/JavaScriptCore/glib/jsc")'
-MakeSymlinkUIProcess = 'MakeSymlink("$(RootPath)/Project/Libs/WebKitGTK/orig/Source/WebKit/UIProcess/API/gtk", "$(RootPath)/Project/Libs/WebKitGTK/orig/DerivedSources/ForwardingHeaders/webkit2gtk/webkit2")'
-MakeSymlinkWebProcess1 = 'MakeSymlink("$(RootPath)/Project/Libs/WebKitGTK/orig/Source/WebKit/WebProcess/InjectedBundle/API/gtk", "$(RootPath)/Project/Libs/WebKitGTK/orig/DerivedSources/ForwardingHeaders/webkit2gtk-webextension/webkit2")'
-MakeSymlinkWebProcess2 = 'MakeSymlink("$(RootPath)/Project/Libs/WebKitGTK/orig/Source/WebKit/WebProcess/InjectedBundle/API/gtk/DOM", "$(RootPath)/Project/Libs/WebKitGTK/orig/DerivedSources/ForwardingHeaders/webkit2gtk-webextension/webkitdom")'
+MakeSymlinkJSC = 'MakeSymlink("$(RootPath)/Project/Libs/C/WebKitGTK/orig/Source/JavaScriptCore/API/glib", "$(RootPath)/Project/Libs/C/WebKitGTK/orig/DerivedSources/ForwardingHeaders/JavaScriptCore/glib/jsc")'
+MakeSymlinkUIProcess = 'MakeSymlink("$(RootPath)/Project/Libs/C/WebKitGTK/orig/Source/WebKit/UIProcess/API/gtk", "$(RootPath)/Project/Libs/C/WebKitGTK/orig/DerivedSources/ForwardingHeaders/webkit2gtk/webkit2")'
+MakeSymlinkWebProcess1 = 'MakeSymlink("$(RootPath)/Project/Libs/C/WebKitGTK/orig/Source/WebKit/WebProcess/InjectedBundle/API/gtk", "$(RootPath)/Project/Libs/C/WebKitGTK/orig/DerivedSources/ForwardingHeaders/webkit2gtk-webextension/webkit2")'
+MakeSymlinkWebProcess2 = 'MakeSymlink("$(RootPath)/Project/Libs/C/WebKitGTK/orig/Source/WebKit/WebProcess/InjectedBundle/API/gtk/DOM", "$(RootPath)/Project/Libs/C/WebKitGTK/orig/DerivedSources/ForwardingHeaders/webkit2gtk-webextension/webkitdom")'
 
 # Library info
 Setup = {}

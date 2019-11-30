@@ -1,6 +1,6 @@
 -- Configuration
-libZlib_extradir = "Libs/Zlib/extra/"
-libZlib_origdir = "Libs/Zlib/orig/"
+libZlib_extradir = "Libs/C/Zlib/extra/"
+libZlib_origdir = "Libs/C/Zlib/orig/"
 libZlib_srcdir = libZlib_origdir
 libZlib_incdir = libZlib_origdir
 

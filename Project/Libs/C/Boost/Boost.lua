@@ -1,6 +1,6 @@
 -- Configuration
-libBoost_extradir = "Libs/Boost/extra/"
-libBoost_origdir = "Libs/Boost/orig/"
+libBoost_extradir = "Libs/C/Boost/extra/"
+libBoost_origdir = "Libs/C/Boost/orig/"
 libBoost_srcdir = libBoost_origdir .. "libs/"
 libBoost_incdir = libBoost_origdir
 

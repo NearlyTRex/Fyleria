@@ -1,6 +1,6 @@
 -- Configuration
-libXML2_extradir = "Libs/XML2/extra/"
-libXML2_origdir = "Libs/XML2/orig/"
+libXML2_extradir = "Libs/C/XML2/extra/"
+libXML2_origdir = "Libs/C/XML2/orig/"
 libXML2_srcdir = libXML2_origdir
 libXML2_incdir = libXML2_origdir .. "include/"
 

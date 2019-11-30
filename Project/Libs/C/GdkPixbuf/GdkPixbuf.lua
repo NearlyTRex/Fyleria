@@ -1,6 +1,6 @@
 -- Configuration
-libGdkPixbuf_extradir = "Libs/GdkPixbuf/extra/"
-libGdkPixbuf_origdir = "Libs/GdkPixbuf/orig/"
+libGdkPixbuf_extradir = "Libs/C/GdkPixbuf/extra/"
+libGdkPixbuf_origdir = "Libs/C/GdkPixbuf/orig/"
 libGdkPixbuf_srcdir = libGdkPixbuf_origdir
 libGdkPixbuf_incdir = libGdkPixbuf_origdir
 

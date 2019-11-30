@@ -1,6 +1,6 @@
 -- Configuration
-libPango_extradir = "Libs/Pango/extra/"
-libPango_origdir = "Libs/Pango/orig/"
+libPango_extradir = "Libs/C/Pango/extra/"
+libPango_origdir = "Libs/C/Pango/orig/"
 libPango_srcdir = libPango_origdir
 libPango_incdir = libPango_origdir
 

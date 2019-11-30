@@ -1,6 +1,6 @@
 -- Configuration
-libUtilLinux_extradir = "Libs/UtilLinux/extra/"
-libUtilLinux_origdir = "Libs/UtilLinux/orig/"
+libUtilLinux_extradir = "Libs/C/UtilLinux/extra/"
+libUtilLinux_origdir = "Libs/C/UtilLinux/orig/"
 libUtilLinux_srcdir = libUtilLinux_origdir
 libUtilLinux_incdir = libUtilLinux_origdir
 

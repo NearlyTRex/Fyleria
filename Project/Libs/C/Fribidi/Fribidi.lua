@@ -1,6 +1,6 @@
 -- Configuration
-libFribidi_extradir = "Libs/Fribidi/extra/"
-libFribidi_origdir = "Libs/Fribidi/orig/"
+libFribidi_extradir = "Libs/C/Fribidi/extra/"
+libFribidi_origdir = "Libs/C/Fribidi/orig/"
 libFribidi_srcdir = libFribidi_origdir .. "lib/"
 libFribidi_incdir = libFribidi_origdir .. "lib/"
 

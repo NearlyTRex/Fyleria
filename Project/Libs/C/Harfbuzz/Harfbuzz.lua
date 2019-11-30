@@ -1,6 +1,6 @@
 -- Configuration
-libHarfbuzz_extradir = "Libs/Harfbuzz/extra/"
-libHarfbuzz_origdir = "Libs/Harfbuzz/orig/"
+libHarfbuzz_extradir = "Libs/C/Harfbuzz/extra/"
+libHarfbuzz_origdir = "Libs/C/Harfbuzz/orig/"
 libHarfbuzz_srcdir = libHarfbuzz_origdir .. "src/"
 libHarfbuzz_incdir = libHarfbuzz_origdir .. "src/"
 

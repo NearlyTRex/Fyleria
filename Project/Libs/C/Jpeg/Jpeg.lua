@@ -1,6 +1,6 @@
 -- Configuration
-libJpeg_extradir = "Libs/Jpeg/extra/"
-libJpeg_origdir = "Libs/Jpeg/orig/"
+libJpeg_extradir = "Libs/C/Jpeg/extra/"
+libJpeg_origdir = "Libs/C/Jpeg/orig/"
 libJpeg_srcdir = libJpeg_origdir
 libJpeg_incdir = libJpeg_origdir
 

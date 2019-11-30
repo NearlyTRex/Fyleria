@@ -1,6 +1,6 @@
 -- Configuration
-libFreeType2_extradir = "Libs/FreeType2/extra/"
-libFreeType2_origdir = "Libs/FreeType2/orig/"
+libFreeType2_extradir = "Libs/C/FreeType2/extra/"
+libFreeType2_origdir = "Libs/C/FreeType2/orig/"
 libFreeType2_srcdir = libFreeType2_origdir .. "src/"
 libFreeType2_incdir = libFreeType2_origdir .. "include/"
 

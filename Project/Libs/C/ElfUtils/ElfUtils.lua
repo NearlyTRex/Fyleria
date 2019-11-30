@@ -1,6 +1,6 @@
 -- Configuration
-libElfUtils_extradir = "Libs/ElfUtils/extra/"
-libElfUtils_origdir = "Libs/ElfUtils/orig/"
+libElfUtils_extradir = "Libs/C/ElfUtils/extra/"
+libElfUtils_origdir = "Libs/C/ElfUtils/orig/"
 libElfUtils_srcdir = libElfUtils_origdir
 libElfUtils_incdir = libElfUtils_origdir
 

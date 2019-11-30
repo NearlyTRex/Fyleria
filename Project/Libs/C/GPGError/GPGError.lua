@@ -1,6 +1,6 @@
 -- Configuration
-libGPGError_extradir = "Libs/GPGError/extra/"
-libGPGError_origdir = "Libs/GPGError/orig/"
+libGPGError_extradir = "Libs/C/GPGError/extra/"
+libGPGError_origdir = "Libs/C/GPGError/orig/"
 libGPGError_srcdir = libGPGError_origdir .. "src/"
 libGPGError_incdir = libGPGError_origdir .. "src"
 

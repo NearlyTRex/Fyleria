@@ -1,6 +1,6 @@
 -- Configuration
-libSoup_extradir = "Libs/Soup/extra/"
-libSoup_origdir = "Libs/Soup/orig/"
+libSoup_extradir = "Libs/C/Soup/extra/"
+libSoup_origdir = "Libs/C/Soup/orig/"
 libSoup_srcdir = libSoup_origdir .. "libsoup/"
 libSoup_incdir = libSoup_origdir
 

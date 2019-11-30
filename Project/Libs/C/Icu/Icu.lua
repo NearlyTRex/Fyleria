@@ -1,6 +1,6 @@
 -- Configuration
-libIcu_extradir = "Libs/Icu/extra/"
-libIcu_origdir = "Libs/Icu/orig/"
+libIcu_extradir = "Libs/C/Icu/extra/"
+libIcu_origdir = "Libs/C/Icu/orig/"
 libIcu_srcdir = libIcu_origdir .. "icu4c/source/"
 libIcu_incdir = libIcu_origdir .. "icu4c/source/"
 

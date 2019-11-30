@@ -1,6 +1,6 @@
 -- Configuration
-libImmutableString_extradir = "Libs/ImmutableString/extra/"
-libImmutableString_origdir = "Libs/ImmutableString/orig/"
+libImmutableString_extradir = "Libs/C/ImmutableString/extra/"
+libImmutableString_origdir = "Libs/C/ImmutableString/orig/"
 libImmutableString_srcdir = libImmutableString_origdir
 libImmutableString_incdir = libImmutableString_origdir
 

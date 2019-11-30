@@ -1,6 +1,6 @@
 -- Configuration
-libPThreadsWin32_extradir = "Libs/PThreadsWin32/extra/"
-libPThreadsWin32_origdir = "Libs/PThreadsWin32/orig/"
+libPThreadsWin32_extradir = "Libs/C/PThreadsWin32/extra/"
+libPThreadsWin32_origdir = "Libs/C/PThreadsWin32/orig/"
 libPThreadsWin32_srcdir = libPThreadsWin32_origdir
 libPThreadsWin32_incdir = libPThreadsWin32_origdir
 

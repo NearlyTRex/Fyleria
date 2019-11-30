@@ -1,6 +1,6 @@
 -- Configuration
-libPSL_extradir = "Libs/PSL/extra/"
-libPSL_origdir = "Libs/PSL/orig/"
+libPSL_extradir = "Libs/C/PSL/extra/"
+libPSL_origdir = "Libs/C/PSL/orig/"
 libPSL_srcdir = libPSL_origdir .. "src/"
 libPSL_incdir = libPSL_origdir .. "include/"
 

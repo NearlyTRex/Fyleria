@@ -1,6 +1,6 @@
 -- Configuration
-libEpoxy_extradir = "Libs/Epoxy/extra/"
-libEpoxy_origdir = "Libs/Epoxy/orig/"
+libEpoxy_extradir = "Libs/C/Epoxy/extra/"
+libEpoxy_origdir = "Libs/C/Epoxy/orig/"
 libEpoxy_srcdir = libEpoxy_origdir .. "src/"
 libEpoxy_incdir = libEpoxy_origdir .. "include/"
 

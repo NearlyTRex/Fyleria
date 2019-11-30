@@ -1,6 +1,6 @@
 -- Configuration
-libWebp_extradir = "Libs/Webp/extra/"
-libWebp_origdir = "Libs/Webp/orig/"
+libWebp_extradir = "Libs/C/Webp/extra/"
+libWebp_origdir = "Libs/C/Webp/orig/"
 libWebp_srcdir = libWebp_origdir ..  "src/"
 libWebp_incdir = libWebp_origdir
 

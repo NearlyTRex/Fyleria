@@ -1,6 +1,6 @@
 -- Configuration
-libAtkCore_extradir = "Libs/AtkCore/extra/"
-libAtkCore_origdir = "Libs/AtkCore/orig/"
+libAtkCore_extradir = "Libs/C/AtkCore/extra/"
+libAtkCore_origdir = "Libs/C/AtkCore/orig/"
 libAtkCore_srcdir = libAtkCore_origdir
 libAtkCore_incdir = libAtkCore_origdir
 

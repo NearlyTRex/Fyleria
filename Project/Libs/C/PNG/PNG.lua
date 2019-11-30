@@ -1,6 +1,6 @@
 -- Configuration
-libPNG_extradir = "Libs/PNG/extra/"
-libPNG_origdir = "Libs/PNG/orig/"
+libPNG_extradir = "Libs/C/PNG/extra/"
+libPNG_origdir = "Libs/C/PNG/orig/"
 libPNG_srcdir = libPNG_origdir
 libPNG_incdir = libPNG_origdir
 

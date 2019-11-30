@@ -1,6 +1,6 @@
 -- Configuration
-libFFI_extradir = "Libs/FFI/extra/"
-libFFI_origdir = "Libs/FFI/orig/"
+libFFI_extradir = "Libs/C/FFI/extra/"
+libFFI_origdir = "Libs/C/FFI/orig/"
 libFFI_srcdir = libFFI_origdir .. "src/"
 libFFI_incdir = libFFI_origdir .. "include/"
 

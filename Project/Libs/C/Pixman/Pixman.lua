@@ -1,6 +1,6 @@
 -- Configuration
-libPixman_extradir = "Libs/Pixman/extra/"
-libPixman_origdir = "Libs/Pixman/orig/"
+libPixman_extradir = "Libs/C/Pixman/extra/"
+libPixman_origdir = "Libs/C/Pixman/orig/"
 libPixman_srcdir = libPixman_origdir .. "pixman/"
 libPixman_incdir = libPixman_origdir .. "pixman/"
 

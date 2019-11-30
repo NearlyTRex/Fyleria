@@ -1,6 +1,6 @@
 -- Configuration
-libGlib_extradir = "Libs/Glib/extra/"
-libGlib_origdir = "Libs/Glib/orig/"
+libGlib_extradir = "Libs/C/Glib/extra/"
+libGlib_origdir = "Libs/C/Glib/orig/"
 libGlib_srcdir = libGlib_origdir
 libGlib_incdir = libGlib_origdir
 

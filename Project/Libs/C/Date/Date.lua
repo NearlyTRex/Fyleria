@@ -1,6 +1,6 @@
 -- Configuration
-libDate_extradir = "Libs/Date/extra/"
-libDate_origdir = "Libs/Date/orig/"
+libDate_extradir = "Libs/C/Date/extra/"
+libDate_origdir = "Libs/C/Date/orig/"
 libDate_srcdir = libDate_origdir .. "src/"
 libDate_incdir = libDate_origdir .. "include/"
 

@@ -1,6 +1,6 @@
 -- Configuration
-libGCrypt_extradir = "Libs/GCrypt/extra/"
-libGCrypt_origdir = "Libs/GCrypt/orig/"
+libGCrypt_extradir = "Libs/C/GCrypt/extra/"
+libGCrypt_origdir = "Libs/C/GCrypt/orig/"
 libGCrypt_srcdir = libGCrypt_origdir
 libGCrypt_incdir = libGCrypt_origdir
 

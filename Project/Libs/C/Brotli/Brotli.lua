@@ -1,6 +1,6 @@
 -- Configuration
-libBrotli_extradir = "Libs/Brotli/extra/"
-libBrotli_origdir = "Libs/Brotli/orig/"
+libBrotli_extradir = "Libs/C/Brotli/extra/"
+libBrotli_origdir = "Libs/C/Brotli/orig/"
 libBrotli_srcdir = libBrotli_origdir
 libBrotli_incdir = libBrotli_origdir
 

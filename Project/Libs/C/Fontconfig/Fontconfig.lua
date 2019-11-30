@@ -1,6 +1,6 @@
 -- Configuration
-libFontconfig_extradir = "Libs/Fontconfig/extra/"
-libFontconfig_origdir = "Libs/Fontconfig/orig/"
+libFontconfig_extradir = "Libs/C/Fontconfig/extra/"
+libFontconfig_origdir = "Libs/C/Fontconfig/orig/"
 libFontconfig_srcdir = libFontconfig_origdir
 libFontconfig_incdir = libFontconfig_origdir
 

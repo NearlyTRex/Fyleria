@@ -1,6 +1,6 @@
 -- Configuration
-libObjectThreadsafe_extradir = "Libs/ObjectThreadsafe/extra/"
-libObjectThreadsafe_origdir = "Libs/ObjectThreadsafe/orig/"
+libObjectThreadsafe_extradir = "Libs/C/ObjectThreadsafe/extra/"
+libObjectThreadsafe_origdir = "Libs/C/ObjectThreadsafe/orig/"
 libObjectThreadsafe_srcdir = libObjectThreadsafe_origdir
 libObjectThreadsafe_incdir = libObjectThreadsafe_origdir
 

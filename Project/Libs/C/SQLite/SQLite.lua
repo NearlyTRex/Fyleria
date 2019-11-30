@@ -1,6 +1,6 @@
 -- Configuration
-libSQLite_extradir = "Libs/SQLite/extra/"
-libSQLite_origdir = "Libs/SQLite/orig/"
+libSQLite_extradir = "Libs/C/SQLite/extra/"
+libSQLite_origdir = "Libs/C/SQLite/orig/"
 libSQLite_srcdir = libSQLite_origdir
 libSQLite_incdir = libSQLite_origdir
 

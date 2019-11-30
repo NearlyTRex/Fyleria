@@ -1,6 +1,6 @@
 -- Configuration
-libAtkBridge_extradir = "Libs/AtkBridge/extra/"
-libAtkBridge_origdir = "Libs/AtkBridge/orig/"
+libAtkBridge_extradir = "Libs/C/AtkBridge/extra/"
+libAtkBridge_origdir = "Libs/C/AtkBridge/orig/"
 libAtkBridge_srcdir = libAtkBridge_origdir
 libAtkBridge_incdir = libAtkBridge_origdir
 

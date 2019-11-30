@@ -1,6 +1,6 @@
 -- Configuration
-libGraphene_extradir = "Libs/Graphene/extra/"
-libGraphene_origdir = "Libs/Graphene/orig/"
+libGraphene_extradir = "Libs/C/Graphene/extra/"
+libGraphene_origdir = "Libs/C/Graphene/orig/"
 libGraphene_srcdir = libGraphene_origdir .. "src/"
 libGraphene_incdir = libGraphene_origdir .. "include/"
 
