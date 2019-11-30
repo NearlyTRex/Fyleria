@@ -320,6 +320,7 @@ pic "On"
     buildoptions(libFreeType2_buildoptions)
     linkoptions(libFreeType2_linkoptions)
     includedirs(libFreeType2_includedirs)
+    includedirs(libHarfbuzz_includedirs)
     includedirs(libPNG_includedirs)
     defines(libFreeType2_defines)
     files(libFreeType2_sources)
