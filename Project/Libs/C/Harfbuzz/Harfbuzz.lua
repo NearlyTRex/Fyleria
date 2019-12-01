@@ -50,6 +50,7 @@ libHarfbuzz_sources = {
     libHarfbuzz_srcdir .. "hb-font.cc",
     libHarfbuzz_srcdir .. "hb-icu.cc",
     libHarfbuzz_srcdir .. "hb-map.cc",
+    libHarfbuzz_srcdir .. "hb-number.cc",
     libHarfbuzz_srcdir .. "hb-ot-cff1-table.cc",
     libHarfbuzz_srcdir .. "hb-ot-cff2-table.cc",
     libHarfbuzz_srcdir .. "hb-ot-color.cc",
