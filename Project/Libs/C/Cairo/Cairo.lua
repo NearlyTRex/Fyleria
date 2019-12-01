@@ -49,9 +49,9 @@ libCairo_libs = {
     "PNG"
 }
 if os.host() == "linux" then
-    table.insert(libCairo_libs, "EGL")
-    table.insert(libCairo_libs, "GL")
-    table.insert(libCairo_libs, "GLX")
+    --table.insert(libCairo_libs, "EGL")
+    --table.insert(libCairo_libs, "GL")
+    --table.insert(libCairo_libs, "GLX")
     table.insert(libCairo_libs, "xcb")
     table.insert(libCairo_libs, "xcb-render")
     table.insert(libCairo_libs, "xcb-shm")
@@ -197,21 +197,21 @@ libCairo_sources = {
     libCairo_srcdir .. "src/cairo-xcb-surface-render.c",
     libCairo_srcdir .. "src/cairo-xcb-resources.c",
     libCairo_srcdir .. "src/cairo-png.c",
-    libCairo_srcdir .. "src/cairo-gl-composite.c",
-    libCairo_srcdir .. "src/cairo-gl-device.c",
-    libCairo_srcdir .. "src/cairo-gl-dispatch.c",
-    libCairo_srcdir .. "src/cairo-gl-glyphs.c",
-    libCairo_srcdir .. "src/cairo-gl-gradient.c",
-    libCairo_srcdir .. "src/cairo-gl-info.c",
-    libCairo_srcdir .. "src/cairo-gl-msaa-compositor.c",
-    libCairo_srcdir .. "src/cairo-gl-operand.c",
-    libCairo_srcdir .. "src/cairo-gl-shaders.c",
-    libCairo_srcdir .. "src/cairo-gl-source.c",
-    libCairo_srcdir .. "src/cairo-gl-spans-compositor.c",
-    libCairo_srcdir .. "src/cairo-gl-surface.c",
-    libCairo_srcdir .. "src/cairo-gl-traps-compositor.c",
-    libCairo_srcdir .. "src/cairo-egl-context.c",
-    libCairo_srcdir .. "src/cairo-glx-context.c",
+    -- libCairo_srcdir .. "src/cairo-gl-composite.c",
+    -- libCairo_srcdir .. "src/cairo-gl-device.c",
+    -- libCairo_srcdir .. "src/cairo-gl-dispatch.c",
+    -- libCairo_srcdir .. "src/cairo-gl-glyphs.c",
+    -- libCairo_srcdir .. "src/cairo-gl-gradient.c",
+    -- libCairo_srcdir .. "src/cairo-gl-info.c",
+    -- libCairo_srcdir .. "src/cairo-gl-msaa-compositor.c",
+    -- libCairo_srcdir .. "src/cairo-gl-operand.c",
+    -- libCairo_srcdir .. "src/cairo-gl-shaders.c",
+    -- libCairo_srcdir .. "src/cairo-gl-source.c",
+    -- libCairo_srcdir .. "src/cairo-gl-spans-compositor.c",
+    -- libCairo_srcdir .. "src/cairo-gl-surface.c",
+    -- libCairo_srcdir .. "src/cairo-gl-traps-compositor.c",
+    -- libCairo_srcdir .. "src/cairo-egl-context.c",
+    -- libCairo_srcdir .. "src/cairo-glx-context.c",
     libCairo_srcdir .. "src/cairo-script-surface.c",
     libCairo_srcdir .. "src/cairo-ft-font.c",
     libCairo_srcdir .. "src/cairo-ps-surface.c",
