@@ -10,6 +10,7 @@ libSoup_includedirs = {
 }
 if os.host() == "linux" then
     table.insert(libSoup_includedirs, libSoup_extradir .. "linux/")
+    table.insert(libSoup_includedirs, libSoup_extradir .. "linux/libsoup/")
 end
 
 -- Defines
@@ -118,6 +119,8 @@ libSoup_sources = {
     libSoup_srcdir .. "soup-websocket-extension-deflate.c",
     libSoup_srcdir .. "soup-websocket-extension-manager.c",
     libSoup_srcdir .. "soup-xmlrpc.c",
-    libSoup_srcdir .. "soup-xmlrpc-old.c",
-    libSoup_extradir .. "libsoup/soup-enum-types.c"
+    libSoup_srcdir .. "soup-xmlrpc-old.c"
 }
+if os.host() == "linux" then
+    table.insert(libSoup_sources, libSoup_extradir .. "linux/libsoup/soup-enum-types.c")
+end

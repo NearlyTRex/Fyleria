@@ -52,6 +52,8 @@ libPCRE_sources = {
     libPCRE_srcdir .. "pcre_ucd.c",
     libPCRE_srcdir .. "pcre_valid_utf8.c",
     libPCRE_srcdir .. "pcre_version.c",
-    libPCRE_srcdir .. "pcre_xclass.c",
-    libPCRE_extradir .. "pcre_chartables.c",
+    libPCRE_srcdir .. "pcre_xclass.c"
 }
+if os.host() == "linux" then
+    table.insert(libPCRE_sources, libPCRE_extradir .. "linux/pcre_chartables.c")
+end
