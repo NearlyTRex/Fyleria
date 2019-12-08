@@ -1916,7 +1916,10 @@ libWebKitGTK_linkoptions_Processes = {
 -- Libs
 libWebKitGTK_libs_WebCoreGTK = {
     "WTFGTK",
-    "FreeType2"
+    "FreeType2",
+    "EGL",
+    "GLX",
+    "GL"
 }
 libWebKitGTK_libs_WebCorePlatformGTK = {
     "WTFGTK"

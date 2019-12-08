@@ -49,9 +49,6 @@ libCairo_libs = {
     "PNG"
 }
 if os.host() == "linux" then
-    --table.insert(libCairo_libs, "EGL")
-    --table.insert(libCairo_libs, "GL")
-    --table.insert(libCairo_libs, "GLX")
     table.insert(libCairo_libs, "xcb")
     table.insert(libCairo_libs, "xcb-render")
     table.insert(libCairo_libs, "xcb-shm")
