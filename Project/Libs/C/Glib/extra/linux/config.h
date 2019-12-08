@@ -384,8 +384,6 @@
 
 #define USE_STATFS 1
 
-#define USE_SYSTEM_PCRE
-
 #define USE_SYSTEM_PRINTF
 
 #define _GNU_SOURCE 1
