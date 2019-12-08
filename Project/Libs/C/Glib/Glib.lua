@@ -49,6 +49,7 @@ libGlib_linkoptions = {
 -- Libs
 libGlib_libs = {
     "FFI",
+    "PCRE",
     "Zlib"
 }
 if os.host() == "linux" then
