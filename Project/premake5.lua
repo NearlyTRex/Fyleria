@@ -451,6 +451,7 @@ pic "On"
     linkoptions(libGlib_linkoptions)
     includedirs(libGlib_includedirs)
     includedirs(libFFI_includedirs)
+    includedirs(libPCRE_includedirs)
     includedirs(libUtilLinux_includedirs)
     defines(libGlib_defines)
     files(libGlib_sources)
