@@ -1,6 +1,6 @@
 -- Configuration
-libBackward_extradir = "Libs/C/Backward/extra/"
-libBackward_origdir = "Libs/C/Backward/orig/"
+libBackward_extradir = "Libs/C++/Backward/extra/"
+libBackward_origdir = "Libs/C++/Backward/orig/"
 libBackward_srcdir = libBackward_origdir
 libBackward_incdir = libBackward_origdir
 

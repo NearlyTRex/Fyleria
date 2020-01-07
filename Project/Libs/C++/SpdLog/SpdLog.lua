@@ -1,6 +1,6 @@
 -- Configuration
-libSpdLog_extradir = "Libs/C/SpdLog/extra/"
-libSpdLog_origdir = "Libs/C/SpdLog/orig/"
+libSpdLog_extradir = "Libs/C++/SpdLog/extra/"
+libSpdLog_origdir = "Libs/C++/SpdLog/orig/"
 libSpdLog_srcdir = libSpdLog_origdir .. "src/"
 libSpdLog_incdir = libSpdLog_origdir .. "include/"
 
