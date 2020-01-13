@@ -16,10 +16,6 @@
 #include "Window/BrowserEngine.h"
 #include "Utility/Types.h"
 
-// Internal includes
-#include "Window/BrowserEngine.h"
-#include "Utility/Types.h"
-
 namespace Gecko
 {
 

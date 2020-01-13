@@ -3,7 +3,7 @@
 
 // Internal includes
 #include "Window/MainWindow.h"
-#include "Window/BrowserEngineEdgeHtml.h"
+#include "Window/BrowserEngineWebKitCairo.h"
 #include "Window/BrowserEngineWebKitGtk.h"
 
 namespace Gecko
@@ -11,8 +11,8 @@ namespace Gecko
 
 MainWindow::MainWindow()
 {
-#if defined(PLATFORM_OS_WINDOWS_10)
-    SetBrowserEngine(STDMakeSharedPtr<BrowserEngineEdgeHtml>());
+#if defined(PLATFORM_OS_WINDOWS)
+    SetBrowserEngine(STDMakeSharedPtr<BrowserEngineWebKitCairo>());
 #elif defined(PLATFORM_OS_LINUX)
     SetBrowserEngine(STDMakeSharedPtr<BrowserEngineWebKitGtk>());
 #else
