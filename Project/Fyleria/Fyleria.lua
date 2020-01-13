@@ -38,7 +38,8 @@ appFyleria_libs = {
     "Boost",
     "FantasyName",
     "MicroPather",
-    "SpdLog"
+    "SpdLog",
+    "Zlib"
 }
 if os.host() == "linux" then
     table.insert(appFyleria_libs, "Glib")
