@@ -11,7 +11,11 @@ class SystemInformation:
 ###########################################################################
 # Get system information
 def GetSystemInformation(program_options, root_path):
+    
+    # Get current system name
     current_system = platform.system().lower()
+    
+    # Detection defaults
     detect_64bits = sys.maxsize > 2**32
     detect_bitness = ("x86_64" if detect_64bits else "x86_32")
     detect_cygwin = False
@@ -26,6 +30,8 @@ def GetSystemInformation(program_options, root_path):
     detect_zip_bin = ""
     detect_unzip_bin = ""
     detect_out_bin = ""
+    
+    # Detect platform
     if 'cygwin' in current_system:
         detect_cygwin = True
     elif 'darwin' in current_system:
@@ -38,6 +44,8 @@ def GetSystemInformation(program_options, root_path):
                 detect_linux = False
     elif 'windows' in current_system:
         detect_windows = True
+    
+    # Detect binaries
     if detect_linux or detect_wsl:
         detect_make_bin = "make"
         detect_build_bin = "make"
@@ -59,6 +67,8 @@ def GetSystemInformation(program_options, root_path):
         detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/windows_" + detect_bitness + "/unzip.exe"))
         detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake5/bin/windows_" + detect_bitness + "/premake5.exe"))
         detect_out_bin = "FyleriaMain_windows_" + detect_bitness + "_" + program_options.configuration + ".exe"
+    
+    # Create system information
     info = SystemInformation()
     info.root_path = os.path.normpath(root_path)
     info.make_bin = detect_make_bin
@@ -76,6 +86,8 @@ def GetSystemInformation(program_options, root_path):
         program_options.force_wsl or
         program_options.force_cygwin or
         program_options.force_mingw)
+    
+    # Override system information by force
     if info.has_forced_platform:
         info.is_linux = program_options.force_linux
         info.is_macosx = program_options.force_macosx
@@ -92,12 +104,16 @@ def GetSystemInformation(program_options, root_path):
         info.is_cygwin = detect_cygwin
         info.is_mingw = detect_mingw
         info.is_posix = (info.is_linux or info.is_macosx or info.is_wsl or info.is_cygwin or info.is_mingw)
+    
+    # Override bitness by force
     if program_options.force_32bits:
         info.is_32bits = True
         info.is_64bits = False
     elif program_options.force_64bits:
         info.is_32bits = False
         info.is_64bits = True
+    
+    # Set build path
     if info.is_linux or info.is_wsl:
         info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_linux"))
     elif info.is_macosx:
