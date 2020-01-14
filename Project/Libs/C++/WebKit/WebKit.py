@@ -1,5 +1,5 @@
 # Source: https://github.com/NearlyTRex/WebKit
-# Version: r254199
+# Version: r254251
 
 # Steps
 WebKitCairo_Build = 'RunProcess("perl Tools/Scripts/build-webkit --wincairo --release")'
@@ -9,8 +9,8 @@ WebKitGTK_Build = 'RunProcess("perl Tools/Scripts/build-webkit --gtk --release")
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/WebKit/archive/WebKit-r254199.zip"
-Setup['extractdir'] = "WebKit-WebKit-r254199"
+Setup['url'] = "https://github.com/NearlyTRex/WebKit/archive/WebKit-254251.zip"
+Setup['extractdir'] = "WebKit-WebKit-r254251"
 Setup['steps'] = {}
 Setup['steps']['windows'] = []
 Setup['steps']['windows'].append(WebKitCairo_Build)
