@@ -52,7 +52,8 @@ pic "On"
     includedirs(libJson_includedirs)
     includedirs(libObjectThreadsafe_includedirs)
     includedirs(libSpdLog_includedirs)
-	includedirs(libWebKit_includedirs)
+    includedirs(libWebKit_includedirs)
+    libdirs(libWebKit_libdirs)
     defines(appFyleria_defines)
     defines(libBackward_defines)
     defines(libBetterEnums_defines)
@@ -60,6 +61,7 @@ pic "On"
     defines(libLRUCache_defines)
     files(appFyleria_sources)
     links(appFyleria_libs)
+    links(libWebKit_libs)
     targetdir(GetAppTargetDirectory())
     targetname(GetTargetName("FyleriaMain"))
 filter "configurations:Debug*"
