@@ -1,0 +1,3 @@
+[submodule "Project/Libs/C++/WebKit/orig"]
+	path = Project/Libs/C++/WebKit/orig
+	url = https://github.com/NearlyTRex/WebKit
