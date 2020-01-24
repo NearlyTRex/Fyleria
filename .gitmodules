@@ -64,3 +64,12 @@
 [submodule "Project/Programs/CJSMin/orig"]
 	path = Project/Programs/CJSMin/orig
 	url = https://github.com/NearlyTRex/CJSMin
+[submodule "Project/Programs/Premake/orig"]
+	path = Project/Programs/Premake/orig
+	url = https://github.com/NearlyTRex/Premake
+[submodule "Project/Programs/UnZip/orig"]
+	path = Project/Programs/UnZip/orig
+	url = https://github.com/NearlyTRex/UnZip
+[submodule "Project/Programs/Zip/orig"]
+	path = Project/Programs/Zip/orig
+	url = https://github.com/NearlyTRex/Zip
