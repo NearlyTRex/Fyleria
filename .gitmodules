@@ -61,3 +61,6 @@
 [submodule "Project/Programs/Tiled/orig"]
 	path = Project/Programs/Tiled/orig
 	url = https://github.com/NearlyTRex/Tiled
+[submodule "Project/Programs/CJSMin/orig"]
+	path = Project/Programs/CJSMin/orig
+	url = https://github.com/NearlyTRex/CJSMin
