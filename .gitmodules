@@ -1,3 +1,6 @@
+[submodule "Project/Libs/C++/WebKit/orig"]
+	path = Project/Libs/C++/WebKit/orig
+	url = https://github.com/NearlyTRex/WebKit
 [submodule "Project/Libs/C++/MicroPather/orig"]
 	path = Project/Libs/C++/MicroPather/orig
 	url = https://github.com/NearlyTRex/MicroPather
