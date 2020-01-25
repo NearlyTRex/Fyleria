@@ -1,38 +1,38 @@
 [submodule "Project/Libs/C++/WebKit/orig"]
-	path = Project/Libs/C++/WebKit/orig
+	path = Project/Libs/Cpp/WebKit/orig
 	url = https://github.com/NearlyTRex/WebKit
 [submodule "Project/Libs/C++/MicroPather/orig"]
-	path = Project/Libs/C++/MicroPather/orig
+	path = Project/Libs/Cpp/MicroPather/orig
 	url = https://github.com/NearlyTRex/MicroPather
 [submodule "Project/Libs/C++/Boost/orig"]
-	path = Project/Libs/C++/Boost/orig
+	path = Project/Libs/Cpp/Boost/orig
 	url = https://github.com/NearlyTRex/Boost
 [submodule "Project/Libs/C++/Backward/orig"]
-	path = Project/Libs/C++/Backward/orig
+	path = Project/Libs/Cpp/Backward/orig
 	url = https://github.com/NearlyTRex/Backward
 [submodule "Project/Libs/C++/BetterEnums/orig"]
-	path = Project/Libs/C++/BetterEnums/orig
+	path = Project/Libs/Cpp/BetterEnums/orig
 	url = https://github.com/NearlyTRex/BetterEnums
 [submodule "Project/Libs/C++/Date/orig"]
-	path = Project/Libs/C++/Date/orig
+	path = Project/Libs/Cpp/Date/orig
 	url = https://github.com/NearlyTRex/Date
 [submodule "Project/Libs/C++/FantasyName/orig"]
-	path = Project/Libs/C++/FantasyName/orig
+	path = Project/Libs/Cpp/FantasyName/orig
 	url = https://github.com/NearlyTRex/FantasyName
 [submodule "Project/Libs/C++/ImmutableString/orig"]
-	path = Project/Libs/C++/ImmutableString/orig
+	path = Project/Libs/Cpp/ImmutableString/orig
 	url = https://github.com/NearlyTRex/ImmutableString
 [submodule "Project/Libs/C++/Json/orig"]
-	path = Project/Libs/C++/Json/orig
+	path = Project/Libs/Cpp/Json/orig
 	url = https://github.com/NearlyTRex/Json
 [submodule "Project/Libs/C++/LRUCache/orig"]
-	path = Project/Libs/C++/LRUCache/orig
+	path = Project/Libs/Cpp/LRUCache/orig
 	url = https://github.com/NearlyTRex/LRUCache
 [submodule "Project/Libs/C++/ObjectThreadsafe/orig"]
-	path = Project/Libs/C++/ObjectThreadsafe/orig
+	path = Project/Libs/Cpp/ObjectThreadsafe/orig
 	url = https://github.com/NearlyTRex/ObjectThreadsafe
 [submodule "Project/Libs/C++/SpdLog/orig"]
-	path = Project/Libs/C++/SpdLog/orig
+	path = Project/Libs/Cpp/SpdLog/orig
 	url = https://github.com/NearlyTRex/SpdLog
 [submodule "Project/Libs/C/Zlib/orig"]
 	path = Project/Libs/C/Zlib/orig
