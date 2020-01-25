@@ -6,8 +6,7 @@ libBetterEnums_incdir = libBetterEnums_origdir
 
 -- Includes
 libBetterEnums_includedirs = {
-    libBetterEnums_incdir,
-    libBetterEnums_extradir
+    libBetterEnums_incdir
 }
 
 -- Defines
