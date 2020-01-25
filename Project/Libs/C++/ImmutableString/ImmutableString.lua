@@ -6,7 +6,6 @@ libImmutableString_incdir = libImmutableString_origdir
 
 -- Includes
 libImmutableString_includedirs = {
-    libImmutableString_extradir,
     libImmutableString_incdir
 }
 
