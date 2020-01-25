@@ -1,6 +1,6 @@
 -- Configuration
-libBetterEnums_extradir = "Libs/C++/BetterEnums/extra/"
-libBetterEnums_origdir = "Libs/C++/BetterEnums/orig/"
+libBetterEnums_extradir = "Libs/Cpp/BetterEnums/extra/"
+libBetterEnums_origdir = "Libs/Cpp/BetterEnums/orig/"
 libBetterEnums_srcdir = libBetterEnums_origdir
 libBetterEnums_incdir = libBetterEnums_origdir
 

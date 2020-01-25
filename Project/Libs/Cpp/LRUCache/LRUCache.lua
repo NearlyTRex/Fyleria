@@ -1,6 +1,6 @@
 -- Configuration
-libLRUCache_extradir = "Libs/C++/LRUCache/extra/"
-libLRUCache_origdir = "Libs/C++/LRUCache/orig/"
+libLRUCache_extradir = "Libs/Cpp/LRUCache/extra/"
+libLRUCache_origdir = "Libs/Cpp/LRUCache/orig/"
 libLRUCache_srcdir = libLRUCache_origdir
 libLRUCache_incdir = libLRUCache_origdir .. "include/"
 

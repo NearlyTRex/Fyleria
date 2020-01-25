@@ -1,6 +1,6 @@
 -- Configuration
-libWebKit_extradir = "Libs/C++/WebKit/extra/"
-libWebKit_origdir = "Libs/C++/WebKit/orig/"
+libWebKit_extradir = "Libs/Cpp/WebKit/extra/"
+libWebKit_origdir = "Libs/Cpp/WebKit/orig/"
 libWebKit_srcdir = libWebKit_origdir
 libWebKit_incdir = libWebKit_origdir
 

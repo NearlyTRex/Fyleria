@@ -1,6 +1,6 @@
 -- Configuration
-libFantasyName_extradir = "Libs/C++/FantasyName/extra/"
-libFantasyName_origdir = "Libs/C++/FantasyName/orig/"
+libFantasyName_extradir = "Libs/Cpp/FantasyName/extra/"
+libFantasyName_origdir = "Libs/Cpp/FantasyName/orig/"
 libFantasyName_srcdir = libFantasyName_origdir .. "c++/"
 libFantasyName_incdir = libFantasyName_origdir .. "c++/"
 

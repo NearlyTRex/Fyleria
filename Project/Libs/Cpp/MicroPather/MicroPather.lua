@@ -1,6 +1,6 @@
 -- Configuration
-libMicroPather_extradir = "Libs/C++/MicroPather/extra/"
-libMicroPather_origdir = "Libs/C++/MicroPather/orig/"
+libMicroPather_extradir = "Libs/Cpp/MicroPather/extra/"
+libMicroPather_origdir = "Libs/Cpp/MicroPather/orig/"
 libMicroPather_srcdir = libMicroPather_origdir
 libMicroPather_incdir = libMicroPather_origdir
 
