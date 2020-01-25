@@ -57,9 +57,9 @@ def main():
         "PyJSMin"
     ]
     projects_tools = [
-        "Premake5",
+        "Premake",
         "Zip",
-        "Unzip",
+        "UnZip",
         "Tiled"
     ]
 
