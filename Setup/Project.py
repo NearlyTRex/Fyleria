@@ -5,8 +5,6 @@ import importlib
 import shutil
 import subprocess
 from . import Utility
-from urllib.request import urlopen
-from urllib.parse import urlparse
 
 ###########################################################################
 # Setup project
@@ -17,59 +15,17 @@ def SetupProject(project_name, project_base_dir, system_info, program_options):
 
     # Import library module
     projectdir = os.path.normpath(os.path.join(project_base_dir, project_name))
+    origdir = os.path.normpath(os.path.join(projectdir, "orig"))
     sys.path.append(projectdir)
     module = importlib.import_module(project_name)
-
-    # Generate archive info
-    parsed_url = urlparse(module.Setup['url'])
-    parsed_file = os.path.basename(parsed_url.path)
-    archive_base, archive_ext = os.path.splitext(parsed_file)
-    archive_file = os.path.normpath(os.path.join(projectdir, archive_base + archive_ext))
-    archive_olddir = os.path.normpath(os.path.join(projectdir, module.Setup['extractdir']))
-    archive_newdir = os.path.normpath(os.path.join(projectdir, "orig"))
-
-    # Detect if we should be downloading
-    should_download = (program_options.force_download == True) or not os.path.exists(archive_file)
-
-    # Remove archive
-    if should_download and os.path.exists(archive_file):
-        Utility.LogStatement("Removing old archive file %s" % archive_file)
-        os.remove(archive_file)
-
-    # Remove old folders
-    if should_download:
-        Utility.LogStatement("Removing old folders %s and %s" % (archive_olddir, archive_newdir))
-        shutil.rmtree(archive_olddir, ignore_errors=True)
-        shutil.rmtree(archive_newdir, ignore_errors=True)
-
-    # Download archive
-    if should_download and not os.path.exists(archive_file):
-        Utility.LogStatement("Downloading " + module.Setup['url'] + " to file " + archive_file)
-        request = urlopen(module.Setup['url'])
-        output = open(archive_file, "wb")
-        output.write(request.read())
-        output.close()
-        if not os.path.exists(archive_file):
-            Utility.ErrorStatement("Could not download archive for %s" % project_name)
-            sys.exit(-1)
-
-    # Extract library archive
-    if os.path.isfile(archive_file) and os.path.exists(projectdir) and not os.path.exists(archive_newdir):
-        Utility.LogStatement("Extracting " + archive_file + " to " + projectdir)
-        Utility.RunLiveSubprocess(subprocess_args = [system_info.unzip_bin, archive_file, "-d", projectdir], verbose_output = True)
-
-    # Move extracted archive
-    if os.path.exists(archive_olddir) and not os.path.exists(archive_newdir):
-        Utility.LogStatement("Moving " + archive_olddir + " to " + archive_newdir)
-        shutil.move(archive_olddir, archive_newdir)
-
+    
     # Run extra setup steps
-    if module.Setup['steps'] and os.path.exists(archive_newdir):
+    if module.Setup['steps'] and os.path.exists(origdir):
 
-        # Go to new archive directory
-        if os.path.exists(archive_newdir):
-            Utility.LogStatement("Changing directory to " + archive_newdir)
-            os.chdir(archive_newdir)
+        # Go to orig directory
+        if os.path.exists(origdir):
+            Utility.LogStatement("Changing directory to " + origdir)
+            os.chdir(origdir)
 
         # Run basic extra steps
         Utility.RunExtraSteps(module.Setup['steps'], "linux", system_info.root_path, system_info.is_linux)

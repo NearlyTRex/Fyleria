@@ -10,15 +10,14 @@ class ProgramOptions:
 # Get program options
 def GetProgramOptions():
     parser = argparse.ArgumentParser(description="Setup build environment.")
-    parser.add_argument("--force_32", action="store_true", help="Force 32-bit steps")
-    parser.add_argument("--force_64", action="store_true", help="Force 64-bit steps")
-    parser.add_argument("--force_linux", action="store_true", help="Force Linux steps")
-    parser.add_argument("--force_macosx", action="store_true", help="Force MacOSX steps")
-    parser.add_argument("--force_windows", action="store_true", help="Force Windows steps")
-    parser.add_argument("--force_wsl", action="store_true", help="Force Windows Subsystem for Linux steps")
-    parser.add_argument("--force_cygwin", action="store_true", help="Force Cygwin steps")
-    parser.add_argument("--force_mingw", action="store_true", help="Force MinGW steps")
-    parser.add_argument("--force_download", action="store_true", help="Force downloads")
+    parser.add_argument("--force_32", action="store_true", help="Force 32-bit configuration")
+    parser.add_argument("--force_64", action="store_true", help="Force 64-bit configuration")
+    parser.add_argument("--force_linux", action="store_true", help="Force Linux configuration")
+    parser.add_argument("--force_macosx", action="store_true", help="Force MacOSX configuration")
+    parser.add_argument("--force_windows", action="store_true", help="Force Windows configuration")
+    parser.add_argument("--force_wsl", action="store_true", help="Force Windows Subsystem for Linux configuration")
+    parser.add_argument("--force_cygwin", action="store_true", help="Force Cygwin configuration")
+    parser.add_argument("--force_mingw", action="store_true", help="Force MinGW configuration")
     parser.add_argument("--configuration", choices=[
         "release",
         "debug"
@@ -57,7 +56,6 @@ def GetProgramOptions():
     options.force_wsl = args.force_wsl
     options.force_cygwin = args.force_cygwin
     options.force_mingw = args.force_mingw
-    options.force_download = args.force_download
     options.configuration = args.configuration
     options.build_type = args.buildtype
     options.verbose = args.verbose
