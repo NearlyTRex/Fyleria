@@ -76,7 +76,7 @@ def main():
             Project.SetupProject(project, "Project/Libs/C", system_info, program_options)
     if do_setup_cpp_libs or do_all:
         for project in projects_cpplibs:
-            Project.SetupProject(project, "Project/Libs/C++", system_info, program_options)
+            Project.SetupProject(project, "Project/Libs/Cpp", system_info, program_options)
     if do_setup_js_libs or do_all:
         for project in projects_jslibs:
             Project.SetupProject(project, "Project/Libs/JavaScript", system_info, program_options)
