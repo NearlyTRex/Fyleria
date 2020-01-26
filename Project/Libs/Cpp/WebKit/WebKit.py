@@ -11,8 +11,6 @@ WebKitCairo_CopyCurl = 'CopyFile("WebKitLibraries/win/bin64/libcurl.dll", "$(Roo
 WebKitCairo_CopyIcuDt = 'CopyFile("WebKitLibraries/win/bin64/icudt63.dll", "$(RootPath)/Bin/icudt63.dll")'
 WebKitCairo_CopyIcuIn = 'CopyFile("WebKitLibraries/win/bin64/icuin63.dll", "$(RootPath)/Bin/icuin63.dll")'
 WebKitCairo_CopyIcuUc = 'CopyFile("WebKitLibraries/win/bin64/icuuc63.dll", "$(RootPath)/Bin/icuuc63.dll")'
-WebKitCairo_CopyEGL = 'CopyFile("WebKitLibraries/win/bin64/libEGL.dll", "$(RootPath)/Bin/libEGL.dll")'
-WebKitCairo_CopyGLES = 'CopyFile("WebKitLibraries/win/bin64/libGLESv2.dll", "$(RootPath)/Bin/libGLESv2.dll")'
 WebKitCairo_CopyJpeg = 'CopyFile("WebKitLibraries/win/bin64/jpeg62.dll", "$(RootPath)/Bin/jpeg62.dll")'
 WebKitCairo_CopyPng = 'CopyFile("WebKitLibraries/win/bin64/libpng16.dll", "$(RootPath)/Bin/libpng16.dll")'
 WebKitCairo_CopyNgHttp2 = 'CopyFile("WebKitLibraries/win/bin64/nghttp2.dll", "$(RootPath)/Bin/nghttp2.dll")'
@@ -24,6 +22,8 @@ WebKitCairo_CopySSL = 'CopyFile("WebKitLibraries/win/bin64/ssl-47.dll", "$(RootP
 WebKitCairo_CopyXML2 = 'CopyFile("WebKitLibraries/win/bin64/xml2.dll", "$(RootPath)/Bin/xml2.dll")'
 WebKitCairo_CopyXSLT = 'CopyFile("WebKitLibraries/win/bin64/xslt.dll", "$(RootPath)/Bin/xslt.dll")'
 WebKitCairo_CopyZlib = 'CopyFile("WebKitLibraries/win/bin64/zlib1.dll", "$(RootPath)/Bin/zlib1.dll")'
+WebKitCairo_CopyEGL = 'CopyFile("WebKitBuild/Release/bin64/libEGL.dll", "$(RootPath)/Bin/libEGL.dll")'
+WebKitCairo_CopyGLES = 'CopyFile("WebKitBuild/Release/bin64/libGLESv2.dll", "$(RootPath)/Bin/libGLESv2.dll")'
 WebKitCairo_CopyJavaScriptCore = 'CopyFile("WebKitBuild/Release/bin64/JavaScriptCore.dll", "$(RootPath)/Bin/JavaScriptCore.dll")'
 WebKitCairo_CopyWebKit = 'CopyFile("WebKitBuild/Release/bin64/WebKit2.dll", "$(RootPath)/Bin/WebKit2.dll")'
 WebKitCairo_CopyWTF = 'CopyFile("WebKitBuild/Release/bin64/WTF.dll", "$(RootPath)/Bin/WTF.dll")'
@@ -41,8 +41,8 @@ Setup['steps'] = {}
 Setup['steps']['windows'] = []
 Setup['steps']['windows'].extend([WebKitCairo_Build, WebKit_MakeBinDir])
 Setup['steps']['windows'].extend([WebKitCairo_CopyCairo, WebKitCairo_CopyCFLite, WebKitCairo_CopyCrypto, WebKitCairo_CopyCurl, WebKitCairo_CopyIcuDt, WebKitCairo_CopyIcuIn, WebKitCairo_CopyIcuUc])
-Setup['steps']['windows'].extend([WebKitCairo_CopyEGL, WebKitCairo_CopyGLES, WebKitCairo_CopyJpeg, WebKitCairo_CopyPng, WebKitCairo_CopyNgHttp2, WebKitCairo_CopyOpenJpeg, WebKitCairo_CopyPsl])
-Setup['steps']['windows'].extend([WebKitCairo_CopyPthreads, WebKitCairo_CopySQLite, WebKitCairo_CopySSL, WebKitCairo_CopyXML2, WebKitCairo_CopyXSLT, WebKitCairo_CopyZlib])
+Setup['steps']['windows'].extend([WebKitCairo_CopyJpeg, WebKitCairo_CopyPng, WebKitCairo_CopyNgHttp2, WebKitCairo_CopyOpenJpeg, WebKitCairo_CopyPsl, WebKitCairo_CopyPthreads])
+Setup['steps']['windows'].extend([WebKitCairo_CopySQLite, WebKitCairo_CopySSL, WebKitCairo_CopyXML2, WebKitCairo_CopyXSLT, WebKitCairo_CopyZlib, WebKitCairo_CopyEGL, WebKitCairo_CopyGLES])
 Setup['steps']['windows'].extend([WebKitCairo_CopyJavaScriptCore, WebKitCairo_CopyWebKit, WebKitCairo_CopyWTF, WebKitCairo_CopyWebKitNetworkProcess, WebKitCairo_CopyWebKitWebProcess])
 Setup['steps']['linux'] = []
 Setup['steps']['linux'].extend([WebKitGTK_InstallDeps, WebKitGTK_UpdateLibs, WebKitGTK_Build, WebKit_MakeBinDir])
