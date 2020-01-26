@@ -2,22 +2,16 @@
 function GetArchitecture()
     local raw_arch_name = ''
 
-    -- LuaJIT shortcut
     if jit and jit.os and jit.arch then
         raw_arch_name = jit.arch
     else
-        -- Is popen supported?
-        local popen_status, popen_result = pcall(io.popen, "")
-        if popen_status then
-            popen_result:close()
-            -- Unix-based OS
-            raw_arch_name = io.popen('uname -m','r'):read('*l')
-        else
-            -- Windows
+        if os.target() == "windows" then
             local env_ARCH = os.getenv('PROCESSOR_ARCHITECTURE')
             if env_ARCH then
                 raw_arch_name = env_ARCH
             end
+        else
+            raw_arch_name = io.popen('uname -m','r'):read('*l')
         end
     end
 
@@ -49,22 +43,16 @@ end
 function GetOperatingSystem()
     local raw_os_name = ''
 
-    -- LuaJIT shortcut
     if jit and jit.os and jit.arch then
         raw_os_name = jit.os
     else
-        -- Is popen supported?
-        local popen_status, popen_result = pcall(io.popen, "")
-        if popen_status then
-            popen_result:close()
-            -- Unix-based OS
-            raw_os_name = io.popen('uname -s','r'):read('*l')
-        else
-            -- Windows
+        if os.target() == "windows" then
             local env_OS = os.getenv('OS')
             if env_OS then
                 raw_os_name = env_OS
             end
+        else
+            raw_os_name = io.popen('uname -s','r'):read('*l')
         end
     end
 
