@@ -67,6 +67,7 @@
 #define LOGGER_NAME                                 "log"
 
 // Folders
+#define FOLDER_BIN                                  "Bin"
 #define FOLDER_DATA                                 "Data"
 #define FOLDER_DATA_CHARACTERS                      "Data/Characters"
 #define FOLDER_DATA_ICONS                           "Data/Icons"
