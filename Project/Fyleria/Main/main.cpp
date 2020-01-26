@@ -3,6 +3,7 @@
 
 // Internal includes
 #include "Main/Application.h"
+#include "Utility/Converters.h"
 #include "Utility/Logging.h"
 #include "Utility/Types.h"
 #include "Utility/Standard.h"
@@ -25,6 +26,12 @@ int main(int argc, char** argv)
     {
         // Create manager set
         auto pManagerSet = STDMakeSharedPtr<Gecko::ManagerSet>();
+
+        // Add dll directory
+#if defined(PLATFORM_OS_WINDOWS)
+        auto sBinDir = pManagerSet->GetFileManager()->GetBinDirectory();
+        SetDllDirectory(Gecko::ConvertStringToWideString(sBinDir).c_str());
+#endif
 
         // Create save folder
         Gecko::String sSaveDirectory = pManagerSet->GetFileManager()->GetSaveDirectory();
