@@ -43,19 +43,31 @@ Bool FileManager::IsSymbolicLink(const String& sPath)
 Bool FileManager::IsPosixPath(const String& sPath)
 {
     // Determine if path is from a posix system
-    return (sPath.at(0) == '/');
+    if (sPath.length() >= 1)
+    {
+        return (sPath.at(0) == '/');
+    }
+    return false;
 }
 
 Bool FileManager::IsWindowsPath(const String& sPath)
 {
     // Determine if path is from a windows system
-    return (isalpha(sPath.at(0)) != 0) && (sPath.at(1) == ':');
+    if (sPath.length() >= 2)
+    {
+        return (isalpha(sPath.at(0)) != 0) && (sPath.at(1) == ':');
+    }
+    return false;
 }
 
 Bool FileManager::IsWindowsNetworkDriveLocation(const String& sPath)
 {
     // Determine if path is from a windows network drive
-    return (sPath.at(0) == '\\') && (sPath.at(1) == '\\');
+    if (sPath.length() >= 2)
+    {
+        return (sPath.at(0) == '\\') && (sPath.at(1) == '\\');
+    }
+    return false;
 }
 
 Bool FileManager::CreateNewDirectory(const String& sPath)
@@ -80,6 +92,16 @@ SizeType FileManager::GetFileSize(const String& sPath)
 {
     // Get file size
     return static_cast<SizeType>(BoostFilesystemFileSize(BoostFilesystemPath(sPath)));
+}
+
+String FileManager::GetParentPath(const String& sPath)
+{
+    // Get parent path
+    if (BoostFilesystemPath(sPath).has_parent_path())
+    {
+        return BoostFilesystemPath(sPath).parent_path().string();
+    }
+    return sPath;
 }
 
 String FileManager::GetAbsolutePath(const String& sPath)
@@ -304,76 +326,90 @@ String FileManager::GetProgramDirectory()
 #endif
     sFullPath.remove_filename();
 
+    // Get absolute path
+    sFullPath = BoostFilesystemCanonical(sFullPath);
+
     // Return program directory
-    String sProgramDirectory = GetAbsolutePath(sFullPath.string());
-    GetFilesystemCache().SetValue(CACHE_KEY_PROGRAM_DIRECTORY, sProgramDirectory);
-    return sProgramDirectory;
+    GetFilesystemCache().SetValue(CACHE_KEY_PROGRAM_DIRECTORY, sFullPath.string());
+    return sFullPath.string();
+}
+
+String FileManager::GetRootDirectory()
+{
+    // Get root directory
+    return GetParentPath(GetProgramDirectory());
+}
+
+String FileManager::GetBinDirectory()
+{
+    // Get bin directory
+    return JoinPaths(GetRootDirectory(), FOLDER_BIN);
 }
 
 String FileManager::GetDataDirectory()
 {
     // Get data directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_DATA);
+    return JoinPaths(GetRootDirectory(), FOLDER_DATA);
 }
 
 String FileManager::GetDataCharactersDirectory()
 {
     // Get characters directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_CHARACTERS);
+    return JoinPaths(GetRootDirectory(), FOLDER_DATA_CHARACTERS);
 }
 
 String FileManager::GetDataIconsDirectory()
 {
     // Get icons directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_ICONS);
+    return JoinPaths(GetRootDirectory(), FOLDER_DATA_ICONS);
 }
 
 String FileManager::GetDataItemsDirectory()
 {
     // Get items directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_ITEMS);
+    return JoinPaths(GetRootDirectory(), FOLDER_DATA_ITEMS);
 }
 
 String FileManager::GetDataLibsDirectory()
 {
     // Get libs directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_LIBS);
+    return JoinPaths(GetRootDirectory(), FOLDER_DATA_LIBS);
 }
 
 String FileManager::GetDataPagesDirectory()
 {
     // Get pages directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_PAGES);
+    return JoinPaths(GetRootDirectory(), FOLDER_DATA_PAGES);
 }
 
 String FileManager::GetDataPartiesDirectory()
 {
     // Get parties directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_PARTIES);
+    return JoinPaths(GetRootDirectory(), FOLDER_DATA_PARTIES);
 }
 
 String FileManager::GetDataPortraitsDirectory()
 {
     // Get portraits directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_PORTRAITS);
+    return JoinPaths(GetRootDirectory(), FOLDER_DATA_PORTRAITS);
 }
 
 String FileManager::GetDataSkillsDirectory()
 {
     // Get skills directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_DATA_SKILLS);
+    return JoinPaths(GetRootDirectory(), FOLDER_DATA_SKILLS);
 }
 
 String FileManager::GetSaveDirectory()
 {
     // Get saves directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_SAVE);
+    return JoinPaths(GetRootDirectory(), FOLDER_SAVE);
 }
 
 String FileManager::GetLogDirectory()
 {
     // Get log directory
-    return JoinPaths(GetProgramDirectory(), FOLDER_LOG);
+    return JoinPaths(GetRootDirectory(), FOLDER_LOG);
 }
 
 String FileManager::GetLogFile()

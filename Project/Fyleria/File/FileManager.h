@@ -52,6 +52,9 @@ public:
     // Get file size in bytes
     SizeType GetFileSize(const String& sPath);
 
+    // Get parent path
+    String GetParentPath(const String& sPath);
+
     // Get absolute path
     String GetAbsolutePath(const String& sPath);
 
@@ -81,6 +84,12 @@ public:
 
     // Get program directory
     String GetProgramDirectory();
+
+    // Get root directory
+    String GetRootDirectory();
+
+    // Get bin directory
+    String GetBinDirectory();
 
     // Get data directories
     String GetDataDirectory();
