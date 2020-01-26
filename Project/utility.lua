@@ -115,7 +115,7 @@ end
 
 -- Get application target directory
 function GetAppTargetDirectory()
-    return ".."
+    return "../Bin"
 end
 
 -- Get library target directory
