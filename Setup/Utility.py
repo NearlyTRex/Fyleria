@@ -99,18 +99,16 @@ def RunExtraSteps(steps, platform, root_path, flags):
         new_src = ResolvePaths(src)
         new_dest = ResolvePaths(dest)
         import jsmin
-        if os.path.isfile(new_src) and not os.path.exists(new_dest):
-            with open(new_src, 'r') as input_file:
-                minified = jsmin.jsmin(input_file.read())
-                with open(new_dest, 'w') as output_file:
-                    output_file.write(minified)
+        with open(new_src, 'r') as input_file:
+            minified = jsmin.jsmin(input_file.read())
+            with open(new_dest, 'w') as output_file:
+                output_file.write(minified)
 
     # Copy file
     def CopyFile(src, dest):
         new_src = ResolvePaths(src)
         new_dest = ResolvePaths(dest)
-        if os.path.isfile(new_src) and not os.path.exists(new_dest):
-            shutil.copyfile(new_src, new_dest)
+        shutil.copyfile(new_src, new_dest)
 
     # Make symlink
     def MakeSymlink(src, dest):
@@ -132,21 +130,19 @@ def RunExtraSteps(steps, platform, root_path, flags):
     # Replace text in the given file
     def ReplaceText(filename, old, new):
         new_filename = ResolvePaths(filename)
-        if os.path.isfile(new_filename):
-            f = open(new_filename,'r')
-            filedata = f.read()
-            f.close()
-            newdata = filedata.replace(old, new)
-            f = open(new_filename,'w')
-            f.write(newdata)
-            f.close()
+        f = open(new_filename,'r')
+        filedata = f.read()
+        f.close()
+        newdata = filedata.replace(old, new)
+        f = open(new_filename,'w')
+        f.write(newdata)
+        f.close()
 
     # Make the file executable
     def MakeExecutable(filename):
         new_filename = ResolvePaths(filename)
-        if os.path.isfile(new_filename):
-            st = os.stat(new_filename)
-            os.chmod(new_filename, st.st_mode | stat.S_IEXEC)
+        st = os.stat(new_filename)
+        os.chmod(new_filename, st.st_mode | stat.S_IEXEC)
 
     # Evaluate the steps for the given platform
     if platform in steps and flags:
