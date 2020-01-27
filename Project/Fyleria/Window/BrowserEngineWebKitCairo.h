@@ -11,6 +11,9 @@
 // External includes
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <WebKit/WKRetainPtr.h>
+#include <WebKit/WebKit2_C.h>
+#include <wtf/Ref.h>
 
 // Internal includes
 #include "Window/BrowserEngine.h"
@@ -74,6 +77,36 @@ public:
 
     // Run main loop iteration
     virtual void RunMainLoopIteration(Bool bBlocking) override;
+
+    // Main window
+    MAKE_RAW_TYPE_ACCESSORS(MainWindow, HWND);
+
+    // WebKit view
+    MAKE_RAW_TYPE_ACCESSORS(WebKitView, WKRetainPtr<WKViewRef>);
+
+    // WebKit context
+    MAKE_RAW_TYPE_ACCESSORS(WebKitContext, WKRetainPtr<WKContextRef>);
+
+    // WebKit preferences
+    MAKE_RAW_TYPE_ACCESSORS(WebKitPreferences, WKRetainPtr<WKPreferencesRef>);
+
+    // WebKit page
+    MAKE_RAW_TYPE_ACCESSORS(WebKitPage, WKRetainPtr<WKPageRef>);
+
+    // WebKit page configuration
+    MAKE_RAW_TYPE_ACCESSORS(WebKitPageConfiguration, WKRetainPtr<WKPageConfigurationRef>);
+
+    // WebKit page group
+    MAKE_RAW_TYPE_ACCESSORS(WebKitPageGroup, WKRetainPtr<WKPageGroupRef>);
+
+    // WebKit page navigation client
+    MAKE_RAW_TYPE_ACCESSORS_INITIAL_VALUE(WebKitPageNavigationClient, WKPageNavigationClientV0, {});
+
+    // WebKit page UI client
+    MAKE_RAW_TYPE_ACCESSORS_INITIAL_VALUE(WebKitPageUIClient, WKPageUIClientV13, {});
+
+    // WebKit page state client
+    MAKE_RAW_TYPE_ACCESSORS_INITIAL_VALUE(WebKitPageStateClient, WKPageStateClientV0, {});
 };
 
 // Typedefs
