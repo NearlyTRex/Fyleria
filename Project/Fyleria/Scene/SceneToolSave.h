@@ -16,27 +16,27 @@ class SceneToolSave : public Scene
 public:
 
     // Constructor
-    SceneToolSave(ManagerSet* pManagerSet);
+    SceneToolSave(SafeObject<ManagerSet>& pManagerSet);
 
     // Destructor
     virtual ~SceneToolSave();
 
     // Start scene
-    virtual void Start(ManagerSet* pManagerSet) override;
+    virtual void Start(SafeObject<ManagerSet>& pManagerSet) override;
 
     // Finish scene
-    virtual void Finish(ManagerSet* pManagerSet) override;
+    virtual void Finish(SafeObject<ManagerSet>& pManagerSet) override;
 
     // Update scene
-    virtual void Update(ManagerSet* pManagerSet) override;
+    virtual void Update(SafeObject<ManagerSet>& pManagerSet) override;
 
     // Handle scene input
-    virtual void Input(ManagerSet* pManagerSet) override;
+    virtual void Input(SafeObject<ManagerSet>& pManagerSet) override;
 
 protected:
 
     // Handle message received
-    virtual void OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage) override;
+    virtual void OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage) override;
 
     // Web page handler
     MAKE_RAW_TYPE_ACCESSORS(WebPageHandler, STDSharedPtr<WebPageHandlerSaveTool>);

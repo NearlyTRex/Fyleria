@@ -78,7 +78,7 @@ Bool RemoveMsgPackHeader(FixedUnsigned8Array& vBytes)
 }
 
 Bool ReadSerializedFile(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sFilename,
     const String& sType,
     Json& jsonData,
@@ -103,11 +103,8 @@ Bool ReadSerializedFile(
     return false;
 }
 
-Bool ReadJsonFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot)
+Bool ReadJsonFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Read file contents
     String sJsonString;
     if(!pManagerSet->GetFileManager()->ReadFileToString(sFilename, sJsonString, sFileRoot))
@@ -120,11 +117,8 @@ Bool ReadJsonFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonDa
     return true;
 }
 
-Bool ReadCBORFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot)
+Bool ReadCBORFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Read file contents
     FixedUnsigned8Array vBytes;
     if(!pManagerSet->GetFileManager()->ReadFileToByteArray(sFilename, vBytes, sFileRoot))
@@ -143,11 +137,8 @@ Bool ReadCBORFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonDa
     return true;
 }
 
-Bool ReadMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot)
+Bool ReadMsgPackFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Read file contents
     FixedUnsigned8Array vBytes;
     if(!pManagerSet->GetFileManager()->ReadFileToByteArray(sFilename, vBytes, sFileRoot))
@@ -167,7 +158,7 @@ Bool ReadMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, Json& jso
 }
 
 Bool WriteSerializedFile(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sFilename,
     const String& sType,
     const Json& jsonData,
@@ -192,20 +183,14 @@ Bool WriteSerializedFile(
     return false;
 }
 
-Bool WriteJsonFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot)
+Bool WriteJsonFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Write json file
     return pManagerSet->GetFileManager()->WriteStringToFile(sFilename, jsonData.dump(4), sFileRoot);
 }
 
-Bool WriteCBORFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot)
+Bool WriteCBORFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Write cbor file
     FixedUnsigned8Array vFileBytes = vBinaryMarkersCBR;
     FixedUnsigned8Array vJsonBytes = JsonToCBOR(jsonData);
@@ -213,11 +198,8 @@ Bool WriteCBORFile(ManagerSet* pManagerSet, const String& sFilename, const Json&
     return pManagerSet->GetFileManager()->WriteByteArrayToFile(sFilename, vFileBytes, sFileRoot);
 }
 
-Bool WriteMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot)
+Bool WriteMsgPackFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Write msg pack file
     FixedUnsigned8Array vFileBytes = vBinaryMarkersMSG;
     FixedUnsigned8Array vJsonBytes = JsonToMsgPack(jsonData);

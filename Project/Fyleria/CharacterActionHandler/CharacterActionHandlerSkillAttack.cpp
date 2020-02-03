@@ -20,14 +20,11 @@ CharacterActionHandlerSkillAttack::~CharacterActionHandlerSkillAttack()
 }
 
 CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const CharacterAction& action,
     const CharacterActionEntry& entry,
     const String& sDestCharID) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Action result
     CharacterActionResult result;
 
@@ -194,7 +191,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     return result;
 }
 
-Bool CharacterActionHandlerSkillAttack::Setup(ManagerSet* pManagerSet, CharacterAction& action)
+Bool CharacterActionHandlerSkillAttack::Setup(SafeObject<ManagerSet>& pManagerSet, CharacterAction& action)
 {
     // Prepare character IDs
     action.PrepareCharacterIDs(pManagerSet);
@@ -213,7 +210,7 @@ Bool CharacterActionHandlerSkillAttack::Setup(ManagerSet* pManagerSet, Character
     return true;
 }
 
-Bool CharacterActionHandlerSkillAttack::Finish(ManagerSet* pManagerSet, CharacterAction& action)
+Bool CharacterActionHandlerSkillAttack::Finish(SafeObject<ManagerSet>& pManagerSet, CharacterAction& action)
 {
     // Check characters
     if(!action.AreAllCharacterIDsValid(pManagerSet))
@@ -235,7 +232,7 @@ Bool CharacterActionHandlerSkillAttack::Finish(ManagerSet* pManagerSet, Characte
     return true;
 }
 
-Bool CharacterActionHandlerSkillAttack::GenerateResult(ManagerSet* pManagerSet, CharacterAction& action)
+Bool CharacterActionHandlerSkillAttack::GenerateResult(SafeObject<ManagerSet>& pManagerSet, CharacterAction& action)
 {
     // Check characters
     if(!action.AreAllCharacterIDsValid(pManagerSet))
@@ -261,7 +258,7 @@ Bool CharacterActionHandlerSkillAttack::GenerateResult(ManagerSet* pManagerSet, 
     return true;
 }
 
-Bool CharacterActionHandlerSkillAttack::ApplyResult(ManagerSet* pManagerSet, CharacterAction& action)
+Bool CharacterActionHandlerSkillAttack::ApplyResult(SafeObject<ManagerSet>& pManagerSet, CharacterAction& action)
 {
     // Check characters
     if(!action.AreAllCharacterIDsValid(pManagerSet))

@@ -16,13 +16,13 @@ class WebPageHandlerSaveTool : public WebPageHandler
 public:
 
     // Constructors
-    WebPageHandlerSaveTool(ManagerSet* pManagerSet);
+    WebPageHandlerSaveTool(SafeObject<ManagerSet>& pManagerSet);
 
     // Destructor
     virtual ~WebPageHandlerSaveTool();
 
     // Update page content
-    virtual void UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams) override;
+    virtual void UpdatePageContent(SafeObject<ManagerSet>& pManagerSet, const StringMap& tParams) override;
 };
 
 // Typedefs

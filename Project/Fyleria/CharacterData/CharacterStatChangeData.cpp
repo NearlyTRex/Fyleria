@@ -40,11 +40,8 @@ void CharacterStatChangeData::Clear()
     SetProlongedStatChanges({});
 }
 
-void CharacterStatChangeData::UpdateAvailableChanges(ManagerSet* pManagerSet, const String& sCharacterID)
+void CharacterStatChangeData::UpdateAvailableChanges(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Fill skill indices
     TreeIndexArray vSkillPassives;
     TreeIndexArray vSkillActives;
@@ -202,13 +199,10 @@ void CharacterStatChangeData::RemoveAllExpiredProlongedStatChanges(Int iRound, I
 }
 
 void CharacterStatChangeData::ApplyProlongedStatChanges(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sSegment)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 

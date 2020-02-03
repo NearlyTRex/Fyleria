@@ -53,7 +53,7 @@ void Character::Clear()
 }
 
 void Character::RegenerateCharacterData(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     Bool bUpdateEquipmentRatings /*= true*/,
     Bool bUpdateAvailableChanges /*= true*/,
     Bool bUpdateAvailableActions /*= true*/,
@@ -94,11 +94,8 @@ String Character::GetPartyID() const
     return GetBasicData().GetPartyID();
 }
 
-String Character::GetCharacterTargetType(ManagerSet* pManagerSet) const
+String Character::GetCharacterTargetType(SafeObject<ManagerSet>& pManagerSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character and party ID
     String sCharacterID = GetCharacterID();
     String sPartyID = GetPartyID();
@@ -118,11 +115,8 @@ String Character::GetWeaponSet() const
     return GetBasicData().GetWeaponSet();
 }
 
-CharacterPartyEquippedItemArray Character::GetEquippedItems(ManagerSet* pManagerSet) const
+CharacterPartyEquippedItemArray Character::GetEquippedItems(SafeObject<ManagerSet>& pManagerSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character and party ID
     String sCharacterID = GetCharacterID();
     String sPartyID = GetPartyID();
@@ -137,7 +131,7 @@ CharacterPartyEquippedItemArray Character::GetEquippedItems(ManagerSet* pManager
     return characterPartyMember.GetEquippedItems();
 }
 
-TreeIndex Character::GetEquippedItemByType(ManagerSet* pManagerSet, const String& sEquipmentType) const
+TreeIndex Character::GetEquippedItemByType(SafeObject<ManagerSet>& pManagerSet, const String& sEquipmentType) const
 {
     auto vEquippedItems = GetEquippedItems(pManagerSet);
     if(vEquippedItems.empty())
@@ -210,35 +204,32 @@ CharacterBattleData& Character::GetBattleDataSegment(const String& sSegment)
     return const_cast<CharacterBattleData&>(static_cast<const Character&>(*this).GetBattleDataSegment(sSegment));
 }
 
-void Character::UpdateEquipmentRatings(ManagerSet* pManagerSet)
+void Character::UpdateEquipmentRatings(SafeObject<ManagerSet>& pManagerSet)
 {
     // Update equipment ratings
     GetBattleData().UpdateEquipmentRatings(pManagerSet, GetCharacterID(), (+CharacterSegmentType::Base)._to_string());
 }
 
-void Character::UpdateAvailableChanges(ManagerSet* pManagerSet)
+void Character::UpdateAvailableChanges(SafeObject<ManagerSet>& pManagerSet)
 {
     // Update available changes
     GetStatChangeData().UpdateAvailableChanges(pManagerSet, GetCharacterID());
 }
 
-void Character::UpdateAvailableActions(ManagerSet* pManagerSet)
+void Character::UpdateAvailableActions(SafeObject<ManagerSet>& pManagerSet)
 {
     // Update available actions
     GetActionData().UpdateAvailableActions(pManagerSet, GetCharacterID());
 }
 
-void Character::UpdateAvailableAP(ManagerSet* pManagerSet)
+void Character::UpdateAvailableAP(SafeObject<ManagerSet>& pManagerSet)
 {
     // Update available AP
     GetActionData().UpdateAvailableAP(pManagerSet, GetCharacterID());
 }
 
-void Character::ApplyPassiveChanges(ManagerSet* pManagerSet)
+void Character::ApplyPassiveChanges(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Data sources should come from base but apply to passive
     const String sSourceSegment("Base");
     const String sDestSegment("Passive");
@@ -270,11 +261,8 @@ void Character::ApplyPassiveChanges(ManagerSet* pManagerSet)
     }
 }
 
-void Character::ApplyActiveChanges(ManagerSet* pManagerSet, const CharacterAction& action)
+void Character::ApplyActiveChanges(SafeObject<ManagerSet>& pManagerSet, const CharacterAction& action)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Data sources should come from passive but apply to active
     const String sSourceSegment("Passive");
     const String sDestSegment("Active");

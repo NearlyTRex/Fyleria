@@ -19,11 +19,8 @@ SceneCredits::~SceneCredits()
 {
 }
 
-void SceneCredits::Start(ManagerSet* pManagerSet)
+void SceneCredits::Start(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneCredits::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
@@ -32,12 +29,12 @@ void SceneCredits::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData(pManagerSet);
-    InjectStylesheetFile(PAGE_FILE_CREDITS_CSS, sLocation);
-    InjectJavascriptFile(PAGE_FILE_CREDITS_JS, sLocation);
-    SetHtmlContentFile(PAGE_FILE_CREDITS_HTML, sLocation);
+    InjectStylesheetFile(pManagerSet, PAGE_FILE_CREDITS_CSS, sLocation);
+    InjectJavascriptFile(pManagerSet, PAGE_FILE_CREDITS_JS, sLocation);
+    SetHtmlContentFile(pManagerSet, PAGE_FILE_CREDITS_HTML, sLocation);
 }
 
-void SceneCredits::Finish(ManagerSet* pManagerSet)
+void SceneCredits::Finish(SafeObject<ManagerSet>& pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
@@ -46,15 +43,15 @@ void SceneCredits::Finish(ManagerSet* pManagerSet)
     RemoveAllInjectedData();
 }
 
-void SceneCredits::Update(ManagerSet* pManagerSet)
+void SceneCredits::Update(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneCredits::Input(ManagerSet* pManagerSet)
+void SceneCredits::Input(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneCredits::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
+void SceneCredits::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

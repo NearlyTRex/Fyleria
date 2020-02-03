@@ -16,13 +16,13 @@ class WebPageHandlerCharacterTool : public WebPageHandler
 public:
 
     // Constructors
-    WebPageHandlerCharacterTool(ManagerSet* pManagerSet);
+    WebPageHandlerCharacterTool(SafeObject<ManagerSet>& pManagerSet);
 
     // Destructor
     virtual ~WebPageHandlerCharacterTool();
 
     // Update page content
-    virtual void UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams) override;
+    virtual void UpdatePageContent(SafeObject<ManagerSet>& pManagerSet, const StringMap& tParams) override;
 };
 
 // Typedefs

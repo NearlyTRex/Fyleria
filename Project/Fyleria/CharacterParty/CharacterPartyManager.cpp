@@ -15,7 +15,7 @@ CharacterPartyManager::CharacterPartyManager()
 {
 }
 
-String CharacterPartyManager::LoadParty(ManagerSet* pManagerSet, const CharacterParty& party, Bool bRegenerateData)
+String CharacterPartyManager::LoadParty(SafeObject<ManagerSet>& pManagerSet, const CharacterParty& party, Bool bRegenerateData)
 {
     // Check if party ID is valid
     const String& sPartyID = party.GetPartyID();
@@ -40,11 +40,8 @@ String CharacterPartyManager::LoadParty(ManagerSet* pManagerSet, const Character
     return sPartyID;
 }
 
-String CharacterPartyManager::LoadPartyFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData)
+String CharacterPartyManager::LoadPartyFromFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Deserialize file into party data
     Json jsonData;
     Bool bSuccess = ReadSerializedFile(
@@ -58,11 +55,8 @@ String CharacterPartyManager::LoadPartyFromFile(ManagerSet* pManagerSet, const S
     return LoadParty(pManagerSet, jsonData.get<CharacterParty>(), bRegenerateData);
 }
 
-void CharacterPartyManager::SavePartyToFile(ManagerSet* pManagerSet, const String& sPartyID, const String& sFilename, const String& sType)
+void CharacterPartyManager::SavePartyToFile(SafeObject<ManagerSet>& pManagerSet, const String& sPartyID, const String& sFilename, const String& sType)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Serialize party data into file
     Json jsonData = GetPartyByID(sPartyID);
     Bool bSuccess = WriteSerializedFile(

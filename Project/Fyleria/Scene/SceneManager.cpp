@@ -7,6 +7,7 @@
 #include "Utility/Constants.h"
 #include "Utility/Errors.h"
 #include "Utility/Logging.h"
+#include "Utility/ManagerSet.h"
 
 namespace Gecko
 {
@@ -19,7 +20,7 @@ SceneManager::~SceneManager()
 {
 }
 
-void SceneManager::AddScene(ManagerSet* pManagerSet, const String& sSceneID)
+void SceneManager::AddScene(SafeObject<ManagerSet>& pManagerSet, const String& sSceneID)
 {
     // Only add if it is not already added
     if (!DoesSceneExist(sSceneID))
@@ -89,7 +90,7 @@ void SceneManager::RemoveScene(const String& sSceneID)
     GetScenes().erase(sSceneID);
 }
 
-void SceneManager::SwitchToScene(ManagerSet* pManagerSet, const String& sSceneID)
+void SceneManager::SwitchToScene(SafeObject<ManagerSet>& pManagerSet, const String& sSceneID)
 {
     // Add scene if necessary
     AddScene(pManagerSet, sSceneID);

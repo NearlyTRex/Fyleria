@@ -43,14 +43,14 @@ public:
     virtual ~SceneManager();
 
     // Add scene
-    void AddScene(ManagerSet* pManagerSet, const String& sSceneID);
+    void AddScene(SafeObject<ManagerSet>& pManagerSet, const String& sSceneID);
     void AddScene(const String& sSceneID, const SceneSharedPtr& pScene);
 
     // Remove scene
     void RemoveScene(const String& sSceneID);
 
     // Switch to scene
-    void SwitchToScene(ManagerSet* pManagerSet, const String& sSceneID);
+    void SwitchToScene(SafeObject<ManagerSet>& pManagerSet, const String& sSceneID);
 
     // Does scene exist
     Bool DoesSceneExist(const String& sSceneID) const;

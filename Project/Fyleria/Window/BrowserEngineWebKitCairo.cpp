@@ -22,9 +22,71 @@ BrowserEngineWebKitCairo::~BrowserEngineWebKitCairo()
 {
 }
 
-WKRetainPtr<WKStringRef> CreateWebKitString(const String& str)
+WKRetainPtr<WKStringRef> ConvertStringToWebKitString(const String& sStr)
 {
-    return adoptWK(WKStringCreateWithUTF8CString(str.data()));
+    return adoptWK(WKStringCreateWithUTF8CString(sStr.data()));
+}
+
+WKRetainPtr<WKStringRef> ConvertStringToWebKitString(const WString& sStr)
+{
+    return ConvertStringToWebKitString(ConvertWideStringToString(sStr));
+}
+
+String ConvertWebKitStringToString(WKStringRef sWkStr)
+{
+    String sResult;
+    if (!sWkStr)
+    {
+        return sResult;
+    }
+
+    SizeType nBufferSize = WKStringGetMaximumUTF8CStringSize(sWkStr);
+    auto pBuffer = makeUniqueWithoutFastMallocCheck<char[]>(nBufferSize);
+    SizeType nStringLength = WKStringGetUTF8CString(sWkStr, pBuffer.get(), nBufferSize);
+    sResult = String(pBuffer.get(), nStringLength - 1);
+    return sResult;
+}
+
+String ConvertJavascriptStringToString(JSStringRef sJsStr)
+{
+    String sResult;
+    if (!sJsStr)
+    {
+        return sResult;
+    }
+
+    SizeType nBufferSize = JSStringGetMaximumUTF8CStringSize(sJsStr);
+    auto pBuffer = makeUniqueWithoutFastMallocCheck<char[]>(nBufferSize);
+    SizeType nStringLength = JSStringGetUTF8CString(sJsStr, pBuffer.get(), nBufferSize);
+    sResult = String(pBuffer.get(), nStringLength - 1);
+    return sResult;
+}
+
+String GetWebKitExceptionString(WKErrorRef pException)
+{
+    String sResult;
+    if (!pException)
+    {
+        return sResult;
+    }
+
+    WKStringRef pJsExceptionString = WKErrorCopyLocalizedDescription(pException);
+    sResult = ConvertWebKitStringToString(pJsExceptionString);
+    return sResult;
+}
+
+String GetJavascriptExceptionString(JSValueRef pException, JSGlobalContextRef pContext)
+{
+    String sResult;
+    if (!pException || !pContext)
+    {
+        return sResult;
+    }
+
+    JSStringRef pJsExceptionString = JSValueToStringCopy(pContext, pException, nullptr);
+    sResult = ConvertJavascriptStringToString(pJsExceptionString);
+    JSStringRelease(pJsExceptionString);
+    return sResult;
 }
 
 LRESULT CALLBACK WndProcStatic(HWND pWindowHandle, UINT uMessage, WPARAM iWordParam, LPARAM iLongParam)
@@ -55,12 +117,8 @@ LRESULT CALLBACK WndProcStatic(HWND pWindowHandle, UINT uMessage, WPARAM iWordPa
     return (bHandled) ? 0 : DefWindowProc(pWindowHandle, uMessage, iWordParam, iLongParam);
 }
 
-Bool BrowserEngineWebKitCairo::Init(ManagerSet* pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
-{
-    // Store manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-    SetManagers(pManagerSet);
- 
+Bool BrowserEngineWebKitCairo::Init(SafeObject<ManagerSet>& pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
+{ 
     // Create window class
     WNDCLASSEX windowClass;
     ZeroMemory(&windowClass, sizeof(WNDCLASSEX));
@@ -134,7 +192,7 @@ Bool BrowserEngineWebKitCairo::Init(ManagerSet* pManagerSet, const String& sTitl
     WKPageConfigurationSetPreferences(GetWebKitPageConfiguration().get(), GetWebKitPreferences().get());
 
     // Create webkit page group
-    SetWebKitPageGroup(adoptWK(WKPageGroupCreateWithIdentifier(CreateWebKitString("WebKitCairo").get())));
+    SetWebKitPageGroup(adoptWK(WKPageGroupCreateWithIdentifier(ConvertStringToWebKitString(sWindowClassName).get())));
     WKPageConfigurationSetPageGroup(GetWebKitPageConfiguration().get(), GetWebKitPageGroup().get());
     WKPageGroupSetPreferences(GetWebKitPageGroup().get(), GetWebKitPreferences().get());
     
@@ -143,86 +201,95 @@ Bool BrowserEngineWebKitCairo::Init(ManagerSet* pManagerSet, const String& sTitl
     WKPageConfigurationSetContext(GetWebKitPageConfiguration().get(), GetWebKitContext().get());
 
     // Create webkit view
-    RECT rect = {};
-    SetWebKitView(adoptWK(WKViewCreate(rect, GetWebKitPageConfiguration().get(), GetMainWindow())));
+    RECT viewRect;
+    viewRect.left = 0;
+    viewRect.top = 0;
+    viewRect.right = iWidth;
+    viewRect.bottom = iHeight;
+    SetWebKitView(adoptWK(WKViewCreate(viewRect, GetWebKitPageConfiguration().get(), GetMainWindow())));
     WKViewSetIsInWindow(GetWebKitView().get(), true);
-
-    // Create webkit page
-    SetWebKitPage(adoptWK(WKViewGetPage(GetWebKitView().get())));
 
     // Setup page navigation client
     GetWebKitPageNavigationClient().base.version = 0;
     GetWebKitPageNavigationClient().base.clientInfo = this;
-    WKPageSetPageNavigationClient(GetWebKitPage().get(), &GetWebKitPageNavigationClient().base);
+    WKPageSetPageNavigationClient(WKViewGetPage(GetWebKitView().get()), &GetWebKitPageNavigationClient().base);
 
     // Setup page ui client
     GetWebKitPageUIClient().base.version = 13;
     GetWebKitPageUIClient().base.clientInfo = this;
-    WKPageSetPageUIClient(GetWebKitPage().get(), &GetWebKitPageUIClient().base);
+    WKPageSetPageUIClient(WKViewGetPage(GetWebKitView().get()), &GetWebKitPageUIClient().base);
 
     // Setup page state client
     GetWebKitPageStateClient().base.version = 0;
     GetWebKitPageStateClient().base.clientInfo = this;
-    WKPageSetPageStateClient(GetWebKitPage().get(), &GetWebKitPageStateClient().base);
+    WKPageSetPageStateClient(WKViewGetPage(GetWebKitView().get()), &GetWebKitPageStateClient().base);
 
     // Show window
     ShowWindow(GetMainWindow(), SW_SHOW);
     UpdateWindow(GetMainWindow());
     SetFocus(GetMainWindow());
-    return true;
-}
 
-void BrowserEngineWebKitCairo::Shutdown()
-{
-    // Mark as shutting down
-    SetIsShuttingDown(true);
+    // Navigate to starting page
+    Navigate(STARTING_URI);
+
+    // Switch to starting scene
+    pManagerSet->GetSceneManager()->SwitchToScene(pManagerSet, (+SceneType::Intro)._to_string());
+    return true;
 }
 
 void BrowserEngineWebKitCairo::Navigate(const String& sUrl)
 {
+    // Navigate to the url
+    WKPageLoadURL(WKViewGetPage(GetWebKitView().get()), WKURLCreateWithUTF8CString(sUrl.data()));
 }
 
-void BrowserEngineWebKitCairo::InjectSystemJavascript(const String& sScript)
+static void JavascriptFinishedHandler(WKSerializedScriptValueRef pResult, WKErrorRef pError, void* pUserData)
 {
-}
+    // Check error
+    if (pError)
+    {
+        ERROR_FORMAT_STATEMENT("Error running javascript: {}", GetWebKitExceptionString(pError));
+        return;
+    }
 
-void BrowserEngineWebKitCairo::InjectUserStylesheet(const String& sStyle)
-{
-}
+    // Get engine instance
+    auto* pEngine = static_cast<BrowserEngineWebKitCairo*>(pUserData);
+    if (!pEngine)
+    {
+        ERROR_STATEMENT("Error running javascript: Unable to retrieve browser engine");
+        return;
+    }
 
-void BrowserEngineWebKitCairo::InjectUserStylesheetFile(const String& sFile, const String& sFileRoot)
-{
-}
-
-void BrowserEngineWebKitCairo::InjectUserJavascript(const String& sScript)
-{
-}
-
-void BrowserEngineWebKitCairo::InjectUserJavascriptFile(const String& sFile, const String& sFileRoot)
-{
-}
-
-void BrowserEngineWebKitCairo::InjectUserHtml(const String& sHtml)
-{
-}
-
-void BrowserEngineWebKitCairo::InjectUserHtmlFile(const String& sFile, const String& sFileRoot)
-{
-}
-
-void BrowserEngineWebKitCairo::RemoveAllUserInjectedData()
-{
+    // Call callback
+    auto fnCallback = pEngine->GetRunResultJavascriptCallback();
+    if (fnCallback->IsSet())
+    {
+        fnCallback->GetCallback()(pEngine->GetJavascriptResultString(pResult));
+    }
 }
 
 void BrowserEngineWebKitCairo::RunJavascript(const String& sScript)
 {
+    // Run javascript
+    if (GetRunResultJavascriptCallback()->IsSet())
+    {
+        WKPageRunJavaScriptInMainFrame(
+            WKViewGetPage(GetWebKitView().get()),
+            ConvertStringToWebKitString(sScript).get(),
+            this,
+            JavascriptFinishedHandler);
+    }
+    else
+    {
+        WKPageRunJavaScriptInMainFrame(
+            WKViewGetPage(GetWebKitView().get()),
+            ConvertStringToWebKitString(sScript).get(),
+            nullptr,
+            nullptr);
+    }
 }
 
 void BrowserEngineWebKitCairo::SetHtmlContent(const String& sHtml)
-{
-}
-
-void BrowserEngineWebKitCairo::SetHtmlContentFile(const String& sFile, const String& sFileRoot)
 {
 }
 
@@ -253,6 +320,53 @@ void BrowserEngineWebKitCairo::RunMainLoopIteration(Bool bBlocking)
         DispatchMessage(&message);
         break;
     }
+}
+
+String BrowserEngineWebKitCairo::GetJavascriptResultString(WKSerializedScriptValueRef pResult)
+{
+    // Output string
+    String sResult;
+
+    // Ensure a valid result first
+    if (!pResult)
+    {
+        ERROR_STATEMENT("Error running javascript: Result was invalid");
+        return sResult;
+    }
+
+    // Create script context
+    JSGlobalContextRef pContext = JSGlobalContextCreate(nullptr);
+    if (!pContext)
+    {
+        ERROR_STATEMENT("Error running javascript: Unable to create context");
+        return sResult;
+    }
+
+    // Get deserialized value
+    JSValueRef pJsException = nullptr;
+    JSValueRef pDeserializedValue = WKSerializedScriptValueDeserialize(pResult, pContext, &pJsException);
+    if (!pDeserializedValue)
+    {
+        ERROR_FORMAT_STATEMENT("Error running javascript: {}", GetJavascriptExceptionString(pJsException, pContext));
+        JSGlobalContextRelease(pContext);
+        return sResult;
+    }
+
+    // Get result string
+    pJsException = nullptr;
+    JSStringRef pJsResultString = JSValueToStringCopy(pContext, pDeserializedValue, &pJsException);
+    if (pJsResultString)
+    {
+        sResult = ConvertJavascriptStringToString(pJsResultString);
+        JSStringRelease(pJsResultString);
+        JSGlobalContextRelease(pContext);
+    }
+    else
+    {
+        ERROR_FORMAT_STATEMENT("Error running javascript: {}", GetJavascriptExceptionString(pJsException, pContext));
+        JSGlobalContextRelease(pContext);
+    }
+    return sResult;
 }
 
 };

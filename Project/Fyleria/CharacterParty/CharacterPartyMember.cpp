@@ -30,11 +30,8 @@ UInt CharacterPartyMember::GetEquippedItemTypeCount(const TreeIndex& index) cons
     return static_cast<UInt>(STDCountData(vEquippedItemIndices.begin(), vEquippedItemIndices.end(), index));
 }
 
-UInt CharacterPartyMember::GetEquippedWeaponCount(ManagerSet* pManagerSet, const String& sWeaponSet) const
+UInt CharacterPartyMember::GetEquippedWeaponCount(SafeObject<ManagerSet>& pManagerSet, const String& sWeaponSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get matching weapon counts
     UInt uWeapon1Count = 0;
     UInt uWeapon2Count = 0;
@@ -65,11 +62,8 @@ UInt CharacterPartyMember::GetEquippedWeaponCount(ManagerSet* pManagerSet, const
     return 0;
 }
 
-UInt CharacterPartyMember::GetEquippedShieldCount(ManagerSet* pManagerSet, const String& sWeaponSet) const
+UInt CharacterPartyMember::GetEquippedShieldCount(SafeObject<ManagerSet>& pManagerSet, const String& sWeaponSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get matching shield counts
     UInt uShield1Count = 0;
     UInt uShield2Count = 0;
@@ -100,11 +94,8 @@ UInt CharacterPartyMember::GetEquippedShieldCount(ManagerSet* pManagerSet, const
     return 0;
 }
 
-Bool CharacterPartyMember::CanAddEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index) const
+Bool CharacterPartyMember::CanAddEquippedItem(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& index) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check item type
     const UInt uItemCount = GetEquippedItemTypeCount(index);
     const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager()->RetrieveItemType(index));
@@ -131,11 +122,8 @@ Bool CharacterPartyMember::CanAddEquippedItem(ManagerSet* pManagerSet, const Tre
     }
 }
 
-Bool CharacterPartyMember::CanRemoveEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index) const
+Bool CharacterPartyMember::CanRemoveEquippedItem(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& index) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check item type
     const UInt uItemCount = GetEquippedItemTypeCount(index);
     const ItemType eItemType = GetEnumFromString<ItemType>(pManagerSet->GetItemManager()->RetrieveItemType(index));
@@ -161,7 +149,7 @@ Bool CharacterPartyMember::CanRemoveEquippedItem(ManagerSet* pManagerSet, const 
     }
 }
 
-Bool CharacterPartyMember::AddEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index, const String& sEquipSlot)
+Bool CharacterPartyMember::AddEquippedItem(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& index, const String& sEquipSlot)
 {
     // Check if it can be added
     if(!CanAddEquippedItem(pManagerSet, index))
@@ -177,7 +165,7 @@ Bool CharacterPartyMember::AddEquippedItem(ManagerSet* pManagerSet, const TreeIn
     return true;
 }
 
-Bool CharacterPartyMember::RemoveEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index, const String& sEquipSlot)
+Bool CharacterPartyMember::RemoveEquippedItem(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& index, const String& sEquipSlot)
 {
     // Check if it can be removed
     if(!CanRemoveEquippedItem(pManagerSet, index))
@@ -194,16 +182,13 @@ Bool CharacterPartyMember::RemoveEquippedItem(ManagerSet* pManagerSet, const Tre
 }
 
 Bool CharacterPartyMember::GetHandInfoByWeaponSet(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sWeaponSet,
     TreeIndex& primaryItemIndex,
     TreeIndex& secondaryItemIndex,
     StringArray& vPrimaryActionTypes,
     StringArray& vSecondaryActionTypes) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get weapon set
     const CharacterWeaponSetType eWeaponSetType = GetEnumFromString<CharacterWeaponSetType>(sWeaponSet);
     const Bool bIsWeaponSetSelected1 = (eWeaponSetType == +CharacterWeaponSetType::WeaponSet1);

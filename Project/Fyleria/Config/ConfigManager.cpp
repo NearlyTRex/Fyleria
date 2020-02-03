@@ -15,11 +15,8 @@ ConfigManager::ConfigManager()
 {
 }
 
-Bool ConfigManager::LoadConfig(ManagerSet* pManagerSet, const String& sName, const String& sFile)
+Bool ConfigManager::LoadConfig(SafeObject<ManagerSet>& pManagerSet, const String& sName, const String& sFile)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Read json data into config object
     Json jsonData;
     if(!ReadJsonFile(pManagerSet, sFile, jsonData, pManagerSet->GetFileManager()->GetDataDirectory()))

@@ -30,37 +30,37 @@ Bool RemoveMsgPackHeader(FixedUnsigned8Array& vBytes);
 
 // Read serialized file
 Bool ReadSerializedFile(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sFilename,
     const String& sType,
     Json& jsonData,
     const String& sFileRoot);
 
 // Read a file into a json object
-Bool ReadJsonFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot);
+Bool ReadJsonFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot);
 
 // Read a CBOR file into a json object
-Bool ReadCBORFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot);
+Bool ReadCBORFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot);
 
 // Read a MsgPack file into a json object
-Bool ReadMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot);
+Bool ReadMsgPackFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, Json& jsonData, const String& sFileRoot);
 
 // Write serialized file
 Bool WriteSerializedFile(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sFilename,
     const String& sType,
     const Json& jsonData,
     const String& sFileRoot);
 
 // Write a json object to a file
-Bool WriteJsonFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot);
+Bool WriteJsonFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot);
 
 // Write a json object to a CBOR file
-Bool WriteCBORFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot);
+Bool WriteCBORFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot);
 
 // Write a json object to a MsgPack file
-Bool WriteMsgPackFile(ManagerSet* pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot);
+Bool WriteMsgPackFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, const Json& jsonData, const String& sFileRoot);
 
 };
 

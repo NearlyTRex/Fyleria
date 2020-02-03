@@ -29,7 +29,7 @@ public:
     virtual ~WebPageHandler();
 
     // Update page content
-    virtual void UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams) = 0;
+    virtual void UpdatePageContent(SafeObject<ManagerSet>& pManagerSet, const StringMap& tParams) = 0;
 
     // Page content
     MAKE_RAW_TYPE_ACCESSORS(PageContent, String);

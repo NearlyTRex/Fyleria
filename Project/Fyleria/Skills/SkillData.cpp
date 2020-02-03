@@ -155,13 +155,10 @@ Bool SkillData::GetIntersectingRequirementTypes(
 }
 
 Bool SkillData::DoesMeetActionRequirements(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sWeaponSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check character
     if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
@@ -215,13 +212,10 @@ Bool SkillData::DoesMeetActionRequirements(
 }
 
 CharacterActionArray SkillData::CreateBaseActions(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sWeaponSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check character
     CharacterActionArray vNewActions;
     if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))

@@ -26,13 +26,10 @@ CharacterBattleData::~CharacterBattleData()
 }
 
 void CharacterBattleData::ApplyNewStatus(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sProgressSegment)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character info
     const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
@@ -57,13 +54,10 @@ void CharacterBattleData::ApplyTakenDamage(Int iDamage)
 }
 
 void CharacterBattleData::AdvanceRound(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sProgressSegment)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character info
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
@@ -92,13 +86,10 @@ void CharacterBattleData::AdvanceRound(
 }
 
 void CharacterBattleData::FinishBattle(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sProgressSegment)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character info
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
@@ -144,13 +135,10 @@ Bool CharacterBattleData::CanRegenerateFromStat(const String& sRegenStat) const
 }
 
 void CharacterBattleData::UpdateEquipmentRatings(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sProgressSegment)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     const Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
     if(character.GetPartyID().empty())

@@ -28,16 +28,13 @@ CharacterParty::CharacterParty(const String& jsonString)
 }
 
 void CharacterParty::RegenerateCharacterData(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     Bool bUpdateEquipmentRatings /*= true*/,
     Bool bUpdateAvailableChanges /*= true*/,
     Bool bUpdateAvailableActions /*= true*/,
     Bool bUpdateAvailableAP /*= true*/
 )
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Regenerate all members
     for(auto& member : GetMembers())
     {
@@ -51,7 +48,7 @@ void CharacterParty::RegenerateCharacterData(
     }
 }
 
-Bool CharacterParty::IsPartyAbleToFight(ManagerSet* pManagerSet) const
+Bool CharacterParty::IsPartyAbleToFight(SafeObject<ManagerSet>& pManagerSet) const
 {
     UInt uMemberCount = GetMemberCount();
     if(uMemberCount == 0)
@@ -99,11 +96,8 @@ Bool CharacterParty::IsTargetTypeTaken(const String& sCharacterTargetType) const
     return (iLocation != vTargetTypes.end());
 }
 
-Bool CharacterParty::AddMember(ManagerSet* pManagerSet, const String& sCharacterID)
+Bool CharacterParty::AddMember(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check if party is full
     if(IsPartyFull())
     {
@@ -130,11 +124,8 @@ Bool CharacterParty::AddMember(ManagerSet* pManagerSet, const String& sCharacter
     return true;
 }
 
-Bool CharacterParty::RemoveMember(ManagerSet* pManagerSet, const String& sCharacterID)
+Bool CharacterParty::RemoveMember(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check if member exists first
     if(!IsMemberPresent(sCharacterID))
     {
@@ -308,12 +299,9 @@ Bool CharacterParty::GetCharacterIDsFromTargetType(const String& sCharacterTarge
 }
 
 UInt CharacterParty::GetStatusMemberCount(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sStatus) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get count of characters matching that status
     UInt uCount = 0;
     const CharacterStatusType eStatusType = GetEnumFromStringOrNone<CharacterStatusType>(sStatus);
@@ -337,15 +325,12 @@ UInt CharacterParty::GetStatusMemberCount(
 }
 
 Bool CharacterParty::AddRandomItems(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const StringArray& vTreeTypes,
     Int iNumRandomItems,
     Int iAmountStart,
     Int iAmountEnd)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Notify user
     LOG_FORMAT_STATEMENT(
         "Trying to add random items to party '{}' "
@@ -418,23 +403,17 @@ Bool CharacterParty::AddRandomItems(
 }
 
 Bool CharacterParty::AddItemByLeaf(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sLeaf,
     UInt uAmount)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Resolve and add item
     TreeIndex treeIndex = pManagerSet->GetItemManager()->ResolveItemLeafIntoIndex(sLeaf);
     return AddItemByTreeIndex(pManagerSet, treeIndex, uAmount);
 }
 
-Bool CharacterParty::AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
+Bool CharacterParty::AddItemByTreeIndex(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check tree index
     if(treeIndex.empty())
     {
@@ -487,21 +466,15 @@ Bool CharacterParty::AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex
     }
 }
 
-Bool CharacterParty::RemoveItemByLeaf(ManagerSet* pManagerSet, const String& sLeaf, UInt uAmount)
+Bool CharacterParty::RemoveItemByLeaf(SafeObject<ManagerSet>& pManagerSet, const String& sLeaf, UInt uAmount)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Resolve and add item
     TreeIndex treeIndex = pManagerSet->GetItemManager()->ResolveItemLeafIntoIndex(sLeaf);
     return RemoveItemByTreeIndex(pManagerSet, treeIndex, uAmount);
 }
 
-Bool CharacterParty::RemoveItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
+Bool CharacterParty::RemoveItemByTreeIndex(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& treeIndex, UInt uAmount)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check tree index
     if(treeIndex.empty())
     {
@@ -564,11 +537,8 @@ CharacterPartyItem& CharacterParty::GetItemByTreeIndex(const TreeIndex& treeInde
     return const_cast<CharacterPartyItem&>(static_cast<const CharacterParty&>(*this).GetItemByTreeIndex(treeIndex));
 }
 
-TreeIndex CharacterParty::GetBestUnequippedItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSlot) const
+TreeIndex CharacterParty::GetBestUnequippedItem(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sSlot) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check character
     TreeIndex bestItem;
     if(!IsMemberPresent(sCharacterID))
@@ -631,7 +601,7 @@ TreeIndex CharacterParty::GetBestUnequippedItem(ManagerSet* pManagerSet, const S
     return bestItem;
 }
 
-Bool CharacterParty::EquipItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot)
+Bool CharacterParty::EquipItem(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot)
 {
     // Get the item and character
     CharacterPartyItem& item = GetItemByLeaf(sLeaf);
@@ -675,7 +645,7 @@ Bool CharacterParty::EquipItem(ManagerSet* pManagerSet, const String& sCharacter
     return true;
 }
 
-Bool CharacterParty::UnequipItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot)
+Bool CharacterParty::UnequipItem(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot)
 {
     // Get the item and character
     CharacterPartyItem& item = GetItemByLeaf(sLeaf);
@@ -719,7 +689,7 @@ Bool CharacterParty::UnequipItem(ManagerSet* pManagerSet, const String& sCharact
     return true;
 }
 
-Bool CharacterParty::EquipBestItems(ManagerSet* pManagerSet, const String& sCharacterID)
+Bool CharacterParty::EquipBestItems(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
     // First unequip all that character's items
     UnequipAllItems(pManagerSet, sCharacterID);
@@ -743,7 +713,7 @@ Bool CharacterParty::EquipBestItems(ManagerSet* pManagerSet, const String& sChar
     return true;
 }
 
-Bool CharacterParty::EquipBestItemsForAllMembers(ManagerSet* pManagerSet)
+Bool CharacterParty::EquipBestItemsForAllMembers(SafeObject<ManagerSet>& pManagerSet)
 {
     for(auto& member : GetMembers())
     {
@@ -752,7 +722,7 @@ Bool CharacterParty::EquipBestItemsForAllMembers(ManagerSet* pManagerSet)
     return true;
 }
 
-Bool CharacterParty::UnequipAllItems(ManagerSet* pManagerSet, const String& sCharacterID)
+Bool CharacterParty::UnequipAllItems(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
     // Get the member
     CharacterPartyMember& member = GetMemberByID(sCharacterID);
@@ -771,7 +741,7 @@ Bool CharacterParty::UnequipAllItems(ManagerSet* pManagerSet, const String& sCha
     return bAtLeastOneSuccess;
 }
 
-Bool CharacterParty::UnequipAllItemsForAllMembers(ManagerSet* pManagerSet)
+Bool CharacterParty::UnequipAllItemsForAllMembers(SafeObject<ManagerSet>& pManagerSet)
 {
     for(auto& member : GetMembers())
     {

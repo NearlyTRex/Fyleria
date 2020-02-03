@@ -8,11 +8,8 @@
 namespace Gecko
 {
 
-void HandleBattleStarted(ManagerSet* pManagerSet, const String& sCharacterID)
+void HandleBattleStarted(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -27,11 +24,8 @@ void HandleBattleStarted(ManagerSet* pManagerSet, const String& sCharacterID)
     character.GetBattleData().SetDefendCounter(0);
 }
 
-void HandleBattleEnded(ManagerSet* pManagerSet, const String& sCharacterID)
+void HandleBattleEnded(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -46,11 +40,8 @@ void HandleBattleEnded(ManagerSet* pManagerSet, const String& sCharacterID)
     character.GetBattleData().SetDefendCounter(0);
 }
 
-void HandleBattleTally(ManagerSet* pManagerSet, const String& sCharacterID)
+void HandleBattleTally(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -72,11 +63,8 @@ void HandleBattleTally(ManagerSet* pManagerSet, const String& sCharacterID)
     );
 }
 
-void HandleBattleFullyCompleted(ManagerSet* pManagerSet, const String& sCharacterID)
+void HandleBattleFullyCompleted(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -95,11 +83,8 @@ void HandleBattleFullyCompleted(ManagerSet* pManagerSet, const String& sCharacte
     }
 }
 
-void HandleBattleRoundAdvanced(ManagerSet* pManagerSet, const String& sCharacterID)
+void HandleBattleRoundAdvanced(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -124,11 +109,8 @@ void HandleBattleRoundAdvanced(ManagerSet* pManagerSet, const String& sCharacter
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
-void HandleBattleGivingDamage(ManagerSet* pManagerSet, const String& sCharacterID, Int iAmount)
+void HandleBattleGivingDamage(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, Int iAmount)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Skip invalid damage
     if(iAmount <= 0)
     {
@@ -162,11 +144,8 @@ void HandleBattleGivingDamage(ManagerSet* pManagerSet, const String& sCharacterI
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
-void HandleBattleTakingDamage(ManagerSet* pManagerSet, const String& sCharacterID, Int iAmount)
+void HandleBattleTakingDamage(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, Int iAmount)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Skip invalid damage
     if(iAmount <= 0)
     {
@@ -205,11 +184,8 @@ void HandleBattleTakingDamage(ManagerSet* pManagerSet, const String& sCharacterI
     character.GetStatChangeData().RemoveAllExpiredProlongedStatChanges(iCurrentRound, iCurrentAttack, iCurrentDefend);
 }
 
-void HandleBattleChoosingTargets(ManagerSet* pManagerSet, const String& sCharacterID, const StringArray& vDestTargets)
+void HandleBattleChoosingTargets(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const StringArray& vDestTargets)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -233,11 +209,8 @@ void HandleBattleChoosingTargets(ManagerSet* pManagerSet, const String& sCharact
     }
 }
 
-void HandleBattleBecomingTarget(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSourceTarget)
+void HandleBattleBecomingTarget(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sSourceTarget)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -259,11 +232,8 @@ void HandleBattleBecomingTarget(ManagerSet* pManagerSet, const String& sCharacte
     }
 }
 
-void HandleBattleActionAttackSetup(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterAction& action)
+void HandleBattleActionAttackSetup(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const CharacterAction& action)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -286,11 +256,8 @@ void HandleBattleActionAttackSetup(ManagerSet* pManagerSet, const String& sChara
     character.ApplyActiveChanges(pManagerSet, action);
 }
 
-void HandleBattleActionDefendSetup(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterAction& action)
+void HandleBattleActionDefendSetup(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const CharacterAction& action)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -313,11 +280,8 @@ void HandleBattleActionDefendSetup(ManagerSet* pManagerSet, const String& sChara
     character.ApplyActiveChanges(pManagerSet, action);
 }
 
-void HandleBattleActionApplied(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterAction& action)
+void HandleBattleActionApplied(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const CharacterAction& action)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 
@@ -325,11 +289,8 @@ void HandleBattleActionApplied(ManagerSet* pManagerSet, const String& sCharacter
     character.GetBattleData().SetPreviousActionTypes(action.GetAllActionTypes());
 }
 
-void HandleBattleActionFinished(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterAction& action)
+void HandleBattleActionFinished(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const CharacterAction& action)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get character
     Character& character = pManagerSet->GetCharacterManager()->GetCharacter(sCharacterID);
 

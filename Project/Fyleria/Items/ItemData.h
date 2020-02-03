@@ -35,10 +35,10 @@ public:
     Bool IsActionable() const;
 
     // Does meet action requirements
-    Bool DoesMeetActionRequirements(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
+    Bool DoesMeetActionRequirements(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
 
     // Create base character action
-    CharacterActionArray CreateBaseActions(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
+    CharacterActionArray CreateBaseActions(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
 
     // Run types
     MAKE_RAW_TYPE_ACCESSORS(RunTypes, StringArray);

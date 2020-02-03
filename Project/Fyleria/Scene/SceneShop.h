@@ -21,21 +21,21 @@ public:
     virtual ~SceneShop();
 
     // Start scene
-    virtual void Start(ManagerSet* pManagerSet) override;
+    virtual void Start(SafeObject<ManagerSet>& pManagerSet) override;
 
     // Finish scene
-    virtual void Finish(ManagerSet* pManagerSet) override;
+    virtual void Finish(SafeObject<ManagerSet>& pManagerSet) override;
 
     // Update scene
-    virtual void Update(ManagerSet* pManagerSet) override;
+    virtual void Update(SafeObject<ManagerSet>& pManagerSet) override;
 
     // Handle scene input
-    virtual void Input(ManagerSet* pManagerSet) override;
+    virtual void Input(SafeObject<ManagerSet>& pManagerSet) override;
 
 protected:
 
     // Handle message received
-    virtual void OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage) override;
+    virtual void OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage) override;
 };
 
 // Typedef

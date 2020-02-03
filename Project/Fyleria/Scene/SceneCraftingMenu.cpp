@@ -19,11 +19,8 @@ SceneCraftingMenu::~SceneCraftingMenu()
 {
 }
 
-void SceneCraftingMenu::Start(ManagerSet* pManagerSet)
+void SceneCraftingMenu::Start(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneCraftingMenu::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
@@ -32,12 +29,12 @@ void SceneCraftingMenu::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData(pManagerSet);
-    InjectStylesheetFile(PAGE_FILE_CRAFTING_MENU_CSS, sLocation);
-    InjectJavascriptFile(PAGE_FILE_CRAFTING_MENU_JS, sLocation);
-    SetHtmlContentFile(PAGE_FILE_CRAFTING_MENU_HTML, sLocation);
+    InjectStylesheetFile(pManagerSet, PAGE_FILE_CRAFTING_MENU_CSS, sLocation);
+    InjectJavascriptFile(pManagerSet, PAGE_FILE_CRAFTING_MENU_JS, sLocation);
+    SetHtmlContentFile(pManagerSet, PAGE_FILE_CRAFTING_MENU_HTML, sLocation);
 }
 
-void SceneCraftingMenu::Finish(ManagerSet* pManagerSet)
+void SceneCraftingMenu::Finish(SafeObject<ManagerSet>& pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
@@ -46,15 +43,15 @@ void SceneCraftingMenu::Finish(ManagerSet* pManagerSet)
     RemoveAllInjectedData();
 }
 
-void SceneCraftingMenu::Update(ManagerSet* pManagerSet)
+void SceneCraftingMenu::Update(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneCraftingMenu::Input(ManagerSet* pManagerSet)
+void SceneCraftingMenu::Input(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneCraftingMenu::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
+void SceneCraftingMenu::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

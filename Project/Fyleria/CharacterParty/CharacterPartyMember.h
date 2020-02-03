@@ -27,20 +27,20 @@ public:
 
     // Get item counts
     UInt GetEquippedItemTypeCount(const TreeIndex& index) const;
-    UInt GetEquippedWeaponCount(ManagerSet* pManagerSet, const String& sWeaponSet) const;
-    UInt GetEquippedShieldCount(ManagerSet* pManagerSet, const String& sWeaponSet) const;
+    UInt GetEquippedWeaponCount(SafeObject<ManagerSet>& pManagerSet, const String& sWeaponSet) const;
+    UInt GetEquippedShieldCount(SafeObject<ManagerSet>& pManagerSet, const String& sWeaponSet) const;
 
     // Check if an item can be added/removed
-    Bool CanAddEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index) const;
-    Bool CanRemoveEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index) const;
+    Bool CanAddEquippedItem(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& index) const;
+    Bool CanRemoveEquippedItem(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& index) const;
 
     // Add/remove equipped items
-    Bool AddEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index, const String& sEquipSlot);
-    Bool RemoveEquippedItem(ManagerSet* pManagerSet, const TreeIndex& index, const String& sEquipSlot);
+    Bool AddEquippedItem(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& index, const String& sEquipSlot);
+    Bool RemoveEquippedItem(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& index, const String& sEquipSlot);
 
     // Get primary/secondary hand info
     Bool GetHandInfoByWeaponSet(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sWeaponSet,
         TreeIndex& primaryItemIndex,
         TreeIndex& secondaryItemIndex,

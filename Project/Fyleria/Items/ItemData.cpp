@@ -69,11 +69,8 @@ Bool ItemData::IsActionable() const
     return true;
 }
 
-Bool ItemData::DoesMeetActionRequirements(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const
+Bool ItemData::DoesMeetActionRequirements(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sWeaponSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check character
     if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
@@ -95,11 +92,8 @@ Bool ItemData::DoesMeetActionRequirements(ManagerSet* pManagerSet, const String&
     return false;
 }
 
-CharacterActionArray ItemData::CreateBaseActions(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const
+CharacterActionArray ItemData::CreateBaseActions(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sWeaponSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check character
     CharacterActionArray vNewActions;
     if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))

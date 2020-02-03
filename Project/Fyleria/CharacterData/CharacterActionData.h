@@ -31,17 +31,17 @@ public:
     virtual void Clear();
 
     // Update available actions
-    void UpdateAvailableActions(ManagerSet* pManagerSet, const String& sCharacterID);
+    void UpdateAvailableActions(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID);
 
     // Apply cost of action
     void ApplyActionCost(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sCharacterID,
         const String& sProgressSegment,
         const CharacterAction& action);
 
     // Update available AP
-    void UpdateAvailableAP(ManagerSet* pManagerSet, const String& sCharacterID);
+    void UpdateAvailableAP(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID);
 
     // Stat names
     static void InitAllStatNames();

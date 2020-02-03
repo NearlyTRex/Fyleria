@@ -23,16 +23,16 @@ public:
 
     // Get skill attack result
     CharacterActionResult GetSkillAttackResult(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const CharacterAction& action,
         const CharacterActionEntry& entry,
         const String& sDestCharID) const;
 
     // Stages for running the action
-    virtual Bool Setup(ManagerSet* pManagerSet, CharacterAction& action) override;
-    virtual Bool Finish(ManagerSet* pManagerSet, CharacterAction& action) override;
-    virtual Bool GenerateResult(ManagerSet* pManagerSet, CharacterAction& action) override;
-    virtual Bool ApplyResult(ManagerSet* pManagerSet, CharacterAction& action) override;
+    virtual Bool Setup(SafeObject<ManagerSet>& pManagerSet, CharacterAction& action) override;
+    virtual Bool Finish(SafeObject<ManagerSet>& pManagerSet, CharacterAction& action) override;
+    virtual Bool GenerateResult(SafeObject<ManagerSet>& pManagerSet, CharacterAction& action) override;
+    virtual Bool ApplyResult(SafeObject<ManagerSet>& pManagerSet, CharacterAction& action) override;
 };
 
 // Typedef

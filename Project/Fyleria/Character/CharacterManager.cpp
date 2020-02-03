@@ -14,7 +14,7 @@ CharacterManager::CharacterManager()
 {
 }
 
-String CharacterManager::LoadCharacter(ManagerSet* pManagerSet, const Character& character, Bool bRegenerateData)
+String CharacterManager::LoadCharacter(SafeObject<ManagerSet>& pManagerSet, const Character& character, Bool bRegenerateData)
 {
     // Check if character ID is valid
     const String& sCharacterID = character.GetCharacterID();
@@ -32,11 +32,8 @@ String CharacterManager::LoadCharacter(ManagerSet* pManagerSet, const Character&
     return sCharacterID;
 }
 
-String CharacterManager::LoadCharacterFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData)
+String CharacterManager::LoadCharacterFromFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Deserialize file into character data
     Json jsonData;
     Bool bSuccess = ReadSerializedFile(
@@ -50,11 +47,8 @@ String CharacterManager::LoadCharacterFromFile(ManagerSet* pManagerSet, const St
     return LoadCharacter(pManagerSet, jsonData.get<Character>(), bRegenerateData);
 }
 
-void CharacterManager::SaveCharacterToFile(ManagerSet* pManagerSet, const String& sCharacterID, const String& sFilename, const String& sType)
+void CharacterManager::SaveCharacterToFile(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sFilename, const String& sType)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Serialize character data into file
     Json jsonData = GetSaveableData(GetCharacter(sCharacterID));
     Bool bSuccess = WriteSerializedFile(
@@ -99,7 +93,7 @@ Bool CharacterManager::DoesCharacterExist(const String& sCharacterID) const
     return (iSearch != GetCharacters().end());
 }
 
-void CharacterManager::GenerateCharacter(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterGenerator& generator)
+void CharacterManager::GenerateCharacter(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const CharacterGenerator& generator)
 {
     // Log start
     LOG_FORMAT_STATEMENT("Generating character (CharacterID = '{}') ...", sCharacterID.c_str());
@@ -159,16 +153,13 @@ StringArray CharacterManager::GetAllCharacterIDs() const
 }
 
 void CharacterManager::ApplyStatChange(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sSegment,
     const StatChange& change,
     Bool& bAllChangesApplied,
     Bool& bAtLeastOneChange,
     Bool bApplyAllEntries /*= false*/)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Skip invalid changes
     const TreeIndex& skillIndex = change.GetSkillTreeIndex();
     const TreeIndex& itemIndex = change.GetItemTreeIndex();

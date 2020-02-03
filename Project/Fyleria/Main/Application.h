@@ -32,7 +32,7 @@ public:
     Bool Finalize();
 
     // Managers
-    MAKE_RAW_TYPE_ACCESSORS(Managers, ManagerSetSharedPtr);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(Managers, SafeObject<ManagerSet>);
 };
 
 };

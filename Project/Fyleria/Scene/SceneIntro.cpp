@@ -19,11 +19,8 @@ SceneIntro::~SceneIntro()
 {
 }
 
-void SceneIntro::Start(ManagerSet* pManagerSet)
+void SceneIntro::Start(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneIntro::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
@@ -32,12 +29,12 @@ void SceneIntro::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData(pManagerSet);
-    InjectStylesheetFile(PAGE_FILE_INTRO_CSS, sLocation);
-    InjectJavascriptFile(PAGE_FILE_INTRO_JS, sLocation);
-    SetHtmlContentFile(PAGE_FILE_INTRO_HTML, sLocation);
+    InjectStylesheetFile(pManagerSet, PAGE_FILE_INTRO_CSS, sLocation);
+    InjectJavascriptFile(pManagerSet, PAGE_FILE_INTRO_JS, sLocation);
+    SetHtmlContentFile(pManagerSet, PAGE_FILE_INTRO_HTML, sLocation);
 }
 
-void SceneIntro::Finish(ManagerSet* pManagerSet)
+void SceneIntro::Finish(SafeObject<ManagerSet>& pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
@@ -46,15 +43,15 @@ void SceneIntro::Finish(ManagerSet* pManagerSet)
     RemoveAllInjectedData();
 }
 
-void SceneIntro::Update(ManagerSet* pManagerSet)
+void SceneIntro::Update(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneIntro::Input(ManagerSet* pManagerSet)
+void SceneIntro::Input(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneIntro::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
+void SceneIntro::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

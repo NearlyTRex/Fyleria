@@ -28,45 +28,45 @@ public:
     virtual ~Scene();
 
     // Start scene
-    virtual void Start(ManagerSet* pManagerSet) = 0;
+    virtual void Start(SafeObject<ManagerSet>& pManagerSet) = 0;
 
     // Finish scene
-    virtual void Finish(ManagerSet* pManagerSet) = 0;
+    virtual void Finish(SafeObject<ManagerSet>& pManagerSet) = 0;
 
     // Update scene
-    virtual void Update(ManagerSet* pManagerSet) = 0;
+    virtual void Update(SafeObject<ManagerSet>& pManagerSet) = 0;
 
     // Handle scene input
-    virtual void Input(ManagerSet* pManagerSet) = 0;
+    virtual void Input(SafeObject<ManagerSet>& pManagerSet) = 0;
 
 protected:
 
     // Handle message received
-    virtual void OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage) = 0;
+    virtual void OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage) = 0;
 
     // Parse message and get the function and arguments
-    virtual Bool ParseMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs);
+    virtual Bool ParseMessage(SafeObject<ManagerSet>& pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs);
 
     // Handle message or return false if it could not be handled
-    virtual Bool HandleMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs);
+    virtual Bool HandleMessage(SafeObject<ManagerSet>& pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs);
 
     // Process form
-    virtual Bool ProcessForm(ManagerSet* pManagerSet, const String& sAction, const String& sParameters, String& sProcessedPage);
+    virtual Bool ProcessForm(SafeObject<ManagerSet>& pManagerSet, const String& sAction, const String& sParameters, String& sProcessedPage);
 
     // Load html from handler
     virtual void LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler);
 
     // Inject stylesheet file
-    virtual void InjectStylesheetFile(const String& sFile, const String& sFileRoot);
+    virtual void InjectStylesheetFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
 
     // Inject javascript file
-    virtual void InjectJavascriptFile(const String& sFile, const String& sFileRoot);
+    virtual void InjectJavascriptFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
 
     // Inject html file
-    virtual void InjectHtmlFile(const String& sFile, const String& sFileRoot);
+    virtual void InjectHtmlFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
 
     // Inject common data
-    virtual void InjectCommonData(ManagerSet* pManagerSet);
+    virtual void InjectCommonData(SafeObject<ManagerSet>& pManagerSet);
 
     // Remove all injected data
     virtual void RemoveAllInjectedData();
@@ -78,7 +78,7 @@ protected:
     virtual void SetHtmlContent(const String& sHtml);
 
     // Set html content file
-    virtual void SetHtmlContentFile(const String& sFile, const String& sFileRoot);
+    virtual void SetHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
 
     // Define javascript shortcut
     virtual void DefineJavascriptShortcut(const String& sFunction, const String& sArgs);

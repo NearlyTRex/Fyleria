@@ -13,12 +13,9 @@
 namespace Gecko
 {
 
-WebPageHandlerSaveTool::WebPageHandlerSaveTool(ManagerSet* pManagerSet)
+WebPageHandlerSaveTool::WebPageHandlerSaveTool(SafeObject<ManagerSet>& pManagerSet)
     : WebPageHandler()
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Page location
     String sLocation = pManagerSet->GetFileManager()->GetDataPagesDirectory();
 
@@ -37,11 +34,8 @@ WebPageHandlerSaveTool::~WebPageHandlerSaveTool()
 {
 }
 
-void WebPageHandlerSaveTool::UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams)
+void WebPageHandlerSaveTool::UpdatePageContent(SafeObject<ManagerSet>& pManagerSet, const StringMap& tParams)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
     String sCollectSaveDataSingle_SaveSlotType = GetMapDataOrDefault(tParams, "sCollectSaveDataSingle_SaveSlotType", "");

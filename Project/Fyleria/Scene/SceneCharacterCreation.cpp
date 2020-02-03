@@ -19,11 +19,8 @@ SceneCharacterCreation::~SceneCharacterCreation()
 {
 }
 
-void SceneCharacterCreation::Start(ManagerSet* pManagerSet)
+void SceneCharacterCreation::Start(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneCharacterCreation::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
@@ -32,12 +29,12 @@ void SceneCharacterCreation::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData(pManagerSet);
-    InjectStylesheetFile(PAGE_FILE_CHARACTER_CREATION_CSS, sLocation);
-    InjectJavascriptFile(PAGE_FILE_CHARACTER_CREATION_JS, sLocation);
-    SetHtmlContentFile(PAGE_FILE_CHARACTER_CREATION_HTML, sLocation);
+    InjectStylesheetFile(pManagerSet, PAGE_FILE_CHARACTER_CREATION_CSS, sLocation);
+    InjectJavascriptFile(pManagerSet, PAGE_FILE_CHARACTER_CREATION_JS, sLocation);
+    SetHtmlContentFile(pManagerSet, PAGE_FILE_CHARACTER_CREATION_HTML, sLocation);
 }
 
-void SceneCharacterCreation::Finish(ManagerSet* pManagerSet)
+void SceneCharacterCreation::Finish(SafeObject<ManagerSet>& pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
@@ -46,15 +43,15 @@ void SceneCharacterCreation::Finish(ManagerSet* pManagerSet)
     RemoveAllInjectedData();
 }
 
-void SceneCharacterCreation::Update(ManagerSet* pManagerSet)
+void SceneCharacterCreation::Update(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneCharacterCreation::Input(ManagerSet* pManagerSet)
+void SceneCharacterCreation::Input(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneCharacterCreation::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
+void SceneCharacterCreation::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

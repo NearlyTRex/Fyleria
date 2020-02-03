@@ -37,7 +37,7 @@ public:
 
     // Regenerate character data
     void RegenerateCharacterData(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         Bool bUpdateEquipmentRatings = true,
         Bool bUpdateAvailableChanges = true,
         Bool bUpdateAvailableActions = true,
@@ -51,16 +51,16 @@ public:
     String GetPartyID() const;
 
     // Get character target type
-    String GetCharacterTargetType(ManagerSet* pManagerSet) const;
+    String GetCharacterTargetType(SafeObject<ManagerSet>& pManagerSet) const;
 
     // Get weapon set
     String GetWeaponSet() const;
 
     // Get equipped items
-    CharacterPartyEquippedItemArray GetEquippedItems(ManagerSet* pManagerSet) const;
+    CharacterPartyEquippedItemArray GetEquippedItems(SafeObject<ManagerSet>& pManagerSet) const;
 
     // Get individual equipped items by type
-    TreeIndex GetEquippedItemByType(ManagerSet* pManagerSet, const String& sEquipmentType) const;
+    TreeIndex GetEquippedItemByType(SafeObject<ManagerSet>& pManagerSet, const String& sEquipmentType) const;
 
     // Get available actions
     const CharacterActionArray& GetAvailableActions() const;
@@ -117,29 +117,29 @@ public:
     // Update equipment ratings
     // This pulls equipment and current attack/defense percents and fills
     // ratings for all equipment
-    void UpdateEquipmentRatings(ManagerSet* pManagerSet);
+    void UpdateEquipmentRatings(SafeObject<ManagerSet>& pManagerSet);
 
     // Update available passive and active changes
     // This pulls all earned skills and equipped items and generates a list
     // of active and passive changes that can be applied
-    void UpdateAvailableChanges(ManagerSet* pManagerSet);
+    void UpdateAvailableChanges(SafeObject<ManagerSet>& pManagerSet);
 
     // Update available actions
     // This polls the list of active changes and creates a list of
     // character actions that can be used as the basis for selectable actions
-    void UpdateAvailableActions(ManagerSet* pManagerSet);
+    void UpdateAvailableActions(SafeObject<ManagerSet>& pManagerSet);
 
     // Update available AP
     // This searches the skills for ones that give AP and updates each type
-    void UpdateAvailableAP(ManagerSet* pManagerSet);
+    void UpdateAvailableAP(SafeObject<ManagerSet>& pManagerSet);
 
     // Apply passive changes
     // Copy base data into passive data and apply each passive stat change
-    void ApplyPassiveChanges(ManagerSet* pManagerSet);
+    void ApplyPassiveChanges(SafeObject<ManagerSet>& pManagerSet);
 
     // Apply active changes
     // Copy passive data into active data and apply each active stat change
-    void ApplyActiveChanges(ManagerSet* pManagerSet, const CharacterAction& action);
+    void ApplyActiveChanges(SafeObject<ManagerSet>& pManagerSet, const CharacterAction& action);
 
     // Clear active changes
     void ClearActiveChanges();

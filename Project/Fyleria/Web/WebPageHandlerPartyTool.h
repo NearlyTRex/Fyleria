@@ -16,13 +16,13 @@ class WebPageHandlerPartyTool : public WebPageHandler
 public:
 
     // Constructors
-    WebPageHandlerPartyTool(ManagerSet* pManagerSet);
+    WebPageHandlerPartyTool(SafeObject<ManagerSet>& pManagerSet);
 
     // Destructor
     virtual ~WebPageHandlerPartyTool();
 
     // Update page content
-    virtual void UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams) override;
+    virtual void UpdatePageContent(SafeObject<ManagerSet>& pManagerSet, const StringMap& tParams) override;
 };
 
 // Typedefs

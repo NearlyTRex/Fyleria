@@ -31,11 +31,8 @@ void PostProcessSkills(T& tree, const TreeIndexArray& vTreeIndices)
     }
 }
 
-void SkillManager::LoadSkillTreesIntoMemory(ManagerSet* pManagerSet)
+void SkillManager::LoadSkillTreesIntoMemory(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Skills location
     String sLocation = pManagerSet->GetFileManager()->GetDataSkillsDirectory();
 
@@ -335,13 +332,10 @@ TreeIndexArray SkillManager::GetAllWeaponSkills() const
 }
 
 TreeIndexArray SkillManager::GetAffinitySkills(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -364,13 +358,10 @@ TreeIndexArray SkillManager::GetAffinitySkills(
 }
 
 TreeIndexArray SkillManager::GetAlchemySkills(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -385,13 +376,10 @@ TreeIndexArray SkillManager::GetAlchemySkills(
 }
 
 TreeIndexArray SkillManager::GetBreakdownSkills(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -412,13 +400,10 @@ TreeIndexArray SkillManager::GetBreakdownSkills(
 }
 
 TreeIndexArray SkillManager::GetCombatSkills(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -437,13 +422,10 @@ TreeIndexArray SkillManager::GetCombatSkills(
 }
 
 TreeIndexArray SkillManager::GetCraftingSkills(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -464,13 +446,10 @@ TreeIndexArray SkillManager::GetCraftingSkills(
 }
 
 TreeIndexArray SkillManager::GetWeaponSkills(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharID,
     Bool bUniqueOnly /*= false*/) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get skills
     TreeIndexArray vFinal;
     if(!sCharID.empty())
@@ -562,7 +541,7 @@ Bool SkillManager::IsSkillActionable(const TreeIndex& treeIndex) const
 }
 
 Bool SkillManager::GenerateSkillCharacterActions(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const TreeIndex& treeIndex,
     const String& sCharacterID,
     const String& sWeaponSet,
@@ -592,7 +571,7 @@ Bool SkillManager::GenerateSkillCharacterActions(
 }
 
 void SkillManager::FillSkillStatChangeArrays(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharID,
     TreeIndexArray& vPassives,
     TreeIndexArray& vActives,

@@ -55,13 +55,13 @@ public:
 
     // Does meet action requirements
     Bool DoesMeetActionRequirements(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sCharacterID,
         const String& sWeaponSet) const;
 
     // Create base character action
     CharacterActionArray CreateBaseActions(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sCharacterID,
         const String& sWeaponSet) const;
 

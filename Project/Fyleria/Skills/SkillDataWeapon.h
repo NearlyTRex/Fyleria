@@ -36,7 +36,7 @@ public:
     }
 
     // Create weapon actions
-    CharacterActionArray CreateWeaponActions(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
+    CharacterActionArray CreateWeaponActions(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
 
     // Weapon base type
     MAKE_RAW_TYPE_ACCESSORS(WeaponBaseType, String);

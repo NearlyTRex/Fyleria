@@ -37,7 +37,7 @@ public:
     SkillManager();
 
     // Load/unload skill trees into memory
-    void LoadSkillTreesIntoMemory(ManagerSet* pManagerSet);
+    void LoadSkillTreesIntoMemory(SafeObject<ManagerSet>& pManagerSet);
     void UnloadSkillTreesFromMemory();
 
     // Determine if skill data exists
@@ -65,12 +65,12 @@ public:
     TreeIndexArray GetAllWeaponSkills() const;
 
     // Get matching skills
-    TreeIndexArray GetAffinitySkills(ManagerSet* pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
-    TreeIndexArray GetAlchemySkills(ManagerSet* pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
-    TreeIndexArray GetBreakdownSkills(ManagerSet* pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
-    TreeIndexArray GetCombatSkills(ManagerSet* pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
-    TreeIndexArray GetCraftingSkills(ManagerSet* pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
-    TreeIndexArray GetWeaponSkills(ManagerSet* pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
+    TreeIndexArray GetAffinitySkills(SafeObject<ManagerSet>& pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
+    TreeIndexArray GetAlchemySkills(SafeObject<ManagerSet>& pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
+    TreeIndexArray GetBreakdownSkills(SafeObject<ManagerSet>& pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
+    TreeIndexArray GetCombatSkills(SafeObject<ManagerSet>& pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
+    TreeIndexArray GetCraftingSkills(SafeObject<ManagerSet>& pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
+    TreeIndexArray GetWeaponSkills(SafeObject<ManagerSet>& pManagerSet, const String& sCharID, Bool bUniqueOnly = false) const;
 
     // Get skill type
     String GetSkillType(const TreeIndex& treeIndex) const;
@@ -83,7 +83,7 @@ public:
 
     // Generate character actions
     Bool GenerateSkillCharacterActions(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const TreeIndex& treeIndex,
         const String& sCharacterID,
         const String& sWeaponSet,
@@ -91,7 +91,7 @@ public:
 
     // Get stat changes
     void FillSkillStatChangeArrays(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sCharID,
         TreeIndexArray& vPassives,
         TreeIndexArray& vActives,

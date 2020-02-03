@@ -31,7 +31,7 @@ public:
 
     // Regenerate character data
     void RegenerateCharacterData(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         Bool bUpdateEquipmentRatings = true,
         Bool bUpdateAvailableChanges = true,
         Bool bUpdateAvailableActions = true,
@@ -39,7 +39,7 @@ public:
     );
 
     // Determine if party is able to fight
-    Bool IsPartyAbleToFight(ManagerSet* pManagerSet) const;
+    Bool IsPartyAbleToFight(SafeObject<ManagerSet>& pManagerSet) const;
 
     // Determine if party is full
     Bool IsPartyFull() const;
@@ -54,10 +54,10 @@ public:
     Bool IsTargetTypeTaken(const String& sCharacterTargetType) const;
 
     // Add member
-    Bool AddMember(ManagerSet* pManagerSet, const String& sCharacterID);
+    Bool AddMember(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID);
 
     // Remove member
-    Bool RemoveMember(ManagerSet* pManagerSet, const String& sCharacterID);
+    Bool RemoveMember(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID);
 
     // Move member to the given target type
     Bool MoveMember(const String& sCharacterID, const String& sCharacterTargetType);
@@ -89,22 +89,22 @@ public:
     Bool GetCharacterIDsFromTargetType(const String& sCharacterTargetType, StringArray& vCharacterIDs) const;
 
     // Check member status
-    UInt GetStatusMemberCount(ManagerSet* pManagerSet, const String& sStatus) const;
+    UInt GetStatusMemberCount(SafeObject<ManagerSet>& pManagerSet, const String& sStatus) const;
 
     // Add random items
-    Bool AddRandomItems(ManagerSet* pManagerSet, const StringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd);
+    Bool AddRandomItems(SafeObject<ManagerSet>& pManagerSet, const StringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd);
 
     // Add item by leaf
-    Bool AddItemByLeaf(ManagerSet* pManagerSet, const String& sLeaf, UInt uAmount);
+    Bool AddItemByLeaf(SafeObject<ManagerSet>& pManagerSet, const String& sLeaf, UInt uAmount);
 
     // Add item by tree index
-    Bool AddItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount);
+    Bool AddItemByTreeIndex(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& treeIndex, UInt uAmount);
 
     // Remove item by leaf
-    Bool RemoveItemByLeaf(ManagerSet* pManagerSet, const String& sLeaf, UInt uAmount);
+    Bool RemoveItemByLeaf(SafeObject<ManagerSet>& pManagerSet, const String& sLeaf, UInt uAmount);
 
     // Remove item by tree index
-    Bool RemoveItemByTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex, UInt uAmount);
+    Bool RemoveItemByTreeIndex(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& treeIndex, UInt uAmount);
 
     // Get item by leaf
     const CharacterPartyItem& GetItemByLeaf(const String& sLeaf) const;
@@ -115,25 +115,25 @@ public:
     CharacterPartyItem& GetItemByTreeIndex(const TreeIndex& treeIndex);
 
     // Get best unequipped item for the given slot
-    TreeIndex GetBestUnequippedItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSlot) const;
+    TreeIndex GetBestUnequippedItem(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sSlot) const;
 
     // Equip item
-    Bool EquipItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot);
+    Bool EquipItem(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot);
 
     // Unequip item
-    Bool UnequipItem(ManagerSet* pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot);
+    Bool UnequipItem(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sLeaf, const String& sSlot);
 
     // Equip best items for the given member
-    Bool EquipBestItems(ManagerSet* pManagerSet, const String& sCharacterID);
+    Bool EquipBestItems(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID);
 
     // Equip best items for all members
-    Bool EquipBestItemsForAllMembers(ManagerSet* pManagerSet);
+    Bool EquipBestItemsForAllMembers(SafeObject<ManagerSet>& pManagerSet);
 
     // Unequip all items for the given member
-    Bool UnequipAllItems(ManagerSet* pManagerSet, const String& sCharacterID);
+    Bool UnequipAllItems(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID);
 
     // Unequip all items for all members
-    Bool UnequipAllItemsForAllMembers(ManagerSet* pManagerSet);
+    Bool UnequipAllItemsForAllMembers(SafeObject<ManagerSet>& pManagerSet);
 
     // Get member count
     UInt GetMemberCount() const;

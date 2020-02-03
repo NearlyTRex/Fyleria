@@ -49,18 +49,18 @@ public:
     Bool DoesHaveDefendRequirements() const;
 
     // Determine if change meets specific requirements
-    Bool DoesMeetItemEquippedRequirements(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
+    Bool DoesMeetItemEquippedRequirements(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
     Bool DoesMeetItemUsedRequirements(const StringArray& vActionItemTypes) const;
     Bool DoesMeetAttackRequirements(const StringArray& vActionTypes) const;
     Bool DoesMeetAttackRequirements(const StringArray& vActionTypes, const StringArray& vPreviousActionTypes) const;
     Bool DoesMeetDefendRequirements(const StringArray& vActionTypes) const;
     Bool DoesMeetDefendRequirements(const StringArray& vActionTypes, const StringArray& vPreviousActionTypes) const;
     Bool DoesMeetActiveRequirements(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sCharacterID,
         const String& sWeaponSet) const;
     Bool DoesMeetActiveRequirements(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sCharacterID,
         const String& sCharacterTargetType,
         const String& sWeaponSet,
@@ -71,10 +71,10 @@ public:
     StringArray GetIntersectingDefendRequirements(const StringArray& vActionTypes) const;
 
     // Get resolved characters
-    Bool GetResolvedCharacterArrays(ManagerSet* pManagerSet, StringArray& vSourceCharIDs, StringArray& vDestCharIDs) const;
+    Bool GetResolvedCharacterArrays(SafeObject<ManagerSet>& pManagerSet, StringArray& vSourceCharIDs, StringArray& vDestCharIDs) const;
 
     // Resolve target placeholders
-    void ResolveTargetPlaceholders(ManagerSet* pManagerSet, const String& sCharacterID, const String& sSegment);
+    void ResolveTargetPlaceholders(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sSegment);
 
     // ID
     MAKE_RAW_TYPE_ACCESSORS(ID, ULongLong);
@@ -136,9 +136,9 @@ void to_json(Json& jsonData, const StatChange& obj);
 void from_json(const Json& jsonData, StatChange& obj);
 
 // Get stat changes from the given tree nodes
-const StatChangeArray& GetStatChangesFromTreeIndex(ManagerSet* pManagerSet, const String& sTreeIndexType, const TreeIndex& treeIndex);
-const StatChangeArray& GetStatChangesFromSkillTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex);
-const StatChangeArray& GetStatChangesFromItemTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex);
+const StatChangeArray& GetStatChangesFromTreeIndex(SafeObject<ManagerSet>& pManagerSet, const String& sTreeIndexType, const TreeIndex& treeIndex);
+const StatChangeArray& GetStatChangesFromSkillTreeIndex(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& treeIndex);
+const StatChangeArray& GetStatChangesFromItemTreeIndex(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& treeIndex);
 
 };
 

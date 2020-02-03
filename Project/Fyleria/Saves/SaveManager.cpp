@@ -139,28 +139,22 @@ SaveArray SaveManager::GetAllSaves() const
 }
 
 void SaveManager::CollectSaveData(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sSlot,
     const String& sPartyID)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Collect save data from party
     const CharacterParty& party = pManagerSet->GetCharacterPartyManager()->GetPartyByID(sPartyID);
     CollectSaveData(pManagerSet, sSlot, {sPartyID}, party.GetDescription(), party.GetPlayTime());
 }
 
 void SaveManager::CollectSaveData(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sSlot,
     const StringArray& vPartyIDs,
     const String& sDescription,
     ULongLong uPlayTime)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get parties and attached characters
     CharacterPartyArray vParties;
     CharacterArray vCharacters;
@@ -190,11 +184,8 @@ void SaveManager::CollectSaveData(
     LoadSave(newSave);
 }
 
-void SaveManager::DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot)
+void SaveManager::DisperseSaveData(SafeObject<ManagerSet>& pManagerSet, const String& sSlot)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get save from slot
     const Save& save = GetSave(sSlot);
 
@@ -212,14 +203,11 @@ void SaveManager::DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot)
 }
 
 void SaveManager::SaveToFile(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sSlot,
     const String& sFile,
     const String& sType)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Serialize save data to file
     Json jsonData = GetSave(sSlot);
     Bool bSuccess = WriteSerializedFile(pManagerSet, sFile, sType, jsonData, pManagerSet->GetFileManager()->GetSaveDirectory());
@@ -230,14 +218,11 @@ void SaveManager::SaveToFile(
 }
 
 void SaveManager::LoadFromFile(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sSlot,
     const String& sFile,
     const String& sType)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Deserialize file to save data
     Json jsonData;
     Bool bSuccess = ReadSerializedFile(pManagerSet, sFile, sType, jsonData, pManagerSet->GetFileManager()->GetSaveDirectory());
@@ -251,15 +236,12 @@ void SaveManager::LoadFromFile(
 }
 
 void SaveManager::SaveAllToDirectory(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sDirectory,
     const String& sBase,
     const String& sExt,
     const String& sType)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Save each slot into a save file
     for(auto& sSlotName : GetEnumNames<SaveSlotType>())
     {
@@ -273,15 +255,12 @@ void SaveManager::SaveAllToDirectory(
 }
 
 void SaveManager::LoadAllFromDirectory(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sDirectory,
     const String& sBase,
     const String& sExt,
     const String& sType)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get save path
     String sSavePath = pManagerSet->GetFileManager()->GetCanonicalPath(sDirectory);
 

@@ -36,7 +36,7 @@ public:
     }
 
     // Create combat action
-    CharacterActionArray CreateCombatActions(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
+    CharacterActionArray CreateCombatActions(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sWeaponSet) const;
 };
 
 // Typedef

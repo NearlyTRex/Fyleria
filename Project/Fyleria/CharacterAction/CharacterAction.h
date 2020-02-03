@@ -42,10 +42,10 @@ public:
     StringArray GetAllDestinationTargetTypes() const;
 
     // Are all character IDs valid
-    Bool AreAllCharacterIDsValid(ManagerSet* pManagerSet) const;
+    Bool AreAllCharacterIDsValid(SafeObject<ManagerSet>& pManagerSet) const;
 
     // Prepare character IDs
-    Bool PrepareCharacterIDs(ManagerSet* pManagerSet);
+    Bool PrepareCharacterIDs(SafeObject<ManagerSet>& pManagerSet);
 
     // Run type
     MAKE_RAW_TYPE_ACCESSORS(RunType, String);

@@ -24,45 +24,43 @@ int main(int argc, char** argv)
 
     try
     {
-        // Create manager set
-        auto pManagerSet = STDMakeSharedPtr<Gecko::ManagerSet>();
+        // Create application
+        Gecko::Application app;
 
         // Add dll directory
 #if defined(PLATFORM_OS_WINDOWS)
-        auto sBinDir = pManagerSet->GetFileManager()->GetBinDirectory();
+        auto sBinDir = app.GetManagers()->GetFileManager()->GetBinDirectory();
         SetDllDirectory(Gecko::ConvertStringToWideString(sBinDir).c_str());
 #endif
 
         // Create save folder
-        Gecko::String sSaveDirectory = pManagerSet->GetFileManager()->GetSaveDirectory();
-        if(!pManagerSet->GetFileManager()->DoesPathExist(sSaveDirectory))
+        Gecko::String sSaveDirectory = app.GetManagers()->GetFileManager()->GetSaveDirectory();
+        if(!app.GetManagers()->GetFileManager()->DoesPathExist(sSaveDirectory))
         {
-            pManagerSet->GetFileManager()->CreateNewDirectory(sSaveDirectory);
+            app.GetManagers()->GetFileManager()->CreateNewDirectory(sSaveDirectory);
         }
 
         // Create log folder
-        Gecko::String sLogDirectory = pManagerSet->GetFileManager()->GetLogDirectory();
-        if(!pManagerSet->GetFileManager()->DoesPathExist(sLogDirectory))
+        Gecko::String sLogDirectory = app.GetManagers()->GetFileManager()->GetLogDirectory();
+        if(!app.GetManagers()->GetFileManager()->DoesPathExist(sLogDirectory))
         {
-            pManagerSet->GetFileManager()->CreateNewDirectory(sLogDirectory);
+            app.GetManagers()->GetFileManager()->CreateNewDirectory(sLogDirectory);
         }
 
         // Setup logging
-        Gecko::String sLogFile = pManagerSet->GetFileManager()->GetLogFile();
-        Gecko::String sFullLogFile = pManagerSet->GetFileManager()->JoinPaths(sLogDirectory, sLogFile);
+        Gecko::String sLogFile = app.GetManagers()->GetFileManager()->GetLogFile();
+        Gecko::String sFullLogFile = app.GetManagers()->GetFileManager()->JoinPaths(sLogDirectory, sLogFile);
         Gecko::SetupLogging(sFullLogFile);
 
         // Check data folder
-        Gecko::String sDataDirectory = pManagerSet->GetFileManager()->GetDataDirectory();
-        if(!pManagerSet->GetFileManager()->DoesPathExist(sDataDirectory))
+        Gecko::String sDataDirectory = app.GetManagers()->GetFileManager()->GetDataDirectory();
+        if(!app.GetManagers()->GetFileManager()->DoesPathExist(sDataDirectory))
         {
             ERROR_STATEMENT("Missing data folder, stopping.");
             return EXIT_FAILURE;
         }
 
         // Run application
-        Gecko::Application app;
-        app.SetManagers(pManagerSet);
         return app.Run();
     }
     catch (STDException& e)

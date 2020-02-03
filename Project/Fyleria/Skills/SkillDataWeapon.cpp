@@ -37,13 +37,10 @@ void SkillDataWeapon::Clear()
 }
 
 CharacterActionArray SkillDataWeapon::CreateWeaponActions(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sWeaponSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Skip base actions
     CharacterActionArray vNewActions;
     if(pManagerSet->GetSkillManager()->IsBaseWeaponSkill(GetSkillTreeIndex()))

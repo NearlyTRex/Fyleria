@@ -21,12 +21,8 @@ BrowserEngineWebKitGtk::~BrowserEngineWebKitGtk()
 {
 }
 
-Bool BrowserEngineWebKitGtk::Init(ManagerSet* pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
+Bool BrowserEngineWebKitGtk::Init(SafeObject<ManagerSet>& pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
 {
-    // Store manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-    SetManagers(pManagerSet);
-
     // Initialize gtk
     if(!gtk_init_check(0, nullptr))
     {
@@ -157,81 +153,14 @@ Bool BrowserEngineWebKitGtk::Init(ManagerSet* pManagerSet, const String& sTitle,
     Navigate(STARTING_URI);
 
     // Switch to starting scene
-    GetManagers()->GetSceneManager()->SwitchToScene(GetManagers(), (+SceneType::Intro)._to_string());
+    pManagerSet->GetSceneManager()->SwitchToScene(GetManagers(), (+SceneType::Intro)._to_string());
     return true;
-}
-
-void BrowserEngineWebKitGtk::Shutdown()
-{
-    // Mark as shutting down
-    SetIsShuttingDown(true);
 }
 
 void BrowserEngineWebKitGtk::Navigate(const String& sUrl)
 {
     // Navigate to the url
     webkit_web_view_load_uri(WEBKIT_WEB_VIEW(GetWebView()), sUrl.c_str());
-}
-
-void BrowserEngineWebKitGtk::InjectSystemJavascript(const String& sScript)
-{
-    // Inject script
-    String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
-    SetSystemScripts(GetSystemScripts() + sTag);
-}
-
-void BrowserEngineWebKitGtk::InjectUserStylesheet(const String& sStyle)
-{
-    // Inject style
-    String sTag = "<style>" + sStyle + "</style>\n";
-    SetUserStyles(GetUserStyles() + sTag);
-}
-
-void BrowserEngineWebKitGtk::InjectUserStylesheetFile(const String& sFile, const String& sFileRoot)
-{
-    // Inject style
-    String sUri = GetManagers()->GetFileManager()->GetUriPath(sFile, sFileRoot);
-    String sTag = "<link rel=\"stylesheet\" type=\"text/css\" href='" + sUri + "'>\n";
-    SetUserStyles(GetUserStyles() + sTag);
-}
-
-void BrowserEngineWebKitGtk::InjectUserJavascript(const String& sScript)
-{
-    // Inject script
-    String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
-    SetUserScripts(GetUserScripts() + sTag);
-}
-
-void BrowserEngineWebKitGtk::InjectUserJavascriptFile(const String& sFile, const String& sFileRoot)
-{
-    // Inject script
-    String sUri = GetManagers()->GetFileManager()->GetUriPath(sFile, sFileRoot);
-    String sTag = "<script type=\"text/javascript\" src=\"" + sUri + "\"></script>\n";
-    SetUserScripts(GetUserScripts() + sTag);
-}
-
-void BrowserEngineWebKitGtk::InjectUserHtml(const String& sHtml)
-{
-    // Inject html
-    SetUserMarkup(GetUserMarkup() + sHtml);
-}
-
-void BrowserEngineWebKitGtk::InjectUserHtmlFile(const String& sFile, const String& sFileRoot)
-{
-    // Inject html
-    String sFileContents;
-    if(GetManagers()->GetFileManager()->ReadFileToString(sFile, sFileContents, sFileRoot))
-    {
-        InjectUserHtml(sFileContents);
-    }
-}
-
-void BrowserEngineWebKitGtk::RemoveAllUserInjectedData()
-{
-    // Remove all injected data
-    GetUserStyles().clear();
-    GetUserScripts().clear();
-    GetUserMarkup().clear();
 }
 
 static void JavascriptFinishedHandler(GObject* pObject, GAsyncResult* pAsyncResult, gpointer pUserData)
@@ -303,16 +232,6 @@ void BrowserEngineWebKitGtk::SetHtmlContent(const String& sHtml)
         FILE_URI_BASE);
 }
 
-void BrowserEngineWebKitGtk::SetHtmlContentFile(const String& sFile, const String& sFileRoot)
-{
-    // Set document html
-    String sFileContents;
-    if(GetManagers()->GetFileManager()->ReadFileToString(sFile, sFileContents, sFileRoot))
-    {
-        SetHtmlContent(sFileContents);
-    }
-}
-
 void BrowserEngineWebKitGtk::RunMainLoopIteration(Bool bBlocking)
 {
     // Do one iteration
@@ -327,6 +246,7 @@ String BrowserEngineWebKitGtk::GetJavascriptResultString(WebKitJavascriptResult*
     // Ensure a valid result first
     if(!pResult)
     {
+        ERROR_STATEMENT("Error running javascript: Result was invalid");
         return sResult;
     }
 

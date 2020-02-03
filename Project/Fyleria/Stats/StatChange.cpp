@@ -159,13 +159,10 @@ Bool StatChange::DoesHaveDefendRequirements() const
 }
 
 Bool StatChange::DoesMeetItemEquippedRequirements(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sWeaponSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check character
     if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
@@ -330,7 +327,7 @@ Bool StatChange::DoesMeetDefendRequirements(const StringArray& vActionTypes, con
     return false;
 }
 
-Bool StatChange::DoesMeetActiveRequirements(ManagerSet* pManagerSet, const String& sCharacterID, const String& sWeaponSet) const
+Bool StatChange::DoesMeetActiveRequirements(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sWeaponSet) const
 {
     // Check change requirements
     if(DoesHaveItemEquippedRequirements() && DoesMeetItemEquippedRequirements(pManagerSet, sCharacterID, sWeaponSet))
@@ -341,15 +338,12 @@ Bool StatChange::DoesMeetActiveRequirements(ManagerSet* pManagerSet, const Strin
 }
 
 Bool StatChange::DoesMeetActiveRequirements(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sCharacterTargetType,
     const String& sWeaponSet,
     const CharacterAction& action) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Make sure there are some entries
     if(action.GetActionEntries().empty())
     {
@@ -418,13 +412,10 @@ StringArray StatChange::GetIntersectingDefendRequirements(const StringArray& vAc
 }
 
 Bool StatChange::GetResolvedCharacterArrays(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     StringArray& vSourceCharIDs,
     StringArray& vDestCharIDs) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Build character list
     String sSourceTargetType = GetSourceTargetType();
     String sDestTargetType = GetDestinationTargetType();
@@ -442,13 +433,10 @@ Bool StatChange::GetResolvedCharacterArrays(
 }
 
 void StatChange::ResolveTargetPlaceholders(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const String& sCharacterID,
     const String& sSegment)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check character first
     if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharacterID))
     {
@@ -585,7 +573,7 @@ void from_json(const Json& jsonData, StatChange& obj)
     SET_OBJ_DATA(StatChangeEntries, StatChangeEntryArray);
 }
 
-const StatChangeArray& GetStatChangesFromTreeIndex(ManagerSet* pManagerSet, const String& sTreeIndexType, const TreeIndex& treeIndex)
+const StatChangeArray& GetStatChangesFromTreeIndex(SafeObject<ManagerSet>& pManagerSet, const String& sTreeIndexType, const TreeIndex& treeIndex)
 {
     const CharacterTreeIndexType eTreeIndexType = GetEnumFromString<CharacterTreeIndexType>(sTreeIndexType);
     switch(eTreeIndexType)
@@ -600,11 +588,8 @@ const StatChangeArray& GetStatChangesFromTreeIndex(ManagerSet* pManagerSet, cons
     THROW_RUNTIME_ERROR("Invalid or unknown tree index type requested: " + sTreeIndexType);
 }
 
-const StatChangeArray& GetStatChangesFromSkillTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex)
+const StatChangeArray& GetStatChangesFromSkillTreeIndex(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& treeIndex)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check skill type
     const SkillTreeType eSkillTreeType = GetEnumFromStringOrNone<SkillTreeType>(treeIndex.GetTree());
     switch(eSkillTreeType)
@@ -627,11 +612,8 @@ const StatChangeArray& GetStatChangesFromSkillTreeIndex(ManagerSet* pManagerSet,
     THROW_RUNTIME_ERROR("Invalid or unknown tree index requested: " + treeIndex.GetTreeBranchLeafType());
 }
 
-const StatChangeArray& GetStatChangesFromItemTreeIndex(ManagerSet* pManagerSet, const TreeIndex& treeIndex)
+const StatChangeArray& GetStatChangesFromItemTreeIndex(SafeObject<ManagerSet>& pManagerSet, const TreeIndex& treeIndex)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check item type
     const ItemTreeType eItemTreeType = GetEnumFromStringOrNone<ItemTreeType>(treeIndex.GetTree());
     switch(eItemTreeType)

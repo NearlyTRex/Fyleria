@@ -21,7 +21,7 @@ Scene::~Scene()
 {
 }
 
-Bool Scene::ParseMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs)
+Bool Scene::ParseMessage(SafeObject<ManagerSet>& pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs)
 {
     // Parse json data
     Json jsonData = JsonParse(sMessage);
@@ -48,11 +48,8 @@ Bool Scene::ParseMessage(ManagerSet* pManagerSet, const String& sMessage, String
     return true;
 }
 
-Bool Scene::HandleMessage(ManagerSet* pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs)
+Bool Scene::HandleMessage(SafeObject<ManagerSet>& pManagerSet, const String& sMessage, String& sFunction, StringArray& vArgs)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Parse message
     if(!ParseMessage(pManagerSet, sMessage, sFunction, vArgs))
     {
@@ -92,7 +89,7 @@ Bool Scene::HandleMessage(ManagerSet* pManagerSet, const String& sMessage, Strin
     return false;
 }
 
-Bool Scene::ProcessForm(ManagerSet* pManagerSet, const String& sAction, const String& sParameters, String& sProcessedPage)
+Bool Scene::ProcessForm(SafeObject<ManagerSet>& pManagerSet, const String& sAction, const String& sParameters, String& sProcessedPage)
 {
     // Check input data
     if(sAction.empty() || sParameters.empty())
@@ -145,52 +142,49 @@ void Scene::LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler)
     }
 }
 
-void Scene::InjectStylesheetFile(const String& sFile, const String& sFileRoot)
+void Scene::InjectStylesheetFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
     // Inject stylesheet file
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserStylesheetFile(sFile, sFileRoot);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserStylesheetFile(pManagerSet, sFile, sFileRoot);
 }
 
-void Scene::InjectJavascriptFile(const String& sFile, const String& sFileRoot)
+void Scene::InjectJavascriptFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
     // Inject javascript file
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserJavascriptFile(sFile, sFileRoot);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserJavascriptFile(pManagerSet, sFile, sFileRoot);
 }
 
-void Scene::InjectHtmlFile(const String& sFile, const String& sFileRoot)
+void Scene::InjectHtmlFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
     // Inject html file
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserHtmlFile(sFile, sFileRoot);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserHtmlFile(pManagerSet, sFile, sFileRoot);
 }
 
-void Scene::InjectCommonData(ManagerSet* pManagerSet)
+void Scene::InjectCommonData(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Libs location
     String sLocation = pManagerSet->GetFileManager()->GetDataLibsDirectory();
 
     // Inject css
-    InjectStylesheetFile(LIB_FILE_BOOTSTRAP_CSS, sLocation);
+    InjectStylesheetFile(pManagerSet, LIB_FILE_BOOTSTRAP_CSS, sLocation);
 #if DEBUG
-    InjectStylesheetFile(LIB_FILE_JQUERY_TERMINAL_CSS, sLocation);
+    InjectStylesheetFile(pManagerSet, LIB_FILE_JQUERY_TERMINAL_CSS, sLocation);
 #endif
 
     // Inject javascript
-    InjectJavascriptFile(LIB_FILE_BOOTSTRAP_JS, sLocation);
-    InjectJavascriptFile(LIB_FILE_JQUERY_JS, sLocation);
-    InjectJavascriptFile(LIB_FILE_COMMON_JS, sLocation);
+    InjectJavascriptFile(pManagerSet, LIB_FILE_BOOTSTRAP_JS, sLocation);
+    InjectJavascriptFile(pManagerSet, LIB_FILE_JQUERY_JS, sLocation);
+    InjectJavascriptFile(pManagerSet, LIB_FILE_COMMON_JS, sLocation);
 #if DEBUG
-    InjectJavascriptFile(LIB_FILE_JQUERY_TERMINAL_JS, sLocation);
-    InjectJavascriptFile(LIB_FILE_JQUERY_MOUSEWHEEL_JS, sLocation);
-    InjectJavascriptFile(LIB_FILE_POLYFILL_KEYBOARD_JS, sLocation);
-    InjectJavascriptFile(LIB_FILE_DEBUG_JS, sLocation);
+    InjectJavascriptFile(pManagerSet, LIB_FILE_JQUERY_TERMINAL_JS, sLocation);
+    InjectJavascriptFile(pManagerSet, LIB_FILE_JQUERY_MOUSEWHEEL_JS, sLocation);
+    InjectJavascriptFile(pManagerSet, LIB_FILE_POLYFILL_KEYBOARD_JS, sLocation);
+    InjectJavascriptFile(pManagerSet, LIB_FILE_DEBUG_JS, sLocation);
 #endif
 
     // Inject markup
 #if DEBUG
-    InjectHtmlFile(LIB_FILE_DEBUG_HTML, sLocation);
+    InjectHtmlFile(pManagerSet, LIB_FILE_DEBUG_HTML, sLocation);
 #endif
 }
 
@@ -212,10 +206,10 @@ void Scene::SetHtmlContent(const String& sHtml)
     MainWindow::GetInstance()->GetBrowserEngine()->SetHtmlContent(sHtml);
 }
 
-void Scene::SetHtmlContentFile(const String& sFile, const String& sFileRoot)
+void Scene::SetHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
     // Set html content file
-    MainWindow::GetInstance()->GetBrowserEngine()->SetHtmlContentFile(sFile, sFileRoot);
+    MainWindow::GetInstance()->GetBrowserEngine()->SetHtmlContentFile(pManagerSet, sFile, sFileRoot);
 }
 
 void Scene::DefineJavascriptShortcut(const String& sFunction, const String& sArgs)
@@ -233,25 +227,25 @@ void Scene::ClearJavascriptShortcut(const String& sFunction)
 void Scene::SetPostCallback(const BrowserEngine::JavascriptCallback& fnCallback)
 {
     // Set callback
-    MainWindow::GetInstance()->GetBrowserEngine()->SetPostJavascriptCallback(fnCallback);
+    MainWindow::GetInstance()->GetBrowserEngine()->GetPostJavascriptCallback()->SetCallback(fnCallback);
 }
 
 void Scene::SetRunResultCallback(const BrowserEngine::JavascriptCallback& fnCallback)
 {
     // Set callback
-    MainWindow::GetInstance()->GetBrowserEngine()->SetRunResultJavascriptCallback(fnCallback);
+    MainWindow::GetInstance()->GetBrowserEngine()->GetRunResultJavascriptCallback()->SetCallback(fnCallback);
 }
 
 void Scene::ClearPostCallback()
 {
     // Clear callback
-    MainWindow::GetInstance()->GetBrowserEngine()->SetPostJavascriptCallback(nullptr);
+    MainWindow::GetInstance()->GetBrowserEngine()->GetPostJavascriptCallback()->SetCallback(nullptr);
 }
 
 void Scene::ClearRunResultCallback()
 {
     // Clear callback
-    MainWindow::GetInstance()->GetBrowserEngine()->SetRunResultJavascriptCallback(nullptr);
+    MainWindow::GetInstance()->GetBrowserEngine()->GetRunResultJavascriptCallback()->SetCallback(nullptr);
 }
 
 };

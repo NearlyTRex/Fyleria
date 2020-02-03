@@ -64,36 +64,36 @@ public:
 
     // Collect data and create a save
     void CollectSaveData(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sSlot,
         const String& sPartyID);
     void CollectSaveData(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sSlot,
         const StringArray& vPartyIDs,
         const String& sDescription,
         ULongLong uPlayTime);
 
     // Disperse save data
-    void DisperseSaveData(ManagerSet* pManagerSet, const String& sSlot);
+    void DisperseSaveData(SafeObject<ManagerSet>& pManagerSet, const String& sSlot);
 
     // Save to file
     void SaveToFile(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sSlot,
         const String& sFile,
         const String& sType);
 
     // Load to file
     void LoadFromFile(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sSlot,
         const String& sFile,
         const String& sType);
 
     // Save all to the given directory
     void SaveAllToDirectory(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sDirectory,
         const String& sBase,
         const String& sExt,
@@ -101,7 +101,7 @@ public:
 
     // Load all from the given directory
     void LoadAllFromDirectory(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sDirectory,
         const String& sBase,
         const String& sExt,

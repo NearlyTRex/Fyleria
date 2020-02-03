@@ -101,11 +101,8 @@ StringArray CharacterAction::GetAllDestinationTargetTypes() const
     return vAllDestinationTargetTypes;
 }
 
-Bool CharacterAction::AreAllCharacterIDsValid(ManagerSet* pManagerSet) const
+Bool CharacterAction::AreAllCharacterIDsValid(SafeObject<ManagerSet>& pManagerSet) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get all character IDs
     StringArray vAllCharacterIDs = GetAllCharacterIDs();
     if(vAllCharacterIDs.empty())
@@ -124,11 +121,8 @@ Bool CharacterAction::AreAllCharacterIDsValid(ManagerSet* pManagerSet) const
     return true;
 }
 
-Bool CharacterAction::PrepareCharacterIDs(ManagerSet* pManagerSet)
+Bool CharacterAction::PrepareCharacterIDs(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get source character info if it's not already set
     if(GetSourceCharacterID().empty())
     {

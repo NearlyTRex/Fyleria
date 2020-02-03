@@ -19,11 +19,8 @@ SceneBattle::~SceneBattle()
 {
 }
 
-void SceneBattle::Start(ManagerSet* pManagerSet)
+void SceneBattle::Start(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneBattle::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
@@ -32,12 +29,12 @@ void SceneBattle::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData(pManagerSet);
-    InjectStylesheetFile(PAGE_FILE_BATTLE_CSS, sLocation);
-    InjectJavascriptFile(PAGE_FILE_BATTLE_JS, sLocation);
-    SetHtmlContentFile(PAGE_FILE_BATTLE_HTML, sLocation);
+    InjectStylesheetFile(pManagerSet, PAGE_FILE_BATTLE_CSS, sLocation);
+    InjectJavascriptFile(pManagerSet, PAGE_FILE_BATTLE_JS, sLocation);
+    SetHtmlContentFile(pManagerSet, PAGE_FILE_BATTLE_HTML, sLocation);
 }
 
-void SceneBattle::Finish(ManagerSet* pManagerSet)
+void SceneBattle::Finish(SafeObject<ManagerSet>& pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
@@ -46,15 +43,15 @@ void SceneBattle::Finish(ManagerSet* pManagerSet)
     RemoveAllInjectedData();
 }
 
-void SceneBattle::Update(ManagerSet* pManagerSet)
+void SceneBattle::Update(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneBattle::Input(ManagerSet* pManagerSet)
+void SceneBattle::Input(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneBattle::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
+void SceneBattle::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

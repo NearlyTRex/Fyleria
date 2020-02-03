@@ -10,7 +10,7 @@
 namespace Gecko
 {
 
-SceneToolParty::SceneToolParty(ManagerSet* pManagerSet)
+SceneToolParty::SceneToolParty(SafeObject<ManagerSet>& pManagerSet)
     : Scene()
 {
     // Create handler
@@ -21,11 +21,8 @@ SceneToolParty::~SceneToolParty()
 {
 }
 
-void SceneToolParty::Start(ManagerSet* pManagerSet)
+void SceneToolParty::Start(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneToolParty::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
@@ -34,12 +31,12 @@ void SceneToolParty::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData(pManagerSet);
-    InjectStylesheetFile(PAGE_FILE_TOOL_PARTY_CSS, sLocation);
-    InjectJavascriptFile(PAGE_FILE_TOOL_PARTY_JS, sLocation);
+    InjectStylesheetFile(pManagerSet, PAGE_FILE_TOOL_PARTY_CSS, sLocation);
+    InjectJavascriptFile(pManagerSet, PAGE_FILE_TOOL_PARTY_JS, sLocation);
     LoadHtmlFromHandler(GetPageHandler());
 }
 
-void SceneToolParty::Finish(ManagerSet* pManagerSet)
+void SceneToolParty::Finish(SafeObject<ManagerSet>& pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
@@ -48,15 +45,15 @@ void SceneToolParty::Finish(ManagerSet* pManagerSet)
     RemoveAllInjectedData();
 }
 
-void SceneToolParty::Update(ManagerSet* pManagerSet)
+void SceneToolParty::Update(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneToolParty::Input(ManagerSet* pManagerSet)
+void SceneToolParty::Input(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneToolParty::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
+void SceneToolParty::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

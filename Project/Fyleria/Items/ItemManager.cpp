@@ -29,11 +29,8 @@ void PostProcessItems(T& tree, const TreeIndexArray& vTreeIndices)
     }
 }
 
-void ItemManager::LoadItemTreesIntoMemory(ManagerSet* pManagerSet)
+void ItemManager::LoadItemTreesIntoMemory(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Items location
     String sLocation = pManagerSet->GetFileManager()->GetDataItemsDirectory();
 
@@ -232,11 +229,8 @@ TreeIndexArray ItemManager::GetAllWeaponItems() const
     return vFinal;
 }
 
-TreeIndexArray ItemManager::GetAllEquippedItems(ManagerSet* pManagerSet, const String& sCharID) const
+TreeIndexArray ItemManager::GetAllEquippedItems(SafeObject<ManagerSet>& pManagerSet, const String& sCharID) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check character existence
     TreeIndexArray vFinal;
     if(!pManagerSet->GetCharacterManager()->DoesCharacterExist(sCharID))
@@ -308,7 +302,7 @@ Bool ItemManager::IsItemActionable(const TreeIndex& treeIndex) const
 }
 
 Bool ItemManager::GenerateItemCharacterActions(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const TreeIndex& treeIndex,
     const String& sCharacterID,
     const String& sWeaponSet,
@@ -419,7 +413,7 @@ StringArray ItemManager::GetActionTypes(const TreeIndex& treeIndex) const
 }
 
 void ItemManager::FillItemStatChangeArrays(
-    ManagerSet* pManagerSet,
+    SafeObject<ManagerSet>& pManagerSet,
     const TreeIndexArray& vItemDataArray,
     TreeIndexArray& vPassives,
     TreeIndexArray& vActives,

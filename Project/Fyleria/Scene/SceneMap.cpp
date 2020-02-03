@@ -19,11 +19,8 @@ SceneMap::~SceneMap()
 {
 }
 
-void SceneMap::Start(ManagerSet* pManagerSet)
+void SceneMap::Start(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneMap::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
@@ -32,29 +29,29 @@ void SceneMap::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData(pManagerSet);
-    InjectStylesheetFile(PAGE_FILE_MAP_CSS, sLocation);
-    InjectJavascriptFile(PAGE_FILE_MAP_JS, sLocation);
-    SetHtmlContentFile(PAGE_FILE_MAP_HTML, sLocation);
+    InjectStylesheetFile(pManagerSet, PAGE_FILE_MAP_CSS, sLocation);
+    InjectJavascriptFile(pManagerSet, PAGE_FILE_MAP_JS, sLocation);
+    SetHtmlContentFile(pManagerSet, PAGE_FILE_MAP_HTML, sLocation);
 
     // Clear page content
     RemoveAllInjectedData();
 }
 
-void SceneMap::Finish(ManagerSet* pManagerSet)
+void SceneMap::Finish(SafeObject<ManagerSet>& pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
 }
 
-void SceneMap::Update(ManagerSet* pManagerSet)
+void SceneMap::Update(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneMap::Input(ManagerSet* pManagerSet)
+void SceneMap::Input(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneMap::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
+void SceneMap::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

@@ -14,12 +14,9 @@
 namespace Gecko
 {
 
-WebPageHandlerPartyTool::WebPageHandlerPartyTool(ManagerSet* pManagerSet)
+WebPageHandlerPartyTool::WebPageHandlerPartyTool(SafeObject<ManagerSet>& pManagerSet)
     : WebPageHandler()
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Page location
     String sLocation = pManagerSet->GetFileManager()->GetDataPagesDirectory();
 
@@ -38,11 +35,8 @@ WebPageHandlerPartyTool::~WebPageHandlerPartyTool()
 {
 }
 
-void WebPageHandlerPartyTool::UpdatePageContent(ManagerSet* pManagerSet, const StringMap& tParams)
+void WebPageHandlerPartyTool::UpdatePageContent(SafeObject<ManagerSet>& pManagerSet, const StringMap& tParams)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Get fields
     String sAction = GetMapDataOrDefault(tParams, "action", "");
     String sLoadPartyFromJson_Textarea = GetMapDataOrDefault(tParams, "sLoadPartyFromJson_Textarea", "");

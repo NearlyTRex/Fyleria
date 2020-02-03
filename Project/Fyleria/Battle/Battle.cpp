@@ -63,22 +63,19 @@ void Battle::AdvanceRound()
     ClearAllActions();
 }
 
-Bool Battle::IsBattleOver(ManagerSet* pManagerSet, const String& sPartyID) const
+Bool Battle::IsBattleOver(SafeObject<ManagerSet>& pManagerSet, const String& sPartyID) const
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Check if able to fight
     const CharacterParty& party = pManagerSet->GetCharacterPartyManager()->GetPartyByID(sPartyID);
     return party.IsPartyAbleToFight(pManagerSet);
 }
 
-Bool Battle::IsBattleWon(ManagerSet* pManagerSet) const
+Bool Battle::IsBattleWon(SafeObject<ManagerSet>& pManagerSet) const
 {
     return (GetIsBattleManuallyWon() || IsBattleOver(pManagerSet, GetEnemyPartyID()));
 }
 
-Bool Battle::IsBattleLost(ManagerSet* pManagerSet) const
+Bool Battle::IsBattleLost(SafeObject<ManagerSet>& pManagerSet) const
 {
     return (GetIsBattleManuallyLost() || IsBattleOver(pManagerSet, GetAllyPartyID()));
 }
@@ -105,7 +102,7 @@ void Battle::FinishedAddingActions()
     SetCurrentActionIndex(0);
 }
 
-void Battle::RunCurrentActionSetup(ManagerSet* pManagerSet)
+void Battle::RunCurrentActionSetup(SafeObject<ManagerSet>& pManagerSet)
 {
     CharacterAction& action = GetCurrentAction();
     if(IsSkillAttackAction(action))
@@ -114,7 +111,7 @@ void Battle::RunCurrentActionSetup(ManagerSet* pManagerSet)
     }
 }
 
-void Battle::RunCurrentActionFinish(ManagerSet* pManagerSet)
+void Battle::RunCurrentActionFinish(SafeObject<ManagerSet>& pManagerSet)
 {
     CharacterAction& action = GetCurrentAction();
     if(IsSkillAttackAction(action))
@@ -123,7 +120,7 @@ void Battle::RunCurrentActionFinish(ManagerSet* pManagerSet)
     }
 }
 
-void Battle::RunCurrentActionGenerateResult(ManagerSet* pManagerSet)
+void Battle::RunCurrentActionGenerateResult(SafeObject<ManagerSet>& pManagerSet)
 {
     CharacterAction& action = GetCurrentAction();
     if(IsSkillAttackAction(action))
@@ -132,7 +129,7 @@ void Battle::RunCurrentActionGenerateResult(ManagerSet* pManagerSet)
     }
 }
 
-void Battle::RunCurrentActionApplyResult(ManagerSet* pManagerSet)
+void Battle::RunCurrentActionApplyResult(SafeObject<ManagerSet>& pManagerSet)
 {
     CharacterAction& action = GetCurrentAction();
     if(IsSkillAttackAction(action))

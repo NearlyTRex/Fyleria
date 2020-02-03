@@ -34,6 +34,7 @@
 
 #define MAKE_COMMON_TYPEDEFS(type)                                                                                      \
 typedef type* type##Ptr;                                                                                                \
+typedef SafeObject<type> Safe##type;                                                                                    \
 typedef STDSharedPtr<type> type##SharedPtr;                                                                             \
 typedef STDReferenceWrapper<type> type##Ref;                                                                            \
 typedef STDVector<type> type##Array;                                                                                    \
@@ -47,6 +48,10 @@ typedef STDVector<type##SharedPtr> type##SharedPtrArray
 type m_var##name {};                                                                                                    \
 type Get##name() { return m_var##name; }                                                                                \
 void Set##name(type varValue) { m_var##name = varValue; }
+
+#define MAKE_PRIMITIVE_TYPE_ACCESSORS_GET_ONLY(name, type)                                                              \
+type m_var##name {};                                                                                                    \
+type Get##name() { return m_var##name; }
 
 #define MAKE_PRIMITIVE_TYPE_ACCESSORS_INITIAL_VALUE(name, type, value)                                                  \
 type m_var##name = value;                                                                                               \

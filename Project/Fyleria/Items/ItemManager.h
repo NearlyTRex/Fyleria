@@ -33,7 +33,7 @@ public:
     ItemManager();
 
     // Load/unload item trees into memory
-    void LoadItemTreesIntoMemory(ManagerSet* pManagerSet);
+    void LoadItemTreesIntoMemory(SafeObject<ManagerSet>& pManagerSet);
     void UnloadItemTreesFromMemory();
 
     // Determine if item data exists
@@ -57,7 +57,7 @@ public:
     TreeIndexArray GetAllIngredientItems() const;
     TreeIndexArray GetAllPotionItems() const;
     TreeIndexArray GetAllWeaponItems() const;
-    TreeIndexArray GetAllEquippedItems(ManagerSet* pManagerSet, const String& sCharID) const;
+    TreeIndexArray GetAllEquippedItems(SafeObject<ManagerSet>& pManagerSet, const String& sCharID) const;
 
     // Resolve leaf into index
     TreeIndex ResolveItemLeafIntoIndex(const String& sLeaf) const;
@@ -67,7 +67,7 @@ public:
 
     // Generate character actions
     Bool GenerateItemCharacterActions(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const TreeIndex& treeIndex,
         const String& sCharacterID,
         const String& sWeaponSet,
@@ -86,7 +86,7 @@ public:
 
     // Get stat changes
     void FillItemStatChangeArrays(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const TreeIndexArray& vItemDataArray,
         TreeIndexArray& vPassives,
         TreeIndexArray& vActives,

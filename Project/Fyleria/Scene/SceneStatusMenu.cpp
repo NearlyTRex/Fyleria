@@ -19,11 +19,8 @@ SceneStatusMenu::~SceneStatusMenu()
 {
 }
 
-void SceneStatusMenu::Start(ManagerSet* pManagerSet)
+void SceneStatusMenu::Start(SafeObject<ManagerSet>& pManagerSet)
 {
-    // Check manager set
-    CHECK_MANAGER_SET_PTR(pManagerSet);
-
     // Register callbacks
     SetPostCallback(STDBindFunc(&SceneStatusMenu::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
@@ -32,12 +29,12 @@ void SceneStatusMenu::Start(ManagerSet* pManagerSet)
 
     // Load page content
     InjectCommonData(pManagerSet);
-    InjectStylesheetFile(PAGE_FILE_STATUS_MENU_CSS, sLocation);
-    InjectJavascriptFile(PAGE_FILE_STATUS_MENU_JS, sLocation);
-    SetHtmlContentFile(PAGE_FILE_STATUS_MENU_HTML, sLocation);
+    InjectStylesheetFile(pManagerSet, PAGE_FILE_STATUS_MENU_CSS, sLocation);
+    InjectJavascriptFile(pManagerSet, PAGE_FILE_STATUS_MENU_JS, sLocation);
+    SetHtmlContentFile(pManagerSet, PAGE_FILE_STATUS_MENU_HTML, sLocation);
 }
 
-void SceneStatusMenu::Finish(ManagerSet* pManagerSet)
+void SceneStatusMenu::Finish(SafeObject<ManagerSet>& pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
@@ -46,15 +43,15 @@ void SceneStatusMenu::Finish(ManagerSet* pManagerSet)
     RemoveAllInjectedData();
 }
 
-void SceneStatusMenu::Update(ManagerSet* pManagerSet)
+void SceneStatusMenu::Update(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneStatusMenu::Input(ManagerSet* pManagerSet)
+void SceneStatusMenu::Input(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneStatusMenu::OnMessageReceived(ManagerSet* pManagerSet, const String& sMessage)
+void SceneStatusMenu::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

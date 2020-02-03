@@ -36,13 +36,13 @@ public:
     void AdvanceRound();
 
     // Determine if battle is over
-    Bool IsBattleOver(ManagerSet* pManagerSet, const String& sPartyID) const;
+    Bool IsBattleOver(SafeObject<ManagerSet>& pManagerSet, const String& sPartyID) const;
 
     // Determine if battle is won
-    Bool IsBattleWon(ManagerSet* pManagerSet) const;
+    Bool IsBattleWon(SafeObject<ManagerSet>& pManagerSet) const;
 
     // Determine if battle is lost
-    Bool IsBattleLost(ManagerSet* pManagerSet) const;
+    Bool IsBattleLost(SafeObject<ManagerSet>& pManagerSet) const;
 
     // Determine if action is skill attack
     Bool IsSkillAttackAction(const CharacterAction& action) const;
@@ -53,10 +53,10 @@ public:
     void FinishedAddingActions();
 
     // Action stages
-    void RunCurrentActionSetup(ManagerSet* pManagerSet);
-    void RunCurrentActionFinish(ManagerSet* pManagerSet);
-    void RunCurrentActionGenerateResult(ManagerSet* pManagerSet);
-    void RunCurrentActionApplyResult(ManagerSet* pManagerSet);
+    void RunCurrentActionSetup(SafeObject<ManagerSet>& pManagerSet);
+    void RunCurrentActionFinish(SafeObject<ManagerSet>& pManagerSet);
+    void RunCurrentActionGenerateResult(SafeObject<ManagerSet>& pManagerSet);
+    void RunCurrentActionApplyResult(SafeObject<ManagerSet>& pManagerSet);
     void FinishedWithCurrentAction();
 
     // Get action

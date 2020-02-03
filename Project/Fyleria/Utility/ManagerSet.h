@@ -27,16 +27,16 @@ public:
     ManagerSet();
 
     // Managers
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(BattleManager, SafeObject<BattleManager>);
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(CacheManager, SafeObject<CacheManager>);
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(CharacterManager, SafeObject<CharacterManager>);
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(CharacterPartyManager, SafeObject<CharacterPartyManager>);
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(ConfigManager, SafeObject<ConfigManager>);
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(SaveManager, SafeObject<SaveManager>);
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(SceneManager, SafeObject<SceneManager>);
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(ItemManager, SafeObject<ItemManager>);
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(SkillManager, SafeObject<SkillManager>);
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(FileManager, SafeObject<FileManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(BattleManager, STDSharedPtr<BattleManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(CacheManager, STDSharedPtr<CacheManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(CharacterManager, STDSharedPtr<CharacterManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(CharacterPartyManager, STDSharedPtr<CharacterPartyManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(ConfigManager, STDSharedPtr<ConfigManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(SaveManager, STDSharedPtr<SaveManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(SceneManager, STDSharedPtr<SceneManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(ItemManager, STDSharedPtr<ItemManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(SkillManager, STDSharedPtr<SkillManager>);
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(FileManager, STDSharedPtr<FileManager>);
 };
 
 // Typedef

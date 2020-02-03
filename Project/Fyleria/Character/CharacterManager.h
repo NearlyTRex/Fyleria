@@ -28,14 +28,14 @@ public:
 
     // Load a character and return the character ID
     // This will overwrite any existing matching data
-    String LoadCharacter(ManagerSet* pManagerSet, const Character& character, Bool bRegenerateData);
+    String LoadCharacter(SafeObject<ManagerSet>& pManagerSet, const Character& character, Bool bRegenerateData);
 
     // Load a character from a file and return the character ID
     // This will overwrite any existing matching data
-    String LoadCharacterFromFile(ManagerSet* pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData);
+    String LoadCharacterFromFile(SafeObject<ManagerSet>& pManagerSet, const String& sFilename, const String& sType, Bool bRegenerateData);
 
     // Save a character to file
-    void SaveCharacterToFile(ManagerSet* pManagerSet, const String& sCharacterID, const String& sFilename, const String& sType);
+    void SaveCharacterToFile(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sFilename, const String& sType);
 
     // Create a character
     void CreateCharacter(const String& sCharacterID);
@@ -47,7 +47,7 @@ public:
     Bool DoesCharacterExist(const String& sCharacterID) const;
 
     // Generate a character
-    void GenerateCharacter(ManagerSet* pManagerSet, const String& sCharacterID, const CharacterGenerator& generator);
+    void GenerateCharacter(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const CharacterGenerator& generator);
 
     // Check if character ID is valid
     Bool IsValidCharacterID(const String& sCharacterID) const;
@@ -61,7 +61,7 @@ public:
 
     // Apply a stat change
     void ApplyStatChange(
-        ManagerSet* pManagerSet,
+        SafeObject<ManagerSet>& pManagerSet,
         const String& sSegment,
         const StatChange& change,
         Bool& bAllChangesApplied,

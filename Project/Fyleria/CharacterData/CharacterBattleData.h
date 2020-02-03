@@ -26,23 +26,23 @@ public:
     virtual ~CharacterBattleData();
 
     // Apply status
-    void ApplyNewStatus(ManagerSet* pManagerSet, const String& sCharacterID, const String& sProgressSegment);
+    void ApplyNewStatus(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sProgressSegment);
 
     // Apply damage
     void ApplyGivenDamage(Int iDamage);
     void ApplyTakenDamage(Int iDamage);
 
     // Advance round
-    void AdvanceRound(ManagerSet* pManagerSet, const String& sCharacterID, const String& sProgressSegment);
+    void AdvanceRound(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sProgressSegment);
 
     // Finish battle
-    void FinishBattle(ManagerSet* pManagerSet, const String& sCharacterID, const String& sProgressSegment);
+    void FinishBattle(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sProgressSegment);
 
     // Can regenerate from stat
     Bool CanRegenerateFromStat(const String& sRegenStat) const;
 
     // Update equipment ratings
-    void UpdateEquipmentRatings(ManagerSet* pManagerSet, const String& sCharacterID, const String& sProgressSegment);
+    void UpdateEquipmentRatings(SafeObject<ManagerSet>& pManagerSet, const String& sCharacterID, const String& sProgressSegment);
 
     // Resolve target placeholders
     StringArray ResolveTargetPlaceholder(const String& sSelfTargetType,
