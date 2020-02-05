@@ -32,6 +32,16 @@ WKRetainPtr<WKStringRef> ConvertStringToWebKitString(const WString& sStr)
     return ConvertStringToWebKitString(ConvertWideStringToString(sStr));
 }
 
+WKRetainPtr<WKURLRef> ConvertStringToWebKitURL(const String& sStr)
+{
+    return adoptWK(WKURLCreateWithUTF8CString(sStr.data()));
+}
+
+WKRetainPtr<WKURLRef> ConvertStringToWebKitURL(const WString& sStr)
+{
+    return ConvertStringToWebKitURL(ConvertWideStringToString(sStr));
+}
+
 String ConvertWebKitStringToString(WKStringRef sWkStr)
 {
     String sResult;
@@ -291,6 +301,15 @@ void BrowserEngineWebKitCairo::RunJavascript(const String& sScript)
 
 void BrowserEngineWebKitCairo::SetHtmlContent(const String& sHtml)
 {
+    // Set document html
+    String sHtmlContent(sHtml);
+    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, String(GetUserStyles()->c_str()));
+    BoostReplaceAll(sHtmlContent, INJECTED_SCRIPTS_TOKEN, String(GetSystemScripts()->c_str()) + String(GetUserScripts()->c_str()));
+    BoostReplaceAll(sHtmlContent, INJECTED_MARKUP_TOKEN, String(GetUserMarkup()->c_str()));
+    WKPageLoadHTMLString(
+        WKViewGetPage(GetWebKitView().get()),
+        ConvertStringToWebKitString(sHtmlContent).get(),
+        ConvertStringToWebKitURL(FILE_URI_BASE).get());
 }
 
 void BrowserEngineWebKitCairo::RunMainLoopIteration(Bool bBlocking)
