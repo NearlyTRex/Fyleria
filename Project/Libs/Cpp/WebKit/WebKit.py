@@ -29,6 +29,7 @@ WebKitCairo_CopyWebKit = 'CopyFile("WebKitBuild/Release/bin64/WebKit2.dll", "$(R
 WebKitCairo_CopyWTF = 'CopyFile("WebKitBuild/Release/bin64/WTF.dll", "$(RootPath)/Bin/WTF.dll")'
 WebKitCairo_CopyWebKitNetworkProcess = 'CopyFile("WebKitBuild/Release/bin64/WebKitNetworkProcess.exe", "$(RootPath)/Bin/WebKitNetworkProcess.exe")'
 WebKitCairo_CopyWebKitWebProcess = 'CopyFile("WebKitBuild/Release/bin64/WebKitWebProcess.exe", "$(RootPath)/Bin/WebKitWebProcess.exe")'
+WebKitCairo_CopyWebKitResources = 'CopyDirectory("WebKitBuild/Release/bin64/WebKit.resources", "$(RootPath)/Bin/WebKit.resources")'
 WebKitGTK_InstallDeps = 'RunProcess("perl Tools/gtk/install-dependencies")'
 WebKitGTK_UpdateLibs = 'RunProcess("perl Tools/Scripts/update-webkitgtk-libs")'
 WebKitGTK_Build = 'RunProcess("perl Tools/Scripts/build-webkit --gtk --release")'
@@ -43,6 +44,7 @@ Setup['steps']['windows'].extend([WebKitCairo_Build, WebKit_MakeBinDir])
 Setup['steps']['windows'].extend([WebKitCairo_CopyCairo, WebKitCairo_CopyCFLite, WebKitCairo_CopyCrypto, WebKitCairo_CopyCurl, WebKitCairo_CopyIcuDt, WebKitCairo_CopyIcuIn, WebKitCairo_CopyIcuUc])
 Setup['steps']['windows'].extend([WebKitCairo_CopyJpeg, WebKitCairo_CopyPng, WebKitCairo_CopyNgHttp2, WebKitCairo_CopyOpenJpeg, WebKitCairo_CopyPsl, WebKitCairo_CopyPthreads])
 Setup['steps']['windows'].extend([WebKitCairo_CopySQLite, WebKitCairo_CopySSL, WebKitCairo_CopyXML2, WebKitCairo_CopyXSLT, WebKitCairo_CopyZlib, WebKitCairo_CopyEGL, WebKitCairo_CopyGLES])
-Setup['steps']['windows'].extend([WebKitCairo_CopyJavaScriptCore, WebKitCairo_CopyWebKit, WebKitCairo_CopyWTF, WebKitCairo_CopyWebKitNetworkProcess, WebKitCairo_CopyWebKitWebProcess])
+Setup['steps']['windows'].extend([WebKitCairo_CopyJavaScriptCore, WebKitCairo_CopyWebKit, WebKitCairo_CopyWTF])
+Setup['steps']['windows'].extend([WebKitCairo_CopyWebKitNetworkProcess, WebKitCairo_CopyWebKitWebProcess, WebKitCairo_CopyWebKitResources])
 Setup['steps']['linux'] = []
 Setup['steps']['linux'].extend([WebKitGTK_InstallDeps, WebKitGTK_UpdateLibs, WebKitGTK_Build, WebKit_MakeBinDir])
