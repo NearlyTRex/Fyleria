@@ -109,6 +109,16 @@ def RunExtraSteps(steps, platform, root_path, flags):
         new_src = ResolvePaths(src)
         new_dest = ResolvePaths(dest)
         shutil.copyfile(new_src, new_dest)
+    
+    # Copy directory
+    def CopyDirectory(src, dest):
+        new_src = ResolvePaths(src)
+        new_dest = ResolvePaths(dest)
+        if not os.path.exists(new_dest):
+            try:
+                shutil.copytree(new_src, new_dest)
+            except:
+                pass
 
     # Make symlink
     def MakeSymlink(src, dest):
