@@ -5,6 +5,7 @@
 #define _GECKO_BROWSER_ENGINE_H_
 
 // Internal includes
+#include "Window/BrowserEnginePreferences.h"
 #include "Utility/Types.h"
 #include "Utility/Macros.h"
 #include "Utility/Logging.h"
@@ -121,6 +122,9 @@ public:
 
     // User markup
     MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(UserMarkup, SafeString);
+
+    // Preferences
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(Preferences, BrowserEnginePreferences);
 };
 
 // Typedefs

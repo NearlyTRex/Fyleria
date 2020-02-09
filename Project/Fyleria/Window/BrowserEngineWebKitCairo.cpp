@@ -128,7 +128,7 @@ LRESULT CALLBACK WndProcStatic(HWND pWindowHandle, UINT uMessage, WPARAM iWordPa
 }
 
 Bool BrowserEngineWebKitCairo::Init(SafeObject<ManagerSet>& pManagerSet, const String& sTitle, Int iWidth, Int iHeight, Bool bResizable)
-{ 
+{
     // Create window class
     WNDCLASSEX windowClass;
     ZeroMemory(&windowClass, sizeof(WNDCLASSEX));
@@ -194,8 +194,57 @@ Bool BrowserEngineWebKitCairo::Init(SafeObject<ManagerSet>& pManagerSet, const S
 
     // Create webkit preferences
     SetWebKitPreferences(adoptWK(WKPreferencesCreate()));
-    WKPreferencesSetMediaCapabilitiesEnabled(GetWebKitPreferences().get(), false);
-    WKPreferencesSetDeveloperExtrasEnabled(GetWebKitPreferences().get(), true);
+    WKPreferencesSetJavaScriptEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableJavaScript());
+    WKPreferencesSetJavaScriptMarkupEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableJavaScriptMarkup());
+    WKPreferencesSetLoadsImagesAutomatically(GetWebKitPreferences().get(), GetPreferences().GetEnableAutomaticImageLoading());
+    WKPreferencesSetLoadsSiteIconsIgnoringImageLoadingPreference(GetWebKitPreferences().get(), GetPreferences().GetEnableSiteIcons());
+    WKPreferencesSetOfflineWebApplicationCacheEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnablePageCache());
+    WKPreferencesSetLocalStorageEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableLocalStorage());
+    WKPreferencesSetDatabasesEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableDatabases());
+    WKPreferencesSetXSSAuditorEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableXSSAuditing());
+    WKPreferencesSetFrameFlatteningEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableFrameFlattening());
+    WKPreferencesSetPluginsEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnablePlugins());
+    WKPreferencesSetJavaEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableJava());
+    WKPreferencesSetJavaScriptCanOpenWindowsAutomatically(GetWebKitPreferences().get(), GetPreferences().GetEnableJavaScriptWindowControl());
+    WKPreferencesSetHyperlinkAuditingEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableHyperlinkAuditing());
+    WKPreferencesSetPrivateBrowsingEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnablePrivateBrowsing());
+    WKPreferencesSetDeveloperExtrasEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableDeveloperExtras());
+    WKPreferencesSetTextAreasAreResizable(GetWebKitPreferences().get(), GetPreferences().GetEnableTextAreasResizing());
+    WKPreferencesSetTabsToLinks(GetWebKitPreferences().get(), GetPreferences().GetEnableTabsToLinks());
+    WKPreferencesSetDNSPrefetchingEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableDNSPrefetching());
+    WKPreferencesSetAuthorAndUserStylesEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableAuthorAndUserStyles());
+    WKPreferencesSetShouldPrintBackgrounds(GetWebKitPreferences().get(), GetPreferences().GetEnablePrintBackgrounds());
+    WKPreferencesSetJavaScriptCanAccessClipboard(GetWebKitPreferences().get(), GetPreferences().GetEnableJavaScriptClipboardAccess());
+    WKPreferencesSetFullScreenEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableFullScreen());
+    WKPreferencesSetAVFoundationEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableAVFoundation());
+    WKPreferencesSetWebAudioEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableWebAudio());
+    WKPreferencesSetBackspaceKeyNavigationEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableBackspaceKeyNavigation());
+    WKPreferencesSetCaretBrowsingEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableCaretBrowsing());
+    WKPreferencesSetShouldDisplaySubtitles(GetWebKitPreferences().get(), GetPreferences().GetEnableSubtitleDisplay());
+    WKPreferencesSetShouldDisplayCaptions(GetWebKitPreferences().get(), GetPreferences().GetEnableCaptionDisplay());
+    WKPreferencesSetShouldDisplayTextDescriptions(GetWebKitPreferences().get(), GetPreferences().GetEnableTextDescriptionDisplay());
+    WKPreferencesSetNotificationsEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableNotifications());
+    WKPreferencesSetShouldRespectImageOrientation(GetWebKitPreferences().get(), GetPreferences().GetEnableRespectImageOrientation());
+    WKPreferencesSetEncodingDetectorEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableEncodingDetector());
+    WKPreferencesSetTextAutosizingEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableTextAutosizing());
+    WKPreferencesSetQTKitEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableQTKit());
+    WKPreferencesSetAsynchronousSpellCheckingEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableAsynchronousSpellChecking());
+    WKPreferencesSetMediaStreamEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableMediaStream());
+    WKPreferencesSetMediaDevicesEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableMediaDevices());
+    WKPreferencesSetPeerConnectionEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnablePeerConnection());
+    WKPreferencesSetSpatialNavigationEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableSpatialNavigation());
+    WKPreferencesSetIgnoreViewportScalingConstraints(GetWebKitPreferences().get(), GetPreferences().GetEnableIgnoreViewportScalingConstraints());
+    WKPreferencesSetAllowsAirPlayForMediaPlayback(GetWebKitPreferences().get(), GetPreferences().GetEnableAirPlay());
+    WKPreferencesSetApplePayEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableApplePay());
+    WKPreferencesSetMediaCapabilitiesEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableMediaCapabilities());
+    WKPreferencesSetRestrictedHTTPResponseAccess(GetWebKitPreferences().get(), GetPreferences().GetEnableRestrictHTTPResponseAccess());
+    WKPreferencesSetCrossOriginResourcePolicyEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableCrossOriginResourcePolicy());
+    WKPreferencesSetCaptureAudioInUIProcessEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableCaptureAudioInUIProcess());
+    WKPreferencesSetCaptureAudioInGPUProcessEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableCaptureAudioInGPUProcess());
+    WKPreferencesSetCaptureVideoInUIProcessEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableCaptureVideoInUIProcess());
+    WKPreferencesSetCaptureVideoInGPUProcessEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableCaptureVideoInGPUProcess());
+    WKPreferencesSetRemotePlaybackEnabled(GetWebKitPreferences().get(), GetPreferences().GetEnableRemotePlayback());
+    WKPreferencesSetShouldUseServiceWorkerShortTimeout(GetWebKitPreferences().get(), GetPreferences().GetEnableServiceWorkerShortTimeout());
 
     // Create webkit page configuration
     SetWebKitPageConfiguration(adoptWK(WKPageConfigurationCreate()));
@@ -205,7 +254,7 @@ Bool BrowserEngineWebKitCairo::Init(SafeObject<ManagerSet>& pManagerSet, const S
     SetWebKitPageGroup(adoptWK(WKPageGroupCreateWithIdentifier(ConvertStringToWebKitString(sWindowClassName).get())));
     WKPageConfigurationSetPageGroup(GetWebKitPageConfiguration().get(), GetWebKitPageGroup().get());
     WKPageGroupSetPreferences(GetWebKitPageGroup().get(), GetWebKitPreferences().get());
-    
+
     // Create webkit context
     SetWebKitContext(adoptWK(WKContextCreateWithConfiguration(nullptr)));
     WKPageConfigurationSetContext(GetWebKitPageConfiguration().get(), GetWebKitContext().get());
