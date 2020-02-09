@@ -1,8 +1,8 @@
 // Fyleria Engine
 // Copyright © 2019 Go Go Gecko Productions
 
-#ifndef _GECKO_WEBKIT_PREFERENCES_H_
-#define _GECKO_WEBKIT_PREFERENCES_H_
+#ifndef _GECKO_BROWSER_ENGINE_PREFERENCES_H_
+#define _GECKO_BROWSER_ENGINE_PREFERENCES_H_
 
 // Internal includes
 #include "Utility/Types.h"
@@ -11,13 +11,13 @@
 namespace Gecko
 {
 
-    // WebKit preferences
-    class WebKitPreferences
+    // Browser engine preferences
+    class BrowserEnginePreferences
     {
     public:
 
         // Constructor
-        WebKitPreferences();
+        BrowserEnginePreferences();
 
         // Preferences
         MAKE_PRIMITIVE_TYPE_ACCESSORS_INITIAL_VALUE_GET_ONLY(EnableAVFoundation, Bool, false);

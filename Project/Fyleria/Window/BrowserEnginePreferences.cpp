@@ -2,12 +2,12 @@
 // Copyright © 2019 Go Go Gecko Productions
 
 // Internal includes
-#include "Window/WebKitPreferences.h"
+#include "Window/BrowserEnginePreferences.h"
 
 namespace Gecko
 {
 
-WebKitPreferences::WebKitPreferences()
+BrowserEnginePreferences::BrowserEnginePreferences()
 {
 }
 
