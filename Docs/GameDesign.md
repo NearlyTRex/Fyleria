@@ -18,7 +18,7 @@ Computer Role-playing Game (CRPG)
 
 **Game Engine**
 
-The game engine will consist of Unity 2D coupled with a custom C++ backend that handles RPG concepts and data.
+The game engine will consist of WebKit-based HTML driven UI coupled with a C++ backend that handles backend processing.
 
 **Story**
 
@@ -30,7 +30,7 @@ The target audience for the game is geared towards young adults, teens, and adul
 
 **Target Platform**
 
-The target platform is a home computer capable of running Unity 2D. In the future, other platforms that Unity 2D supports would be possible.
+The target platform is a home computer capable of running WebKit. In the future, other platforms that WebKit supports would be possible.
 
 **Art & Media Assets**
 
