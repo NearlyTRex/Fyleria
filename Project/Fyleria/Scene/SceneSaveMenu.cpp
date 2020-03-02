@@ -31,7 +31,7 @@ void SceneSaveMenu::Start(SafeObject<ManagerSet>& pManagerSet)
     InjectCommonData(pManagerSet);
     InjectStylesheetFile(pManagerSet, PAGE_FILE_SAVE_MENU_CSS, sLocation);
     InjectJavascriptFile(pManagerSet, PAGE_FILE_SAVE_MENU_JS, sLocation);
-    SetHtmlContentFile(pManagerSet, PAGE_FILE_SAVE_MENU_HTML, sLocation);
+    LoadHtmlContentFile(pManagerSet, PAGE_FILE_SAVE_MENU_HTML, sLocation);
 }
 
 void SceneSaveMenu::Finish(SafeObject<ManagerSet>& pManagerSet)

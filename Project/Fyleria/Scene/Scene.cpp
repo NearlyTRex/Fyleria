@@ -75,7 +75,7 @@ Bool Scene::HandleMessage(SafeObject<ManagerSet>& pManagerSet, const String& sMe
             String sProcessedPage;
             if(ProcessForm(pManagerSet, sArg1, sArg2, sProcessedPage))
             {
-                SetHtmlContent(sProcessedPage);
+                LoadHtmlContent(sProcessedPage);
             }
             return true;
         }
@@ -138,26 +138,26 @@ void Scene::LoadHtmlFromHandler(const WebPageHandlerSharedPtr& pHandler)
     if(pHandler)
     {
         String sHandlerContents = pHandler->GetPageContent();
-        SetHtmlContent(sHandlerContents);
+        LoadHtmlContent(sHandlerContents);
     }
 }
 
 void Scene::InjectStylesheetFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
     // Inject stylesheet file
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserStylesheetFile(pManagerSet, sFile, sFileRoot);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectLocalStylesheetFile(pManagerSet, sFile, sFileRoot);
 }
 
 void Scene::InjectJavascriptFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
     // Inject javascript file
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserJavascriptFile(pManagerSet, sFile, sFileRoot);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectLocalJavascriptFile(pManagerSet, sFile, sFileRoot);
 }
 
 void Scene::InjectHtmlFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
     // Inject html file
-    MainWindow::GetInstance()->GetBrowserEngine()->InjectUserHtmlFile(pManagerSet, sFile, sFileRoot);
+    MainWindow::GetInstance()->GetBrowserEngine()->InjectLocalHtmlFile(pManagerSet, sFile, sFileRoot);
 }
 
 void Scene::InjectCommonData(SafeObject<ManagerSet>& pManagerSet)
@@ -191,7 +191,7 @@ void Scene::InjectCommonData(SafeObject<ManagerSet>& pManagerSet)
 void Scene::RemoveAllInjectedData()
 {
     // Remove all injected data
-    MainWindow::GetInstance()->GetBrowserEngine()->RemoveAllUserInjectedData();
+    MainWindow::GetInstance()->GetBrowserEngine()->RemoveAllLocalInjectedData();
 }
 
 void Scene::RunJavascript(const String& sScript)
@@ -200,16 +200,16 @@ void Scene::RunJavascript(const String& sScript)
     MainWindow::GetInstance()->GetBrowserEngine()->RunJavascript(sScript);
 }
 
-void Scene::SetHtmlContent(const String& sHtml)
+void Scene::LoadHtmlContent(const String& sHtml)
 {
     // Set html
-    MainWindow::GetInstance()->GetBrowserEngine()->SetHtmlContent(sHtml);
+    MainWindow::GetInstance()->GetBrowserEngine()->LoadHtmlContent(sHtml);
 }
 
-void Scene::SetHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
+void Scene::LoadHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
     // Set html content file
-    MainWindow::GetInstance()->GetBrowserEngine()->SetHtmlContentFile(pManagerSet, sFile, sFileRoot);
+    MainWindow::GetInstance()->GetBrowserEngine()->LoadHtmlContentFile(pManagerSet, sFile, sFileRoot);
 }
 
 void Scene::DefineJavascriptShortcut(const String& sFunction, const String& sArgs)

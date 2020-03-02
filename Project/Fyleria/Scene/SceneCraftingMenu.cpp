@@ -31,7 +31,7 @@ void SceneCraftingMenu::Start(SafeObject<ManagerSet>& pManagerSet)
     InjectCommonData(pManagerSet);
     InjectStylesheetFile(pManagerSet, PAGE_FILE_CRAFTING_MENU_CSS, sLocation);
     InjectJavascriptFile(pManagerSet, PAGE_FILE_CRAFTING_MENU_JS, sLocation);
-    SetHtmlContentFile(pManagerSet, PAGE_FILE_CRAFTING_MENU_HTML, sLocation);
+    LoadHtmlContentFile(pManagerSet, PAGE_FILE_CRAFTING_MENU_HTML, sLocation);
 }
 
 void SceneCraftingMenu::Finish(SafeObject<ManagerSet>& pManagerSet)

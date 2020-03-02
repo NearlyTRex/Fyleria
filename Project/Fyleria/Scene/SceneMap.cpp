@@ -31,7 +31,7 @@ void SceneMap::Start(SafeObject<ManagerSet>& pManagerSet)
     InjectCommonData(pManagerSet);
     InjectStylesheetFile(pManagerSet, PAGE_FILE_MAP_CSS, sLocation);
     InjectJavascriptFile(pManagerSet, PAGE_FILE_MAP_JS, sLocation);
-    SetHtmlContentFile(pManagerSet, PAGE_FILE_MAP_HTML, sLocation);
+    LoadHtmlContentFile(pManagerSet, PAGE_FILE_MAP_HTML, sLocation);
 
     // Clear page content
     RemoveAllInjectedData();

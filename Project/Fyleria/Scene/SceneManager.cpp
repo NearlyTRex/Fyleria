@@ -28,6 +28,9 @@ void SceneManager::AddScene(SafeObject<ManagerSet>& pManagerSet, const String& s
         SceneType eSceneType = GetEnumFromStringOrNone<SceneType>(sSceneID);
         switch (eSceneType)
         {
+        case SceneType::Start:
+            AddScene(sSceneID, STDMakeSharedPtr<SceneStart>());
+            break;
         case SceneType::Intro:
             AddScene(sSceneID, STDMakeSharedPtr<SceneIntro>());
             break;

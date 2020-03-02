@@ -60,8 +60,9 @@
 // File URI base
 #define FILE_URI_BASE                               "file://"
 
-// Starting URI
+// Starting information
 #define STARTING_URI                                "about:blank"
+#define STARTING_SCENE                              "Start"
 
 // Logger name
 #define LOGGER_NAME                                 "log"
@@ -204,6 +205,9 @@
 #define LIB_FILE_SCREENFULL_JS                      "screenfull.min.js"
 
 // Page files
+#define PAGE_FILE_START_HTML                        "Start.html"
+#define PAGE_FILE_START_JS                          "Start.js"
+#define PAGE_FILE_START_CSS                         "Start.css"
 #define PAGE_FILE_INTRO_HTML                        "Intro.html"
 #define PAGE_FILE_INTRO_JS                          "Intro.js"
 #define PAGE_FILE_INTRO_CSS                         "Intro.css"

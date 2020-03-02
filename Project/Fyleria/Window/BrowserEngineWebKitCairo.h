@@ -11,8 +11,6 @@
 // External includes
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#include <WebKit/WKBase.h>
-#include <WebKit/WKRetainPtr.h>
 #include <WebKit/WebKit2_C.h>
 #include <WebKit/WKRetainPtr.h>
 #include <WebKit/WKSerializedScriptValue.h>
@@ -52,14 +50,17 @@ public:
     // Run javascript
     virtual void RunJavascript(const String& sScript) override;
 
-    // Set html content
-    virtual void SetHtmlContent(const String& sHtml) override;
+    // Load html content
+    virtual void LoadHtmlContent(const String& sHtml) override;
 
     // Run main loop iteration
     virtual void RunMainLoopIteration(Bool bBlocking) override;
 
     // Get javascript result string
     String GetJavascriptResultString(WKSerializedScriptValueRef pResult);
+
+    // Handle message received
+    void OnMessageReceived(WKSerializedScriptValueRef sMessage);
 
     // Main window
     MAKE_RAW_TYPE_ACCESSORS(MainWindow, HWND);

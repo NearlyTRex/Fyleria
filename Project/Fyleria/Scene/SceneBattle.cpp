@@ -31,7 +31,7 @@ void SceneBattle::Start(SafeObject<ManagerSet>& pManagerSet)
     InjectCommonData(pManagerSet);
     InjectStylesheetFile(pManagerSet, PAGE_FILE_BATTLE_CSS, sLocation);
     InjectJavascriptFile(pManagerSet, PAGE_FILE_BATTLE_JS, sLocation);
-    SetHtmlContentFile(pManagerSet, PAGE_FILE_BATTLE_HTML, sLocation);
+    LoadHtmlContentFile(pManagerSet, PAGE_FILE_BATTLE_HTML, sLocation);
 }
 
 void SceneBattle::Finish(SafeObject<ManagerSet>& pManagerSet)

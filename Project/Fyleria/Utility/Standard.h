@@ -31,6 +31,9 @@
 #include <type_traits>
 #include <csignal>
 
+// Internal include
+#include "Utility/Platform.h"
+
 // Standard defines
 #define STDCout std::cout
 #define STDCerr std::cerr

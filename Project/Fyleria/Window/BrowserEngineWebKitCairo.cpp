@@ -292,7 +292,7 @@ Bool BrowserEngineWebKitCairo::Init(SafeObject<ManagerSet>& pManagerSet, const S
     Navigate(STARTING_URI);
 
     // Switch to starting scene
-    pManagerSet->GetSceneManager()->SwitchToScene(pManagerSet, (+SceneType::Intro)._to_string());
+    pManagerSet->GetSceneManager()->SwitchToScene(pManagerSet, STARTING_SCENE);
     return true;
 }
 
@@ -348,16 +348,12 @@ void BrowserEngineWebKitCairo::RunJavascript(const String& sScript)
     }
 }
 
-void BrowserEngineWebKitCairo::SetHtmlContent(const String& sHtml)
+void BrowserEngineWebKitCairo::LoadHtmlContent(const String& sHtml)
 {
-    // Set document html
-    String sHtmlContent(sHtml);
-    BoostReplaceAll(sHtmlContent, INJECTED_STYLES_TOKEN, String(GetUserStyles()->c_str()));
-    BoostReplaceAll(sHtmlContent, INJECTED_SCRIPTS_TOKEN, String(GetSystemScripts()->c_str()) + String(GetUserScripts()->c_str()));
-    BoostReplaceAll(sHtmlContent, INJECTED_MARKUP_TOKEN, String(GetUserMarkup()->c_str()));
+    // Load html
     WKPageLoadHTMLString(
         WKViewGetPage(GetWebKitView().get()),
-        ConvertStringToWebKitString(sHtmlContent).get(),
+        ConvertStringToWebKitString(CreateLoadableHtmlPage(sHtml)).get(),
         ConvertStringToWebKitURL(FILE_URI_BASE).get());
 }
 
@@ -392,6 +388,17 @@ void BrowserEngineWebKitCairo::RunMainLoopIteration(Bool bBlocking)
 
 String BrowserEngineWebKitCairo::GetJavascriptResultString(WKSerializedScriptValueRef pResult)
 {
+    // Context wrapper
+    class JavaScriptGlobalContext
+    {
+    public:
+        JavaScriptGlobalContext() { m_pContext = JSGlobalContextCreate(nullptr); }
+        ~JavaScriptGlobalContext() { JSGlobalContextRelease(m_pContext); }
+        JSGlobalContextRef get() { return m_pContext; }
+    private:
+        JSGlobalContextRef m_pContext;
+    };
+
     // Output string
     String sResult;
 
@@ -403,8 +410,8 @@ String BrowserEngineWebKitCairo::GetJavascriptResultString(WKSerializedScriptVal
     }
 
     // Create script context
-    JSGlobalContextRef pContext = JSGlobalContextCreate(nullptr);
-    if (!pContext)
+    JavaScriptGlobalContext jsContext;
+    if (!jsContext.get())
     {
         ERROR_STATEMENT("Error running javascript: Unable to create context");
         return sResult;
@@ -412,29 +419,31 @@ String BrowserEngineWebKitCairo::GetJavascriptResultString(WKSerializedScriptVal
 
     // Get deserialized value
     JSValueRef pJsException = nullptr;
-    JSValueRef pDeserializedValue = WKSerializedScriptValueDeserialize(pResult, pContext, &pJsException);
+    JSValueRef pDeserializedValue = WKSerializedScriptValueDeserialize(pResult, jsContext.get(), &pJsException);
     if (!pDeserializedValue)
     {
-        ERROR_FORMAT_STATEMENT("Error running javascript: {}", GetJavascriptExceptionString(pJsException, pContext));
-        JSGlobalContextRelease(pContext);
+        ERROR_FORMAT_STATEMENT("Error running javascript: {}", GetJavascriptExceptionString(pJsException, jsContext.get()));
         return sResult;
     }
 
     // Get result string
     pJsException = nullptr;
-    JSStringRef pJsResultString = JSValueToStringCopy(pContext, pDeserializedValue, &pJsException);
+    JSStringRef pJsResultString = JSValueToStringCopy(jsContext.get(), pDeserializedValue, &pJsException);
     if (pJsResultString)
     {
         sResult = ConvertJavascriptStringToString(pJsResultString);
         JSStringRelease(pJsResultString);
-        JSGlobalContextRelease(pContext);
     }
     else
     {
-        ERROR_FORMAT_STATEMENT("Error running javascript: {}", GetJavascriptExceptionString(pJsException, pContext));
-        JSGlobalContextRelease(pContext);
+        ERROR_FORMAT_STATEMENT("Error running javascript: {}", GetJavascriptExceptionString(pJsException, jsContext.get()));
     }
     return sResult;
+}
+
+void BrowserEngineWebKitCairo::OnMessageReceived(WKSerializedScriptValueRef sMessage)
+{
+
 }
 
 };

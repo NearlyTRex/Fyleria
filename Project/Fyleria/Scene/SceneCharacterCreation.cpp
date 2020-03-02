@@ -31,7 +31,7 @@ void SceneCharacterCreation::Start(SafeObject<ManagerSet>& pManagerSet)
     InjectCommonData(pManagerSet);
     InjectStylesheetFile(pManagerSet, PAGE_FILE_CHARACTER_CREATION_CSS, sLocation);
     InjectJavascriptFile(pManagerSet, PAGE_FILE_CHARACTER_CREATION_JS, sLocation);
-    SetHtmlContentFile(pManagerSet, PAGE_FILE_CHARACTER_CREATION_HTML, sLocation);
+    LoadHtmlContentFile(pManagerSet, PAGE_FILE_CHARACTER_CREATION_HTML, sLocation);
 }
 
 void SceneCharacterCreation::Finish(SafeObject<ManagerSet>& pManagerSet)

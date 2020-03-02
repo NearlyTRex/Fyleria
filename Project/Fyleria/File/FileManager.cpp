@@ -5,6 +5,7 @@
 #include "File/FileManager.h"
 #include "Utility/Constants.h"
 #include "Utility/Converters.h"
+#include "Utility/Time.h"
 
 namespace Gecko
 {
@@ -434,7 +435,7 @@ String FileManager::GetLogFile()
 #else
     sLogFile += "Release_";
 #endif
-    sLogFile += BoostLexicalCast<String>(STDPutTime(STDLocalTime(&uTime), "%Y%m%d-%OH%OM%OS"));
+    sLogFile += GetFormattedTimestamp(uTime, "%Y%m%d-%OH%OM%OS");
     sLogFile += ".txt";
 
     // Return log file

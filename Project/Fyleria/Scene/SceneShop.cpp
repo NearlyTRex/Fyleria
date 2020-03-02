@@ -31,7 +31,7 @@ void SceneShop::Start(SafeObject<ManagerSet>& pManagerSet)
     InjectCommonData(pManagerSet);
     InjectStylesheetFile(pManagerSet, PAGE_FILE_SHOP_CSS, sLocation);
     InjectJavascriptFile(pManagerSet, PAGE_FILE_SHOP_JS, sLocation);
-    SetHtmlContentFile(pManagerSet, PAGE_FILE_SHOP_HTML, sLocation);
+    LoadHtmlContentFile(pManagerSet, PAGE_FILE_SHOP_HTML, sLocation);
 }
 
 void SceneShop::Finish(SafeObject<ManagerSet>& pManagerSet)

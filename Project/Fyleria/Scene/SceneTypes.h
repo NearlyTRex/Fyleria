@@ -13,6 +13,7 @@ namespace Gecko
 
 BETTER_ENUM(SceneType, Int,
     None,
+    Start,
     Intro,
     Loading,
     MainMenu,

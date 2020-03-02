@@ -22,6 +22,7 @@ namespace Gecko
 typedef std::random_device RandomDevice;
 typedef std::mt19937 RandomGenerator;
 typedef std::time_t TimeType;
+typedef struct tm TimeInfo;
 typedef size_t SizeType;
 typedef char Byte;
 typedef wchar_t WByte;

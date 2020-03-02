@@ -6,6 +6,7 @@
 
 // Internal includes
 #include "Scene/Scene.h"
+#include "Scene/SceneStart.h"
 #include "Scene/SceneIntro.h"
 #include "Scene/SceneLoading.h"
 #include "Scene/SceneMainMenu.h"

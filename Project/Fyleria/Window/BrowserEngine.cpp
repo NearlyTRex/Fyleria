@@ -23,81 +23,114 @@ void BrowserEngine::Shutdown()
     GetIsShuttingDown() = true;
 }
 
-void BrowserEngine::InjectSystemJavascript(const String& sScript)
+void BrowserEngine::InjectGlobalJavascript(const String& sScript)
 {
     // Inject script
-    String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
-    GetSystemScripts()->append(sTag);
+    GetGlobalScripts()->append(CreateInlineJavascriptTag(sScript));
 }
 
-void BrowserEngine::InjectUserStylesheet(const String& sStyle)
+void BrowserEngine::InjectLocalStylesheet(const String& sStyle)
 {
     // Inject style
-    String sTag = "<style>" + sStyle + "</style>\n";
-    GetUserStyles()->append(sTag);
+    GetLocalStyles()->append(CreateInlineStylesheetTag(sStyle));
 }
 
-void BrowserEngine::InjectUserStylesheetFile(SafeManagerSet& pManagerSet, const String& sFile, const String& sFileRoot)
+void BrowserEngine::InjectLocalStylesheetFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
     // Inject style
-    String sUri = pManagerSet->GetFileManager()->GetUriPath(sFile, sFileRoot);
-    String sTag = "<link rel=\"stylesheet\" type=\"text/css\" href='" + sUri + "'>\n";
-    GetUserStyles()->append(sTag);
+    GetLocalStyles()->append(CreateFileStylesheetTag(pManagerSet, sFile, sFileRoot));
 }
 
-void BrowserEngine::InjectUserJavascript(const String& sScript)
+void BrowserEngine::InjectLocalJavascript(const String& sScript)
 {
     // Inject script
+    GetLocalScripts()->append(CreateInlineJavascriptTag(sScript));
+}
+
+void BrowserEngine::InjectLocalJavascriptFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
+{
+    // Inject script
+    GetLocalScripts()->append(CreateFileJavascriptTag(pManagerSet, sFile, sFileRoot));
+}
+
+void BrowserEngine::InjectLocalHtml(const String& sHtml)
+{
+    // Inject html
+    GetLocalMarkup()->append(sHtml);
+}
+
+void BrowserEngine::InjectLocalHtmlFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
+{
+    // Inject html
+    String sFileContents;
+    if (pManagerSet->GetFileManager()->ReadFileToString(sFile, sFileContents, sFileRoot))
+    {
+        InjectLocalHtml(sFileContents);
+    }
+}
+
+void BrowserEngine::RemoveAllGlobalInjectedData()
+{
+    // Remove all injected data
+    GetGlobalScripts()->clear();
+}
+
+void BrowserEngine::RemoveAllLocalInjectedData()
+{
+    // Remove all injected data
+    GetLocalStyles()->clear();
+    GetLocalScripts()->clear();
+    GetLocalMarkup()->clear();
+}
+
+void BrowserEngine::LoadHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
+{
+    // Load document html
+    String sFileContents;
+    if (pManagerSet->GetFileManager()->ReadFileToString(sFile, sFileContents, sFileRoot))
+    {
+        LoadHtmlContent(sFileContents);
+    }
+}
+
+String BrowserEngine::CreateInlineJavascriptTag(const String& sScript)
+{
+    // Create tag
     String sTag = "<script type=\"text/javascript\">" + sScript + "</script>\n";
-    GetUserScripts()->append(sTag);
+    return sTag;
 }
 
-void BrowserEngine::InjectUserJavascriptFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
+String BrowserEngine::CreateFileJavascriptTag(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
-    // Inject script
+    // Create tag
     String sUri = pManagerSet->GetFileManager()->GetUriPath(sFile, sFileRoot);
     String sTag = "<script type=\"text/javascript\" src=\"" + sUri + "\"></script>\n";
-    GetUserScripts()->append(sTag);
+    return sTag;
 }
 
-void BrowserEngine::InjectUserHtml(const String& sHtml)
+String BrowserEngine::CreateInlineStylesheetTag(const String& sStyle)
 {
-    // Inject html
-    GetUserMarkup()->append(sHtml);
+    // Create tag
+    String sTag = "<style>" + sStyle + "</style>\n";
+    return sTag;
 }
 
-void BrowserEngine::InjectUserHtmlFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
+String BrowserEngine::CreateFileStylesheetTag(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
 {
-    // Inject html
-    String sFileContents;
-    if (pManagerSet->GetFileManager()->ReadFileToString(sFile, sFileContents, sFileRoot))
-    {
-        InjectUserHtml(sFileContents);
-    }
+    // Create tag
+    String sUri = pManagerSet->GetFileManager()->GetUriPath(sFile, sFileRoot);
+    String sTag = "<link rel=\"stylesheet\" type=\"text/css\" href='" + sUri + "'>\n";
+    return sTag;
 }
 
-void BrowserEngine::RemoveAllSystemInjectedData()
+String BrowserEngine::CreateLoadableHtmlPage(const String& sHtml)
 {
-    // Remove all injected data
-    GetSystemScripts()->clear();
-}
-
-void BrowserEngine::RemoveAllUserInjectedData()
-{
-    // Remove all injected data
-    GetUserStyles()->clear();
-    GetUserScripts()->clear();
-    GetUserMarkup()->clear();
-}
-
-void BrowserEngine::SetHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot)
-{
-    // Set document html
-    String sFileContents;
-    if (pManagerSet->GetFileManager()->ReadFileToString(sFile, sFileContents, sFileRoot))
-    {
-        SetHtmlContent(sFileContents);
-    }
+    // Create page
+    String sHtmlPage(sHtml);
+    BoostReplaceAll(sHtmlPage, INJECTED_STYLES_TOKEN, String(GetLocalStyles()->c_str()));
+    BoostReplaceAll(sHtmlPage, INJECTED_SCRIPTS_TOKEN, String(GetGlobalScripts()->c_str()) + String(GetLocalScripts()->c_str()));
+    BoostReplaceAll(sHtmlPage, INJECTED_MARKUP_TOKEN, String(GetLocalMarkup()->c_str()));
+    return sHtmlPage;
 }
 
 void BrowserEngine::DefineJavascriptShortcut(const String& sFunction, const String& sArgs)

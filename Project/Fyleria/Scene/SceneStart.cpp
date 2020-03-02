@@ -10,31 +10,31 @@
 namespace Gecko
 {
 
-SceneIntro::SceneIntro()
+SceneStart::SceneStart()
     : Scene()
 {
 }
 
-SceneIntro::~SceneIntro()
+SceneStart::~SceneStart()
 {
 }
 
-void SceneIntro::Start(SafeObject<ManagerSet>& pManagerSet)
+void SceneStart::Start(SafeObject<ManagerSet>& pManagerSet)
 {
     // Register callbacks
-    SetPostCallback(STDBindFunc(&SceneIntro::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
+    SetPostCallback(STDBindFunc(&SceneStart::OnMessageReceived, this, pManagerSet, STDPlaceholder1));
 
     // Page location
     String sLocation = pManagerSet->GetFileManager()->GetDataPagesDirectory();
 
     // Load page content
     InjectCommonData(pManagerSet);
-    InjectStylesheetFile(pManagerSet, PAGE_FILE_INTRO_CSS, sLocation);
-    InjectJavascriptFile(pManagerSet, PAGE_FILE_INTRO_JS, sLocation);
-    LoadHtmlContentFile(pManagerSet, PAGE_FILE_INTRO_HTML, sLocation);
+    InjectStylesheetFile(pManagerSet, PAGE_FILE_START_CSS, sLocation);
+    InjectJavascriptFile(pManagerSet, PAGE_FILE_START_JS, sLocation);
+    LoadHtmlContentFile(pManagerSet, PAGE_FILE_START_HTML, sLocation);
 }
 
-void SceneIntro::Finish(SafeObject<ManagerSet>& pManagerSet)
+void SceneStart::Finish(SafeObject<ManagerSet>& pManagerSet)
 {
     // Clear callbacks
     ClearPostCallback();
@@ -43,15 +43,15 @@ void SceneIntro::Finish(SafeObject<ManagerSet>& pManagerSet)
     RemoveAllInjectedData();
 }
 
-void SceneIntro::Update(SafeObject<ManagerSet>& pManagerSet)
+void SceneStart::Update(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneIntro::Input(SafeObject<ManagerSet>& pManagerSet)
+void SceneStart::Input(SafeObject<ManagerSet>& pManagerSet)
 {
 }
 
-void SceneIntro::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
+void SceneStart::OnMessageReceived(SafeObject<ManagerSet>& pManagerSet, const String& sMessage)
 {
     // Function / arguments
     String sFunction;

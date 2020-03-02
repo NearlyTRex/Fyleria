@@ -57,44 +57,59 @@ public:
     // Navigate to url
     virtual void Navigate(const String& sUrl) = 0;
 
-    // Inject system javascript
-    virtual void InjectSystemJavascript(const String& sScript);
+    // Inject global javascript
+    virtual void InjectGlobalJavascript(const String& sScript);
 
-    // Inject user stylesheet
-    virtual void InjectUserStylesheet(const String& sStyle);
+    // Inject local stylesheet
+    virtual void InjectLocalStylesheet(const String& sStyle);
 
-    // Inject user stylesheet file
-    virtual void InjectUserStylesheetFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
+    // Inject local stylesheet file
+    virtual void InjectLocalStylesheetFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
 
-    // Inject user javascript
-    virtual void InjectUserJavascript(const String& sScript);
+    // Inject local javascript
+    virtual void InjectLocalJavascript(const String& sScript);
 
-    // Inject user javascript file
-    virtual void InjectUserJavascriptFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
+    // Inject local javascript file
+    virtual void InjectLocalJavascriptFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
 
-    // Inject user html
-    virtual void InjectUserHtml(const String& sHtml);
+    // Inject local html
+    virtual void InjectLocalHtml(const String& sHtml);
 
-    // Inject user html file
-    virtual void InjectUserHtmlFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
+    // Inject local html file
+    virtual void InjectLocalHtmlFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
 
-    // Remove all system injected data
-    virtual void RemoveAllSystemInjectedData();
+    // Remove all global injected data
+    virtual void RemoveAllGlobalInjectedData();
 
-    // Remove all user injected data
-    virtual void RemoveAllUserInjectedData();
+    // Remove all local injected data
+    virtual void RemoveAllLocalInjectedData();
 
     // Run javascript
     virtual void RunJavascript(const String& sScript) = 0;
 
-    // Set html content
-    virtual void SetHtmlContent(const String& sHtml) = 0;
+    // Load html content
+    virtual void LoadHtmlContent(const String& sHtml) = 0;
 
-    // Set html content file
-    virtual void SetHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
+    // Load html content file
+    virtual void LoadHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
 
     // Run main loop iteration
     virtual void RunMainLoopIteration(Bool bBlocking) = 0;
+
+    // Create inline javascript tag
+    virtual String CreateInlineJavascriptTag(const String& sScript);
+
+    // Create file javascript tag
+    virtual String CreateFileJavascriptTag(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
+
+    // Create inline stylesheet tag
+    virtual String CreateInlineStylesheetTag(const String& sStyle);
+
+    // Create file stylesheet tag
+    virtual String CreateFileStylesheetTag(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
+
+    // Create loadable html page
+    virtual String CreateLoadableHtmlPage(const String& sHtml);
 
     // Define javascript shortcut
     virtual void DefineJavascriptShortcut(const String& sFunction, const String& sArgs);
@@ -111,17 +126,17 @@ public:
     // Run result (C++ -> Javascript) callback
     MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(RunResultJavascriptCallback, SafeObject<JavascriptCallbackWrapper>);
 
-    // System scripts
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(SystemScripts, SafeString);
+    // Global scripts
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(GlobalScripts, SafeString);
 
-    // User styles
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(UserStyles, SafeString);
+    // Local styles
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(LocalStyles, SafeString);
 
-    // User scripts
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(UserScripts, SafeString);
+    // Local scripts
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(LocalScripts, SafeString);
 
-    // User markup
-    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(UserMarkup, SafeString);
+    // Local markup
+    MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(LocalMarkup, SafeString);
 
     // Preferences
     MAKE_RAW_TYPE_ACCESSORS_GET_ONLY(Preferences, BrowserEnginePreferences);

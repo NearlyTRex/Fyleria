@@ -74,11 +74,11 @@ protected:
     // Run javascript
     virtual void RunJavascript(const String& sScript);
 
-    // Set html content
-    virtual void SetHtmlContent(const String& sHtml);
+    // Load html content
+    virtual void LoadHtmlContent(const String& sHtml);
 
-    // Set html content file
-    virtual void SetHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
+    // Load html content file
+    virtual void LoadHtmlContentFile(SafeObject<ManagerSet>& pManagerSet, const String& sFile, const String& sFileRoot);
 
     // Define javascript shortcut
     virtual void DefineJavascriptShortcut(const String& sFunction, const String& sArgs);
