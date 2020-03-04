@@ -13,15 +13,6 @@
 #include <windows.h>
 #include <WebKit/WebKit2_C.h>
 #include <WebKit/WKRetainPtr.h>
-#include <WebKit/WKSerializedScriptValue.h>
-#include <WebKit/WKString.h>
-#include <WebKit/WKURL.h>
-#include <JavaScriptCore/JSContextRef.h>
-#include <JavaScriptCore/JSStringRef.h>
-#include <JavaScriptCore/JavaScript.h>
-#include <wtf/Ref.h>
-#include <wtf/StdLibExtras.h>
-#include <wtf/UniqueArray.h>
 
 // Internal includes
 #include "Window/BrowserEngine.h"

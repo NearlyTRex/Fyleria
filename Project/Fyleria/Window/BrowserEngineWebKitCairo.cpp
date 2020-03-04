@@ -8,6 +8,12 @@
 #include "Utility/Converters.h"
 #include "Utility/ManagerSet.h"
 
+// External includes
+#include <WebKit/WKSerializedScriptValue.h>
+#include <WebKit/WKPreferencesRef.h>
+#include <WebKit/WKPreferencesRefPrivate.h>
+#include <JavaScriptCore/JavaScript.h>
+
 // Windows only
 #if defined(PLATFORM_OS_WINDOWS)
 
