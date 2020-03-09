@@ -1,0 +1,92 @@
+ .../UIProcess/API/C/WKUserContentControllerRef.cpp | 43 ++++++++++++++++++++++
+ .../UIProcess/API/C/WKUserContentControllerRef.h   |  5 +++
+ 2 files changed, 48 insertions(+)
+
+diff --git a/Source/WebKit/UIProcess/API/C/WKUserContentControllerRef.cpp b/Source/WebKit/UIProcess/API/C/WKUserContentControllerRef.cpp
+index f157c07c..5af3d261 100644
+--- a/Source/WebKit/UIProcess/API/C/WKUserContentControllerRef.cpp
++++ b/Source/WebKit/UIProcess/API/C/WKUserContentControllerRef.cpp
+@@ -28,13 +28,44 @@
+ 
+ #include "APIArray.h"
+ #include "APIContentRuleList.h"
++#include "APISerializedScriptValue.h"
+ #include "APIUserScript.h"
++#include "APIFrameInfo.h"
+ #include "InjectUserScriptImmediately.h"
+ #include "WKAPICast.h"
+ #include "WebUserContentControllerProxy.h"
++#include "WebScriptMessageHandler.h"
++#include "WKSerializedScriptValue.h"
++#include "WKAPICast.h"
+ 
+ using namespace WebKit;
+ 
++class ScriptMessageClient final : public WebScriptMessageHandler::Client
++{
++    WTF_MAKE_FAST_ALLOCATED;
++public:
++    ScriptMessageClient(WKScriptMessageHandlerFunc handlerFunc, void* handlerCtx)
++        : m_handlerFunc(handlerFunc)
++        , m_handlerCtx(handlerCtx)
++    {
++    }
++
++    void didPostMessage(WebPageProxy&, FrameInfoData&&, WebCore::SerializedScriptValue& serializedScriptValue) override
++    {
++        if (m_handlerFunc)
++        {
++            auto value = API::SerializedScriptValue::create(serializedScriptValue);
++            m_handlerFunc(WebKit::toAPI(value.ptr()), m_handlerCtx);
++        }
++    }
++
++    virtual ~ScriptMessageClient() { }
++
++private:
++    WKScriptMessageHandlerFunc m_handlerFunc;
++    void* m_handlerCtx;
++};
++
+ WKTypeID WKUserContentControllerGetTypeID()
+ {
+     return toAPI(WebUserContentControllerProxy::APIType);
+@@ -45,6 +76,18 @@ WKUserContentControllerRef WKUserContentControllerCreate()
+     return toAPI(&WebUserContentControllerProxy::create().leakRef());
+ }
+ 
++void WKUserContentControllerAddScriptMessageHandler(WKUserContentControllerRef userContentControllerRef, WKStringRef handlerName, WKScriptMessageHandlerFunc handlerFunc, void* handlerCtx)
++{
++    Ref<WebScriptMessageHandler> handler =
++        WebScriptMessageHandler::create(makeUnique<ScriptMessageClient>(handlerFunc, handlerCtx), toWTFString(handlerName), API::UserContentWorld::normalWorld());
++    toImpl(userContentControllerRef)->addUserScriptMessageHandler(handler);
++}
++
++void WKUserContentControllerRemoveScriptMessageHandler(WKUserContentControllerRef userContentControllerRef, WKStringRef handlerName)
++{
++    toImpl(userContentControllerRef)->removeUserMessageHandlerForName(toWTFString(handlerName), API::UserContentWorld::normalWorld());
++}
++
+ WKArrayRef WKUserContentControllerCopyUserScripts(WKUserContentControllerRef userContentControllerRef)
+ {
+     Ref<API::Array> userScripts = toImpl(userContentControllerRef)->userScripts().copy();
+diff --git a/Source/WebKit/UIProcess/API/C/WKUserContentControllerRef.h b/Source/WebKit/UIProcess/API/C/WKUserContentControllerRef.h
+index 96fd0ad2..475d7252 100644
+--- a/Source/WebKit/UIProcess/API/C/WKUserContentControllerRef.h
++++ b/Source/WebKit/UIProcess/API/C/WKUserContentControllerRef.h
+@@ -32,10 +32,15 @@
+ extern "C" {
+ #endif
+ 
++typedef void (*WKScriptMessageHandlerFunc)(WKSerializedScriptValueRef, void*);
++
+ WK_EXPORT WKTypeID WKUserContentControllerGetTypeID(void);
+ 
+ WK_EXPORT WKUserContentControllerRef WKUserContentControllerCreate(void);
+ 
++WK_EXPORT void WKUserContentControllerAddScriptMessageHandler(WKUserContentControllerRef userContentController, WKStringRef handlerName, WKScriptMessageHandlerFunc handlerFunc, void* handlerCtx);
++WK_EXPORT void WKUserContentControllerRemoveScriptMessageHandler(WKUserContentControllerRef userContentController, WKStringRef handlerName);
++
+ WK_EXPORT WKArrayRef WKUserContentControllerCopyUserScripts(WKUserContentControllerRef userContentController);
+ WK_EXPORT void WKUserContentControllerAddUserScript(WKUserContentControllerRef userContentController, WKUserScriptRef userScript);
+ WK_EXPORT void WKUserContentControllerRemoveAllUserScripts(WKUserContentControllerRef userContentController);
