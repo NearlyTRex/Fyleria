@@ -2,3 +2,7 @@
 	path = Project/Libs/Cpp/WebKit/orig
 	url = https://github.com/NearlyTRex/WebKit
 	branch = main
+[submodule "Project/Libs/Cpp/MicroPather/orig"]
+	path = Project/Libs/Cpp/MicroPather/orig
+	url = https://github.com/NearlyTRex/MicroPather
+	branch = master
