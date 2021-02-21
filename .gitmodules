@@ -98,3 +98,7 @@
 	path = Project/Programs/Zip/orig
 	url = https://github.com/NearlyTRex/Zip
 	branch = master
+[submodule "Project/Libs/Cpp/WebKit/orig"]
+	path = Project/Libs/Cpp/WebKit/orig
+	url = https://github.com/NearlyTRex/WebKit
+	branch = main
