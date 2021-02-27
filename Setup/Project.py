@@ -18,7 +18,7 @@ def SetupProject(project_name, project_base_dir, system_info, program_options):
     origdir = os.path.normpath(os.path.join(projectdir, "orig"))
     sys.path.append(projectdir)
     module = importlib.import_module(project_name)
-    
+
     # Run extra setup steps
     if module.Setup['steps'] and os.path.exists(origdir):
 

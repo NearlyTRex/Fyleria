@@ -1,6 +1,5 @@
 # Setup script
-# Download, extract, and configure libraries
-# Configure project for various platforms
+# Configure libraries and project for various platforms
 
 # Base imports
 import sys

@@ -11,10 +11,10 @@ class SystemInformation:
 ###########################################################################
 # Get system information
 def GetSystemInformation(program_options, root_path):
-    
+
     # Get current system name
     current_system = platform.system().lower()
-    
+
     # Detection defaults
     detect_64bits = sys.maxsize > 2**32
     detect_bitness = ("x86_64" if detect_64bits else "x86_32")
@@ -30,7 +30,7 @@ def GetSystemInformation(program_options, root_path):
     detect_zip_bin = ""
     detect_unzip_bin = ""
     detect_out_bin = ""
-    
+
     # Detect platform
     if 'cygwin' in current_system:
         detect_cygwin = True
@@ -44,30 +44,30 @@ def GetSystemInformation(program_options, root_path):
                 detect_linux = False
     elif 'windows' in current_system:
         detect_windows = True
-    
+
     # Detect binaries
     if detect_linux or detect_wsl:
         detect_make_bin = "make"
         detect_build_bin = "make"
         detect_zip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Zip/bin/linux_" + detect_bitness + "/zip"))
-        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/linux_" + detect_bitness + "/unzip"))
+        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/UnZip/bin/linux_" + detect_bitness + "/unzip"))
         detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake/bin/linux_" + detect_bitness + "/premake5"))
         detect_out_bin = "FyleriaMain_linux_" + detect_bitness + "_" + program_options.configuration
     elif detect_macosx:
         detect_make_bin = "make"
         detect_build_bin = "xcodebuild"
         detect_zip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Zip/bin/macosx_" + detect_bitness + "/zip"))
-        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/macosx_" + detect_bitness + "/unzip"))
+        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/UnZip/bin/macosx_" + detect_bitness + "/unzip"))
         detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake/bin/macosx_" + detect_bitness + "/premake5"))
         detect_out_bin = "FyleriaMain_macosx_" + detect_bitness + "_" + program_options.configuration
     elif detect_windows or detect_cygwin or detect_mingw:
         detect_make_bin = "nmake"
         detect_build_bin = "devenv.com"
         detect_zip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Zip/bin/windows_" + detect_bitness + "/zip.exe"))
-        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Unzip/bin/windows_" + detect_bitness + "/unzip.exe"))
+        detect_unzip_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/UnZip/bin/windows_" + detect_bitness + "/unzip.exe"))
         detect_premake_bin = os.path.normpath(os.path.join(root_path, "Project/Programs/Premake/bin/windows_" + detect_bitness + "/premake5.exe"))
         detect_out_bin = "FyleriaMain_windows_" + detect_bitness + "_" + program_options.configuration + ".exe"
-    
+
     # Create system information
     info = SystemInformation()
     info.root_path = os.path.normpath(root_path)
@@ -86,7 +86,7 @@ def GetSystemInformation(program_options, root_path):
         program_options.force_wsl or
         program_options.force_cygwin or
         program_options.force_mingw)
-    
+
     # Override system information by force
     if info.has_forced_platform:
         info.is_linux = program_options.force_linux
@@ -104,7 +104,7 @@ def GetSystemInformation(program_options, root_path):
         info.is_cygwin = detect_cygwin
         info.is_mingw = detect_mingw
         info.is_posix = (info.is_linux or info.is_macosx or info.is_wsl or info.is_cygwin or info.is_mingw)
-    
+
     # Override bitness by force
     if program_options.force_32bits:
         info.is_32bits = True
@@ -112,7 +112,7 @@ def GetSystemInformation(program_options, root_path):
     elif program_options.force_64bits:
         info.is_32bits = False
         info.is_64bits = True
-    
+
     # Set build path
     if info.is_linux or info.is_wsl:
         info.build_path = os.path.normpath(os.path.join(root_path, "Project/Build_linux"))
