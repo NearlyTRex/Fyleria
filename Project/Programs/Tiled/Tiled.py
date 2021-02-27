@@ -1,10 +1,7 @@
 # Source: https://github.com/NearlyTRex/Tiled
-# Version: 1.2.5
 
 # Program info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/Tiled/archive/Tiled-1.2.5.zip"
-Setup['extractdir'] = "Tiled-Tiled-1.2.5"
 Setup['steps'] = {}
 Setup['steps']['posix'] = []
 Setup['steps']['posix'].append('RunProcess("qmake")')

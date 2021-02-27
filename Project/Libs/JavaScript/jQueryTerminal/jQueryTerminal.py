@@ -1,5 +1,4 @@
 # Source: https://github.com/NearlyTRex/jQueryTerminal
-# Version: 2.8.0
 
 # Steps
 CopyFileJQueryTerminalCss = 'CopyFile("css/jquery.terminal.min.css", "$(RootPath)/Data/Libs/jquery.terminal.min.css")'
@@ -10,8 +9,6 @@ CopyFileJQueryMousewheelJs = 'CopyFile("js/jquery.mousewheel-min.js", "$(RootPat
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/jQueryTerminal/archive/jQueryTerminal-2.8.0.zip"
-Setup['extractdir'] = "jQueryTerminal-jQueryTerminal-2.8.0"
 Setup['steps'] = {}
 Setup['steps']['all'] = []
 Setup['steps']['all'].append(CopyFileJQueryTerminalCss)

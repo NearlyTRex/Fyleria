@@ -1,10 +1,7 @@
 # Source: https://github.com/NearlyTRex/Premake
-# Version: 5.0.0-alpha14
 
 # Program info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/Premake/archive/Premake-5.0.0-alpha14.zip"
-Setup['extractdir'] = "Premake-Premake-5.0.0-alpha14"
 Setup['steps'] = {}
 Setup['steps']['linux'] = []
 Setup['steps']['linux'].append('RunProcess("make -f Bootstrap.mak linux")')

@@ -1,5 +1,4 @@
 # Source: https://github.com/NearlyTRex/WebKit
-# Version: r254251
 
 # Steps
 WebKit_MakeBinDir = 'MakeDirectory("$(RootPath)/Bin")'
@@ -36,8 +35,6 @@ WebKitGTK_Build = 'RunProcess("perl Tools/Scripts/build-webkit --gtk --release")
 
 # Library info
 Setup = {}
-Setup['url'] = "https://github.com/NearlyTRex/WebKit/archive/WebKit-254251.zip"
-Setup['extractdir'] = "WebKit-WebKit-r254251"
 Setup['steps'] = {}
 Setup['steps']['windows'] = []
 Setup['steps']['windows'].extend([WebKitCairo_Build, WebKit_MakeBinDir])
