@@ -66,10 +66,6 @@
 	path = Project/Libs/JavaScript/Phaser/orig
 	url = https://github.com/NearlyTRex/Phaser
 	branch = master
-[submodule "Project/Libs/JavaScript/Polyfill/orig"]
-	path = Project/Libs/JavaScript/Polyfill/orig
-	url = https://github.com/NearlyTRex/Polyfill
-	branch = master
 [submodule "Project/Libs/JavaScript/Screenfull/orig"]
 	path = Project/Libs/JavaScript/Screenfull/orig
 	url = https://github.com/NearlyTRex/Screenfull
