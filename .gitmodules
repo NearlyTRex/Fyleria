@@ -94,7 +94,3 @@
 	path = Project/Programs/Zip/orig
 	url = https://github.com/NearlyTRex/Zip
 	branch = master
-[submodule "Project/Libs/JavaScript/Polyfill/orig"]
-	path = Project/Libs/JavaScript/Polyfill/orig
-	url = https://github.com/NearlyTRex/Polyfill
-	branch = master
