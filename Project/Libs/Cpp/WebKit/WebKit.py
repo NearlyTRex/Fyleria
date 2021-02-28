@@ -32,6 +32,12 @@ WebKitCairo_CopyWebKitResources = 'CopyDirectory("WebKitBuild/Release/bin64/WebK
 WebKitGTK_InstallDeps = 'RunProcess("perl Tools/gtk/install-dependencies")'
 WebKitGTK_UpdateLibs = 'RunProcess("perl Tools/Scripts/update-webkitgtk-libs")'
 WebKitGTK_Build = 'RunProcess("perl Tools/Scripts/build-webkit --gtk --release")'
+WebKitGTK_CopyJavaScriptCore = 'CopySubstringFiles("WebKitBuild/GTK/Release/lib/", "$(RootPath)/Bin/", "libjavascriptcoregtk-4.0.so")'
+WebKitGTK_CopyWebKit = 'CopySubstringFiles("WebKitBuild/GTK/Release/lib/", "$(RootPath)/Bin/", "libwebkit2gtk-4.0.so")'
+WebKitGTK_CopyWebKitGPUProcess = 'CopySubstringFiles("WebKitBuild/GTK/Release/bin/", "$(RootPath)/Bin/", "WebKitGPUProcess")'
+WebKitGTK_CopyWebKitNetworkProcess = 'CopySubstringFiles("WebKitBuild/GTK/Release/bin/", "$(RootPath)/Bin/", "WebKitNetworkProcess")'
+WebKitGTK_CopyWebKitWebDriver = 'CopySubstringFiles("WebKitBuild/GTK/Release/bin/", "$(RootPath)/Bin/", "WebKitWebDriver")'
+WebKitGTK_CopyWebKitWebProcess = 'CopySubstringFiles("WebKitBuild/GTK/Release/bin/", "$(RootPath)/Bin/", "WebKitWebProcess")'
 
 # Library info
 Setup = {}
@@ -45,3 +51,5 @@ Setup['steps']['windows'].extend([WebKitCairo_CopyJavaScriptCore, WebKitCairo_Co
 Setup['steps']['windows'].extend([WebKitCairo_CopyWebKitNetworkProcess, WebKitCairo_CopyWebKitWebProcess, WebKitCairo_CopyWebKitResources])
 Setup['steps']['linux'] = []
 Setup['steps']['linux'].extend([WebKitGTK_InstallDeps, WebKitGTK_UpdateLibs, WebKitGTK_Build, WebKit_MakeBinDir])
+Setup['steps']['linux'].extend([WebKitGTK_CopyJavaScriptCore, WebKitGTK_CopyWebKit])
+Setup['steps']['linux'].extend([WebKitGTK_CopyWebKitGPUProcess, WebKitGTK_CopyWebKitNetworkProcess, WebKitGTK_CopyWebKitWebDriver, WebKitGTK_CopyWebKitWebProcess])

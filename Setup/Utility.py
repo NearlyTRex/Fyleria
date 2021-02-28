@@ -110,6 +110,18 @@ def RunExtraSteps(steps, platform, root_path, flags):
         new_dest = ResolvePaths(dest)
         shutil.copyfile(new_src, new_dest)
 
+    # Copy files matching a substring
+    def CopySubstringFiles(src, dest, substring):
+        new_src = ResolvePaths(src)
+        new_dest = ResolvePaths(dest)
+        matching_files = []
+        for root, dirs, files in os.walk(new_src):
+            for name in files:
+                if substring in name:
+                    matching_files.append(os.path.join(root, name))
+        for file in matching_files:
+            shutil.copy(file, new_dest)
+
     # Copy directory
     def CopyDirectory(src, dest):
         new_src = ResolvePaths(src)
