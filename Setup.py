@@ -64,22 +64,23 @@ def main():
 
     # Parse program options
     do_all = program_options.mode == "all"
+    do_setup_libs = program_options.mode == "setup_libs"
     do_setup_c_libs = program_options.mode == "setup_c_libs"
     do_setup_cpp_libs = program_options.mode == "setup_cpp_libs"
     do_setup_js_libs = program_options.mode == "setup_js_libs"
-    do_setup_py_libs = (program_options.mode == "setup_py_libs" or program_options.mode == "setup_js_libs")
+    do_setup_py_libs = program_options.mode == "setup_py_libs"
     do_build_tools = program_options.mode == "build_tools"
     do_build_game = program_options.mode == "build_game"
-    if do_setup_c_libs or do_all:
+    if do_setup_c_libs or do_setup_libs or do_all:
         for project in projects_clibs:
             Project.SetupProject(project, "Project/Libs/C", system_info, program_options)
-    if do_setup_cpp_libs or do_all:
+    if do_setup_cpp_libs or do_setup_libs or do_all:
         for project in projects_cpplibs:
             Project.SetupProject(project, "Project/Libs/Cpp", system_info, program_options)
-    if do_setup_js_libs or do_all:
+    if do_setup_js_libs or do_setup_libs or do_all:
         for project in projects_jslibs:
             Project.SetupProject(project, "Project/Libs/JavaScript", system_info, program_options)
-    if do_setup_py_libs or do_all:
+    if do_setup_py_libs or do_setup_libs or do_all:
         for project in projects_pylibs:
             Project.SetupProject(project, "Project/Libs/Python", system_info, program_options)
     if do_build_tools or do_all:
