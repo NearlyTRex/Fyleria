@@ -1,0 +1,60 @@
+[submodule "Project/Libs/C/CJSMin/orig"]
+	path = Project/Libs/C/CJSMin/orig
+	url = https://github.com/NearlyTRex/CJSMin
+[submodule "Project/Libs/C/Zlib/orig"]
+	path = Project/Libs/C/Zlib/orig
+	url = https://github.com/NearlyTRex/Zlib
+[submodule "Project/Libs/Cpp/Backward/orig"]
+	path = Project/Libs/Cpp/Backward/orig
+	url = https://github.com/NearlyTRex/Backward
+[submodule "Project/Libs/Cpp/BetterEnums/orig"]
+	path = Project/Libs/Cpp/BetterEnums/orig
+	url = https://github.com/NearlyTRex/BetterEnums
+[submodule "Project/Libs/Cpp/Boost/orig"]
+	path = Project/Libs/Cpp/Boost/orig
+	url = https://github.com/NearlyTRex/Boost
+[submodule "Project/Libs/Cpp/Date/orig"]
+	path = Project/Libs/Cpp/Date/orig
+	url = https://github.com/NearlyTRex/Date
+[submodule "Project/Libs/Cpp/FantasyName/orig"]
+	path = Project/Libs/Cpp/FantasyName/orig
+	url = https://github.com/NearlyTRex/FantasyName
+[submodule "Project/Libs/Cpp/ImmutableString/orig"]
+	path = Project/Libs/Cpp/ImmutableString/orig
+	url = https://github.com/NearlyTRex/ImmutableString
+[submodule "Project/Libs/Cpp/Json/orig"]
+	path = Project/Libs/Cpp/Json/orig
+	url = https://github.com/NearlyTRex/Json
+[submodule "Project/Libs/Cpp/LRUCache/orig"]
+	path = Project/Libs/Cpp/LRUCache/orig
+	url = https://github.com/NearlyTRex/LRUCache
+[submodule "Project/Libs/Cpp/MicroPather/orig"]
+	path = Project/Libs/Cpp/MicroPather/orig
+	url = https://github.com/NearlyTRex/MicroPather
+[submodule "Project/Libs/Cpp/ObjectThreadsafe/orig"]
+	path = Project/Libs/Cpp/ObjectThreadsafe/orig
+	url = https://github.com/NearlyTRex/ObjectThreadsafe
+[submodule "Project/Libs/Cpp/SpdLog/orig"]
+	path = Project/Libs/Cpp/SpdLog/orig
+	url = https://github.com/NearlyTRex/SpdLog
+[submodule "Project/Libs/Cpp/WebView/orig"]
+	path = Project/Libs/Cpp/WebView/orig
+	url = https://github.com/NearlyTRex/WebView
+[submodule "Project/Libs/JavaScript/Bootstrap/orig"]
+	path = Project/Libs/JavaScript/Bootstrap/orig
+	url = https://github.com/NearlyTRex/Bootstrap
+[submodule "Project/Libs/JavaScript/jQuery/orig"]
+	path = Project/Libs/JavaScript/jQuery/orig
+	url = https://github.com/NearlyTRex/jQuery
+[submodule "Project/Libs/JavaScript/jQueryTerminal/orig"]
+	path = Project/Libs/JavaScript/jQueryTerminal/orig
+	url = https://github.com/NearlyTRex/jQueryTerminal
+[submodule "Project/Libs/JavaScript/Phaser/orig"]
+	path = Project/Libs/JavaScript/Phaser/orig
+	url = https://github.com/NearlyTRex/Phaser
+[submodule "Project/Libs/Python/PyJSMin/orig"]
+	path = Project/Libs/Python/PyJSMin/orig
+	url = https://github.com/NearlyTRex/PyJSMin
+[submodule "Project/Programs/Premake/orig"]
+	path = Project/Programs/Premake/orig
+	url = https://github.com/NearlyTRex/Premake
