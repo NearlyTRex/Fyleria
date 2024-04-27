@@ -1,0 +1,47 @@
+name: Deploy (Windows)
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-windows:
+    name: Windows Latest
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        mode: [debug, release]
+        include:
+          - mode: debug
+            arch: x86_64
+          - mode: release
+            arch: x86_64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          submodules: 'true'
+
+      - name: Build
+        shell: cmd
+        run: |
+          call vcvars.bat
+          python3 Setup.py -v --configuration ${{ matrix.mode }} --buildtype vs2022 all
+
+      - name: Pack
+        shell: cmd
+        run: |
+          rm -f ./Bin/*.lib
+          rm -f ./Bin/*.idb
+          rm -f ./Bin/*.pdb
+          7z a Fyleria_windows_${{ matrix.arch }}_${{ matrix.mode }}.7z ./Data ./Bin
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Fyleria_windows_${{ matrix.arch }}_${{ matrix.mode }}.7z

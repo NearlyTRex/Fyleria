@@ -1,0 +1,52 @@
+name: Deploy (Linux)
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-linux:
+    name: Ubuntu Latest
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mode: [debug, release]
+        include:
+          - mode: debug
+            arch: x86_64
+          - mode: release
+            arch: x86_64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          submodules: 'true'
+
+      - name: Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install binutils-dev
+          sudo apt-get install libdw-dev
+          sudo apt-get install libgtk-3-dev
+          sudo apt-get install libwebkit2gtk-4.1-dev
+          gcc --version
+
+      - name: Build
+        shell: bash
+        run: python3 Setup.py -v --configuration ${{ matrix.mode }} --buildtype gmake2 all
+
+      - name: Pack
+        shell: bash
+        run: |
+          rm -f ./Bin/*.a
+          7z a Fyleria_linux_${{ matrix.arch }}_${{ matrix.mode }}.7z ./Data ./Bin
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Fyleria_linux_${{ matrix.arch }}_${{ matrix.mode }}.7z

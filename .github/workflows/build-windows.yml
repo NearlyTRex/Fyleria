@@ -1,0 +1,48 @@
+name: Build (Windows)
+
+on:
+  push:
+    paths:
+      - 'Project/**'
+      - 'Setup/**'
+      - 'Setup.py'
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    name: Windows Latest
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        mode: [debug, release]
+        include:
+          - mode: debug
+            modefull: "Debug64|x64"
+            arch: x86_64
+          - mode: release
+            modefull: "Release64|x64"
+            arch: x86_64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          submodules: 'true'
+
+      - name: Build
+        shell: cmd
+        run: |
+          call vcvars.bat
+          python3 Setup.py -v --configuration ${{ matrix.mode }} --buildtype vs2022 all
+
+      - name: Test
+        shell: cmd
+        run: .\Bin\FyleriaTest_windows_${{ matrix.arch }}_${{ matrix.mode }}.exe
+
+      - name: Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: Windows-${{ github.ref_name }}-${{ github.sha }}-${{ matrix.arch }}-${{ matrix.mode }}
+          path: |
+            .\Bin\FyleriaMain_windows_${{ matrix.arch }}_${{ matrix.mode }}.exe
+            .\Bin\FyleriaTest_windows_${{ matrix.arch }}_${{ matrix.mode }}.exe

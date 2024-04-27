@@ -1,0 +1,434 @@
+<html>
+<head>
+INJECTED_STYLES
+INJECTED_SCRIPTS
+<link rel="stylesheet" href="URI_THIRDPARTY/Bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="URI_MAIN/SceneToolParty/SceneToolParty.css">
+<script type="text/javascript" src="URI_THIRDPARTY/Bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="URI_MAIN/SceneToolParty/SceneToolParty.js"></script>
+</head>
+<body>
+INJECTED_MARKUP
+<div class="container">
+    <form>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto">Controls</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Load From JSON</label>
+            <div class="col-sm-8">
+                <textarea style="resize: none;" class="form-control" rows="3" id="LoadPartyFromJson_Textarea" placeholder="Raw party json"></textarea>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="LoadPartyFromJson_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Load From File</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="LoadPartyFromFile_Filename" placeholder="Filename" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id="LoadPartyFromFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    <option value="TextJson">TextJson</option>
+                    <option value="BinaryCBOR">BinaryCBOR</option>
+                    <option value="BinaryMsgPack">BinaryMsgPack</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="LoadPartyFromFile_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Save To File</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="SavePartyToFile_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="SavePartyToFile_Filename" placeholder="Filename" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id="SavePartyToFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    <option value="TextJson">TextJson</option>
+                    <option value="BinaryCBOR">BinaryCBOR</option>
+                    <option value="BinaryMsgPack">BinaryMsgPack</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="SavePartyToFile_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Unload Party</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="UnloadParty_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="UnloadParty_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Set As Current Party</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="SetCurrentParty_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id="SetCurrentParty_PartyType">
+                    <option value="" disabled="disabled">Party Type...</option>
+                    <option value="Ally">Ally</option>
+                    <option value="Enemy">Enemy</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="SetCurrentParty_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Create Party</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="CreateParty_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id="CreateParty_PartyType">
+                    <option value="" disabled="disabled">Party Type...</option>
+                    <option value="Ally">Ally</option>
+                    <option value="Enemy">Enemy</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="current" id="CreateParty_SetAsCurrent" checked="checked"/>
+                    <label class="form-check-label">Set as current</label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="CreateParty_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Add Member</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="AddMember_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="AddMember_CharID" placeholder="Character Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="AddMember_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Remove Member</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="RemoveMember_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="RemoveMember_CharID" placeholder="Character Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="RemoveMember_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Move Member</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="MoveMember_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="MoveMember_CharID" placeholder="Character Identifier" value=""/>
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control" id="MoveMember_CharTargetType">
+                    <option value="" disabled="disabled">Character Target Type...</option>
+                    <option value="Enemy1">Enemy1</option>
+                    <option value="Enemy2">Enemy2</option>
+                    <option value="Enemy3">Enemy3</option>
+                    <option value="Enemy4">Enemy4</option>
+                    <option value="Enemy5">Enemy5</option>
+                    <option value="Enemy6">Enemy6</option>
+                    <option value="Ally1">Ally1</option>
+                    <option value="Ally2">Ally2</option>
+                    <option value="Ally3">Ally3</option>
+                    <option value="Ally4">Ally4</option>
+                    <option value="Ally5">Ally5</option>
+                    <option value="Ally6">Ally6</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="MoveMember_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Swap Member</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="SwapMember_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="SwapMember_First_CharID" placeholder="First Character Identifier" value=""/>
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="SwapMember_Second_CharID" placeholder="Second Character Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="SwapMember_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Add Item</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="AddItem_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="AddItem_ItemName" placeholder="Item Name" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="AddItem_ItemAmount" placeholder="Item Amount" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="AddItem_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Add Random Items</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="AddRandomItems_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id="AddRandomItems_ItemTreeType">
+                    <option value="" disabled="disabled">Item Tree Type...</option>
+                    <option value="Armor">Armor</option>
+                    <option value="Ingredient">Ingredient</option>
+                    <option value="Potion">Potion</option>
+                    <option value="Weapon">Weapon</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="AddRandomItems_ItemCount" placeholder="Item Count" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="AddRandomItems_ItemAmount" placeholder="Item Amount" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="AddRandomItems_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Remove Item</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="RemoveItem_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="RemoveItem_ItemName" placeholder="Item Name" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="RemoveItem_ItemAmount" placeholder="Item Amount" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="RemoveItem_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Equip Item</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="EquipItem_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="EquipItem_CharID" placeholder="Character Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="EquipItem_ItemName" placeholder="Item Name" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id="EquipItem_CharacterEquipmentType">
+                    <option value="" disabled="disabled">Slot Type...</option>
+                    <option value="Weapon1Left">Weapon1Left</option>
+                    <option value="Weapon1Right">Weapon1Right</option>
+                    <option value="Weapon2Left">Weapon2Left</option>
+                    <option value="Weapon2Right">Weapon2Right</option>
+                    <option value="LeftFingers">LeftFingers</option>
+                    <option value="RightFingers">RightFingers</option>
+                    <option value="Neck">Neck</option>
+                    <option value="Head">Head</option>
+                    <option value="Hands">Hands</option>
+                    <option value="Feet">Feet</option>
+                    <option value="Legs">Legs</option>
+                    <option value="Chest">Chest</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="EquipItem_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Unequip Item</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="UnequipItem_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="UnequipItem_CharID" placeholder="Character Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="UnequipItem_ItemName" placeholder="Item Name" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id="UnequipItem_CharacterEquipmentType">
+                    <option value="" disabled="disabled">Slot Type...</option>
+                    <option value="Weapon1Left">Weapon1Left</option>
+                    <option value="Weapon1Right">Weapon1Right</option>
+                    <option value="Weapon2Left">Weapon2Left</option>
+                    <option value="Weapon2Right">Weapon2Right</option>
+                    <option value="LeftFingers">LeftFingers</option>
+                    <option value="RightFingers">RightFingers</option>
+                    <option value="Neck">Neck</option>
+                    <option value="Head">Head</option>
+                    <option value="Hands">Hands</option>
+                    <option value="Feet">Feet</option>
+                    <option value="Legs">Legs</option>
+                    <option value="Chest">Chest</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="UnequipItem_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Equip Best Items</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="EquipBestItems_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="EquipBestItems_CharID" placeholder="Character Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="EquipBestItems_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Unequip Best Items</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="UnequipBestItems_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="UnequipBestItems_CharID" placeholder="Character Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="UnequipBestItems_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Equip Best Items</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="EquipBestItemsAllMembers_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="EquipBestItemsAllMembers_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Unequip Best Items</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="UnequipBestItemsAllMembers_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="UnequipBestItemsAllMembers_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Display Party</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="DisplayParty_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="DisplayParty_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto">Party List</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">All Parties</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Current Ally Party</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" readonly="readonly" value=""/>
+            </div>
+            <label class="col-sm-2 col-form-label">Current Enemy Party</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" readonly="readonly" value=""/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto">Party Details</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Party ID</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" readonly="readonly" value=""/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Party Type</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" readonly="readonly" value=""/>
+            </div>
+            <label class="col-sm-2 col-form-label">Play Time</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" readonly="readonly" value=""/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Taken Target Types</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly="readonly" value=""/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Available Target Types</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" readonly="readonly" value=""/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Members</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Items</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="4" readonly="readonly"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

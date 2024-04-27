@@ -1,0 +1,55 @@
+name: Build (Linux)
+
+on:
+  push:
+    paths:
+      - 'Project/**'
+      - 'Setup/**'
+      - 'Setup.py'
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    name: Ubuntu Latest
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mode: [debug, release]
+        include:
+          - mode: debug
+            modefull: debug64
+            arch: x86_64
+          - mode: release
+            modefull: release64
+            arch: x86_64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          submodules: 'true'
+
+      - name: Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install binutils-dev
+          sudo apt-get install libdw-dev
+          sudo apt-get install libgtk-3-dev
+          sudo apt-get install libwebkit2gtk-4.1-dev
+          gcc --version
+
+      - name: Build
+        shell: bash
+        run: python3 Setup.py -v --configuration ${{ matrix.mode }} --buildtype gmake2 all
+
+      - name: Test
+        shell: bash
+        run: ./Bin/FyleriaTest_linux_${{ matrix.arch }}_${{ matrix.mode }}
+
+      - name: Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: Linux-${{ github.ref_name }}-${{ github.sha }}-${{ matrix.arch }}-${{ matrix.mode }}
+          path: |
+            ./Bin/FyleriaMain_linux_${{ matrix.arch }}_${{ matrix.mode }}
+            ./Bin/FyleriaTest_linux_${{ matrix.arch }}_${{ matrix.mode }}

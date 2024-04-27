@@ -1,0 +1,258 @@
+<html>
+<head>
+INJECTED_STYLES
+INJECTED_SCRIPTS
+<link rel="stylesheet" href="URI_THIRDPARTY/Bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="URI_MAIN/SceneToolSave/SceneToolSave.css">
+<script type="text/javascript" src="URI_THIRDPARTY/Bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="URI_MAIN/SceneToolSave/SceneToolSave.js"></script>
+</head>
+<body>
+INJECTED_MARKUP
+<div class="container">
+    <form>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto">Controls</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Initialize Empty Save Slots</label>
+            <div class="col-sm-8">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="InitalizeEmptySaveSlots_Button">Initialize Save Slots</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Initialize All Save Slots</label>
+            <div class="col-sm-8">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="InitalizeAllSaveSlots_Button">Initialize Save Slots</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Collect Save Data</label>
+            <div class="col-sm-2">
+                <select class="form-control" id=CollectSaveDataSingle_SaveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    <option value="Slot1">Slot1</option>
+                    <option value="Slot2">Slot2</option>
+                    <option value="Slot3">Slot3</option>
+                    <option value="Slot4">Slot4</option>
+                    <option value="Slot5">Slot5</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id=CollectSaveDataSingle_PartyID" placeholder="Party Identifier" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="CollectSaveDataSingle_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Collect Save Data</label>
+            <div class="col-sm-2">
+                <select class="form-control" id=CollectSaveDataMultiple_SaveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    <option value="Slot1">Slot1</option>
+                    <option value="Slot2">Slot2</option>
+                    <option value="Slot3">Slot3</option>
+                    <option value="Slot4">Slot4</option>
+                    <option value="Slot5">Slot5</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id=CollectSaveDataMultiple_PartyIDs" placeholder="Party Identifiers" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id=CollectSaveDataMultiple_Description" placeholder="Description" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id=CollectSaveDataMultiple_PlayTime" placeholder="Playtime" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="CollectSaveDataMultiple_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Disperse Save Data</label>
+            <div class="col-sm-2">
+                <select class="form-control" id=DisperseSaveData_SaveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    <option value="Slot1">Slot1</option>
+                    <option value="Slot2">Slot2</option>
+                    <option value="Slot3">Slot3</option>
+                    <option value="Slot4">Slot4</option>
+                    <option value="Slot5">Slot5</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="DisperseSaveData_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Load Save</label>
+            <div class="col-sm-8">
+                <textarea style="resize: none;" class="form-control" rows="3" id=LoadSave_Textarea" placeholder="Raw save json"></textarea>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="LoadSave_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Unload Save</label>
+            <div class="col-sm-2">
+                <select class="form-control" id=UnloadSave_SaveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    <option value="Slot1">Slot1</option>
+                    <option value="Slot2">Slot2</option>
+                    <option value="Slot3">Slot3</option>
+                    <option value="Slot4">Slot4</option>
+                    <option value="Slot5">Slot5</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="UnloadSave_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Load From File</label>
+            <div class="col-sm-2">
+                <select class="form-control" id=LoadFromFile_SaveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    <option value="Slot1">Slot1</option>
+                    <option value="Slot2">Slot2</option>
+                    <option value="Slot3">Slot3</option>
+                    <option value="Slot4">Slot4</option>
+                    <option value="Slot5">Slot5</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id=LoadFromFile_Filename" placeholder="Filename" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id=LoadFromFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    <option value="TextJson">TextJson</option>
+                    <option value="BinaryCBOR">BinaryCBOR</option>
+                    <option value="BinaryMsgPack">BinaryMsgPack</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="LoadFromFile_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Save To File</label>
+            <div class="col-sm-2">
+                <select class="form-control" id=SaveToFile_SaveSlotType">
+                    <option value="" disabled="disabled">Save Slot Type...</option>
+                    <option value="Slot1">Slot1</option>
+                    <option value="Slot2">Slot2</option>
+                    <option value="Slot3">Slot3</option>
+                    <option value="Slot4">Slot4</option>
+                    <option value="Slot5">Slot5</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id=SaveToFile_Filename" placeholder="Filename" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id=SaveToFile_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    <option value="TextJson">TextJson</option>
+                    <option value="BinaryCBOR">BinaryCBOR</option>
+                    <option value="BinaryMsgPack">BinaryMsgPack</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="SaveToFile_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Save All To Dir</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id=SaveAllToDir_Directory" placeholder="Directory" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id=SaveAllToDir_Basename" placeholder="Basename" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id=SaveAllToDir_Extension" placeholder="Extension" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id=SaveAllToDir_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    <option value="TextJson">TextJson</option>
+                    <option value="BinaryCBOR">BinaryCBOR</option>
+                    <option value="BinaryMsgPack">BinaryMsgPack</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="SaveAllToDir_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Load All From Dir</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id=LoadAllFromDir_Directory" placeholder="Directory" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id=LoadAllFromDir_Basename" placeholder="Basename" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id=LoadAllFromDir_Extension" placeholder="Extension" value=""/>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" id=LoadAllFromDir_FileType">
+                    <option value="" disabled="disabled">File Type...</option>
+                    <option value="TextJson">TextJson</option>
+                    <option value="BinaryCBOR">BinaryCBOR</option>
+                    <option value="BinaryMsgPack">BinaryMsgPack</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm form-control" id="LoadAllFromDir_Button">Run</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col"><hr></div>
+            <div class="col-auto">Save List</div>
+            <div class="col"><hr></div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 1</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 2</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 3</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 4</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly"></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Slot 5</label>
+            <div class="col-sm-10">
+                <textarea style="resize: none;" class="form-control" rows="3" readonly="readonly"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+INJECTED_STYLES
+INJECTED_SCRIPTS
+<link rel="stylesheet" href="URI_MAIN/SceneBattle/SceneBattle.css">
+<script type="text/javascript" src="URI_MAIN/SceneBattle/SceneBattle.js"></script>
+</head>
+<body>
+INJECTED_MARKUP
+<h2>Battle</h2>
+<div class="grid-container">
+    <p id="enemy1_label" class="enemy1_label">Enemy 1</p>
+    <p id="enemy2_label" class="enemy2_label">Enemy 2</p>
+    <p id="enemy3_label" class="enemy3_label">Enemy 3</p>
+    <p id="enemy4_label" class="enemy4_label">Enemy 4</p>
+    <p id="ally1_label" class="ally1_label">Ally 1</p>
+    <p id="ally2_label" class="ally2_label">Ally 2</p>
+    <p id="ally3_label" class="ally3_label">Ally 3</p>
+    <p id="ally4_label" class="ally4_label">Ally 4</p>
+
+    <textarea id="enemy1_data" class="character_data enemy1_data" readonly="readonly"></textarea>
+    <textarea id="enemy2_data" class="character_data enemy2_data" readonly="readonly"></textarea>
+    <textarea id="enemy3_data" class="character_data enemy3_data" readonly="readonly"></textarea>
+    <textarea id="enemy4_data" class="character_data enemy4_data" readonly="readonly"></textarea>
+    <textarea id="ally1_data" class="character_data ally1_data" readonly="readonly"></textarea>
+    <textarea id="ally2_data" class="character_data ally2_data" readonly="readonly"></textarea>
+    <textarea id="ally3_data" class="character_data ally3_data" readonly="readonly"></textarea>
+    <textarea id="ally4_data" class="character_data ally4_data" readonly="readonly"></textarea>
+    <textarea id="output_window" class="output_window" readonly="readonly"></textarea>
+
+    <img id="enemy1_portrait" class="character_portrait enemy1_portrait">
+    <img id="enemy2_portrait" class="character_portrait enemy2_portrait">
+    <img id="enemy3_portrait" class="character_portrait enemy3_portrait">
+    <img id="enemy4_portrait" class="character_portrait enemy4_portrait">
+    <img id="ally1_portrait" class="character_portrait ally1_portrait">
+    <img id="ally2_portrait" class="character_portrait ally2_portrait">
+    <img id="ally3_portrait" class="character_portrait ally3_portrait">
+    <img id="ally4_portrait" class="character_portrait ally4_portrait">
+
+    <select id="enemy_party_selector" class="action_dropdown enemy_party_selector"></select>
+    <select id="ally_party_selector" class="action_dropdown ally_party_selector"></select>
+    <select id="ally1_actions" class="action_dropdown ally1_actions"></select>
+    <select id="ally2_actions" class="action_dropdown ally2_actions"></select>
+    <select id="ally3_actions" class="action_dropdown ally3_actions"></select>
+    <select id="ally4_actions" class="action_dropdown ally4_actions"></select>
+
+    <button id="setup_battle" class="action_button setup_battle">Setup Battle</button>
+    <button id="clear_battle" class="action_button clear_battle">Clear Battle</button>
+    <button id="submit_actions" class="action_button submit_actions">Submit Actions</button>
+    <button id="clear_actions" class="action_button clear_actions">Clear Actions</button>
+</div>
+</body>
+</html>
