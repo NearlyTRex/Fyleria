@@ -20,10 +20,11 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "HealthPointsCurrent",
+                        "SourceStatType": "HealthPointsMax",
                         "DestinationStatType": "HealthPointsCurrent",
-                        "FullPercent": 0.10,
-                        "OperationType": "Add"
+                        "ChangeAmount": 0.10,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -50,10 +51,11 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "HealthPointsCurrent",
+                        "SourceStatType": "HealthPointsMax",
                         "DestinationStatType": "HealthPointsCurrent",
-                        "FullPercent": 0.20,
-                        "OperationType": "Add"
+                        "ChangeAmount": 0.20,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -80,10 +82,11 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "HealthPointsCurrent",
+                        "SourceStatType": "HealthPointsMax",
                         "DestinationStatType": "HealthPointsCurrent",
-                        "FullPercent": 0.30,
-                        "OperationType": "Add"
+                        "ChangeAmount": 0.40,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -110,10 +113,11 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "HealthPointsCurrent",
+                        "SourceStatType": "HealthPointsMax",
                         "DestinationStatType": "HealthPointsCurrent",
-                        "FullPercent": 0.40,
-                        "OperationType": "Add"
+                        "ChangeAmount": 0.60,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -140,10 +144,11 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "HealthPointsCurrent",
+                        "SourceStatType": "HealthPointsMax",
                         "DestinationStatType": "HealthPointsCurrent",
-                        "FullPercent": 0.50,
-                        "OperationType": "Add"
+                        "ChangeAmount": 0.80,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }

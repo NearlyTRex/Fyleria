@@ -5,7 +5,7 @@
         "ItemType": "PotionSpeed",
         "DataClass": "SpeedPotion",
         "RunTypes": [
-            "Field"
+            "Battle"
         ],
         "ActionTypes": [
             "ItemPotionSpeed"
@@ -21,8 +21,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.2,
-                        "OperationType": "Set"
+                        "ChangeAmount": 1.2,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -34,7 +35,7 @@
         "ItemType": "PotionSpeed",
         "DataClass": "SpeedPotion",
         "RunTypes": [
-            "Field"
+            "Battle"
         ],
         "ActionTypes": [
             "ItemPotionSpeed"
@@ -50,8 +51,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.4,
-                        "OperationType": "Set"
+                        "ChangeAmount": 1.4,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -63,7 +65,7 @@
         "ItemType": "PotionSpeed",
         "DataClass": "SpeedPotion",
         "RunTypes": [
-            "Field"
+            "Battle"
         ],
         "ActionTypes": [
             "ItemPotionSpeed"
@@ -79,8 +81,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.6,
-                        "OperationType": "Set"
+                        "ChangeAmount": 1.6,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -92,7 +95,7 @@
         "ItemType": "PotionSpeed",
         "DataClass": "SpeedPotion",
         "RunTypes": [
-            "Field"
+            "Battle"
         ],
         "ActionTypes": [
             "ItemPotionSpeed"
@@ -108,8 +111,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.8,
-                        "OperationType": "Set"
+                        "ChangeAmount": 1.8,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -121,7 +125,7 @@
         "ItemType": "PotionSpeed",
         "DataClass": "SpeedPotion",
         "RunTypes": [
-            "Field"
+            "Battle"
         ],
         "ActionTypes": [
             "ItemPotionSpeed"
@@ -137,8 +141,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 2.0,
-                        "OperationType": "Set"
+                        "ChangeAmount": 2.0,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
