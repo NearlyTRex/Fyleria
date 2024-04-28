@@ -70,70 +70,95 @@ public:
         Bool bApplyAllEntries = false);
 
     // Apply a stat change entry
-    Bool ApplyStatChangeEntry(const String& sSegment, const StatChangeEntry& entry);
+    template <class T>
+    Bool ApplyStatChangeEntry(
+        const String& sSegment,
+        const StatChangeEntry& entry)
+    {
+        T varSourceValue = 0;
+        if(!GetStatChangeEntrySourceValue(sSegment, entry.GetSourceCharacterID(), entry, varSourceValue))
+        {
+            return false;
+        }
+        Bool bAtLeastOneChange = false;
+        for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
+        {
+            Bool bResult = ApplyStatChangeEntryDestValue(sSegment, sDestCharID, entry, varSourceValue);
+            bAtLeastOneChange = bAtLeastOneChange || bResult;
+        }
+        return bAtLeastOneChange;
+    }
 
-    // Apply a stat change entry bool operation
-    Bool ApplyStatChangeEntryOperation(
+    // Get stat change entry source value
+    template <class T>
+    Bool GetStatChangeEntrySourceValue(
         const String& sSegment,
         const String& sCharacterID,
-        const String& sOperation,
-        const String& sStat,
-        Bool bValue);
+        const StatChangeEntry& entry,
+        T& varValue) const
+    {
+        T varStatValue = 0;
+        Bool bSuccess = false;
+        const Character& character = GetCharacter(sCharacterID);
+        if(character.GetStatValue(sSegment, entry.GetSourceStatType(), varStatValue))
+        {
+            T varNewValue = 0;
+            const OperationType eOperationType = GetEnumFromString<OperationType>(entry.GetOperationType());
+            switch(eOperationType)
+            {
+                case OperationType::Add:
+                    varNewValue = varStatValue + entry.GetChangeAmount();
+                    break;
+                case OperationType::Subtract:
+                    varNewValue = varStatValue - entry.GetChangeAmount();
+                    break;
+                case OperationType::Multiply:
+                    varNewValue = varStatValue * entry.GetChangeAmount();
+                    break;
+                case OperationType::Divide:
+                    if(entry.GetChangeAmount() != 0)
+                    {
+                        varNewValue = varStatValue / entry.GetChangeAmount();
+                    }
+                    break;
+                case OperationType::Modulus:
+                    if(entry.GetChangeAmount() != 0)
+                    {
+                        varNewValue = static_cast<Int>(varStatValue) % static_cast<Int>(entry.GetChangeAmount());
+                    }
+                    break;
+                default:
+                    break;
+            };
+            varValue = varNewValue;
+            bSuccess = true;
+        }
+        return bSuccess;
+    }
 
-    // Apply a stat change entry int operation
-    Bool ApplyStatChangeEntryOperation(
+    // Apply a stat change entry dest value
+    template <class T>
+    Bool ApplyStatChangeEntryDestValue(
         const String& sSegment,
         const String& sCharacterID,
-        const String& sOperation,
-        const String& sStat,
-        Int iValue);
-
-    // Apply a stat change entry float operation
-    Bool ApplyStatChangeEntryOperation(
-        const String& sSegment,
-        const String& sCharacterID,
-        const String& sOperation,
-        const String& sStat,
-        Float fValue);
-
-    // Apply a stat change entry string operation
-    Bool ApplyStatChangeEntryOperation(
-        const String& sSegment,
-        const String& sCharacterID,
-        const String& sOperation,
-        const String& sStat,
-        const String& sValue);
-
-    // Apply a stat change entry string array operation
-    Bool ApplyStatChangeEntryOperation(
-        const String& sSegment,
-        const String& sCharacterID,
-        const String& sOperation,
-        const String& sStat,
-        const StringArray& sValue);
-
-    // Determine if stat change entry uses a delta from source to destination characters
-    Bool DoesStatChangeEntryUseDelta(const StatChangeEntry& changeEntry) const;
-
-    // Get delta changed values from stat change entry
-    Bool GetDeltaStatChangeEntryValues(
-        const String& sSegment,
-        const String& sCharacterID,
-        const StatChangeEntry& changeEntry,
-        BoolArray& vBoolValues,
-        IntArray& vIntValues,
-        FloatArray& vFloatValues,
-        StringArray& vStringValues) const;
-
-    // Get fully changed values from stat change entry
-    Bool GetFullStatChangeEntryValues(
-        const String& sSegment,
-        const String& sCharacterID,
-        const StatChangeEntry& changeEntry,
-        BoolArray& vBoolValues,
-        IntArray& vIntValues,
-        FloatArray& vFloatValues,
-        StringArray& vStringValues) const;
+        const StatChangeEntry& entry,
+        T varValue)
+    {
+        Character& character = GetCharacter(sCharacterID);
+        const AssignmentType eAssigmentType = GetEnumFromString<AssignmentType>(entry.GetAssignmentType());
+        switch(eAssigmentType)
+        {
+            case AssignmentType::Set:
+                return character.SetStatValue(sSegment, entry.GetDestinationStatType(), varValue);
+            case AssignmentType::Increment:
+                return character.IncrementStatValue(sSegment, entry.GetDestinationStatType(), varValue);
+            case AssignmentType::Decrement:
+                return character.DecrementStatValue(sSegment, entry.GetDestinationStatType(), varValue);
+            default:
+                break;
+        }
+        return false;
+    }
 
     // Characters
     MAKE_RAW_TYPE_ACCESSORS(Characters, CharacterMappingType);

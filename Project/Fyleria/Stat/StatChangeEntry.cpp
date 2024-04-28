@@ -30,23 +30,14 @@ void StatChangeEntry::Clear()
     SetAttack(0);
     SetDefend(0);
 
-    // Delta amounts
-    SetDeltaFloat(0);
-    SetDeltaInt(0);
+    // Change amount
+    SetChangeAmount(0);
 
-    // Full amounts
-    SetFullPercent(0);
-    SetFullFloat(0);
-    SetFullInt(0);
-    SetFullBool(false);
-    SetFullString("");
-    SetFullFloatArray({});
-    SetFullIntArray({});
-    SetFullBoolArray({});
-    SetFullStringArray({});
-
-    // Operation type (Add, Multiply, etc)
+    // Operation type (Add, Subtract, Multiply, Divide, Modulus)
     SetOperationType("");
+
+    // Assignment type (Set, Increment, Decrement)
+    SetAssignmentType("");
 
     // Stats to serve as source and destination
     SetSourceStatType("");
@@ -60,23 +51,14 @@ void to_json(Json& jsonData, const StatChangeEntry& obj)
     SET_JSON_DATA(Attack);
     SET_JSON_DATA(Defend);
 
-    // Delta amounts
-    SET_JSON_DATA(DeltaFloat);
-    SET_JSON_DATA(DeltaInt);
+    // Change amount
+    SET_JSON_DATA(ChangeAmount);
 
-    // Full amounts
-    SET_JSON_DATA(FullPercent);
-    SET_JSON_DATA(FullFloat);
-    SET_JSON_DATA(FullInt);
-    SET_JSON_DATA(FullBool);
-    SET_JSON_DATA(FullString);
-    SET_JSON_DATA(FullFloatArray);
-    SET_JSON_DATA(FullIntArray);
-    SET_JSON_DATA(FullBoolArray);
-    SET_JSON_DATA(FullStringArray);
-
-    // Operation type (Add, Multiply, etc)
+    // Operation type (Add, Subtract, Multiply, Divide, Modulus)
     SET_JSON_DATA(OperationType);
+
+    // Assignment type (Set, Increment, Decrement)
+    SET_JSON_DATA(AssignmentType);
 
     // Stats to serve as source and destination
     SET_JSON_DATA(SourceStatType);
@@ -94,23 +76,14 @@ void from_json(const Json& jsonData, StatChangeEntry& obj)
     SET_OBJ_DATA(Attack, Int);
     SET_OBJ_DATA(Defend, Int);
 
-    // Delta amounts
-    SET_OBJ_DATA(DeltaFloat, Float);
-    SET_OBJ_DATA(DeltaInt, Int);
+    // Change amount
+    SET_OBJ_DATA(ChangeAmount, Float);
 
-    // Full amounts
-    SET_OBJ_DATA(FullPercent, Float);
-    SET_OBJ_DATA(FullFloat, Float);
-    SET_OBJ_DATA(FullInt, Int);
-    SET_OBJ_DATA(FullBool, Bool);
-    SET_OBJ_DATA(FullString, String);
-    SET_OBJ_DATA(FullFloatArray, FloatArray);
-    SET_OBJ_DATA(FullIntArray, IntArray);
-    SET_OBJ_DATA(FullBoolArray, BoolArray);
-    SET_OBJ_DATA(FullStringArray, StringArray);
-
-    // Operation type (Add, Multiply, etc)
+    // Operation type (Add, Subtract, Multiply, Divide, Modulus)
     SET_OBJ_DATA(OperationType, String);
+
+    // Assignment type (Set, Increment, Decrement)
+    SET_OBJ_DATA(AssignmentType, String);
 
     // Stats to serve as source and destination
     SET_OBJ_DATA(SourceStatType, String);

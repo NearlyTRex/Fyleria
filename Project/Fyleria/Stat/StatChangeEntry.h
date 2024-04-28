@@ -14,6 +14,18 @@
 namespace Gecko
 {
 
+// Stat change general formula
+// (Dest Stat)(Assignment Type)(Source Stat)(Operation Type)(Change Amount)
+//
+// Example: DestStat["WeaponPrimaryDamageBonusValue"] += SourceStat["HealthPointsCurrent"] * 3.0
+//
+// Breakdown of this:
+// - Source Stat: SourceStat["HealthPointsCurrent"]
+// - Dest Stat: DestStat["WeaponPrimaryDamageBonusValue"]
+// - Operation Type: Multiply
+// - Assignment Type: Increment
+// - Change Amount: 3.0
+
 // Stat change entry
 class StatChangeEntry
 {
@@ -34,23 +46,14 @@ public:
     MAKE_RAW_TYPE_ACCESSORS(Attack, Short);
     MAKE_RAW_TYPE_ACCESSORS(Defend, Short);
 
-    // Delta amounts
-    MAKE_RAW_TYPE_ACCESSORS(DeltaFloat, Float);
-    MAKE_RAW_TYPE_ACCESSORS(DeltaInt, Int);
+    // Change amount
+    MAKE_RAW_TYPE_ACCESSORS(ChangeAmount, Float);
 
-    // Full amounts
-    MAKE_RAW_TYPE_ACCESSORS(FullPercent, Float);
-    MAKE_RAW_TYPE_ACCESSORS(FullFloat, Float);
-    MAKE_RAW_TYPE_ACCESSORS(FullInt, Int);
-    MAKE_RAW_TYPE_ACCESSORS(FullBool, Bool);
-    MAKE_RAW_TYPE_ACCESSORS(FullString, String);
-    MAKE_RAW_TYPE_ACCESSORS(FullFloatArray, FloatArray);
-    MAKE_RAW_TYPE_ACCESSORS(FullIntArray, IntArray);
-    MAKE_RAW_TYPE_ACCESSORS(FullBoolArray, BoolArray);
-    MAKE_RAW_TYPE_ACCESSORS(FullStringArray, StringArray);
-
-    // Operation type (Add, Multiply, etc)
+    // Operation type (Add, Subtract, Multiply, Divide, Modulus)
     MAKE_RAW_TYPE_ACCESSORS(OperationType, String);
+
+    // Assignment type (Set, Increment, Decrement)
+    MAKE_RAW_TYPE_ACCESSORS(AssignmentType, String);
 
     // Stats to serve as source and destination
     MAKE_RAW_TYPE_ACCESSORS(SourceStatType, String);

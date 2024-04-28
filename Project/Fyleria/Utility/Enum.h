@@ -22,8 +22,14 @@ BETTER_ENUM(OperationType, Int,
     Subtract,
     Multiply,
     Divide,
-    Modulus,
-    Set
+    Modulus
+);
+
+BETTER_ENUM(AssignmentType, Int,
+    None,
+    Set,
+    Increment,
+    Decrement
 );
 
 BETTER_ENUM(ComparisonType, Int,

@@ -212,7 +212,14 @@ void CharacterStatChangeData::ApplyProlongedStatChanges(
     Int iCurrentDefend = character.GetBattleData().GetDefendCounter();
     for(auto& entry : GetProlongedStatChangeEntries(iCurrentRound, iCurrentAttack, iCurrentDefend))
     {
-        GetManagers()->GetCharacterManager()->ApplyStatChangeEntry(sSegment, entry);
+        if (IsStatInt(entry.GetDestinationStatType()))
+        {
+            GetManagers()->GetCharacterManager()->ApplyStatChangeEntry<Int>(sSegment, entry);
+        }
+        else if(IsStatFloat(entry.GetDestinationStatType()))
+        {
+            GetManagers()->GetCharacterManager()->ApplyStatChangeEntry<Float>(sSegment, entry);
+        }
     }
 }
 
