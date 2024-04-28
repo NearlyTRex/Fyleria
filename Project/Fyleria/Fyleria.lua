@@ -116,6 +116,7 @@ libFyleria_sources = {
     libFyleria_srcdir .. "Recipe/**.cpp",
     libFyleria_srcdir .. "Save/**.cpp",
     libFyleria_srcdir .. "Scene/**.cpp",
+    libFyleria_srcdir .. "Simulator/**.cpp",
     libFyleria_srcdir .. "Skill/**.cpp",
     libFyleria_srcdir .. "Stat/**.cpp",
     libFyleria_srcdir .. "Utility/**.cpp",
