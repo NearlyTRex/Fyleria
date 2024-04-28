@@ -94,7 +94,8 @@ CharacterProgressData CharacterGenerator::GenerateProgressData() const
     progressData.SetHealthRegen(GetRandomIntValue<Int>(GetHPRegenStart(), GetHPRegenEnd()));
     progressData.SetMagicRegen(GetRandomIntValue<Int>(GetMPRegenStart(), GetMPRegenEnd()));
     progressData.SetEnergyRegen(GetRandomIntValue<Int>(GetEPRegenStart(), GetEPRegenEnd()));
-    progressData.SetSpeed(GetRandomIntValue<Int>(GetSpeedStart(), GetSpeedEnd()));
+    progressData.SetSpeedBase(GetRandomIntValue<Int>(GetSpeedStart(), GetSpeedEnd()));
+    progressData.SetSpeedCurrent(progressData.GetSpeedBase());
 
     // Attack and Defense Scoring
     progressData.SetBluntAttack(GetRandomIntValue<Int>(GetBluntATKStart(), GetBluntATKEnd()));

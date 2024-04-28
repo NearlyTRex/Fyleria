@@ -48,7 +48,8 @@ public:
     MAKE_STAT_TYPE_ACCESSORS(HealthCostDelta, Int);
     MAKE_STAT_TYPE_ACCESSORS(MagicCostDelta, Int);
     MAKE_STAT_TYPE_ACCESSORS(EnergyCostDelta, Int);
-    MAKE_STAT_TYPE_ACCESSORS(Speed, Int);
+    MAKE_STAT_TYPE_ACCESSORS(SpeedCurrent, Int);
+    MAKE_STAT_TYPE_ACCESSORS(SpeedBase, Int);
     MAKE_STAT_TYPE_ACCESSORS(AmberValueDelta, Int);
     MAKE_STAT_TYPE_ACCESSORS(RubyValueDelta, Int);
     MAKE_STAT_TYPE_ACCESSORS(DiamondValueDelta, Int);

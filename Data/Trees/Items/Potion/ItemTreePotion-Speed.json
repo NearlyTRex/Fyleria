@@ -19,8 +19,8 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
                         "ChangeAmount": 1.2,
                         "OperationType": "Multiply",
                         "AssignmentType": "Set"
@@ -49,8 +49,8 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
                         "ChangeAmount": 1.4,
                         "OperationType": "Multiply",
                         "AssignmentType": "Set"
@@ -79,8 +79,8 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
                         "ChangeAmount": 1.6,
                         "OperationType": "Multiply",
                         "AssignmentType": "Set"
@@ -109,8 +109,8 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
                         "ChangeAmount": 1.8,
                         "OperationType": "Multiply",
                         "AssignmentType": "Set"
@@ -139,8 +139,8 @@
                 "DestinationTargetType": "ActionTargetsThisAction",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
                         "ChangeAmount": 2.0,
                         "OperationType": "Multiply",
                         "AssignmentType": "Set"
