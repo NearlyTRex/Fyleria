@@ -73,17 +73,19 @@ def CreateProject(system_info, program_options):
     Utility.LogStatement("Creating project")
 
     # Write version header file
-    with open(os.path.join("Project/Fyleria/Utility/Version.h"), "w") as f:
-        f.write("#ifndef _GECKO_UTILITY_VERSION_H_\n")
-        f.write("#define _GECKO_UTILITY_VERSION_H_\n")
-        f.write("char const* GetVersionString();\n")
-        f.write("#endif\n")
+    if not os.path.isfile("Project/Fyleria/Utility/Version.h"):
+        with open(os.path.join("Project/Fyleria/Utility/Version.h"), "w") as f:
+            f.write("#ifndef _GECKO_UTILITY_VERSION_H_\n")
+            f.write("#define _GECKO_UTILITY_VERSION_H_\n")
+            f.write("char const* GetVersionString();\n")
+            f.write("#endif\n")
 
     # Write version implementation file
-    with open(os.path.join("Project/Fyleria/Utility/Version.cpp"), "w") as f:
-        f.write("char const* GetVersionString() {\n")
-        f.write("return \"%s (%s %s)\";\n" % (Repository.GetGitVersion(), system_info.date, system_info.uname))
-        f.write("}\n")
+    if not os.path.isfile("Project/Fyleria/Utility/Version.cpp"):
+        with open(os.path.join("Project/Fyleria/Utility/Version.cpp"), "w") as f:
+            f.write("char const* GetVersionString() {\n")
+            f.write("return \"%s (%s %s)\";\n" % (Repository.GetGitVersion(), system_info.date, system_info.uname))
+            f.write("}\n")
 
     # Premake flags
     premake_file_flag = "--file=Project/premake5.lua"
