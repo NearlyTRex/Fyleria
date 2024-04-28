@@ -109,4 +109,104 @@ Bool StatTypeHolder::SetStatValue(const String& sStat, const StringArray& vValue
     return SetStatMapValue<StringArray>(GetStringArrayStats(), sStat, vValues);
 }
 
+Bool StatTypeHolder::IncrementStatValue(const String& sStat, const Byte& iValue)
+{
+    Byte iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue + iValue);
+    }
+    return false;
+}
+
+Bool StatTypeHolder::IncrementStatValue(const String& sStat, const Short& iValue)
+{
+    Short iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue + iValue);
+    }
+    return false;
+}
+
+Bool StatTypeHolder::IncrementStatValue(const String& sStat, const Int& iValue)
+{
+    Int iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue + iValue);
+    }
+    return false;
+}
+
+Bool StatTypeHolder::IncrementStatValue(const String& sStat, const Float& iValue)
+{
+    Float iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue + iValue);
+    }
+    return false;
+}
+
+Bool StatTypeHolder::IncrementStatValue(const String& sStat, const Double& iValue)
+{
+    Double iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue + iValue);
+    }
+    return false;
+}
+
+Bool StatTypeHolder::DecrementStatValue(const String& sStat, const Byte& iValue)
+{
+    Byte iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue - iValue);
+    }
+    return false;
+}
+
+Bool StatTypeHolder::DecrementStatValue(const String& sStat, const Short& iValue)
+{
+    Short iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue - iValue);
+    }
+    return false;
+}
+
+Bool StatTypeHolder::DecrementStatValue(const String& sStat, const Int& iValue)
+{
+    Int iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue - iValue);
+    }
+    return false;
+}
+
+Bool StatTypeHolder::DecrementStatValue(const String& sStat, const Float& iValue)
+{
+    Float iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue - iValue);
+    }
+    return false;
+}
+
+Bool StatTypeHolder::DecrementStatValue(const String& sStat, const Double& iValue)
+{
+    Double iExistingValue;
+    if(GetStatValue(sStat, iExistingValue))
+    {
+        return SetStatValue(sStat, iExistingValue - iValue);
+    }
+    return false;
+}
+
 };

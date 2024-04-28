@@ -61,6 +61,20 @@ public:
     Bool SetStatValue(const String& sStat, const String& sValue);
     Bool SetStatValue(const String& sStat, const StringArray& vValues);
 
+    // Increment stat values
+    Bool IncrementStatValue(const String& sStat, const Byte& iValue);
+    Bool IncrementStatValue(const String& sStat, const Short& iValue);
+    Bool IncrementStatValue(const String& sStat, const Int& iValue);
+    Bool IncrementStatValue(const String& sStat, const Float& iValue);
+    Bool IncrementStatValue(const String& sStat, const Double& iValue);
+
+    // Decrement stat values
+    Bool DecrementStatValue(const String& sStat, const Byte& iValue);
+    Bool DecrementStatValue(const String& sStat, const Short& iValue);
+    Bool DecrementStatValue(const String& sStat, const Int& iValue);
+    Bool DecrementStatValue(const String& sStat, const Float& iValue);
+    Bool DecrementStatValue(const String& sStat, const Double& iValue);
+
     // Stat types
     MAKE_RAW_TYPE_ACCESSORS(BoolStats, BoolStatTypeMap);
     MAKE_RAW_TYPE_ACCESSORS(ByteStats, ByteStatTypeMap);

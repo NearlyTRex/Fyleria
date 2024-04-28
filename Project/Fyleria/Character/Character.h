@@ -112,6 +112,38 @@ public:
                 mediaData.SetStatValue(sStat, varValue));
     }
 
+    // Increment stat values
+    template <class T>
+    Bool IncrementStatValue(const String& sSegment, const String& sStat, const T& varValue)
+    {
+        CharacterBasicData& basicData = GetBasicData();
+        CharacterSkillData& skillData = GetSkillData();
+        CharacterMediaData& mediaData = GetMediaData();
+        CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
+        CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
+        return (basicData.IncrementStatValue(sStat, varValue) ||
+                progressData.IncrementStatValue(sStat, varValue) ||
+                battleData.IncrementStatValue(sStat, varValue) ||
+                skillData.IncrementStatValue(sStat, varValue) ||
+                mediaData.IncrementStatValue(sStat, varValue));
+    }
+
+    // Decrement stat values
+    template <class T>
+    Bool DecrementStatValue(const String& sSegment, const String& sStat, const T& varValue)
+    {
+        CharacterBasicData& basicData = GetBasicData();
+        CharacterSkillData& skillData = GetSkillData();
+        CharacterMediaData& mediaData = GetMediaData();
+        CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
+        CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
+        return (basicData.DecrementStatValue(sStat, varValue) ||
+                progressData.DecrementStatValue(sStat, varValue) ||
+                battleData.DecrementStatValue(sStat, varValue) ||
+                skillData.DecrementStatValue(sStat, varValue) ||
+                mediaData.DecrementStatValue(sStat, varValue));
+    }
+
     // Update equipment ratings
     // This pulls equipment and current attack/defense percents and fills
     // ratings for all equipment
