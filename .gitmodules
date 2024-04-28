@@ -58,3 +58,6 @@
 [submodule "Project/Programs/Premake/orig"]
 	path = Project/Programs/Premake/orig
 	url = https://github.com/NearlyTRex/Premake
+[submodule "Project/Libs/Cpp/PPKAssert/orig"]
+	path = Project/Libs/Cpp/PPKAssert/orig
+	url = https://github.com/NearlyTRex/PPKAssert

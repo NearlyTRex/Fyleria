@@ -42,6 +42,7 @@ def main():
         "LRUCache",
         "MicroPather",
         "ObjectThreadsafe",
+        "PPKAssert",
         "SpdLog",
         "WebView"
     ]
