@@ -53,6 +53,9 @@ void SkillData::Clear()
     // Skill index
     SetSkillTreeIndex({});
 
+    // Allowed target types
+    SetAllowedTargetTypes({});
+
     // Stat changes
     SetStatChanges({});
 }
@@ -269,6 +272,9 @@ void to_json(Json& jsonData, const SkillData& obj)
     // Skill index
     SET_JSON_DATA(SkillTreeIndex);
 
+    // Allowed target types
+    SET_JSON_DATA(AllowedTargetTypes);
+
     // Stat changes
     SET_JSON_DATA(StatChanges);
 }
@@ -299,6 +305,9 @@ void from_json(const Json& jsonData, SkillData& obj)
 
     // Skill index
     SET_OBJ_DATA(SkillTreeIndex, TreeIndex);
+
+    // Allowed target types
+    SET_OBJ_DATA(AllowedTargetTypes, StringArray);
 
     // Stat changes
     SET_OBJ_DATA(StatChanges, StatChangeArray);

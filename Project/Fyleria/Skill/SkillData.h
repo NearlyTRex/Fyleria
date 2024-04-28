@@ -87,6 +87,9 @@ public:
     // Skill index
     MAKE_RAW_TYPE_ACCESSORS(SkillTreeIndex, TreeIndex);
 
+    // Allowed target types
+    MAKE_RAW_TYPE_ACCESSORS(AllowedTargetTypes, StringArray);
+
     // Stat changes
     MAKE_RAW_TYPE_ACCESSORS(StatChanges, StatChangeArray);
 };
