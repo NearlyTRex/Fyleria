@@ -24,7 +24,7 @@
                     {
                         "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
-                        "FullInt": -1,
+                        "ChangeAmount": -1,
                         "OperationType": "Set"
                     }
                 ]
@@ -48,7 +48,7 @@
                     {
                         "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
-                        "FullInt": -1,
+                        "ChangeAmount": -1,
                         "OperationType": "Set"
                     }
                 ]
@@ -73,7 +73,7 @@
                     {
                         "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "FullInt": -1,
+                        "ChangeAmount": -1,
                         "OperationType": "Set"
                     }
                 ]
@@ -94,7 +94,7 @@
                     {
                         "SourceStatType": "SapphireValueDelta",
                         "DestinationStatType": "SapphireValueDelta",
-                        "FullInt": 1,
+                        "ChangeAmount": 1,
                         "OperationType": "Set"
                     }
                 ]
@@ -119,7 +119,7 @@
                     {
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
-                        "FullPercent": 0.05,
+                        "ChangeAmount": 0.05,
                         "OperationType": "Set"
                     }
                 ]
@@ -143,7 +143,7 @@
                     {
                         "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
-                        "FullInt": -2,
+                        "ChangeAmount": -2,
                         "OperationType": "Set"
                     }
                 ]
@@ -167,7 +167,7 @@
                     {
                         "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
-                        "FullInt": -2,
+                        "ChangeAmount": -2,
                         "OperationType": "Set"
                     }
                 ]
@@ -192,7 +192,7 @@
                     {
                         "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "FullInt": -2,
+                        "ChangeAmount": -2,
                         "OperationType": "Set"
                     }
                 ]
@@ -213,7 +213,7 @@
                     {
                         "SourceStatType": "SapphireValueDelta",
                         "DestinationStatType": "SapphireValueDelta",
-                        "FullInt": 2,
+                        "ChangeAmount": 2,
                         "OperationType": "Set"
                     }
                 ]
@@ -238,7 +238,7 @@
                     {
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
-                        "FullPercent": 0.1,
+                        "ChangeAmount": 0.1,
                         "OperationType": "Set"
                     }
                 ]
@@ -262,7 +262,7 @@
                     {
                         "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
-                        "FullInt": -3,
+                        "ChangeAmount": -3,
                         "OperationType": "Set"
                     }
                 ]
@@ -286,7 +286,7 @@
                     {
                         "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
-                        "FullInt": -3,
+                        "ChangeAmount": -3,
                         "OperationType": "Set"
                     }
                 ]
@@ -311,7 +311,7 @@
                     {
                         "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "FullInt": -3,
+                        "ChangeAmount": -3,
                         "OperationType": "Set"
                     }
                 ]
@@ -332,7 +332,7 @@
                     {
                         "SourceStatType": "SapphireValueDelta",
                         "DestinationStatType": "SapphireValueDelta",
-                        "FullInt": 3,
+                        "ChangeAmount": 3,
                         "OperationType": "Set"
                     }
                 ]
@@ -357,7 +357,7 @@
                     {
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
-                        "FullPercent": 0.15,
+                        "ChangeAmount": 0.15,
                         "OperationType": "Set"
                     }
                 ]
@@ -381,7 +381,7 @@
                     {
                         "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
-                        "FullInt": -4,
+                        "ChangeAmount": -4,
                         "OperationType": "Set"
                     }
                 ]
@@ -405,7 +405,7 @@
                     {
                         "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
-                        "FullInt": -4,
+                        "ChangeAmount": -4,
                         "OperationType": "Set"
                     }
                 ]
@@ -430,7 +430,7 @@
                     {
                         "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "FullInt": -4,
+                        "ChangeAmount": -4,
                         "OperationType": "Set"
                     }
                 ]
@@ -451,7 +451,7 @@
                     {
                         "SourceStatType": "SapphireValueDelta",
                         "DestinationStatType": "SapphireValueDelta",
-                        "FullInt": 4,
+                        "ChangeAmount": 4,
                         "OperationType": "Set"
                     }
                 ]

@@ -64,7 +64,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.10,
+                        "ChangeAmount": 1.10,
                         "OperationType": "Set"
                     }
                 ]
@@ -160,7 +160,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.20,
+                        "ChangeAmount": 1.20,
                         "OperationType": "Set"
                     }
                 ]
@@ -256,7 +256,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.30,
+                        "ChangeAmount": 1.30,
                         "OperationType": "Set"
                     }
                 ]
@@ -352,7 +352,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.40,
+                        "ChangeAmount": 1.40,
                         "OperationType": "Set"
                     }
                 ]
@@ -448,7 +448,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.50,
+                        "ChangeAmount": 1.50,
                         "OperationType": "Set"
                     }
                 ]

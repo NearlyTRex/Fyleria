@@ -65,7 +65,7 @@
                     {
                         "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsCurrent",
-                        "FullPercent": 1.05,
+                        "ChangeAmount": 1.05,
                         "OperationType": "Set"
                     }
                 ]
@@ -162,7 +162,7 @@
                     {
                         "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsCurrent",
-                        "FullPercent": 1.10,
+                        "ChangeAmount": 1.10,
                         "OperationType": "Set"
                     }
                 ]
@@ -259,7 +259,7 @@
                     {
                         "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsCurrent",
-                        "FullPercent": 1.15,
+                        "ChangeAmount": 1.15,
                         "OperationType": "Set"
                     }
                 ]
@@ -356,7 +356,7 @@
                     {
                         "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsCurrent",
-                        "FullPercent": 1.20,
+                        "ChangeAmount": 1.20,
                         "OperationType": "Set"
                     }
                 ]
@@ -453,7 +453,7 @@
                     {
                         "SourceStatType": "EnergyPointsMax",
                         "DestinationStatType": "EnergyPointsCurrent",
-                        "FullPercent": 1.25,
+                        "ChangeAmount": 1.25,
                         "OperationType": "Set"
                     }
                 ]

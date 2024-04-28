@@ -15,13 +15,13 @@
                     {
                         "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
-                        "FullFloat": 0.5,
+                        "ChangeAmount": 0.5,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
-                        "FullFloat": 0.5,
+                        "ChangeAmount": 0.5,
                         "OperationType": "Set"
                     }
                 ]
@@ -44,19 +44,19 @@
                     {
                         "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
-                        "FullPercent": 1.05,
+                        "ChangeAmount": 1.05,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "PierceDefense",
                         "DestinationStatType": "PierceDefense",
-                        "FullPercent": 1.05,
+                        "ChangeAmount": 1.05,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "SlashDefense",
                         "DestinationStatType": "SlashDefense",
-                        "FullPercent": 1.05,
+                        "ChangeAmount": 1.05,
                         "OperationType": "Set"
                     }
                 ]
@@ -79,7 +79,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.05,
+                        "ChangeAmount": 1.05,
                         "OperationType": "Set"
                     }
                 ]
@@ -106,13 +106,13 @@
                     {
                         "SourceStatType": "TargetsMustBeIdentical",
                         "DestinationStatType": "TargetsMustBeIdentical",
-                        "FullBool": true,
+                        "ChangeAmount": 1,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "AllowedTargetAmount",
                         "DestinationStatType": "AllowedTargetAmount",
-                        "FullInt": 2,
+                        "ChangeAmount": 2,
                         "OperationType": "Set"
                     }
                 ]
@@ -135,13 +135,13 @@
                     {
                         "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
-                        "FullFloat": 0.75,
+                        "ChangeAmount": 0.75,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
-                        "FullFloat": 0.5,
+                        "ChangeAmount": 0.5,
                         "OperationType": "Set"
                     }
                 ]
@@ -164,7 +164,7 @@
                     {
                         "SourceStatType": "ChanceToBlockCriticalHit",
                         "DestinationStatType": "ChanceToBlockCriticalHit",
-                        "FullFloat": 0.05,
+                        "ChangeAmount": 0.05,
                         "OperationType": "Add"
                     }
                 ]
@@ -187,7 +187,7 @@
                     {
                         "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
-                        "FullFloat": 0.5,
+                        "ChangeAmount": 0.5,
                         "OperationType": "Add"
                     }
                 ]
@@ -214,7 +214,7 @@
                     {
                         "SourceStatType": "AllowedTargetAmount",
                         "DestinationStatType": "AllowedTargetAmount",
-                        "FullInt": 2,
+                        "ChangeAmount": 2,
                         "OperationType": "Set"
                     }
                 ]
@@ -237,13 +237,13 @@
                     {
                         "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
-                        "FullFloat": 0.75,
+                        "ChangeAmount": 0.75,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
-                        "FullFloat": 0.75,
+                        "ChangeAmount": 0.75,
                         "OperationType": "Set"
                     }
                 ]
@@ -266,19 +266,19 @@
                     {
                         "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
-                        "FullPercent": 1.1,
+                        "ChangeAmount": 1.1,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "PierceDefense",
                         "DestinationStatType": "PierceDefense",
-                        "FullPercent": 1.1,
+                        "ChangeAmount": 1.1,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "SlashDefense",
                         "DestinationStatType": "SlashDefense",
-                        "FullPercent": 1.1,
+                        "ChangeAmount": 1.1,
                         "OperationType": "Set"
                     }
                 ]
@@ -301,7 +301,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.1,
+                        "ChangeAmount": 1.1,
                         "OperationType": "Set"
                     }
                 ]
@@ -328,13 +328,13 @@
                     {
                         "SourceStatType": "TargetsMustBeIdentical",
                         "DestinationStatType": "TargetsMustBeIdentical",
-                        "FullBool": true,
+                        "ChangeAmount": 1,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "AllowedTargetAmount",
                         "DestinationStatType": "AllowedTargetAmount",
-                        "FullInt": 2,
+                        "ChangeAmount": 2,
                         "OperationType": "Set"
                     }
                 ]
@@ -357,13 +357,13 @@
                     {
                         "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
-                        "FullFloat": 1.0,
+                        "ChangeAmount": 1.0,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
-                        "FullFloat": 0.75,
+                        "ChangeAmount": 0.75,
                         "OperationType": "Set"
                     }
                 ]
@@ -386,7 +386,7 @@
                     {
                         "SourceStatType": "ChanceToBlockCriticalHit",
                         "DestinationStatType": "ChanceToBlockCriticalHit",
-                        "FullFloat": 0.1,
+                        "ChangeAmount": 0.1,
                         "OperationType": "Add"
                     }
                 ]
@@ -409,7 +409,7 @@
                     {
                         "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
-                        "FullFloat": 1,
+                        "ChangeAmount": 1,
                         "OperationType": "Add"
                     }
                 ]
@@ -436,7 +436,7 @@
                     {
                         "SourceStatType": "AllowedTargetAmount",
                         "DestinationStatType": "AllowedTargetAmount",
-                        "FullInt": 2,
+                        "ChangeAmount": 2,
                         "OperationType": "Set"
                     }
                 ]
@@ -459,13 +459,13 @@
                     {
                         "SourceStatType": "WeaponPrimaryDamageBonusPercent",
                         "DestinationStatType": "WeaponPrimaryDamageBonusPercent",
-                        "FullFloat": 1.0,
+                        "ChangeAmount": 1.0,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "WeaponSecondaryDamageBonusPercent",
                         "DestinationStatType": "WeaponSecondaryDamageBonusPercent",
-                        "FullFloat": 1.0,
+                        "ChangeAmount": 1.0,
                         "OperationType": "Set"
                     }
                 ]
@@ -488,19 +488,19 @@
                     {
                         "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
-                        "FullPercent": 1.15,
+                        "ChangeAmount": 1.15,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "PierceDefense",
                         "DestinationStatType": "PierceDefense",
-                        "FullPercent": 1.15,
+                        "ChangeAmount": 1.15,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "SlashDefense",
                         "DestinationStatType": "SlashDefense",
-                        "FullPercent": 1.15,
+                        "ChangeAmount": 1.15,
                         "OperationType": "Set"
                     }
                 ]
@@ -523,7 +523,7 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "FullPercent": 1.15,
+                        "ChangeAmount": 1.15,
                         "OperationType": "Set"
                     }
                 ]
@@ -550,13 +550,13 @@
                     {
                         "SourceStatType": "TargetsMustBeIdentical",
                         "DestinationStatType": "TargetsMustBeIdentical",
-                        "FullBool": true,
+                        "ChangeAmount": 1,
                         "OperationType": "Set"
                     },
                     {
                         "SourceStatType": "AllowedTargetAmount",
                         "DestinationStatType": "AllowedTargetAmount",
-                        "FullInt": 2,
+                        "ChangeAmount": 2,
                         "OperationType": "Set"
                     }
                 ]
