@@ -31,7 +31,7 @@ public:
     // Item tree type
     static String GetTreeType()
     {
-        return String(ItemTreeType(ItemTreeType::Weapon)._to_string());
+        return GetEnumString(ItemTreeType::Weapon);
     }
 
     // Create weapon action

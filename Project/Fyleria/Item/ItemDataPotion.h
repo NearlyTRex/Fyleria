@@ -31,7 +31,7 @@ public:
     // Item tree type
     static String GetTreeType()
     {
-        return String(ItemTreeType(ItemTreeType::Potion)._to_string());
+        return GetEnumString(ItemTreeType::Potion);
     }
 
     // Create potion action

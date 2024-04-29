@@ -31,7 +31,7 @@ public:
     // Skill tree type
     static String GetTreeType()
     {
-        return String(SkillTreeType(SkillTreeType::Affinity)._to_string());
+        return GetEnumString(SkillTreeType::Affinity);
     }
 };
 

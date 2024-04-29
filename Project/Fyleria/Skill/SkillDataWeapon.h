@@ -31,7 +31,7 @@ public:
     // Skill tree type
     static String GetTreeType()
     {
-        return String(SkillTreeType(SkillTreeType::Weapon)._to_string());
+        return GetEnumString(SkillTreeType::Weapon);
     }
 
     // Create weapon actions

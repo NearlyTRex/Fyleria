@@ -31,7 +31,7 @@ public:
     // Item tree type
     static String GetTreeType()
     {
-        return String(ItemTreeType(ItemTreeType::Armor)._to_string());
+        return GetEnumString(ItemTreeType::Armor);
     }
 
     // Create armor action

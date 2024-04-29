@@ -32,7 +32,7 @@ public:
     // Skill tree type
     static String GetTreeType()
     {
-        return String(SkillTreeType(SkillTreeType::Alchemy)._to_string());
+        return GetEnumString(SkillTreeType::Alchemy);
     }
 
     // Recipes
