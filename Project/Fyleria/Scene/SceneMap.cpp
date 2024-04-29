@@ -13,7 +13,7 @@ namespace Gecko
 {
 
 SceneMap::SceneMap()
-    : Scene((+SceneType::Map)._to_string())
+    : Scene(GetEnumString(SceneType::Map))
 {
 }
 

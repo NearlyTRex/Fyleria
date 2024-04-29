@@ -13,7 +13,7 @@
 namespace Gecko
 {
 
-BETTER_ENUM(SkillTreeType, Int,
+MAKE_ENUM(SkillTreeType, Int,
     None,
     Affinity,
     Alchemy,
@@ -22,15 +22,17 @@ BETTER_ENUM(SkillTreeType, Int,
     Combat,
     Weapon
 );
+MAKE_ENUM_CONVERTERS_PROTO(SkillTreeType);
 
-BETTER_ENUM(SkillWeaponBaseType, Int,
+MAKE_ENUM(SkillWeaponBaseType, Int,
     None,
     Slash,
     Blunt,
     Pierce
 );
+MAKE_ENUM_CONVERTERS_PROTO(SkillWeaponBaseType);
 
-BETTER_ENUM(SkillWeaponType, Int,
+MAKE_ENUM(SkillWeaponType, Int,
     None,
 
     // -- Slash --
@@ -63,16 +65,18 @@ BETTER_ENUM(SkillWeaponType, Int,
     Dodge,
     Counter
 );
+MAKE_ENUM_CONVERTERS_PROTO(SkillWeaponType);
 
-BETTER_ENUM(SkillAlchemyType, Int,
+MAKE_ENUM(SkillAlchemyType, Int,
     None,
     Healer,
     Alchemist,
     Energist,
     Chemist
 );
+MAKE_ENUM_CONVERTERS_PROTO(SkillAlchemyType);
 
-BETTER_ENUM(SkillBreakdownType, Int,
+MAKE_ENUM(SkillBreakdownType, Int,
     None,
     Hammerbane,
     Spellbane,
@@ -85,8 +89,9 @@ BETTER_ENUM(SkillBreakdownType, Int,
     Goldbane,
     Shieldbane
 );
+MAKE_ENUM_CONVERTERS_PROTO(SkillBreakdownType);
 
-BETTER_ENUM(SkillCombatType, Int,
+MAKE_ENUM(SkillCombatType, Int,
     None,
     Barbarian,
     Mage,
@@ -97,8 +102,9 @@ BETTER_ENUM(SkillCombatType, Int,
     Focused,
     Stalwart
 );
+MAKE_ENUM_CONVERTERS_PROTO(SkillCombatType);
 
-BETTER_ENUM(SkillCraftingType, Int,
+MAKE_ENUM(SkillCraftingType, Int,
     None,
     Hammersmith,
     Spellsmith,
@@ -111,8 +117,9 @@ BETTER_ENUM(SkillCraftingType, Int,
     Goldsmith,
     Shieldsmith
 );
+MAKE_ENUM_CONVERTERS_PROTO(SkillCraftingType);
 
-BETTER_ENUM(SkillAffinityType, Int,
+MAKE_ENUM(SkillAffinityType, Int,
     None,
     Holy,
     Fire,
@@ -127,6 +134,7 @@ BETTER_ENUM(SkillAffinityType, Int,
     Flesh,
     Wind
 );
+MAKE_ENUM_CONVERTERS_PROTO(SkillAffinityType);
 
 };
 

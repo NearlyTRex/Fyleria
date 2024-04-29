@@ -5,3 +5,11 @@
 
 // Internal includes
 #include "Save/SaveTypes.h"
+
+namespace Gecko
+{
+
+// Types
+MAKE_ENUM_CONVERTERS_IMPL(SaveSlotType);
+
+};

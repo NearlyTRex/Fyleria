@@ -7,6 +7,7 @@
 #include "Utility/Converters.h"
 #include "Utility/Boost.h"
 #include "Utility/Errors.h"
+#include "Utility/Macros.h"
 #include "Utility/Templates.h"
 
 namespace Gecko

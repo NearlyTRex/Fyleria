@@ -3,14 +3,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "Scene/SceneTypes.h"
+// Internal includes
+#include "Stat/StatType.h"
 
 namespace Gecko
 {
 
 // Types
-MAKE_ENUM_CONVERTERS_IMPL(SceneType);
-MAKE_ENUM_CONVERTERS_IMPL(SceneMessageKeyType);
-MAKE_ENUM_CONVERTERS_IMPL(SceneMessageFunctionType);
+MAKE_ENUM_CONVERTERS_IMPL(StatOperationType);
+MAKE_ENUM_CONVERTERS_IMPL(StatAssignmentType);
 
 };

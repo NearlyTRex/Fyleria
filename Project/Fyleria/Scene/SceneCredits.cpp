@@ -13,7 +13,7 @@ namespace Gecko
 {
 
 SceneCredits::SceneCredits()
-    : Scene((+SceneType::Credits)._to_string())
+    : Scene(GetEnumString(SceneType::Credits))
 {
 }
 

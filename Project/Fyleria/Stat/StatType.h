@@ -120,6 +120,26 @@ void SetStatTypeValuesFromJsonValues(const Json& jsonData, STDUnorderedMap<Strin
     }
 }
 
+// Stat operation type
+MAKE_ENUM(StatOperationType, Int,
+    None,
+    Add,
+    Subtract,
+    Multiply,
+    Divide,
+    Modulus
+);
+MAKE_ENUM_CONVERTERS_PROTO(StatOperationType);
+
+// Stat assignment type
+MAKE_ENUM(StatAssignmentType, Int,
+    None,
+    Set,
+    Increment,
+    Decrement
+);
+MAKE_ENUM_CONVERTERS_PROTO(StatAssignmentType);
+
 };
 
 #endif

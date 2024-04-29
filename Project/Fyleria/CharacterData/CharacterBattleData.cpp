@@ -63,9 +63,9 @@ void CharacterBattleData::AdvanceRound(
     CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
 
     // Apply regeneration
-    Bool bCanRegenHP = CanRegenerateFromStat((+CharacterProgressStatType_Int::HealthRegen)._to_string());
-    Bool bCanRegenMP = CanRegenerateFromStat((+CharacterProgressStatType_Int::MagicRegen)._to_string());
-    Bool bCanRegenEP = CanRegenerateFromStat((+CharacterProgressStatType_Int::EnergyRegen)._to_string());
+    Bool bCanRegenHP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::HealthRegen));
+    Bool bCanRegenMP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::MagicRegen));
+    Bool bCanRegenEP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::EnergyRegen));
     if(bCanRegenHP || bCanRegenMP || bCanRegenEP)
     {
         progressData.ApplyRegeneration(bCanRegenHP, bCanRegenMP, bCanRegenEP);
@@ -103,9 +103,9 @@ void CharacterBattleData::FinishBattle(
     ApplyNewStatus(sCharacterID, sProgressSegment);
 
     // Apply regeneration
-    Bool bCanRegenHP = CanRegenerateFromStat((+CharacterProgressStatType_Int::HealthRegen)._to_string());
-    Bool bCanRegenMP = CanRegenerateFromStat((+CharacterProgressStatType_Int::MagicRegen)._to_string());
-    Bool bCanRegenEP = CanRegenerateFromStat((+CharacterProgressStatType_Int::EnergyRegen)._to_string());
+    Bool bCanRegenHP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::HealthRegen));
+    Bool bCanRegenMP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::MagicRegen));
+    Bool bCanRegenEP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::EnergyRegen));
     if(bCanRegenHP || bCanRegenMP || bCanRegenEP)
     {
         progressData.ApplyRegeneration(bCanRegenHP, bCanRegenMP, bCanRegenEP);

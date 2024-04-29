@@ -13,7 +13,7 @@ namespace Gecko
 {
 
 SceneIntro::SceneIntro()
-    : Scene((+SceneType::Intro)._to_string())
+    : Scene(GetEnumString(SceneType::Intro))
 {
 }
 

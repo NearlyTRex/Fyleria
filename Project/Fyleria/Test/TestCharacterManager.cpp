@@ -46,7 +46,7 @@ BOOST_FIXTURE_TEST_CASE(LoadCharacterFromFile, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sCharID = "EmptyCharacter";
     Gecko::String sCharFile;
-    Gecko::String sCharFileType = (+Gecko::FileType::TextJson)._to_string();
+    Gecko::String sCharFileType = GetEnumString(Gecko::FileType::TextJson);
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sCharFile));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->LoadCharacter(Gecko::Character(Gecko::EMPTY_CHARACTER_JSON), false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->SaveCharacterToFile(sCharID, sCharFile, sCharFileType));
@@ -58,7 +58,7 @@ BOOST_FIXTURE_TEST_CASE(LoadCharacterFromFile, Gecko::TestFixtureAppLoaded)
 BOOST_FIXTURE_TEST_CASE(LoadCharacterFromInvalidFile, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sCharFile = "invalidfile.json";
-    Gecko::String sCharFileType = (+Gecko::FileType::TextJson)._to_string();
+    Gecko::String sCharFileType = GetEnumString(Gecko::FileType::TextJson);
     BOOST_CHECK_EQUAL(Gecko::GetManagers()->GetCharacterManager()->LoadCharacterFromFile(sCharFile, sCharFileType, false), false);
 }
 
@@ -67,7 +67,7 @@ BOOST_FIXTURE_TEST_CASE(SaveCharacterToFile, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sCharID = "EmptyCharacter";
     Gecko::String sCharFile;
-    Gecko::String sCharFileType = (+Gecko::FileType::TextJson)._to_string();
+    Gecko::String sCharFileType = GetEnumString(Gecko::FileType::TextJson);
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sCharFile));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->CreateCharacter(sCharID));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->SaveCharacterToFile(sCharID, sCharFile, sCharFileType));
@@ -99,7 +99,7 @@ BOOST_FIXTURE_TEST_CASE(GetInvalidCharacter, Gecko::TestFixtureAppLoaded)
 BOOST_FIXTURE_TEST_CASE(CreateEmptyCharacterGenerator, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sGeneratorFile;
-    Gecko::String sGeneratorFileType = (+Gecko::FileType::TextJson)._to_string();
+    Gecko::String sGeneratorFileType = GetEnumString(Gecko::FileType::TextJson);
     Gecko::CharacterGenerator generator;
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sGeneratorFile));
     BOOST_CHECK(generator.SaveToFile(sGeneratorFile, sGeneratorFileType));
@@ -109,7 +109,7 @@ BOOST_FIXTURE_TEST_CASE(CreateEmptyCharacterGenerator, Gecko::TestFixtureAppLoad
 BOOST_FIXTURE_TEST_CASE(CreateRandomizedCharacterGenerator, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sGeneratorFile;
-    Gecko::String sGeneratorFileType = (+Gecko::FileType::TextJson)._to_string();
+    Gecko::String sGeneratorFileType = GetEnumString(Gecko::FileType::TextJson);
     Gecko::CharacterGenerator generator;
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sGeneratorFile));
     generator.RandomizeAll();
@@ -121,7 +121,7 @@ BOOST_FIXTURE_TEST_CASE(GenerateCharacterFromGeneratorJson, Gecko::TestFixtureAp
 {
     Gecko::String sCharID = "GeneratedCharacter";
     Gecko::String sCharFile;
-    Gecko::String sCharFileType = (+Gecko::FileType::TextJson)._to_string();
+    Gecko::String sCharFileType = GetEnumString(Gecko::FileType::TextJson);
     Gecko::CharacterGenerator generator(Gecko::CHARACTER_GENERATOR_RANDOM_JSON);
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sCharFile));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->GenerateCharacter(sCharID, generator));
@@ -133,7 +133,7 @@ BOOST_FIXTURE_TEST_CASE(GenerateCompletelyRandomCharacter, Gecko::TestFixtureApp
 {
     Gecko::String sCharID = "RandomCharacter";
     Gecko::String sCharFile;
-    Gecko::String sCharFileType = (+Gecko::FileType::TextJson)._to_string();
+    Gecko::String sCharFileType = GetEnumString(Gecko::FileType::TextJson);
     Gecko::CharacterGenerator generator;
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sCharFile));
     generator.RandomizeAll();

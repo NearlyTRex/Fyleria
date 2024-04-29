@@ -13,7 +13,7 @@
 namespace Gecko
 {
 
-BETTER_ENUM(SceneType, Int,
+MAKE_ENUM(SceneType, Int,
     None,
     Battle,
     CharacterCreation,
@@ -31,18 +31,21 @@ BETTER_ENUM(SceneType, Int,
     ToolParty,
     ToolSave
 );
+MAKE_ENUM_CONVERTERS_PROTO(SceneType);
 
-BETTER_ENUM(SceneMessageKeyType, Int,
+MAKE_ENUM(SceneMessageKeyType, Int,
     None,
     Function,
     Args
 );
+MAKE_ENUM_CONVERTERS_PROTO(SceneMessageKeyType);
 
-BETTER_ENUM(SceneMessageFunctionType, Int,
+MAKE_ENUM(SceneMessageFunctionType, Int,
     None,
     SwitchToScene,
     SubmitForm
 );
+MAKE_ENUM_CONVERTERS_PROTO(SceneMessageFunctionType);
 
 };
 

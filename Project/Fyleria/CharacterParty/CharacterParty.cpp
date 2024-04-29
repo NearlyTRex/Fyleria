@@ -57,7 +57,7 @@ Bool CharacterParty::IsPartyAbleToFight() const
         return false;
     }
 
-    UInt uDeadMemberCount = GetStatusMemberCount((+CharacterStatusType::Dead)._to_string());
+    UInt uDeadMemberCount = GetStatusMemberCount(GetEnumString(CharacterStatusType::Dead));
     if(uMemberCount == uDeadMemberCount)
     {
         return false;

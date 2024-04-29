@@ -103,25 +103,25 @@ public:
         if(character.GetStatValue(sSegment, entry.GetSourceStatType(), varStatValue))
         {
             T varNewValue = 0;
-            const OperationType eOperationType = GetEnumFromString<OperationType>(entry.GetOperationType());
+            const StatOperationType eOperationType = GetEnumFromString<StatOperationType>(entry.GetOperationType());
             switch(eOperationType)
             {
-                case OperationType::Add:
+                case StatOperationType::Add:
                     varNewValue = varStatValue + entry.GetChangeAmount();
                     break;
-                case OperationType::Subtract:
+                case StatOperationType::Subtract:
                     varNewValue = varStatValue - entry.GetChangeAmount();
                     break;
-                case OperationType::Multiply:
+                case StatOperationType::Multiply:
                     varNewValue = varStatValue * entry.GetChangeAmount();
                     break;
-                case OperationType::Divide:
+                case StatOperationType::Divide:
                     if(entry.GetChangeAmount() != 0)
                     {
                         varNewValue = varStatValue / entry.GetChangeAmount();
                     }
                     break;
-                case OperationType::Modulus:
+                case StatOperationType::Modulus:
                     if(entry.GetChangeAmount() != 0)
                     {
                         varNewValue = static_cast<Int>(varStatValue) % static_cast<Int>(entry.GetChangeAmount());
@@ -145,14 +145,14 @@ public:
         T varValue)
     {
         Character& character = GetCharacter(sCharacterID);
-        const AssignmentType eAssigmentType = GetEnumFromString<AssignmentType>(entry.GetAssignmentType());
+        const StatAssignmentType eAssigmentType = GetEnumFromString<StatAssignmentType>(entry.GetAssignmentType());
         switch(eAssigmentType)
         {
-            case AssignmentType::Set:
+            case StatAssignmentType::Set:
                 return character.SetStatValue(sSegment, entry.GetDestinationStatType(), varValue);
-            case AssignmentType::Increment:
+            case StatAssignmentType::Increment:
                 return character.IncrementStatValue(sSegment, entry.GetDestinationStatType(), varValue);
-            case AssignmentType::Decrement:
+            case StatAssignmentType::Decrement:
                 return character.DecrementStatValue(sSegment, entry.GetDestinationStatType(), varValue);
             default:
                 break;

@@ -13,7 +13,7 @@ namespace Gecko
 {
 
 SceneCharacterCreation::SceneCharacterCreation()
-    : Scene((+SceneType::CharacterCreation)._to_string())
+    : Scene(GetEnumString(SceneType::CharacterCreation))
 {
 }
 

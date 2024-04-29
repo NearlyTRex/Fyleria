@@ -208,7 +208,7 @@ CharacterBattleData& Character::GetBattleDataSegment(const String& sSegment)
 void Character::UpdateEquipmentRatings()
 {
     // Update equipment ratings
-    GetBattleData().UpdateEquipmentRatings(GetCharacterID(), (+CharacterSegmentType::Base)._to_string());
+    GetBattleData().UpdateEquipmentRatings(GetCharacterID(), GetEnumString(CharacterSegmentType::Base));
 }
 
 void Character::UpdateAvailableChanges()

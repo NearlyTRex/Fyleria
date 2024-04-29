@@ -258,28 +258,28 @@ TreeIndex ItemManager::ResolveItemLeafIntoIndex(const String& sLeaf) const
     sBranch = GetItemTreeArmor().GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
-        return TreeIndex((+ItemTreeType::Armor)._to_string(), sBranch, sLeaf);
+        return TreeIndex(GetEnumString(ItemTreeType::Armor), sBranch, sLeaf);
     }
 
     // Check weapon
     sBranch = GetItemTreeWeapon().GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
-        return TreeIndex((+ItemTreeType::Weapon)._to_string(), sBranch, sLeaf);
+        return TreeIndex(GetEnumString(ItemTreeType::Weapon), sBranch, sLeaf);
     }
 
     // Check potion
     sBranch = GetItemTreePotion().GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
-        return TreeIndex((+ItemTreeType::Potion)._to_string(), sBranch, sLeaf);
+        return TreeIndex(GetEnumString(ItemTreeType::Potion), sBranch, sLeaf);
     }
 
     // Check ingredient
     sBranch = GetItemTreeIngredient().GetBranchFromLeaf(sLeaf);
     if(!sBranch.empty())
     {
-        return TreeIndex((+ItemTreeType::Ingredient)._to_string(), sBranch, sLeaf);
+        return TreeIndex(GetEnumString(ItemTreeType::Ingredient), sBranch, sLeaf);
     }
 
     // Nothing found

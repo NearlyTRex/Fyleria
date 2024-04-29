@@ -11,6 +11,37 @@
 namespace Gecko
 {
 
+// Types
+MAKE_ENUM_CONVERTERS_IMPL(CharacterTreeIndexType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterSegmentType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterActionStatType_Int);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBasicStatType_String);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBasicStatType_Int);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterMediaStatType_String);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterProgressStatType_Int);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_String);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_StringArray);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Bool);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Int);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBattleStatType_Float);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterSkillStatType_Short);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterStatusType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterBaseRaceType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterTransformedRaceType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterPowerSetType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterWeaponSetType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterGenderType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterHairType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterEyeType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterHandednessType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterHandType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterEquipmentType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterTargetType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterResolvedTargetType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterPartyType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterActionType);
+MAKE_ENUM_CONVERTERS_IMPL(CharacterActionRunType);
+
 String ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const String& sCharacterEquipmentType)
 {
     if(sCharacterEquipmentType.empty())
@@ -23,10 +54,10 @@ String ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const String& sChar
     {
         case CharacterEquipmentType::Weapon1Left:
         case CharacterEquipmentType::Weapon1Right:
-            return (+CharacterWeaponSetType::WeaponSet1)._to_string();
+            return GetEnumString(CharacterWeaponSetType::WeaponSet1);
         case CharacterEquipmentType::Weapon2Left:
         case CharacterEquipmentType::Weapon2Right:
-            return (+CharacterWeaponSetType::WeaponSet2)._to_string();
+            return GetEnumString(CharacterWeaponSetType::WeaponSet2);
         default:
             return GetNoneTypeForEnum<CharacterWeaponSetType>();
     }
@@ -49,7 +80,7 @@ String ConvertCharacterTargetTypeToCharacterPartyType(const String& sCharacterTa
         case CharacterTargetType::Ally4:
         case CharacterTargetType::Ally5:
         case CharacterTargetType::Ally6:
-            return (+CharacterPartyType::Ally)._to_string();
+            return GetEnumString(CharacterPartyType::Ally);
         case CharacterTargetType::AllEnemies:
         case CharacterTargetType::Enemy1:
         case CharacterTargetType::Enemy2:
@@ -57,7 +88,7 @@ String ConvertCharacterTargetTypeToCharacterPartyType(const String& sCharacterTa
         case CharacterTargetType::Enemy4:
         case CharacterTargetType::Enemy5:
         case CharacterTargetType::Enemy6:
-            return (+CharacterPartyType::Enemy)._to_string();
+            return GetEnumString(CharacterPartyType::Enemy);
         default:
             return GetNoneTypeForEnum<CharacterPartyType>();
     }
@@ -75,13 +106,13 @@ String ConvertItemTypeToCharacterActionType(const String& sItemType)
     {
         case ItemType::WeaponPierce:
         case ItemType::ArmorShieldPierce:
-            return (+CharacterActionType::WeaponBasePierce)._to_string();
+            return GetEnumString(CharacterActionType::WeaponBasePierce);
         case ItemType::WeaponBlunt:
         case ItemType::ArmorShieldBlunt:
-            return (+CharacterActionType::WeaponBaseBlunt)._to_string();
+            return GetEnumString(CharacterActionType::WeaponBaseBlunt);
         case ItemType::WeaponSlash:
         case ItemType::ArmorShieldSlash:
-            return (+CharacterActionType::WeaponBaseSlash)._to_string();
+            return GetEnumString(CharacterActionType::WeaponBaseSlash);
         default:
             return GetNoneTypeForEnum<CharacterActionType>();
     }
@@ -105,32 +136,32 @@ StringArray ConvertItemTypeToCharacterEquipTypes(const String& sItemType)
         case ItemType::ArmorShieldPierce:
         case ItemType::ArmorShieldBlunt:
         case ItemType::ArmorShieldSlash:
-            vEquipTypes.push_back((+CharacterEquipmentType::Weapon1Left)._to_string());
-            vEquipTypes.push_back((+CharacterEquipmentType::Weapon1Right)._to_string());
-            vEquipTypes.push_back((+CharacterEquipmentType::Weapon2Left)._to_string());
-            vEquipTypes.push_back((+CharacterEquipmentType::Weapon2Right)._to_string());
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Weapon1Left));
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Weapon1Right));
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Weapon2Left));
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Weapon2Right));
             break;
         case ItemType::ArmorChest:
-            vEquipTypes.push_back((+CharacterEquipmentType::Chest)._to_string());
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Chest));
             break;
         case ItemType::ArmorFeet:
-            vEquipTypes.push_back((+CharacterEquipmentType::Feet)._to_string());
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Feet));
             break;
         case ItemType::ArmorFinger:
-            vEquipTypes.push_back((+CharacterEquipmentType::LeftFingers)._to_string());
-            vEquipTypes.push_back((+CharacterEquipmentType::RightFingers)._to_string());
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::LeftFingers));
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::RightFingers));
             break;
         case ItemType::ArmorHands:
-            vEquipTypes.push_back((+CharacterEquipmentType::Hands)._to_string());
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Hands));
             break;
         case ItemType::ArmorHead:
-            vEquipTypes.push_back((+CharacterEquipmentType::Head)._to_string());
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Head));
             break;
         case ItemType::ArmorLegs:
-            vEquipTypes.push_back((+CharacterEquipmentType::Legs)._to_string());
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Legs));
             break;
         case ItemType::ArmorNeck:
-            vEquipTypes.push_back((+CharacterEquipmentType::Neck)._to_string());
+            vEquipTypes.push_back(GetEnumString(CharacterEquipmentType::Neck));
             break;
         default:
             break;
@@ -149,11 +180,11 @@ String ConvertSkillWeaponBaseTypeToCharacterActionType(const String& sSkillWeapo
     switch(eSkillWeaponBaseType)
     {
         case SkillWeaponBaseType::Slash:
-            return (+CharacterActionType::WeaponBaseSlash)._to_string();
+            return GetEnumString(CharacterActionType::WeaponBaseSlash);
         case SkillWeaponBaseType::Blunt:
-            return (+CharacterActionType::WeaponBaseBlunt)._to_string();
+            return GetEnumString(CharacterActionType::WeaponBaseBlunt);
         case SkillWeaponBaseType::Pierce:
-            return (+CharacterActionType::WeaponBasePierce)._to_string();
+            return GetEnumString(CharacterActionType::WeaponBasePierce);
         default:
             return GetNoneTypeForEnum<CharacterActionType>();
     }
@@ -170,53 +201,53 @@ String ConvertSkillWeaponTypeToCharacterActionType(const String& sSkillWeaponTyp
     switch(eSkillWeaponType)
     {
         case SkillWeaponType::Slash:
-            return (+CharacterActionType::WeaponSlash)._to_string();
+            return GetEnumString(CharacterActionType::WeaponSlash);
         case SkillWeaponType::Sever:
-            return (+CharacterActionType::WeaponSever)._to_string();
+            return GetEnumString(CharacterActionType::WeaponSever);
         case SkillWeaponType::Slice:
-            return (+CharacterActionType::WeaponSlice)._to_string();
+            return GetEnumString(CharacterActionType::WeaponSlice);
         case SkillWeaponType::Slit:
-            return (+CharacterActionType::WeaponSlit)._to_string();
+            return GetEnumString(CharacterActionType::WeaponSlit);
         case SkillWeaponType::Cleave:
-            return (+CharacterActionType::WeaponCleave)._to_string();
+            return GetEnumString(CharacterActionType::WeaponCleave);
         case SkillWeaponType::Decapitate:
-            return (+CharacterActionType::WeaponDecapitate)._to_string();
+            return GetEnumString(CharacterActionType::WeaponDecapitate);
         case SkillWeaponType::Parry:
-            return (+CharacterActionType::WeaponParry)._to_string();
+            return GetEnumString(CharacterActionType::WeaponParry);
         case SkillWeaponType::Riposte:
-            return (+CharacterActionType::WeaponRiposte)._to_string();
+            return GetEnumString(CharacterActionType::WeaponRiposte);
         case SkillWeaponType::Bash:
-            return (+CharacterActionType::WeaponBash)._to_string();
+            return GetEnumString(CharacterActionType::WeaponBash);
         case SkillWeaponType::Smash:
-            return (+CharacterActionType::WeaponSmash)._to_string();
+            return GetEnumString(CharacterActionType::WeaponSmash);
         case SkillWeaponType::Impact:
-            return (+CharacterActionType::WeaponImpact)._to_string();
+            return GetEnumString(CharacterActionType::WeaponImpact);
         case SkillWeaponType::Crush:
-            return (+CharacterActionType::WeaponCrush)._to_string();
+            return GetEnumString(CharacterActionType::WeaponCrush);
         case SkillWeaponType::Break:
-            return (+CharacterActionType::WeaponBreak)._to_string();
+            return GetEnumString(CharacterActionType::WeaponBreak);
         case SkillWeaponType::Crack:
-            return (+CharacterActionType::WeaponCrack)._to_string();
+            return GetEnumString(CharacterActionType::WeaponCrack);
         case SkillWeaponType::Block:
-            return (+CharacterActionType::WeaponBlock)._to_string();
+            return GetEnumString(CharacterActionType::WeaponBlock);
         case SkillWeaponType::Rush:
-            return (+CharacterActionType::WeaponRush)._to_string();
+            return GetEnumString(CharacterActionType::WeaponRush);
         case SkillWeaponType::Pierce:
-            return (+CharacterActionType::WeaponPierce)._to_string();
+            return GetEnumString(CharacterActionType::WeaponPierce);
         case SkillWeaponType::Drill:
-            return (+CharacterActionType::WeaponDrill)._to_string();
+            return GetEnumString(CharacterActionType::WeaponDrill);
         case SkillWeaponType::Shoot:
-            return (+CharacterActionType::WeaponShoot)._to_string();
+            return GetEnumString(CharacterActionType::WeaponShoot);
         case SkillWeaponType::Impale:
-            return (+CharacterActionType::WeaponImpale)._to_string();
+            return GetEnumString(CharacterActionType::WeaponImpale);
         case SkillWeaponType::StealthStrike:
-            return (+CharacterActionType::WeaponStealthStrike)._to_string();
+            return GetEnumString(CharacterActionType::WeaponStealthStrike);
         case SkillWeaponType::CriticalShot:
-            return (+CharacterActionType::WeaponCriticalShot)._to_string();
+            return GetEnumString(CharacterActionType::WeaponCriticalShot);
         case SkillWeaponType::Dodge:
-            return (+CharacterActionType::WeaponDodge)._to_string();
+            return GetEnumString(CharacterActionType::WeaponDodge);
         case SkillWeaponType::Counter:
-            return (+CharacterActionType::WeaponCounter)._to_string();
+            return GetEnumString(CharacterActionType::WeaponCounter);
         default:
             return GetNoneTypeForEnum<CharacterActionType>();
     }
@@ -233,53 +264,53 @@ String ConvertSkillWeaponTypeToCharacterActionStatType(const String& sSkillWeapo
     switch(eSkillWeaponType)
     {
         case SkillWeaponType::Slash:
-            return (+CharacterActionStatType_Int::SlashPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::SlashPoints);
         case SkillWeaponType::Sever:
-            return (+CharacterActionStatType_Int::SeverPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::SeverPoints);
         case SkillWeaponType::Slice:
-            return (+CharacterActionStatType_Int::SlicePoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::SlicePoints);
         case SkillWeaponType::Slit:
-            return (+CharacterActionStatType_Int::SlitPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::SlitPoints);
         case SkillWeaponType::Cleave:
-            return (+CharacterActionStatType_Int::CleavePoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::CleavePoints);
         case SkillWeaponType::Decapitate:
-            return (+CharacterActionStatType_Int::DecapitatePoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::DecapitatePoints);
         case SkillWeaponType::Parry:
-            return (+CharacterActionStatType_Int::ParryPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::ParryPoints);
         case SkillWeaponType::Riposte:
-            return (+CharacterActionStatType_Int::RipostePoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::RipostePoints);
         case SkillWeaponType::Bash:
-            return (+CharacterActionStatType_Int::BashPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::BashPoints);
         case SkillWeaponType::Smash:
-            return (+CharacterActionStatType_Int::SmashPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::SmashPoints);
         case SkillWeaponType::Impact:
-            return (+CharacterActionStatType_Int::ImpactPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::ImpactPoints);
         case SkillWeaponType::Crush:
-            return (+CharacterActionStatType_Int::CrushPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::CrushPoints);
         case SkillWeaponType::Break:
-            return (+CharacterActionStatType_Int::BreakPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::BreakPoints);
         case SkillWeaponType::Crack:
-            return (+CharacterActionStatType_Int::CrackPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::CrackPoints);
         case SkillWeaponType::Block:
-            return (+CharacterActionStatType_Int::BlockPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::BlockPoints);
         case SkillWeaponType::Rush:
-            return (+CharacterActionStatType_Int::RushPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::RushPoints);
         case SkillWeaponType::Pierce:
-            return (+CharacterActionStatType_Int::PiercePoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::PiercePoints);
         case SkillWeaponType::Drill:
-            return (+CharacterActionStatType_Int::DrillPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::DrillPoints);
         case SkillWeaponType::Shoot:
-            return (+CharacterActionStatType_Int::ShootPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::ShootPoints);
         case SkillWeaponType::Impale:
-            return (+CharacterActionStatType_Int::ImpalePoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::ImpalePoints);
         case SkillWeaponType::StealthStrike:
-            return (+CharacterActionStatType_Int::StealthStrikePoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::StealthStrikePoints);
         case SkillWeaponType::CriticalShot:
-            return (+CharacterActionStatType_Int::CriticalShotPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::CriticalShotPoints);
         case SkillWeaponType::Dodge:
-            return (+CharacterActionStatType_Int::DodgePoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::DodgePoints);
         case SkillWeaponType::Counter:
-            return (+CharacterActionStatType_Int::CounterPoints)._to_string();
+            return GetEnumString(CharacterActionStatType_Int::CounterPoints);
         default:
             return GetNoneTypeForEnum<CharacterActionStatType_Int>();
     }

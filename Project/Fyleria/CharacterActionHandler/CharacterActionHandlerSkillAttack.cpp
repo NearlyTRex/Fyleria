@@ -245,9 +245,9 @@ Bool CharacterActionHandlerSkillAttack::GenerateResult(CharacterAction& action)
     for(CharacterActionEntry& entry : action.GetActionEntries())
     {
         // Generate result
-        if(entry.DoesMatchActionType((+CharacterActionType::WeaponBasePierce)._to_string()) ||
-           entry.DoesMatchActionType((+CharacterActionType::WeaponBaseBlunt)._to_string()) ||
-           entry.DoesMatchActionType((+CharacterActionType::WeaponBaseSlash)._to_string()))
+        if(entry.DoesMatchActionType(GetEnumString(CharacterActionType::WeaponBasePierce)) ||
+           entry.DoesMatchActionType(GetEnumString(CharacterActionType::WeaponBaseBlunt)) ||
+           entry.DoesMatchActionType(GetEnumString(CharacterActionType::WeaponBaseSlash)))
         {
             for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
             {

@@ -24,12 +24,13 @@ namespace Gecko
 // full, broken hardware, network connection failure).
 
 // Error codes
-BETTER_ENUM(ErrorCode, Int,
+MAKE_ENUM(ErrorCode, Int,
     GeneralError,
     LogicError,
     RuntimeError,
     InvalidManagerError
 );
+MAKE_ENUM_CONVERTERS_PROTO(ErrorCode);
 
 // General error
 class GeneralError

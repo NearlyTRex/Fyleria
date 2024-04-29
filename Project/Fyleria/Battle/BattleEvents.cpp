@@ -71,8 +71,8 @@ void HandleBattleFullyCompleted(const String& sCharacterID)
 
     // Update character data across non-active segments
     const StringArray vSegments = {
-        (+CharacterSegmentType::Base)._to_string(),
-        (+CharacterSegmentType::Passive)._to_string()
+        GetEnumString(CharacterSegmentType::Base),
+        GetEnumString(CharacterSegmentType::Passive)
     };
     for(const String& sSegment : vSegments)
     {
@@ -91,8 +91,8 @@ void HandleBattleRoundAdvanced(const String& sCharacterID)
 
     // Update character data across non-active segments
     const StringArray vSegments = {
-        (+CharacterSegmentType::Base)._to_string(),
-        (+CharacterSegmentType::Passive)._to_string()
+        GetEnumString(CharacterSegmentType::Base),
+        GetEnumString(CharacterSegmentType::Passive)
     };
     for(const String& sSegment : vSegments)
     {
@@ -123,8 +123,8 @@ void HandleBattleGivingDamage(const String& sCharacterID, Int iAmount)
 
     // Update character data across non-active segments
     const StringArray vSegments = {
-        (+CharacterSegmentType::Base)._to_string(),
-        (+CharacterSegmentType::Passive)._to_string()
+        GetEnumString(CharacterSegmentType::Base),
+        GetEnumString(CharacterSegmentType::Passive)
     };
     for(const String& sSegment : vSegments)
     {
@@ -158,8 +158,8 @@ void HandleBattleTakingDamage(const String& sCharacterID, Int iAmount)
 
     // Update character data across non-active segments
     const StringArray vSegments = {
-        (+CharacterSegmentType::Base)._to_string(),
-        (+CharacterSegmentType::Passive)._to_string()
+        GetEnumString(CharacterSegmentType::Base),
+        GetEnumString(CharacterSegmentType::Passive)
     };
     for(const String& sSegment : vSegments)
     {
@@ -192,8 +192,8 @@ void HandleBattleChoosingTargets(const String& sCharacterID, const StringArray& 
 
     // Update character data across non-active segments
     const StringArray vSegments = {
-        (+CharacterSegmentType::Base)._to_string(),
-        (+CharacterSegmentType::Passive)._to_string()
+        GetEnumString(CharacterSegmentType::Base),
+        GetEnumString(CharacterSegmentType::Passive)
     };
     for(const String& sSegment : vSegments)
     {
@@ -217,8 +217,8 @@ void HandleBattleBecomingTarget(const String& sCharacterID, const String& sSourc
 
     // Update character data across non-active segments
     const StringArray vSegments = {
-        (+CharacterSegmentType::Base)._to_string(),
-        (+CharacterSegmentType::Passive)._to_string()
+        GetEnumString(CharacterSegmentType::Base),
+        GetEnumString(CharacterSegmentType::Passive)
     };
     for(const String& sSegment : vSegments)
     {
@@ -240,8 +240,8 @@ void HandleBattleActionAttackSetup(const String& sCharacterID, const CharacterAc
 
     // Update character data across non-active segments
     const StringArray vSegments = {
-        (+CharacterSegmentType::Base)._to_string(),
-        (+CharacterSegmentType::Passive)._to_string()
+        GetEnumString(CharacterSegmentType::Base),
+        GetEnumString(CharacterSegmentType::Passive)
     };
     for(const String& sSegment : vSegments)
     {
@@ -264,8 +264,8 @@ void HandleBattleActionDefendSetup(const String& sCharacterID, const CharacterAc
 
     // Update character data across non-active segments
     const StringArray vSegments = {
-        (+CharacterSegmentType::Base)._to_string(),
-        (+CharacterSegmentType::Passive)._to_string()
+        GetEnumString(CharacterSegmentType::Base),
+        GetEnumString(CharacterSegmentType::Passive)
     };
     for(const String& sSegment : vSegments)
     {
@@ -297,8 +297,8 @@ void HandleBattleActionFinished(const String& sCharacterID, const CharacterActio
 
     // Update character data across non-active segments
     const StringArray vSegments = {
-        (+CharacterSegmentType::Base)._to_string(),
-        (+CharacterSegmentType::Passive)._to_string()
+        GetEnumString(CharacterSegmentType::Base),
+        GetEnumString(CharacterSegmentType::Passive)
     };
     for(const String& sSegment : vSegments)
     {

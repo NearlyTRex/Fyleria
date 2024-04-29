@@ -13,7 +13,7 @@ namespace Gecko
 {
 
 SceneShop::SceneShop()
-    : Scene((+SceneType::Shop)._to_string())
+    : Scene(GetEnumString(SceneType::Shop))
 {
 }
 

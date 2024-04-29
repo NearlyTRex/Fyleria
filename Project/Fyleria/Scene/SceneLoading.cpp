@@ -13,7 +13,7 @@ namespace Gecko
 {
 
 SceneLoading::SceneLoading()
-    : Scene((+SceneType::Loading)._to_string())
+    : Scene(GetEnumString(SceneType::Loading))
 {
 }
 

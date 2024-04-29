@@ -13,15 +13,16 @@
 namespace Gecko
 {
 
-BETTER_ENUM(ItemTreeType, Int,
+MAKE_ENUM(ItemTreeType, Int,
     None,
     Armor,
     Ingredient,
     Potion,
     Weapon
 );
+MAKE_ENUM_CONVERTERS_PROTO(ItemTreeType);
 
-BETTER_ENUM(ItemType, Int,
+MAKE_ENUM(ItemType, Int,
     None,
     PotionHeal,
     PotionMagic,
@@ -54,6 +55,7 @@ BETTER_ENUM(ItemType, Int,
     ArmorShieldBlunt,
     ArmorShieldSlash
 );
+MAKE_ENUM_CONVERTERS_PROTO(ItemType);
 
 };
 

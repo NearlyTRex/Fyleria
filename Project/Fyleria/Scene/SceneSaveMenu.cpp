@@ -13,7 +13,7 @@ namespace Gecko
 {
 
 SceneSaveMenu::SceneSaveMenu()
-    : Scene((+SceneType::SaveMenu)._to_string())
+    : Scene(GetEnumString(SceneType::SaveMenu))
 {
 }
 

@@ -15,6 +15,15 @@
 namespace Gecko
 {
 
+// File type
+MAKE_ENUM(FileType, Int,
+    None,
+    TextJson,
+    BinaryCBOR,
+    BinaryMsgPack
+);
+MAKE_ENUM_CONVERTERS_PROTO(FileType);
+
 // Determine if bytes represent a CBOR file
 Bool IsCBOR(const FixedUnsigned8Array& vBytes);
 

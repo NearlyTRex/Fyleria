@@ -13,20 +13,22 @@
 namespace Gecko
 {
 
-BETTER_ENUM(CharacterTreeIndexType, Int,
+MAKE_ENUM(CharacterTreeIndexType, Int,
     None,
     Skill,
     Item
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterTreeIndexType);
 
-BETTER_ENUM(CharacterSegmentType, Int,
+MAKE_ENUM(CharacterSegmentType, Int,
     None,
     Base,
     Passive,
     Active
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterSegmentType);
 
-BETTER_ENUM(CharacterActionStatType_Int, Int,
+MAKE_ENUM(CharacterActionStatType_Int, Int,
     None,
     SlashPoints,
     SeverPoints,
@@ -53,8 +55,9 @@ BETTER_ENUM(CharacterActionStatType_Int, Int,
     DodgePoints,
     CounterPoints
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterActionStatType_Int);
 
-BETTER_ENUM(CharacterBasicStatType_String, Int,
+MAKE_ENUM(CharacterBasicStatType_String, Int,
     None,
     CharacterID,
     PartyID,
@@ -69,18 +72,21 @@ BETTER_ENUM(CharacterBasicStatType_String, Int,
     PowerSet,
     WeaponSet
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterBasicStatType_String);
 
-BETTER_ENUM(CharacterBasicStatType_Int, Int,
+MAKE_ENUM(CharacterBasicStatType_Int, Int,
     None,
     Age
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterBasicStatType_Int);
 
-BETTER_ENUM(CharacterMediaStatType_String, Int,
+MAKE_ENUM(CharacterMediaStatType_String, Int,
     None,
     PortraitImage
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterMediaStatType_String);
 
-BETTER_ENUM(CharacterProgressStatType_Int, Int,
+MAKE_ENUM(CharacterProgressStatType_Int, Int,
     None,
     HealthPointsCurrent,
     MagicPointsCurrent,
@@ -119,14 +125,16 @@ BETTER_ENUM(CharacterProgressStatType_Int, Int,
     EnergyAttack,
     EnergyDefense
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterProgressStatType_Int);
 
-BETTER_ENUM(CharacterBattleStatType_String, Int,
+MAKE_ENUM(CharacterBattleStatType_String, Int,
     None,
     ActionSourceThisAction,
     MostRecentActionSource
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_String);
 
-BETTER_ENUM(CharacterBattleStatType_StringArray, Int,
+MAKE_ENUM(CharacterBattleStatType_StringArray, Int,
     None,
     PreviousActionTypes,
     ActionTargetsThisAction,
@@ -136,15 +144,17 @@ BETTER_ENUM(CharacterBattleStatType_StringArray, Int,
     ActionSourcesLastRound,
     MostRecentActionTargets
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_StringArray);
 
-BETTER_ENUM(CharacterBattleStatType_Bool, Int,
+MAKE_ENUM(CharacterBattleStatType_Bool, Int,
     None,
     TargetsMustBeIdentical,
     IsDead,
     IsUnconscious
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_Bool);
 
-BETTER_ENUM(CharacterBattleStatType_Int, Int,
+MAKE_ENUM(CharacterBattleStatType_Int, Int,
     None,
     AttackCounter,
     DefendCounter,
@@ -154,8 +164,9 @@ BETTER_ENUM(CharacterBattleStatType_Int, Int,
     DamageGivenThisRound,
     DamageGivenThisBattle
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_Int);
 
-BETTER_ENUM(CharacterBattleStatType_Float, Int,
+MAKE_ENUM(CharacterBattleStatType_Float, Int,
     None,
     EquippedWeaponLeftBluntRating,
     EquippedWeaponLeftPierceRating,
@@ -191,8 +202,9 @@ BETTER_ENUM(CharacterBattleStatType_Float, Int,
     OffensivePowerEffectsBonusValue,
     OffensivePowerEffectsBonusPercent
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_Float);
 
-BETTER_ENUM(CharacterSkillStatType_Short, Int,
+MAKE_ENUM(CharacterSkillStatType_Short, Int,
     None,
     Healer,
     Alchemist,
@@ -239,14 +251,16 @@ BETTER_ENUM(CharacterSkillStatType_Short, Int,
     Flesh,
     Wind
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterSkillStatType_Short);
 
-BETTER_ENUM(CharacterStatusType, Int,
+MAKE_ENUM(CharacterStatusType, Int,
     None,
     Dead,
     Unconscious
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterStatusType);
 
-BETTER_ENUM(CharacterBaseRaceType, Int,
+MAKE_ENUM(CharacterBaseRaceType, Int,
     None,
     Human,
     Dwarf,
@@ -258,8 +272,9 @@ BETTER_ENUM(CharacterBaseRaceType, Int,
     Faerie,
     Goblin
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterBaseRaceType);
 
-BETTER_ENUM(CharacterTransformedRaceType, Int,
+MAKE_ENUM(CharacterTransformedRaceType, Int,
     None,
     Untransformed,
     Skeleton,
@@ -270,8 +285,9 @@ BETTER_ENUM(CharacterTransformedRaceType, Int,
     Revenant,
     Ghoul
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterTransformedRaceType);
 
-BETTER_ENUM(CharacterPowerSetType, Int,
+MAKE_ENUM(CharacterPowerSetType, Int,
     None,
     Oracle,
     Reaper,
@@ -280,44 +296,51 @@ BETTER_ENUM(CharacterPowerSetType, Int,
     Sidhe,
     Vampire
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterPowerSetType);
 
-BETTER_ENUM(CharacterWeaponSetType, Int,
+MAKE_ENUM(CharacterWeaponSetType, Int,
     None,
     WeaponSet1,
     WeaponSet2
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterWeaponSetType);
 
-BETTER_ENUM(CharacterGenderType, Int,
+MAKE_ENUM(CharacterGenderType, Int,
     None,
     Male,
     Female
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterGenderType);
 
-BETTER_ENUM(CharacterHairType, Int,
+MAKE_ENUM(CharacterHairType, Int,
     None,
     Hair1,
     Hair2
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterHairType);
 
-BETTER_ENUM(CharacterEyeType, Int,
+MAKE_ENUM(CharacterEyeType, Int,
     None,
     Eyes1,
     Eyes2
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterEyeType);
 
-BETTER_ENUM(CharacterHandednessType, Int,
+MAKE_ENUM(CharacterHandednessType, Int,
     None,
     LeftHanded,
     RightHanded
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterHandednessType);
 
-BETTER_ENUM(CharacterHandType, Int,
+MAKE_ENUM(CharacterHandType, Int,
     None,
     Primary,
     Secondary
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterHandType);
 
-BETTER_ENUM(CharacterEquipmentType, Int,
+MAKE_ENUM(CharacterEquipmentType, Int,
     None,
     Weapon1Left,
     Weapon1Right,
@@ -332,8 +355,9 @@ BETTER_ENUM(CharacterEquipmentType, Int,
     Legs,
     Chest
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterEquipmentType);
 
-BETTER_ENUM(CharacterTargetType, Int,
+MAKE_ENUM(CharacterTargetType, Int,
     None,
     Self,
     ActionTargetsThisAction,
@@ -359,8 +383,9 @@ BETTER_ENUM(CharacterTargetType, Int,
     Ally5,
     Ally6
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterTargetType);
 
-BETTER_ENUM(CharacterResolvedTargetType, Int,
+MAKE_ENUM(CharacterResolvedTargetType, Int,
     None,
     Enemy1,
     Enemy2,
@@ -375,14 +400,16 @@ BETTER_ENUM(CharacterResolvedTargetType, Int,
     Ally5,
     Ally6
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterResolvedTargetType);
 
-BETTER_ENUM(CharacterPartyType, Int,
+MAKE_ENUM(CharacterPartyType, Int,
     None,
     Ally,
     Enemy
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterPartyType);
 
-BETTER_ENUM(CharacterActionType, Int,
+MAKE_ENUM(CharacterActionType, Int,
     None,
     ItemPotionEnergy,
     ItemPotionHeal,
@@ -440,12 +467,14 @@ BETTER_ENUM(CharacterActionType, Int,
     PowerFlesh,
     PowerWind
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterActionType);
 
-BETTER_ENUM(CharacterActionRunType, Int,
+MAKE_ENUM(CharacterActionRunType, Int,
     None,
     Battle,
     Field
 );
+MAKE_ENUM_CONVERTERS_PROTO(CharacterActionRunType);
 
 String ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const String& sCharacterEquipmentType);
 String ConvertCharacterTargetTypeToCharacterPartyType(const String& sCharacterTargetType);

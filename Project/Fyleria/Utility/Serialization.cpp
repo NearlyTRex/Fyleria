@@ -11,6 +11,10 @@
 namespace Gecko
 {
 
+// Types
+MAKE_ENUM_CONVERTERS_IMPL(FileType);
+
+// Constants
 const FixedUnsigned8Array vBinaryMarkersCBR = {'C', 'B', 'R'};
 const FixedUnsigned8Array vBinaryMarkersMSG = {'M', 'S', 'G'};
 

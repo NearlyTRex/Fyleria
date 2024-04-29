@@ -10,40 +10,17 @@
 #include <enum.h>
 
 // Internal includes
-#include "Utility/Macros.h"
 #include "Utility/Types.h"
+
+// External defines
+#define MAKE_ENUM BETTER_ENUM
+
+// External macros
+#define MAKE_ENUM_CONVERTERS_PROTO(type)    String GetEnumString(type arg)
+#define MAKE_ENUM_CONVERTERS_IMPL(type)     String GetEnumString(type arg) { return arg._to_string(); }
 
 namespace Gecko
 {
-
-BETTER_ENUM(OperationType, Int,
-    None,
-    Add,
-    Subtract,
-    Multiply,
-    Divide,
-    Modulus
-);
-
-BETTER_ENUM(AssignmentType, Int,
-    None,
-    Set,
-    Increment,
-    Decrement
-);
-
-BETTER_ENUM(ComparisonType, Int,
-    None,
-    And,
-    Or
-);
-
-BETTER_ENUM(FileType, Int,
-    None,
-    TextJson,
-    BinaryCBOR,
-    BinaryMsgPack
-);
 
 template <typename T>
 StringArray GetEnumNames()

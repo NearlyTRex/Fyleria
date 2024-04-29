@@ -12,7 +12,7 @@ namespace Gecko
 {
 
 SceneToolSave::SceneToolSave()
-    : Scene((+SceneType::ToolSave)._to_string())
+    : Scene(GetEnumString(SceneType::ToolSave))
 {
 }
 

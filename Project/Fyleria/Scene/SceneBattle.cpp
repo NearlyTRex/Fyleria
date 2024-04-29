@@ -13,7 +13,7 @@ namespace Gecko
 {
 
 SceneBattle::SceneBattle()
-    : Scene((+SceneType::Battle)._to_string())
+    : Scene(GetEnumString(SceneType::Battle))
 {
 }
 

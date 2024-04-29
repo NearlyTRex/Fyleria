@@ -13,7 +13,7 @@
 namespace Gecko
 {
 
-BETTER_ENUM(SaveSlotType, Int,
+MAKE_ENUM(SaveSlotType, Int,
     None,
     Slot1,
     Slot2,
@@ -21,6 +21,7 @@ BETTER_ENUM(SaveSlotType, Int,
     Slot4,
     Slot5
 );
+MAKE_ENUM_CONVERTERS_PROTO(SaveSlotType);
 
 };
 

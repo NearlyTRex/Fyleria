@@ -13,7 +13,7 @@ namespace Gecko
 {
 
 SceneCraftingMenu::SceneCraftingMenu()
-    : Scene((+SceneType::CraftingMenu)._to_string())
+    : Scene(GetEnumString(SceneType::CraftingMenu))
 {
 }
 

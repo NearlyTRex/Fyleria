@@ -5,3 +5,12 @@
 
 // Internal includes
 #include "Item/ItemTypes.h"
+
+namespace Gecko
+{
+
+// Types
+MAKE_ENUM_CONVERTERS_IMPL(ItemTreeType);
+MAKE_ENUM_CONVERTERS_IMPL(ItemType);
+
+};

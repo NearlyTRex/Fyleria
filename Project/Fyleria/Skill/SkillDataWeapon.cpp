@@ -104,8 +104,8 @@ CharacterActionArray SkillDataWeapon::CreateWeaponActions(
     const String sPrimaryItemActionType = ConvertItemTypeToCharacterActionType(sPrimaryItemType);
     const String sSecondaryItemActionType = ConvertItemTypeToCharacterActionType(sSecondaryItemType);
     const String sActionNoneType = GetNoneTypeForEnum<CharacterActionType>();
-    const String sHandPrimaryType = (+CharacterHandType::Primary)._to_string();
-    const String sHandSecondaryType = (+CharacterHandType::Secondary)._to_string();
+    const String sHandPrimaryType = GetEnumString(CharacterHandType::Primary);
+    const String sHandSecondaryType = GetEnumString(CharacterHandType::Secondary);
     if(sPrimaryItemActionType == sActionNoneType && sSecondaryItemActionType == sActionNoneType)
     {
         return vNewActions;

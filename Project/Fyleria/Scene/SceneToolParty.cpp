@@ -12,7 +12,7 @@ namespace Gecko
 {
 
 SceneToolParty::SceneToolParty()
-    : Scene((+SceneType::ToolParty)._to_string())
+    : Scene(GetEnumString(SceneType::ToolParty))
 {
 }
 

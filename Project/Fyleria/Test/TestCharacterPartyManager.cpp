@@ -27,9 +27,9 @@ BOOST_FIXTURE_TEST_CASE(LoadParty, Gecko::TestFixtureAppLoaded)
 BOOST_FIXTURE_TEST_CASE(LoadPartyFromFile, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sPartyID = "EmptyParty";
-    Gecko::String sPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
+    Gecko::String sPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
     Gecko::String sPartyFile;
-    Gecko::String sPartyFileType = (+Gecko::FileType::TextJson)._to_string();
+    Gecko::String sPartyFileType = GetEnumString(Gecko::FileType::TextJson);
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sPartyFile));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sPartyID, sPartyType, false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->SavePartyToFile(sPartyID, sPartyFile, sPartyFileType));
@@ -43,9 +43,9 @@ BOOST_FIXTURE_TEST_CASE(LoadPartyFromFile, Gecko::TestFixtureAppLoaded)
 BOOST_FIXTURE_TEST_CASE(SavePartyToFile, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sPartyID = "EmptyParty";
-    Gecko::String sPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
+    Gecko::String sPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
     Gecko::String sPartyFile;
-    Gecko::String sPartyFileType = (+Gecko::FileType::TextJson)._to_string();
+    Gecko::String sPartyFileType = GetEnumString(Gecko::FileType::TextJson);
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sPartyFile));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sPartyID, sPartyType, false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->SavePartyToFile(sPartyID, sPartyFile, sPartyFileType));
@@ -56,8 +56,8 @@ BOOST_FIXTURE_TEST_CASE(CreateParty, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sPartyID = "EmptyParty";
     Gecko::String sInvalidPartyID = "";
-    Gecko::String sPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
-    Gecko::String sInvalidPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
+    Gecko::String sPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
+    Gecko::String sInvalidPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sPartyID, sPartyType, false));
     BOOST_CHECK_EQUAL(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sInvalidPartyID, sInvalidPartyType, false), false);
 }
@@ -67,8 +67,8 @@ BOOST_FIXTURE_TEST_CASE(UnloadParty, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sAllyPartyID = "AllyParty";
     Gecko::String sEnemyPartyID = "EnemyParty";
-    Gecko::String sAllyPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
-    Gecko::String sEnemyPartyType = (+Gecko::CharacterPartyType::Enemy)._to_string();
+    Gecko::String sAllyPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
+    Gecko::String sEnemyPartyType = GetEnumString(Gecko::CharacterPartyType::Enemy);
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sAllyPartyID, sAllyPartyType, false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->UnloadParty(sAllyPartyID));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sEnemyPartyID, sEnemyPartyType, false));
@@ -80,8 +80,8 @@ BOOST_FIXTURE_TEST_CASE(SetAsCurrentParty, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sAllyPartyID = "AllyParty";
     Gecko::String sEnemyPartyID = "EnemyParty";
-    Gecko::String sAllyPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
-    Gecko::String sEnemyPartyType = (+Gecko::CharacterPartyType::Enemy)._to_string();
+    Gecko::String sAllyPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
+    Gecko::String sEnemyPartyType = GetEnumString(Gecko::CharacterPartyType::Enemy);
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sAllyPartyID, sAllyPartyType, false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sEnemyPartyID, sEnemyPartyType, false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->SetAsCurrentParty(sAllyPartyID, sAllyPartyType));
@@ -93,8 +93,8 @@ BOOST_FIXTURE_TEST_CASE(UnloadAllParties, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sAllyPartyID = "AllyParty";
     Gecko::String sEnemyPartyID = "EnemyParty";
-    Gecko::String sAllyPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
-    Gecko::String sEnemyPartyType = (+Gecko::CharacterPartyType::Enemy)._to_string();
+    Gecko::String sAllyPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
+    Gecko::String sEnemyPartyType = GetEnumString(Gecko::CharacterPartyType::Enemy);
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sAllyPartyID, sAllyPartyType, false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sEnemyPartyID, sEnemyPartyType, false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->UnloadAllParties());
@@ -104,7 +104,7 @@ BOOST_FIXTURE_TEST_CASE(UnloadAllParties, Gecko::TestFixtureAppLoaded)
 BOOST_FIXTURE_TEST_CASE(DoesPartyExistByID, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sAllyPartyID = "AllyParty";
-    Gecko::String sAllyPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
+    Gecko::String sAllyPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sAllyPartyID, sAllyPartyType, false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->DoesPartyExistByID(sAllyPartyID));
 }
@@ -113,7 +113,7 @@ BOOST_FIXTURE_TEST_CASE(DoesPartyExistByID, Gecko::TestFixtureAppLoaded)
 BOOST_FIXTURE_TEST_CASE(DoesPartyExistByType, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sAllyPartyID = "AllyParty";
-    Gecko::String sAllyPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
+    Gecko::String sAllyPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->CreateParty(sAllyPartyID, sAllyPartyType, false));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->DoesPartyExistByType(sAllyPartyType));
 }
@@ -140,7 +140,7 @@ BOOST_FIXTURE_TEST_CASE(GetPartyByID, Gecko::TestFixtureAppLoaded)
 BOOST_FIXTURE_TEST_CASE(GetPartyByType, Gecko::TestFixtureAppLoaded)
 {
     Gecko::String sAllyPartyID = "EmptyAllyParty";
-    Gecko::String sAllyPartyType = (+Gecko::CharacterPartyType::Ally)._to_string();
+    Gecko::String sAllyPartyType = GetEnumString(Gecko::CharacterPartyType::Ally);
     Gecko::String sUnknownPartyType = "";
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterPartyManager()->LoadParty(Gecko::CharacterParty(Gecko::EMPTY_ALLY_CHARACTER_PARTY), false, true));
     BOOST_CHECK_NO_THROW(Gecko::GetManagers()->GetCharacterPartyManager()->GetPartyByType(sAllyPartyType));
