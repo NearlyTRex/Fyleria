@@ -154,6 +154,25 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     defines(libMicroPather_releasedefines)
 
+-- PPKAssert
+project "PPKAssert"
+language "C++"
+pic "On"
+    kind(GetStaticLibraryType())
+    runpathdirs(GetLibraryRunPaths())
+    cppdialect(GetCpp20Dialect())
+    buildoptions(libPPKAssert_buildoptions)
+    includedirs(libPPKAssert_includedirs)
+    defines(libPPKAssert_defines)
+    files(libPPKAssert_sources)
+    links(libPPKAssert_libs)
+    targetdir(GetLibraryTargetDirectory())
+    targetname(GetTargetName("PPKAssert"))
+filter "configurations:Debug*"
+    defines(libPPKAssert_debugdefines)
+filter "configurations:Release*"
+    defines(libPPKAssert_releasedefines)
+
 -- SpdLog
 project "SpdLog"
 language "C++"

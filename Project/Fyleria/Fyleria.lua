@@ -11,6 +11,7 @@ require "Libs/Cpp/Json/Json"
 require "Libs/Cpp/LRUCache/LRUCache"
 require "Libs/Cpp/MicroPather/MicroPather"
 require "Libs/Cpp/ObjectThreadsafe/ObjectThreadsafe"
+require "Libs/Cpp/PPKAssert/PPKAssert"
 require "Libs/Cpp/SpdLog/SpdLog"
 require "Libs/Cpp/WebView/WebView"
 
@@ -31,6 +32,7 @@ for k,v in pairs(libBetterEnums_includedirs) do table.insert(libFyleria_included
 for k,v in pairs(libLRUCache_includedirs) do table.insert(libFyleria_includedirs, v) end
 for k,v in pairs(libJson_includedirs) do table.insert(libFyleria_includedirs, v) end
 for k,v in pairs(libObjectThreadsafe_includedirs) do table.insert(libFyleria_includedirs, v) end
+for k,v in pairs(libPPKAssert_includedirs) do table.insert(libFyleria_includedirs, v) end
 for k,v in pairs(libSpdLog_includedirs) do table.insert(libFyleria_includedirs, v) end
 for k,v in pairs(libWebView_includedirs) do table.insert(libFyleria_includedirs, v) end
 
@@ -76,6 +78,7 @@ appFyleria_libs = {
     "CJSMin",
     "FantasyName",
     "MicroPather",
+    "PPKAssert",
     "SpdLog",
     "Zlib"
 }
