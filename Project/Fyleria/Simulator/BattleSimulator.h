@@ -26,6 +26,9 @@ public:
 
     // Run
     virtual void Run() override;
+
+    // Generate random participants
+    void GenerateRandomParticipants();
 };
 
 // Typedef

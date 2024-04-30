@@ -6,6 +6,7 @@
 // Internal includes
 #include "Application/Application.h"
 #include "Application/ApplicationConstants.h"
+#include "Simulator/SimulatorMain.h"
 #include "Utility/Errors.h"
 #include "Utility/Boost.h"
 #include "Utility/StackTrace.h"
@@ -17,6 +18,7 @@ namespace Gecko
 // Get main options
 BoostProgramOptionsDescription GetMainOptions()
 {
+    // Get options
     BoostProgramOptionsDescription options("General options");
     options.add_options()
         ("help,h", "Display this help message")
@@ -65,6 +67,7 @@ int main(int argc, char** argv)
         BoostProgramOptionsDescription options;
         options.add(Gecko::GetMainOptions());
         options.add(Gecko::GetWrapperOptions());
+        options.add(Gecko::GetSimulatorOptions());
 
         // Parse command line
         BoostProgramOptionsVariablesMap vm;
@@ -79,6 +82,7 @@ int main(int argc, char** argv)
         // Handle options
         Gecko::HandleMainOptions(options, vm);
         Gecko::HandleWrapperOptions(options, vm);
+        Gecko::HandleSimulatorOptions(options, vm);
 
         // Create application
         Gecko::Application app;

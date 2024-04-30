@@ -13,7 +13,7 @@
 namespace Gecko
 {
 
-// Get options
+// Get wrapper options
 BoostProgramOptionsDescription GetWrapperOptions();
 
 // Handle wrapper options

@@ -18,6 +18,7 @@ namespace Gecko
 
 BoostProgramOptionsDescription GetWrapperOptions()
 {
+    // Get options
     BoostProgramOptionsDescription options("Wrapper options");
     options.add_options()
         ("generate_wrappers,g", "Generate wrapper files")
