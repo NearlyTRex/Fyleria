@@ -49,7 +49,7 @@ public:
     Bool DoesCharacterExist(const String& sCharacterID) const;
 
     // Generate a character
-    Bool GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator);
+    Bool GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator, Bool bRegenerateData);
 
     // Check if character ID is valid
     Bool IsValidCharacterID(const String& sCharacterID) const;

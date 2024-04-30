@@ -124,7 +124,7 @@ BOOST_FIXTURE_TEST_CASE(GenerateCharacterFromGeneratorJson, Gecko::TestFixtureAp
     Gecko::String sCharFileType = GetEnumString(Gecko::FileType::TextJson);
     Gecko::CharacterGenerator generator(Gecko::CHARACTER_GENERATOR_RANDOM_JSON);
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sCharFile));
-    BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->GenerateCharacter(sCharID, generator));
+    BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->GenerateCharacter(sCharID, generator, true));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->SaveCharacterToFile(sCharID, sCharFile, sCharFileType));
 }
 
@@ -137,7 +137,7 @@ BOOST_FIXTURE_TEST_CASE(GenerateCompletelyRandomCharacter, Gecko::TestFixtureApp
     Gecko::CharacterGenerator generator;
     BOOST_CHECK(Gecko::GetManagers()->GetFileManager()->CreateTempFile(sCharFile));
     generator.RandomizeAll();
-    BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->GenerateCharacter(sCharID, generator));
+    BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->GenerateCharacter(sCharID, generator, true));
     BOOST_CHECK(Gecko::GetManagers()->GetCharacterManager()->SaveCharacterToFile(sCharID, sCharFile, sCharFileType));
 }
 

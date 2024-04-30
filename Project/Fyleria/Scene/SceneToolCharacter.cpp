@@ -102,14 +102,14 @@ void SceneToolCharacter::UnloadCharacter(const String& sCharacterID)
 
 void SceneToolCharacter::GenerateCharacter(const String& sCharacterID, const String& sGeneratorJson)
 {
-    GetManagers()->GetCharacterManager()->GenerateCharacter(sCharacterID, CharacterGenerator(sGeneratorJson));
+    GetManagers()->GetCharacterManager()->GenerateCharacter(sCharacterID, CharacterGenerator(sGeneratorJson), true);
 }
 
 void SceneToolCharacter::GenerateRandomCharacter(const String& sCharacterID)
 {
     CharacterGenerator generator;
     generator.RandomizeAll();
-    GetManagers()->GetCharacterManager()->GenerateCharacter(sCharacterID, generator);
+    GetManagers()->GetCharacterManager()->GenerateCharacter(sCharacterID, generator, true);
 }
 
 void SceneToolCharacter::RegenerateCharacterData(const String& sCharacterID)

@@ -55,8 +55,8 @@ void BattleSimulator::GenerateRandomParticipants()
     for(UInt iCharNum = 1; iCharNum <= MAX_TEAM_CHARACTER_AMOUNT; iCharNum++)
     {
         generator.RandomizeAll();
-        GetManagers()->GetCharacterManager()->GenerateCharacter(sAllyType + BoostLexicalCast<String>(iCharNum), generator);
-        GetManagers()->GetCharacterManager()->GenerateCharacter(sEnemyType + BoostLexicalCast<String>(iCharNum), generator);
+        GetManagers()->GetCharacterManager()->GenerateCharacter(sAllyType + BoostLexicalCast<String>(iCharNum), generator, false);
+        GetManagers()->GetCharacterManager()->GenerateCharacter(sEnemyType + BoostLexicalCast<String>(iCharNum), generator, false);
     }
 
     // Generate parties

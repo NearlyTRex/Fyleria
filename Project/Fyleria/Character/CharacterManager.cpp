@@ -118,7 +118,7 @@ Bool CharacterManager::DoesCharacterExist(const String& sCharacterID) const
     return (iSearch != GetCharacters().end());
 }
 
-Bool CharacterManager::GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator)
+Bool CharacterManager::GenerateCharacter(const String& sCharacterID, const CharacterGenerator& generator, Bool bRegenerateData)
 {
     // Check character ID
     if(!IsValidCharacterID(sCharacterID))
@@ -135,7 +135,10 @@ Bool CharacterManager::GenerateCharacter(const String& sCharacterID, const Chara
     newCharacter.SetBasicData(generator.GenerateBasicData(sCharacterID));
     newCharacter.SetProgressData(generator.GenerateProgressData());
     newCharacter.SetSkillData(generator.GenerateSkillData());
-    newCharacter.RegenerateCharacterData();
+    if(bRegenerateData)
+    {
+        newCharacter.RegenerateCharacterData();
+    }
 
     // Check character
     return DoesCharacterExist(sCharacterID);
