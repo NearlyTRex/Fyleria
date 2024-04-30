@@ -9,8 +9,43 @@
 #include "Utility/Errors.h"
 #include "Utility/Boost.h"
 #include "Utility/StackTrace.h"
-#include "Utility/Version.h"
 #include "Utility/Wrapper.h"
+
+namespace Gecko
+{
+
+// Get main options
+BoostProgramOptionsDescription GetMainOptions()
+{
+    BoostProgramOptionsDescription options("General options");
+    options.add_options()
+        ("help,h", "Display this help message")
+        ("version,v", "Display the version number")
+    ;
+    return options;
+}
+
+// Handle main options
+void HandleMainOptions(const BoostProgramOptionsDescription& options, const BoostProgramOptionsVariablesMap& vm)
+{
+    // Print help
+    if(vm.count("help"))
+    {
+        STDCout << Application::GetName() << STDEndl;
+        STDCout << Application::GetVersionShort() << STDEndl;
+        STDCout << options;
+        STDExit(EXIT_SUCCESS);
+    }
+
+    // Print version
+    if(vm.count("version"))
+    {
+        STDCout << Application::GetVersionLong() << STDEndl;
+        STDExit(EXIT_SUCCESS);
+    }
+}
+
+};
 
 // Main
 #if defined(PLATFORM_OS_WINDOWS)
@@ -26,47 +61,24 @@ int main(int argc, char** argv)
 
     try
     {
-        // Create program description
-        BoostProgramOptionsDescription description{Gecko::APPLICATION_NAME_LONG};
-        description.add_options()
-            ("help,h", "Display this help message")
-            ("version,v", "Display the version number")
-#ifdef DEBUG
-            ("generate_wrappers,g", "Generate wrapper files")
-#endif
-        ;
+        // Create options
+        BoostProgramOptionsDescription options;
+        options.add(Gecko::GetMainOptions());
+        options.add(Gecko::GetWrapperOptions());
 
         // Parse command line
         BoostProgramOptionsVariablesMap vm;
 #if defined(PLATFORM_OS_WINDOWS)
-        BoostProgramOptionsStore(BoostProgramOptionsCommandLineParser(__argc, __argv).options(description).allow_unregistered().run(), vm);
+        BoostProgramOptionsCommandLineParser parser(__argc, __argv);
 #else
-        BoostProgramOptionsStore(BoostProgramOptionsCommandLineParser(argc, argv).options(description).allow_unregistered().run(), vm);
+        BoostProgramOptionsCommandLineParser parser(argc, argv);
 #endif
+        BoostProgramOptionsStore(parser.options(options).allow_unregistered().run(), vm);
         BoostProgramOptionsNotify(vm);
 
-        // Print help
-        if(vm.count("help"))
-        {
-            STDCout << description;
-            return EXIT_SUCCESS;
-        }
-
-        // Print version
-        if(vm.count("version"))
-        {
-            STDCout << GetVersionString() << STDEndl;
-            return EXIT_SUCCESS;
-        }
-
-#ifdef DEBUG
-        // Generate wrappers
-        if(vm.count("generate_wrappers"))
-        {
-            Gecko::WriteWrapperFiles();
-            return EXIT_SUCCESS;
-        }
-#endif
+        // Handle options
+        Gecko::HandleMainOptions(options, vm);
+        Gecko::HandleWrapperOptions(options, vm);
 
         // Create application
         Gecko::Application app;

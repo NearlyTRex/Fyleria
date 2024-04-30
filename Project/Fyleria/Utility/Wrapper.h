@@ -7,10 +7,17 @@
 #define _GECKO_UTILITY_WRAPPER_H_
 
 // Internal includes
+#include "Utility/Boost.h"
 #include "Utility/Types.h"
 
 namespace Gecko
 {
+
+// Get options
+BoostProgramOptionsDescription GetWrapperOptions();
+
+// Handle wrapper options
+void HandleWrapperOptions(const BoostProgramOptionsDescription& options, const BoostProgramOptionsVariablesMap& vm);
 
 // Write wrapper files
 void WriteWrapperFiles();

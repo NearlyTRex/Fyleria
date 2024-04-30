@@ -28,6 +28,13 @@ public:
     // Destructor
     virtual ~Application();
 
+    // Get application name
+    static String GetName();
+
+    // Get application version
+    static String GetVersionShort();
+    static String GetVersionLong();
+
     // Run application
     void Run();
 

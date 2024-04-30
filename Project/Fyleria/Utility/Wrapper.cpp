@@ -16,6 +16,25 @@
 namespace Gecko
 {
 
+BoostProgramOptionsDescription GetWrapperOptions()
+{
+    BoostProgramOptionsDescription options("Wrapper options");
+    options.add_options()
+        ("generate_wrappers,g", "Generate wrapper files")
+    ;
+    return options;
+}
+
+void HandleWrapperOptions(const BoostProgramOptionsDescription& options, const BoostProgramOptionsVariablesMap& vm)
+{
+    // Generate wrappers
+    if(vm.count("generate_wrappers"))
+    {
+        WriteWrapperFiles();
+        STDExit(EXIT_SUCCESS);
+    }
+}
+
 void WriteWrapperFiles()
 {
     // CharacterData

@@ -121,6 +121,7 @@
 #define STDBindFunc std::bind
 #define STDSignal std::signal
 #define STDRaise std::raise
+#define STDExit std::exit
 #define STDPlaceholder1 std::placeholders::_1
 #define STDPlaceholder2 std::placeholders::_2
 #define STDPlaceholder3 std::placeholders::_3

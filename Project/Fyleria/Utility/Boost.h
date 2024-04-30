@@ -23,6 +23,12 @@
 #define BoostAnyCast boost::any_cast
 #define BoostLexicalCast boost::lexical_cast
 #define BoostFormatString boost::format
+#define BoostStartsWith boost::starts_with
+#define BoostEndsWith boost::ends_with
+#define BoostToUpper boost::to_upper
+#define BoostToUpperCopy boost::to_upper_copy
+#define BoostToLower boost::to_lower
+#define BoostToLowerCopy boost::to_lower_copy
 #define BoostFilesystemExists boost::filesystem::exists
 #define BoostFilesystemCopy boost::filesystem::copy
 #define BoostFilesystemCopyDirectory boost::filesystem::copy_directory

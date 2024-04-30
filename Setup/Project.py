@@ -77,13 +77,17 @@ def CreateProject(system_info, program_options):
         with open(os.path.join("Project/Fyleria/Utility/Version.h"), "w") as f:
             f.write("#ifndef _GECKO_UTILITY_VERSION_H_\n")
             f.write("#define _GECKO_UTILITY_VERSION_H_\n")
-            f.write("char const* GetVersionString();\n")
+            f.write("char const* GetVersionStringShort();\n")
+            f.write("char const* GetVersionStringLong();\n")
             f.write("#endif\n")
 
     # Write version implementation file
     if not os.path.isfile("Project/Fyleria/Utility/Version.cpp"):
         with open(os.path.join("Project/Fyleria/Utility/Version.cpp"), "w") as f:
-            f.write("char const* GetVersionString() {\n")
+            f.write("char const* GetVersionStringShort() {\n")
+            f.write("return \"%s\";\n" % (Repository.GetGitVersion()))
+            f.write("}\n")
+            f.write("char const* GetVersionStringLong() {\n")
             f.write("return \"%s (%s %s)\";\n" % (Repository.GetGitVersion(), system_info.date, system_info.uname))
             f.write("}\n")
 

@@ -11,6 +11,7 @@
 #include "Stat/StatNames.h"
 #include "Config/ConfigConstants.h"
 #include "Utility/Logging.h"
+#include "Utility/Version.h"
 
 namespace Gecko
 {
@@ -27,6 +28,42 @@ Application::Application()
 
 Application::~Application()
 {
+}
+
+String Application::GetName()
+{
+    // Get name
+    return APPLICATION_NAME_LONG;
+}
+
+String GetVersion(const String& sVersion)
+{
+    // Check length
+    if(sVersion.size() <= 2)
+    {
+        return sVersion;
+    }
+
+    // Get version
+    String sNewVersion = sVersion;
+    BoostReplaceAll(sNewVersion, "-dirty", "");
+    if(BoostStartsWith(sNewVersion, "v"))
+    {
+        return "Version " + sNewVersion.substr(1, sNewVersion.size() - 1);
+    }
+    return "Version " + sNewVersion;
+}
+
+String Application::GetVersionShort()
+{
+    // Get version
+    return GetVersion(GetVersionStringShort());
+}
+
+String Application::GetVersionLong()
+{
+    // Get version
+    return GetVersion(GetVersionStringLong());
 }
 
 void Application::Run()
