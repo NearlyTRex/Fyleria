@@ -19,9 +19,6 @@ BoostProgramOptionsDescription GetSimulatorOptions();
 // Handle simulator options
 void HandleSimulatorOptions(const BoostProgramOptionsDescription& options, const BoostProgramOptionsVariablesMap& vm);
 
-// Run battle simulation
-void RunBattleSimulation();
-
 };
 
 #endif

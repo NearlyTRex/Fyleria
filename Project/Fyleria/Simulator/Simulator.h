@@ -11,6 +11,7 @@
 #include "Utility/Enum.h"
 #include "Utility/Json.h"
 #include "Utility/Types.h"
+#include "Application/Application.h"
 
 namespace Gecko
 {
@@ -29,6 +30,9 @@ public:
 
     // Run
     virtual void Run() = 0;
+
+    // Application
+    MAKE_RAW_TYPE_ACCESSORS(Application, Application);
 };
 
 // Typedef

@@ -10,6 +10,14 @@
 namespace Gecko
 {
 
+void RunBattleSimulation()
+{
+    // Run battle simulation
+    BattleSimulator sim;
+    sim.Prepare();
+    sim.Run();
+}
+
 BoostProgramOptionsDescription GetSimulatorOptions()
 {
     // Get options
@@ -28,14 +36,6 @@ void HandleSimulatorOptions(const BoostProgramOptionsDescription& options, const
         RunBattleSimulation();
         STDExit(EXIT_SUCCESS);
     }
-}
-
-void RunBattleSimulation()
-{
-    // Run battle simulation
-    BattleSimulator sim;
-    sim.Prepare();
-    sim.Run();
 }
 
 };
