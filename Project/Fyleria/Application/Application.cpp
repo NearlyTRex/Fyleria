@@ -9,7 +9,6 @@
 #include "Window/MainWindow.h"
 #include "Scene/SceneTypes.h"
 #include "Stat/StatNames.h"
-#include "Config/ConfigConstants.h"
 #include "Utility/Logging.h"
 #include "Utility/Version.h"
 
@@ -180,8 +179,8 @@ void Application::Initialize()
     CheckDataDirectory();
 
     // Initialize
-    InitializeLogging(APPLICATION_LOGGER_NAME, LoggingLevelTrace);
-    InitializeConfig(CONFIG_NAME, CONFIG_FILE);
+    InitializeLogging(APPLICATION_LOGGER_NAME, APPLICATION_LOGGER_LEVEL_MAIN);
+    InitializeConfig(APPLICATION_CONFIG_NAME, APPLICATION_CONFIG_FILE);
     InitializeSaves();
     InitializeTrees();
     InitializeWindow();

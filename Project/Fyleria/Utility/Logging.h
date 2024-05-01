@@ -36,8 +36,8 @@
 #define WriteTraceLogEntry spdlog::trace
 #define WriteDebugLogEntry spdlog::debug
 #define WriteInfoLogEntry spdlog::info
-#define WriteErrorLogEntry spdlog::error
 #define WriteWarningLogEntry spdlog::warn
+#define WriteErrorLogEntry spdlog::error
 #define WriteCriticalLogEntry spdlog::critical
 #define SinkInitList spdlog::sinks_init_list
 
@@ -62,6 +62,13 @@
 // SpdLog policies
 #define LoggingAsyncOverflowPolicyBlock spdlog::async_overflow_policy::block
 #define LoggingAsyncOverflowPolicyDiscardOldest spdlog::async_overflow_policy::overrun_oldest
+
+// Write a trace statement
+#define TRACE_STATEMENT(string) WriteTraceLogEntry(string)
+#define TRACE_FORMAT_STATEMENT(string, ...) WriteTraceLogEntry(string, __VA_ARGS__)
+#define TRACE_WFORMAT_STATEMENT(string, ...) WriteTraceLogEntry(string, __VA_ARGS__)
+#define TRACE_FORMAT_STATEMENT_NARGS(string) WriteTraceLogEntry(string)
+#define TRACE_WFORMAT_STATEMENT_NARGS(string) WriteTraceLogEntry(string)
 
 // Write a logging statement
 #define LOG_STATEMENT(string) WriteInfoLogEntry(string)

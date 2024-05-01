@@ -14,12 +14,6 @@ namespace Gecko
     // Defaults
     extern const Int DEFAULT_SCREEN_WIDTH;
     extern const Int DEFAULT_SCREEN_HEIGHT;
-
-    // Config name
-    extern const String CONFIG_NAME;
-
-    // Config file
-    extern const String CONFIG_FILE;
 };
 
 #endif

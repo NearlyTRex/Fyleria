@@ -13,6 +13,7 @@
 namespace Gecko
 {
 
+// TreeIndex
 class TreeIndex
 {
 public:

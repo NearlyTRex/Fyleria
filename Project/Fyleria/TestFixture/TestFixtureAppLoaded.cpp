@@ -7,7 +7,6 @@
 #include "TestFixture/TestFixtureAppLoaded.h"
 #include "Application/Application.h"
 #include "Application/ApplicationConstants.h"
-#include "Config/ConfigConstants.h"
 #include "Utility/Logging.h"
 
 namespace Gecko
@@ -30,10 +29,10 @@ void TestFixtureAppLoaded::Setup()
     GetApplication().CheckDataDirectory();
 
     // Initialize logging
-    GetApplication().InitializeLogging(APPLICATION_LOGGER_NAME, LoggingLevelError);
+    GetApplication().InitializeLogging(APPLICATION_LOGGER_NAME, APPLICATION_LOGGER_LEVEL_TEST);
 
     // Initialize config
-    GetApplication().InitializeConfig(CONFIG_NAME, CONFIG_FILE);
+    GetApplication().InitializeConfig(APPLICATION_CONFIG_NAME, APPLICATION_CONFIG_FILE);
 
     // Initialize saves
     GetApplication().InitializeSaves();

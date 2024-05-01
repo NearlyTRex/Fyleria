@@ -12,6 +12,7 @@
 namespace Gecko
 {
 
+// Singleton
 template<typename T>
 class Singleton
 {
@@ -29,7 +30,7 @@ public:
 
 private:
 
-    // Data
+    // Instance
     static SafePtr<T> m_pInstance;
 
     // Deleted
@@ -39,6 +40,7 @@ private:
     Singleton& operator=(Singleton&&) = delete;
 };
 
+// Singleton instance
 template<typename T>
 SafePtr<T> Singleton<T>::m_pInstance = {};
 

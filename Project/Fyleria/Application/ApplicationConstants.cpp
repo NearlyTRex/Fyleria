@@ -10,5 +10,11 @@
 const Gecko::String Gecko::APPLICATION_NAME_SHORT = "Fyleria";
 const Gecko::String Gecko::APPLICATION_NAME_LONG = "Fyleria Game Engine";
 
-// Application logger name
+// Application logger
 const Gecko::String Gecko::APPLICATION_LOGGER_NAME = "log";
+const LoggingLevelType Gecko::APPLICATION_LOGGER_LEVEL_MAIN = LoggingLevelTrace;
+const LoggingLevelType Gecko::APPLICATION_LOGGER_LEVEL_TEST = LoggingLevelError;
+
+// Application config
+const Gecko::String Gecko::APPLICATION_CONFIG_NAME = "Default";
+const Gecko::String Gecko::APPLICATION_CONFIG_FILE = "Config.json";

@@ -21,6 +21,7 @@
 namespace Gecko
 {
 
+// ManagerSet
 class ManagerSet
 {
 public:
