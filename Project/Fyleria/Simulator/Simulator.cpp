@@ -17,6 +17,22 @@ Simulator::Simulator(const Json& jsonData)
 {
 }
 
+void Simulator::Prepare()
+{
+    // Initialize app
+    GetApplication().InitializeForSimulator();
+}
+
+void Simulator::Shutdown()
+{
+    // Finalize app
+    GetApplication().Finalize();
+}
+
+void Simulator::Run()
+{
+}
+
 void to_json(Json& jsonData, const Simulator& obj)
 {
 }

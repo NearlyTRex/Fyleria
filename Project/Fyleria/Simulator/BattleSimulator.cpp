@@ -27,12 +27,24 @@ BattleSimulator::BattleSimulator(const Json& jsonData):
 
 void BattleSimulator::Prepare()
 {
+    // Call parent
+    Simulator::Prepare();
+
     // Generate random participants
     GenerateRandomParticipants();
 }
 
+void BattleSimulator::Shutdown()
+{
+    // Call parent
+    Simulator::Shutdown();
+}
+
 void BattleSimulator::Run()
 {
+    // Call parent
+    Simulator::Run();
+
     // Create new battle
     // For each ally character:
         // - Get list of available actions

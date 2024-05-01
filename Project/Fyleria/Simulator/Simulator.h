@@ -28,6 +28,9 @@ public:
     // Prepare
     virtual void Prepare() = 0;
 
+    // Shutdown
+    virtual void Shutdown() = 0;
+
     // Run
     virtual void Run() = 0;
 

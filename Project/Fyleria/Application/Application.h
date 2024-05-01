@@ -35,25 +35,33 @@ public:
     static String GetVersionShort();
     static String GetVersionLong();
 
+    // Initialize
+    void Initialize();
+    void InitializeForSimulator();
+    void InitializeForTesting();
+
+    // Finalize
+    void Finalize();
+
     // Run application
     void Run();
+
+private:
 
     // Check data directory
     void CheckDataDirectory();
 
-    // Initialize
+    // Initialize subsystems
     void InitializeLogging(const String& sLogName, LoggingLevelType eLogLevel);
     void InitializeConfig(const String& sConfigName, const String& sConfigFile);
     void InitializeSaves();
     void InitializeTrees();
     void InitializeWindow();
-    void Initialize();
 
-    // Finalize
+    // Finalize subsystems
     void FinalizeLogging();
     void FinalizeCharacters();
     void FinalizeTrees();
-    void Finalize();
 };
 
 };

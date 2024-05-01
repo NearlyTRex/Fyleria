@@ -65,6 +65,51 @@ String Application::GetVersionLong()
     return GetVersion(GetVersionStringLong());
 }
 
+void Application::Initialize()
+{
+    // Check data directory
+    CheckDataDirectory();
+
+    // Initialize
+    InitializeLogging(APPLICATION_LOGGER_NAME, APPLICATION_LOGGER_LEVEL_MAIN);
+    InitializeConfig(APPLICATION_CONFIG_NAME, APPLICATION_CONFIG_FILE);
+    InitializeSaves();
+    InitializeTrees();
+    InitializeWindow();
+}
+
+void Application::InitializeForSimulator()
+{
+    // Check data directory
+    CheckDataDirectory();
+
+    // Initialize
+    InitializeLogging(APPLICATION_LOGGER_NAME, APPLICATION_LOGGER_LEVEL_MAIN);
+    InitializeConfig(APPLICATION_CONFIG_NAME, APPLICATION_CONFIG_FILE);
+    InitializeSaves();
+    InitializeTrees();
+}
+
+void Application::InitializeForTesting()
+{
+    // Check data directory
+    CheckDataDirectory();
+
+    // Initialize
+    InitializeLogging(APPLICATION_LOGGER_NAME, APPLICATION_LOGGER_LEVEL_TEST);
+    InitializeConfig(APPLICATION_CONFIG_NAME, APPLICATION_CONFIG_FILE);
+    InitializeSaves();
+    InitializeTrees();
+}
+
+void Application::Finalize()
+{
+    // Finalize
+    FinalizeCharacters();
+    FinalizeTrees();
+    FinalizeLogging();
+}
+
 void Application::Run()
 {
     do
@@ -173,19 +218,6 @@ void Application::InitializeWindow()
     LOG_STATEMENT("Finished initializing window");
 }
 
-void Application::Initialize()
-{
-    // Check data directory
-    CheckDataDirectory();
-
-    // Initialize
-    InitializeLogging(APPLICATION_LOGGER_NAME, APPLICATION_LOGGER_LEVEL_MAIN);
-    InitializeConfig(APPLICATION_CONFIG_NAME, APPLICATION_CONFIG_FILE);
-    InitializeSaves();
-    InitializeTrees();
-    InitializeWindow();
-}
-
 void Application::FinalizeLogging()
 {
     // Shutdown logging
@@ -216,14 +248,6 @@ void Application::FinalizeTrees()
     LOG_STATEMENT("Unloading item trees");
     GetManagers()->GetItemManager()->UnloadItemTreesFromMemory();
     LOG_STATEMENT("Finished unloading item trees");
-}
-
-void Application::Finalize()
-{
-    // Finalize
-    FinalizeCharacters();
-    FinalizeTrees();
-    FinalizeLogging();
 }
 
 };

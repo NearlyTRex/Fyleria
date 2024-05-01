@@ -25,20 +25,8 @@ TestFixtureAppLoaded::~TestFixtureAppLoaded()
 
 void TestFixtureAppLoaded::Setup()
 {
-    // Check data directory
-    GetApplication().CheckDataDirectory();
-
-    // Initialize logging
-    GetApplication().InitializeLogging(APPLICATION_LOGGER_NAME, APPLICATION_LOGGER_LEVEL_TEST);
-
-    // Initialize config
-    GetApplication().InitializeConfig(APPLICATION_CONFIG_NAME, APPLICATION_CONFIG_FILE);
-
-    // Initialize saves
-    GetApplication().InitializeSaves();
-
-    // Initialize trees
-    GetApplication().InitializeTrees();
+    // Initialize app
+    GetApplication().InitializeForTesting();
 }
 
 void TestFixtureAppLoaded::Teardown()

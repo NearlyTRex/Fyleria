@@ -24,6 +24,9 @@ public:
     // Prepare
     virtual void Prepare() override;
 
+    // Shutdown
+    virtual void Shutdown() override;
+
     // Run
     virtual void Run() override;
 
