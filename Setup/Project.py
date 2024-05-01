@@ -88,7 +88,7 @@ def CreateProject(system_info, program_options):
             f.write("return \"%s\";\n" % (Repository.GetGitVersion()))
             f.write("}\n")
             f.write("char const* GetVersionStringLong() {\n")
-            f.write("return \"%s (%s %s)\";\n" % (Repository.GetGitVersion(), system_info.date, system_info.uname))
+            f.write("return \"%s (Built: %s) (System: %s)\";\n" % (Repository.GetGitVersion(), system_info.date, system_info.uname))
             f.write("}\n")
 
     # Premake flags
