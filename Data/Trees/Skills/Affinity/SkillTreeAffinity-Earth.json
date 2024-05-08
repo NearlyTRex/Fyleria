@@ -24,8 +24,9 @@
                     {
                         "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
-                        "ChangeAmount": -1,
-                        "OperationType": "Set"
+                        "ChangeAmount": 1,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -48,8 +49,9 @@
                     {
                         "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
-                        "ChangeAmount": -1,
-                        "OperationType": "Set"
+                        "ChangeAmount": 1,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -73,8 +75,9 @@
                     {
                         "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "ChangeAmount": -1,
-                        "OperationType": "Set"
+                        "ChangeAmount": 1,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -95,7 +98,8 @@
                         "SourceStatType": "EmeraldValueDelta",
                         "DestinationStatType": "EmeraldValueDelta",
                         "ChangeAmount": 1,
-                        "OperationType": "Set"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -120,7 +124,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.05,
-                        "OperationType": "Set"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -143,8 +148,9 @@
                     {
                         "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
-                        "ChangeAmount": -2,
-                        "OperationType": "Set"
+                        "ChangeAmount": 2,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -167,8 +173,9 @@
                     {
                         "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
-                        "ChangeAmount": -2,
-                        "OperationType": "Set"
+                        "ChangeAmount": 2,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -192,8 +199,9 @@
                     {
                         "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "ChangeAmount": -2,
-                        "OperationType": "Set"
+                        "ChangeAmount": 2,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -214,7 +222,8 @@
                         "SourceStatType": "EmeraldValueDelta",
                         "DestinationStatType": "EmeraldValueDelta",
                         "ChangeAmount": 2,
-                        "OperationType": "Set"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -239,7 +248,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.1,
-                        "OperationType": "Set"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -262,8 +272,9 @@
                     {
                         "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
-                        "ChangeAmount": -3,
-                        "OperationType": "Set"
+                        "ChangeAmount": 3,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -286,8 +297,9 @@
                     {
                         "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
-                        "ChangeAmount": -3,
-                        "OperationType": "Set"
+                        "ChangeAmount": 3,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -311,8 +323,9 @@
                     {
                         "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "ChangeAmount": -3,
-                        "OperationType": "Set"
+                        "ChangeAmount": 3,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -333,7 +346,8 @@
                         "SourceStatType": "EmeraldValueDelta",
                         "DestinationStatType": "EmeraldValueDelta",
                         "ChangeAmount": 3,
-                        "OperationType": "Set"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -358,7 +372,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.15,
-                        "OperationType": "Set"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -381,8 +396,9 @@
                     {
                         "SourceStatType": "MagicCostDelta",
                         "DestinationStatType": "MagicCostDelta",
-                        "ChangeAmount": -4,
-                        "OperationType": "Set"
+                        "ChangeAmount": 4,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -405,8 +421,9 @@
                     {
                         "SourceStatType": "EnergyCostDelta",
                         "DestinationStatType": "EnergyCostDelta",
-                        "ChangeAmount": -4,
-                        "OperationType": "Set"
+                        "ChangeAmount": 4,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -430,8 +447,9 @@
                     {
                         "SourceStatType": "GeneralDamageBonusValue",
                         "DestinationStatType": "GeneralDamageBonusValue",
-                        "ChangeAmount": -4,
-                        "OperationType": "Set"
+                        "ChangeAmount": 4,
+                        "OperationType": "Subtract",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -452,7 +470,8 @@
                         "SourceStatType": "EmeraldValueDelta",
                         "DestinationStatType": "EmeraldValueDelta",
                         "ChangeAmount": 4,
-                        "OperationType": "Set"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
