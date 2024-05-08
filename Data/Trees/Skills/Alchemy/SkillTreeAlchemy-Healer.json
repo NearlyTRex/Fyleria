@@ -65,8 +65,9 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "ChangeAmount": 1.05,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.05,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -162,8 +163,9 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "ChangeAmount": 1.10,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.10,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -259,8 +261,9 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "ChangeAmount": 1.15,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.15,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -356,8 +359,9 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "ChangeAmount": 1.20,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.20,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -453,8 +457,9 @@
                     {
                         "SourceStatType": "MagicPointsMax",
                         "DestinationStatType": "MagicPointsCurrent",
-                        "ChangeAmount": 1.25,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.25,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }

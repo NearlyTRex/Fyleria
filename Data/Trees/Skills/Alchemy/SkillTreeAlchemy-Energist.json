@@ -64,8 +64,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "ChangeAmount": 1.10,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.10,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -160,8 +161,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "ChangeAmount": 1.20,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.20,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -256,8 +258,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "ChangeAmount": 1.30,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.30,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -352,8 +355,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "ChangeAmount": 1.40,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.40,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -448,8 +452,9 @@
                     {
                         "SourceStatType": "Speed",
                         "DestinationStatType": "Speed",
-                        "ChangeAmount": 1.50,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.50,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
