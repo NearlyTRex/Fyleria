@@ -63,7 +63,6 @@ public:
 
     // Apply a stat change
     Bool ApplyStatChange(
-        const String& sSegment,
         const StatChange& change,
         Bool& bAllChangesApplied,
         Bool& bAtLeastOneChange,
@@ -71,19 +70,17 @@ public:
 
     // Apply a stat change entry
     template <class T>
-    Bool ApplyStatChangeEntry(
-        const String& sSegment,
-        const StatChangeEntry& entry)
+    Bool ApplyStatChangeEntry(const StatChangeEntry& entry)
     {
         T varSourceValue = 0;
-        if(!GetStatChangeEntrySourceValue(sSegment, entry.GetSourceCharacterID(), entry, varSourceValue))
+        if(!GetStatChangeEntrySourceValue(entry.GetSourceCharacterID(), entry, varSourceValue))
         {
             return false;
         }
         Bool bAtLeastOneChange = false;
         for(const String& sDestCharID : entry.GetDestinationCharacterIDs())
         {
-            Bool bResult = ApplyStatChangeEntryDestValue(sSegment, sDestCharID, entry, varSourceValue);
+            Bool bResult = ApplyStatChangeEntryDestValue(sDestCharID, entry, varSourceValue);
             bAtLeastOneChange = bAtLeastOneChange || bResult;
         }
         return bAtLeastOneChange;
@@ -92,7 +89,6 @@ public:
     // Get stat change entry source value
     template <class T>
     Bool GetStatChangeEntrySourceValue(
-        const String& sSegment,
         const String& sCharacterID,
         const StatChangeEntry& entry,
         T& varValue) const
@@ -100,7 +96,7 @@ public:
         T varStatValue = 0;
         Bool bSuccess = false;
         const Character& character = GetCharacter(sCharacterID);
-        if(character.GetStatValue(sSegment, entry.GetSourceStatType(), varStatValue))
+        if(character.GetStatValue(entry.GetSourceStatType(), varStatValue))
         {
             T varNewValue = 0;
             const StatOperationType eOperationType = GetEnumFromString<StatOperationType>(entry.GetOperationType());
@@ -139,7 +135,6 @@ public:
     // Apply a stat change entry dest value
     template <class T>
     Bool ApplyStatChangeEntryDestValue(
-        const String& sSegment,
         const String& sCharacterID,
         const StatChangeEntry& entry,
         T varValue)
@@ -149,11 +144,11 @@ public:
         switch(eAssigmentType)
         {
             case StatAssignmentType::Set:
-                return character.SetStatValue(sSegment, entry.GetDestinationStatType(), varValue);
+                return character.SetStatValue(entry.GetDestinationStatType(), varValue);
             case StatAssignmentType::Increment:
-                return character.IncrementStatValue(sSegment, entry.GetDestinationStatType(), varValue);
+                return character.IncrementStatValue(entry.GetDestinationStatType(), varValue);
             case StatAssignmentType::Decrement:
-                return character.DecrementStatValue(sSegment, entry.GetDestinationStatType(), varValue);
+                return character.DecrementStatValue(entry.GetDestinationStatType(), varValue);
             default:
                 break;
         }

@@ -29,7 +29,7 @@ Bool CharacterManager::LoadCharacter(const Character& character, Bool bRegenerat
     GetCharacters().insert({sCharacterID, character});
     if(bRegenerateData)
     {
-        GetCharacters().at(sCharacterID).RegenerateCharacterData();
+        GetCharacters().at(sCharacterID).RegenerateAllCharacterData();
     }
 
     // Check character
@@ -137,7 +137,7 @@ Bool CharacterManager::GenerateCharacter(const String& sCharacterID, const Chara
     newCharacter.SetSkillData(generator.GenerateSkillData());
     if(bRegenerateData)
     {
-        newCharacter.RegenerateCharacterData();
+        newCharacter.RegenerateAllCharacterData();
     }
 
     // Check character
@@ -190,7 +190,6 @@ StringArray CharacterManager::GetAllCharacterIDs() const
 }
 
 Bool CharacterManager::ApplyStatChange(
-    const String& sSegment,
     const StatChange& change,
     Bool& bAllChangesApplied,
     Bool& bAtLeastOneChange,
@@ -321,11 +320,11 @@ Bool CharacterManager::ApplyStatChange(
             Bool bSuccessful = false;
             if (IsStatInt(localEntry.GetDestinationStatType()))
             {
-                bSuccessful = ApplyStatChangeEntry<Int>(sSegment, localEntry);
+                bSuccessful = ApplyStatChangeEntry<Int>(localEntry);
             }
             else if(IsStatFloat(localEntry.GetDestinationStatType()))
             {
-                bSuccessful = ApplyStatChangeEntry<Float>(sSegment, localEntry);
+                bSuccessful = ApplyStatChangeEntry<Float>(localEntry);
             }
             bAllChangesApplied = bAllChangesApplied && bSuccessful;
             bAtLeastOneChange = bAtLeastOneChange || bSuccessful;

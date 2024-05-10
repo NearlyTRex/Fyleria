@@ -26,24 +26,18 @@ public:
     // Destructor
     virtual ~CharacterBattleData();
 
-    // Apply status
-    void ApplyNewStatus(const String& sCharacterID, const String& sProgressSegment);
-
     // Apply damage
     void ApplyGivenDamage(Int iDamage);
     void ApplyTakenDamage(Int iDamage);
 
     // Advance round
-    void AdvanceRound(const String& sCharacterID, const String& sProgressSegment);
+    void AdvanceRound(const String& sCharacterID);
 
     // Finish battle
-    void FinishBattle(const String& sCharacterID, const String& sProgressSegment);
-
-    // Can regenerate from stat
-    Bool CanRegenerateFromStat(const String& sRegenStat) const;
+    void FinishBattle(const String& sCharacterID);
 
     // Update equipment ratings
-    void UpdateEquipmentRatings(const String& sCharacterID, const String& sProgressSegment);
+    void UpdateEquipmentRatings(const String& sCharacterID);
 
     // Resolve target placeholders
     StringArray ResolveTargetPlaceholder(const String& sSelfTargetType,
@@ -87,8 +81,6 @@ public:
 
     // Bool stats
     MAKE_STAT_TYPE_ACCESSORS(TargetsMustBeIdentical, Bool);
-    MAKE_STAT_TYPE_ACCESSORS(IsDead, Bool);
-    MAKE_STAT_TYPE_ACCESSORS(IsUnconscious, Bool);
 
     // Int stats
     MAKE_STAT_TYPE_ACCESSORS(AttackCounter, Int);

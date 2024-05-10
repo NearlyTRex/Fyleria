@@ -29,12 +29,9 @@ public:
     CharacterParty(const String& jsonString);
 
     // Regenerate character data
-    void RegenerateCharacterData(
-        Bool bUpdateEquipmentRatings = true,
-        Bool bUpdateAvailableChanges = true,
-        Bool bUpdateAvailableActions = true,
-        Bool bUpdateAvailableAP = true
-    );
+    void RegenerateAllCharacterData();
+    void RegenerateSpecificCharacterData(const StringUnorderedSet& tOptions);
+    void RegenerateSpecificCharacterData(const IntUnorderedSet& tOptions);
 
     // Determine if party is able to fight
     Bool IsPartyAbleToFight() const;
@@ -87,7 +84,7 @@ public:
     Bool GetCharacterIDsFromTargetType(const String& sCharacterTargetType, StringArray& vCharacterIDs) const;
 
     // Check member status
-    UInt GetStatusMemberCount(const String& sStatus) const;
+    UInt GetStatusMemberCount(const String& sStatusType) const;
 
     // Add random items
     Bool AddRandomItems(const StringArray& vTreeTypes, Int iNumRandomItems, Int iAmountStart, Int iAmountEnd);

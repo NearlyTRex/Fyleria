@@ -10,6 +10,7 @@
 #include "CharacterData/CharacterProgressData.h"
 #include "CharacterData/CharacterBattleData.h"
 #include "CharacterData/CharacterSkillData.h"
+#include "CharacterData/CharacterStatusEffectData.h"
 
 namespace Gecko
 {
@@ -72,6 +73,7 @@ void InitializeAllStatNames()
     CharacterProgressData::InitAllStatNames();
     CharacterBattleData::InitAllStatNames();
     CharacterSkillData::InitAllStatNames();
+    CharacterStatusEffectData::InitAllStatNames();
 }
 
 };

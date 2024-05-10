@@ -115,7 +115,7 @@ void SceneToolCharacter::GenerateRandomCharacter(const String& sCharacterID)
 void SceneToolCharacter::RegenerateCharacterData(const String& sCharacterID)
 {
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
-    character.RegenerateCharacterData();
+    character.RegenerateAllCharacterData();
 }
 
 };

@@ -20,242 +20,23 @@ MAKE_ENUM(CharacterTreeIndexType, Int,
 );
 MAKE_ENUM_CONVERTERS_PROTO(CharacterTreeIndexType);
 
-MAKE_ENUM(CharacterSegmentType, Int,
-    None,
-    Base,
-    Passive,
-    Active
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterSegmentType);
-
-MAKE_ENUM(CharacterActionStatType_Int, Int,
-    None,
-    SlashPoints,
-    SeverPoints,
-    SlicePoints,
-    SlitPoints,
-    CleavePoints,
-    DecapitatePoints,
-    ParryPoints,
-    RipostePoints,
-    BashPoints,
-    SmashPoints,
-    ImpactPoints,
-    CrushPoints,
-    BreakPoints,
-    CrackPoints,
-    BlockPoints,
-    RushPoints,
-    PiercePoints,
-    DrillPoints,
-    ShootPoints,
-    ImpalePoints,
-    StealthStrikePoints,
-    CriticalShotPoints,
-    DodgePoints,
-    CounterPoints
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterActionStatType_Int);
-
-MAKE_ENUM(CharacterBasicStatType_String, Int,
-    None,
-    CharacterID,
-    PartyID,
-    FirstName,
-    LastName,
-    Gender,
-    Hair,
-    Eyes,
-    Handedness,
-    BaseRace,
-    TransformedRace,
-    PowerSet,
-    WeaponSet
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterBasicStatType_String);
-
-MAKE_ENUM(CharacterBasicStatType_Int, Int,
-    None,
-    Age
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterBasicStatType_Int);
-
-MAKE_ENUM(CharacterMediaStatType_String, Int,
-    None,
-    PortraitImage
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterMediaStatType_String);
-
-MAKE_ENUM(CharacterProgressStatType_Int, Int,
-    None,
-    HealthPointsCurrent,
-    MagicPointsCurrent,
-    EnergyPointsCurrent,
-    HealthPointsMax,
-    MagicPointsMax,
-    EnergyPointsMax,
-    HealthRegen,
-    MagicRegen,
-    EnergyRegen,
-    HealthCostDelta,
-    MagicCostDelta,
-    EnergyCostDelta,
-    SpeedCurrent,
-    SpeedBase,
-    AmberValueDelta,
-    RubyValueDelta,
-    DiamondValueDelta,
-    CitrineValueDelta,
-    OnyxValueDelta,
-    QuartzValueDelta,
-    SapphireValueDelta,
-    AmethystValueDelta,
-    EmeraldValueDelta,
-    GarnetValueDelta,
-    IvoryValueDelta,
-    OpalValueDelta,
-    BluntAttack,
-    BluntDefense,
-    PierceAttack,
-    PierceDefense,
-    SlashAttack,
-    SlashDefense,
-    MagicAttack,
-    MagicDefense,
-    EnergyAttack,
-    EnergyDefense
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterProgressStatType_Int);
-
-MAKE_ENUM(CharacterBattleStatType_String, Int,
-    None,
-    ActionSourceThisAction,
-    MostRecentActionSource
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_String);
-
-MAKE_ENUM(CharacterBattleStatType_StringArray, Int,
-    None,
-    PreviousActionTypes,
-    ActionTargetsThisAction,
-    ActionTargetsThisRound,
-    ActionSourcesThisRound,
-    ActionTargetsLastRound,
-    ActionSourcesLastRound,
-    MostRecentActionTargets
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_StringArray);
-
-MAKE_ENUM(CharacterBattleStatType_Bool, Int,
-    None,
-    TargetsMustBeIdentical,
-    IsDead,
-    IsUnconscious
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_Bool);
-
-MAKE_ENUM(CharacterBattleStatType_Int, Int,
-    None,
-    AttackCounter,
-    DefendCounter,
-    AllowedTargetAmount,
-    DamageTakenThisRound,
-    DamageTakenThisBattle,
-    DamageGivenThisRound,
-    DamageGivenThisBattle
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_Int);
-
-MAKE_ENUM(CharacterBattleStatType_Float, Int,
-    None,
-    EquippedWeaponLeftBluntRating,
-    EquippedWeaponLeftPierceRating,
-    EquippedWeaponLeftSlashRating,
-    EquippedWeaponRightBluntRating,
-    EquippedWeaponRightPierceRating,
-    EquippedWeaponRightSlashRating,
-    EquippedShieldLeftBluntRating,
-    EquippedShieldLeftPierceRating,
-    EquippedShieldLeftSlashRating,
-    EquippedShieldLeftMagicRating,
-    EquippedShieldRightBluntRating,
-    EquippedShieldRightPierceRating,
-    EquippedShieldRightSlashRating,
-    EquippedShieldRightMagicRating,
-    EquippedArmorBluntRating,
-    EquippedArmorPierceRating,
-    EquippedArmorSlashRating,
-    EquippedArmorMagicRating,
-    ChanceToCauseCriticalHit,
-    ChanceToBlockCriticalHit,
-    CriticalHitMultiplier,
-    ChanceToApplyMultipleAttacks,
-    AttacksMultiplier,
-    WeaponPrimaryDamageBonusValue,
-    WeaponPrimaryDamageBonusPercent,
-    WeaponSecondaryDamageBonusValue,
-    WeaponSecondaryDamageBonusPercent,
-    GeneralDamageBonusPercent,
-    GeneralDamageBonusValue,
-    DefensivePowerEffectsBonusValue,
-    DefensivePowerEffectsBonusPercent,
-    OffensivePowerEffectsBonusValue,
-    OffensivePowerEffectsBonusPercent
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterBattleStatType_Float);
-
-MAKE_ENUM(CharacterSkillStatType_Short, Int,
-    None,
-    Healer,
-    Alchemist,
-    Energist,
-    Chemist,
-    Hammerbane,
-    Spellbane,
-    Bowbane,
-    Swordbane,
-    Threadbare,
-    StudRemover,
-    Scalebane,
-    Platebane,
-    Goldbane,
-    Shieldbane,
-    Barbarian,
-    Mage,
-    Rogue,
-    Blademaster,
-    Avatar,
-    Ambidextrous,
-    Focused,
-    Stalwart,
-    Hammersmith,
-    Spellsmith,
-    Bowsmith,
-    Swordsmith,
-    Weaver,
-    Tanner,
-    Scalesmith,
-    Platesmith,
-    Goldsmith,
-    Shieldsmith,
-    Holy,
-    Fire,
-    Ice,
-    Shock,
-    Dark,
-    Light,
-    Force,
-    Mind,
-    Earth,
-    Blood,
-    Flesh,
-    Wind
-);
-MAKE_ENUM_CONVERTERS_PROTO(CharacterSkillStatType_Short);
-
 MAKE_ENUM(CharacterStatusType, Int,
     None,
+    Acidified,
+    Berserk,
+    Bound,
+    Bleeding,
+    Blinded,
+    Burned,
+    Calmed,
     Dead,
+    Delirious,
+    Frozen,
+    Horrified,
+    Knockdown,
+    Mossified,
+    Sleeping,
+    Swallowed,
     Unconscious
 );
 MAKE_ENUM_CONVERTERS_PROTO(CharacterStatusType);
@@ -476,13 +257,16 @@ MAKE_ENUM(CharacterActionRunType, Int,
 );
 MAKE_ENUM_CONVERTERS_PROTO(CharacterActionRunType);
 
-String ConvertCharacterEquipmentTypeToCharacterWeaponSetType(const String& sCharacterEquipmentType);
-String ConvertCharacterTargetTypeToCharacterPartyType(const String& sCharacterTargetType);
-String ConvertItemTypeToCharacterActionType(const String& sItemType);
-StringArray ConvertItemTypeToCharacterEquipTypes(const String& sItemType);
-String ConvertSkillWeaponBaseTypeToCharacterActionType(const String& sSkillWeaponBaseType);
-String ConvertSkillWeaponTypeToCharacterActionType(const String& sSkillWeaponType);
-String ConvertSkillWeaponTypeToCharacterActionStatType(const String& sSkillWeaponType);
+MAKE_ENUM(CharacterRegenerationType, Int,
+    None,
+    CurrentStats,
+    EquipmentRatings,
+    AvailableChanges,
+    AvailableActions,
+    AvailableAP
+);
+MAKE_ENUM_CONVERTERS_PROTO(CharacterRegenerationType);
+
 
 };
 

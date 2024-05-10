@@ -5,6 +5,7 @@
 
 // Internal includes
 #include "CharacterAction/CharacterAction.h"
+#include "Character/CharacterTypeConverters.h"
 #include "Application/Application.h"
 #include "Utility/JsonMacros.h"
 

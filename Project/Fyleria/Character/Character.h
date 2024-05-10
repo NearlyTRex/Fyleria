@@ -16,6 +16,7 @@
 #include "CharacterData/CharacterMediaData.h"
 #include "CharacterData/CharacterSkillData.h"
 #include "CharacterData/CharacterStatChangeData.h"
+#include "CharacterData/CharacterStatusEffectData.h"
 #include "CharacterParty/CharacterPartyEquippedItem.h"
 
 namespace Gecko
@@ -35,12 +36,9 @@ public:
     void Clear();
 
     // Regenerate character data
-    void RegenerateCharacterData(
-        Bool bUpdateEquipmentRatings = true,
-        Bool bUpdateAvailableChanges = true,
-        Bool bUpdateAvailableActions = true,
-        Bool bUpdateAvailableAP = true
-    );
+    void RegenerateAllCharacterData();
+    void RegenerateSpecificCharacterData(const StringUnorderedSet& tOptions);
+    void RegenerateSpecificCharacterData(const IntUnorderedSet& tOptions);
 
     // Get character ID
     String GetCharacterID() const;
@@ -72,23 +70,15 @@ public:
     // Get actionable changes
     const TreeIndexArray& GetActionableChanges(const String& sTreeIndexType) const;
 
-    // Get progress data segment
-    const CharacterProgressData& GetProgressDataSegment(const String& sSegment) const;
-    CharacterProgressData& GetProgressDataSegment(const String& sSegment);
-
-    // Get battle data segment
-    const CharacterBattleData& GetBattleDataSegment(const String& sSegment) const;
-    CharacterBattleData& GetBattleDataSegment(const String& sSegment);
-
     // Get stat values
     template <class T>
-    Bool GetStatValue(const String& sSegment, const String& sStat, T& varValue) const
+    Bool GetStatValue(const String& sStat, T& varValue) const
     {
         const CharacterBasicData& basicData = GetBasicData();
         const CharacterSkillData& skillData = GetSkillData();
         const CharacterMediaData& mediaData = GetMediaData();
-        const CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
-        const CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
+        const CharacterProgressData& progressData = GetProgressData();
+        const CharacterBattleData& battleData = GetBattleData();
         return (basicData.GetStatValue(sStat, varValue) ||
                 progressData.GetStatValue(sStat, varValue) ||
                 battleData.GetStatValue(sStat, varValue) ||
@@ -98,13 +88,13 @@ public:
 
     // Set stat values
     template <class T>
-    Bool SetStatValue(const String& sSegment, const String& sStat, const T& varValue)
+    Bool SetStatValue(const String& sStat, const T& varValue)
     {
         CharacterBasicData& basicData = GetBasicData();
         CharacterSkillData& skillData = GetSkillData();
         CharacterMediaData& mediaData = GetMediaData();
-        CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
-        CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
+        CharacterProgressData& progressData = GetProgressData();
+        CharacterBattleData& battleData = GetBattleData();
         return (basicData.SetStatValue(sStat, varValue) ||
                 progressData.SetStatValue(sStat, varValue) ||
                 battleData.SetStatValue(sStat, varValue) ||
@@ -114,13 +104,13 @@ public:
 
     // Increment stat values
     template <class T>
-    Bool IncrementStatValue(const String& sSegment, const String& sStat, const T& varValue)
+    Bool IncrementStatValue(const String& sStat, const T& varValue)
     {
         CharacterBasicData& basicData = GetBasicData();
         CharacterSkillData& skillData = GetSkillData();
         CharacterMediaData& mediaData = GetMediaData();
-        CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
-        CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
+        CharacterProgressData& progressData = GetProgressData();
+        CharacterBattleData& battleData = GetBattleData();
         return (basicData.IncrementStatValue(sStat, varValue) ||
                 progressData.IncrementStatValue(sStat, varValue) ||
                 battleData.IncrementStatValue(sStat, varValue) ||
@@ -130,19 +120,23 @@ public:
 
     // Decrement stat values
     template <class T>
-    Bool DecrementStatValue(const String& sSegment, const String& sStat, const T& varValue)
+    Bool DecrementStatValue(const String& sStat, const T& varValue)
     {
         CharacterBasicData& basicData = GetBasicData();
         CharacterSkillData& skillData = GetSkillData();
         CharacterMediaData& mediaData = GetMediaData();
-        CharacterProgressData& progressData = GetProgressDataSegment(sSegment);
-        CharacterBattleData& battleData = GetBattleDataSegment(sSegment);
+        CharacterProgressData& progressData = GetProgressData();
+        CharacterBattleData& battleData = GetBattleData();
         return (basicData.DecrementStatValue(sStat, varValue) ||
                 progressData.DecrementStatValue(sStat, varValue) ||
                 battleData.DecrementStatValue(sStat, varValue) ||
                 skillData.DecrementStatValue(sStat, varValue) ||
                 mediaData.DecrementStatValue(sStat, varValue));
     }
+
+    // Update current stats
+    // This pulls the base stats and applies them to the current stats
+    void UpdateCurrentStats();
 
     // Update equipment ratings
     // This pulls equipment and current attack/defense percents and fills
@@ -164,25 +158,16 @@ public:
     void UpdateAvailableAP();
 
     // Apply passive changes
-    // Copy base data into passive data and apply each passive stat change
     void ApplyPassiveChanges();
 
     // Apply active changes
-    // Copy passive data into active data and apply each active stat change
     void ApplyActiveChanges(const CharacterAction& action);
-
-    // Clear active changes
-    void ClearActiveChanges();
 
     // Progress data
     MAKE_RAW_TYPE_ACCESSORS(ProgressData, CharacterProgressData);
-    MAKE_RAW_TYPE_ACCESSORS(ProgressDataPassives, CharacterProgressData);
-    MAKE_RAW_TYPE_ACCESSORS(ProgressDataActives, CharacterProgressData);
 
     // Battle data
     MAKE_RAW_TYPE_ACCESSORS(BattleData, CharacterBattleData);
-    MAKE_RAW_TYPE_ACCESSORS(BattleDataPassives, CharacterBattleData);
-    MAKE_RAW_TYPE_ACCESSORS(BattleDataActives, CharacterBattleData);
 
     // Basic data
     MAKE_RAW_TYPE_ACCESSORS(BasicData, CharacterBasicData);
@@ -195,6 +180,9 @@ public:
 
     // Stat change data
     MAKE_RAW_TYPE_ACCESSORS(StatChangeData, CharacterStatChangeData);
+
+    // Status effect data
+    MAKE_RAW_TYPE_ACCESSORS(StatusEffectData, CharacterStatusEffectData);
 
     // Media data
     MAKE_RAW_TYPE_ACCESSORS(MediaData, CharacterMediaData);

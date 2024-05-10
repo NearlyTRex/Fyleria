@@ -6,6 +6,8 @@
 // Internal includes
 #include "CharacterData/CharacterBattleData.h"
 #include "CharacterData/CharacterProgressData.h"
+#include "CharacterData/CharacterStatusEffectData.h"
+#include "CharacterData/CharacterDataTypes.h"
 #include "Character/CharacterTypes.h"
 #include "CharacterParty/CharacterPartyEquippedItem.h"
 #include "Item/ItemTypes.h"
@@ -27,19 +29,6 @@ CharacterBattleData::~CharacterBattleData()
 {
 }
 
-void CharacterBattleData::ApplyNewStatus(
-    const String& sCharacterID,
-    const String& sProgressSegment)
-{
-    // Get character info
-    const Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
-    const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
-
-    // Update status
-    SetIsDead(progressData.GetHealthPointsCurrent() <= 0);
-    SetIsUnconscious(progressData.GetMagicPointsCurrent() <= 0 || progressData.GetEnergyPointsCurrent() <= 0);
-}
-
 void CharacterBattleData::ApplyGivenDamage(Int iDamage)
 {
     // Apply given damage
@@ -54,25 +43,26 @@ void CharacterBattleData::ApplyTakenDamage(Int iDamage)
     SetDamageTakenThisBattle(GetDamageTakenThisBattle() + abs(iDamage));
 }
 
-void CharacterBattleData::AdvanceRound(
-    const String& sCharacterID,
-    const String& sProgressSegment)
+void CharacterBattleData::AdvanceRound(const String& sCharacterID)
 {
-    // Get character info
+    // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
-    CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
+
+    // Get character data
+    CharacterProgressData& progressData = character.GetProgressData();
+    CharacterStatusEffectData& statusEffectData = character.GetStatusEffectData();
 
     // Apply regeneration
-    Bool bCanRegenHP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::HealthRegen));
-    Bool bCanRegenMP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::MagicRegen));
-    Bool bCanRegenEP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::EnergyRegen));
+    Bool bCanRegenHP = progressData.CanRegenerate(sCharacterID, GetEnumString(CharacterProgressDataType_Int::HealthRegenCurrent));
+    Bool bCanRegenMP = progressData.CanRegenerate(sCharacterID, GetEnumString(CharacterProgressDataType_Int::MagicRegenCurrent));
+    Bool bCanRegenEP = progressData.CanRegenerate(sCharacterID, GetEnumString(CharacterProgressDataType_Int::EnergyRegenCurrent));
     if(bCanRegenHP || bCanRegenMP || bCanRegenEP)
     {
         progressData.ApplyRegeneration(bCanRegenHP, bCanRegenMP, bCanRegenEP);
     }
 
-    // Apply new status
-    ApplyNewStatus(sCharacterID, sProgressSegment);
+    // Update status
+    statusEffectData.UpdateStatus(sCharacterID);
 
     // Clear this round's damage
     SetDamageGivenThisRound(0);
@@ -85,27 +75,28 @@ void CharacterBattleData::AdvanceRound(
     SetActionSourcesThisRound({});
 }
 
-void CharacterBattleData::FinishBattle(
-    const String& sCharacterID,
-    const String& sProgressSegment)
+void CharacterBattleData::FinishBattle(const String& sCharacterID)
 {
-    // Get character info
+    // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
-    CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
+
+    // Get character data
+    CharacterProgressData& progressData = character.GetProgressData();
+    CharacterStatusEffectData& statusEffectData = character.GetStatusEffectData();
 
     // Update character health if they are "dead"
-    if(GetIsDead())
+    if(statusEffectData.GetIsDead())
     {
         progressData.SetHealthPointsCurrent(1);
     }
 
-    // Apply new status
-    ApplyNewStatus(sCharacterID, sProgressSegment);
+    // Update status
+    statusEffectData.UpdateStatus(sCharacterID);
 
     // Apply regeneration
-    Bool bCanRegenHP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::HealthRegen));
-    Bool bCanRegenMP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::MagicRegen));
-    Bool bCanRegenEP = CanRegenerateFromStat(GetEnumString(CharacterProgressStatType_Int::EnergyRegen));
+    Bool bCanRegenHP = progressData.CanRegenerate(sCharacterID, GetEnumString(CharacterProgressDataType_Int::HealthRegenCurrent));
+    Bool bCanRegenMP = progressData.CanRegenerate(sCharacterID, GetEnumString(CharacterProgressDataType_Int::MagicRegenCurrent));
+    Bool bCanRegenEP = progressData.CanRegenerate(sCharacterID, GetEnumString(CharacterProgressDataType_Int::EnergyRegenCurrent));
     if(bCanRegenHP || bCanRegenMP || bCanRegenEP)
     {
         progressData.ApplyRegeneration(bCanRegenHP, bCanRegenMP, bCanRegenEP);
@@ -116,26 +107,7 @@ void CharacterBattleData::FinishBattle(
     SetDamageTakenThisBattle(0);
 }
 
-Bool CharacterBattleData::CanRegenerateFromStat(const String& sRegenStat) const
-{
-    const CharacterProgressStatType_Int eProgressType = GetEnumFromString<CharacterProgressStatType_Int>(sRegenStat);
-    switch(eProgressType)
-    {
-        case CharacterProgressStatType_Int::HealthRegen:
-            return (!GetIsDead());
-        case CharacterProgressStatType_Int::MagicRegen:
-            return (!GetIsDead());
-        case CharacterProgressStatType_Int::EnergyRegen:
-            return true;
-        default:
-            break;
-    }
-    return false;
-}
-
-void CharacterBattleData::UpdateEquipmentRatings(
-    const String& sCharacterID,
-    const String& sProgressSegment)
+void CharacterBattleData::UpdateEquipmentRatings(const String& sCharacterID)
 {
     // Get character
     const Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
@@ -244,25 +216,25 @@ void CharacterBattleData::UpdateEquipmentRatings(
     }
 
     // Fill out equipment ratings
-    const CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
-    SetEquippedWeaponLeftBluntRating(fWeaponLeft_BluntAttackPercent * progressData.GetBluntAttack());
-    SetEquippedWeaponLeftPierceRating(fWeaponLeft_PierceAttackPercent * progressData.GetPierceAttack());
-    SetEquippedWeaponLeftSlashRating(fWeaponLeft_SlashAttackPercent * progressData.GetSlashAttack());
-    SetEquippedWeaponRightBluntRating(fWeaponRight_BluntAttackPercent * progressData.GetBluntAttack());
-    SetEquippedWeaponRightPierceRating(fWeaponRight_PierceAttackPercent * progressData.GetPierceAttack());
-    SetEquippedWeaponRightSlashRating(fWeaponRight_SlashAttackPercent * progressData.GetSlashAttack());
-    SetEquippedShieldLeftBluntRating(fShieldLeft_BluntDefendPercent * progressData.GetBluntDefense());
-    SetEquippedShieldLeftPierceRating(fShieldLeft_PierceDefendPercent * progressData.GetPierceDefense());
-    SetEquippedShieldLeftSlashRating(fShieldLeft_SlashDefendPercent * progressData.GetSlashDefense());
-    SetEquippedShieldLeftMagicRating(fShieldLeft_MagicDefendPercent * progressData.GetMagicDefense());
-    SetEquippedShieldRightBluntRating(fShieldRight_BluntDefendPercent * progressData.GetBluntDefense());
-    SetEquippedShieldRightPierceRating(fShieldRight_PierceDefendPercent * progressData.GetPierceDefense());
-    SetEquippedShieldRightSlashRating(fShieldRight_SlashDefendPercent * progressData.GetSlashDefense());
-    SetEquippedShieldRightMagicRating(fShieldRight_MagicDefendPercent * progressData.GetMagicDefense());
-    SetEquippedArmorBluntRating(fArmor_BluntDefendPercent * progressData.GetBluntDefense());
-    SetEquippedArmorPierceRating(fArmor_PierceDefendPercent * progressData.GetPierceDefense());
-    SetEquippedArmorSlashRating(fArmor_SlashDefendPercent * progressData.GetSlashDefense());
-    SetEquippedArmorMagicRating(fArmor_MagicDefendPercent * progressData.GetMagicDefense());
+    const CharacterProgressData& progressData = character.GetProgressData();
+    SetEquippedWeaponLeftBluntRating(fWeaponLeft_BluntAttackPercent * progressData.GetBluntAttackCurrent());
+    SetEquippedWeaponLeftPierceRating(fWeaponLeft_PierceAttackPercent * progressData.GetPierceAttackCurrent());
+    SetEquippedWeaponLeftSlashRating(fWeaponLeft_SlashAttackPercent * progressData.GetSlashAttackCurrent());
+    SetEquippedWeaponRightBluntRating(fWeaponRight_BluntAttackPercent * progressData.GetBluntAttackCurrent());
+    SetEquippedWeaponRightPierceRating(fWeaponRight_PierceAttackPercent * progressData.GetPierceAttackCurrent());
+    SetEquippedWeaponRightSlashRating(fWeaponRight_SlashAttackPercent * progressData.GetSlashAttackCurrent());
+    SetEquippedShieldLeftBluntRating(fShieldLeft_BluntDefendPercent * progressData.GetBluntDefenseCurrent());
+    SetEquippedShieldLeftPierceRating(fShieldLeft_PierceDefendPercent * progressData.GetPierceDefenseCurrent());
+    SetEquippedShieldLeftSlashRating(fShieldLeft_SlashDefendPercent * progressData.GetSlashDefenseCurrent());
+    SetEquippedShieldLeftMagicRating(fShieldLeft_MagicDefendPercent * progressData.GetMagicDefenseCurrent());
+    SetEquippedShieldRightBluntRating(fShieldRight_BluntDefendPercent * progressData.GetBluntDefenseCurrent());
+    SetEquippedShieldRightPierceRating(fShieldRight_PierceDefendPercent * progressData.GetPierceDefenseCurrent());
+    SetEquippedShieldRightSlashRating(fShieldRight_SlashDefendPercent * progressData.GetSlashDefenseCurrent());
+    SetEquippedShieldRightMagicRating(fShieldRight_MagicDefendPercent * progressData.GetMagicDefenseCurrent());
+    SetEquippedArmorBluntRating(fArmor_BluntDefendPercent * progressData.GetBluntDefenseCurrent());
+    SetEquippedArmorPierceRating(fArmor_PierceDefendPercent * progressData.GetPierceDefenseCurrent());
+    SetEquippedArmorSlashRating(fArmor_SlashDefendPercent * progressData.GetSlashDefenseCurrent());
+    SetEquippedArmorMagicRating(fArmor_MagicDefendPercent * progressData.GetMagicDefenseCurrent());
 }
 
 StringArray CharacterBattleData::ResolveTargetPlaceholder(const String& sSelfTargetType,
@@ -404,11 +376,11 @@ Bool CharacterBattleData::GetSecondaryShieldRatings(const String& sHandedness,
 void CharacterBattleData::InitAllStatNames()
 {
     // Initialize stat type names
-    InitializeStatTypeNames<CharacterBattleStatType_String>(GetStringStatNames());
-    InitializeStatTypeNames<CharacterBattleStatType_StringArray>(GetStringArrayStatNames());
-    InitializeStatTypeNames<CharacterBattleStatType_Bool>(GetBoolStatNames());
-    InitializeStatTypeNames<CharacterBattleStatType_Int>(GetIntStatNames());
-    InitializeStatTypeNames<CharacterBattleStatType_Float>(GetFloatStatNames());
+    InitializeStatTypeNames<CharacterBattleDataType_String>(GetStringStatNames());
+    InitializeStatTypeNames<CharacterBattleDataType_StringArray>(GetStringArrayStatNames());
+    InitializeStatTypeNames<CharacterBattleDataType_Bool>(GetBoolStatNames());
+    InitializeStatTypeNames<CharacterBattleDataType_Int>(GetIntStatNames());
+    InitializeStatTypeNames<CharacterBattleDataType_Float>(GetFloatStatNames());
 }
 
 Bool CharacterBattleData::operator==(const CharacterBattleData& other) const
@@ -424,21 +396,21 @@ Bool CharacterBattleData::operator!=(const CharacterBattleData& other) const
 void to_json(Json& jsonData, const CharacterBattleData& obj)
 {
     // Stat values
-    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_String, String>(jsonData, obj.GetStringStats());
-    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_StringArray, StringArray>(jsonData, obj.GetStringArrayStats());
-    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_Bool, Bool>(jsonData, obj.GetBoolStats());
-    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_Int, Int>(jsonData, obj.GetIntStats());
-    SetJsonValuesFromStatTypeValues<CharacterBattleStatType_Float, Float>(jsonData, obj.GetFloatStats());
+    SetJsonValuesFromStatTypeValues<CharacterBattleDataType_String, String>(jsonData, obj.GetStringStats());
+    SetJsonValuesFromStatTypeValues<CharacterBattleDataType_StringArray, StringArray>(jsonData, obj.GetStringArrayStats());
+    SetJsonValuesFromStatTypeValues<CharacterBattleDataType_Bool, Bool>(jsonData, obj.GetBoolStats());
+    SetJsonValuesFromStatTypeValues<CharacterBattleDataType_Int, Int>(jsonData, obj.GetIntStats());
+    SetJsonValuesFromStatTypeValues<CharacterBattleDataType_Float, Float>(jsonData, obj.GetFloatStats());
 }
 
 void from_json(const Json& jsonData, CharacterBattleData& obj)
 {
     // Stat values
-    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_String, String>(jsonData, obj.GetStringStats());
-    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_StringArray, StringArray>(jsonData, obj.GetStringArrayStats());
-    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_Bool, Bool>(jsonData, obj.GetBoolStats());
-    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_Int, Int>(jsonData, obj.GetIntStats());
-    SetStatTypeValuesFromJsonValues<CharacterBattleStatType_Float, Float>(jsonData, obj.GetFloatStats());
+    SetStatTypeValuesFromJsonValues<CharacterBattleDataType_String, String>(jsonData, obj.GetStringStats());
+    SetStatTypeValuesFromJsonValues<CharacterBattleDataType_StringArray, StringArray>(jsonData, obj.GetStringArrayStats());
+    SetStatTypeValuesFromJsonValues<CharacterBattleDataType_Bool, Bool>(jsonData, obj.GetBoolStats());
+    SetStatTypeValuesFromJsonValues<CharacterBattleDataType_Int, Int>(jsonData, obj.GetIntStats());
+    SetStatTypeValuesFromJsonValues<CharacterBattleDataType_Float, Float>(jsonData, obj.GetFloatStats());
 }
 
 };

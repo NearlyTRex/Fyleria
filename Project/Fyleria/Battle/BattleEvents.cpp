@@ -15,8 +15,13 @@ void HandleBattleStarted(const String& sCharacterID)
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Clear active changes
-    character.ClearActiveChanges();
+    // Regenerate character data
+    character.RegenerateSpecificCharacterData({
+        CharacterRegenerationType::CurrentStats,
+        CharacterRegenerationType::EquipmentRatings,
+        CharacterRegenerationType::AvailableChanges,
+        CharacterRegenerationType::AvailableActions
+    });
 
     // Reset prolonged stat changes
     character.GetStatChangeData().SetProlongedStatChanges({});
@@ -31,8 +36,13 @@ void HandleBattleEnded(const String& sCharacterID)
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Clear active changes
-    character.ClearActiveChanges();
+    // Regenerate character data
+    character.RegenerateSpecificCharacterData({
+        CharacterRegenerationType::CurrentStats,
+        CharacterRegenerationType::EquipmentRatings,
+        CharacterRegenerationType::AvailableChanges,
+        CharacterRegenerationType::AvailableActions
+    });
 
     // Reset prolonged stat changes
     character.GetStatChangeData().SetProlongedStatChanges({});
@@ -50,18 +60,9 @@ void HandleBattleTally(const String& sCharacterID)
     // Regenerate character data on the tally screen
     // The calling code should capture the state before and after this
     // then see the difference as something to display to the player
-    // We DO
-    // - Update available changes because skills could have changed
-    // - Update available actions because skills could have changed
-    // We DO NOT
-    // - Update equipment ratings, because equipment does not change
-    // - Update available AP, because you only refill AP when resting
-    character.RegenerateCharacterData(
-        false, /* bUpdateEquipmentRatings */
-        true, /* bUpdateAvailableChanges */
-        true, /* bUpdateAvailableActions */
-        false /* bUpdateAvailableAP */
-    );
+    character.RegenerateSpecificCharacterData(IntUnorderedSet({
+        CharacterRegenerationType::CurrentStats
+    }));
 }
 
 void HandleBattleFullyCompleted(const String& sCharacterID)
@@ -69,19 +70,11 @@ void HandleBattleFullyCompleted(const String& sCharacterID)
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Update character data across non-active segments
-    const StringArray vSegments = {
-        GetEnumString(CharacterSegmentType::Base),
-        GetEnumString(CharacterSegmentType::Passive)
-    };
-    for(const String& sSegment : vSegments)
-    {
-        // Get character data
-        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
+    // Get character data
+    CharacterBattleData& battleData = character.GetBattleData();
 
-        // Finish battle
-        battleData.FinishBattle(sCharacterID, sSegment);
-    }
+    // Finish battle
+    battleData.FinishBattle(sCharacterID);
 }
 
 void HandleBattleRoundAdvanced(const String& sCharacterID)
@@ -89,19 +82,11 @@ void HandleBattleRoundAdvanced(const String& sCharacterID)
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Update character data across non-active segments
-    const StringArray vSegments = {
-        GetEnumString(CharacterSegmentType::Base),
-        GetEnumString(CharacterSegmentType::Passive)
-    };
-    for(const String& sSegment : vSegments)
-    {
-        // Get character data
-        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
+    // Get character data
+    CharacterBattleData& battleData = character.GetBattleData();
 
-        // Advance round
-        battleData.AdvanceRound(sCharacterID, sSegment);
-    }
+    // Advance round
+    battleData.AdvanceRound(sCharacterID);
 
     // Remove expired prolonged stat changes
     Int iCurrentRound = GetManagers()->GetBattleManager()->GetCurrentBattle().GetCurrentRoundIndex();
@@ -121,19 +106,11 @@ void HandleBattleGivingDamage(const String& sCharacterID, Int iAmount)
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Update character data across non-active segments
-    const StringArray vSegments = {
-        GetEnumString(CharacterSegmentType::Base),
-        GetEnumString(CharacterSegmentType::Passive)
-    };
-    for(const String& sSegment : vSegments)
-    {
-        // Get character data
-        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
+    // Get character data
+    CharacterBattleData& battleData = character.GetBattleData();
 
-        // Update damage given
-        battleData.ApplyGivenDamage(iAmount);
-    }
+    // Update damage given
+    battleData.ApplyGivenDamage(iAmount);
 
     // Update attack counter
     character.GetBattleData().SetAttackCounter(character.GetBattleData().GetAttackCounter() + 1);
@@ -156,24 +133,19 @@ void HandleBattleTakingDamage(const String& sCharacterID, Int iAmount)
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Update character data across non-active segments
-    const StringArray vSegments = {
-        GetEnumString(CharacterSegmentType::Base),
-        GetEnumString(CharacterSegmentType::Passive)
-    };
-    for(const String& sSegment : vSegments)
-    {
-        // Get character data
-        CharacterProgressData& progressData = character.GetProgressDataSegment(sSegment);
-        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
+    // Get character data
+    CharacterProgressData& progressData = character.GetProgressData();
+    CharacterBattleData& battleData = character.GetBattleData();
+    CharacterStatusEffectData& statusEffectData = character.GetStatusEffectData();
 
-        // Update damage taken
-        progressData.ApplyTakenDamage(iAmount);
-        battleData.ApplyTakenDamage(iAmount);
+    // Apply health change
+    progressData.ApplyHealthChange(-iAmount);
 
-        // Apply new status
-        battleData.ApplyNewStatus(sCharacterID, sSegment);
-    }
+    // Update damage taken
+    battleData.ApplyTakenDamage(iAmount);
+
+    // Update status
+    statusEffectData.UpdateStatus(sCharacterID);
 
     // Update defend counter
     character.GetBattleData().SetDefendCounter(character.GetBattleData().GetDefendCounter() + 1);
@@ -190,24 +162,16 @@ void HandleBattleChoosingTargets(const String& sCharacterID, const StringArray& 
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Update character data across non-active segments
-    const StringArray vSegments = {
-        GetEnumString(CharacterSegmentType::Base),
-        GetEnumString(CharacterSegmentType::Passive)
-    };
-    for(const String& sSegment : vSegments)
-    {
-        // Get character data
-        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
+    // Get character data
+    CharacterBattleData& battleData = character.GetBattleData();
 
-        // Update most recent action targets
-        battleData.SetMostRecentActionTargets(vDestTargets);
+    // Update most recent action targets
+    battleData.SetMostRecentActionTargets(vDestTargets);
 
-        // Update attack targets this round
-        StringArray vTargetsThisRound = battleData.GetActionTargetsThisRound();
-        vTargetsThisRound.insert(vTargetsThisRound.end(), vDestTargets.begin(), vDestTargets.end());
-        battleData.SetActionTargetsThisRound(vTargetsThisRound);
-    }
+    // Update attack targets this round
+    StringArray vTargetsThisRound = battleData.GetActionTargetsThisRound();
+    vTargetsThisRound.insert(vTargetsThisRound.end(), vDestTargets.begin(), vDestTargets.end());
+    battleData.SetActionTargetsThisRound(vTargetsThisRound);
 }
 
 void HandleBattleBecomingTarget(const String& sCharacterID, const String& sSourceTarget)
@@ -215,22 +179,14 @@ void HandleBattleBecomingTarget(const String& sCharacterID, const String& sSourc
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Update character data across non-active segments
-    const StringArray vSegments = {
-        GetEnumString(CharacterSegmentType::Base),
-        GetEnumString(CharacterSegmentType::Passive)
-    };
-    for(const String& sSegment : vSegments)
-    {
-        // Get character data
-        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
+    // Get character data
+    CharacterBattleData& battleData = character.GetBattleData();
 
-        // Update most recent action source
-        battleData.SetMostRecentActionSource(sSourceTarget);
+    // Update most recent action source
+    battleData.SetMostRecentActionSource(sSourceTarget);
 
-        // Update action sources this round
-        battleData.GetActionSourcesThisRound().push_back(sSourceTarget);
-    }
+    // Update action sources this round
+    battleData.GetActionSourcesThisRound().push_back(sSourceTarget);
 }
 
 void HandleBattleActionAttackSetup(const String& sCharacterID, const CharacterAction& action)
@@ -238,20 +194,12 @@ void HandleBattleActionAttackSetup(const String& sCharacterID, const CharacterAc
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Update character data across non-active segments
-    const StringArray vSegments = {
-        GetEnumString(CharacterSegmentType::Base),
-        GetEnumString(CharacterSegmentType::Passive)
-    };
-    for(const String& sSegment : vSegments)
-    {
-        // Get character data
-        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
+    // Get character data
+    CharacterBattleData& battleData = character.GetBattleData();
 
-        // Set targets for this action
-        battleData.SetActionTargetsThisAction(battleData.GetMostRecentActionTargets());
-        battleData.SetActionSourceThisAction("");
-    }
+    // Set targets for this action
+    battleData.SetActionTargetsThisAction(battleData.GetMostRecentActionTargets());
+    battleData.SetActionSourceThisAction("");
 
     // Apply active changes
     character.ApplyActiveChanges(action);
@@ -262,20 +210,12 @@ void HandleBattleActionDefendSetup(const String& sCharacterID, const CharacterAc
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Update character data across non-active segments
-    const StringArray vSegments = {
-        GetEnumString(CharacterSegmentType::Base),
-        GetEnumString(CharacterSegmentType::Passive)
-    };
-    for(const String& sSegment : vSegments)
-    {
-        // Get character data
-        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
+    // Get character data
+    CharacterBattleData& battleData = character.GetBattleData();
 
-        // Set targets for this action
-        battleData.SetActionTargetsThisAction({});
-        battleData.SetActionSourceThisAction(battleData.GetMostRecentActionSource());
-    }
+    // Set targets for this action
+    battleData.SetActionTargetsThisAction({});
+    battleData.SetActionSourceThisAction(battleData.GetMostRecentActionSource());
 
     // Apply active changes
     character.ApplyActiveChanges(action);
@@ -295,36 +235,31 @@ void HandleBattleActionFinished(const String& sCharacterID, const CharacterActio
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
-    // Update character data across non-active segments
-    const StringArray vSegments = {
-        GetEnumString(CharacterSegmentType::Base),
-        GetEnumString(CharacterSegmentType::Passive)
-    };
-    for(const String& sSegment : vSegments)
+    // Get character data
+    CharacterActionData& actionData = character.GetActionData();
+    CharacterBattleData& battleData = character.GetBattleData();
+    CharacterStatusEffectData& statusEffectData = character.GetStatusEffectData();
+
+    // Apply costs
+    actionData.ApplyActionCost(sCharacterID, action);
+
+    // If this was a skill action, we should track it
+    if(!action.GetSkillTreeIndex().empty())
     {
-        // Get character data
-        CharacterActionData& actionData = character.GetActionData();
-        CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
-
-        // Apply costs
-        actionData.ApplyActionCost(sCharacterID, sSegment, action);
-
-        // If this was a skill action, we should track it
-        if(!action.GetSkillTreeIndex().empty())
-        {
-            character.GetSkillData().UpdateSkillValue(GetManagers()->GetSkillManager()->GetSkillType(action.GetSkillTreeIndex()), 1);
-        }
-
-        // Apply new status
-        battleData.ApplyNewStatus(sCharacterID, sSegment);
-
-        // Clear action targets
-        battleData.SetActionTargetsThisAction({});
-        battleData.SetActionSourceThisAction("");
+        character.GetSkillData().UpdateSkillValue(GetManagers()->GetSkillManager()->GetSkillType(action.GetSkillTreeIndex()), 1);
     }
 
-    // Clear active changes
-    character.ClearActiveChanges();
+    // Update status
+    statusEffectData.UpdateStatus(sCharacterID);
+
+    // Clear action targets
+    battleData.SetActionTargetsThisAction({});
+    battleData.SetActionSourceThisAction("");
+
+    // Regenerate character data
+    character.RegenerateSpecificCharacterData(IntUnorderedSet({
+        CharacterRegenerationType::CurrentStats,
+    }));
 }
 
 };

@@ -33,8 +33,8 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
     const String& sSourceCharID = action.GetSourceCharacterID();
     const Character& sourceCharacter = GetManagers()->GetCharacterManager()->GetCharacter(sSourceCharID);
     const Character& destCharacter = GetManagers()->GetCharacterManager()->GetCharacter(sDestCharID);
-    const CharacterBattleData& sourceBattleData = sourceCharacter.GetBattleDataActives();
-    const CharacterBattleData& destBattleData = destCharacter.GetBattleDataActives();
+    const CharacterBattleData& sourceBattleData = sourceCharacter.GetBattleData();
+    const CharacterBattleData& destBattleData = destCharacter.GetBattleData();
 
     // Gather critical/multiple hit info
     const Float fSourceChanceToCauseCriticalHit = sourceBattleData.GetChanceToCauseCriticalHit();
@@ -72,18 +72,18 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
 
     // Add in primary/secondary damage bonuses
     Float fSourceBlunt = 0;
-    //Float fSourcePierce = 0;
+    Float fSourcePierce = 0;
     Float fSourceSlash = 0;
     if(bIsPrimaryHandAction)
     {
         fSourceBlunt = (fPrimaryBlunt * fSourcePrimaryDamageBonusPercent) + fSourcePrimaryDamageBonusValue;
-        //fSourcePierce = (fPrimaryPierce * fSourcePrimaryDamageBonusPercent) + fSourcePrimaryDamageBonusValue;
+        fSourcePierce = (fPrimaryPierce * fSourcePrimaryDamageBonusPercent) + fSourcePrimaryDamageBonusValue;
         fSourceSlash = (fPrimarySlash * fSourcePrimaryDamageBonusPercent) + fSourcePrimaryDamageBonusValue;
     }
     else if(bIsSecondaryHandAction)
     {
         fSourceBlunt = (fSecondaryBlunt * fSourceSecondaryDamageBonusPercent) + fSourceSecondaryDamageBonusValue;
-        //fSourcePierce = (fSecondaryPierce * fSourceSecondaryDamageBonusPercent) + fSourceSecondaryDamageBonusValue;
+        fSourcePierce = (fSecondaryPierce * fSourceSecondaryDamageBonusPercent) + fSourceSecondaryDamageBonusValue;
         fSourceSlash = (fSecondarySlash * fSourceSecondaryDamageBonusPercent) + fSourceSecondaryDamageBonusValue;
     }
 
@@ -107,7 +107,7 @@ CharacterActionResult CharacterActionHandlerSkillAttack::GetSkillAttackResult(
         switch(eActionType)
         {
             case CharacterActionType::WeaponBasePierce:
-                fSourceAttackRating = fDestPierce;
+                fSourceAttackRating = fSourcePierce;
                 fDestDefendRating = fDestPierce;
                 break;
             case CharacterActionType::WeaponBaseBlunt:

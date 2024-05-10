@@ -36,7 +36,6 @@ public:
     // Apply cost of action
     void ApplyActionCost(
         const String& sCharacterID,
-        const String& sProgressSegment,
         const CharacterAction& action);
 
     // Update available AP

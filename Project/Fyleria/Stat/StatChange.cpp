@@ -6,6 +6,7 @@
 // Internal includes
 #include "Stat/StatChange.h"
 #include "Item/ItemTypes.h"
+#include "Character/CharacterTypeConverters.h"
 #include "Application/Application.h"
 #include "Skill/SkillTypes.h"
 #include "Utility/Errors.h"
@@ -432,9 +433,7 @@ Bool StatChange::GetResolvedCharacterArrays(
     return (!vSourceCharIDs.empty() || !vDestCharIDs.empty());
 }
 
-void StatChange::ResolveTargetPlaceholders(
-    const String& sCharacterID,
-    const String& sSegment)
+void StatChange::ResolveTargetPlaceholders(const String& sCharacterID)
 {
     // Check character first
     if(!GetManagers()->GetCharacterManager()->DoesCharacterExist(sCharacterID))
@@ -444,7 +443,7 @@ void StatChange::ResolveTargetPlaceholders(
 
     // Get battle data
     const Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
-    const CharacterBattleData& battleData = character.GetBattleDataSegment(sSegment);
+    const CharacterBattleData& battleData = character.GetBattleData();
 
     // Get resolved target types
     String sSelfTargetType = character.GetCharacterTargetType();

@@ -199,9 +199,7 @@ void CharacterStatChangeData::RemoveAllExpiredProlongedStatChanges(Int iRound, I
     }
 }
 
-void CharacterStatChangeData::ApplyProlongedStatChanges(
-    const String& sCharacterID,
-    const String& sSegment)
+void CharacterStatChangeData::ApplyProlongedStatChanges(const String& sCharacterID)
 {
     // Get character
     const Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
@@ -214,11 +212,11 @@ void CharacterStatChangeData::ApplyProlongedStatChanges(
     {
         if (IsStatInt(entry.GetDestinationStatType()))
         {
-            GetManagers()->GetCharacterManager()->ApplyStatChangeEntry<Int>(sSegment, entry);
+            GetManagers()->GetCharacterManager()->ApplyStatChangeEntry<Int>(entry);
         }
         else if(IsStatFloat(entry.GetDestinationStatType()))
         {
-            GetManagers()->GetCharacterManager()->ApplyStatChangeEntry<Float>(sSegment, entry);
+            GetManagers()->GetCharacterManager()->ApplyStatChangeEntry<Float>(entry);
         }
     }
 }

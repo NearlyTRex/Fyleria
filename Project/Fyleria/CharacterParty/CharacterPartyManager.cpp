@@ -37,7 +37,7 @@ Bool CharacterPartyManager::LoadParty(const CharacterParty& party, Bool bRegener
     GetParties().insert({sPartyID, party});
     if(bRegenerateData)
     {
-        GetParties().at(sPartyID).RegenerateCharacterData();
+        GetParties().at(sPartyID).RegenerateAllCharacterData();
     }
 
     // Set as current party

@@ -71,7 +71,7 @@ public:
     Bool GetResolvedCharacterArrays(StringArray& vSourceCharIDs, StringArray& vDestCharIDs) const;
 
     // Resolve target placeholders
-    void ResolveTargetPlaceholders(const String& sCharacterID, const String& sSegment);
+    void ResolveTargetPlaceholders(const String& sCharacterID);
 
     // ID
     MAKE_RAW_TYPE_ACCESSORS(ID, ULongLong);

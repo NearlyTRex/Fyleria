@@ -5,6 +5,7 @@
 
 // Internal includes
 #include "CharacterData/CharacterBasicData.h"
+#include "CharacterData/CharacterDataTypes.h"
 
 namespace Gecko
 {
@@ -25,8 +26,8 @@ CharacterBasicData::~CharacterBasicData()
 void CharacterBasicData::InitAllStatNames()
 {
     // Initialize stat type names
-    InitializeStatTypeNames<CharacterBasicStatType_String>(GetStringStatNames());
-    InitializeStatTypeNames<CharacterBasicStatType_Int>(GetIntStatNames());
+    InitializeStatTypeNames<CharacterBasicDataType_String>(GetStringStatNames());
+    InitializeStatTypeNames<CharacterBasicDataType_Int>(GetIntStatNames());
 }
 
 Bool CharacterBasicData::operator==(const CharacterBasicData& other) const
@@ -42,15 +43,15 @@ Bool CharacterBasicData::operator!=(const CharacterBasicData& other) const
 void to_json(Json& jsonData, const CharacterBasicData& obj)
 {
     // Stat values
-    SetJsonValuesFromStatTypeValues<CharacterBasicStatType_String, String>(jsonData, obj.GetStringStats());
-    SetJsonValuesFromStatTypeValues<CharacterBasicStatType_Int, Int>(jsonData, obj.GetIntStats());
+    SetJsonValuesFromStatTypeValues<CharacterBasicDataType_String, String>(jsonData, obj.GetStringStats());
+    SetJsonValuesFromStatTypeValues<CharacterBasicDataType_Int, Int>(jsonData, obj.GetIntStats());
 }
 
 void from_json(const Json& jsonData, CharacterBasicData& obj)
 {
     // Stat values
-    SetStatTypeValuesFromJsonValues<CharacterBasicStatType_String, String>(jsonData, obj.GetStringStats());
-    SetStatTypeValuesFromJsonValues<CharacterBasicStatType_Int, Int>(jsonData, obj.GetIntStats());
+    SetStatTypeValuesFromJsonValues<CharacterBasicDataType_String, String>(jsonData, obj.GetStringStats());
+    SetStatTypeValuesFromJsonValues<CharacterBasicDataType_Int, Int>(jsonData, obj.GetIntStats());
 }
 
 };

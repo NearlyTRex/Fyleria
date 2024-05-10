@@ -7,6 +7,7 @@
 #include "CharacterParty/CharacterParty.h"
 #include "CharacterData/CharacterProgressData.h"
 #include "Character/CharacterTypes.h"
+#include "Character/CharacterTypeConverters.h"
 #include "Application/Application.h"
 #include "Utility/Errors.h"
 #include "Utility/Converters.h"
@@ -30,22 +31,28 @@ CharacterParty::CharacterParty(const String& jsonString)
     from_json(JsonParse(jsonString), *this);
 }
 
-void CharacterParty::RegenerateCharacterData(
-    Bool bUpdateEquipmentRatings /*= true*/,
-    Bool bUpdateAvailableChanges /*= true*/,
-    Bool bUpdateAvailableActions /*= true*/,
-    Bool bUpdateAvailableAP /*= true*/
-)
+void CharacterParty::RegenerateAllCharacterData()
 {
     // Regenerate all members
     for(auto& member : GetMembers())
     {
-        GetManagers()->GetCharacterManager()->GetCharacter(member.first).RegenerateCharacterData(
-            bUpdateEquipmentRatings,
-            bUpdateAvailableChanges,
-            bUpdateAvailableActions,
-            bUpdateAvailableAP
-        );
+        GetManagers()->GetCharacterManager()->GetCharacter(member.first).RegenerateAllCharacterData();
+    }
+}
+
+void CharacterParty::RegenerateSpecificCharacterData(const StringUnorderedSet& tOptions)
+{
+    for(auto& member : GetMembers())
+    {
+        GetManagers()->GetCharacterManager()->GetCharacter(member.first).RegenerateSpecificCharacterData(tOptions);
+    }
+}
+
+void CharacterParty::RegenerateSpecificCharacterData(const IntUnorderedSet& tOptions)
+{
+    for(auto& member : GetMembers())
+    {
+        GetManagers()->GetCharacterManager()->GetCharacter(member.first).RegenerateSpecificCharacterData(tOptions);
     }
 }
 
@@ -121,7 +128,7 @@ Bool CharacterParty::AddMember(const String& sCharacterID)
     UseTargetType(newMember.GetCharacterTargetType());
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
     character.GetBasicData().SetPartyID(GetPartyID());
-    character.RegenerateCharacterData();
+    character.RegenerateAllCharacterData();
     return true;
 }
 
@@ -139,7 +146,7 @@ Bool CharacterParty::RemoveMember(const String& sCharacterID)
     FreeTargetType(GetMemberByID(sCharacterID).GetCharacterTargetType());
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
     character.GetBasicData().SetPartyID({});
-    character.RegenerateCharacterData();
+    character.RegenerateAllCharacterData();
     GetMembers().erase(sCharacterID);
     return true;
 }
@@ -299,27 +306,15 @@ Bool CharacterParty::GetCharacterIDsFromTargetType(const String& sCharacterTarge
     return false;
 }
 
-UInt CharacterParty::GetStatusMemberCount(
-    const String& sStatus) const
+UInt CharacterParty::GetStatusMemberCount(const String& sStatusType) const
 {
     // Get count of characters matching that status
     UInt uCount = 0;
-    const CharacterStatusType eStatusType = GetEnumFromStringOrNone<CharacterStatusType>(sStatus);
     for(auto& member : GetMembers())
     {
         const Character& character = GetManagers()->GetCharacterManager()->GetCharacter(member.first);
-        const CharacterBattleData& battleData = character.GetBattleData();
-        switch(eStatusType)
-        {
-            case CharacterStatusType::Dead:
-                uCount += (battleData.GetIsDead()) ? 1 : 0;
-                break;
-            case CharacterStatusType::Unconscious:
-                uCount += (battleData.GetIsUnconscious()) ? 1 : 0;
-                break;
-            default:
-                break;
-        }
+        const CharacterStatusEffectData& statusEffectData = character.GetStatusEffectData();
+        uCount += (statusEffectData.HasStatus(sStatusType)) ? 1 : 0;
     }
     return uCount;
 }

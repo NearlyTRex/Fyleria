@@ -5,6 +5,7 @@
 
 // Internal includes
 #include "CharacterData/CharacterMediaData.h"
+#include "CharacterData/CharacterDataTypes.h"
 
 namespace Gecko
 {
@@ -25,7 +26,7 @@ CharacterMediaData::~CharacterMediaData()
 void CharacterMediaData::InitAllStatNames()
 {
     // Initialize stat type names
-    InitializeStatTypeNames<CharacterMediaStatType_String>(GetStringStatNames());
+    InitializeStatTypeNames<CharacterMediaDataType_String>(GetStringStatNames());
 }
 
 Bool CharacterMediaData::operator==(const CharacterMediaData& other) const
@@ -41,13 +42,13 @@ Bool CharacterMediaData::operator!=(const CharacterMediaData& other) const
 void to_json(Json& jsonData, const CharacterMediaData& obj)
 {
     // Stat values
-    SetJsonValuesFromStatTypeValues<CharacterMediaStatType_String, String>(jsonData, obj.GetStringStats());
+    SetJsonValuesFromStatTypeValues<CharacterMediaDataType_String, String>(jsonData, obj.GetStringStats());
 }
 
 void from_json(const Json& jsonData, CharacterMediaData& obj)
 {
     // Stat values
-    SetStatTypeValuesFromJsonValues<CharacterMediaStatType_String, String>(jsonData, obj.GetStringStats());
+    SetStatTypeValuesFromJsonValues<CharacterMediaDataType_String, String>(jsonData, obj.GetStringStats());
 }
 
 };

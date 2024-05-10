@@ -62,7 +62,7 @@ public:
     void RemoveAllExpiredProlongedStatChanges(Int iRound, Int iAttack, Int iDefend);
 
     // Apply prolonged stat changes
-    void ApplyProlongedStatChanges(const String& sCharacterID, const String& sSegment);
+    void ApplyProlongedStatChanges(const String& sCharacterID);
 
     // Passive data
     MAKE_RAW_TYPE_ACCESSORS(PassiveSkillDataArray, TreeIndexArray);

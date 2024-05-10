@@ -84,30 +84,45 @@ CharacterProgressData CharacterGenerator::GenerateProgressData() const
     CharacterProgressData progressData;
     progressData.Clear();
 
-    // Meters
-    progressData.SetHealthPointsMax(GetRandomIntValue<Int>(GetHPStart(), GetHPEnd()));
-    progressData.SetMagicPointsMax(GetRandomIntValue<Int>(GetMPStart(), GetMPEnd()));
-    progressData.SetEnergyPointsMax(GetRandomIntValue<Int>(GetEPStart(), GetEPEnd()));
-    progressData.SetHealthPointsCurrent(progressData.GetHealthPointsMax());
-    progressData.SetMagicPointsCurrent(progressData.GetMagicPointsMax());
-    progressData.SetEnergyPointsCurrent(progressData.GetEnergyPointsMax());
-    progressData.SetHealthRegen(GetRandomIntValue<Int>(GetHPRegenStart(), GetHPRegenEnd()));
-    progressData.SetMagicRegen(GetRandomIntValue<Int>(GetMPRegenStart(), GetMPRegenEnd()));
-    progressData.SetEnergyRegen(GetRandomIntValue<Int>(GetEPRegenStart(), GetEPRegenEnd()));
-    progressData.SetSpeedBase(GetRandomIntValue<Int>(GetSpeedStart(), GetSpeedEnd()));
-    progressData.SetSpeedCurrent(progressData.GetSpeedBase());
+    // Generate health points
+    progressData.SetHealthPointsMaxBase(GetRandomIntValue<Int>(GetHPStart(), GetHPEnd()));
+    progressData.SetHealthPointsBase(progressData.GetHealthPointsMaxBase());
 
-    // Attack and Defense Scoring
-    progressData.SetBluntAttack(GetRandomIntValue<Int>(GetBluntATKStart(), GetBluntATKEnd()));
-    progressData.SetBluntDefense(GetRandomIntValue<Int>(GetBluntDEFStart(), GetBluntDEFEnd()));
-    progressData.SetPierceAttack(GetRandomIntValue<Int>(GetPierceATKStart(), GetPierceATKEnd()));
-    progressData.SetPierceDefense(GetRandomIntValue<Int>(GetPierceDEFStart(), GetPierceDEFEnd()));
-    progressData.SetSlashAttack(GetRandomIntValue<Int>(GetSlashATKStart(), GetSlashATKEnd()));
-    progressData.SetSlashDefense(GetRandomIntValue<Int>(GetSlashDEFStart(), GetSlashDEFEnd()));
-    progressData.SetEnergyAttack(GetRandomIntValue<Int>(GetEnergyATKStart(), GetEnergyATKEnd()));
-    progressData.SetEnergyDefense(GetRandomIntValue<Int>(GetEnergyDEFStart(), GetEnergyDEFEnd()));
-    progressData.SetMagicAttack(GetRandomIntValue<Int>(GetMagicATKStart(), GetMagicATKEnd()));
-    progressData.SetMagicDefense(GetRandomIntValue<Int>(GetMagicDEFStart(), GetMagicDEFEnd()));
+    // Generate magic points
+    progressData.SetMagicPointsMaxBase(GetRandomIntValue<Int>(GetMPStart(), GetMPEnd()));
+    progressData.SetMagicPointsBase(progressData.GetMagicPointsMaxBase());
+
+    // Generate energy points
+    progressData.SetEnergyPointsMaxBase(GetRandomIntValue<Int>(GetEPStart(), GetEPEnd()));
+    progressData.SetEnergyPointsBase(progressData.GetEnergyPointsMaxBase());
+
+    // Generate regen points
+    progressData.SetHealthRegenBase(GetRandomIntValue<Int>(GetHPRegenStart(), GetHPRegenEnd()));
+    progressData.SetMagicRegenBase(GetRandomIntValue<Int>(GetMPRegenStart(), GetMPRegenEnd()));
+    progressData.SetEnergyRegenBase(GetRandomIntValue<Int>(GetEPRegenStart(), GetEPRegenEnd()));
+
+    // Generate speed
+    progressData.SetSpeedBase(GetRandomIntValue<Int>(GetSpeedStart(), GetSpeedEnd()));
+
+    // Generate blunt stats
+    progressData.SetBluntAttackBase(GetRandomIntValue<Int>(GetBluntATKStart(), GetBluntATKEnd()));
+    progressData.SetBluntDefenseBase(GetRandomIntValue<Int>(GetBluntDEFStart(), GetBluntDEFEnd()));
+
+    // Generate pierce stats
+    progressData.SetPierceAttackBase(GetRandomIntValue<Int>(GetPierceATKStart(), GetPierceATKEnd()));
+    progressData.SetPierceDefenseBase(GetRandomIntValue<Int>(GetPierceDEFStart(), GetPierceDEFEnd()));
+
+    // Generate slash stats
+    progressData.SetSlashAttackBase(GetRandomIntValue<Int>(GetSlashATKStart(), GetSlashATKEnd()));
+    progressData.SetSlashDefenseBase(GetRandomIntValue<Int>(GetSlashDEFStart(), GetSlashDEFEnd()));
+
+    // Generate magic stats
+    progressData.SetMagicAttackBase(GetRandomIntValue<Int>(GetMagicATKStart(), GetMagicATKEnd()));
+    progressData.SetMagicDefenseBase(GetRandomIntValue<Int>(GetMagicDEFStart(), GetMagicDEFEnd()));
+
+    // Generate energy stats
+    progressData.SetEnergyAttackBase(GetRandomIntValue<Int>(GetEnergyATKStart(), GetEnergyATKEnd()));
+    progressData.SetEnergyDefenseBase(GetRandomIntValue<Int>(GetEnergyDEFStart(), GetEnergyDEFEnd()));
     return progressData;
 }
 

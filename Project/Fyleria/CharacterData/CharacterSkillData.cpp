@@ -5,6 +5,7 @@
 
 // Internal includes
 #include "CharacterData/CharacterSkillData.h"
+#include "CharacterData/CharacterDataTypes.h"
 #include "Character/CharacterTypes.h"
 #include "Skill/SkillConstants.h"
 
@@ -62,7 +63,7 @@ void CharacterSkillData::UpdateSkillValue(const String& sSkillType, Short iDelta
 void CharacterSkillData::InitAllStatNames()
 {
     // Initialize stat type names
-    InitializeStatTypeNames<CharacterSkillStatType_Short>(GetShortStatNames());
+    InitializeStatTypeNames<CharacterSkillDataType_Short>(GetShortStatNames());
 }
 
 Bool CharacterSkillData::operator==(const CharacterSkillData& other) const
@@ -78,13 +79,13 @@ Bool CharacterSkillData::operator!=(const CharacterSkillData& other) const
 void to_json(Json& jsonData, const CharacterSkillData& obj)
 {
     // Stat values
-    SetJsonValuesFromStatTypeValues<CharacterSkillStatType_Short, Short>(jsonData, obj.GetShortStats());
+    SetJsonValuesFromStatTypeValues<CharacterSkillDataType_Short, Short>(jsonData, obj.GetShortStats());
 }
 
 void from_json(const Json& jsonData, CharacterSkillData& obj)
 {
     // Stat values
-    SetStatTypeValuesFromJsonValues<CharacterSkillStatType_Short, Short>(jsonData, obj.GetShortStats());
+    SetStatTypeValuesFromJsonValues<CharacterSkillDataType_Short, Short>(jsonData, obj.GetShortStats());
 }
 
 };

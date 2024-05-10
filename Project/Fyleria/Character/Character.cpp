@@ -33,13 +33,9 @@ void Character::Clear()
 {
     // Progress data
     GetProgressData().Clear();
-    GetProgressDataPassives().Clear();
-    GetProgressDataActives().Clear();
 
     // Battle data
     GetBattleData().Clear();
-    GetBattleDataPassives().Clear();
-    GetBattleDataActives().Clear();
 
     // Basic data
     GetBasicData().Clear();
@@ -54,24 +50,42 @@ void Character::Clear()
     GetStatChangeData().Clear();
 }
 
-void Character::RegenerateCharacterData(
-    Bool bUpdateEquipmentRatings /*= true*/,
-    Bool bUpdateAvailableChanges /*= true*/,
-    Bool bUpdateAvailableActions /*= true*/,
-    Bool bUpdateAvailableAP /*= true*/
-)
+void Character::RegenerateAllCharacterData()
 {
-    // Reset all non-base data
-    GetProgressDataPassives().Clear();
-    GetBattleDataPassives().Clear();
-    GetProgressDataActives().Clear();
-    GetBattleDataActives().Clear();
+    // Regenerate all character data
+    RegenerateSpecificCharacterData({
+        CharacterRegenerationType::CurrentStats,
+        CharacterRegenerationType::EquipmentRatings,
+        CharacterRegenerationType::AvailableChanges,
+        CharacterRegenerationType::AvailableActions,
+        CharacterRegenerationType::AvailableAP
+    });
+}
 
+void Character::RegenerateSpecificCharacterData(const StringUnorderedSet& tOptions)
+{
+    // Create translated options
+    IntUnorderedSet tTranslatedOptions;
+    for(auto& sRegenerationType : GetUsableEnumNames<CharacterRegenerationType>())
+    {
+        if (tOptions.count(sRegenerationType))
+        {
+            tTranslatedOptions.insert(GetEnumFromString<CharacterRegenerationType>(sRegenerationType));
+        }
+    }
+
+    // Regenerate character data
+    RegenerateSpecificCharacterData(tTranslatedOptions);
+}
+
+void Character::RegenerateSpecificCharacterData(const IntUnorderedSet& tOptions)
+{
     // Update character data
-    if(bUpdateEquipmentRatings) { UpdateEquipmentRatings(); }
-    if(bUpdateAvailableChanges) { UpdateAvailableChanges(); }
-    if(bUpdateAvailableActions) { UpdateAvailableActions(); }
-    if(bUpdateAvailableAP) { UpdateAvailableAP(); }
+    if (tOptions.count(CharacterRegenerationType::CurrentStats)) { UpdateCurrentStats(); }
+    if (tOptions.count(CharacterRegenerationType::EquipmentRatings)) { UpdateEquipmentRatings(); }
+    if (tOptions.count(CharacterRegenerationType::AvailableChanges)) { UpdateAvailableChanges(); }
+    if (tOptions.count(CharacterRegenerationType::AvailableActions)) { UpdateAvailableActions(); }
+    if (tOptions.count(CharacterRegenerationType::AvailableAP)) { UpdateAvailableAP(); }
 
     // Apply passives
     ApplyPassiveChanges();
@@ -169,46 +183,16 @@ const TreeIndexArray& Character::GetActionableChanges(const String& sTreeIndexTy
     return GetStatChangeData().GetActionableChanges(sTreeIndexType);
 }
 
-const CharacterProgressData& Character::GetProgressDataSegment(const String& sSegment) const
+void Character::UpdateCurrentStats()
 {
-    CharacterSegmentType eSegmentType = GetEnumFromString<CharacterSegmentType>(sSegment);
-    switch(eSegmentType)
-    {
-        case CharacterSegmentType::Base: return GetProgressData();
-        case CharacterSegmentType::Passive: return GetProgressDataPassives();
-        case CharacterSegmentType::Active: return GetProgressDataActives();
-        default: break;
-    }
-    THROW_RUNTIME_ERROR("Invalid or unknown segment requested: " + sSegment);
-}
-
-CharacterProgressData& Character::GetProgressDataSegment(const String& sSegment)
-{
-    return const_cast<CharacterProgressData&>(static_cast<const Character&>(*this).GetProgressDataSegment(sSegment));
-}
-
-const CharacterBattleData& Character::GetBattleDataSegment(const String& sSegment) const
-{
-    CharacterSegmentType eSegmentType = GetEnumFromString<CharacterSegmentType>(sSegment);
-    switch(eSegmentType)
-    {
-        case CharacterSegmentType::Base: return GetBattleData();
-        case CharacterSegmentType::Passive: return GetBattleDataPassives();
-        case CharacterSegmentType::Active: return GetBattleDataActives();
-        default: break;
-    }
-    THROW_RUNTIME_ERROR("Invalid or unknown segment requested: " + sSegment);
-}
-
-CharacterBattleData& Character::GetBattleDataSegment(const String& sSegment)
-{
-    return const_cast<CharacterBattleData&>(static_cast<const Character&>(*this).GetBattleDataSegment(sSegment));
+    // Update current stats
+    GetProgressData().ApplyBaseToCurrent();
 }
 
 void Character::UpdateEquipmentRatings()
 {
     // Update equipment ratings
-    GetBattleData().UpdateEquipmentRatings(GetCharacterID(), GetEnumString(CharacterSegmentType::Base));
+    GetBattleData().UpdateEquipmentRatings(GetCharacterID());
 }
 
 void Character::UpdateAvailableChanges()
@@ -231,32 +215,20 @@ void Character::UpdateAvailableAP()
 
 void Character::ApplyPassiveChanges()
 {
-    // Data sources should come from base but apply to passive
-    const String sSourceSegment("Base");
-    const String sDestSegment("Passive");
-
-    // Copy base data into passive to start with
-    SetProgressDataPassives(GetProgressData());
-    SetBattleDataPassives(GetBattleData());
-
     // Apply passives
-    for(auto& sTreeIndexType : CharacterTreeIndexType::_names())
+    for(auto& sTreeIndexType : GetUsableEnumNames<CharacterTreeIndexType>())
     {
-        if(IsNoneTypeForEnum<CharacterTreeIndexType>(sTreeIndexType))
-        {
-            continue;
-        }
         for(const TreeIndex& treeIndex : GetStatChangeData().GetPassiveChanges(sTreeIndexType))
         {
             for(StatChange change : GetStatChangesFromTreeIndex(sTreeIndexType, treeIndex))
             {
                 // Resolve target placeholders
-                change.ResolveTargetPlaceholders(GetCharacterID(), sSourceSegment);
+                change.ResolveTargetPlaceholders(GetCharacterID());
 
                 // Apply change
                 Bool bAllChangesApplied = false;
                 Bool bAtLeastOneChange = false;
-                GetManagers()->GetCharacterManager()->ApplyStatChange(sDestSegment, change, bAllChangesApplied, bAtLeastOneChange);
+                GetManagers()->GetCharacterManager()->ApplyStatChange(change, bAllChangesApplied, bAtLeastOneChange);
             }
         }
     }
@@ -264,21 +236,9 @@ void Character::ApplyPassiveChanges()
 
 void Character::ApplyActiveChanges(const CharacterAction& action)
 {
-    // Data sources should come from passive but apply to active
-    const String sSourceSegment("Passive");
-    const String sDestSegment("Active");
-
-    // Copy passive data into active to start with
-    SetProgressDataActives(GetProgressDataPassives());
-    SetBattleDataActives(GetBattleDataPassives());
-
     // Apply actives
-    for(auto& sTreeIndexType : CharacterTreeIndexType::_names())
+    for(auto& sTreeIndexType : GetUsableEnumNames<CharacterTreeIndexType>())
     {
-        if(IsNoneTypeForEnum<CharacterTreeIndexType>(sTreeIndexType))
-        {
-            continue;
-        }
         for(const TreeIndex& treeIndex : GetStatChangeData().GetActiveChanges(sTreeIndexType))
         {
             for(const StatChange& change : GetStatChangesFromTreeIndex(sTreeIndexType, treeIndex))
@@ -294,25 +254,18 @@ void Character::ApplyActiveChanges(const CharacterAction& action)
                 StatChange localStatChange(change);
 
                 // Resolve target placeholders
-                localStatChange.ResolveTargetPlaceholders(GetCharacterID(), sSourceSegment);
+                localStatChange.ResolveTargetPlaceholders(GetCharacterID());
 
                 // Apply change
                 Bool bAllChangesApplied = false;
                 Bool bAtLeastOneChange = false;
-                GetManagers()->GetCharacterManager()->ApplyStatChange(
-                    sDestSegment, localStatChange, bAllChangesApplied, bAtLeastOneChange);
+                GetManagers()->GetCharacterManager()->ApplyStatChange(localStatChange, bAllChangesApplied, bAtLeastOneChange);
             }
         }
     }
 
     // Apply prolonged stat changes
-    GetStatChangeData().ApplyProlongedStatChanges(GetCharacterID(), sDestSegment);
-}
-
-void Character::ClearActiveChanges()
-{
-    GetProgressDataActives().Clear();
-    GetBattleDataActives().Clear();
+    GetStatChangeData().ApplyProlongedStatChanges(GetCharacterID());
 }
 
 Bool Character::operator==(const Character& other) const
@@ -327,13 +280,11 @@ Bool Character::operator!=(const Character& other) const
 
 void to_json(Json& jsonData, const Character& obj)
 {
-    // Segmented progress data
+    // Progress data
     SET_JSON_DATA(ProgressData);
-    SET_JSON_DATA(ProgressDataPassives);
 
-    // Segmented battle data
+    // Battle data
     SET_JSON_DATA(BattleData);
-    SET_JSON_DATA(BattleDataPassives);
 
     // Basic data
     SET_JSON_DATA(BasicData);
@@ -347,19 +298,20 @@ void to_json(Json& jsonData, const Character& obj)
     // Stat change data
     SET_JSON_DATA(StatChangeData);
 
+    // Status effect data
+    SET_JSON_DATA(StatusEffectData);
+
     // Media data
     SET_JSON_DATA(MediaData);
 }
 
 void from_json(const Json& jsonData, Character& obj)
 {
-    // Segmented progress data
+    // Progress data
     SET_OBJ_DATA(ProgressData, CharacterProgressData);
-    SET_OBJ_DATA(ProgressDataPassives, CharacterProgressData);
 
-    // Segmented battle data
+    // Battle data
     SET_OBJ_DATA(BattleData, CharacterBattleData);
-    SET_OBJ_DATA(BattleDataPassives, CharacterBattleData);
 
     // Basic data
     SET_OBJ_DATA(BasicData, CharacterBasicData);
@@ -372,6 +324,9 @@ void from_json(const Json& jsonData, Character& obj)
 
     // Stat change data
     SET_OBJ_DATA(StatChangeData, CharacterStatChangeData);
+
+    // Status effect data
+    SET_OBJ_DATA(StatusEffectData, CharacterStatusEffectData);
 
     // Media data
     SET_OBJ_DATA(MediaData, CharacterMediaData);
@@ -390,6 +345,9 @@ Json GetSaveableData(const Character& obj)
 
     // Skill data
     SET_JSON_DATA(SkillData);
+
+    // Status effect data
+    SET_JSON_DATA(StatusEffectData);
 
     // Media data
     SET_JSON_DATA(MediaData);

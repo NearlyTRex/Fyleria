@@ -6,6 +6,7 @@
 // Internal includes
 #include "Skill/SkillDataCombat.h"
 #include "Character/CharacterTypes.h"
+#include "Character/CharacterTypeConverters.h"
 #include "Application/Application.h"
 #include "Utility/JsonMacros.h"
 

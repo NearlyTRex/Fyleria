@@ -5,7 +5,9 @@
 
 // Internal includes
 #include "CharacterData/CharacterActionData.h"
+#include "CharacterData/CharacterDataTypes.h"
 #include "Character/CharacterTypes.h"
+#include "Character/CharacterTypeConverters.h"
 #include "Application/Application.h"
 #include "Utility/JsonMacros.h"
 
@@ -84,14 +86,13 @@ void CharacterActionData::UpdateAvailableActions(const String& sCharacterID)
 
 void CharacterActionData::ApplyActionCost(
     const String& sCharacterID,
-    const String& sProgressSegment,
     const CharacterAction& action)
 {
     // Get character
     Character& character = GetManagers()->GetCharacterManager()->GetCharacter(sCharacterID);
 
     // Get progress data
-    CharacterProgressData& progressData = character.GetProgressDataSegment(sProgressSegment);
+    CharacterProgressData& progressData = character.GetProgressData();
 
     // Get total costs
     const Int iTotalHPCost = action.GetCostHP() + progressData.GetHealthCostDelta();
@@ -116,7 +117,7 @@ void CharacterActionData::ApplyActionCost(
         }
 
         // Set new AP value
-        if(!IsNoneTypeForEnum<CharacterActionStatType_Int>(sMatchingStatType))
+        if(!IsNoneTypeForEnum<CharacterActionDataType_Int>(sMatchingStatType))
         {
             Int iAPValue = 0;
             if(!GetStatValue(sMatchingStatType, iAPValue))
@@ -195,7 +196,7 @@ void CharacterActionData::UpdateAvailableAP(const String& sCharacterID)
             // Update AP in each area
             const SkillDataWeapon& skillDataWeapon = GetManagers()->GetSkillManager()->RetrieveSkillDataWeapon(skillIndex);
             const String sMatchingStatType = ConvertSkillWeaponTypeToCharacterActionStatType(skillDataWeapon.GetSkillType());
-            if(!IsNoneTypeForEnum<CharacterActionStatType_Int>(sMatchingStatType))
+            if(!IsNoneTypeForEnum<CharacterActionDataType_Int>(sMatchingStatType))
             {
                 SetStatValue(sMatchingStatType, iActionPoints);
             }
@@ -206,7 +207,7 @@ void CharacterActionData::UpdateAvailableAP(const String& sCharacterID)
 void CharacterActionData::InitAllStatNames()
 {
     // Initialize stat type names
-    InitializeStatTypeNames<CharacterActionStatType_Int>(GetIntStatNames());
+    InitializeStatTypeNames<CharacterActionDataType_Int>(GetIntStatNames());
 }
 
 Bool CharacterActionData::operator==(const CharacterActionData& other) const
@@ -222,7 +223,7 @@ Bool CharacterActionData::operator!=(const CharacterActionData& other) const
 void to_json(Json& jsonData, const CharacterActionData& obj)
 {
     // Stat values
-    SetJsonValuesFromStatTypeValues<CharacterActionStatType_Int, Int>(jsonData, obj.GetIntStats());
+    SetJsonValuesFromStatTypeValues<CharacterActionDataType_Int, Int>(jsonData, obj.GetIntStats());
 
     // List of character actions
     SET_JSON_DATA(AvailableActions);
@@ -231,7 +232,7 @@ void to_json(Json& jsonData, const CharacterActionData& obj)
 void from_json(const Json& jsonData, CharacterActionData& obj)
 {
     // Stat values
-    SetStatTypeValuesFromJsonValues<CharacterActionStatType_Int, Int>(jsonData, obj.GetIntStats());
+    SetStatTypeValuesFromJsonValues<CharacterActionDataType_Int, Int>(jsonData, obj.GetIntStats());
 
     // List of character actions
     SET_OBJ_DATA(AvailableActions, CharacterActionArray);

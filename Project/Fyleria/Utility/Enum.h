@@ -11,6 +11,7 @@
 
 // Internal includes
 #include "Utility/Types.h"
+#include "Utility/Templates.h"
 
 // External defines
 #define MAKE_ENUM BETTER_ENUM
@@ -31,6 +32,33 @@ StringArray GetEnumNames()
         vTypeNames.push_back(name);
     }
     return vTypeNames;
+}
+
+template <typename T>
+STDVector<T> GetEnumValues()
+{
+    STDVector<T> vTypeValues;
+    for (T val : T::_values())
+    {
+        vTypeValues.push_back(val);
+    }
+    return vTypeValues;
+}
+
+template <typename T>
+StringArray GetUsableEnumNames()
+{
+    StringArray vTypeNames = GetEnumNames<T>();
+    RemoveVectorElement(vTypeNames, GetEnumString(T::None));
+    return vTypeNames;
+}
+
+template <typename T>
+STDVector<T> GetUsableEnumValues()
+{
+    STDVector<T> vTypeValues = GetEnumValues<T>();
+    RemoveVectorElement(vTypeValues, T::None);
+    return vTypeValues;
 }
 
 template <typename T>

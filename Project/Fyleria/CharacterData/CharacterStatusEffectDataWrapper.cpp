@@ -1,0 +1,38 @@
+// Fyleria Engine
+// Copyright (c) 2019 Go Go Gecko Productions. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// Internal includes
+#include "CharacterData/CharacterStatusEffectDataWrapper.h"
+#include "Application/Application.h"
+#include "Utility/Types.h"
+
+namespace Gecko
+{
+
+// Start wrapper
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_START(CharacterData, CharacterStatusEffectData);
+
+// Bool stats
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsAcidified);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsBerserk);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsBound);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsBleeding);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsBlinded);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsBurned);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsCalmed);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsDead);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsDelirious);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsFrozen);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsHorrified);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsKnockdown);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsMossified);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsSleeping);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsSwallowed);
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_PROPERTY(IsUnconscious);
+
+// Finish wrapper
+MAKE_JSONDATA_WRAPPER_CLASS_IMPL_END();
+
+};

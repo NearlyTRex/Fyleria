@@ -162,7 +162,7 @@ void SaveManager::CollectSaveData(
     {
         // Add party
         CharacterParty& party = GetManagers()->GetCharacterPartyManager()->GetPartyByID(sPartyID);
-        party.RegenerateCharacterData();
+        party.RegenerateAllCharacterData();
         vParties.push_back(party);
 
         // Add members of this party
