@@ -12,6 +12,7 @@
 #include "CharacterParty/CharacterPartyEquippedItem.h"
 #include "Item/ItemTypes.h"
 #include "Application/Application.h"
+#include "Stat/StatTypeTemplates.h"
 
 namespace Gecko
 {

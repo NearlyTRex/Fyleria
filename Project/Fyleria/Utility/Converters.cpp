@@ -160,9 +160,9 @@ StringArray ConvertStringToTokenArray(const String& sString, const String& sChar
     return vTokens;
 }
 
-StringMap ConvertQueryStringToStringMap(const String& sQuery)
+StringStringMap ConvertQueryStringToStringMap(const String& sQuery)
 {
-    StringMap tMap;
+    StringStringMap tMap;
     StringArray vQuerySegments = ConvertStringToTokenArray(ConvertToUrlDecodedString(sQuery), "&");
     for(auto& sSegment : vQuerySegments)
     {

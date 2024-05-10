@@ -7,6 +7,7 @@
 #include "CharacterData/CharacterStatusEffectData.h"
 #include "CharacterData/CharacterDataTypes.h"
 #include "Application/Application.h"
+#include "Stat/StatTypeTemplates.h"
 #include "Utility/Errors.h"
 #include "Utility/JsonMacros.h"
 

@@ -9,6 +9,7 @@
 #include "Character/CharacterTypes.h"
 #include "Character/CharacterTypeConverters.h"
 #include "Application/Application.h"
+#include "Stat/StatTypeTemplates.h"
 #include "Utility/JsonMacros.h"
 
 namespace Gecko

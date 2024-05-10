@@ -40,7 +40,7 @@ UByte ConvertHexStringToByte(const String& sString);
 StringArray ConvertStringToTokenArray(const String& sString, const String& sChars);
 
 // Convert query string to string map
-StringMap ConvertQueryStringToStringMap(const String& sQuery);
+StringStringMap ConvertQueryStringToStringMap(const String& sQuery);
 
 // Convert size to string containing the correct type
 String ConvertSizeToString(FixedSigned64 uSize);

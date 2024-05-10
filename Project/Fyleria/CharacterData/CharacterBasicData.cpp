@@ -6,6 +6,7 @@
 // Internal includes
 #include "CharacterData/CharacterBasicData.h"
 #include "CharacterData/CharacterDataTypes.h"
+#include "Stat/StatTypeTemplates.h"
 
 namespace Gecko
 {

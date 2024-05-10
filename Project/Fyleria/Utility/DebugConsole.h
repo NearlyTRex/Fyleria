@@ -67,7 +67,7 @@ private:
     String CreateHelpFunction() const;
 
     // Create registered functions
-    StringUnorderedMap CreateRegisteredFunctions() const;
+    StringStringUnorderedMap CreateRegisteredFunctions() const;
 };
 
 // Typedef

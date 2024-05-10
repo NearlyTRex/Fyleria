@@ -8,6 +8,7 @@
 #include "CharacterData/CharacterDataTypes.h"
 #include "Application/Application.h"
 #include "Character/CharacterTypes.h"
+#include "Stat/StatTypeTemplates.h"
 #include "Utility/Templates.h"
 
 namespace Gecko

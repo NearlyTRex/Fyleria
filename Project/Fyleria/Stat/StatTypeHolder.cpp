@@ -5,6 +5,7 @@
 
 // Internal includes
 #include "Stat/StatTypeHolder.h"
+#include "Stat/StatTypeTemplates.h"
 
 namespace Gecko
 {

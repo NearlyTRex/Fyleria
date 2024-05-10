@@ -76,14 +76,14 @@ public:
     Bool DecrementStatValue(const String& sStat, const Double& iValue);
 
     // Stat types
-    MAKE_RAW_TYPE_ACCESSORS(BoolStats, BoolStatTypeMap);
-    MAKE_RAW_TYPE_ACCESSORS(ByteStats, ByteStatTypeMap);
-    MAKE_RAW_TYPE_ACCESSORS(ShortStats, ShortStatTypeMap);
-    MAKE_RAW_TYPE_ACCESSORS(IntStats, IntStatTypeMap);
-    MAKE_RAW_TYPE_ACCESSORS(FloatStats, FloatStatTypeMap);
-    MAKE_RAW_TYPE_ACCESSORS(DoubleStats, DoubleStatTypeMap);
-    MAKE_RAW_TYPE_ACCESSORS(StringStats, StringStatTypeMap);
-    MAKE_RAW_TYPE_ACCESSORS(StringArrayStats, StringArrayStatTypeMap);
+    MAKE_RAW_TYPE_ACCESSORS(BoolStats, StringBoolUnorderedMap);
+    MAKE_RAW_TYPE_ACCESSORS(ByteStats, StringByteUnorderedMap);
+    MAKE_RAW_TYPE_ACCESSORS(ShortStats, StringShortUnorderedMap);
+    MAKE_RAW_TYPE_ACCESSORS(IntStats, StringIntUnorderedMap);
+    MAKE_RAW_TYPE_ACCESSORS(FloatStats, StringFloatUnorderedMap);
+    MAKE_RAW_TYPE_ACCESSORS(DoubleStats, StringDoubleUnorderedMap);
+    MAKE_RAW_TYPE_ACCESSORS(StringStats, StringStringUnorderedMap);
+    MAKE_RAW_TYPE_ACCESSORS(StringArrayStats, StringStringArrayUnorderedMap);
 };
 
 };

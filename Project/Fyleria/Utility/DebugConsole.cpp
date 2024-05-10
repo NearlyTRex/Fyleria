@@ -126,10 +126,10 @@ String DebugConsole::CreateHelpFunction() const
     return sFunction;
 }
 
-StringUnorderedMap DebugConsole::CreateRegisteredFunctions() const
+StringStringUnorderedMap DebugConsole::CreateRegisteredFunctions() const
 {
     // Create registered functions
-    StringUnorderedMap vFunctions;
+    StringStringUnorderedMap vFunctions;
     for (auto& cmd : GetCommands())
     {
         String sCmdName = cmd.GetName();
