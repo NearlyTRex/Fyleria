@@ -56,8 +56,8 @@
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
                         "ChangeAmount": 1.05,
                         "OperationType": "Set"
                     }
@@ -140,7 +140,8 @@
                         "SourceStatType": "ChanceToBlockCriticalHit",
                         "DestinationStatType": "ChanceToBlockCriticalHit",
                         "ChangeAmount": 0.05,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -163,7 +164,8 @@
                         "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "ChangeAmount": 1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -274,8 +276,8 @@
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
                         "ChangeAmount": 1.1,
                         "OperationType": "Set"
                     }
@@ -342,7 +344,8 @@
                         "SourceStatType": "ChanceToBlockCriticalHit",
                         "DestinationStatType": "ChanceToBlockCriticalHit",
                         "ChangeAmount": 0.1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -365,7 +368,8 @@
                         "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "ChangeAmount": 2,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -476,8 +480,8 @@
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
                         "ChangeAmount": 1.15,
                         "OperationType": "Set"
                     }

@@ -22,7 +22,8 @@
                         "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "ChangeAmount": 1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -43,7 +44,8 @@
                         "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "ChangeAmount": 0.05,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -92,7 +94,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.05,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -127,7 +130,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.05,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -148,7 +152,8 @@
                         "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "ChangeAmount": 2,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -169,7 +174,8 @@
                         "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "ChangeAmount": 0.1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -218,7 +224,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -253,7 +260,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -274,7 +282,8 @@
                         "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "ChangeAmount": 3,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -295,7 +304,8 @@
                         "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "ChangeAmount": 0.15,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -344,7 +354,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.15,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -379,7 +390,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.15,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -400,7 +412,8 @@
                         "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "ChangeAmount": 4,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -421,7 +434,8 @@
                         "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "ChangeAmount": 0.2,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -470,7 +484,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.2,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -505,7 +520,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.2,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -526,7 +542,8 @@
                         "SourceStatType": "HealthRegen",
                         "DestinationStatType": "HealthRegen",
                         "ChangeAmount": 5,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -547,7 +564,8 @@
                         "SourceStatType": "DefensivePowerEffectsBonusPercent",
                         "DestinationStatType": "DefensivePowerEffectsBonusPercent",
                         "ChangeAmount": 0.25,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -596,7 +614,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 0.25,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }

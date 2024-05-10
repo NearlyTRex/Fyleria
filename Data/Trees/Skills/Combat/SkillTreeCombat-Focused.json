@@ -23,20 +23,23 @@
                     {
                         "SourceStatType": "SlashDefense",
                         "DestinationStatType": "SlashDefense",
-                        "ChangeAmount": 1.05,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.05,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     },
                     {
                         "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
-                        "ChangeAmount": 1.05,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.05,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     },
                     {
                         "SourceStatType": "PierceDefense",
                         "DestinationStatType": "PierceDefense",
-                        "ChangeAmount": 1.05,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.05,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -56,10 +59,11 @@
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
-                        "ChangeAmount": 1.05,
-                        "OperationType": "Set"
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
+                        "ChangeAmount": 0.05,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -86,7 +90,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 2,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -108,8 +113,9 @@
                     {
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
-                        "ChangeAmount": 1.25,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.25,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -132,7 +138,8 @@
                         "SourceStatType": "ChanceToBlockCriticalHit",
                         "DestinationStatType": "ChanceToBlockCriticalHit",
                         "ChangeAmount": 0.05,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -155,7 +162,8 @@
                         "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "ChangeAmount": 1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -182,7 +190,8 @@
                         "SourceStatType": "DamageTakenThisRound",
                         "DestinationStatType": "GeneralDamageBonusValue",
                         "ChangeAmount": 1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -204,8 +213,9 @@
                     {
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
-                        "ChangeAmount": 1.5,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.5,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -227,20 +237,23 @@
                     {
                         "SourceStatType": "SlashDefense",
                         "DestinationStatType": "SlashDefense",
-                        "ChangeAmount": 1.1,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.1,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     },
                     {
                         "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
-                        "ChangeAmount": 1.1,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.1,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     },
                     {
                         "SourceStatType": "PierceDefense",
                         "DestinationStatType": "PierceDefense",
-                        "ChangeAmount": 1.1,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.1,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -260,10 +273,11 @@
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
-                        "ChangeAmount": 1.1,
-                        "OperationType": "Set"
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
+                        "ChangeAmount": 0.1,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -290,7 +304,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 2,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -312,8 +327,9 @@
                     {
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
-                        "ChangeAmount": 1.75,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.75,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -336,7 +352,8 @@
                         "SourceStatType": "ChanceToBlockCriticalHit",
                         "DestinationStatType": "ChanceToBlockCriticalHit",
                         "ChangeAmount": 0.1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -359,7 +376,8 @@
                         "SourceStatType": "CriticalHitMultiplier",
                         "DestinationStatType": "CriticalHitMultiplier",
                         "ChangeAmount": 2,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -386,7 +404,8 @@
                         "SourceStatType": "DamageTakenThisRound",
                         "DestinationStatType": "GeneralDamageBonusValue",
                         "ChangeAmount": 1,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -409,7 +428,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 2.0,
-                        "OperationType": "Set"
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
@@ -431,20 +451,23 @@
                     {
                         "SourceStatType": "SlashDefense",
                         "DestinationStatType": "SlashDefense",
-                        "ChangeAmount": 1.15,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.15,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     },
                     {
                         "SourceStatType": "BluntDefense",
                         "DestinationStatType": "BluntDefense",
-                        "ChangeAmount": 1.15,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.15,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     },
                     {
                         "SourceStatType": "PierceDefense",
                         "DestinationStatType": "PierceDefense",
-                        "ChangeAmount": 1.15,
-                        "OperationType": "Set"
+                        "ChangeAmount": 0.15,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -464,10 +487,11 @@
                 "DestinationTargetType": "Self",
                 "StatChangeEntries": [
                     {
-                        "SourceStatType": "Speed",
-                        "DestinationStatType": "Speed",
-                        "ChangeAmount": 1.15,
-                        "OperationType": "Set"
+                        "SourceStatType": "SpeedBase",
+                        "DestinationStatType": "SpeedCurrent",
+                        "ChangeAmount": 0.15,
+                        "OperationType": "Multiply",
+                        "AssignmentType": "Increment"
                     }
                 ]
             }
@@ -494,7 +518,8 @@
                         "SourceStatType": "GeneralDamageBonusPercent",
                         "DestinationStatType": "GeneralDamageBonusPercent",
                         "ChangeAmount": 2,
-                        "OperationType": "Add"
+                        "OperationType": "Add",
+                        "AssignmentType": "Set"
                     }
                 ]
             }
