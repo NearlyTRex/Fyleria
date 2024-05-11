@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Shock",
         "SkillName": "Shock Alignment I",
-        "SkillDescription": "Shock Alignment I",
+        "SkillDescription": "Base level damage with Shock Element Spells and Powers",
         "DataClass": "ShockAlignment",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Shock",
         "SkillName": "Spellcaster I",
-        "SkillDescription": "Spellcaster I",
+        "SkillDescription": "1 Less MP is required to cast a Shock Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -36,7 +36,7 @@
         "SkillRank": 3,
         "SkillType": "Shock",
         "SkillName": "Power Player I",
-        "SkillDescription": "Power Player I",
+        "SkillDescription": "1 Less PP is required to activate a Shock Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -61,7 +61,7 @@
         "SkillRank": 4,
         "SkillType": "Shock",
         "SkillName": "Shock Absorption I",
-        "SkillDescription": "Shock Absorption I",
+        "SkillDescription": "Reduce all Shock Damage taken by 1",
         "DataClass": "ShockAbsorption",
         "StatChanges": [
             {
@@ -87,7 +87,7 @@
         "SkillRank": 5,
         "SkillType": "Shock",
         "SkillName": "Gem Juicer I",
-        "SkillDescription": "Gem Juicer I",
+        "SkillDescription": "Gain 5% additional charges when using Citrine Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -109,7 +109,7 @@
         "SkillRank": 6,
         "SkillType": "Shock",
         "SkillName": "Shock Alignment II",
-        "SkillDescription": "Shock Alignment II",
+        "SkillDescription": "+5% damage with Shock Element Spells and Powers",
         "DataClass": "ShockAlignment",
         "StatChanges": [
             {
@@ -135,7 +135,7 @@
         "SkillRank": 7,
         "SkillType": "Shock",
         "SkillName": "Spellcaster II",
-        "SkillDescription": "Spellcaster II",
+        "SkillDescription": "2 Less MP are required to cast a Shock Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -160,7 +160,7 @@
         "SkillRank": 8,
         "SkillType": "Shock",
         "SkillName": "Power Player II",
-        "SkillDescription": "Power Player II",
+        "SkillDescription": "2 Less PP are required to activate a Shock Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -185,7 +185,7 @@
         "SkillRank": 9,
         "SkillType": "Shock",
         "SkillName": "Shock Absorption II",
-        "SkillDescription": "Shock Absorption II",
+        "SkillDescription": "Reduce all Shock Damage taken by 2",
         "DataClass": "ShockAbsorption",
         "StatChanges": [
             {
@@ -211,7 +211,7 @@
         "SkillRank": 10,
         "SkillType": "Shock",
         "SkillName": "Gem Juicer II",
-        "SkillDescription": "Gem Juicer II",
+        "SkillDescription": "Gain 10% additional charges when using Citrine Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -233,7 +233,7 @@
         "SkillRank": 11,
         "SkillType": "Shock",
         "SkillName": "Shock Alignment III",
-        "SkillDescription": "Shock Alignment III",
+        "SkillDescription": "+10% damage with Shock Element Spells and Powers",
         "DataClass": "ShockAlignment",
         "StatChanges": [
             {
@@ -259,7 +259,7 @@
         "SkillRank": 12,
         "SkillType": "Shock",
         "SkillName": "Spellcaster III",
-        "SkillDescription": "Spellcaster III",
+        "SkillDescription": "3 Less MP are required to cast a Shock Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -284,7 +284,7 @@
         "SkillRank": 13,
         "SkillType": "Shock",
         "SkillName": "Power Player III",
-        "SkillDescription": "Power Player III",
+        "SkillDescription": "3 Less PP are required to activate a Shock Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -309,7 +309,7 @@
         "SkillRank": 14,
         "SkillType": "Shock",
         "SkillName": "Shock Absorption III",
-        "SkillDescription": "Shock Absorption III",
+        "SkillDescription": "Reduce all Shock Damage taken by 3",
         "DataClass": "ShockAbsorption",
         "StatChanges": [
             {
@@ -335,7 +335,7 @@
         "SkillRank": 15,
         "SkillType": "Shock",
         "SkillName": "Gem Juicer III",
-        "SkillDescription": "Gem Juicer III",
+        "SkillDescription": "Gain 15% additional charges when using Citrine Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -357,7 +357,7 @@
         "SkillRank": 16,
         "SkillType": "Shock",
         "SkillName": "Shock Alignment IV",
-        "SkillDescription": "Shock Alignment IV",
+        "SkillDescription": "+15% damage with Shock Element Spells and Powers",
         "DataClass": "ShockAlignment",
         "StatChanges": [
             {
@@ -383,7 +383,7 @@
         "SkillRank": 17,
         "SkillType": "Shock",
         "SkillName": "Spellcaster IV",
-        "SkillDescription": "Spellcaster IV",
+        "SkillDescription": "4 Less MP are required to cast a Shock Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -408,7 +408,7 @@
         "SkillRank": 18,
         "SkillType": "Shock",
         "SkillName": "Power Player IV",
-        "SkillDescription": "Power Player IV",
+        "SkillDescription": "4 Less PP are required to activate a Shock Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -433,7 +433,7 @@
         "SkillRank": 19,
         "SkillType": "Shock",
         "SkillName": "Shock Absorption IV",
-        "SkillDescription": "Shock Absorption IV",
+        "SkillDescription": "Reduce all Shock Damage taken by 4",
         "DataClass": "ShockAbsorption",
         "StatChanges": [
             {
@@ -459,7 +459,7 @@
         "SkillRank": 20,
         "SkillType": "Shock",
         "SkillName": "Gem Juicer IV",
-        "SkillDescription": "Gem Juicer IV",
+        "SkillDescription": "Gain 20% additional charges when using Citrine Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {

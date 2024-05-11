@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Holy",
         "SkillName": "Holy Alignment I",
-        "SkillDescription": "Holy Alignment I",
+        "SkillDescription": "Base level damage with Holy Element Spells and Powers",
         "DataClass": "HolyAlignment",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Holy",
         "SkillName": "Spellcaster I",
-        "SkillDescription": "Spellcaster I",
+        "SkillDescription": "1 Less MP is required to cast a Holy Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -36,7 +36,7 @@
         "SkillRank": 3,
         "SkillType": "Holy",
         "SkillName": "Power Player I",
-        "SkillDescription": "Power Player I",
+        "SkillDescription": "1 Less PP is required to activate a Holy Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -61,7 +61,7 @@
         "SkillRank": 4,
         "SkillType": "Holy",
         "SkillName": "Holy Absorption I",
-        "SkillDescription": "Holy Absorption I",
+        "SkillDescription": "Reduce all Holy Damage taken by 1",
         "DataClass": "HolyAbsorption",
         "StatChanges": [
             {
@@ -87,7 +87,7 @@
         "SkillRank": 5,
         "SkillType": "Holy",
         "SkillName": "Gem Juicer I",
-        "SkillDescription": "Gem Juicer I",
+        "SkillDescription": "Gain 5% additional charges when using Amber Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -109,7 +109,7 @@
         "SkillRank": 6,
         "SkillType": "Holy",
         "SkillName": "Holy Alignment II",
-        "SkillDescription": "Holy Alignment II",
+        "SkillDescription": "+5% damage with Holy Element Spells and Powers",
         "DataClass": "HolyAlignment",
         "StatChanges": [
             {
@@ -135,7 +135,7 @@
         "SkillRank": 7,
         "SkillType": "Holy",
         "SkillName": "Spellcaster II",
-        "SkillDescription": "Spellcaster II",
+        "SkillDescription": "2 Less MP are required to cast a Holy Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -160,7 +160,7 @@
         "SkillRank": 8,
         "SkillType": "Holy",
         "SkillName": "Power Player II",
-        "SkillDescription": "Power Player II",
+        "SkillDescription": "2 Less PP are required to activate a Holy Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -185,7 +185,7 @@
         "SkillRank": 9,
         "SkillType": "Holy",
         "SkillName": "Holy Absorption II",
-        "SkillDescription": "Holy Absorption II",
+        "SkillDescription": "Reduce all Holy Damage taken by 2",
         "DataClass": "HolyAbsorption",
         "StatChanges": [
             {
@@ -211,7 +211,7 @@
         "SkillRank": 10,
         "SkillType": "Holy",
         "SkillName": "Gem Juicer II",
-        "SkillDescription": "Gem Juicer II",
+        "SkillDescription": "Gain 10% additional charges when using Amber Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -233,7 +233,7 @@
         "SkillRank": 11,
         "SkillType": "Holy",
         "SkillName": "Holy Alignment III",
-        "SkillDescription": "Holy Alignment III",
+        "SkillDescription": "+10% damage with Holy Element Spells and Powers",
         "DataClass": "HolyAlignment",
         "StatChanges": [
             {
@@ -259,7 +259,7 @@
         "SkillRank": 12,
         "SkillType": "Holy",
         "SkillName": "Spellcaster III",
-        "SkillDescription": "Spellcaster III",
+        "SkillDescription": "3 Less MP are required to cast a Holy Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -284,7 +284,7 @@
         "SkillRank": 13,
         "SkillType": "Holy",
         "SkillName": "Power Player III",
-        "SkillDescription": "Power Player III",
+        "SkillDescription": "3 Less PP are required to activate a Holy Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -309,7 +309,7 @@
         "SkillRank": 14,
         "SkillType": "Holy",
         "SkillName": "Holy Absorption III",
-        "SkillDescription": "Holy Absorption III",
+        "SkillDescription": "Reduce all Holy Damage taken by 3",
         "DataClass": "HolyAbsorption",
         "StatChanges": [
             {
@@ -335,7 +335,7 @@
         "SkillRank": 15,
         "SkillType": "Holy",
         "SkillName": "Gem Juicer III",
-        "SkillDescription": "Gem Juicer III",
+        "SkillDescription": "Gain 15% additional charges when using Amber Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -357,7 +357,7 @@
         "SkillRank": 16,
         "SkillType": "Holy",
         "SkillName": "Holy Alignment IV",
-        "SkillDescription": "Holy Alignment IV",
+        "SkillDescription": "+15% damage with Holy Element Spells and Powers",
         "DataClass": "HolyAlignment",
         "StatChanges": [
             {
@@ -383,7 +383,7 @@
         "SkillRank": 17,
         "SkillType": "Holy",
         "SkillName": "Spellcaster IV",
-        "SkillDescription": "Spellcaster IV",
+        "SkillDescription": "4 Less MP are required to cast a Holy Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -408,7 +408,7 @@
         "SkillRank": 18,
         "SkillType": "Holy",
         "SkillName": "Power Player IV",
-        "SkillDescription": "Power Player IV",
+        "SkillDescription": "4 Less PP are required to activate a Holy Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -433,7 +433,7 @@
         "SkillRank": 19,
         "SkillType": "Holy",
         "SkillName": "Holy Absorption IV",
-        "SkillDescription": "Holy Absorption IV",
+        "SkillDescription": "Reduce all Holy Damage taken by 4",
         "DataClass": "HolyAbsorption",
         "StatChanges": [
             {
@@ -459,7 +459,7 @@
         "SkillRank": 20,
         "SkillType": "Holy",
         "SkillName": "Gem Juicer IV",
-        "SkillDescription": "Gem Juicer IV",
+        "SkillDescription": "Gain 20% additional charges when using Amber Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {

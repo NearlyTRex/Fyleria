@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Flesh",
         "SkillName": "Flesh Alignment I",
-        "SkillDescription": "Flesh Alignment I",
+        "SkillDescription": "Base level damage with Flesh Element Spells and Powers",
         "DataClass": "FleshAlignment",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Flesh",
         "SkillName": "Spellcaster I",
-        "SkillDescription": "Spellcaster I",
+        "SkillDescription": "1 Less MP is required to cast a Flesh Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -36,7 +36,7 @@
         "SkillRank": 3,
         "SkillType": "Flesh",
         "SkillName": "Power Player I",
-        "SkillDescription": "Power Player I",
+        "SkillDescription": "1 Less PP is required to activate a Flesh Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -61,7 +61,7 @@
         "SkillRank": 4,
         "SkillType": "Flesh",
         "SkillName": "Flesh Absorption I",
-        "SkillDescription": "Flesh Absorption I",
+        "SkillDescription": "Reduce all Flesh Damage taken by 1",
         "DataClass": "FleshAbsorption",
         "StatChanges": [
             {
@@ -87,7 +87,7 @@
         "SkillRank": 5,
         "SkillType": "Flesh",
         "SkillName": "Gem Juicer I",
-        "SkillDescription": "Gem Juicer I",
+        "SkillDescription": "Gain 5% additional charges when using Ivory Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -109,7 +109,7 @@
         "SkillRank": 6,
         "SkillType": "Flesh",
         "SkillName": "Flesh Alignment II",
-        "SkillDescription": "Flesh Alignment II",
+        "SkillDescription": "+5% damage with Flesh Element Spells and Powers",
         "DataClass": "FleshAlignment",
         "StatChanges": [
             {
@@ -135,7 +135,7 @@
         "SkillRank": 7,
         "SkillType": "Flesh",
         "SkillName": "Spellcaster II",
-        "SkillDescription": "Spellcaster II",
+        "SkillDescription": "2 Less MP are required to cast a Flesh Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -160,7 +160,7 @@
         "SkillRank": 8,
         "SkillType": "Flesh",
         "SkillName": "Power Player II",
-        "SkillDescription": "Power Player II",
+        "SkillDescription": "2 Less PP are required to activate a Flesh Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -185,7 +185,7 @@
         "SkillRank": 9,
         "SkillType": "Flesh",
         "SkillName": "Flesh Absorption II",
-        "SkillDescription": "Flesh Absorption II",
+        "SkillDescription": "Reduce all Flesh Damage taken by 2",
         "DataClass": "FleshAbsorption",
         "StatChanges": [
             {
@@ -211,7 +211,7 @@
         "SkillRank": 10,
         "SkillType": "Flesh",
         "SkillName": "Gem Juicer II",
-        "SkillDescription": "Gem Juicer II",
+        "SkillDescription": "Gain 10% additional charges when using Ivory Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -233,7 +233,7 @@
         "SkillRank": 11,
         "SkillType": "Flesh",
         "SkillName": "Flesh Alignment III",
-        "SkillDescription": "Flesh Alignment III",
+        "SkillDescription": "+10% damage with Flesh Element Spells and Powers",
         "DataClass": "FleshAlignment",
         "StatChanges": [
             {
@@ -259,7 +259,7 @@
         "SkillRank": 12,
         "SkillType": "Flesh",
         "SkillName": "Spellcaster III",
-        "SkillDescription": "Spellcaster III",
+        "SkillDescription": "3 Less MP are required to cast a Flesh Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -284,7 +284,7 @@
         "SkillRank": 13,
         "SkillType": "Flesh",
         "SkillName": "Power Player III",
-        "SkillDescription": "Power Player III",
+        "SkillDescription": "3 Less PP are required to activate a Flesh Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -309,7 +309,7 @@
         "SkillRank": 14,
         "SkillType": "Flesh",
         "SkillName": "Flesh Absorption III",
-        "SkillDescription": "Flesh Absorption III",
+        "SkillDescription": "Reduce all Flesh Damage taken by 3",
         "DataClass": "FleshAbsorption",
         "StatChanges": [
             {
@@ -335,7 +335,7 @@
         "SkillRank": 15,
         "SkillType": "Flesh",
         "SkillName": "Gem Juicer III",
-        "SkillDescription": "Gem Juicer III",
+        "SkillDescription": "Gain 15% additional charges when using Ivory Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -357,7 +357,7 @@
         "SkillRank": 16,
         "SkillType": "Flesh",
         "SkillName": "Flesh Alignment IV",
-        "SkillDescription": "Flesh Alignment IV",
+        "SkillDescription": "+15% damage with Flesh Element Spells and Powers",
         "DataClass": "FleshAlignment",
         "StatChanges": [
             {
@@ -383,7 +383,7 @@
         "SkillRank": 17,
         "SkillType": "Flesh",
         "SkillName": "Spellcaster IV",
-        "SkillDescription": "Spellcaster IV",
+        "SkillDescription": "4 Less MP are required to cast a Flesh Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -408,7 +408,7 @@
         "SkillRank": 18,
         "SkillType": "Flesh",
         "SkillName": "Power Player IV",
-        "SkillDescription": "Power Player IV",
+        "SkillDescription": "4 Less PP are required to activate a Flesh Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -433,7 +433,7 @@
         "SkillRank": 19,
         "SkillType": "Flesh",
         "SkillName": "Flesh Absorption IV",
-        "SkillDescription": "Flesh Absorption IV",
+        "SkillDescription": "Reduce all Flesh Damage taken by 4",
         "DataClass": "FleshAbsorption",
         "StatChanges": [
             {
@@ -459,7 +459,7 @@
         "SkillRank": 20,
         "SkillType": "Flesh",
         "SkillName": "Gem Juicer IV",
-        "SkillDescription": "Gem Juicer IV",
+        "SkillDescription": "Gain 20% additional charges when using Ivory Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {

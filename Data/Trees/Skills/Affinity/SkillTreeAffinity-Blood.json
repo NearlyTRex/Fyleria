@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Blood",
         "SkillName": "Blood Alignment I",
-        "SkillDescription": "Blood Alignment I",
+        "SkillDescription": "Base level damage with Blood Element Spells and Powers",
         "DataClass": "BloodAlignment",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Blood",
         "SkillName": "Spellcaster I",
-        "SkillDescription": "Spellcaster I",
+        "SkillDescription": "1 Less MP is required to cast a Blood Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -36,7 +36,7 @@
         "SkillRank": 3,
         "SkillType": "Blood",
         "SkillName": "Power Player I",
-        "SkillDescription": "Power Player I",
+        "SkillDescription": "1 Less PP is required to activate a Blood Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -61,7 +61,7 @@
         "SkillRank": 4,
         "SkillType": "Blood",
         "SkillName": "Blood Absorption I",
-        "SkillDescription": "Blood Absorption I",
+        "SkillDescription": "Reduce all Blood Damage taken by 1",
         "DataClass": "BloodAbsorption",
         "StatChanges": [
             {
@@ -87,7 +87,7 @@
         "SkillRank": 5,
         "SkillType": "Blood",
         "SkillName": "Gem Juicer I",
-        "SkillDescription": "Gem Juicer I",
+        "SkillDescription": "Gain 5% additional charges when using Garnet Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -109,7 +109,7 @@
         "SkillRank": 6,
         "SkillType": "Blood",
         "SkillName": "Blood Alignment II",
-        "SkillDescription": "Blood Alignment II",
+        "SkillDescription": "+5% damage with Blood Element Spells and Powers",
         "DataClass": "BloodAlignment",
         "StatChanges": [
             {
@@ -135,7 +135,7 @@
         "SkillRank": 7,
         "SkillType": "Blood",
         "SkillName": "Spellcaster II",
-        "SkillDescription": "Spellcaster II",
+        "SkillDescription": "2 Less MP are required to cast a Blood Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -160,7 +160,7 @@
         "SkillRank": 8,
         "SkillType": "Blood",
         "SkillName": "Power Player II",
-        "SkillDescription": "Power Player II",
+        "SkillDescription": "2 Less PP are required to activate a Blood Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -185,7 +185,7 @@
         "SkillRank": 9,
         "SkillType": "Blood",
         "SkillName": "Blood Absorption II",
-        "SkillDescription": "Blood Absorption II",
+        "SkillDescription": "Reduce all Blood Damage taken by 2",
         "DataClass": "BloodAbsorption",
         "StatChanges": [
             {
@@ -211,7 +211,7 @@
         "SkillRank": 10,
         "SkillType": "Blood",
         "SkillName": "Gem Juicer II",
-        "SkillDescription": "Gem Juicer II",
+        "SkillDescription": "Gain 10% additional charges when using Garnet Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -233,7 +233,7 @@
         "SkillRank": 11,
         "SkillType": "Blood",
         "SkillName": "Blood Alignment III",
-        "SkillDescription": "Blood Alignment III",
+        "SkillDescription": "+10% damage with Blood Element Spells and Powers",
         "DataClass": "BloodAlignment",
         "StatChanges": [
             {
@@ -259,7 +259,7 @@
         "SkillRank": 12,
         "SkillType": "Blood",
         "SkillName": "Spellcaster III",
-        "SkillDescription": "Spellcaster III",
+        "SkillDescription": "3 Less MP are required to cast a Blood Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -284,7 +284,7 @@
         "SkillRank": 13,
         "SkillType": "Blood",
         "SkillName": "Power Player III",
-        "SkillDescription": "Power Player III",
+        "SkillDescription": "3 Less PP are required to activate a Blood Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -309,7 +309,7 @@
         "SkillRank": 14,
         "SkillType": "Blood",
         "SkillName": "Blood Absorption III",
-        "SkillDescription": "Blood Absorption III",
+        "SkillDescription": "Reduce all Blood Damage taken by 3",
         "DataClass": "BloodAbsorption",
         "StatChanges": [
             {
@@ -335,7 +335,7 @@
         "SkillRank": 15,
         "SkillType": "Blood",
         "SkillName": "Gem Juicer III",
-        "SkillDescription": "Gem Juicer III",
+        "SkillDescription": "Gain 15% additional charges when using Garnet Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -357,7 +357,7 @@
         "SkillRank": 16,
         "SkillType": "Blood",
         "SkillName": "Blood Alignment IV",
-        "SkillDescription": "Blood Alignment IV",
+        "SkillDescription": "+15% damage with Blood Element Spells and Powers",
         "DataClass": "BloodAlignment",
         "StatChanges": [
             {
@@ -383,7 +383,7 @@
         "SkillRank": 17,
         "SkillType": "Blood",
         "SkillName": "Spellcaster IV",
-        "SkillDescription": "Spellcaster IV",
+        "SkillDescription": "4 Less MP are required to cast a Blood Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -408,7 +408,7 @@
         "SkillRank": 18,
         "SkillType": "Blood",
         "SkillName": "Power Player IV",
-        "SkillDescription": "Power Player IV",
+        "SkillDescription": "4 Less PP are required to activate a Blood Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -433,7 +433,7 @@
         "SkillRank": 19,
         "SkillType": "Blood",
         "SkillName": "Blood Absorption IV",
-        "SkillDescription": "Blood Absorption IV",
+        "SkillDescription": "Reduce all Blood Damage taken by 4",
         "DataClass": "BloodAbsorption",
         "StatChanges": [
             {
@@ -459,7 +459,7 @@
         "SkillRank": 20,
         "SkillType": "Blood",
         "SkillName": "Gem Juicer IV",
-        "SkillDescription": "Gem Juicer IV",
+        "SkillDescription": "Gain 20% additional charges when using Garnet Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {

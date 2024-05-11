@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Earth",
         "SkillName": "Earth Alignment I",
-        "SkillDescription": "Earth Alignment I",
+        "SkillDescription": "Base level damage with Earth Element Spells and Powers",
         "DataClass": "EarthAlignment",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Earth",
         "SkillName": "Spellcaster I",
-        "SkillDescription": "Spellcaster I",
+        "SkillDescription": "1 Less MP is required to cast a Earth Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -36,7 +36,7 @@
         "SkillRank": 3,
         "SkillType": "Earth",
         "SkillName": "Power Player I",
-        "SkillDescription": "Power Player I",
+        "SkillDescription": "1 Less PP is required to activate a Earth Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -61,7 +61,7 @@
         "SkillRank": 4,
         "SkillType": "Earth",
         "SkillName": "Earth Absorption I",
-        "SkillDescription": "Earth Absorption I",
+        "SkillDescription": "Reduce all Earth Damage taken by 1",
         "DataClass": "EarthAbsorption",
         "StatChanges": [
             {
@@ -87,7 +87,7 @@
         "SkillRank": 5,
         "SkillType": "Earth",
         "SkillName": "Gem Juicer I",
-        "SkillDescription": "Gem Juicer I",
+        "SkillDescription": "Gain 5% additional charges when using Emerald Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -109,7 +109,7 @@
         "SkillRank": 6,
         "SkillType": "Earth",
         "SkillName": "Earth Alignment II",
-        "SkillDescription": "Earth Alignment II",
+        "SkillDescription": "+5% damage with Earth Element Spells and Powers",
         "DataClass": "EarthAlignment",
         "StatChanges": [
             {
@@ -135,7 +135,7 @@
         "SkillRank": 7,
         "SkillType": "Earth",
         "SkillName": "Spellcaster II",
-        "SkillDescription": "Spellcaster II",
+        "SkillDescription": "2 Less MP are required to cast a Earth Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -160,7 +160,7 @@
         "SkillRank": 8,
         "SkillType": "Earth",
         "SkillName": "Power Player II",
-        "SkillDescription": "Power Player II",
+        "SkillDescription": "2 Less PP are required to activate a Earth Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -185,7 +185,7 @@
         "SkillRank": 9,
         "SkillType": "Earth",
         "SkillName": "Earth Absorption II",
-        "SkillDescription": "Earth Absorption II",
+        "SkillDescription": "Reduce all Earth Damage taken by 2",
         "DataClass": "EarthAbsorption",
         "StatChanges": [
             {
@@ -211,7 +211,7 @@
         "SkillRank": 10,
         "SkillType": "Earth",
         "SkillName": "Gem Juicer II",
-        "SkillDescription": "Gem Juicer II",
+        "SkillDescription": "Gain 10% additional charges when using Emerald Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -233,7 +233,7 @@
         "SkillRank": 11,
         "SkillType": "Earth",
         "SkillName": "Earth Alignment III",
-        "SkillDescription": "Earth Alignment III",
+        "SkillDescription": "+10% damage with Earth Element Spells and Powers",
         "DataClass": "EarthAlignment",
         "StatChanges": [
             {
@@ -259,7 +259,7 @@
         "SkillRank": 12,
         "SkillType": "Earth",
         "SkillName": "Spellcaster III",
-        "SkillDescription": "Spellcaster III",
+        "SkillDescription": "3 Less MP are required to cast a Earth Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -284,7 +284,7 @@
         "SkillRank": 13,
         "SkillType": "Earth",
         "SkillName": "Power Player III",
-        "SkillDescription": "Power Player III",
+        "SkillDescription": "3 Less PP are required to activate a Earth Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -309,7 +309,7 @@
         "SkillRank": 14,
         "SkillType": "Earth",
         "SkillName": "Earth Absorption III",
-        "SkillDescription": "Earth Absorption III",
+        "SkillDescription": "Reduce all Earth Damage taken by 3",
         "DataClass": "EarthAbsorption",
         "StatChanges": [
             {
@@ -335,7 +335,7 @@
         "SkillRank": 15,
         "SkillType": "Earth",
         "SkillName": "Gem Juicer III",
-        "SkillDescription": "Gem Juicer III",
+        "SkillDescription": "Gain 15% additional charges when using Emerald Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
@@ -357,7 +357,7 @@
         "SkillRank": 16,
         "SkillType": "Earth",
         "SkillName": "Earth Alignment IV",
-        "SkillDescription": "Earth Alignment IV",
+        "SkillDescription": "+15% damage with Earth Element Spells and Powers",
         "DataClass": "EarthAlignment",
         "StatChanges": [
             {
@@ -383,7 +383,7 @@
         "SkillRank": 17,
         "SkillType": "Earth",
         "SkillName": "Spellcaster IV",
-        "SkillDescription": "Spellcaster IV",
+        "SkillDescription": "4 Less MP are required to cast a Earth Element Spell",
         "DataClass": "Spellcaster",
         "StatChanges": [
             {
@@ -408,7 +408,7 @@
         "SkillRank": 18,
         "SkillType": "Earth",
         "SkillName": "Power Player IV",
-        "SkillDescription": "Power Player IV",
+        "SkillDescription": "4 Less PP are required to activate a Earth Element Power",
         "DataClass": "PowerPlayer",
         "StatChanges": [
             {
@@ -433,7 +433,7 @@
         "SkillRank": 19,
         "SkillType": "Earth",
         "SkillName": "Earth Absorption IV",
-        "SkillDescription": "Earth Absorption IV",
+        "SkillDescription": "Reduce all Earth Damage taken by 4",
         "DataClass": "EarthAbsorption",
         "StatChanges": [
             {
@@ -459,7 +459,7 @@
         "SkillRank": 20,
         "SkillType": "Earth",
         "SkillName": "Gem Juicer IV",
-        "SkillDescription": "Gem Juicer IV",
+        "SkillDescription": "Gain 20% additional charges when using Emerald Gemstones",
         "DataClass": "GemJuicer",
         "StatChanges": [
             {
