@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Energist",
         "SkillName": "Recipe I Novice",
-        "SkillDescription": "Recipe I Novice",
+        "SkillDescription": "Very Weak Energy Potion (4x Gold Crystal Shards)",
         "DataClass": "RecipeI",
         "Recipes": [
             {
@@ -27,7 +27,7 @@
         "SkillRank": 2,
         "SkillType": "Energist",
         "SkillName": "Recipe I Adept",
-        "SkillDescription": "Recipe I Adept",
+        "SkillDescription": "Very Weak Energy Potion (2x Gold Crystal Shards)",
         "DataClass": "RecipeI",
         "Recipes": [
             {
@@ -51,7 +51,7 @@
         "SkillRank": 3,
         "SkillType": "Energist",
         "SkillName": "Crossbrew I",
-        "SkillDescription": "Crossbrew I",
+        "SkillDescription": "Energist gains 110% Speed for battle from Energy potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -76,7 +76,7 @@
         "SkillRank": 4,
         "SkillType": "Energist",
         "SkillName": "Recipe I Master",
-        "SkillDescription": "Recipe I Master",
+        "SkillDescription": "2x Very Weak Energy Potion (2x Gold Crystal Shards)",
         "DataClass": "RecipeI",
         "Recipes": [
             {
@@ -100,7 +100,7 @@
         "SkillRank": 5,
         "SkillType": "Energist",
         "SkillName": "Recipe II Novice",
-        "SkillDescription": "Recipe II Novice",
+        "SkillDescription": "Weak Energy Potion (4x Tiny Gold Crystals)",
         "DataClass": "RecipeII",
         "Recipes": [
             {
@@ -124,7 +124,7 @@
         "SkillRank": 6,
         "SkillType": "Energist",
         "SkillName": "Recipe II Adept",
-        "SkillDescription": "Recipe II Adept",
+        "SkillDescription": "Weak Energy Potion (2x Tiny Gold Crystals)",
         "DataClass": "RecipeII",
         "Recipes": [
             {
@@ -148,7 +148,7 @@
         "SkillRank": 7,
         "SkillType": "Energist",
         "SkillName": "Crossbrew II",
-        "SkillDescription": "Crossbrew II",
+        "SkillDescription": "Energist gains 120% Speed for battle from Energy potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -173,7 +173,7 @@
         "SkillRank": 8,
         "SkillType": "Energist",
         "SkillName": "Recipe II Master",
-        "SkillDescription": "Recipe II Master",
+        "SkillDescription": "2x Weak Energy Potion (2x Tiny Gold Crystals)",
         "DataClass": "RecipeII",
         "Recipes": [
             {
@@ -197,7 +197,7 @@
         "SkillRank": 9,
         "SkillType": "Energist",
         "SkillName": "Recipe III Novice",
-        "SkillDescription": "Recipe III Novice",
+        "SkillDescription": "Average Energy Potion (4x Small Gold Crystals)",
         "DataClass": "RecipeIII",
         "Recipes": [
             {
@@ -221,7 +221,7 @@
         "SkillRank": 10,
         "SkillType": "Energist",
         "SkillName": "Recipe III Adept",
-        "SkillDescription": "Recipe III Adept",
+        "SkillDescription": "Average Energy Potion (2x Small Gold Crystals)",
         "DataClass": "RecipeIII",
         "Recipes": [
             {
@@ -245,7 +245,7 @@
         "SkillRank": 11,
         "SkillType": "Energist",
         "SkillName": "Crossbrew III",
-        "SkillDescription": "Crossbrew III",
+        "SkillDescription": "Energist gains 130% Speed for battle from Energy potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -270,7 +270,7 @@
         "SkillRank": 12,
         "SkillType": "Energist",
         "SkillName": "Recipe III Master",
-        "SkillDescription": "Recipe III Master",
+        "SkillDescription": "2x Average Energy Potion (2x Small Gold Crystals)",
         "DataClass": "RecipeIII",
         "Recipes": [
             {
@@ -294,7 +294,7 @@
         "SkillRank": 13,
         "SkillType": "Energist",
         "SkillName": "Recipe IV Novice",
-        "SkillDescription": "Recipe IV Novice",
+        "SkillDescription": "Strong Energy Potion (4x Gold Crystals)",
         "DataClass": "RecipeIV",
         "Recipes": [
             {
@@ -318,7 +318,7 @@
         "SkillRank": 14,
         "SkillType": "Energist",
         "SkillName": "Recipe IV Adept",
-        "SkillDescription": "Recipe IV Adept",
+        "SkillDescription": "Strong Energy Potion (2x Gold Crystals)",
         "DataClass": "RecipeIV",
         "Recipes": [
             {
@@ -342,7 +342,7 @@
         "SkillRank": 15,
         "SkillType": "Energist",
         "SkillName": "Crossbrew IV",
-        "SkillDescription": "Crossbrew IV",
+        "SkillDescription": "Energist gains 140% Speed for battle from Energy potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -367,7 +367,7 @@
         "SkillRank": 16,
         "SkillType": "Energist",
         "SkillName": "Recipe IV Master",
-        "SkillDescription": "Recipe IV Master",
+        "SkillDescription": "2x Strong Energy Potion (2x Gold Crystals)",
         "DataClass": "RecipeIV",
         "Recipes": [
             {
@@ -391,7 +391,7 @@
         "SkillRank": 17,
         "SkillType": "Energist",
         "SkillName": "Recipe V Novice",
-        "SkillDescription": "Recipe V Novice",
+        "SkillDescription": "Very Strong Energy Potion (4x Large Gold Crystals)",
         "DataClass": "RecipeV",
         "Recipes": [
             {
@@ -415,7 +415,7 @@
         "SkillRank": 18,
         "SkillType": "Energist",
         "SkillName": "Recipe V Adept",
-        "SkillDescription": "Recipe V Adept",
+        "SkillDescription": "Very Strong Energy Potion (2x Large Gold Crystals)",
         "DataClass": "RecipeV",
         "Recipes": [
             {
@@ -439,7 +439,7 @@
         "SkillRank": 19,
         "SkillType": "Energist",
         "SkillName": "Crossbrew V",
-        "SkillDescription": "Crossbrew V",
+        "SkillDescription": "Energist gains 150% Speed for battle from Energy potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -464,7 +464,7 @@
         "SkillRank": 20,
         "SkillType": "Energist",
         "SkillName": "Recipe V Master",
-        "SkillDescription": "Recipe V Master",
+        "SkillDescription": "2x Very Strong Energy Potion (2x Large Gold Crystals)",
         "DataClass": "RecipeV",
         "Recipes": [
             {

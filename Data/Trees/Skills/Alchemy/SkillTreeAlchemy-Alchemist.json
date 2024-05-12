@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Alchemist",
         "SkillName": "Recipe I Novice",
-        "SkillDescription": "Recipe I Novice",
+        "SkillDescription": "Very Weak Magic Potion (4x Blue Crystal Shards)",
         "DataClass": "RecipeI",
         "Recipes": [
             {
@@ -27,7 +27,7 @@
         "SkillRank": 2,
         "SkillType": "Alchemist",
         "SkillName": "Recipe I Adept",
-        "SkillDescription": "Recipe I Adept",
+        "SkillDescription": "Very Weak Magic Potion (2x Blue Crystal Shards)",
         "DataClass": "RecipeI",
         "Recipes": [
             {
@@ -51,7 +51,7 @@
         "SkillRank": 3,
         "SkillType": "Alchemist",
         "SkillName": "Crossbrew I",
-        "SkillDescription": "Crossbrew I",
+        "SkillDescription": "Alchemist gains 5% Energy Points from Magic potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -77,7 +77,7 @@
         "SkillRank": 4,
         "SkillType": "Alchemist",
         "SkillName": "Recipe I Master",
-        "SkillDescription": "Recipe I Master",
+        "SkillDescription": "2x Very Weak Magic Potion (2x Blue Crystal Shards)",
         "DataClass": "RecipeI",
         "Recipes": [
             {
@@ -101,7 +101,7 @@
         "SkillRank": 5,
         "SkillType": "Alchemist",
         "SkillName": "Recipe II Novice",
-        "SkillDescription": "Recipe II Novice",
+        "SkillDescription": "Weak Magic Potion (4x Tiny Blue Crystals)",
         "DataClass": "RecipeII",
         "Recipes": [
             {
@@ -125,7 +125,7 @@
         "SkillRank": 6,
         "SkillType": "Alchemist",
         "SkillName": "Recipe II Adept",
-        "SkillDescription": "Recipe II Adept",
+        "SkillDescription": "Weak Magic Potion (2x Tiny Blue Crystals)",
         "DataClass": "RecipeII",
         "Recipes": [
             {
@@ -149,7 +149,7 @@
         "SkillRank": 7,
         "SkillType": "Alchemist",
         "SkillName": "Crossbrew II",
-        "SkillDescription": "Crossbrew II",
+        "SkillDescription": "Alchemist gains 10% Energy Points from Magic potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -175,7 +175,7 @@
         "SkillRank": 8,
         "SkillType": "Alchemist",
         "SkillName": "Recipe II Master",
-        "SkillDescription": "Recipe II Master",
+        "SkillDescription": "2x Weak Magic Potion (2x Tiny Blue Crystals)",
         "DataClass": "RecipeII",
         "Recipes": [
             {
@@ -199,7 +199,7 @@
         "SkillRank": 9,
         "SkillType": "Alchemist",
         "SkillName": "Recipe III Novice",
-        "SkillDescription": "Recipe III Novice",
+        "SkillDescription": "Average Magic Potion (4x Small Blue Crystals)",
         "DataClass": "RecipeIII",
         "Recipes": [
             {
@@ -223,7 +223,7 @@
         "SkillRank": 10,
         "SkillType": "Alchemist",
         "SkillName": "Recipe III Adept",
-        "SkillDescription": "Recipe III Adept",
+        "SkillDescription": "Average Magic Potion (2x Small Blue Crystals)",
         "DataClass": "RecipeIII",
         "Recipes": [
             {
@@ -247,7 +247,7 @@
         "SkillRank": 11,
         "SkillType": "Alchemist",
         "SkillName": "Crossbrew III",
-        "SkillDescription": "Crossbrew III",
+        "SkillDescription": "Alchemist gains 15% Energy Points from Magic potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -273,7 +273,7 @@
         "SkillRank": 12,
         "SkillType": "Alchemist",
         "SkillName": "Recipe III Master",
-        "SkillDescription": "Recipe III Master",
+        "SkillDescription": "2x Average Magic Potion (2x Small Blue Crystals)",
         "DataClass": "RecipeIII",
         "Recipes": [
             {
@@ -297,7 +297,7 @@
         "SkillRank": 13,
         "SkillType": "Alchemist",
         "SkillName": "Recipe IV Novice",
-        "SkillDescription": "Recipe IV Novice",
+        "SkillDescription": "Strong Magic Potion (4x Blue Crystals)",
         "DataClass": "RecipeIV",
         "Recipes": [
             {
@@ -321,7 +321,7 @@
         "SkillRank": 14,
         "SkillType": "Alchemist",
         "SkillName": "Recipe IV Adept",
-        "SkillDescription": "Recipe IV Adept",
+        "SkillDescription": "Strong Magic Potion (2x Blue Crystals)",
         "DataClass": "RecipeIV",
         "Recipes": [
             {
@@ -345,7 +345,7 @@
         "SkillRank": 15,
         "SkillType": "Alchemist",
         "SkillName": "Crossbrew IV",
-        "SkillDescription": "Crossbrew IV",
+        "SkillDescription": "Alchemist gains 20% Energy Points from Magic potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -371,7 +371,7 @@
         "SkillRank": 16,
         "SkillType": "Alchemist",
         "SkillName": "Recipe IV Master",
-        "SkillDescription": "Recipe IV Master",
+        "SkillDescription": "2x Strong Magic Potion (2x Blue Crystals)",
         "DataClass": "RecipeIV",
         "Recipes": [
             {
@@ -395,7 +395,7 @@
         "SkillRank": 17,
         "SkillType": "Alchemist",
         "SkillName": "Recipe V Novice",
-        "SkillDescription": "Recipe V Novice",
+        "SkillDescription": "Very Strong Magic Potion (4x Large Blue Crystals)",
         "DataClass": "RecipeV",
         "Recipes": [
             {
@@ -419,7 +419,7 @@
         "SkillRank": 18,
         "SkillType": "Alchemist",
         "SkillName": "Recipe V Adept",
-        "SkillDescription": "Recipe V Adept",
+        "SkillDescription": "Very Strong Magic Potion (2x Large Blue Crystals)",
         "DataClass": "RecipeV",
         "Recipes": [
             {
@@ -443,7 +443,7 @@
         "SkillRank": 19,
         "SkillType": "Alchemist",
         "SkillName": "Crossbrew V",
-        "SkillDescription": "Crossbrew V",
+        "SkillDescription": "Alchemist gains 25% Energy Points from Magic potions",
         "DataClass": "Crossbrew",
         "Recipes": [],
         "StatChanges": [
@@ -469,7 +469,7 @@
         "SkillRank": 20,
         "SkillType": "Alchemist",
         "SkillName": "Recipe V Master",
-        "SkillDescription": "Recipe V Master",
+        "SkillDescription": "2x Very Strong Magic Potion (2x Large Blue Crystals)",
         "DataClass": "RecipeV",
         "Recipes": [
             {
