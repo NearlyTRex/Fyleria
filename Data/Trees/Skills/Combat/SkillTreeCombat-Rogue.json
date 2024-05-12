@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Rogue",
         "SkillName": "Pointed Discord I",
-        "SkillDescription": "Pointed Discord I",
+        "SkillDescription": "Base Damage when using Piercing Weapons",
         "DataClass": "PointedDiscord",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Rogue",
         "SkillName": "Good Footwork I",
-        "SkillDescription": "Good Footwork I",
+        "SkillDescription": "+1 Speed when equipped with a Piercing Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -36,7 +36,7 @@
         "SkillRank": 3,
         "SkillType": "Rogue",
         "SkillName": "Defensive Warrior I",
-        "SkillDescription": "Defensive Warrior I",
+        "SkillDescription": "+5% Magic Defense when equipped with a Piercing Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -60,7 +60,7 @@
         "SkillRank": 4,
         "SkillType": "Rogue",
         "SkillName": "Dedicated Fury I",
-        "SkillDescription": "Dedicated Fury I",
+        "SkillDescription": "+5% Damage on each consecutive Piercing attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -91,7 +91,7 @@
         "SkillRank": 5,
         "SkillType": "Rogue",
         "SkillName": "Pointed Discord II",
-        "SkillDescription": "Pointed Discord II",
+        "SkillDescription": "+5% Damage when using Piercing Weapons",
         "DataClass": "PointedDiscord",
         "StatChanges": [
             {
@@ -116,7 +116,7 @@
         "SkillRank": 6,
         "SkillType": "Rogue",
         "SkillName": "Good Footwork II",
-        "SkillDescription": "Good Footwork II",
+        "SkillDescription": "+2 Speed when equipped with a Piercing Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -141,7 +141,7 @@
         "SkillRank": 7,
         "SkillType": "Rogue",
         "SkillName": "Defensive Warrior II",
-        "SkillDescription": "Defensive Warrior II",
+        "SkillDescription": "+10% Blunt Defense when equipped with a Piercing Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -165,7 +165,7 @@
         "SkillRank": 8,
         "SkillType": "Rogue",
         "SkillName": "Dedicated Fury II",
-        "SkillDescription": "Dedicated Fury II",
+        "SkillDescription": "+10% Damage on each consecutive Piercing attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -196,7 +196,7 @@
         "SkillRank": 9,
         "SkillType": "Rogue",
         "SkillName": "Pointed Discord III",
-        "SkillDescription": "Pointed Discord III",
+        "SkillDescription": "+10% Damage when using Piercing Weapons",
         "DataClass": "PointedDiscord",
         "StatChanges": [
             {
@@ -221,7 +221,7 @@
         "SkillRank": 10,
         "SkillType": "Rogue",
         "SkillName": "Good Footwork III",
-        "SkillDescription": "Good Footwork III",
+        "SkillDescription": "+3 Speed when equipped with a Piercing Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -246,7 +246,7 @@
         "SkillRank": 11,
         "SkillType": "Rogue",
         "SkillName": "Defensive Warrior III",
-        "SkillDescription": "Defensive Warrior III",
+        "SkillDescription": "+15% Blunt Defense when equipped with a Piercing Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -270,7 +270,7 @@
         "SkillRank": 12,
         "SkillType": "Rogue",
         "SkillName": "Dedicated Fury III",
-        "SkillDescription": "Dedicated Fury III",
+        "SkillDescription": "+15% Damage on each consecutive Piercing attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -301,7 +301,7 @@
         "SkillRank": 13,
         "SkillType": "Rogue",
         "SkillName": "Pointed Discord IV",
-        "SkillDescription": "Pointed Discord IV",
+        "SkillDescription": "+15% Damage when using Piercing Weapons",
         "DataClass": "PointedDiscord",
         "StatChanges": [
             {
@@ -326,7 +326,7 @@
         "SkillRank": 14,
         "SkillType": "Rogue",
         "SkillName": "Good Footwork IV",
-        "SkillDescription": "Good Footwork IV",
+        "SkillDescription": "+4 Speed when equipped with a Piercing Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -351,7 +351,7 @@
         "SkillRank": 15,
         "SkillType": "Rogue",
         "SkillName": "Defensive Warrior IV",
-        "SkillDescription": "Defensive Warrior IV",
+        "SkillDescription": "+20% Blunt Defense when equipped with a Piercing Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -375,7 +375,7 @@
         "SkillRank": 16,
         "SkillType": "Rogue",
         "SkillName": "Dedicated Fury IV",
-        "SkillDescription": "Dedicated Fury IV",
+        "SkillDescription": "+20% Damage on each consecutive Piercing attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -406,7 +406,7 @@
         "SkillRank": 17,
         "SkillType": "Rogue",
         "SkillName": "Pointed Discord V",
-        "SkillDescription": "Pointed Discord V",
+        "SkillDescription": "+20% Damage when using Piercing Weapons",
         "DataClass": "PointedDiscord",
         "StatChanges": [
             {
@@ -431,7 +431,7 @@
         "SkillRank": 18,
         "SkillType": "Rogue",
         "SkillName": "Good Footwork V",
-        "SkillDescription": "Good Footwork V",
+        "SkillDescription": "+5 Speed when equipped with a Piercing Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -456,7 +456,7 @@
         "SkillRank": 19,
         "SkillType": "Rogue",
         "SkillName": "Defensive Warrior V",
-        "SkillDescription": "Defensive Warrior V",
+        "SkillDescription": "+25% Blunt Defense when equipped with a Piercing Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -480,7 +480,7 @@
         "SkillRank": 20,
         "SkillType": "Rogue",
         "SkillName": "Dedicated Fury V",
-        "SkillDescription": "Dedicated Fury V",
+        "SkillDescription": "+25% Damage on each consecutive Piercing attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {

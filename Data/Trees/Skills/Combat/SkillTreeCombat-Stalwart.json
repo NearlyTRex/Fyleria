@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Stalwart",
         "SkillName": "Shielded Assault I",
-        "SkillDescription": "Shielded Assault I",
+        "SkillDescription": "Base Damage for single weapon equipped with a shield",
         "DataClass": "ShieldedAssault",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Stalwart",
         "SkillName": "Metal Deterrent I",
-        "SkillDescription": "Metal Deterrent I",
+        "SkillDescription": "+5% to all Defense stats when equipped with a shield",
         "DataClass": "MetalDeterrent",
         "StatChanges": [
             {
@@ -46,7 +46,7 @@
         "SkillRank": 3,
         "SkillType": "Stalwart",
         "SkillName": "Aerodynamic I",
-        "SkillDescription": "Aerodynamic I",
+        "SkillDescription": "+5% to Speed stat when equipped with a shield",
         "DataClass": "Aerodynamic",
         "StatChanges": [
             {
@@ -69,7 +69,7 @@
         "SkillRank": 4,
         "SkillType": "Stalwart",
         "SkillName": "Shield Punch I",
-        "SkillDescription": "Shield Punch I",
+        "SkillDescription": "Special: Add defense rating of shield to attack, Costs 5 HP",
         "DataClass": "ShieldPunch",
         "RunTypes": [
             "Battle"
@@ -104,7 +104,7 @@
         "SkillRank": 5,
         "SkillType": "Stalwart",
         "SkillName": "Shielded Assault II",
-        "SkillDescription": "Shielded Assault II",
+        "SkillDescription": "125% Damage for single weapon equipped with a shield",
         "DataClass": "ShieldedAssault",
         "StatChanges": [
             {
@@ -127,7 +127,7 @@
         "SkillRank": 6,
         "SkillType": "Stalwart",
         "SkillName": "Extra Plated I",
-        "SkillDescription": "Extra Plated I",
+        "SkillDescription": "Lowers the chance of criticals on attacks taken by 5%",
         "DataClass": "ExtraPlated",
         "StatChanges": [
             {
@@ -151,7 +151,7 @@
         "SkillRank": 7,
         "SkillType": "Stalwart",
         "SkillName": "Cautious Cunning I",
-        "SkillDescription": "Cautious Cunning I",
+        "SkillDescription": "Additional 1x multiplier on all critical hits with a shield",
         "DataClass": "CautiousCunning",
         "StatChanges": [
             {
@@ -175,7 +175,7 @@
         "SkillRank": 8,
         "SkillType": "Stalwart",
         "SkillName": "Shield Charge I",
-        "SkillDescription": "Shield Charge I",
+        "SkillDescription": "Special: Attack with shield, 3x shield defense rating, Costs 10 HP",
         "DataClass": "ShieldCharge",
         "RunTypes": [
             "Battle"
@@ -208,7 +208,7 @@
         "SkillRank": 9,
         "SkillType": "Stalwart",
         "SkillName": "Shielded Assault III",
-        "SkillDescription": "Shielded Assault III",
+        "SkillDescription": "150% Damage for single weapon equipped with a shield",
         "DataClass": "ShieldedAssault",
         "StatChanges": [
             {
@@ -231,7 +231,7 @@
         "SkillRank": 10,
         "SkillType": "Stalwart",
         "SkillName": "Metal Deterrent II",
-        "SkillDescription": "Metal Deterrent II",
+        "SkillDescription": "+10% to all Defense stats when equipped with a shield",
         "DataClass": "MetalDeterrent",
         "StatChanges": [
             {
@@ -266,7 +266,7 @@
         "SkillRank": 11,
         "SkillType": "Stalwart",
         "SkillName": "Aerodynamic II",
-        "SkillDescription": "Aerodynamic II",
+        "SkillDescription": "+10% to Speed stat when equipped with a shield",
         "DataClass": "Aerodynamic",
         "StatChanges": [
             {
@@ -289,7 +289,7 @@
         "SkillRank": 12,
         "SkillType": "Stalwart",
         "SkillName": "Shield Punch II",
-        "SkillDescription": "Shield Punch II",
+        "SkillDescription": "Special: Add defense rating of shield to attack, Costs 4 HP",
         "DataClass": "ShieldPunch",
         "RunTypes": [
             "Battle"
@@ -308,7 +308,7 @@
         "SkillRank": 13,
         "SkillType": "Stalwart",
         "SkillName": "Shielded Assault IV",
-        "SkillDescription": "Shielded Assault IV",
+        "SkillDescription": "175% Damage for single weapon equipped with a shield",
         "DataClass": "ShieldedAssault",
         "StatChanges": [
             {
@@ -331,7 +331,7 @@
         "SkillRank": 14,
         "SkillType": "Stalwart",
         "SkillName": "Extra Plated II",
-        "SkillDescription": "Extra Plated II",
+        "SkillDescription": "Lowers the chance of criticals on attacks taken by 10%",
         "DataClass": "ExtraPlated",
         "StatChanges": [
             {
@@ -355,7 +355,7 @@
         "SkillRank": 15,
         "SkillType": "Stalwart",
         "SkillName": "Cautious Cunning II",
-        "SkillDescription": "Cautious Cunning II",
+        "SkillDescription": "Additional 2x multiplier on all critical hits with a shield",
         "DataClass": "CautiousCunning",
         "StatChanges": [
             {
@@ -379,7 +379,7 @@
         "SkillRank": 16,
         "SkillType": "Stalwart",
         "SkillName": "Shield Charge II",
-        "SkillDescription": "Shield Charge II",
+        "SkillDescription": "Special: Attack with shield, 3x shield defense rating, Costs 9 HP",
         "DataClass": "ShieldCharge",
         "RunTypes": [
             "Battle"
@@ -412,7 +412,7 @@
         "SkillRank": 17,
         "SkillType": "Stalwart",
         "SkillName": "Shielded Assault V",
-        "SkillDescription": "Shielded Assault V",
+        "SkillDescription": "200% Damage for single weapon equipped with a shield",
         "DataClass": "ShieldedAssault",
         "StatChanges": [
             {
@@ -435,7 +435,7 @@
         "SkillRank": 18,
         "SkillType": "Stalwart",
         "SkillName": "Metal Deterrent III",
-        "SkillDescription": "Metal Deterrent III",
+        "SkillDescription": "+15% to all Defense stats when equipped with a shield",
         "DataClass": "MetalDeterrent",
         "StatChanges": [
             {
@@ -470,7 +470,7 @@
         "SkillRank": 19,
         "SkillType": "Stalwart",
         "SkillName": "Aerodynamic III",
-        "SkillDescription": "Aerodynamic III",
+        "SkillDescription": "+15% to Speed stat when equipped with a shield",
         "DataClass": "Aerodynamic",
         "StatChanges": [
             {
@@ -493,7 +493,7 @@
         "SkillRank": 20,
         "SkillType": "Stalwart",
         "SkillName": "Shield Punch III",
-        "SkillDescription": "Shield Punch III",
+        "SkillDescription": "Special: Add defense rating of shield to attack, Costs 3 HP",
         "DataClass": "ShieldPunch",
         "RunTypes": [
             "Battle"

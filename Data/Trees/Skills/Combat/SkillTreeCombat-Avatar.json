@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Avatar",
         "SkillName": "Unlocked Potential I",
-        "SkillDescription": "Unlocked Potential I",
+        "SkillDescription": "Base Damage when using Powers",
         "DataClass": "UnlockedPotential",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Avatar",
         "SkillName": "Embracing Power I",
-        "SkillDescription": "Embracing Power I",
+        "SkillDescription": "Additional 1 HP Regeneration Per Round",
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
@@ -33,7 +33,7 @@
         "SkillRank": 3,
         "SkillType": "Avatar",
         "SkillName": "Defensive Warrior I",
-        "SkillDescription": "Defensive Warrior I",
+        "SkillDescription": "+5% Bonus to Defensive Power effects",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -55,7 +55,7 @@
         "SkillRank": 4,
         "SkillType": "Avatar",
         "SkillName": "Dedicated Fury I",
-        "SkillDescription": "Dedicated Fury I",
+        "SkillDescription": "+5% Damage on each consecutive Power attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -105,7 +105,7 @@
         "SkillRank": 5,
         "SkillType": "Avatar",
         "SkillName": "Unlocked Potential II",
-        "SkillDescription": "Unlocked Potential II",
+        "SkillDescription": "+5% Damage when using Powers",
         "DataClass": "UnlockedPotential",
         "StatChanges": [
             {
@@ -141,7 +141,7 @@
         "SkillRank": 6,
         "SkillType": "Avatar",
         "SkillName": "Embracing Power II",
-        "SkillDescription": "Embracing Power II",
+        "SkillDescription": "Additional 2 HP Regeneration Per Round",
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
@@ -163,7 +163,7 @@
         "SkillRank": 7,
         "SkillType": "Avatar",
         "SkillName": "Defensive Warrior II",
-        "SkillDescription": "Defensive Warrior II",
+        "SkillDescription": "+10% Bonus to Defensive Power effects",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -185,7 +185,7 @@
         "SkillRank": 8,
         "SkillType": "Avatar",
         "SkillName": "Dedicated Fury II",
-        "SkillDescription": "Dedicated Fury II",
+        "SkillDescription": "+10% Damage on each consecutive Power attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -235,7 +235,7 @@
         "SkillRank": 9,
         "SkillType": "Avatar",
         "SkillName": "Unlocked Potential III",
-        "SkillDescription": "Unlocked Potential III",
+        "SkillDescription": "+10% Damage when using Powers",
         "DataClass": "UnlockedPotential",
         "StatChanges": [
             {
@@ -271,7 +271,7 @@
         "SkillRank": 10,
         "SkillType": "Avatar",
         "SkillName": "Embracing Power III",
-        "SkillDescription": "Embracing Power III",
+        "SkillDescription": "Additional 3 HP Regeneration Per Round",
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
@@ -293,7 +293,7 @@
         "SkillRank": 11,
         "SkillType": "Avatar",
         "SkillName": "Defensive Warrior III",
-        "SkillDescription": "Defensive Warrior III",
+        "SkillDescription": "+15% Bonus to Defensive Power effects",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -315,7 +315,7 @@
         "SkillRank": 12,
         "SkillType": "Avatar",
         "SkillName": "Dedicated Fury III",
-        "SkillDescription": "Dedicated Fury III",
+        "SkillDescription": "+15% Damage on each consecutive Power attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -365,7 +365,7 @@
         "SkillRank": 13,
         "SkillType": "Avatar",
         "SkillName": "Unlocked Potential IV",
-        "SkillDescription": "Unlocked Potential IV",
+        "SkillDescription": "+15% Damage when using Powers",
         "DataClass": "UnlockedPotential",
         "StatChanges": [
             {
@@ -401,7 +401,7 @@
         "SkillRank": 14,
         "SkillType": "Avatar",
         "SkillName": "Embracing Power IV",
-        "SkillDescription": "Embracing Power IV",
+        "SkillDescription": "Additional 4 HP Regeneration Per Round",
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
@@ -423,7 +423,7 @@
         "SkillRank": 15,
         "SkillType": "Avatar",
         "SkillName": "Defensive Warrior IV",
-        "SkillDescription": "Defensive Warrior IV",
+        "SkillDescription": "+20% Bonus to Defensive Power effects",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -445,7 +445,7 @@
         "SkillRank": 16,
         "SkillType": "Avatar",
         "SkillName": "Dedicated Fury IV",
-        "SkillDescription": "Dedicated Fury IV",
+        "SkillDescription": "+20% Damage on each consecutive Power attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -495,7 +495,7 @@
         "SkillRank": 17,
         "SkillType": "Avatar",
         "SkillName": "Unlocked Potential V",
-        "SkillDescription": "Unlocked Potential V",
+        "SkillDescription": "+20% Damage when using Powers",
         "DataClass": "UnlockedPotential",
         "StatChanges": [
             {
@@ -531,7 +531,7 @@
         "SkillRank": 18,
         "SkillType": "Avatar",
         "SkillName": "Embracing Power V",
-        "SkillDescription": "Embracing Power V",
+        "SkillDescription": "Additional 5 HP Regeneration Per Round",
         "DataClass": "EmbracingPower",
         "StatChanges": [
             {
@@ -553,7 +553,7 @@
         "SkillRank": 19,
         "SkillType": "Avatar",
         "SkillName": "Defensive Warrior V",
-        "SkillDescription": "Defensive Warrior V",
+        "SkillDescription": "+25% Bonus to Defensive Power effects",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -575,7 +575,7 @@
         "SkillRank": 20,
         "SkillType": "Avatar",
         "SkillName": "Dedicated Fury V",
-        "SkillDescription": "Dedicated Fury V",
+        "SkillDescription": "+25% Damage on each consecutive Power attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {

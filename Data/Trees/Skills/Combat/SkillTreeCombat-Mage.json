@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Mage",
         "SkillName": "Spell Mastery I",
-        "SkillDescription": "Spell Mastery I",
+        "SkillDescription": "Base Damage when using Spells",
         "DataClass": "SpellMastery",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Mage",
         "SkillName": "Good Footwork I",
-        "SkillDescription": "Good Footwork I",
+        "SkillDescription": "+1 Speed when equipped with a Mage Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -36,7 +36,7 @@
         "SkillRank": 3,
         "SkillType": "Mage",
         "SkillName": "Defensive Warrior I",
-        "SkillDescription": "Defensive Warrior I",
+        "SkillDescription": "+5% Magic Defense when equipped with a Mage Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -61,7 +61,7 @@
         "SkillRank": 4,
         "SkillType": "Mage",
         "SkillName": "Dedicated Fury I",
-        "SkillDescription": "Dedicated Fury I",
+        "SkillDescription": "+5% Damage on each consecutive Spell attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -111,7 +111,7 @@
         "SkillRank": 5,
         "SkillType": "Mage",
         "SkillName": "Spell Mastery II",
-        "SkillDescription": "Spell Mastery II",
+        "SkillDescription": "+5% Damage when using Spells",
         "DataClass": "SpellMastery",
         "StatChanges": [
             {
@@ -150,7 +150,7 @@
         "SkillRank": 6,
         "SkillType": "Mage",
         "SkillName": "Good Footwork II",
-        "SkillDescription": "Good Footwork II",
+        "SkillDescription": "+2 Speed when equipped with a Mage Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -175,7 +175,7 @@
         "SkillRank": 7,
         "SkillType": "Mage",
         "SkillName": "Defensive Warrior II",
-        "SkillDescription": "Defensive Warrior II",
+        "SkillDescription": "+10% Magic Defense when equipped with a Mage Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -200,7 +200,7 @@
         "SkillRank": 8,
         "SkillType": "Mage",
         "SkillName": "Dedicated Fury II",
-        "SkillDescription": "Dedicated Fury II",
+        "SkillDescription": "+10% Damage on each consecutive Spell attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -250,7 +250,7 @@
         "SkillRank": 9,
         "SkillType": "Mage",
         "SkillName": "Spell Mastery III",
-        "SkillDescription": "Spell Mastery III",
+        "SkillDescription": "+10% Damage when using Spells",
         "DataClass": "SpellMastery",
         "StatChanges": [
             {
@@ -289,7 +289,7 @@
         "SkillRank": 10,
         "SkillType": "Mage",
         "SkillName": "Good Footwork III",
-        "SkillDescription": "Good Footwork III",
+        "SkillDescription": "+3 Speed when equipped with a Mage Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -314,7 +314,7 @@
         "SkillRank": 11,
         "SkillType": "Mage",
         "SkillName": "Defensive Warrior III",
-        "SkillDescription": "Defensive Warrior III",
+        "SkillDescription": "+15% Magic Defense when equipped with a Mage Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -339,7 +339,7 @@
         "SkillRank": 12,
         "SkillType": "Mage",
         "SkillName": "Dedicated Fury III",
-        "SkillDescription": "Dedicated Fury III",
+        "SkillDescription": "+15% Damage on each consecutive Spell attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -389,7 +389,7 @@
         "SkillRank": 13,
         "SkillType": "Mage",
         "SkillName": "Spell Mastery IV",
-        "SkillDescription": "Spell Mastery IV",
+        "SkillDescription": "+15% Damage when using Spells",
         "DataClass": "SpellMastery",
         "StatChanges": [
             {
@@ -428,7 +428,7 @@
         "SkillRank": 14,
         "SkillType": "Mage",
         "SkillName": "Good Footwork IV",
-        "SkillDescription": "Good Footwork IV",
+        "SkillDescription": "+4 Speed when equipped with a Mage Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -453,7 +453,7 @@
         "SkillRank": 15,
         "SkillType": "Mage",
         "SkillName": "Defensive Warrior IV",
-        "SkillDescription": "Defensive Warrior IV",
+        "SkillDescription": "+20% Magic Defense when equipped with a Mage Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -478,7 +478,7 @@
         "SkillRank": 16,
         "SkillType": "Mage",
         "SkillName": "Dedicated Fury IV",
-        "SkillDescription": "Dedicated Fury IV",
+        "SkillDescription": "+20% Damage on each consecutive Spell attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {
@@ -528,7 +528,7 @@
         "SkillRank": 17,
         "SkillType": "Mage",
         "SkillName": "Spell Mastery V",
-        "SkillDescription": "Spell Mastery V",
+        "SkillDescription": "+20% Damage when using Spells",
         "DataClass": "SpellMastery",
         "StatChanges": [
             {
@@ -567,7 +567,7 @@
         "SkillRank": 18,
         "SkillType": "Mage",
         "SkillName": "Good Footwork V",
-        "SkillDescription": "Good Footwork V",
+        "SkillDescription": "+5 Speed when equipped with a Mage Weapon",
         "DataClass": "GoodFootwork",
         "StatChanges": [
             {
@@ -592,7 +592,7 @@
         "SkillRank": 19,
         "SkillType": "Mage",
         "SkillName": "Defensive Warrior V",
-        "SkillDescription": "Defensive Warrior V",
+        "SkillDescription": "+25% Magic Defense when equipped with a Mage Weapon",
         "DataClass": "DefensiveWarrior",
         "StatChanges": [
             {
@@ -617,7 +617,7 @@
         "SkillRank": 20,
         "SkillType": "Mage",
         "SkillName": "Dedicated Fury V",
-        "SkillDescription": "Dedicated Fury V",
+        "SkillDescription": "+25% Damage on each consecutive Spell attack",
         "DataClass": "DedicatedFury",
         "StatChanges": [
             {

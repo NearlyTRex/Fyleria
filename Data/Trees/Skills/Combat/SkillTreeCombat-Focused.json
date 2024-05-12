@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Focused",
         "SkillName": "Empty Handed I",
-        "SkillDescription": "Empty Handed I",
+        "SkillDescription": "Base Damage for single weapon equipped",
         "DataClass": "EmptyHanded",
         "StatChanges": []
     },
@@ -11,7 +11,7 @@
         "SkillRank": 2,
         "SkillType": "Focused",
         "SkillName": "Guarded Stance I",
-        "SkillDescription": "Guarded Stance I",
+        "SkillDescription": "+5% to all Defense stats when equipped with one weapon",
         "DataClass": "GuardedStance",
         "StatChanges": [
             {
@@ -49,7 +49,7 @@
         "SkillRank": 3,
         "SkillType": "Focused",
         "SkillName": "Minimalist I",
-        "SkillDescription": "Minimalist I",
+        "SkillDescription": "+5% to Speed stat when equipped with one weapon",
         "DataClass": "Minimalist",
         "StatChanges": [
             {
@@ -73,7 +73,7 @@
         "SkillRank": 4,
         "SkillType": "Focused",
         "SkillName": "Focused Strike I",
-        "SkillDescription": "Focused Strike I",
+        "SkillDescription": "Special: Attack with 2x damage bonus, Costs 5 HP",
         "DataClass": "FocusedStrike",
         "RunTypes": [
             "Battle"
@@ -101,7 +101,7 @@
         "SkillRank": 5,
         "SkillType": "Focused",
         "SkillName": "Empty Handed II",
-        "SkillDescription": "Empty Handed II",
+        "SkillDescription": "125% Damage for single weapon equipped",
         "DataClass": "EmptyHanded",
         "StatChanges": [
             {
@@ -125,7 +125,7 @@
         "SkillRank": 6,
         "SkillType": "Focused",
         "SkillName": "Extra Perceptive I",
-        "SkillDescription": "Extra Perceptive I",
+        "SkillDescription": "Lowers the chance of criticals on attacks taken by 5%",
         "DataClass": "ExtraPerceptive",
         "StatChanges": [
             {
@@ -149,7 +149,7 @@
         "SkillRank": 7,
         "SkillType": "Focused",
         "SkillName": "Enhanced Aim I",
-        "SkillDescription": "Enhanced Aim I",
+        "SkillDescription": "Additional 1x multiplier on all critical hits with one weapon",
         "DataClass": "EnchancedAim",
         "StatChanges": [
             {
@@ -173,7 +173,7 @@
         "SkillRank": 8,
         "SkillType": "Focused",
         "SkillName": "Deadly Retribution I",
-        "SkillDescription": "Deadly Retribution I",
+        "SkillDescription": "Special: +Damage equal to all damage taken in round, Costs 10 HP",
         "DataClass": "DeadlyRetribution",
         "RunTypes": [
             "Battle"
@@ -201,7 +201,7 @@
         "SkillRank": 9,
         "SkillType": "Focused",
         "SkillName": "Empty Handed III",
-        "SkillDescription": "Empty Handed III",
+        "SkillDescription": "150% Damage for single weapon equipped",
         "DataClass": "EmptyHanded",
         "StatChanges": [
             {
@@ -225,7 +225,7 @@
         "SkillRank": 10,
         "SkillType": "Focused",
         "SkillName": "Guarded Stance II",
-        "SkillDescription": "Guarded Stance II",
+        "SkillDescription": "+10% to all Defense stats when equipped with one weapon",
         "DataClass": "GuardedStance",
         "StatChanges": [
             {
@@ -263,7 +263,7 @@
         "SkillRank": 11,
         "SkillType": "Focused",
         "SkillName": "Minimalist II",
-        "SkillDescription": "Minimalist II",
+        "SkillDescription": "+10% to Speed stat when equipped with one weapon",
         "DataClass": "Minimalist",
         "StatChanges": [
             {
@@ -287,7 +287,7 @@
         "SkillRank": 12,
         "SkillType": "Focused",
         "SkillName": "Focused Strike II",
-        "SkillDescription": "Focused Strike II",
+        "SkillDescription": "Special: Attack with 2x damage bonus, Costs 4 HP",
         "DataClass": "FocusedStrike",
         "RunTypes": [
             "Battle"
@@ -315,7 +315,7 @@
         "SkillRank": 13,
         "SkillType": "Focused",
         "SkillName": "Empty Handed IV",
-        "SkillDescription": "Empty Handed IV",
+        "SkillDescription": "175% Damage for single weapon equipped",
         "DataClass": "EmptyHanded",
         "StatChanges": [
             {
@@ -339,7 +339,7 @@
         "SkillRank": 14,
         "SkillType": "Focused",
         "SkillName": "Extra Perceptive II",
-        "SkillDescription": "Extra Perceptive II",
+        "SkillDescription": "Lowers the chance of criticals on attacks taken by 10%",
         "DataClass": "ExtraPerceptive",
         "StatChanges": [
             {
@@ -363,7 +363,7 @@
         "SkillRank": 15,
         "SkillType": "Focused",
         "SkillName": "Enhanced Aim II",
-        "SkillDescription": "Enhanced Aim II",
+        "SkillDescription": "Additional 2x multiplier on all critical hits with one weapon",
         "DataClass": "EnchancedAim",
         "StatChanges": [
             {
@@ -387,7 +387,7 @@
         "SkillRank": 16,
         "SkillType": "Focused",
         "SkillName": "Deadly Retribution II",
-        "SkillDescription": "Deadly Retribution II",
+        "SkillDescription": "Special: +Damage equal to all damage taken in round, Costs 9 HP",
         "DataClass": "DeadlyRetribution",
         "RunTypes": [
             "Battle"
@@ -415,7 +415,7 @@
         "SkillRank": 17,
         "SkillType": "Focused",
         "SkillName": "Empty Handed V",
-        "SkillDescription": "Empty Handed V",
+        "SkillDescription": "200% Damage for single weapon equipped",
         "DataClass": "EmptyHanded",
         "StatChanges": [
             {
@@ -439,7 +439,7 @@
         "SkillRank": 18,
         "SkillType": "Focused",
         "SkillName": "Guarded Stance III",
-        "SkillDescription": "Guarded Stance III",
+        "SkillDescription": "+15% to all Defense stats when equipped with one weapon",
         "DataClass": "GuardedStance",
         "StatChanges": [
             {
@@ -477,7 +477,7 @@
         "SkillRank": 19,
         "SkillType": "Focused",
         "SkillName": "Minimalist III",
-        "SkillDescription": "Minimalist III",
+        "SkillDescription": "+15% to Speed stat when equipped with one weapon",
         "DataClass": "Minimalist",
         "StatChanges": [
             {
@@ -501,7 +501,7 @@
         "SkillRank": 20,
         "SkillType": "Focused",
         "SkillName": "Focused Strike III",
-        "SkillDescription": "Focused Strike III",
+        "SkillDescription": "Special: Attack with 2x damage bonus, Costs 3 HP",
         "DataClass": "FocusedStrike",
         "RunTypes": [
             "Battle"

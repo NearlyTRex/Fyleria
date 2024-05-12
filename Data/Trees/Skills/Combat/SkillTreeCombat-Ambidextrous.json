@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Ambidextrous",
         "SkillName": "Overly Aggressive I",
-        "SkillDescription": "Overly Aggressive I",
+        "SkillDescription": "50% Damage for both weapons equipped",
         "DataClass": "OverlyAggressive",
         "StatChanges": [
             {
@@ -32,7 +32,7 @@
         "SkillRank": 2,
         "SkillType": "Ambidextrous",
         "SkillName": "Offense As Defense I",
-        "SkillDescription": "Offense As Defense I",
+        "SkillDescription": "+5% to all Defense stats when equipped with two weapons",
         "DataClass": "OffenseAsDefense",
         "StatChanges": [
             {
@@ -67,7 +67,7 @@
         "SkillRank": 3,
         "SkillType": "Ambidextrous",
         "SkillName": "Well Balanced I",
-        "SkillDescription": "Well Balanced I",
+        "SkillDescription": "+5% to Speed stat when equipped with two weapons",
         "DataClass": "WellBalanced",
         "StatChanges": [
             {
@@ -90,7 +90,7 @@
         "SkillRank": 4,
         "SkillType": "Ambidextrous",
         "SkillName": "Twin Attack I",
-        "SkillDescription": "Twin Attack I",
+        "SkillDescription": "Special: Attack target 2 times when dual wielding, Costs 5 HP",
         "DataClass": "TwinAttack",
         "RunTypes": [
             "Battle"
@@ -123,7 +123,7 @@
         "SkillRank": 5,
         "SkillType": "Ambidextrous",
         "SkillName": "Overly Aggressive II",
-        "SkillDescription": "Overly Aggressive II",
+        "SkillDescription": "75% Damage for 1st weapon, 50% Damage for 2nd",
         "DataClass": "OverlyAggressive",
         "StatChanges": [
             {
@@ -152,7 +152,7 @@
         "SkillRank": 6,
         "SkillType": "Ambidextrous",
         "SkillName": "Extra Protective I",
-        "SkillDescription": "Extra Protective I",
+        "SkillDescription": "Lowers the chance of criticals on attacks taken by 5%",
         "DataClass": "ExtraProtective",
         "StatChanges": [
             {
@@ -175,7 +175,7 @@
         "SkillRank": 7,
         "SkillType": "Ambidextrous",
         "SkillName": "Double Damage I",
-        "SkillDescription": "Double Damage I",
+        "SkillDescription": "Additional 0.5x multiplier on all dual wield critical hits",
         "DataClass": "DoubleDamage",
         "StatChanges": [
             {
@@ -198,7 +198,7 @@
         "SkillRank": 8,
         "SkillType": "Ambidextrous",
         "SkillName": "Split Focus I",
-        "SkillDescription": "Split Focus I",
+        "SkillDescription": "Special: Attack separate targets when dual wielding, Costs 10 HP",
         "DataClass": "SplitFocus",
         "RunTypes": [
             "Battle"
@@ -225,7 +225,7 @@
         "SkillRank": 9,
         "SkillType": "Ambidextrous",
         "SkillName": "Overly Aggressive III",
-        "SkillDescription": "Overly Aggressive III",
+        "SkillDescription": "75% Damage for both weapons equipped",
         "DataClass": "OverlyAggressive",
         "StatChanges": [
             {
@@ -254,7 +254,7 @@
         "SkillRank": 10,
         "SkillType": "Ambidextrous",
         "SkillName": "Offense As Defense II",
-        "SkillDescription": "Offense As Defense II",
+        "SkillDescription": "+10% to all Defense stats when equipped with two weapons",
         "DataClass": "OffenseAsDefense",
         "StatChanges": [
             {
@@ -289,7 +289,7 @@
         "SkillRank": 11,
         "SkillType": "Ambidextrous",
         "SkillName": "Well Balanced II",
-        "SkillDescription": "Well Balanced II",
+        "SkillDescription": "+10% to Speed stat when equipped with two weapons",
         "DataClass": "WellBalanced",
         "StatChanges": [
             {
@@ -312,7 +312,7 @@
         "SkillRank": 12,
         "SkillType": "Ambidextrous",
         "SkillName": "Twin Attack II",
-        "SkillDescription": "Twin Attack II",
+        "SkillDescription": "Special: Attack target 2 times when dual wielding, Costs 4 HP",
         "DataClass": "TwinAttack",
         "RunTypes": [
             "Battle"
@@ -345,7 +345,7 @@
         "SkillRank": 13,
         "SkillType": "Ambidextrous",
         "SkillName": "Overly Aggressive IV",
-        "SkillDescription": "Overly Aggressive IV",
+        "SkillDescription": "100% Damage for 1st weapon, 75% Damage for 2nd",
         "DataClass": "OverlyAggressive",
         "StatChanges": [
             {
@@ -374,7 +374,7 @@
         "SkillRank": 14,
         "SkillType": "Ambidextrous",
         "SkillName": "Extra Protective II",
-        "SkillDescription": "Extra Protective II",
+        "SkillDescription": "Lowers the chance of criticals on attacks taken by 10%",
         "DataClass": "ExtraProtective",
         "StatChanges": [
             {
@@ -397,7 +397,7 @@
         "SkillRank": 15,
         "SkillType": "Ambidextrous",
         "SkillName": "Double Damage II",
-        "SkillDescription": "Double Damage II",
+        "SkillDescription": "Additional 1x multiplier on all dual wield critical hits",
         "DataClass": "DoubleDamage",
         "StatChanges": [
             {
@@ -420,7 +420,7 @@
         "SkillRank": 16,
         "SkillType": "Ambidextrous",
         "SkillName": "Split Focus II",
-        "SkillDescription": "Split Focus II",
+        "SkillDescription": "Special: Attack separate targets when dual wielding, Costs 9 HP",
         "DataClass": "SplitFocus",
         "RunTypes": [
             "Battle"
@@ -447,7 +447,7 @@
         "SkillRank": 17,
         "SkillType": "Ambidextrous",
         "SkillName": "Overly Aggressive V",
-        "SkillDescription": "Overly Aggressive V",
+        "SkillDescription": "100% Damage for both weapons equipped",
         "DataClass": "OverlyAggressive",
         "StatChanges": [
             {
@@ -476,7 +476,7 @@
         "SkillRank": 18,
         "SkillType": "Ambidextrous",
         "SkillName": "Offense As Defense III",
-        "SkillDescription": "Offense As Defense III",
+        "SkillDescription": "+15% to all Defense stats when equipped with two weapons",
         "DataClass": "OffenseAsDefense",
         "StatChanges": [
             {
@@ -511,7 +511,7 @@
         "SkillRank": 19,
         "SkillType": "Ambidextrous",
         "SkillName": "Well Balanced III",
-        "SkillDescription": "Well Balanced III",
+        "SkillDescription": "+15% to Speed stat when equipped with two weapons",
         "DataClass": "WellBalanced",
         "StatChanges": [
             {
@@ -534,7 +534,7 @@
         "SkillRank": 20,
         "SkillType": "Ambidextrous",
         "SkillName": "Twin Attack III",
-        "SkillDescription": "Twin Attack III",
+        "SkillDescription": "Special: Attack target 2 times when dual wielding, Costs 3 HP",
         "DataClass": "TwinAttack",
         "RunTypes": [
             "Battle"
