@@ -22,9 +22,9 @@
     "Rank1": {
         "SkillRank": 1,
         "SkillType": "Decapitate",
-        "SkillName": "Slash Mastery I",
-        "SkillDescription": "Slash Mastery I",
-        "DataClass": "SlashMastery",
+        "SkillName": "Blade Mastery I",
+        "SkillDescription": "Decapitate; 5% chance 2.5x Critical, 10 AP",
+        "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
         ],
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Decapitate",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Decapitate; 5% chance 2.5x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Decapitate",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Decapitate; 10% chance 2.5x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Decapitate",
         "SkillName": "Deep Cut I",
-        "SkillDescription": "Deep Cut I",
+        "SkillDescription": "Decapitate; 10% chance 2.75x Critical, 15 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Decapitate",
         "SkillName": "Head Collector I",
-        "SkillDescription": "Head Collector I",
+        "SkillDescription": "5% chance Targeted Enemy dies",
         "DataClass": "HeadCollector",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -192,9 +192,9 @@
     "Rank6": {
         "SkillRank": 6,
         "SkillType": "Decapitate",
-        "SkillName": "Slash Mastery II",
-        "SkillDescription": "Slash Mastery II",
-        "DataClass": "SlashMastery",
+        "SkillName": "Blade Mastery II",
+        "SkillDescription": "Decapitate; 110% ATK, 10% chance 2.75x Critical, 15 AP",
+        "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
         ],
@@ -235,7 +235,7 @@
         "SkillRank": 7,
         "SkillType": "Decapitate",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Decapitate; 110% ATK, 10% chance 2.75x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -277,7 +277,7 @@
         "SkillRank": 8,
         "SkillType": "Decapitate",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Decapitate; 110% ATK, 15% chance 2.75x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -319,7 +319,7 @@
         "SkillRank": 9,
         "SkillType": "Decapitate",
         "SkillName": "Deep Cut II",
-        "SkillDescription": "Deep Cut II",
+        "SkillDescription": "Decapitate; 110% ATK, 15% chance 3x Critical, 20 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -361,7 +361,7 @@
         "SkillRank": 10,
         "SkillType": "Decapitate",
         "SkillName": "Head Collector II",
-        "SkillDescription": "Head Collector II",
+        "SkillDescription": "10% chance Targeted Enemy dies",
         "DataClass": "HeadCollector",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -386,9 +386,9 @@
     "Rank11": {
         "SkillRank": 11,
         "SkillType": "Decapitate",
-        "SkillName": "Slash Mastery III",
-        "SkillDescription": "Slash Mastery III",
-        "DataClass": "SlashMastery",
+        "SkillName": "Blade Mastery III",
+        "SkillDescription": "Decapitate; 120% ATK, 15% chance 3x Critical, 20 AP",
+        "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
         ],
@@ -429,7 +429,7 @@
         "SkillRank": 12,
         "SkillType": "Decapitate",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Decapitate; 120% ATK, 15% chance 3x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -471,7 +471,7 @@
         "SkillRank": 13,
         "SkillType": "Decapitate",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Decapitate; 120% ATK, 20% chance 3x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -513,7 +513,7 @@
         "SkillRank": 14,
         "SkillType": "Decapitate",
         "SkillName": "Deep Cut III",
-        "SkillDescription": "Deep Cut III",
+        "SkillDescription": "Decapitate; 120% ATK, 20% chance 3.25x Critical, 25 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -555,7 +555,7 @@
         "SkillRank": 15,
         "SkillType": "Decapitate",
         "SkillName": "Head Collector III",
-        "SkillDescription": "Head Collector III",
+        "SkillDescription": "15% chance Targeted Enemy dies",
         "DataClass": "HeadCollector",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -580,9 +580,9 @@
     "Rank16": {
         "SkillRank": 16,
         "SkillType": "Decapitate",
-        "SkillName": "Slash Mastery IV",
-        "SkillDescription": "Slash Mastery IV",
-        "DataClass": "SlashMastery",
+        "SkillName": "Blade Mastery IV",
+        "SkillDescription": "Decapitate; 130% ATK, 20% chance 3.25x Critical, 25 AP",
+        "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
         ],
@@ -623,7 +623,7 @@
         "SkillRank": 17,
         "SkillType": "Decapitate",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Decapitate; 130% ATK, 20% chance 3.25x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -665,7 +665,7 @@
         "SkillRank": 18,
         "SkillType": "Decapitate",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Decapitate; 130% ATK, 25% chance 3.25x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -707,7 +707,7 @@
         "SkillRank": 19,
         "SkillType": "Decapitate",
         "SkillName": "Deep Cut IV",
-        "SkillDescription": "Deep Cut IV",
+        "SkillDescription": "Decapitate; 130% ATK, 25% chance 3.5x Critical, 30 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -749,7 +749,7 @@
         "SkillRank": 20,
         "SkillType": "Decapitate",
         "SkillName": "Head Collector IV",
-        "SkillDescription": "Head Collector IV",
+        "SkillDescription": "20% chance Targeted Enemy dies",
         "DataClass": "HeadCollector",
         "WeaponBaseType": "Slash",
         "StatChanges": [

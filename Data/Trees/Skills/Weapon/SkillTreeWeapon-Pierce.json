@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Pierce",
         "SkillName": "Aim Mastery I",
-        "SkillDescription": "Aim Mastery I",
+        "SkillDescription": "Pierce; 15% chance 2x Critical, 15 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Pierce",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Pierce; 15% chance 2x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Pierce",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Pierce; 20% chance 2x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Pierce",
         "SkillName": "Deep Penetration I",
-        "SkillDescription": "Deep Penetration I",
+        "SkillDescription": "Pierce; 20% chance 2.25x Critical, 20 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Pierce",
         "SkillName": "Piercing Flurry I",
-        "SkillDescription": "Piercing Flurry I",
+        "SkillDescription": "When using Pierce 25% chance will Attack Target 2x per Rd",
         "DataClass": "PiercingFlurry",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -198,7 +198,7 @@
         "SkillRank": 6,
         "SkillType": "Pierce",
         "SkillName": "Aim Mastery II",
-        "SkillDescription": "Aim Mastery II",
+        "SkillDescription": "Pierce; 110% ATK, 20% chance 2.25x Critical, 20 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -240,7 +240,7 @@
         "SkillRank": 7,
         "SkillType": "Pierce",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Pierce; 110% ATK, 20% chance 2.25x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -282,7 +282,7 @@
         "SkillRank": 8,
         "SkillType": "Pierce",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Pierce; 110% ATK, 25% chance 2.25x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -324,7 +324,7 @@
         "SkillRank": 9,
         "SkillType": "Pierce",
         "SkillName": "Deep Penetration II",
-        "SkillDescription": "Deep Penetration II",
+        "SkillDescription": "Pierce; 110% ATK, 25% chance 2.5x Critical, 25 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -366,7 +366,7 @@
         "SkillRank": 10,
         "SkillType": "Pierce",
         "SkillName": "Piercing Flurry II",
-        "SkillDescription": "Piercing Flurry II",
+        "SkillDescription": "When using Pierce 25% chance will Attack Target 3x per Rd",
         "DataClass": "PiercingFlurry",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -397,7 +397,7 @@
         "SkillRank": 11,
         "SkillType": "Pierce",
         "SkillName": "Aim Mastery III",
-        "SkillDescription": "Aim Mastery III",
+        "SkillDescription": "Pierce; 120% ATK, 25% chance 2.5x Critical, 25 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -439,7 +439,7 @@
         "SkillRank": 12,
         "SkillType": "Pierce",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Pierce; 120% ATK, 25% chance 2.5x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -481,7 +481,7 @@
         "SkillRank": 13,
         "SkillType": "Pierce",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Pierce; 120% ATK, 30% chance 2.5x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -523,7 +523,7 @@
         "SkillRank": 14,
         "SkillType": "Pierce",
         "SkillName": "Deep Penetration III",
-        "SkillDescription": "Deep Penetration III",
+        "SkillDescription": "Pierce; 120% ATK, 30% chance 2.75x Critical, 30 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -565,7 +565,7 @@
         "SkillRank": 15,
         "SkillType": "Pierce",
         "SkillName": "Piercing Flurry III",
-        "SkillDescription": "Piercing Flurry III",
+        "SkillDescription": "When using Pierce 25% chance will Attack Target 4x per Rd",
         "DataClass": "PiercingFlurry",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -596,7 +596,7 @@
         "SkillRank": 16,
         "SkillType": "Pierce",
         "SkillName": "Aim Mastery IV",
-        "SkillDescription": "Aim Mastery IV",
+        "SkillDescription": "Pierce; 130% ATK, 30% chance 2.75x Critical, 30 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -638,7 +638,7 @@
         "SkillRank": 17,
         "SkillType": "Pierce",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Pierce; 130% ATK, 30% chance 2.75x Critical, 35 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -680,7 +680,7 @@
         "SkillRank": 18,
         "SkillType": "Pierce",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Pierce; 130% ATK, 35% chance 2.75x Critical, 35 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -722,7 +722,7 @@
         "SkillRank": 19,
         "SkillType": "Pierce",
         "SkillName": "Deep Penetration IV",
-        "SkillDescription": "Deep Penetration IV",
+        "SkillDescription": "Pierce; 130% ATK, 35% chance 3x Critical, 35 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -764,7 +764,7 @@
         "SkillRank": 20,
         "SkillType": "Pierce",
         "SkillName": "Piercing Flurry IV",
-        "SkillDescription": "Piercing Flurry IV",
+        "SkillDescription": "When using Pierce 25% chance will Attack Target 5x per Rd",
         "DataClass": "PiercingFlurry",
         "WeaponBaseType": "Pierce",
         "StatChanges": [

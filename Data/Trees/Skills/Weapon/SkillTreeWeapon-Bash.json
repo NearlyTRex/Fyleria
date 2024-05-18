@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Bash",
         "SkillName": "Blunt Mastery I",
-        "SkillDescription": "Blunt Mastery I",
+        "SkillDescription": "Bash; 15% chance 2x Critical, 15 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Bash",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Bash; 15% chance 2x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Bash",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Bash; 20% chance 2x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Bash",
         "SkillName": "Deep Impact I",
-        "SkillDescription": "Deep Impact I",
+        "SkillDescription": "Bash; 20% chance 2.25x Critical, 20 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Bash",
         "SkillName": "Bloody Battery I",
-        "SkillDescription": "Bloody Battery I",
+        "SkillDescription": "When using Bash 25% chance will Attack Target 2x per round",
         "DataClass": "BloodyBattery",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -198,7 +198,7 @@
         "SkillRank": 6,
         "SkillType": "Bash",
         "SkillName": "Blunt Mastery II",
-        "SkillDescription": "Blunt Mastery II",
+        "SkillDescription": "Bash; 110% ATK, 20% chance 2.25x Critical, 20 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -240,7 +240,7 @@
         "SkillRank": 7,
         "SkillType": "Bash",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Bash; 110% ATK, 20% chance 2.25x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -282,7 +282,7 @@
         "SkillRank": 8,
         "SkillType": "Bash",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Bash; 110% ATK, 25% chance 2.25x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -324,7 +324,7 @@
         "SkillRank": 9,
         "SkillType": "Bash",
         "SkillName": "Deep Impact II",
-        "SkillDescription": "Deep Impact II",
+        "SkillDescription": "Bash; 110% ATK, 25% chance 2.5x Critical, 25 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -366,7 +366,7 @@
         "SkillRank": 10,
         "SkillType": "Bash",
         "SkillName": "Bloody Battery II",
-        "SkillDescription": "Bloody Battery II",
+        "SkillDescription": "When using Bash 25% chance will Attack Target 3x per round",
         "DataClass": "BloodyBattery",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -397,7 +397,7 @@
         "SkillRank": 11,
         "SkillType": "Bash",
         "SkillName": "Blunt Mastery III",
-        "SkillDescription": "Blunt Mastery III",
+        "SkillDescription": "Bash; 120% ATK, 25% chance 2.5x Critical, 25 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -439,7 +439,7 @@
         "SkillRank": 12,
         "SkillType": "Bash",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Bash; 120% ATK, 25% chance 2.5x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -481,7 +481,7 @@
         "SkillRank": 13,
         "SkillType": "Bash",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Bash; 120% ATK, 30% chance 2.5x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -523,7 +523,7 @@
         "SkillRank": 14,
         "SkillType": "Bash",
         "SkillName": "Deep Impact III",
-        "SkillDescription": "Deep Impact III",
+        "SkillDescription": "Bash; 120% ATK, 30% chance 2.75x Critical, 30 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -565,7 +565,7 @@
         "SkillRank": 15,
         "SkillType": "Bash",
         "SkillName": "Bloody Battery III",
-        "SkillDescription": "Bloody Battery III",
+        "SkillDescription": "When using Bash 25% chance will Attack Target 4x per round",
         "DataClass": "BloodyBattery",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -596,7 +596,7 @@
         "SkillRank": 16,
         "SkillType": "Bash",
         "SkillName": "Blunt Mastery IV",
-        "SkillDescription": "Blunt Mastery IV",
+        "SkillDescription": "Bash; 130% ATK, 30% chance 2.75x Critical, 30 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -638,7 +638,7 @@
         "SkillRank": 17,
         "SkillType": "Bash",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Bash; 130% ATK, 30% chance 2.75x Critical, 35 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -680,7 +680,7 @@
         "SkillRank": 18,
         "SkillType": "Bash",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Bash; 130% ATK, 35% chance 2.75x Critical, 35 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -722,7 +722,7 @@
         "SkillRank": 19,
         "SkillType": "Bash",
         "SkillName": "Deep Impact IV",
-        "SkillDescription": "Deep Impact IV",
+        "SkillDescription": "Bash; 130% ATK, 35% chance 3x Critical, 35 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -764,7 +764,7 @@
         "SkillRank": 20,
         "SkillType": "Bash",
         "SkillName": "Bloody Battery IV",
-        "SkillDescription": "Bloody Battery IV",
+        "SkillDescription": "When using Bash 25% chance will Attack Target 5x per round",
         "DataClass": "BloodyBattery",
         "WeaponBaseType": "Blunt",
         "StatChanges": [

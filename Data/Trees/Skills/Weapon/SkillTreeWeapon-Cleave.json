@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Cleave",
         "SkillName": "Blade Mastery I",
-        "SkillDescription": "Blade Mastery I",
+        "SkillDescription": "Cleave; 10% chance 2.25x Critical, 5 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Cleave",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Cleave; 10% chance 2.25x Critical, 10 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Cleave",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Cleave; 15% chance 2.25x Critical, 10 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Cleave",
         "SkillName": "Deep Cut I",
-        "SkillDescription": "Deep Cut I",
+        "SkillDescription": "Cleave; 15% chance 2.5x Critical, 10 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Cleave",
         "SkillName": "Forceful Swing I",
-        "SkillDescription": "Forceful Swing I",
+        "SkillDescription": "50% chance Targeted Enemy loses 5% SDEF",
         "DataClass": "ForcefulSwing",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -193,7 +193,7 @@
         "SkillRank": 6,
         "SkillType": "Cleave",
         "SkillName": "Blade Mastery II",
-        "SkillDescription": "Blade Mastery II",
+        "SkillDescription": "Cleave; 110% ATK, 15% chance 2.5x Critical, 10 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -235,7 +235,7 @@
         "SkillRank": 7,
         "SkillType": "Cleave",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Cleave; 110% ATK, 15% chance 2.5x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -277,7 +277,7 @@
         "SkillRank": 8,
         "SkillType": "Cleave",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Cleave; 110% ATK, 20% chance 2.5x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -319,7 +319,7 @@
         "SkillRank": 9,
         "SkillType": "Cleave",
         "SkillName": "Deep Cut II",
-        "SkillDescription": "Deep Cut II",
+        "SkillDescription": "Cleave; 110% ATK, 20% chance 2.75x Critical, 15 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -361,7 +361,7 @@
         "SkillRank": 10,
         "SkillType": "Cleave",
         "SkillName": "Forceful Swing II",
-        "SkillDescription": "Forceful Swing II",
+        "SkillDescription": "50% chance Targeted Enemy loses 10% SDEF",
         "DataClass": "ForcefulSwing",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -387,7 +387,7 @@
         "SkillRank": 11,
         "SkillType": "Cleave",
         "SkillName": "Blade Mastery III",
-        "SkillDescription": "Blade Mastery III",
+        "SkillDescription": "Cleave; 120% ATK, 20% chance 2.75x Critical, 15 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -429,7 +429,7 @@
         "SkillRank": 12,
         "SkillType": "Cleave",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Cleave; 120% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -471,7 +471,7 @@
         "SkillRank": 13,
         "SkillType": "Cleave",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Cleave; 120% ATK, 25% chance 2.75x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -513,7 +513,7 @@
         "SkillRank": 14,
         "SkillType": "Cleave",
         "SkillName": "Deep Cut III",
-        "SkillDescription": "Deep Cut III",
+        "SkillDescription": "Cleave; 120% ATK, 25% chance 3x Critical, 20 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -555,7 +555,7 @@
         "SkillRank": 15,
         "SkillType": "Cleave",
         "SkillName": "Forceful Swing III",
-        "SkillDescription": "Forceful Swing III",
+        "SkillDescription": "50% chance Targeted Enemy loses 15% SDEF",
         "DataClass": "ForcefulSwing",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -581,7 +581,7 @@
         "SkillRank": 16,
         "SkillType": "Cleave",
         "SkillName": "Blade Mastery IV",
-        "SkillDescription": "Blade Mastery IV",
+        "SkillDescription": "Cleave; 130% ATK, 25% chance 3x Critical, 20 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -623,7 +623,7 @@
         "SkillRank": 17,
         "SkillType": "Cleave",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Cleave; 130% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -665,7 +665,7 @@
         "SkillRank": 18,
         "SkillType": "Cleave",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Cleave; 130% ATK, 30% chance 3x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -707,7 +707,7 @@
         "SkillRank": 19,
         "SkillType": "Cleave",
         "SkillName": "Deep Cut IV",
-        "SkillDescription": "Deep Cut IV",
+        "SkillDescription": "Cleave; 130% ATK, 30% chance 3.25x Critical, 25 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -749,7 +749,7 @@
         "SkillRank": 20,
         "SkillType": "Cleave",
         "SkillName": "Forceful Swing IV",
-        "SkillDescription": "Forceful Swing IV",
+        "SkillDescription": "50% chance Targeted Enemy loses 20% SDEF",
         "DataClass": "ForcefulSwing",
         "WeaponBaseType": "Slash",
         "StatChanges": [

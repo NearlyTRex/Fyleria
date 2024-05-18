@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Smash",
         "SkillName": "Blunt Mastery I",
-        "SkillDescription": "Blunt Mastery I",
+        "SkillDescription": "Smash; 5% chance 2.5x Critical, 15 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Smash",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Smash; 5% chance 2.5x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Smash",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Smash; 10% chance 2.5x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Smash",
         "SkillName": "Deep Impact I",
-        "SkillDescription": "Deep Impact I",
+        "SkillDescription": "Smash; 10% chance 2.75x Critical, 20 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Smash",
         "SkillName": "Disabling Strike I",
-        "SkillDescription": "Disabling Strike I",
+        "SkillDescription": "50% chance Targeted Enemy loses 10% Speed",
         "DataClass": "DisablingStrike",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -193,7 +193,7 @@
         "SkillRank": 6,
         "SkillType": "Smash",
         "SkillName": "Blunt Mastery II",
-        "SkillDescription": "Blunt Mastery II",
+        "SkillDescription": "Smash; 110% ATK, 10% chance 2.75x Critical, 20 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -235,7 +235,7 @@
         "SkillRank": 7,
         "SkillType": "Smash",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Smash; 110% ATK, 10% chance 2.75x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -277,7 +277,7 @@
         "SkillRank": 8,
         "SkillType": "Smash",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Smash; 110% ATK, 15% chance 2.75x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -319,7 +319,7 @@
         "SkillRank": 9,
         "SkillType": "Smash",
         "SkillName": "Deep Impact II",
-        "SkillDescription": "Deep Impact II",
+        "SkillDescription": "Smash; 110% ATK, 15% chance 3x Critical, 25 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -361,7 +361,7 @@
         "SkillRank": 10,
         "SkillType": "Smash",
         "SkillName": "Disabling Strike II",
-        "SkillDescription": "Disabling Strike II",
+        "SkillDescription": "50% chance Targeted Enemy loses 20% Speed",
         "DataClass": "DisablingStrike",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -387,7 +387,7 @@
         "SkillRank": 11,
         "SkillType": "Smash",
         "SkillName": "Blunt Mastery III",
-        "SkillDescription": "Blunt Mastery III",
+        "SkillDescription": "Smash; 120% ATK, 15% chance 3x Critical, 25 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -429,7 +429,7 @@
         "SkillRank": 12,
         "SkillType": "Smash",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Smash; 120% ATK, 15% chance 3x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -471,7 +471,7 @@
         "SkillRank": 13,
         "SkillType": "Smash",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Smash; 120% ATK, 20% chance 3x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -513,7 +513,7 @@
         "SkillRank": 14,
         "SkillType": "Smash",
         "SkillName": "Deep Impact III",
-        "SkillDescription": "Deep Impact III",
+        "SkillDescription": "Smash; 120% ATK, 20% chance 3.25x Critical, 30 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -555,7 +555,7 @@
         "SkillRank": 15,
         "SkillType": "Smash",
         "SkillName": "Disabling Strike III",
-        "SkillDescription": "Disabling Strike III",
+        "SkillDescription": "50% chance Targeted Enemy loses 30% Speed",
         "DataClass": "DisablingStrike",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -581,7 +581,7 @@
         "SkillRank": 16,
         "SkillType": "Smash",
         "SkillName": "Blunt Mastery IV",
-        "SkillDescription": "Blunt Mastery IV",
+        "SkillDescription": "Smash; 130% ATK, 20% chance 3.25x Critical, 30 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -623,7 +623,7 @@
         "SkillRank": 17,
         "SkillType": "Smash",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Smash; 130% ATK, 20% chance 3.25x Critical, 35 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -665,7 +665,7 @@
         "SkillRank": 18,
         "SkillType": "Smash",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Smash; 130% ATK, 25% chance 3.25x Critical, 35 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -707,7 +707,7 @@
         "SkillRank": 19,
         "SkillType": "Smash",
         "SkillName": "Deep Impact IV",
-        "SkillDescription": "Deep Impact IV",
+        "SkillDescription": "Smash; 130% ATK, 25% chance 3.5x Critical, 35 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -749,7 +749,7 @@
         "SkillRank": 20,
         "SkillType": "Smash",
         "SkillName": "Disabling Strike IV",
-        "SkillDescription": "Disabling Strike IV",
+        "SkillDescription": "50% chance Targeted Enemy loses 40% Speed",
         "DataClass": "DisablingStrike",
         "WeaponBaseType": "Blunt",
         "StatChanges": [

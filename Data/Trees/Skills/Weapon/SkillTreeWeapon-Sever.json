@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Sever",
         "SkillName": "Blade Mastery I",
-        "SkillDescription": "Blade Mastery I",
+        "SkillDescription": "Sever; 5% chance 2.5x Critical, 15 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Sever",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Sever; 5% chance 2.5x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Sever",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Sever; 10% chance 2.5x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Sever",
         "SkillName": "Deep Cut I",
-        "SkillDescription": "Deep Cut I",
+        "SkillDescription": "Sever; 10% chance 2.75x Critical, 20 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Sever",
         "SkillName": "Dark Surgery I",
-        "SkillDescription": "Dark Surgery I",
+        "SkillDescription": "50% chance Targeted Enemy loses 10% Speed",
         "DataClass": "DarkSurgery",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -193,7 +193,7 @@
         "SkillRank": 6,
         "SkillType": "Sever",
         "SkillName": "Blade Mastery II",
-        "SkillDescription": "Blade Mastery II",
+        "SkillDescription": "Sever; 110% ATK, 10% chance 2.75x Critical, 20 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -235,7 +235,7 @@
         "SkillRank": 7,
         "SkillType": "Sever",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Sever; 110% ATK, 10% chance 2.75x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -277,7 +277,7 @@
         "SkillRank": 8,
         "SkillType": "Sever",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Sever; 110% ATK, 15% chance 2.75x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -319,7 +319,7 @@
         "SkillRank": 9,
         "SkillType": "Sever",
         "SkillName": "Deep Cut II",
-        "SkillDescription": "Deep Cut II",
+        "SkillDescription": "Sever; 110% ATK, 15% chance 3x Critical, 25 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -361,7 +361,7 @@
         "SkillRank": 10,
         "SkillType": "Sever",
         "SkillName": "Dark Surgery II",
-        "SkillDescription": "Dark Surgery II",
+        "SkillDescription": "50% chance Targeted Enemy loses 20% Speed",
         "DataClass": "DarkSurgery",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -387,7 +387,7 @@
         "SkillRank": 11,
         "SkillType": "Sever",
         "SkillName": "Blade Mastery III",
-        "SkillDescription": "Blade Mastery III",
+        "SkillDescription": "Sever; 120% ATK, 15% chance 3x Critical, 25 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -429,7 +429,7 @@
         "SkillRank": 12,
         "SkillType": "Sever",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Sever; 120% ATK, 15% chance 3x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -471,7 +471,7 @@
         "SkillRank": 13,
         "SkillType": "Sever",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Sever; 120% ATK, 20% chance 3x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -513,7 +513,7 @@
         "SkillRank": 14,
         "SkillType": "Sever",
         "SkillName": "Deep Cut III",
-        "SkillDescription": "Deep Cut III",
+        "SkillDescription": "Sever; 120% ATK, 20% chance 3.25x Critical, 30 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -555,7 +555,7 @@
         "SkillRank": 15,
         "SkillType": "Sever",
         "SkillName": "Dark Surgery III",
-        "SkillDescription": "Dark Surgery III",
+        "SkillDescription": "50% chance Targeted Enemy loses 30% Speed",
         "DataClass": "DarkSurgery",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -581,7 +581,7 @@
         "SkillRank": 16,
         "SkillType": "Sever",
         "SkillName": "Blade Mastery IV",
-        "SkillDescription": "Blade Mastery IV",
+        "SkillDescription": "Sever; 130% ATK, 20% chance 3.25x Critical, 30 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -623,7 +623,7 @@
         "SkillRank": 17,
         "SkillType": "Sever",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Sever; 130% ATK, 20% chance 3.25x Critical, 35 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -665,7 +665,7 @@
         "SkillRank": 18,
         "SkillType": "Sever",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Sever; 130% ATK, 25% chance 3.25x Critical, 35 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -707,7 +707,7 @@
         "SkillRank": 19,
         "SkillType": "Sever",
         "SkillName": "Deep Cut IV",
-        "SkillDescription": "Deep Cut IV",
+        "SkillDescription": "Sever; 130% ATK, 25% chance 3.5x Critical, 35 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -749,7 +749,7 @@
         "SkillRank": 20,
         "SkillType": "Sever",
         "SkillName": "Dark Surgery IV",
-        "SkillDescription": "Dark Surgery IV",
+        "SkillDescription": "50% chance Targeted Enemy loses 40% Speed",
         "DataClass": "DarkSurgery",
         "WeaponBaseType": "Slash",
         "StatChanges": [

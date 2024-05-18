@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Shoot",
         "SkillName": "Aim Mastery I",
-        "SkillDescription": "Aim Mastery I",
+        "SkillDescription": "Shoot; 10% chance 2.25x Critical, 10 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Shoot",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Shoot; 10% chance 2.25x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Shoot",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Shoot; 15% chance 2.25x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Shoot",
         "SkillName": "Deep Penetration I",
-        "SkillDescription": "Deep Penetration I",
+        "SkillDescription": "Shoot; 15% chance 2.5x Critical, 15 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Shoot",
         "SkillName": "Covering Fire I",
-        "SkillDescription": "Covering Fire I",
+        "SkillDescription": "10% chance Shoot attack hits all enemies for 25% Damage",
         "DataClass": "CoveringFire",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -201,7 +201,7 @@
         "SkillRank": 6,
         "SkillType": "Shoot",
         "SkillName": "Aim Mastery II",
-        "SkillDescription": "Aim Mastery II",
+        "SkillDescription": "Shoot; 110% ATK, 15% chance 2.5x Critical, 15 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -243,7 +243,7 @@
         "SkillRank": 7,
         "SkillType": "Shoot",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Shoot; 110% ATK, 15% chance 2.5x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -285,7 +285,7 @@
         "SkillRank": 8,
         "SkillType": "Shoot",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Shoot; 110% ATK, 20% chance 2.5x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -327,7 +327,7 @@
         "SkillRank": 9,
         "SkillType": "Shoot",
         "SkillName": "Deep Penetration II",
-        "SkillDescription": "Deep Penetration II",
+        "SkillDescription": "Shoot; 110% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -369,7 +369,7 @@
         "SkillRank": 10,
         "SkillType": "Shoot",
         "SkillName": "Covering Fire II",
-        "SkillDescription": "Covering Fire II",
+        "SkillDescription": "15% chance Shoot attack hits all enemies for 25% Damage",
         "DataClass": "CoveringFire",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -403,7 +403,7 @@
         "SkillRank": 11,
         "SkillType": "Shoot",
         "SkillName": "Aim Mastery III",
-        "SkillDescription": "Aim Mastery III",
+        "SkillDescription": "Shoot; 120% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -445,7 +445,7 @@
         "SkillRank": 12,
         "SkillType": "Shoot",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Shoot; 120% ATK, 20% chance 2.75x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -487,7 +487,7 @@
         "SkillRank": 13,
         "SkillType": "Shoot",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Shoot; 120% ATK, 25% chance 2.75x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -529,7 +529,7 @@
         "SkillRank": 14,
         "SkillType": "Shoot",
         "SkillName": "Deep Penetration III",
-        "SkillDescription": "Deep Penetration III",
+        "SkillDescription": "Shoot; 120% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -571,7 +571,7 @@
         "SkillRank": 15,
         "SkillType": "Shoot",
         "SkillName": "Covering Fire III",
-        "SkillDescription": "Covering Fire III",
+        "SkillDescription": "15% chance Shoot attack hits all enemies for 50% Damage",
         "DataClass": "CoveringFire",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -605,7 +605,7 @@
         "SkillRank": 16,
         "SkillType": "Shoot",
         "SkillName": "Aim Mastery IV",
-        "SkillDescription": "Aim Mastery IV",
+        "SkillDescription": "Shoot; 130% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -647,7 +647,7 @@
         "SkillRank": 17,
         "SkillType": "Shoot",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Shoot; 130% ATK, 25% chance 3x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -689,7 +689,7 @@
         "SkillRank": 18,
         "SkillType": "Shoot",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Shoot; 130% ATK, 30% chance 3x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -731,7 +731,7 @@
         "SkillRank": 19,
         "SkillType": "Shoot",
         "SkillName": "Deep Penetration IV",
-        "SkillDescription": "Deep Penetration IV",
+        "SkillDescription": "Shoot; 130% ATK, 30% chance 3.25x Critical, 30 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -773,7 +773,7 @@
         "SkillRank": 20,
         "SkillType": "Shoot",
         "SkillName": "Covering Fire IV",
-        "SkillDescription": "Covering Fire IV",
+        "SkillDescription": "20% chance Shoot attack hits all enemies for 50% Damage",
         "DataClass": "CoveringFire",
         "WeaponBaseType": "Pierce",
         "StatChanges": [

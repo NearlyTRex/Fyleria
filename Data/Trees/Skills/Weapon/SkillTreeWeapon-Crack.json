@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Crack",
         "SkillName": "Blunt Mastery I",
-        "SkillDescription": "Blunt Mastery I",
+        "SkillDescription": "Crack; 5% chance 2.5x Critical, 10 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Crack",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Crack; 5% chance 2.5x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Crack",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Crack; 10% chance 2.5x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Crack",
         "SkillName": "Deep Impact I",
-        "SkillDescription": "Deep Impact I",
+        "SkillDescription": "Crack; 10% chance 2.75x Critical, 15 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Crack",
         "SkillName": "Skull Splitter I",
-        "SkillDescription": "Skull Splitter I",
+        "SkillDescription": "5% chance Targeted Enemy dies",
         "DataClass": "SkullSplitter",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -193,7 +193,7 @@
         "SkillRank": 6,
         "SkillType": "Crack",
         "SkillName": "Blunt Mastery II",
-        "SkillDescription": "Blunt Mastery II",
+        "SkillDescription": "Crack; 110% ATK, 10% chance 2.75x Critical, 15 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -235,7 +235,7 @@
         "SkillRank": 7,
         "SkillType": "Crack",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Crack; 110% ATK, 10% chance 2.75x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -277,7 +277,7 @@
         "SkillRank": 8,
         "SkillType": "Crack",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Crack; 110% ATK, 15% chance 2.75x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -319,7 +319,7 @@
         "SkillRank": 9,
         "SkillType": "Crack",
         "SkillName": "Deep Impact II",
-        "SkillDescription": "Deep Impact II",
+        "SkillDescription": "Crack; 110% ATK, 15% chance 3x Critical, 20 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -361,7 +361,7 @@
         "SkillRank": 10,
         "SkillType": "Crack",
         "SkillName": "Skull Splitter II",
-        "SkillDescription": "Skull Splitter II",
+        "SkillDescription": "10% chance Targeted Enemy dies",
         "DataClass": "SkullSplitter",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -387,7 +387,7 @@
         "SkillRank": 11,
         "SkillType": "Crack",
         "SkillName": "Blunt Mastery III",
-        "SkillDescription": "Blunt Mastery III",
+        "SkillDescription": "Crack; 120% ATK, 15% chance 3x Critical, 20 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -429,7 +429,7 @@
         "SkillRank": 12,
         "SkillType": "Crack",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Crack; 120% ATK, 15% chance 3x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -471,7 +471,7 @@
         "SkillRank": 13,
         "SkillType": "Crack",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Crack; 120% ATK, 20% chance 3x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -513,7 +513,7 @@
         "SkillRank": 14,
         "SkillType": "Crack",
         "SkillName": "Deep Impact III",
-        "SkillDescription": "Deep Impact III",
+        "SkillDescription": "Crack; 120% ATK, 20% chance 3.25x Critical, 25 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -555,7 +555,7 @@
         "SkillRank": 15,
         "SkillType": "Crack",
         "SkillName": "Skull Splitter III",
-        "SkillDescription": "Skull Splitter III",
+        "SkillDescription": "15% chance Targeted Enemy dies",
         "DataClass": "SkullSplitter",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -581,7 +581,7 @@
         "SkillRank": 16,
         "SkillType": "Crack",
         "SkillName": "Blunt Mastery IV",
-        "SkillDescription": "Blunt Mastery IV",
+        "SkillDescription": "Crack; 130% ATK, 20% chance 3.25x Critical, 25 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -623,7 +623,7 @@
         "SkillRank": 17,
         "SkillType": "Crack",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Crack; 130% ATK, 20% chance 3.25x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -665,7 +665,7 @@
         "SkillRank": 18,
         "SkillType": "Crack",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Crack; 130% ATK, 25% chance 3.25x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -707,7 +707,7 @@
         "SkillRank": 19,
         "SkillType": "Crack",
         "SkillName": "Deep Impact IV",
-        "SkillDescription": "Deep Impact IV",
+        "SkillDescription": "Crack; 130% ATK, 25% chance 3.5x Critical, 30 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -749,7 +749,7 @@
         "SkillRank": 20,
         "SkillType": "Crack",
         "SkillName": "Skull Splitter IV",
-        "SkillDescription": "Skull Splitter IV",
+        "SkillDescription": "20% chance Targeted Enemy dies",
         "DataClass": "SkullSplitter",
         "WeaponBaseType": "Blunt",
         "StatChanges": [

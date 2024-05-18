@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Slash",
         "SkillName": "Blade Mastery I",
-        "SkillDescription": "Blade Mastery I",
+        "SkillDescription": "Slash; 15% chance 2x Critical, 15 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Slash",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Slash; 15% chance 2x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Slash",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Slash; 20% chance 2x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Slash",
         "SkillName": "Deep Cut I",
-        "SkillDescription": "Deep Cut I",
+        "SkillDescription": "Slash; 20% chance 2.25x Critical, 20 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Slash",
         "SkillName": "Lightning Strikes I",
-        "SkillDescription": "Lightning Strikes I",
+        "SkillDescription": "When using Slash 25% chance will Attack Target 2x per round",
         "DataClass": "LightningStrikes",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -198,7 +198,7 @@
         "SkillRank": 6,
         "SkillType": "Slash",
         "SkillName": "Blade Mastery II",
-        "SkillDescription": "Blade Mastery II",
+        "SkillDescription": "Slash; 110% ATK, 20% chance 2.25x Critical, 20 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -240,7 +240,7 @@
         "SkillRank": 7,
         "SkillType": "Slash",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Slash; 110% ATK, 20% chance 2.25x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -282,7 +282,7 @@
         "SkillRank": 8,
         "SkillType": "Slash",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Slash; 110% ATK, 25% chance 2.25x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -324,7 +324,7 @@
         "SkillRank": 9,
         "SkillType": "Slash",
         "SkillName": "Deep Cut II",
-        "SkillDescription": "Deep Cut II",
+        "SkillDescription": "Slash; 110% ATK, 25% chance 2.5x Critical, 25 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -366,7 +366,7 @@
         "SkillRank": 10,
         "SkillType": "Slash",
         "SkillName": "Lightning Strikes II",
-        "SkillDescription": "Lightning Strikes II",
+        "SkillDescription": "When using Slash 25% chance will Attack Target 3x per round",
         "DataClass": "LightningStrikes",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -397,7 +397,7 @@
         "SkillRank": 11,
         "SkillType": "Slash",
         "SkillName": "Blade Mastery III",
-        "SkillDescription": "Blade Mastery III",
+        "SkillDescription": "Slash; 120% ATK, 25% chance 2.5x Critical, 25 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -439,7 +439,7 @@
         "SkillRank": 12,
         "SkillType": "Slash",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Slash; 120% ATK, 25% chance 2.5x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -481,7 +481,7 @@
         "SkillRank": 13,
         "SkillType": "Slash",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Slash; 120% ATK, 30% chance 2.5x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -523,7 +523,7 @@
         "SkillRank": 14,
         "SkillType": "Slash",
         "SkillName": "Deep Cut III",
-        "SkillDescription": "Deep Cut III",
+        "SkillDescription": "Slash; 120% ATK, 30% chance 2.75x Critical, 30 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -565,7 +565,7 @@
         "SkillRank": 15,
         "SkillType": "Slash",
         "SkillName": "Lightning Strikes III",
-        "SkillDescription": "Lightning Strikes III",
+        "SkillDescription": "When using Slash 25% chance will Attack Target 4x per round",
         "DataClass": "LightningStrikes",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -596,7 +596,7 @@
         "SkillRank": 16,
         "SkillType": "Slash",
         "SkillName": "Blade Mastery IV",
-        "SkillDescription": "Blade Mastery IV",
+        "SkillDescription": "Slash; 130% ATK, 30% chance 2.75x Critical, 30 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -638,7 +638,7 @@
         "SkillRank": 17,
         "SkillType": "Slash",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Slash; 130% ATK, 30% chance 2.75x Critical, 35 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -680,7 +680,7 @@
         "SkillRank": 18,
         "SkillType": "Slash",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Slash; 130% ATK, 35% chance 2.75x Critical, 35 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -722,7 +722,7 @@
         "SkillRank": 19,
         "SkillType": "Slash",
         "SkillName": "Deep Cut IV",
-        "SkillDescription": "Deep Cut IV",
+        "SkillDescription": "Slash; 130% ATK, 35% chance 3x Critical, 35 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -764,7 +764,7 @@
         "SkillRank": 20,
         "SkillType": "Slash",
         "SkillName": "Lightning Strikes IV",
-        "SkillDescription": "Lightning Strikes IV",
+        "SkillDescription": "When using Slash 25% chance will Attack Target 5x per round",
         "DataClass": "LightningStrikes",
         "WeaponBaseType": "Slash",
         "StatChanges": [

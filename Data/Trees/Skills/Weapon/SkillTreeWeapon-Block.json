@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Block",
         "SkillName": "Blunt Mastery I",
-        "SkillDescription": "Blunt Mastery I",
+        "SkillDescription": "Block; 5% chance 2.25x Critical, 20 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Block",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Block; 5% chance 2.25x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Block",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Block; 10% chance 2.25x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Block",
         "SkillName": "Deep Impact I",
-        "SkillDescription": "Deep Impact I",
+        "SkillDescription": "Block; 10% chance 2.5x Critical, 25 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Block",
         "SkillName": "Stalwart I",
-        "SkillDescription": "Stalwart I",
+        "SkillDescription": "Gain 5% DEF for next enemy ATK",
         "DataClass": "Stalwart",
         "RunTypes": [
             "Battle"
@@ -198,7 +198,7 @@
         "SkillRank": 6,
         "SkillType": "Block",
         "SkillName": "Blunt Mastery II",
-        "SkillDescription": "Blunt Mastery II",
+        "SkillDescription": "Block; 110% ATK, 10% chance 2.5x Critical, 25 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -240,7 +240,7 @@
         "SkillRank": 7,
         "SkillType": "Block",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Block; 110% ATK, 10% chance 2.5x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -282,7 +282,7 @@
         "SkillRank": 8,
         "SkillType": "Block",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Block; 110% ATK, 15% chance 2.5x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -324,7 +324,7 @@
         "SkillRank": 9,
         "SkillType": "Block",
         "SkillName": "Deep Impact II",
-        "SkillDescription": "Deep Impact II",
+        "SkillDescription": "Block; 110% ATK, 15% chance 2.75x Critical, 30 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -366,7 +366,7 @@
         "SkillRank": 10,
         "SkillType": "Block",
         "SkillName": "Stalwart II",
-        "SkillDescription": "Stalwart II",
+        "SkillDescription": "Gain 10% DEF for next enemy ATK",
         "DataClass": "Stalwart",
         "RunTypes": [
             "Battle"
@@ -397,7 +397,7 @@
         "SkillRank": 11,
         "SkillType": "Block",
         "SkillName": "Blunt Mastery III",
-        "SkillDescription": "Blunt Mastery III",
+        "SkillDescription": "Block; 120% ATK, 15% chance 2.75x Critical, 30 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -439,7 +439,7 @@
         "SkillRank": 12,
         "SkillType": "Block",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Block; 120% ATK, 15% chance 2.75x Critical, 35 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -481,7 +481,7 @@
         "SkillRank": 13,
         "SkillType": "Block",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Block; 120% ATK, 20% chance 2.75x Critical, 35 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -523,7 +523,7 @@
         "SkillRank": 14,
         "SkillType": "Block",
         "SkillName": "Deep Impact III",
-        "SkillDescription": "Deep Impact III",
+        "SkillDescription": "Block; 120% ATK, 20% chance 3x Critical, 35 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -565,7 +565,7 @@
         "SkillRank": 15,
         "SkillType": "Block",
         "SkillName": "Stalwart III",
-        "SkillDescription": "Stalwart III",
+        "SkillDescription": "Gain 10% DEF for 1st enemy ATK, 5% DEF for 2nd enemy ATK",
         "DataClass": "Stalwart",
         "RunTypes": [
             "Battle"
@@ -603,7 +603,7 @@
         "SkillRank": 16,
         "SkillType": "Block",
         "SkillName": "Blunt Mastery IV",
-        "SkillDescription": "Blunt Mastery IV",
+        "SkillDescription": "Block; 130% ATK, 20% chance 3x Critical, 35 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -645,7 +645,7 @@
         "SkillRank": 17,
         "SkillType": "Block",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Block; 130% ATK, 20% chance 3x Critical, 40 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -687,7 +687,7 @@
         "SkillRank": 18,
         "SkillType": "Block",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Block; 130% ATK, 25% chance 3x Critical, 40 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -729,7 +729,7 @@
         "SkillRank": 19,
         "SkillType": "Block",
         "SkillName": "Deep Impact IV",
-        "SkillDescription": "Deep Impact IV",
+        "SkillDescription": "Block; 130% ATK, 25% chance 3.25x Critical, 40 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -771,7 +771,7 @@
         "SkillRank": 20,
         "SkillType": "Block",
         "SkillName": "Stalwart IV",
-        "SkillDescription": "Stalwart IV",
+        "SkillDescription": "Gain 15% DEF for 1st enemy ATK, 5% DEF for 2nd enemy ATK",
         "DataClass": "Stalwart",
         "RunTypes": [
             "Battle"

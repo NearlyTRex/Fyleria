@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Break",
         "SkillName": "Blunt Mastery I",
-        "SkillDescription": "Blunt Mastery I",
+        "SkillDescription": "Break; 10% chance 2.25x Critical, 5 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Break",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Break; 10% chance 2.25x Critical, 10 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Break",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Break; 15% chance 2.25x Critical, 10 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Break",
         "SkillName": "Deep Impact I",
-        "SkillDescription": "Deep Impact I",
+        "SkillDescription": "Break; 15% chance 2.5x Critical, 10 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Break",
         "SkillName": "Hammering Blow I",
-        "SkillDescription": "Hammering Blow I",
+        "SkillDescription": "50% chance Targeted Enemy loses 5% SDEF",
         "DataClass": "HammeringBlow",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -193,7 +193,7 @@
         "SkillRank": 6,
         "SkillType": "Break",
         "SkillName": "Blunt Mastery II",
-        "SkillDescription": "Blunt Mastery II",
+        "SkillDescription": "Break; 110% ATK, 15% chance 2.5x Critical, 10 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -235,7 +235,7 @@
         "SkillRank": 7,
         "SkillType": "Break",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Break; 110% ATK, 15% chance 2.5x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -277,7 +277,7 @@
         "SkillRank": 8,
         "SkillType": "Break",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Break; 110% ATK, 20% chance 2.5x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -319,7 +319,7 @@
         "SkillRank": 9,
         "SkillType": "Break",
         "SkillName": "Deep Impact II",
-        "SkillDescription": "Deep Impact II",
+        "SkillDescription": "Break; 110% ATK, 20% chance 2.75x Critical, 15 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -361,7 +361,7 @@
         "SkillRank": 10,
         "SkillType": "Break",
         "SkillName": "Hammering Blow II",
-        "SkillDescription": "Hammering Blow II",
+        "SkillDescription": "50% chance Targeted Enemy loses 10% SDEF",
         "DataClass": "HammeringBlow",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -387,7 +387,7 @@
         "SkillRank": 11,
         "SkillType": "Break",
         "SkillName": "Blunt Mastery III",
-        "SkillDescription": "Blunt Mastery III",
+        "SkillDescription": "Break; 120% ATK, 20% chance 2.75x Critical, 15 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -429,7 +429,7 @@
         "SkillRank": 12,
         "SkillType": "Break",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Break; 120% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -471,7 +471,7 @@
         "SkillRank": 13,
         "SkillType": "Break",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Break; 120% ATK, 25% chance 2.75x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -513,7 +513,7 @@
         "SkillRank": 14,
         "SkillType": "Break",
         "SkillName": "Deep Impact III",
-        "SkillDescription": "Deep Impact III",
+        "SkillDescription": "Break; 120% ATK, 25% chance 3x Critical, 20 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -555,7 +555,7 @@
         "SkillRank": 15,
         "SkillType": "Break",
         "SkillName": "Hammering Blow III",
-        "SkillDescription": "Hammering Blow III",
+        "SkillDescription": "50% chance Targeted Enemy loses 15% SDEF",
         "DataClass": "HammeringBlow",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -581,7 +581,7 @@
         "SkillRank": 16,
         "SkillType": "Break",
         "SkillName": "Blunt Mastery IV",
-        "SkillDescription": "Blunt Mastery IV",
+        "SkillDescription": "Break; 130% ATK, 25% chance 3x Critical, 20 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -623,7 +623,7 @@
         "SkillRank": 17,
         "SkillType": "Break",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Break; 130% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -665,7 +665,7 @@
         "SkillRank": 18,
         "SkillType": "Break",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Break; 130% ATK, 30% chance 3x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -707,7 +707,7 @@
         "SkillRank": 19,
         "SkillType": "Break",
         "SkillName": "Deep Impact IV",
-        "SkillDescription": "Deep Impact IV",
+        "SkillDescription": "Break; 130% ATK, 30% chance 3.25x Critical, 25 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -749,7 +749,7 @@
         "SkillRank": 20,
         "SkillType": "Break",
         "SkillName": "Hammering Blow IV",
-        "SkillDescription": "Hammering Blow IV",
+        "SkillDescription": "50% chance Targeted Enemy loses 20% SDEF",
         "DataClass": "HammeringBlow",
         "WeaponBaseType": "Blunt",
         "StatChanges": [

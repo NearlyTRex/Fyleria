@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Rush",
         "SkillName": "Blunt Mastery I",
-        "SkillDescription": "Blunt Mastery I",
+        "SkillDescription": "Rush; 10% chance 2.25x Critical, 10 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Rush",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Rush; 10% chance 2.25x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Rush",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Rush; 15% chance 2.25x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Rush",
         "SkillName": "Deep Impact I",
-        "SkillDescription": "Deep Impact I",
+        "SkillDescription": "Rush; 15% chance 2.5x Critical, 15 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Rush",
         "SkillName": "Feral Charge I",
-        "SkillDescription": "Feral Charge I",
+        "SkillDescription": "Add 10% of Speed Stat to ATK",
         "DataClass": "FeralCharge",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -192,7 +192,7 @@
         "SkillRank": 6,
         "SkillType": "Rush",
         "SkillName": "Blunt Mastery II",
-        "SkillDescription": "Blunt Mastery II",
+        "SkillDescription": "Rush; 110% ATK, 15% chance 2.5x Critical, 15 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -234,7 +234,7 @@
         "SkillRank": 7,
         "SkillType": "Rush",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Rush; 110% ATK, 15% chance 2.5x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -276,7 +276,7 @@
         "SkillRank": 8,
         "SkillType": "Rush",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Rush; 110% ATK, 20% chance 2.5x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -318,7 +318,7 @@
         "SkillRank": 9,
         "SkillType": "Rush",
         "SkillName": "Deep Impact II",
-        "SkillDescription": "Deep Impact II",
+        "SkillDescription": "Rush; 110% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -360,7 +360,7 @@
         "SkillRank": 10,
         "SkillType": "Rush",
         "SkillName": "Feral Charge II",
-        "SkillDescription": "Feral Charge II",
+        "SkillDescription": "Add 20% of Speed Stat to ATK",
         "DataClass": "FeralCharge",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -385,7 +385,7 @@
         "SkillRank": 11,
         "SkillType": "Rush",
         "SkillName": "Blunt Mastery III",
-        "SkillDescription": "Blunt Mastery III",
+        "SkillDescription": "Rush; 120% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -427,7 +427,7 @@
         "SkillRank": 12,
         "SkillType": "Rush",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Rush; 120% ATK, 20% chance 2.75x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -469,7 +469,7 @@
         "SkillRank": 13,
         "SkillType": "Rush",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Rush; 120% ATK, 25% chance 2.75x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -511,7 +511,7 @@
         "SkillRank": 14,
         "SkillType": "Rush",
         "SkillName": "Deep Impact III",
-        "SkillDescription": "Deep Impact III",
+        "SkillDescription": "Rush; 120% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -553,7 +553,7 @@
         "SkillRank": 15,
         "SkillType": "Rush",
         "SkillName": "Feral Charge III",
-        "SkillDescription": "Feral Charge III",
+        "SkillDescription": "Add 30% of Speed Stat to ATK",
         "DataClass": "FeralCharge",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -578,7 +578,7 @@
         "SkillRank": 16,
         "SkillType": "Rush",
         "SkillName": "Blunt Mastery IV",
-        "SkillDescription": "Blunt Mastery IV",
+        "SkillDescription": "Rush; 130% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -620,7 +620,7 @@
         "SkillRank": 17,
         "SkillType": "Rush",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Rush; 130% ATK, 25% chance 3x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -662,7 +662,7 @@
         "SkillRank": 18,
         "SkillType": "Rush",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Rush; 130% ATK, 30% chance 3x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -704,7 +704,7 @@
         "SkillRank": 19,
         "SkillType": "Rush",
         "SkillName": "Deep Impact IV",
-        "SkillDescription": "Deep Impact IV",
+        "SkillDescription": "Rush; 130% ATK, 30% chance 3.25x Critical, 30 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -746,7 +746,7 @@
         "SkillRank": 20,
         "SkillType": "Rush",
         "SkillName": "Feral Charge IV",
-        "SkillDescription": "Feral Charge IV",
+        "SkillDescription": "Add 40% of Speed Stat to ATK",
         "DataClass": "FeralCharge",
         "WeaponBaseType": "Blunt",
         "StatChanges": [

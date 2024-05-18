@@ -22,9 +22,9 @@
     "Rank1": {
         "SkillRank": 1,
         "SkillType": "Riposte",
-        "SkillName": "Slash Mastery I",
-        "SkillDescription": "Slash Mastery I",
-        "DataClass": "SlashMastery",
+        "SkillName": "Blade Mastery I",
+        "SkillDescription": "Riposte; 10% chance 2.25x Critical, 10 AP",
+        "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
         ],
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Riposte",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Riposte; 10% chance 2.25x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Riposte",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Riposte; 15% chance 2.25x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Riposte",
         "SkillName": "Deep Cut I",
-        "SkillDescription": "Deep Cut I",
+        "SkillDescription": "Riposte; 15% chance 2.5x Critical, 15 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Riposte",
         "SkillName": "Angry Rebuttal I",
-        "SkillDescription": "Angry Rebuttal I",
+        "SkillDescription": "Gain 10% of last enemy ATK received as bonus for ATK",
         "DataClass": "AngryRebuttal",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -191,9 +191,9 @@
     "Rank6": {
         "SkillRank": 6,
         "SkillType": "Riposte",
-        "SkillName": "Slash Mastery II",
-        "SkillDescription": "Slash Mastery II",
-        "DataClass": "SlashMastery",
+        "SkillName": "Blade Mastery II",
+        "SkillDescription": "Riposte; 110% ATK, 15% chance 2.5x Critical, 15 AP",
+        "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
         ],
@@ -234,7 +234,7 @@
         "SkillRank": 7,
         "SkillType": "Riposte",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Riposte; 110% ATK, 15% chance 2.5x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -276,7 +276,7 @@
         "SkillRank": 8,
         "SkillType": "Riposte",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Riposte; 110% ATK, 20% chance 2.5x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -318,7 +318,7 @@
         "SkillRank": 9,
         "SkillType": "Riposte",
         "SkillName": "Deep Cut II",
-        "SkillDescription": "Deep Cut II",
+        "SkillDescription": "Riposte; 110% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -360,7 +360,7 @@
         "SkillRank": 10,
         "SkillType": "Riposte",
         "SkillName": "Angry Rebuttal II",
-        "SkillDescription": "Angry Rebuttal II",
+        "SkillDescription": "Gain 20% of last enemy ATK received as bonus for ATK",
         "DataClass": "AngryRebuttal",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -384,9 +384,9 @@
     "Rank11": {
         "SkillRank": 11,
         "SkillType": "Riposte",
-        "SkillName": "Slash Mastery III",
-        "SkillDescription": "Slash Mastery III",
-        "DataClass": "SlashMastery",
+        "SkillName": "Blade Mastery III",
+        "SkillDescription": "Riposte; 120% ATK, 20% chance 2.75x Critical, 20 AP",
+        "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
         ],
@@ -427,7 +427,7 @@
         "SkillRank": 12,
         "SkillType": "Riposte",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Riposte; 120% ATK, 20% chance 2.75x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -469,7 +469,7 @@
         "SkillRank": 13,
         "SkillType": "Riposte",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Riposte; 120% ATK, 25% chance 2.75x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -511,7 +511,7 @@
         "SkillRank": 14,
         "SkillType": "Riposte",
         "SkillName": "Deep Cut III",
-        "SkillDescription": "Deep Cut III",
+        "SkillDescription": "Riposte; 120% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -553,7 +553,7 @@
         "SkillRank": 15,
         "SkillType": "Riposte",
         "SkillName": "Angry Rebuttal III",
-        "SkillDescription": "Angry Rebuttal III",
+        "SkillDescription": "Gain 30% of last enemy ATK received as bonus for ATK",
         "DataClass": "AngryRebuttal",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -577,9 +577,9 @@
     "Rank16": {
         "SkillRank": 16,
         "SkillType": "Riposte",
-        "SkillName": "Slash Mastery IV",
-        "SkillDescription": "Slash Mastery IV",
-        "DataClass": "SlashMastery",
+        "SkillName": "Blade Mastery IV",
+        "SkillDescription": "Riposte; 130% ATK, 25% chance 3x Critical, 25 AP",
+        "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
         ],
@@ -620,7 +620,7 @@
         "SkillRank": 17,
         "SkillType": "Riposte",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Riposte; 130% ATK, 25% chance 3x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -662,7 +662,7 @@
         "SkillRank": 18,
         "SkillType": "Riposte",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Riposte; 130% ATK, 30% chance 3x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -704,7 +704,7 @@
         "SkillRank": 19,
         "SkillType": "Riposte",
         "SkillName": "Deep Cut IV",
-        "SkillDescription": "Deep Cut IV",
+        "SkillDescription": "Riposte; 130% ATK, 30% chance 3.25x Critical, 30 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -746,7 +746,7 @@
         "SkillRank": 20,
         "SkillType": "Riposte",
         "SkillName": "Angry Rebuttal IV",
-        "SkillDescription": "Angry Rebuttal IV",
+        "SkillDescription": "Gain 40% of last enemy ATK received as bonus for ATK",
         "DataClass": "AngryRebuttal",
         "WeaponBaseType": "Slash",
         "StatChanges": [

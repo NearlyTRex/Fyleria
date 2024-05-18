@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Parry",
         "SkillName": "Blade Mastery I",
-        "SkillDescription": "Blade Mastery I",
+        "SkillDescription": "Parry; 5% chance 2.25x Critical, 20 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Parry",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Parry; 5% chance 2.25x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Parry",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Parry; 10% chance 2.25x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Parry",
         "SkillName": "Deep Cut I",
-        "SkillDescription": "Deep Cut I",
+        "SkillDescription": "Parry; 10% chance 2.5x Critical, 25 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Parry",
         "SkillName": "Prepared I",
-        "SkillDescription": "Prepared I",
+        "SkillDescription": "Gain 5% DEF for next enemy ATK",
         "DataClass": "Prepared",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -194,7 +194,7 @@
         "SkillRank": 6,
         "SkillType": "Parry",
         "SkillName": "Blade Mastery II",
-        "SkillDescription": "Blade Mastery II",
+        "SkillDescription": "Parry; 110% ATK, 10% chance 2.5x Critical, 25 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -236,7 +236,7 @@
         "SkillRank": 7,
         "SkillType": "Parry",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Parry; 110% ATK, 10% chance 2.5x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -278,7 +278,7 @@
         "SkillRank": 8,
         "SkillType": "Parry",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Parry; 110% ATK, 15% chance 2.5x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -320,7 +320,7 @@
         "SkillRank": 9,
         "SkillType": "Parry",
         "SkillName": "Deep Cut II",
-        "SkillDescription": "Deep Cut II",
+        "SkillDescription": "Parry; 110% ATK, 15% chance 2.75x Critical, 30 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -362,7 +362,7 @@
         "SkillRank": 10,
         "SkillType": "Parry",
         "SkillName": "Prepared II",
-        "SkillDescription": "Prepared II",
+        "SkillDescription": "Gain 10% DEF for next enemy ATK",
         "DataClass": "Prepared",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -389,7 +389,7 @@
         "SkillRank": 11,
         "SkillType": "Parry",
         "SkillName": "Blade Mastery III",
-        "SkillDescription": "Blade Mastery III",
+        "SkillDescription": "Parry; 120% ATK, 15% chance 2.75x Critical, 30 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -431,7 +431,7 @@
         "SkillRank": 12,
         "SkillType": "Parry",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Parry; 120% ATK, 15% chance 2.75x Critical, 35 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -473,7 +473,7 @@
         "SkillRank": 13,
         "SkillType": "Parry",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Parry; 120% ATK, 20% chance 2.75x Critical, 35 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -515,7 +515,7 @@
         "SkillRank": 14,
         "SkillType": "Parry",
         "SkillName": "Deep Cut III",
-        "SkillDescription": "Deep Cut III",
+        "SkillDescription": "Parry; 120% ATK, 20% chance 3x Critical, 35 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -557,7 +557,7 @@
         "SkillRank": 15,
         "SkillType": "Parry",
         "SkillName": "Prepared III",
-        "SkillDescription": "Prepared III",
+        "SkillDescription": "Gain 10% DEF for 1st enemy ATK, 5% DEF for 2nd enemy ATK",
         "DataClass": "Prepared",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -591,7 +591,7 @@
         "SkillRank": 16,
         "SkillType": "Parry",
         "SkillName": "Blade Mastery IV",
-        "SkillDescription": "Blade Mastery IV",
+        "SkillDescription": "Parry; 130% ATK, 20% chance 3x Critical, 35 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -633,7 +633,7 @@
         "SkillRank": 17,
         "SkillType": "Parry",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Parry; 130% ATK, 20% chance 3x Critical, 40 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -675,7 +675,7 @@
         "SkillRank": 18,
         "SkillType": "Parry",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Parry; 130% ATK, 25% chance 3x Critical, 40 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -717,7 +717,7 @@
         "SkillRank": 19,
         "SkillType": "Parry",
         "SkillName": "Deep Cut IV",
-        "SkillDescription": "Deep Cut IV",
+        "SkillDescription": "Parry; 130% ATK, 25% chance 3.25x Critical, 40 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -759,7 +759,7 @@
         "SkillRank": 20,
         "SkillType": "Parry",
         "SkillName": "Prepared IV",
-        "SkillDescription": "Prepared IV",
+        "SkillDescription": "Gain 15% DEF for 1st enemy ATK, 5% DEF for 2nd enemy ATK",
         "DataClass": "Prepared",
         "WeaponBaseType": "Slash",
         "StatChanges": [

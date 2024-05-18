@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "StealthStrike",
         "SkillName": "Aim Mastery I",
-        "SkillDescription": "Aim Mastery I",
+        "SkillDescription": "Stealth Strike; 10% chance 2.25x Critical, 5 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "StealthStrike",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Stealth Strike; 10% chance 2.25x Critical, 10 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "StealthStrike",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Stealth Strike; 15% chance 2.25x Critical, 10 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "StealthStrike",
         "SkillName": "Deep Penetration I",
-        "SkillDescription": "Deep Penetration I",
+        "SkillDescription": "Stealth Strike; 15% chance 2.5x Critical, 10 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "StealthStrike",
         "SkillName": "Surprise Strike I",
-        "SkillDescription": "Surprise Strike I",
+        "SkillDescription": "50% chance Targeted Enemy loses 5% SDEF",
         "DataClass": "SurpriseStrike",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -193,7 +193,7 @@
         "SkillRank": 6,
         "SkillType": "StealthStrike",
         "SkillName": "Aim Mastery II",
-        "SkillDescription": "Aim Mastery II",
+        "SkillDescription": "Stealth Strike; 110% ATK, 15% chance 2.5x Critical, 10 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -235,7 +235,7 @@
         "SkillRank": 7,
         "SkillType": "StealthStrike",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Stealth Strike; 110% ATK, 15% chance 2.5x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -277,7 +277,7 @@
         "SkillRank": 8,
         "SkillType": "StealthStrike",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Stealth Strike; 110% ATK, 20% chance 2.5x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -319,7 +319,7 @@
         "SkillRank": 9,
         "SkillType": "StealthStrike",
         "SkillName": "Deep Penetration II",
-        "SkillDescription": "Deep Penetration II",
+        "SkillDescription": "Stealth Strike; 110% ATK, 20% chance 2.75x Critical, 15 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -361,7 +361,7 @@
         "SkillRank": 10,
         "SkillType": "StealthStrike",
         "SkillName": "Surprise Strike II",
-        "SkillDescription": "Surprise Strike II",
+        "SkillDescription": "50% chance Targeted Enemy loses 10% SDEF",
         "DataClass": "SurpriseStrike",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -387,7 +387,7 @@
         "SkillRank": 11,
         "SkillType": "StealthStrike",
         "SkillName": "Aim Mastery III",
-        "SkillDescription": "Aim Mastery III",
+        "SkillDescription": "Stealth Strike; 120% ATK, 20% chance 2.75x Critical, 15 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -429,7 +429,7 @@
         "SkillRank": 12,
         "SkillType": "StealthStrike",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Stealth Strike; 120% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -471,7 +471,7 @@
         "SkillRank": 13,
         "SkillType": "StealthStrike",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Stealth Strike; 120% ATK, 25% chance 2.75x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -513,7 +513,7 @@
         "SkillRank": 14,
         "SkillType": "StealthStrike",
         "SkillName": "Deep Penetration III",
-        "SkillDescription": "Deep Penetration III",
+        "SkillDescription": "Stealth Strike; 120% ATK, 25% chance 3x Critical, 20 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -555,7 +555,7 @@
         "SkillRank": 15,
         "SkillType": "StealthStrike",
         "SkillName": "Surprise Strike III",
-        "SkillDescription": "Surprise Strike III",
+        "SkillDescription": "50% chance Targeted Enemy loses 15% SDEF",
         "DataClass": "SurpriseStrike",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -581,7 +581,7 @@
         "SkillRank": 16,
         "SkillType": "StealthStrike",
         "SkillName": "Aim Mastery IV",
-        "SkillDescription": "Aim Mastery IV",
+        "SkillDescription": "Stealth Strike; 130% ATK, 25% chance 3x Critical, 20 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -623,7 +623,7 @@
         "SkillRank": 17,
         "SkillType": "StealthStrike",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Stealth Strike; 130% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -665,7 +665,7 @@
         "SkillRank": 18,
         "SkillType": "StealthStrike",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Stealth Strike; 130% ATK, 30% chance 3x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -707,7 +707,7 @@
         "SkillRank": 19,
         "SkillType": "StealthStrike",
         "SkillName": "Deep Penetration IV",
-        "SkillDescription": "Deep Penetration IV",
+        "SkillDescription": "Stealth Strike; 130% ATK, 30% chance 3.25x Critical, 25 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -749,7 +749,7 @@
         "SkillRank": 20,
         "SkillType": "StealthStrike",
         "SkillName": "Surprise Strike IV",
-        "SkillDescription": "Surprise Strike IV",
+        "SkillDescription": "50% chance Targeted Enemy loses 20% SDEF",
         "DataClass": "SurpriseStrike",
         "WeaponBaseType": "Pierce",
         "StatChanges": [

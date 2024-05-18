@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Impale",
         "SkillName": "Aim Mastery I",
-        "SkillDescription": "Aim Mastery I",
+        "SkillDescription": "Impale; 15% chance 2.25x Critical, 10 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Impale",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Impale; 15% chance 2.25x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Impale",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Impale; 20% chance 2.25x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Impale",
         "SkillName": "Deep Penetration I",
-        "SkillDescription": "Deep Penetration I",
+        "SkillDescription": "Impale; 20% chance 2.5x Critical, 15 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Impale",
         "SkillName": "Vital Strike I",
-        "SkillDescription": "Vital Strike I",
+        "SkillDescription": "75% chance Targeted enemy bleeds 1 HP for 2 Rounds",
         "DataClass": "VitalStrike",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -202,7 +202,7 @@
         "SkillRank": 6,
         "SkillType": "Impale",
         "SkillName": "Aim Mastery II",
-        "SkillDescription": "Aim Mastery II",
+        "SkillDescription": "Impale; 110% ATK, 20% chance 2.5x Critical, 15 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -244,7 +244,7 @@
         "SkillRank": 7,
         "SkillType": "Impale",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Impale; 110% ATK, 20% chance 2.5x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -286,7 +286,7 @@
         "SkillRank": 8,
         "SkillType": "Impale",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Impale; 110% ATK, 25% chance 2.5x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -328,7 +328,7 @@
         "SkillRank": 9,
         "SkillType": "Impale",
         "SkillName": "Deep Penetration II",
-        "SkillDescription": "Deep Penetration II",
+        "SkillDescription": "Impale; 110% ATK, 25% chance 2.75x Critical, 20 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -370,7 +370,7 @@
         "SkillRank": 10,
         "SkillType": "Impale",
         "SkillName": "Vital Strike II",
-        "SkillDescription": "Vital Strike II",
+        "SkillDescription": "75% chance Targeted enemy bleeds 2 HP for 2 Rounds",
         "DataClass": "VitalStrike",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -405,7 +405,7 @@
         "SkillRank": 11,
         "SkillType": "Impale",
         "SkillName": "Aim Mastery III",
-        "SkillDescription": "Aim Mastery III",
+        "SkillDescription": "Impale; 120% ATK, 25% chance 2.75x Critical, 20 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -447,7 +447,7 @@
         "SkillRank": 12,
         "SkillType": "Impale",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Impale; 120% ATK, 25% chance 2.75x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -489,7 +489,7 @@
         "SkillRank": 13,
         "SkillType": "Impale",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Impale; 120% ATK, 30% chance 2.75x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -531,7 +531,7 @@
         "SkillRank": 14,
         "SkillType": "Impale",
         "SkillName": "Deep Penetration III",
-        "SkillDescription": "Deep Penetration III",
+        "SkillDescription": "Impale; 120% ATK, 30% chance 3x Critical, 25 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -573,7 +573,7 @@
         "SkillRank": 15,
         "SkillType": "Impale",
         "SkillName": "Vital Strike III",
-        "SkillDescription": "Vital Strike III",
+        "SkillDescription": "75% chance Targeted enemy bleeds 2 HP for 3 Rounds",
         "DataClass": "VitalStrike",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -615,7 +615,7 @@
         "SkillRank": 16,
         "SkillType": "Impale",
         "SkillName": "Aim Mastery IV",
-        "SkillDescription": "Aim Mastery IV",
+        "SkillDescription": "Impale; 130% ATK, 30% chance 3x Critical, 25 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -657,7 +657,7 @@
         "SkillRank": 17,
         "SkillType": "Impale",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Impale; 130% ATK, 30% chance 3x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -699,7 +699,7 @@
         "SkillRank": 18,
         "SkillType": "Impale",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Impale; 130% ATK, 35% chance 3x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -741,7 +741,7 @@
         "SkillRank": 19,
         "SkillType": "Impale",
         "SkillName": "Deep Penetration IV",
-        "SkillDescription": "Deep Penetration IV",
+        "SkillDescription": "Impale; 130% ATK, 35% chance 3.25x Critical, 30 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -783,7 +783,7 @@
         "SkillRank": 20,
         "SkillType": "Impale",
         "SkillName": "Vital Strike IV",
-        "SkillDescription": "Vital Strike IV",
+        "SkillDescription": "75% chance Targeted enemy bleeds 3 HP for 3 Rounds",
         "DataClass": "VitalStrike",
         "WeaponBaseType": "Pierce",
         "StatChanges": [

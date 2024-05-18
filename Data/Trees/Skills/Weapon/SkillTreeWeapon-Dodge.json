@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Dodge",
         "SkillName": "Aim Mastery I",
-        "SkillDescription": "Aim Mastery I",
+        "SkillDescription": "Dodge; 5% chance 2.25x Critical, 20 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Dodge",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Dodge; 5% chance 2.25x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Dodge",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Dodge; 10% chance 2.25x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -130,9 +130,9 @@
     "Rank4": {
         "SkillRank": 4,
         "SkillType": "Dodge",
-        "SkillName": "Deep Impact I",
-        "SkillDescription": "Deep Impact I",
-        "DataClass": "DeepImpact",
+        "SkillName": "Deep Penetration I",
+        "SkillDescription": "Dodge; 10% chance 2.5x Critical, 25 AP",
+        "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
         ],
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Dodge",
         "SkillName": "Nimble Reflexes I",
-        "SkillDescription": "Nimble Reflexes I",
+        "SkillDescription": "Gain 5% DEF for next enemy ATK",
         "DataClass": "NimbleReflexes",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -194,7 +194,7 @@
         "SkillRank": 6,
         "SkillType": "Dodge",
         "SkillName": "Aim Mastery II",
-        "SkillDescription": "Aim Mastery II",
+        "SkillDescription": "Dodge; 110% ATK, 10% chance 2.5x Critical, 25 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -236,7 +236,7 @@
         "SkillRank": 7,
         "SkillType": "Dodge",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Dodge; 110% ATK, 10% chance 2.5x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -278,7 +278,7 @@
         "SkillRank": 8,
         "SkillType": "Dodge",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Dodge; 110% ATK, 15% chance 2.5x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -319,9 +319,9 @@
     "Rank9": {
         "SkillRank": 9,
         "SkillType": "Dodge",
-        "SkillName": "Deep Impact II",
-        "SkillDescription": "Deep Impact II",
-        "DataClass": "DeepImpact",
+        "SkillName": "Deep Penetration II",
+        "SkillDescription": "Dodge; 110% ATK, 15% chance 2.75x Critical, 30 AP",
+        "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
         ],
@@ -362,7 +362,7 @@
         "SkillRank": 10,
         "SkillType": "Dodge",
         "SkillName": "Nimble Reflexes II",
-        "SkillDescription": "Nimble Reflexes II",
+        "SkillDescription": "Gain 10% DEF for next enemy ATK",
         "DataClass": "NimbleReflexes",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -389,7 +389,7 @@
         "SkillRank": 11,
         "SkillType": "Dodge",
         "SkillName": "Aim Mastery III",
-        "SkillDescription": "Aim Mastery III",
+        "SkillDescription": "Dodge; 120% ATK, 15% chance 2.75x Critical, 30 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -431,7 +431,7 @@
         "SkillRank": 12,
         "SkillType": "Dodge",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Dodge; 120% ATK, 15% chance 2.75x Critical, 35 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -473,7 +473,7 @@
         "SkillRank": 13,
         "SkillType": "Dodge",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Dodge; 120% ATK, 20% chance 2.75x Critical, 35 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -514,9 +514,9 @@
     "Rank14": {
         "SkillRank": 14,
         "SkillType": "Dodge",
-        "SkillName": "Deep Impact III",
-        "SkillDescription": "Deep Impact III",
-        "DataClass": "DeepImpact",
+        "SkillName": "Deep Penetration III",
+        "SkillDescription": "Dodge; 120% ATK, 20% chance 3x Critical, 35 AP",
+        "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
         ],
@@ -557,7 +557,7 @@
         "SkillRank": 15,
         "SkillType": "Dodge",
         "SkillName": "Nimble Reflexes III",
-        "SkillDescription": "Nimble Reflexes III",
+        "SkillDescription": "Gain 10% DEF for 1st enemy ATK, 5% DEF for 2nd enemy ATK",
         "DataClass": "NimbleReflexes",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -591,7 +591,7 @@
         "SkillRank": 16,
         "SkillType": "Dodge",
         "SkillName": "Aim Mastery IV",
-        "SkillDescription": "Aim Mastery IV",
+        "SkillDescription": "Dodge; 130% ATK, 20% chance 3x Critical, 35 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -633,7 +633,7 @@
         "SkillRank": 17,
         "SkillType": "Dodge",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Dodge; 130% ATK, 20% chance 3x Critical, 40 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -675,7 +675,7 @@
         "SkillRank": 18,
         "SkillType": "Dodge",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Dodge; 130% ATK, 25% chance 3x Critical, 40 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -716,9 +716,9 @@
     "Rank19": {
         "SkillRank": 19,
         "SkillType": "Dodge",
-        "SkillName": "Deep Impact IV",
-        "SkillDescription": "Deep Impact IV",
-        "DataClass": "DeepImpact",
+        "SkillName": "Deep Penetration IV",
+        "SkillDescription": "Dodge; 130% ATK, 25% chance 3.25x Critical, 40 AP",
+        "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
         ],
@@ -759,7 +759,7 @@
         "SkillRank": 20,
         "SkillType": "Dodge",
         "SkillName": "Nimble Reflexes IV",
-        "SkillDescription": "Nimble Reflexes IV",
+        "SkillDescription": "Gain 15% DEF for 1st enemy ATK, 5% DEF for 2nd enemy ATK",
         "DataClass": "NimbleReflexes",
         "WeaponBaseType": "Pierce",
         "StatChanges": [

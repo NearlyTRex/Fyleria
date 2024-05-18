@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Drill",
         "SkillName": "Aim Mastery I",
-        "SkillDescription": "Aim Mastery I",
+        "SkillDescription": "Drill; 5% chance 2.5x Critical, 15 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Drill",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Drill; 5% chance 2.5x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Drill",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Drill; 10% chance 2.5x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Drill",
         "SkillName": "Deep Penetration I",
-        "SkillDescription": "Deep Penetration I",
+        "SkillDescription": "Drill; 10% chance 2.75x Critical, 20 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Drill",
         "SkillName": "Pointed Force I",
-        "SkillDescription": "Pointed Force I",
+        "SkillDescription": "50% chance Targeted Enemy loses 10% Speed",
         "DataClass": "PointedForce",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -193,7 +193,7 @@
         "SkillRank": 6,
         "SkillType": "Drill",
         "SkillName": "Aim Mastery II",
-        "SkillDescription": "Aim Mastery II",
+        "SkillDescription": "Drill; 110% ATK, 10% chance 2.75x Critical, 20 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -235,7 +235,7 @@
         "SkillRank": 7,
         "SkillType": "Drill",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Drill; 110% ATK, 10% chance 2.75x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -277,7 +277,7 @@
         "SkillRank": 8,
         "SkillType": "Drill",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Drill; 110% ATK, 15% chance 2.75x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -319,7 +319,7 @@
         "SkillRank": 9,
         "SkillType": "Drill",
         "SkillName": "Deep Penetration II",
-        "SkillDescription": "Deep Penetration II",
+        "SkillDescription": "Drill; 110% ATK, 15% chance 3x Critical, 25 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -361,7 +361,7 @@
         "SkillRank": 10,
         "SkillType": "Drill",
         "SkillName": "Pointed Force II",
-        "SkillDescription": "Pointed Force II",
+        "SkillDescription": "50% chance Targeted Enemy loses 20% Speed",
         "DataClass": "PointedForce",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -387,7 +387,7 @@
         "SkillRank": 11,
         "SkillType": "Drill",
         "SkillName": "Aim Mastery III",
-        "SkillDescription": "Aim Mastery III",
+        "SkillDescription": "Drill; 120% ATK, 15% chance 3x Critical, 25 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -429,7 +429,7 @@
         "SkillRank": 12,
         "SkillType": "Drill",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Drill; 120% ATK, 15% chance 3x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -471,7 +471,7 @@
         "SkillRank": 13,
         "SkillType": "Drill",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Drill; 120% ATK, 20% chance 3x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -513,7 +513,7 @@
         "SkillRank": 14,
         "SkillType": "Drill",
         "SkillName": "Deep Penetration III",
-        "SkillDescription": "Deep Penetration III",
+        "SkillDescription": "Drill; 120% ATK, 20% chance 3.25x Critical, 30 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -555,7 +555,7 @@
         "SkillRank": 15,
         "SkillType": "Drill",
         "SkillName": "Pointed Force III",
-        "SkillDescription": "Pointed Force III",
+        "SkillDescription": "50% chance Targeted Enemy loses 30% Speed",
         "DataClass": "PointedForce",
         "WeaponBaseType": "Pierce",
         "StatChanges": [
@@ -581,7 +581,7 @@
         "SkillRank": 16,
         "SkillType": "Drill",
         "SkillName": "Aim Mastery IV",
-        "SkillDescription": "Aim Mastery IV",
+        "SkillDescription": "Drill; 130% ATK, 20% chance 3.25x Critical, 30 AP",
         "DataClass": "AimMastery",
         "RunTypes": [
             "Battle"
@@ -623,7 +623,7 @@
         "SkillRank": 17,
         "SkillType": "Drill",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Drill; 130% ATK, 20% chance 3.25x Critical, 35 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -665,7 +665,7 @@
         "SkillRank": 18,
         "SkillType": "Drill",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Drill; 130% ATK, 25% chance 3.25x Critical, 35 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -707,7 +707,7 @@
         "SkillRank": 19,
         "SkillType": "Drill",
         "SkillName": "Deep Penetration IV",
-        "SkillDescription": "Deep Penetration IV",
+        "SkillDescription": "Drill; 130% ATK, 25% chance 3.5x Critical, 35 AP",
         "DataClass": "DeepPenetration",
         "RunTypes": [
             "Battle"
@@ -749,7 +749,7 @@
         "SkillRank": 20,
         "SkillType": "Drill",
         "SkillName": "Pointed Force IV",
-        "SkillDescription": "Pointed Force IV",
+        "SkillDescription": "50% chance Targeted Enemy loses 40% Speed",
         "DataClass": "PointedForce",
         "WeaponBaseType": "Pierce",
         "StatChanges": [

@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Impact",
         "SkillName": "Blunt Mastery I",
-        "SkillDescription": "Blunt Mastery I",
+        "SkillDescription": "Impact; 10% chance 2.25x Critical, 10 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Impact",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Impact; 10% chance 2.25x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Impact",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Impact; 15% chance 2.25x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Impact",
         "SkillName": "Deep Impact I",
-        "SkillDescription": "Deep Impact I",
+        "SkillDescription": "Impact; 15% chance 2.5x Critical, 15 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Impact",
         "SkillName": "Ground Pound I",
-        "SkillDescription": "Ground Pound I",
+        "SkillDescription": "10% chance Impact attack hits all enemies for 25% Damage",
         "DataClass": "GroundPound",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -201,7 +201,7 @@
         "SkillRank": 6,
         "SkillType": "Impact",
         "SkillName": "Blunt Mastery II",
-        "SkillDescription": "Blunt Mastery II",
+        "SkillDescription": "Impact; 110% ATK, 15% chance 2.5x Critical, 15 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -243,7 +243,7 @@
         "SkillRank": 7,
         "SkillType": "Impact",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Impact; 110% ATK, 15% chance 2.5x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -285,7 +285,7 @@
         "SkillRank": 8,
         "SkillType": "Impact",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Impact; 110% ATK, 20% chance 2.5x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -327,7 +327,7 @@
         "SkillRank": 9,
         "SkillType": "Impact",
         "SkillName": "Deep Impact II",
-        "SkillDescription": "Deep Impact II",
+        "SkillDescription": "Impact; 110% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -369,7 +369,7 @@
         "SkillRank": 10,
         "SkillType": "Impact",
         "SkillName": "Ground Pound II",
-        "SkillDescription": "Ground Pound II",
+        "SkillDescription": "15% chance Impact attack hits all enemies for 25% Damage",
         "DataClass": "GroundPound",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -403,7 +403,7 @@
         "SkillRank": 11,
         "SkillType": "Impact",
         "SkillName": "Blunt Mastery III",
-        "SkillDescription": "Blunt Mastery III",
+        "SkillDescription": "Impact; 120% ATK, 20% chance 2.75x Critical, 20 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -445,7 +445,7 @@
         "SkillRank": 12,
         "SkillType": "Impact",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Impact; 120% ATK, 20% chance 2.75x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -487,7 +487,7 @@
         "SkillRank": 13,
         "SkillType": "Impact",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Impact; 120% ATK, 25% chance 2.75x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -529,7 +529,7 @@
         "SkillRank": 14,
         "SkillType": "Impact",
         "SkillName": "Deep Impact III",
-        "SkillDescription": "Deep Impact III",
+        "SkillDescription": "Impact; 120% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -571,7 +571,7 @@
         "SkillRank": 15,
         "SkillType": "Impact",
         "SkillName": "Ground Pound III",
-        "SkillDescription": "Ground Pound III",
+        "SkillDescription": "15% chance Impact attack hits all enemies for 50% Damage",
         "DataClass": "GroundPound",
         "WeaponBaseType": "Blunt",
         "StatChanges": [
@@ -605,7 +605,7 @@
         "SkillRank": 16,
         "SkillType": "Impact",
         "SkillName": "Blunt Mastery IV",
-        "SkillDescription": "Blunt Mastery IV",
+        "SkillDescription": "Impact; 130% ATK, 25% chance 3x Critical, 25 AP",
         "DataClass": "BluntMastery",
         "RunTypes": [
             "Battle"
@@ -647,7 +647,7 @@
         "SkillRank": 17,
         "SkillType": "Impact",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Impact; 130% ATK, 25% chance 3x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -689,7 +689,7 @@
         "SkillRank": 18,
         "SkillType": "Impact",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Impact; 130% ATK, 30% chance 3x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -731,7 +731,7 @@
         "SkillRank": 19,
         "SkillType": "Impact",
         "SkillName": "Deep Impact IV",
-        "SkillDescription": "Deep Impact IV",
+        "SkillDescription": "Impact; 130% ATK, 30% chance 3.25x Critical, 30 AP",
         "DataClass": "DeepImpact",
         "RunTypes": [
             "Battle"
@@ -773,7 +773,7 @@
         "SkillRank": 20,
         "SkillType": "Impact",
         "SkillName": "Ground Pound IV",
-        "SkillDescription": "Ground Pound IV",
+        "SkillDescription": "20% chance Impact attack hits all enemies for 50% Damage",
         "DataClass": "GroundPound",
         "WeaponBaseType": "Blunt",
         "StatChanges": [

@@ -23,7 +23,7 @@
         "SkillRank": 1,
         "SkillType": "Slit",
         "SkillName": "Blade Mastery I",
-        "SkillDescription": "Blade Mastery I",
+        "SkillDescription": "Slit; 15% chance 2.25x Critical, 10 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -59,7 +59,7 @@
         "SkillRank": 2,
         "SkillType": "Slit",
         "SkillName": "Endurance Fighter I",
-        "SkillDescription": "Endurance Fighter I",
+        "SkillDescription": "Slit; 15% chance 2.25x Critical, 15 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -95,7 +95,7 @@
         "SkillRank": 3,
         "SkillType": "Slit",
         "SkillName": "Cunning Warrior I",
-        "SkillDescription": "Cunning Warrior I",
+        "SkillDescription": "Slit; 20% chance 2.25x Critical, 15 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -131,7 +131,7 @@
         "SkillRank": 4,
         "SkillType": "Slit",
         "SkillName": "Deep Cut I",
-        "SkillDescription": "Deep Cut I",
+        "SkillDescription": "Slit; 20% chance 2.5x Critical, 15 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -167,7 +167,7 @@
         "SkillRank": 5,
         "SkillType": "Slit",
         "SkillName": "Bleed Out I",
-        "SkillDescription": "Bleed Out I",
+        "SkillDescription": "75% chance Targeted enemy bleeds 1 HP for 2 Rounds",
         "DataClass": "BleedOut",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -202,7 +202,7 @@
         "SkillRank": 6,
         "SkillType": "Slit",
         "SkillName": "Blade Mastery II",
-        "SkillDescription": "Blade Mastery II",
+        "SkillDescription": "Slit; 110% ATK, 20% chance 2.5x Critical, 15 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -244,7 +244,7 @@
         "SkillRank": 7,
         "SkillType": "Slit",
         "SkillName": "Endurance Fighter II",
-        "SkillDescription": "Endurance Fighter II",
+        "SkillDescription": "Slit; 110% ATK, 20% chance 2.5x Critical, 20 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -286,7 +286,7 @@
         "SkillRank": 8,
         "SkillType": "Slit",
         "SkillName": "Cunning Warrior II",
-        "SkillDescription": "Cunning Warrior II",
+        "SkillDescription": "Slit; 110% ATK, 25% chance 2.5x Critical, 20 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -328,7 +328,7 @@
         "SkillRank": 9,
         "SkillType": "Slit",
         "SkillName": "Deep Cut II",
-        "SkillDescription": "Deep Cut II",
+        "SkillDescription": "Slit; 110% ATK, 25% chance 2.75x Critical, 20 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -370,7 +370,7 @@
         "SkillRank": 10,
         "SkillType": "Slit",
         "SkillName": "Bleed Out II",
-        "SkillDescription": "Bleed Out II",
+        "SkillDescription": "75% chance Targeted enemy bleeds 2 HP for 2 Rounds",
         "DataClass": "BleedOut",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -405,7 +405,7 @@
         "SkillRank": 11,
         "SkillType": "Slit",
         "SkillName": "Blade Mastery III",
-        "SkillDescription": "Blade Mastery III",
+        "SkillDescription": "Slit; 120% ATK, 25% chance 2.75x Critical, 20 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -447,7 +447,7 @@
         "SkillRank": 12,
         "SkillType": "Slit",
         "SkillName": "Endurance Fighter III",
-        "SkillDescription": "Endurance Fighter III",
+        "SkillDescription": "Slit; 120% ATK, 25% chance 2.75x Critical, 25 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -489,7 +489,7 @@
         "SkillRank": 13,
         "SkillType": "Slit",
         "SkillName": "Cunning Warrior III",
-        "SkillDescription": "Cunning Warrior III",
+        "SkillDescription": "Slit; 120% ATK, 30% chance 2.75x Critical, 25 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -531,7 +531,7 @@
         "SkillRank": 14,
         "SkillType": "Slit",
         "SkillName": "Deep Cut III",
-        "SkillDescription": "Deep Cut III",
+        "SkillDescription": "Slit; 120% ATK, 30% chance 3x Critical, 25 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -573,7 +573,7 @@
         "SkillRank": 15,
         "SkillType": "Slit",
         "SkillName": "Bleed Out III",
-        "SkillDescription": "Bleed Out III",
+        "SkillDescription": "75% chance Targeted enemy bleeds 2 HP for 3 Rounds",
         "DataClass": "BleedOut",
         "WeaponBaseType": "Slash",
         "StatChanges": [
@@ -615,7 +615,7 @@
         "SkillRank": 16,
         "SkillType": "Slit",
         "SkillName": "Blade Mastery IV",
-        "SkillDescription": "Blade Mastery IV",
+        "SkillDescription": "Slit; 130% ATK, 30% chance 3x Critical, 25 AP",
         "DataClass": "BladeMastery",
         "RunTypes": [
             "Battle"
@@ -657,7 +657,7 @@
         "SkillRank": 17,
         "SkillType": "Slit",
         "SkillName": "Endurance Fighter IV",
-        "SkillDescription": "Endurance Fighter IV",
+        "SkillDescription": "Slit; 130% ATK, 30% chance 3x Critical, 30 AP",
         "DataClass": "EnduranceFighter",
         "RunTypes": [
             "Battle"
@@ -699,7 +699,7 @@
         "SkillRank": 18,
         "SkillType": "Slit",
         "SkillName": "Cunning Warrior IV",
-        "SkillDescription": "Cunning Warrior IV",
+        "SkillDescription": "Slit; 130% ATK, 35% chance 3x Critical, 30 AP",
         "DataClass": "CunningWarrior",
         "RunTypes": [
             "Battle"
@@ -741,7 +741,7 @@
         "SkillRank": 19,
         "SkillType": "Slit",
         "SkillName": "Deep Cut IV",
-        "SkillDescription": "Deep Cut IV",
+        "SkillDescription": "Slit; 130% ATK, 35% chance 3.25x Critical, 30 AP",
         "DataClass": "DeepCut",
         "RunTypes": [
             "Battle"
@@ -783,7 +783,7 @@
         "SkillRank": 20,
         "SkillType": "Slit",
         "SkillName": "Bleed Out IV",
-        "SkillDescription": "Bleed Out IV",
+        "SkillDescription": "75% chance Targeted enemy bleeds 3 HP for 3 Rounds",
         "DataClass": "BleedOut",
         "WeaponBaseType": "Slash",
         "StatChanges": [
