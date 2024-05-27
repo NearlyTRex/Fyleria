@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Platesmith",
         "SkillName": "Recipe I",
-        "SkillDescription": "Recipe I",
+        "SkillDescription": "Bronze Screws (2x Bronze Bars)",
         "DataClass": "RecipeI",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Platesmith",
         "SkillName": "Recipe II",
-        "SkillDescription": "Recipe II",
+        "SkillDescription": "Bronze Plate (2x Pouches of Bronze Screws,2x Bronze Bars)",
         "DataClass": "RecipeII",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Platesmith",
         "SkillName": "Recipe III",
-        "SkillDescription": "Recipe III",
+        "SkillDescription": "Bronze Fylerian Helm (2x Bronze Plates,2x Pounches of Bronze Screws)",
         "DataClass": "RecipeIII",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Platesmith",
         "SkillName": "Recipe IV",
-        "SkillDescription": "Recipe IV",
+        "SkillDescription": "Bronze Fylerian Gauntlets (2x Bronze Plates,4x Pounches of Bronze Screws)",
         "DataClass": "RecipeIV",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Platesmith",
         "SkillName": "Recipe V",
-        "SkillDescription": "Recipe V",
+        "SkillDescription": "Bronze Fylerian Boots (4x Bronze Plates,4x Pounches of Bronze Screws)",
         "DataClass": "RecipeV",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Platesmith",
         "SkillName": "Bronze Master",
-        "SkillDescription": "Bronze Master",
+        "SkillDescription": "½ Bar Requirement for Recipes I-II",
         "DataClass": "BronzeMaster",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Platesmith",
         "SkillName": "Recipe VI",
-        "SkillDescription": "Recipe VI",
+        "SkillDescription": "Bronze Fylerian Greaves (4x Bronze Plates,6x Pounches of Bronze Screws)",
         "DataClass": "RecipeVI",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Platesmith",
         "SkillName": "Recipe VII",
-        "SkillDescription": "Recipe VII",
+        "SkillDescription": "Bronze Fylerian Breastplate (6x Bronze Plates,6x Pounches of Bronze Screws)",
         "DataClass": "RecipeVII",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Platesmith",
         "SkillName": "Screw Mastery I",
-        "SkillDescription": "Screw Mastery I",
+        "SkillDescription": "½ Screw Requirement for Recipes II-VII",
         "DataClass": "ScrewMastery",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Platesmith",
         "SkillName": "Plate Mastery I",
-        "SkillDescription": "Plate Mastery I",
+        "SkillDescription": "½ Plate Requirement for Recipes III-VII",
         "DataClass": "PlateMastery",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Platesmith",
         "SkillName": "Recipe VIII",
-        "SkillDescription": "Recipe VIII",
+        "SkillDescription": "Iron Screws (2x Iron Bars)",
         "DataClass": "RecipeVIII",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Platesmith",
         "SkillName": "Recipe IX",
-        "SkillDescription": "Recipe IX",
+        "SkillDescription": "Iron Plate (2x Pouches of Iron Screws,2x Iron Bars)",
         "DataClass": "RecipeIX",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Platesmith",
         "SkillName": "Recipe X",
-        "SkillDescription": "Recipe X",
+        "SkillDescription": "Iron Fylerian Helm (2x Iron Plates,2x Pounches of Iron Screws)",
         "DataClass": "RecipeX",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Platesmith",
         "SkillName": "Recipe XI",
-        "SkillDescription": "Recipe XI",
+        "SkillDescription": "Iron Fylerian Gauntlets (2x Iron Plates,4x Pounches of Iron Screws)",
         "DataClass": "RecipeXI",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Platesmith",
         "SkillName": "Recipe XII",
-        "SkillDescription": "Recipe XII",
+        "SkillDescription": "Iron Fylerian Boots (4x Iron Plates,4x Pounches of Iron Screws)",
         "DataClass": "RecipeXII",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Platesmith",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "½ Bar Requirement for Recipes VIII-IX",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Platesmith",
         "SkillName": "Recipe XIII",
-        "SkillDescription": "Recipe XIII",
+        "SkillDescription": "Iron Fylerian Greaves (4x Iron Plates,6x Pounches of Iron Screws)",
         "DataClass": "RecipeXIII",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Platesmith",
         "SkillName": "Recipe XIV",
-        "SkillDescription": "Recipe XIV",
+        "SkillDescription": "Iron Fylerian Breastplate (6x Iron Plates,6x Pounches of Iron Screws)",
         "DataClass": "RecipeXIV",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Platesmith",
         "SkillName": "Screw Mastery II",
-        "SkillDescription": "Screw Mastery II",
+        "SkillDescription": "½ Screw Requirement for Recipes IX-XIV",
         "DataClass": "ScrewMastery",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Platesmith",
         "SkillName": "Plate Mastery II",
-        "SkillDescription": "Plate Mastery II",
+        "SkillDescription": "½ Plate Requirement for Recipes X-XIV",
         "DataClass": "PlateMastery",
         "Recipes": [],
         "StatChanges": []

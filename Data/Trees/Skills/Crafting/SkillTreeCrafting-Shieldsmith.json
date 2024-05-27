@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe I",
-        "SkillDescription": "Recipe I",
+        "SkillDescription": "Bronze Buckler (2x Bronze Bars)",
         "DataClass": "RecipeI",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe II",
-        "SkillDescription": "Recipe II",
+        "SkillDescription": "Bronze Pointed Buckler (4x Bronze Bars)",
         "DataClass": "RecipeII",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe III",
-        "SkillDescription": "Recipe III",
+        "SkillDescription": "Bronze Spiked Buckler (6x Bronze Bars)",
         "DataClass": "RecipeIII",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe IV",
-        "SkillDescription": "Recipe IV",
+        "SkillDescription": "Bronze Round Shield (6x Bronze Bars)",
         "DataClass": "RecipeIV",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe V",
-        "SkillDescription": "Recipe V",
+        "SkillDescription": "Bronze Pointed Shield (8x Bronze Bars)",
         "DataClass": "RecipeV",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe VI",
-        "SkillDescription": "Recipe VI",
+        "SkillDescription": "Bronze Spiked Shield (10x Bronze Bars)",
         "DataClass": "RecipeVI",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe VII",
-        "SkillDescription": "Recipe VII",
+        "SkillDescription": "Bronze Tower Shield (10x Bronze Bars)",
         "DataClass": "RecipeVII",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe VIII",
-        "SkillDescription": "Recipe VIII",
+        "SkillDescription": "Bronze Pointed Tower Shield (12x Bronze Bars)",
         "DataClass": "RecipeVIII",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe IX",
-        "SkillDescription": "Recipe IX",
+        "SkillDescription": "Bronze Spiked Tower Shield (14x Bronze Bars)",
         "DataClass": "RecipeIX",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Shieldsmith",
         "SkillName": "Bronze Master",
-        "SkillDescription": "Bronze Master",
+        "SkillDescription": "½ Bar Requirement for Recipes I-IX",
         "DataClass": "BronzeMaster",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe X",
-        "SkillDescription": "Recipe X",
+        "SkillDescription": "Iron Buckler (2x Iron Bars)",
         "DataClass": "RecipeX",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe XI",
-        "SkillDescription": "Recipe XI",
+        "SkillDescription": "Iron Pointed Buckler (4x Iron Bars)",
         "DataClass": "RecipeXI",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe XII",
-        "SkillDescription": "Recipe XII",
+        "SkillDescription": "Iron Spiked Buckler (6x Iron Bars)",
         "DataClass": "RecipeXII",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe XIII",
-        "SkillDescription": "Recipe XIII",
+        "SkillDescription": "Iron Round Shield (6x Iron Bars)",
         "DataClass": "RecipeXIII",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe XIV",
-        "SkillDescription": "Recipe XIV",
+        "SkillDescription": "Iron Pointed Shield (8x Iron Bars)",
         "DataClass": "RecipeXIV",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe XV",
-        "SkillDescription": "Recipe XV",
+        "SkillDescription": "Iron Spiked Shield (10x Iron Bars)",
         "DataClass": "RecipeXV",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe XVI",
-        "SkillDescription": "Recipe XVI",
+        "SkillDescription": "Iron Tower Shield (10x Iron Bars)",
         "DataClass": "RecipeXVI",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe XVII",
-        "SkillDescription": "Recipe XVII",
+        "SkillDescription": "Iron Pointed Tower Shield (12x Iron Bars)",
         "DataClass": "RecipeXVII",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Shieldsmith",
         "SkillName": "Recipe XVIII",
-        "SkillDescription": "Recipe XVIII",
+        "SkillDescription": "Iron Spiked Tower Shield (14x Iron Bars)",
         "DataClass": "RecipeXVIII",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Shieldsmith",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "½ Bar Requirement for Recipes X-XVIII",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []

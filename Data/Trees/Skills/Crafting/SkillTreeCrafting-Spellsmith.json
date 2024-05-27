@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe I",
-        "SkillDescription": "Recipe I",
+        "SkillDescription": "Bronze Wand (2x Bronze Bars, 2x Red, Blue, Gold, and Silver Crystal Shards)",
         "DataClass": "RecipeI",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe II",
-        "SkillDescription": "Recipe II",
+        "SkillDescription": "Bronze Rod (4x Bronze Bars, 4x Red, Blue, Gold, and Silver Crystal Shards)",
         "DataClass": "RecipeII",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe III",
-        "SkillDescription": "Recipe III",
+        "SkillDescription": "Bronze Staff (6x Bronze Bars, 6x Red, Blue, Gold, and Silver Crystal Shards)",
         "DataClass": "RecipeIII",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Spellsmith",
         "SkillName": "Bronze Adept",
-        "SkillDescription": "Bronze Adept",
+        "SkillDescription": "½ Bar Requirement for Recipes I-III",
         "DataClass": "BronzeAdept",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Spellsmith",
         "SkillName": "Crystal Smith I",
-        "SkillDescription": "Crystal Smith I",
+        "SkillDescription": "½ Crystal Shard Requirement for Recipes I-III",
         "DataClass": "CrystalSmith",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe IV",
-        "SkillDescription": "Recipe IV",
+        "SkillDescription": "Jeweled Bronze Wand (2x Bronze Bars, 4x Red, Blue, Gold, and Silver Crystal Shards)",
         "DataClass": "RecipeIV",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe V",
-        "SkillDescription": "Recipe V",
+        "SkillDescription": "Jeweled Bronze Rod (4x Bronze Bars, 8x Red, Blue, Gold, and Silver Crystal Shards)",
         "DataClass": "RecipeV",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe VI",
-        "SkillDescription": "Recipe VI",
+        "SkillDescription": "Jeweled Bronze Staff (6x Bronze Bars, 12x Red, Blue, Gold, and Silver Crystal Shards)",
         "DataClass": "RecipeVI",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Spellsmith",
         "SkillName": "Bronze Master",
-        "SkillDescription": "Bronze Master",
+        "SkillDescription": "½ Bar Requirement for Recipes IV-VI",
         "DataClass": "BronzeMaster",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Spellsmith",
         "SkillName": "Crystal Smith II",
-        "SkillDescription": "Crystal Smith II",
+        "SkillDescription": "½ Crystal Shard Requirement for Recipes IV-VI",
         "DataClass": "CrystalSmith",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe VII",
-        "SkillDescription": "Recipe VII",
+        "SkillDescription": "Iron Wand (2x Iron Bars, 2x Red, Blue, Gold, and Silver Tiny Crystals)",
         "DataClass": "RecipeVII",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe VIII",
-        "SkillDescription": "Recipe VIII",
+        "SkillDescription": "Iron Rod (4x Iron Bars, 4x Red, Blue, Gold, and Silver Tiny Crystals)",
         "DataClass": "RecipeVIII",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe IX",
-        "SkillDescription": "Recipe IX",
+        "SkillDescription": "Iron Staff (6x Iron Bars, 6x Red, Blue, Gold, and Silver Tiny Crystals)",
         "DataClass": "RecipeIX",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Spellsmith",
         "SkillName": "Iron Adept",
-        "SkillDescription": "Iron Adept",
+        "SkillDescription": "½ Bar Requirement for Recipes VII-IX",
         "DataClass": "IronAdept",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Spellsmith",
         "SkillName": "Crystal Smith III",
-        "SkillDescription": "Crystal Smith III",
+        "SkillDescription": "½ Tiny Crystal Requirement for Recipes VII-IX",
         "DataClass": "CrystalSmith",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe X",
-        "SkillDescription": "Recipe X",
+        "SkillDescription": "Jeweled Iron Wand (2x Iron Bars, 4x Red, Blue, Gold, and Silver Tiny Crystals)",
         "DataClass": "RecipeX",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe XI",
-        "SkillDescription": "Recipe XI",
+        "SkillDescription": "Jeweled Iron Rod (4x Iron Bars, 8x Red, Blue, Gold, and Silver Tiny Crystals)",
         "DataClass": "RecipeXI",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Spellsmith",
         "SkillName": "Recipe XII",
-        "SkillDescription": "Recipe XII",
+        "SkillDescription": "Jeweled Iron Staff (6x Iron Bars, 12x Red, Blue, Gold, and Silver Tiny Crystals)",
         "DataClass": "RecipeXII",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Spellsmith",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "½ Bar Requirement for Recipes X-XII",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Spellsmith",
         "SkillName": "Crystal Smith IV",
-        "SkillDescription": "Crystal Smith IV",
+        "SkillDescription": "½ Tiny Crystal Requirement for Recipes X-XII",
         "DataClass": "CrystalSmith",
         "Recipes": [],
         "StatChanges": []

@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe I",
-        "SkillDescription": "Recipe I",
+        "SkillDescription": "Bronze Club (4x Bronze Bars)",
         "DataClass": "RecipeI",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe II",
-        "SkillDescription": "Recipe II",
+        "SkillDescription": "Bronze Quarterstaff (8x Bronze Bars)",
         "DataClass": "RecipeII",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe III",
-        "SkillDescription": "Recipe III",
+        "SkillDescription": "Bronze Battlehammer (8x Bronze Bars)",
         "DataClass": "RecipeIII",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe IV",
-        "SkillDescription": "Recipe IV",
+        "SkillDescription": "Bronze Warhammer (12x Bronze Bars)",
         "DataClass": "RecipeIV",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Hammersmith",
         "SkillName": "Bronze Adept",
-        "SkillDescription": "Bronze Adept",
+        "SkillDescription": "½ Bar Requirement for Recipes I-IV",
         "DataClass": "BronzeAdept",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe V",
-        "SkillDescription": "Recipe V",
+        "SkillDescription": "Bronze Mace (4x Bronze Bars)",
         "DataClass": "RecipeV",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe VI",
-        "SkillDescription": "Recipe VI",
+        "SkillDescription": "Bronze Morningstar (8x Bronze Bars)",
         "DataClass": "RecipeVI",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe VII",
-        "SkillDescription": "Recipe VII",
+        "SkillDescription": "Bronze Flail (8x Bronze Bars)",
         "DataClass": "RecipeVII",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe VIII",
-        "SkillDescription": "Recipe VIII",
+        "SkillDescription": "Bronze War Flail (12x Bronze Bars)",
         "DataClass": "RecipeVIII",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Hammersmith",
         "SkillName": "Bronze Master",
-        "SkillDescription": "Bronze Master",
+        "SkillDescription": "½ Bar Requirement for Recipes V-VIII",
         "DataClass": "BronzeMaster",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe IX",
-        "SkillDescription": "Recipe IX",
+        "SkillDescription": "Iron Club (4x Iron Bars)",
         "DataClass": "RecipeIX",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe X",
-        "SkillDescription": "Recipe X",
+        "SkillDescription": "Iron Quarterstaff (8x Iron Bars)",
         "DataClass": "RecipeX",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe XI",
-        "SkillDescription": "Recipe XI",
+        "SkillDescription": "Iron Battlehammer (8x Iron Bars)",
         "DataClass": "RecipeXI",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe XII",
-        "SkillDescription": "Recipe XII",
+        "SkillDescription": "Iron Warhammer (12x Iron Bars)",
         "DataClass": "RecipeXII",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Hammersmith",
         "SkillName": "Iron Adept",
-        "SkillDescription": "Iron Adept",
+        "SkillDescription": "½ Bar Requirement for Recipes IX-XII",
         "DataClass": "IronAdept",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe XIII",
-        "SkillDescription": "Recipe XIII",
+        "SkillDescription": "Iron Mace (4x Iron Bars)",
         "DataClass": "RecipeXIII",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe XIV",
-        "SkillDescription": "Recipe XIV",
+        "SkillDescription": "Iron Morningstar (8x Iron Bars)",
         "DataClass": "RecipeXIV",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe XV",
-        "SkillDescription": "Recipe XV",
+        "SkillDescription": "Iron Flail (8x Iron Bars)",
         "DataClass": "RecipeXV",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Hammersmith",
         "SkillName": "Recipe XVI",
-        "SkillDescription": "Recipe XVI",
+        "SkillDescription": "Iron War Flail (12x Iron Bars)",
         "DataClass": "RecipeXVI",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Hammersmith",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "½ Bar Requirement for Recipes XIII-XVI",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []

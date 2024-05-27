@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Weaver",
         "SkillName": "Recipe I",
-        "SkillDescription": "Recipe I",
+        "SkillDescription": "Bronze Thread (2x Bronze Bars)",
         "DataClass": "RecipeI",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Weaver",
         "SkillName": "Recipe II",
-        "SkillDescription": "Recipe II",
+        "SkillDescription": "Bronzeweave (2x Spools of Bronze Thread,4x Spools of Thread)",
         "DataClass": "RecipeII",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Weaver",
         "SkillName": "Recipe III",
-        "SkillDescription": "Recipe III",
+        "SkillDescription": "Bronzeweave Hat (2x Bronzeweave Cloths,2x Spools of Bronze Thread)",
         "DataClass": "RecipeIII",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Weaver",
         "SkillName": "Recipe IV",
-        "SkillDescription": "Recipe IV",
+        "SkillDescription": "Bronzeweave Gloves (2x Bronzeweave Cloths,4x Spools of Bronze Thread)",
         "DataClass": "RecipeIV",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Weaver",
         "SkillName": "Recipe V",
-        "SkillDescription": "Recipe V",
+        "SkillDescription": "Bronzeweave Shoes (4x Bronzeweave Cloths,4x Spools of Bronze Thread)",
         "DataClass": "RecipeV",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Weaver",
         "SkillName": "Bronze Master",
-        "SkillDescription": "Bronze Master",
+        "SkillDescription": "½ Bar Requirement for Recipe I",
         "DataClass": "BronzeMaster",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Weaver",
         "SkillName": "Recipe VI",
-        "SkillDescription": "Recipe VI",
+        "SkillDescription": "Bronzeweave Pants (4x Bronzeweave Cloths,6x Spools of Bronze Thread)",
         "DataClass": "RecipeVI",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Weaver",
         "SkillName": "Recipe VII",
-        "SkillDescription": "Recipe VII",
+        "SkillDescription": "Bronzeweave Shirt (6x Bronzeweave Cloths,6x Spools of Bronze Thread)",
         "DataClass": "RecipeVII",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Weaver",
         "SkillName": "Thread Mastery I",
-        "SkillDescription": "Thread Mastery I",
+        "SkillDescription": "½ Thread Requirement for Recipes II-VII",
         "DataClass": "ThreadMastery",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Weaver",
         "SkillName": "Weave Mastery I",
-        "SkillDescription": "Weave Mastery I",
+        "SkillDescription": "½ Cloth Requirement for Recipes III-VII",
         "DataClass": "WeaveMastery",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Weaver",
         "SkillName": "Recipe VIII",
-        "SkillDescription": "Recipe VIII",
+        "SkillDescription": "Iron Thread (2x Iron Bars)",
         "DataClass": "RecipeVIII",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Weaver",
         "SkillName": "Recipe IX",
-        "SkillDescription": "Recipe IX",
+        "SkillDescription": "Ironweave (2x Spools of Iron Thread,4x Spools of Thread)",
         "DataClass": "RecipeIX",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Weaver",
         "SkillName": "Recipe X",
-        "SkillDescription": "Recipe X",
+        "SkillDescription": "Ironweave Hat (2x Ironweave Cloths,2x Spools of Iron Thread)",
         "DataClass": "RecipeX",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Weaver",
         "SkillName": "Recipe XI",
-        "SkillDescription": "Recipe XI",
+        "SkillDescription": "Ironweave Gloves (2x Ironweave Cloths,4x Spools of Iron Thread)",
         "DataClass": "RecipeXI",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Weaver",
         "SkillName": "Recipe XII",
-        "SkillDescription": "Recipe XII",
+        "SkillDescription": "Ironweave Shoes (4x Ironweave Cloths,4x Spools of Iron Thread)",
         "DataClass": "RecipeXII",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Weaver",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "½ Bar Requirement for Recipe I",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Weaver",
         "SkillName": "Recipe XIII",
-        "SkillDescription": "Recipe XIII",
+        "SkillDescription": "Ironweave Pants (4x Ironweave Cloths,6x Spools of Iron Thread)",
         "DataClass": "RecipeXIII",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Weaver",
         "SkillName": "Recipe XIV",
-        "SkillDescription": "Recipe XIV",
+        "SkillDescription": "Ironweave Shirt (6x Ironweave Cloths,6x Spools of Iron Thread)",
         "DataClass": "RecipeXIV",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Weaver",
         "SkillName": "Thread Mastery II",
-        "SkillDescription": "Thread Mastery II",
+        "SkillDescription": "½ Thread Requirement for Recipes IX-XIV",
         "DataClass": "ThreadMastery",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Weaver",
         "SkillName": "Weave Mastery II",
-        "SkillDescription": "Weave Mastery II",
+        "SkillDescription": "½ Cloth Requirement for Recipes X-XIV",
         "DataClass": "WeaveMastery",
         "Recipes": [],
         "StatChanges": []

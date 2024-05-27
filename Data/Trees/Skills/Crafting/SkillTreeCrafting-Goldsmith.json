@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe I",
-        "SkillDescription": "Recipe I",
+        "SkillDescription": "4x Bronze Sheets (1x Bronze Bar)",
         "DataClass": "RecipeI",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe II",
-        "SkillDescription": "Recipe II",
+        "SkillDescription": "Bronze Ring (1x Bronze Sheet)",
         "DataClass": "RecipeII",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe III",
-        "SkillDescription": "Recipe III",
+        "SkillDescription": "Peasant Bronze Ring (2x Bronze Sheets)",
         "DataClass": "RecipeIII",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe IV",
-        "SkillDescription": "Recipe IV",
+        "SkillDescription": "Merchant Bronze Ring (3x Bronze Sheets)",
         "DataClass": "RecipeIV",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe V",
-        "SkillDescription": "Recipe V",
+        "SkillDescription": "Lady Bronze Ring (4x Bronze Sheets)",
         "DataClass": "RecipeV",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe VI",
-        "SkillDescription": "Recipe VI",
+        "SkillDescription": "Bronze Amulet (2x Bronze Sheets)",
         "DataClass": "RecipeVI",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe VII",
-        "SkillDescription": "Recipe VII",
+        "SkillDescription": "Peasant Bronze Amulet (4x Bronze Sheets)",
         "DataClass": "RecipeVII",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe VIII",
-        "SkillDescription": "Recipe VIII",
+        "SkillDescription": "Merchant Bronze Amulet (6x Bronze Sheets)",
         "DataClass": "RecipeVIII",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe IX",
-        "SkillDescription": "Recipe IX",
+        "SkillDescription": "Lady Bronze Amulet (8x Bronze Sheets)",
         "DataClass": "RecipeIX",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Goldsmith",
         "SkillName": "Gem Mastery I",
-        "SkillDescription": "Gem Mastery I",
+        "SkillDescription": "Able to Add/Remove Gems from Recipes III-IX",
         "DataClass": "GemMastery",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe X",
-        "SkillDescription": "Recipe X",
+        "SkillDescription": "4x Iron Sheets (1x Iron Bar)",
         "DataClass": "RecipeX",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe XI",
-        "SkillDescription": "Recipe XI",
+        "SkillDescription": "Iron Ring (1x Iron Sheet)",
         "DataClass": "RecipeXI",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe XII",
-        "SkillDescription": "Recipe XII",
+        "SkillDescription": "Peasant Iron Ring (2x Iron Sheets)",
         "DataClass": "RecipeXII",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe XIII",
-        "SkillDescription": "Recipe XIII",
+        "SkillDescription": "Merchant Iron Ring (3x Iron Sheets)",
         "DataClass": "RecipeXIII",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe XIV",
-        "SkillDescription": "Recipe XIV",
+        "SkillDescription": "Lady Iron Ring (4x Iron Sheets)",
         "DataClass": "RecipeXIV",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe XV",
-        "SkillDescription": "Recipe XV",
+        "SkillDescription": "Iron Amulet (2x Iron Sheets)",
         "DataClass": "RecipeXV",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe XVI",
-        "SkillDescription": "Recipe XVI",
+        "SkillDescription": "Peasant Iron Amulet (4x Iron Sheets)",
         "DataClass": "RecipeXVI",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe XVII",
-        "SkillDescription": "Recipe XVII",
+        "SkillDescription": "Merchant Iron Amulet (6x Iron Sheets)",
         "DataClass": "RecipeXVII",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Goldsmith",
         "SkillName": "Recipe XVIII",
-        "SkillDescription": "Recipe XVIII",
+        "SkillDescription": "Lady Iron Amulet (8x Iron Sheets)",
         "DataClass": "RecipeXVIII",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Goldsmith",
         "SkillName": "Gem Mastery II",
-        "SkillDescription": "Gem Mastery II",
+        "SkillDescription": "Able to Add/Remove Gems from Recipes X-XVIII",
         "DataClass": "GemMastery",
         "Recipes": [],
         "StatChanges": []

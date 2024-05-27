@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Tanner",
         "SkillName": "Recipe I",
-        "SkillDescription": "Recipe I",
+        "SkillDescription": "Bronze Studs (2x Bronze Bars)",
         "DataClass": "RecipeI",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Tanner",
         "SkillName": "Recipe II",
-        "SkillDescription": "Recipe II",
+        "SkillDescription": "Bronze Studded Leather (2x Pouches of Bronze Studs,2x Leather)",
         "DataClass": "RecipeII",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Tanner",
         "SkillName": "Recipe III",
-        "SkillDescription": "Recipe III",
+        "SkillDescription": "Bronze Studded Helmet (2x Bronze Studded Leather,2x Pounches of Bronze Studs)",
         "DataClass": "RecipeIII",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Tanner",
         "SkillName": "Recipe IV",
-        "SkillDescription": "Recipe IV",
+        "SkillDescription": "Bronze Studded Bracers (2x Bronze Studded Leather,4x Pounches of Bronze Studs)",
         "DataClass": "RecipeIV",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Tanner",
         "SkillName": "Recipe V",
-        "SkillDescription": "Recipe V",
+        "SkillDescription": "Bronze Studded Boots (4x Bronze Studded Leather,4x Pounches of Bronze Studs)",
         "DataClass": "RecipeV",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Tanner",
         "SkillName": "Bronze Master",
-        "SkillDescription": "Bronze Master",
+        "SkillDescription": "½ Bar Requirement for Recipe I",
         "DataClass": "BronzeMaster",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Tanner",
         "SkillName": "Recipe VI",
-        "SkillDescription": "Recipe VI",
+        "SkillDescription": "Bronze Studded Pants (4x Bronze Studded Leather,6x Pounches of Bronze Studs)",
         "DataClass": "RecipeVI",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Tanner",
         "SkillName": "Recipe VII",
-        "SkillDescription": "Recipe VII",
+        "SkillDescription": "Bronze Studded Shirt (6x Bronze Studded Leather,6x Pounches of Bronze Studs)",
         "DataClass": "RecipeVII",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Tanner",
         "SkillName": "Stud Mastery I",
-        "SkillDescription": "Stud Mastery I",
+        "SkillDescription": "½ Stud Requirement for Recipes II-VII",
         "DataClass": "StudMastery",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Tanner",
         "SkillName": "Leather Mastery I",
-        "SkillDescription": "Leather Mastery I",
+        "SkillDescription": "½ Leather Requirement for Recipes III-VII",
         "DataClass": "LeatherMastery",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Tanner",
         "SkillName": "Recipe VIII",
-        "SkillDescription": "Recipe VIII",
+        "SkillDescription": "Iron Studs (2x Iron Bars)",
         "DataClass": "RecipeVIII",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Tanner",
         "SkillName": "Recipe IX",
-        "SkillDescription": "Recipe IX",
+        "SkillDescription": "Iron Studded Leather (2x Pouches of Iron Studs,2x Leather)",
         "DataClass": "RecipeIX",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Tanner",
         "SkillName": "Recipe X",
-        "SkillDescription": "Recipe X",
+        "SkillDescription": "Iron Studded Helmet (2x Iron Studded Leather,2x Pounches of Iron Studs)",
         "DataClass": "RecipeX",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Tanner",
         "SkillName": "Recipe XI",
-        "SkillDescription": "Recipe XI",
+        "SkillDescription": "Iron Studded Bracers (2x Iron Studded Leather,4x Pounches of Iron Studs)",
         "DataClass": "RecipeXI",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Tanner",
         "SkillName": "Recipe XII",
-        "SkillDescription": "Recipe XII",
+        "SkillDescription": "Iron Studded Boots (4x Iron Studded Leather,4x Pounches of Iron Studs)",
         "DataClass": "RecipeXII",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Tanner",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "½ Bar Requirement for Recipe VIII",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Tanner",
         "SkillName": "Recipe XIII",
-        "SkillDescription": "Recipe XIII",
+        "SkillDescription": "Iron Studded Pants (4x Iron Studded Leather,6x Pounches of Iron Studs)",
         "DataClass": "RecipeXIII",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Tanner",
         "SkillName": "Recipe XIV",
-        "SkillDescription": "Recipe XIV",
+        "SkillDescription": "Iron Studded Shirt (6x Iron Studded Leather,6x Pounches of Iron Studs)",
         "DataClass": "RecipeXIV",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Tanner",
         "SkillName": "Stud Mastery II",
-        "SkillDescription": "Stud Mastery II",
+        "SkillDescription": "½ Stud Requirement for Recipes IX-XIV",
         "DataClass": "StudMastery",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Tanner",
         "SkillName": "Leather Mastery II",
-        "SkillDescription": "Leather Mastery II",
+        "SkillDescription": "½ Leather Requirement for Recipes X-XIV",
         "DataClass": "LeatherMastery",
         "Recipes": [],
         "StatChanges": []
