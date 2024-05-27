@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Scalebane",
         "SkillName": "Apprentice Pryer I",
-        "SkillDescription": "Apprentice Pryer I",
+        "SkillDescription": "Gain ½ Mail required to craft Master Bronzescale Armor",
         "DataClass": "ApprenticePryer",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Scalebane",
         "SkillName": "Scale Adept I",
-        "SkillDescription": "Scale Adept I",
+        "SkillDescription": "Gain ½ Scales required to craft Master Bronzescale Armor",
         "DataClass": "ScaleAdept",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Scalebane",
         "SkillName": "Lucky Pull I",
-        "SkillDescription": "Lucky Pull I",
+        "SkillDescription": "20% chance gain +1 Iron Scale from Bronzescale Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Scalebane",
         "SkillName": "Adept Pryer I",
-        "SkillDescription": "Adept Pryer I",
+        "SkillDescription": "Gain Mail required to craft Master Bronzescale Armor",
         "DataClass": "AdeptPryer",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Scalebane",
         "SkillName": "Thorough Cleaner I",
-        "SkillDescription": "Thorough Cleaner I",
+        "SkillDescription": "20% gain +1 random Crystal Shard from Bronzescale Armor",
         "DataClass": "ThoroughCleaner",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Scalebane",
         "SkillName": "Keen Eye I",
-        "SkillDescription": "Keen Eye I",
+        "SkillDescription": "30% gain +1 random Gem Shard from Bronzescale Armor",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Scalebane",
         "SkillName": "Master Pryer I",
-        "SkillDescription": "Master Pryer I",
+        "SkillDescription": "Gain 1 ½ Mail required to craft Master Bronzescale Armor",
         "DataClass": "MasterPryer",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Scalebane",
         "SkillName": "Scale Master I",
-        "SkillDescription": "Scale Master I",
+        "SkillDescription": "Gain Scales required to craft Master Bronzescale Armor",
         "DataClass": "ScaleMaster",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Scalebane",
         "SkillName": "Lucky Pull II",
-        "SkillDescription": "Lucky Pull II",
+        "SkillDescription": "40% chance gain +2 Iron Scales from Bronzescale Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Scalebane",
         "SkillName": "Obsessed Cleaner I",
-        "SkillDescription": "Obsessed Cleaner I",
+        "SkillDescription": "40% gain +2 random Crystal Shards from Bronzescale Armor",
         "DataClass": "ObsessedCleaner",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Scalebane",
         "SkillName": "Apprentice Pryer II",
-        "SkillDescription": "Apprentice Pryer II",
+        "SkillDescription": "Gain ½ Mail required to craft Master Ironscale Armor",
         "DataClass": "ApprenticePryer",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Scalebane",
         "SkillName": "Scale Adept II",
-        "SkillDescription": "Scale Adept II",
+        "SkillDescription": "Gain ½ Scales required to craft Master Ironscale Armor",
         "DataClass": "ScaleAdept",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Scalebane",
         "SkillName": "Lucky Pull III",
-        "SkillDescription": "Lucky Pull III",
+        "SkillDescription": "20% chance gain +1 Silver Scale from Ironscale Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Scalebane",
         "SkillName": "Adept Pryer II",
-        "SkillDescription": "Adept Pryer II",
+        "SkillDescription": "Gain Mail required to craft Master Ironscale Armor",
         "DataClass": "AdeptPryer",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Scalebane",
         "SkillName": "Thorough Cleaner II",
-        "SkillDescription": "Thorough Cleaner II",
+        "SkillDescription": "20% gain +1 random Tiny Crystal from Ironscale Armor",
         "DataClass": "ThoroughCleaner",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Scalebane",
         "SkillName": "Keen Eye II",
-        "SkillDescription": "Keen Eye II",
+        "SkillDescription": "30% gain +1 random Tiny Gem from Ironscale Armor",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Scalebane",
         "SkillName": "Master Pryer II",
-        "SkillDescription": "Master Pryer II",
+        "SkillDescription": "Gain 1 ½ Mail required to craft Master Ironscale Armor",
         "DataClass": "MasterPryer",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Scalebane",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "Gain Scales required to craft Master Ironscale Armor",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Scalebane",
         "SkillName": "Lucky Pull IV",
-        "SkillDescription": "Lucky Pull IV",
+        "SkillDescription": "40% chance gain +2 Silver Scales from Ironscale Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Scalebane",
         "SkillName": "Obsessed Cleaner II",
-        "SkillDescription": "Obsessed Cleaner II",
+        "SkillDescription": "40% gain +2 random Tiny Crystals from Ironscale Armor",
         "DataClass": "ObsessedCleaner",
         "Recipes": [],
         "StatChanges": []

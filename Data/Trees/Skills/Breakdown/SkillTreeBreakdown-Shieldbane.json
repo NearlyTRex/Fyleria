@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Shieldbane",
         "SkillName": "Apprentice Smelter I",
-        "SkillDescription": "Apprentice Smelter I",
+        "SkillDescription": "Gain ½ Bars required to craft Master Bronze shields",
         "DataClass": "ApprenticeSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Shieldbane",
         "SkillName": "Bronze Adept",
-        "SkillDescription": "Bronze Adept",
+        "SkillDescription": "20% chance gain +1 Bronze Bar from Bronze shields",
         "DataClass": "BronzeAdept",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Shieldbane",
         "SkillName": "Quick Study I",
-        "SkillDescription": "Quick Study I",
+        "SkillDescription": "20% chance gain +1 Iron Bar from Bronze shields",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Shieldbane",
         "SkillName": "Adept Smelter I",
-        "SkillDescription": "Adept Smelter I",
+        "SkillDescription": "Gain bars required to craft Master Bronze shields",
         "DataClass": "AdeptSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Shieldbane",
         "SkillName": "Adept Refiner I",
-        "SkillDescription": "Adept Refiner I",
+        "SkillDescription": "20% gain +1 random Crystal Shard from Bronze shields",
         "DataClass": "AdeptRefiner",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Shieldbane",
         "SkillName": "Keen Eye I",
-        "SkillDescription": "Keen Eye I",
+        "SkillDescription": "30% gain +1 random Gem Shard from Bronze shields",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Shieldbane",
         "SkillName": "Master Smelter I",
-        "SkillDescription": "Master Smelter I",
+        "SkillDescription": "Gain 1 ½ Bars required to craft Master Bronze shields",
         "DataClass": "MasterSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Shieldbane",
         "SkillName": "Bronze Master",
-        "SkillDescription": "Bronze Master",
+        "SkillDescription": "40% chance gain +2 Bronze Bars from Bronze shields",
         "DataClass": "BronzeMaster",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Shieldbane",
         "SkillName": "Quick Study II",
-        "SkillDescription": "Quick Study II",
+        "SkillDescription": "40% chance gain +2 Iron Bars from Bronze shields",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Shieldbane",
         "SkillName": "Master Refiner I",
-        "SkillDescription": "Master Refiner I",
+        "SkillDescription": "40% gain +2 random Crystal Shards from Bronze shields",
         "DataClass": "MasterRefiner",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Shieldbane",
         "SkillName": "Apprentice Smelter II",
-        "SkillDescription": "Apprentice Smelter II",
+        "SkillDescription": "Gain ½ Bars required to craft Master Iron shields",
         "DataClass": "ApprenticeSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Shieldbane",
         "SkillName": "Iron Adept",
-        "SkillDescription": "Iron Adept",
+        "SkillDescription": "20% chance gain +1 Iron Bar from Iron shields",
         "DataClass": "IronAdept",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Shieldbane",
         "SkillName": "Quick Study III",
-        "SkillDescription": "Quick Study III",
+        "SkillDescription": "20% chance gain +1 Silver Bar from Iron shields",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Shieldbane",
         "SkillName": "Adept Smelter II",
-        "SkillDescription": "Adept Smelter II",
+        "SkillDescription": "Gain bars required to craft Master Iron shields",
         "DataClass": "AdeptSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Shieldbane",
         "SkillName": "Adept Refiner II",
-        "SkillDescription": "Adept Refiner II",
+        "SkillDescription": "20% gain +1 random Tiny Crystal from Iron shields",
         "DataClass": "AdeptRefiner",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Shieldbane",
         "SkillName": "Keen Eye II",
-        "SkillDescription": "Keen Eye II",
+        "SkillDescription": "30% gain +1 random Tiny Gem from Iron shields",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Shieldbane",
         "SkillName": "Master Smelter II",
-        "SkillDescription": "Master Smelter II",
+        "SkillDescription": "Gain 1 ½ Bars required to craft Master Iron shields",
         "DataClass": "MasterSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Shieldbane",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "40% chance gain +2 Iron Bars from Iron shields",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Shieldbane",
         "SkillName": "Quick Study IV",
-        "SkillDescription": "Quick Study IV",
+        "SkillDescription": "40% chance gain +2 Silver Bars from Iron shields",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Shieldbane",
         "SkillName": "Master Refiner II",
-        "SkillDescription": "Master Refiner II",
+        "SkillDescription": "40% gain +2 random Tiny Crystals from Iron shields",
         "DataClass": "MasterRefiner",
         "Recipes": [],
         "StatChanges": []

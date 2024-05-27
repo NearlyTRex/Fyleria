@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Swordbane",
         "SkillName": "Apprentice Smelter I",
-        "SkillDescription": "Apprentice Smelter I",
+        "SkillDescription": "Gain ½ Bars required to craft Master Bronze weapons",
         "DataClass": "ApprenticeSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Swordbane",
         "SkillName": "Bronze Adept",
-        "SkillDescription": "Bronze Adept",
+        "SkillDescription": "20% chance gain +1 Bronze Bar from Bronze weapons",
         "DataClass": "BronzeAdept",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Swordbane",
         "SkillName": "Quick Study I",
-        "SkillDescription": "Quick Study I",
+        "SkillDescription": "20% chance gain +1 Iron Bar from Bronze weapons",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Swordbane",
         "SkillName": "Adept Smelter I",
-        "SkillDescription": "Adept Smelter I",
+        "SkillDescription": "Gain bars required to craft Master Bronze weapons",
         "DataClass": "AdeptSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Swordbane",
         "SkillName": "Adept Refiner I",
-        "SkillDescription": "Adept Refiner I",
+        "SkillDescription": "20% gain +1 random Crystal Shard from Bronze weapons",
         "DataClass": "AdeptRefiner",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Swordbane",
         "SkillName": "Keen Eye I",
-        "SkillDescription": "Keen Eye I",
+        "SkillDescription": "30% gain +1 random Gem Shard from Bronze weapons",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Swordbane",
         "SkillName": "Master Smelter I",
-        "SkillDescription": "Master Smelter I",
+        "SkillDescription": "Gain 1 ½ Bars required to craft Master Bronze weapons",
         "DataClass": "MasterSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Swordbane",
         "SkillName": "Bronze Master",
-        "SkillDescription": "Bronze Master",
+        "SkillDescription": "40% chance gain +2 Bronze Bars from Bronze weapons",
         "DataClass": "BronzeMaster",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Swordbane",
         "SkillName": "Quick Study II",
-        "SkillDescription": "Quick Study II",
+        "SkillDescription": "40% chance gain +2 Iron Bars from Bronze weapons",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Swordbane",
         "SkillName": "Master Refiner I",
-        "SkillDescription": "Master Refiner I",
+        "SkillDescription": "40% gain +2 random Crystal Shards from Bronze weapons",
         "DataClass": "MasterRefiner",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Swordbane",
         "SkillName": "Apprentice Smelter II",
-        "SkillDescription": "Apprentice Smelter II",
+        "SkillDescription": "Gain ½ Bars required to craft Master Iron weapons",
         "DataClass": "ApprenticeSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Swordbane",
         "SkillName": "Iron Adept",
-        "SkillDescription": "Iron Adept",
+        "SkillDescription": "20% chance gain +1 Iron Bar from Iron weapons",
         "DataClass": "IronAdept",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Swordbane",
         "SkillName": "Quick Study III",
-        "SkillDescription": "Quick Study III",
+        "SkillDescription": "20% chance gain +1 Silver Bar from Iron weapons",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Swordbane",
         "SkillName": "Adept Smelter II",
-        "SkillDescription": "Adept Smelter II",
+        "SkillDescription": "Gain bars required to craft Master Iron weapons",
         "DataClass": "AdeptSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Swordbane",
         "SkillName": "Adept Refiner II",
-        "SkillDescription": "Adept Refiner II",
+        "SkillDescription": "20% gain +1 random Tiny Crystal from Iron weapons",
         "DataClass": "AdeptRefiner",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Swordbane",
         "SkillName": "Keen Eye II",
-        "SkillDescription": "Keen Eye II",
+        "SkillDescription": "30% gain +1 random Tiny Gem from Iron weapons",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Swordbane",
         "SkillName": "Master Smelter II",
-        "SkillDescription": "Master Smelter II",
+        "SkillDescription": "Gain 1 ½ Bars required to craft Master Iron weapons",
         "DataClass": "MasterSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Swordbane",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "40% chance gain +2 Iron Bars from Iron weapons",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Swordbane",
         "SkillName": "Quick Study IV",
-        "SkillDescription": "Quick Study IV",
+        "SkillDescription": "40% chance gain +2 Silver Bars from Iron weapons",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Swordbane",
         "SkillName": "Master Refiner II",
-        "SkillDescription": "Master Refiner II",
+        "SkillDescription": "40% gain +2 random Tiny Crystals from Iron weapons",
         "DataClass": "MasterRefiner",
         "Recipes": [],
         "StatChanges": []

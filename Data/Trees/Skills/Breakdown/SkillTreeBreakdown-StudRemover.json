@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "StudRemover",
         "SkillName": "Apprentice Tanner I",
-        "SkillDescription": "Apprentice Tanner I",
+        "SkillDescription": "Gain ½ Leather required to craft Master Bronze Studded Armor",
         "DataClass": "ApprenticeTanner",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "StudRemover",
         "SkillName": "Stud Adept I",
-        "SkillDescription": "Stud Adept I",
+        "SkillDescription": "Gain ½ Studs required to craft Master Bronze Studded Armor",
         "DataClass": "StudAdept",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "StudRemover",
         "SkillName": "Lucky Pull I",
-        "SkillDescription": "Lucky Pull I",
+        "SkillDescription": "20% chance gain +1 Iron Stud from Bronze Studded Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "StudRemover",
         "SkillName": "Adept Tanner I",
-        "SkillDescription": "Adept Tanner I",
+        "SkillDescription": "Gain Leather required to craft Master Bronze Studded Armor",
         "DataClass": "AdeptTanner",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "StudRemover",
         "SkillName": "Thorough Cleaner I",
-        "SkillDescription": "Thorough Cleaner I",
+        "SkillDescription": "20% gain +1 random Crystal Shard from Bronze Studded Armor",
         "DataClass": "ThoroughCleaner",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "StudRemover",
         "SkillName": "Keen Eye I",
-        "SkillDescription": "Keen Eye I",
+        "SkillDescription": "30% gain +1 random Gem Shard from Bronze Studded Armor",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "StudRemover",
         "SkillName": "Master Tanner I",
-        "SkillDescription": "Master Tanner I",
+        "SkillDescription": "Gain 1 ½ Leather required to craft Master Bronze Studded Armor",
         "DataClass": "MasterTanner",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "StudRemover",
         "SkillName": "Stud Master I",
-        "SkillDescription": "Stud Master I",
+        "SkillDescription": "Gain Studs required to craft Master Bronze Studded Armor",
         "DataClass": "StudMaster",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "StudRemover",
         "SkillName": "Lucky Pull II",
-        "SkillDescription": "Lucky Pull II",
+        "SkillDescription": "40% chance gain +2 Iron Studs from Bronze Studded Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "StudRemover",
         "SkillName": "Obsessed Cleaner I",
-        "SkillDescription": "Obsessed Cleaner I",
+        "SkillDescription": "40% gain +2 random Crystal Shards from Bronze Studded Armor",
         "DataClass": "ObsessedCleaner",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "StudRemover",
         "SkillName": "Apprentice Tanner II",
-        "SkillDescription": "Apprentice Tanner II",
+        "SkillDescription": "Gain ½ Leather required to craft Master Iron Studded Armor",
         "DataClass": "ApprenticeTanner",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "StudRemover",
         "SkillName": "Stud Adept II",
-        "SkillDescription": "Stud Adept II",
+        "SkillDescription": "Gain ½ Studs required to craft Master Iron Studded Armor",
         "DataClass": "StudAdept",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "StudRemover",
         "SkillName": "Lucky Pull III",
-        "SkillDescription": "Lucky Pull III",
+        "SkillDescription": "20% chance gain +1 Silver Stud from Iron Studded Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "StudRemover",
         "SkillName": "Adept Tanner II",
-        "SkillDescription": "Adept Tanner II",
+        "SkillDescription": "Gain Leather required to craft Master Iron Studded Armor",
         "DataClass": "AdeptTanner",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "StudRemover",
         "SkillName": "Thorough Cleaner II",
-        "SkillDescription": "Thorough Cleaner II",
+        "SkillDescription": "20% gain +1 random Tiny Crystal from Iron Studded Armor",
         "DataClass": "ThoroughCleaner",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "StudRemover",
         "SkillName": "Keen Eye II",
-        "SkillDescription": "Keen Eye II",
+        "SkillDescription": "30% gain +1 random Tiny Gem from Iron Studded Armor",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "StudRemover",
         "SkillName": "Master Tanner II",
-        "SkillDescription": "Master Tanner II",
+        "SkillDescription": "Gain 1 ½ Leather required to craft Master Iron Studded Armor",
         "DataClass": "MasterTanner",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "StudRemover",
         "SkillName": "Stud Master II",
-        "SkillDescription": "Stud Master II",
+        "SkillDescription": "Gain Studs required to craft Master Iron Studded Armor",
         "DataClass": "StudMaster",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "StudRemover",
         "SkillName": "Lucky Pull IV",
-        "SkillDescription": "Lucky Pull IV",
+        "SkillDescription": "40% chance gain +2 Silver Studs from Iron Studded Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "StudRemover",
         "SkillName": "Obsessed Cleaner II",
-        "SkillDescription": "Obsessed Cleaner II",
+        "SkillDescription": "40% gain +2 random Tiny Crystals from Iron Studded Armor",
         "DataClass": "ObsessedCleaner",
         "Recipes": [],
         "StatChanges": []

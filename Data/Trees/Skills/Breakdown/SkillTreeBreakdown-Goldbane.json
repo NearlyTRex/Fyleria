@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Goldbane",
         "SkillName": "Apprentice Smelter I",
-        "SkillDescription": "Apprentice Smelter I",
+        "SkillDescription": "Gain 1 Bronze Sheet from breakdown of any Bronze Jewelry",
         "DataClass": "ApprenticeSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Goldbane",
         "SkillName": "Bronze Adept",
-        "SkillDescription": "Bronze Adept",
+        "SkillDescription": "20% chance gain +1 Bronze Sheet from Bronze Jewelry",
         "DataClass": "BronzeAdept",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Goldbane",
         "SkillName": "Quick Study I",
-        "SkillDescription": "Quick Study I",
+        "SkillDescription": "20% chance gain +1 Iron Sheet from Bronze Jewelry",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Goldbane",
         "SkillName": "Adept Smelter I",
-        "SkillDescription": "Adept Smelter I",
+        "SkillDescription": "Gain ½ Sheets required to craft any Bronze Jewelry, Min 1",
         "DataClass": "AdeptSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Goldbane",
         "SkillName": "Adept Pryer I",
-        "SkillDescription": "Adept Pryer I",
+        "SkillDescription": "20% gain +1 random Crystal Shard from Bronze Jewelry",
         "DataClass": "AdeptPryer",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Goldbane",
         "SkillName": "Gem Adept I",
-        "SkillDescription": "Gem Adept I",
+        "SkillDescription": "30% gain +1 random Gem Shard from Bronze Jewelry",
         "DataClass": "GemAdept",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Goldbane",
         "SkillName": "Master Smelter I",
-        "SkillDescription": "Master Smelter I",
+        "SkillDescription": "Gain Bronze Sheets required to craft Bronze Jewelry",
         "DataClass": "MasterSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Goldbane",
         "SkillName": "Bronze Master",
-        "SkillDescription": "Bronze Master",
+        "SkillDescription": "40% chance gain +2 Bronze Sheets from Bronze Jewelry",
         "DataClass": "BronzeMaster",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Goldbane",
         "SkillName": "Quick Study II",
-        "SkillDescription": "Quick Study II",
+        "SkillDescription": "40% chance gain +2 Iron Sheets from Bronze Jewelry",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Goldbane",
         "SkillName": "Master Pryer I",
-        "SkillDescription": "Master Pryer I",
+        "SkillDescription": "40% gain +2 random Crystal Shards from Bronze Jewelry",
         "DataClass": "MasterPryer",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Goldbane",
         "SkillName": "Apprentice Smelter II",
-        "SkillDescription": "Apprentice Smelter II",
+        "SkillDescription": "Gain 1 Iron Sheet from breakdown of any Iron Jewelry",
         "DataClass": "ApprenticeSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Goldbane",
         "SkillName": "Iron Adept",
-        "SkillDescription": "Iron Adept",
+        "SkillDescription": "20% chance gain +1 Iron Sheet from Iron Jewelry",
         "DataClass": "IronAdept",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Goldbane",
         "SkillName": "Quick Study III",
-        "SkillDescription": "Quick Study III",
+        "SkillDescription": "20% chance gain +1 Silver Sheet from Iron Jewelry",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Goldbane",
         "SkillName": "Adept Smelter II",
-        "SkillDescription": "Adept Smelter II",
+        "SkillDescription": "Gain ½ Sheets required to craft any Iron Jewelry, Min 1",
         "DataClass": "AdeptSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Goldbane",
         "SkillName": "Adept Pryer II",
-        "SkillDescription": "Adept Pryer II",
+        "SkillDescription": "20% gain +1 random Tiny Crystal from Iron Jewelry",
         "DataClass": "AdeptPryer",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Goldbane",
         "SkillName": "Gem Adept II",
-        "SkillDescription": "Gem Adept II",
+        "SkillDescription": "30% gain +1 random Tiny Gem from Iron Jewelry",
         "DataClass": "GemAdept",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Goldbane",
         "SkillName": "Master Smelter II",
-        "SkillDescription": "Master Smelter II",
+        "SkillDescription": "Gain Iron Sheets required to craft Iron Jewelry",
         "DataClass": "MasterSmelter",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Goldbane",
         "SkillName": "Iron Master",
-        "SkillDescription": "Iron Master",
+        "SkillDescription": "40% chance gain +2 Iron Sheets from Iron Jewelry",
         "DataClass": "IronMaster",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Goldbane",
         "SkillName": "Quick Study IV",
-        "SkillDescription": "Quick Study IV",
+        "SkillDescription": "40% chance gain +2 Silver Sheets from Iron Jewelry",
         "DataClass": "QuickStudy",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Goldbane",
         "SkillName": "Master Pryer II",
-        "SkillDescription": "Master Pryer II",
+        "SkillDescription": "40% gain +2 random Tiny Crystals from Iron Jewelry",
         "DataClass": "MasterPryer",
         "Recipes": [],
         "StatChanges": []

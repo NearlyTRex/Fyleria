@@ -3,7 +3,7 @@
         "SkillRank": 1,
         "SkillType": "Threadbare",
         "SkillName": "Apprentice Tailor I",
-        "SkillDescription": "Apprentice Tailor I",
+        "SkillDescription": "Gain ½ Cloth required to craft Master Bronzeweave Armor",
         "DataClass": "ApprenticeTailor",
         "Recipes": [],
         "StatChanges": []
@@ -12,7 +12,7 @@
         "SkillRank": 2,
         "SkillType": "Threadbare",
         "SkillName": "Thread Adept I",
-        "SkillDescription": "Thread Adept I",
+        "SkillDescription": "Gain ½ Thread required to craft Master Bronzeweave Armor",
         "DataClass": "ThreadAdept",
         "Recipes": [],
         "StatChanges": []
@@ -21,7 +21,7 @@
         "SkillRank": 3,
         "SkillType": "Threadbare",
         "SkillName": "Lucky Pull I",
-        "SkillDescription": "Lucky Pull I",
+        "SkillDescription": "20% chance gain +1 Iron Thread from Bronzeweave Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -30,7 +30,7 @@
         "SkillRank": 4,
         "SkillType": "Threadbare",
         "SkillName": "Adept Tailor I",
-        "SkillDescription": "Adept Tailor I",
+        "SkillDescription": "Gain Cloth required to craft Master Bronzeweave Armor",
         "DataClass": "AdeptTailor",
         "Recipes": [],
         "StatChanges": []
@@ -39,7 +39,7 @@
         "SkillRank": 5,
         "SkillType": "Threadbare",
         "SkillName": "Thorough Cleaner I",
-        "SkillDescription": "Thorough Cleaner I",
+        "SkillDescription": "20% gain +1 random Crystal Shard from Bronzeweave Armor",
         "DataClass": "ThoroughCleaner",
         "Recipes": [],
         "StatChanges": []
@@ -48,7 +48,7 @@
         "SkillRank": 6,
         "SkillType": "Threadbare",
         "SkillName": "Keen Eye I",
-        "SkillDescription": "Keen Eye I",
+        "SkillDescription": "30% gain +1 random Gem Shard from Bronzeweave Armor",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -57,7 +57,7 @@
         "SkillRank": 7,
         "SkillType": "Threadbare",
         "SkillName": "Master Tailor I",
-        "SkillDescription": "Master Tailor I",
+        "SkillDescription": "Gain 1 ½ Cloth required to craft Master Bronzeweave Armor",
         "DataClass": "MasterTailor",
         "Recipes": [],
         "StatChanges": []
@@ -66,7 +66,7 @@
         "SkillRank": 8,
         "SkillType": "Threadbare",
         "SkillName": "Thread Master I",
-        "SkillDescription": "Thread Master I",
+        "SkillDescription": "Gain Thread required to craft Master Bronzeweave Armor",
         "DataClass": "ThreadMaster",
         "Recipes": [],
         "StatChanges": []
@@ -75,7 +75,7 @@
         "SkillRank": 9,
         "SkillType": "Threadbare",
         "SkillName": "Lucky Pull II",
-        "SkillDescription": "Lucky Pull II",
+        "SkillDescription": "40% chance gain +2 Iron Threads from Bronzeweave Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -84,7 +84,7 @@
         "SkillRank": 10,
         "SkillType": "Threadbare",
         "SkillName": "Obsessed Cleaner I",
-        "SkillDescription": "Obsessed Cleaner I",
+        "SkillDescription": "40% gain +2 random Crystal Shards from Bronzeweave Armor",
         "DataClass": "ObsessedCleaner",
         "Recipes": [],
         "StatChanges": []
@@ -93,7 +93,7 @@
         "SkillRank": 11,
         "SkillType": "Threadbare",
         "SkillName": "Apprentice Tailor II",
-        "SkillDescription": "Apprentice Tailor II",
+        "SkillDescription": "Gain ½ Cloth required to craft Master Ironweave Armor",
         "DataClass": "ApprenticeTailor",
         "Recipes": [],
         "StatChanges": []
@@ -102,7 +102,7 @@
         "SkillRank": 12,
         "SkillType": "Threadbare",
         "SkillName": "Thread Adept II",
-        "SkillDescription": "Thread Adept II",
+        "SkillDescription": "Gain ½ Thread required to craft Master Ironweave Armor",
         "DataClass": "ThreadAdept",
         "Recipes": [],
         "StatChanges": []
@@ -111,7 +111,7 @@
         "SkillRank": 13,
         "SkillType": "Threadbare",
         "SkillName": "Lucky Pull III",
-        "SkillDescription": "Lucky Pull III",
+        "SkillDescription": "20% chance gain +1 Silver Thread from Ironweave Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -120,7 +120,7 @@
         "SkillRank": 14,
         "SkillType": "Threadbare",
         "SkillName": "Adept Tailor II",
-        "SkillDescription": "Adept Tailor II",
+        "SkillDescription": "Gain Cloth required to craft Master Ironweave Armor",
         "DataClass": "AdeptTailor",
         "Recipes": [],
         "StatChanges": []
@@ -129,7 +129,7 @@
         "SkillRank": 15,
         "SkillType": "Threadbare",
         "SkillName": "Thorough Cleaner II",
-        "SkillDescription": "Thorough Cleaner II",
+        "SkillDescription": "20% gain +1 random Tiny Crystal from Ironweave Armor",
         "DataClass": "ThoroughCleaner",
         "Recipes": [],
         "StatChanges": []
@@ -138,7 +138,7 @@
         "SkillRank": 16,
         "SkillType": "Threadbare",
         "SkillName": "Keen Eye II",
-        "SkillDescription": "Keen Eye II",
+        "SkillDescription": "30% gain +1 random Tiny Gem from Ironweave Armor",
         "DataClass": "KeenEye",
         "Recipes": [],
         "StatChanges": []
@@ -147,7 +147,7 @@
         "SkillRank": 17,
         "SkillType": "Threadbare",
         "SkillName": "Master Tailor II",
-        "SkillDescription": "Master Tailor II",
+        "SkillDescription": "Gain 1 ½ Cloth required to craft Master Ironweave Armor",
         "DataClass": "MasterTailor",
         "Recipes": [],
         "StatChanges": []
@@ -156,7 +156,7 @@
         "SkillRank": 18,
         "SkillType": "Threadbare",
         "SkillName": "Thread Master II",
-        "SkillDescription": "Thread Master II",
+        "SkillDescription": "Gain Thread required to craft Master Ironweave Armor",
         "DataClass": "ThreadMaster",
         "Recipes": [],
         "StatChanges": []
@@ -165,7 +165,7 @@
         "SkillRank": 19,
         "SkillType": "Threadbare",
         "SkillName": "Lucky Pull IV",
-        "SkillDescription": "Lucky Pull IV",
+        "SkillDescription": "40% chance gain +2 Silver Threads from Ironweave Armor",
         "DataClass": "LuckyPull",
         "Recipes": [],
         "StatChanges": []
@@ -174,7 +174,7 @@
         "SkillRank": 20,
         "SkillType": "Threadbare",
         "SkillName": "Obsessed Cleaner II",
-        "SkillDescription": "Obsessed Cleaner II",
+        "SkillDescription": "40% gain +2 random Tiny Crystals from Ironweave Armor",
         "DataClass": "ObsessedCleaner",
         "Recipes": [],
         "StatChanges": []
