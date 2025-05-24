@@ -31,6 +31,9 @@ public:
     // Clear all data
     virtual void Clear();
 
+    // Validate all data
+    virtual void Validate();
+
     // Is actionable
     Bool IsActionable() const;
 
