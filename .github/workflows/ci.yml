@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions: {}
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    uses: NearlyTRex/Workflows/.github/workflows/lint.yml@189a9c599b51396d09f95469f00b561da645ded1 # v0.2.7
+    permissions:
+      contents: read
+
+  build:
+    name: Build (${{ matrix.platform }}, ${{ matrix.mode }})
+    uses: NearlyTRex/Workflows/.github/workflows/cpp-build.yml@189a9c599b51396d09f95469f00b561da645ded1 # v0.2.7
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        mode: [debug, release]
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            buildtype: gmake2
+            python: python3
+          - os: windows-latest
+            platform: windows
+            buildtype: vs2022
+            python: python
+    with:
+      runs-on: ${{ matrix.os }}
+      submodules: "true"
+      # Skipped on Windows by the library.
+      apt-packages: binutils-dev libdw-dev libgtk-3-dev libwebkit2gtk-4.1-dev
+      msvc: ${{ matrix.os == 'windows-latest' }}
+      build-command: ${{ matrix.python }} Setup.py -v --configuration ${{ matrix.mode }} --buildtype ${{ matrix.buildtype }} all
+      test-command: ./Bin/FyleriaTest_${{ matrix.platform }}_x86_64_${{ matrix.mode }}
+      artifact: Fyleria-${{ matrix.platform }}-x86_64-${{ matrix.mode }}
+      artifact-path: |
+        Bin/FyleriaMain_${{ matrix.platform }}_x86_64_${{ matrix.mode }}*
+        Bin/FyleriaTest_${{ matrix.platform }}_x86_64_${{ matrix.mode }}*
