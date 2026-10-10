@@ -1,0 +1,71 @@
+name: Release
+
+# Tags and publishes the version in VERSION once, after the checks pass, with a
+# Linux and a Windows archive of each configuration attached. Pushes that don't
+# change the version find the tag already there, and build nothing.
+#
+# To release: Actions -> Prepare Release -> Run workflow, then merge its PR.
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  check:
+    name: Check
+    uses: NearlyTRex/Workflows/.github/workflows/lint.yml@189a9c599b51396d09f95469f00b561da645ded1 # v0.2.7
+    permissions:
+      contents: read
+
+  pending:
+    name: Pending
+    uses: NearlyTRex/Workflows/.github/workflows/release-check.yml@189a9c599b51396d09f95469f00b561da645ded1 # v0.2.7
+    permissions:
+      contents: read
+    with:
+      version-file: VERSION
+
+  package:
+    name: Package (${{ matrix.platform }}, ${{ matrix.mode }})
+    needs: pending
+    if: needs.pending.outputs.pending == 'true'
+    uses: NearlyTRex/Workflows/.github/workflows/cpp-build.yml@189a9c599b51396d09f95469f00b561da645ded1 # v0.2.7
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        mode: [debug, release]
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            buildtype: gmake2
+            python: python3
+          - os: windows-latest
+            platform: windows
+            buildtype: vs2022
+            python: python
+    with:
+      runs-on: ${{ matrix.os }}
+      submodules: "true"
+      apt-packages: binutils-dev libdw-dev libgtk-3-dev libwebkit2gtk-4.1-dev
+      msvc: ${{ matrix.os == 'windows-latest' }}
+      # The static libraries are build intermediates, not something to ship.
+      build-command: |
+        ${{ matrix.python }} Setup.py -v --configuration ${{ matrix.mode }} --buildtype ${{ matrix.buildtype }} all
+        rm -f Bin/*.a Bin/*.lib
+        7z a Fyleria_${{ matrix.platform }}_x86_64_${{ matrix.mode }}.7z ./Data ./Bin
+      artifact: fyleria-${{ matrix.platform }}-${{ matrix.mode }}
+      artifact-path: Fyleria_${{ matrix.platform }}_x86_64_${{ matrix.mode }}.7z
+
+  release:
+    name: Release
+    needs: [check, package]
+    uses: NearlyTRex/Workflows/.github/workflows/release.yml@189a9c599b51396d09f95469f00b561da645ded1 # v0.2.7
+    permissions:
+      contents: write
+    with:
+      version-file: VERSION
+      assets: fyleria-*
+      checksums: true

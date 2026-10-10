@@ -1,40 +1,52 @@
 # Fyleria
+
 This is the game engine for an upcoming RPG.
 
-# Badges
-[![Build (Linux)](https://github.com/NearlyTRex/Fyleria/actions/workflows/build-linux.yml/badge.svg)](https://github.com/NearlyTRex/Fyleria/actions/workflows/build-linux.yml)
-[![Build (Windows)](https://github.com/NearlyTRex/Fyleria/actions/workflows/build-windows.yml/badge.svg)](https://github.com/NearlyTRex/Fyleria/actions/workflows/build-windows.yml)
-[![Deploy (Linux)](https://github.com/NearlyTRex/Fyleria/actions/workflows/deploy-linux.yml/badge.svg)](https://github.com/NearlyTRex/Fyleria/actions/workflows/deploy-linux.yml)
-[![Deploy (Windows)](https://github.com/NearlyTRex/Fyleria/actions/workflows/deploy-windows.yml/badge.svg)](https://github.com/NearlyTRex/Fyleria/actions/workflows/deploy-windows.yml)
+## Badges
 
-# License
+[![CI](https://github.com/NearlyTRex/Fyleria/actions/workflows/ci.yml/badge.svg)](https://github.com/NearlyTRex/Fyleria/actions/workflows/ci.yml)
+[![Security](https://github.com/NearlyTRex/Fyleria/actions/workflows/security.yml/badge.svg)](https://github.com/NearlyTRex/Fyleria/actions/workflows/security.yml)
+[![Release](https://github.com/NearlyTRex/Fyleria/actions/workflows/release.yml/badge.svg)](https://github.com/NearlyTRex/Fyleria/actions/workflows/release.yml)
+
+## License
+
 The engine itself is released here under the BSD 2-Clause License.
 All other materials (such as game assets) are proprietary and confidential.
 
-# Building - Linux
+## Building - Linux
+
 To build in debug mode:
-```
+
+```bash
 python3 Setup.py -v --configuration debug --buildtype gmake2 all
 ```
+
 To build in release mode:
-```
+
+```bash
 python3 Setup.py -v --configuration release --buildtype gmake2 all
 ```
 
-# Building - Windows
+## Building - Windows
+
 To build in debug mode:
-```
+
+```bash
 python Setup.py -v --configuration debug --buildtype vs2022 all
 ```
+
 To build in release mode:
-```
+
+```bash
 python Setup.py -v --configuration release --buildtype vs2022 all
 ```
 
-# Project Generator
+## Project Generator
+
 The Setup.py script can setup libraries/tools and create/run build scripts.
 
 Available options:
+
 - all (do everything)
 - setup_libs (setup all libs)
 - setup_c_libs (setup only c libs)
@@ -46,6 +58,7 @@ Available options:
 - build_project (build project files)
 
 Force setup steps (regardless of autodetection):
+
 - --force_32 (Force 32-bit configuration)
 - --force_64 (Force 64-bit configuration)
 - --force_linux (Force Linux configuration)
@@ -56,10 +69,12 @@ Force setup steps (regardless of autodetection):
 - --force_mingw (Force MinGW configuration)
 
 Configuration (--configuration):
+
 - release
 - debug (default)
 
 Build type (--buildtype):
+
 - gmake
 - gmake2 (default)
 - codelite
@@ -76,7 +91,8 @@ Build type (--buildtype):
 
 Verbose (-v, --verbose)
 
-# Third Party Libraries
+## Third Party Libraries
+
 The following libraries are used.
 
 **Library**|**Language**|**License**
