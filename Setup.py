@@ -24,7 +24,7 @@ def main():
     # Check Python
     if Utility.DetectPython(Utility.GetRequiredPythonVersion()) == False:
         Utility.ErrorStatement("Python %d.%d or higher is required to run this script" % Utility.GetRequiredPythonVersion())
-        sys.exit(-1)
+        sys.exit(1)
 
     # Project sets
     projects_clibs = [
@@ -86,8 +86,9 @@ def main():
             Project.SetupProject(project, "Project/Programs", system_info, program_options)
     if do_create_project or do_all:
         Project.CreateProject(system_info, program_options)
-    if do_build_project or do_all:
+    if do_build_project:
         Project.CreateProject(system_info, program_options)
+    if do_build_project or do_all:
         Project.BuildProject(system_info, program_options)
 ###########################################################################
 main()

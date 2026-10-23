@@ -51,8 +51,10 @@ def RunSubprocess(subprocess_args = [], subprocess_env = None, expected_substr =
         if verbose_output:
             if len(result.stdout) > 0:
                 print(result.stdout)
+        if result.returncode != 0:
+            return (False, result.stdout)
         if len(expected_substr) > 0:
-            return (expected_substr in output, result.stdout)
+            return (expected_substr in result.stdout, result.stdout)
         return (True, result.stdout)
     except Exception as e:
         if verbose_output:
@@ -74,14 +76,10 @@ def RunLiveSubprocess(subprocess_args = [], subprocess_env = None, verbose_outpu
             env=subprocess_env,
             shell=False,
             universal_newlines=True)
-        while verbose_output and True:
-            output = process.stdout.readline()
-            if output == '' and process.poll() is not None:
-                break
-            if output:
+        for output in process.stdout:
+            if verbose_output:
                 print(output.strip())
-        code = process.poll()
-        return code
+        return process.wait()
     except Exception as e:
         if verbose_output:
             print(e)

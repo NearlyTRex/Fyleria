@@ -7,6 +7,7 @@
 [submodule "Project/Libs/Cpp/Backward/orig"]
 	path = Project/Libs/Cpp/Backward/orig
 	url = https://github.com/NearlyTRex/Backward
+	branch = dev
 [submodule "Project/Libs/Cpp/BetterEnums/orig"]
 	path = Project/Libs/Cpp/BetterEnums/orig
 	url = https://github.com/NearlyTRex/BetterEnums
@@ -19,6 +20,7 @@
 [submodule "Project/Libs/Cpp/FantasyName/orig"]
 	path = Project/Libs/Cpp/FantasyName/orig
 	url = https://github.com/NearlyTRex/FantasyName
+	branch = dev
 [submodule "Project/Libs/Cpp/ImmutableString/orig"]
 	path = Project/Libs/Cpp/ImmutableString/orig
 	url = https://github.com/NearlyTRex/ImmutableString
@@ -28,6 +30,7 @@
 [submodule "Project/Libs/Cpp/LRUCache/orig"]
 	path = Project/Libs/Cpp/LRUCache/orig
 	url = https://github.com/NearlyTRex/LRUCache
+	branch = dev
 [submodule "Project/Libs/Cpp/MicroPather/orig"]
 	path = Project/Libs/Cpp/MicroPather/orig
 	url = https://github.com/NearlyTRex/MicroPather
@@ -40,6 +43,7 @@
 [submodule "Project/Libs/Cpp/WebView/orig"]
 	path = Project/Libs/Cpp/WebView/orig
 	url = https://github.com/NearlyTRex/WebView
+	branch = dev
 [submodule "Project/Libs/JavaScript/Bootstrap/orig"]
 	path = Project/Libs/JavaScript/Bootstrap/orig
 	url = https://github.com/NearlyTRex/Bootstrap

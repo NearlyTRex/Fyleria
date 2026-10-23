@@ -18,13 +18,13 @@ All other materials (such as game assets) are proprietary and confidential.
 To build in debug mode:
 
 ```bash
-python3 Setup.py -v --configuration debug --buildtype gmake2 all
+python3 Setup.py -v --configuration debug --buildtype gmake all
 ```
 
 To build in release mode:
 
 ```bash
-python3 Setup.py -v --configuration release --buildtype gmake2 all
+python3 Setup.py -v --configuration release --buildtype gmake all
 ```
 
 ## Building - Windows
@@ -76,7 +76,7 @@ Configuration (--configuration):
 Build type (--buildtype):
 
 - gmake
-- gmake2 (default)
+- gmake (default)
 - codelite
 - vs2005
 - vs2008

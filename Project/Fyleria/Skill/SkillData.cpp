@@ -60,6 +60,11 @@ void SkillData::Clear()
     SetStatChanges({});
 }
 
+void SkillData::Validate()
+{
+    // Nothing to check in the base data
+}
+
 Bool SkillData::IsActionable() const
 {
     // First check that all the necessary information is filled out

@@ -98,7 +98,7 @@ def CreateProject(system_info, program_options):
     premake_verbose_flag = "--verbose=1" if program_options.verbose else ""
 
     # Create project files
-    Utility.RunSubprocess(
+    success, output = Utility.RunSubprocess(
         subprocess_args=[
             system_info.premake_bin,
             program_options.build_type,
@@ -108,6 +108,11 @@ def CreateProject(system_info, program_options):
             premake_verbose_flag
         ],
         verbose_output=program_options.verbose)
+    if not success:
+        if not program_options.verbose:
+            print(output)
+        Utility.ErrorStatement("Unable to create project files")
+        sys.exit(1)
 ###########################################################################
 ## Build Project
 def BuildProject(system_info, program_options):
@@ -116,9 +121,11 @@ def BuildProject(system_info, program_options):
     Utility.LogStatement("Building project")
 
     # Change to build directory
-    if os.path.exists(system_info.build_path):
-        Utility.LogStatement("Changing directory to " + system_info.build_path)
-        os.chdir(system_info.build_path)
+    if not os.path.exists(system_info.build_path):
+        Utility.ErrorStatement("Build directory " + system_info.build_path + " does not exist")
+        sys.exit(1)
+    Utility.LogStatement("Changing directory to " + system_info.build_path)
+    os.chdir(system_info.build_path)
 
     # Makefile build type
     if program_options.build_type.startswith("gmake"):
@@ -131,7 +138,7 @@ def BuildProject(system_info, program_options):
         build_release64_flag = "config=release64" if (system_info.is_64bits and program_options.configuration == "release") else ""
 
         # Run build
-        Utility.RunLiveSubprocess(
+        code = Utility.RunLiveSubprocess(
             subprocess_args=[
                 system_info.make_bin,
                 build_debug32_flag,
@@ -154,7 +161,7 @@ def BuildProject(system_info, program_options):
         build_release64_flag = "Release64|x64" if (system_info.is_64bits and program_options.configuration == "release") else ""
 
         # Run build
-        Utility.RunLiveSubprocess(
+        code = Utility.RunLiveSubprocess(
             subprocess_args=[
                 system_info.build_bin,
                 build_solution_file,
@@ -165,4 +172,14 @@ def BuildProject(system_info, program_options):
                 build_release64_flag
             ],
             verbose_output=program_options.verbose)
+
+    # Unknown build type
+    else:
+        Utility.ErrorStatement("Unable to build project type " + program_options.build_type)
+        sys.exit(1)
+
+    # Check result
+    if code != 0:
+        Utility.ErrorStatement("Unable to build project")
+        sys.exit(1)
 ###########################################################################

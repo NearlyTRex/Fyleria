@@ -25,7 +25,6 @@ def GetProgramOptions():
     ], default="debug", help="Configuration type")
     parser.add_argument("-b", "--buildtype", choices=[
         "gmake",
-        "gmake2",
         "codelite",
         "vs2005",
         "vs2008",
@@ -37,7 +36,7 @@ def GetProgramOptions():
         "vs2019",
         "vs2022",
         "xcode4"
-    ], default="gmake2", help="Project type to pass to Premake")
+    ], default="gmake", help="Project type to pass to Premake")
     parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose messages")
     parser.add_argument("mode", choices=[
         "all",

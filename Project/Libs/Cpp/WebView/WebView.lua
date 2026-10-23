@@ -1,8 +1,8 @@
 -- Configuration
 libWebView_extradir = "Libs/Cpp/WebView/extra/"
 libWebView_origdir = "Libs/Cpp/WebView/orig/"
-libWebView_srcdir = libWebView_origdir
-libWebView_incdir = libWebView_origdir
+libWebView_srcdir = libWebView_origdir .. "core/src/"
+libWebView_incdir = libWebView_origdir .. "core/include/"
 
 -- Includes
 libWebView_includedirs = {
@@ -38,5 +38,5 @@ end
 -- Sources
 libWebView_sources = {
     libWebView_srcdir .. "webview.cc",
-    libWebView_srcdir .. "webview.h"
+    libWebView_incdir .. "webview.h"
 }
