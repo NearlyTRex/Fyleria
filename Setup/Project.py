@@ -112,7 +112,7 @@ def CreateProject(system_info, program_options):
         if not program_options.verbose:
             print(output)
         Utility.ErrorStatement("Unable to create project files")
-        sys.exit(-1)
+        sys.exit(1)
 ###########################################################################
 ## Build Project
 def BuildProject(system_info, program_options):
@@ -123,7 +123,7 @@ def BuildProject(system_info, program_options):
     # Change to build directory
     if not os.path.exists(system_info.build_path):
         Utility.ErrorStatement("Build directory " + system_info.build_path + " does not exist")
-        sys.exit(-1)
+        sys.exit(1)
     Utility.LogStatement("Changing directory to " + system_info.build_path)
     os.chdir(system_info.build_path)
 
@@ -176,10 +176,10 @@ def BuildProject(system_info, program_options):
     # Unknown build type
     else:
         Utility.ErrorStatement("Unable to build project type " + program_options.build_type)
-        sys.exit(-1)
+        sys.exit(1)
 
     # Check result
     if code != 0:
         Utility.ErrorStatement("Unable to build project")
-        sys.exit(-1)
+        sys.exit(1)
 ###########################################################################
