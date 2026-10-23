@@ -56,12 +56,6 @@
 [submodule "Project/Libs/JavaScript/Phaser/orig"]
 	path = Project/Libs/JavaScript/Phaser/orig
 	url = https://github.com/NearlyTRex/Phaser
-[submodule "Project/Libs/Python/PyJSMin/orig"]
-	path = Project/Libs/Python/PyJSMin/orig
-	url = https://github.com/NearlyTRex/PyJSMin
-[submodule "Project/Programs/Premake/orig"]
-	path = Project/Programs/Premake/orig
-	url = https://github.com/NearlyTRex/Premake
 [submodule "Project/Libs/Cpp/PPKAssert/orig"]
 	path = Project/Libs/Cpp/PPKAssert/orig
 	url = https://github.com/NearlyTRex/PPKAssert

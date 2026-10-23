@@ -1,0 +1,2 @@
+add_library(ImmutableString INTERFACE)
+target_include_directories(ImmutableString INTERFACE orig)

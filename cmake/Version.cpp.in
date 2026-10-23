@@ -1,0 +1,6 @@
+char const* GetVersionStringShort() {
+return "@FYLERIA_VERSION@";
+}
+char const* GetVersionStringLong() {
+return "@FYLERIA_VERSION@ (Built: @FYLERIA_BUILD_DATE@) (System: @CMAKE_SYSTEM@)";
+}

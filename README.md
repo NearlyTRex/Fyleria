@@ -13,83 +13,43 @@ This is the game engine for an upcoming RPG.
 The engine itself is released here under the BSD 2-Clause License.
 All other materials (such as game assets) are proprietary and confidential.
 
-## Building - Linux
+## Building
 
-To build in debug mode:
-
-```bash
-python3 Setup.py -v --configuration debug --buildtype gmake all
-```
-
-To build in release mode:
+Fyleria builds with CMake 3.25 or newer. The third party libraries are git submodules, so clone
+with `--recurse-submodules`, or fetch them in an existing clone:
 
 ```bash
-python3 Setup.py -v --configuration release --buildtype gmake all
+git submodule update --init
 ```
 
-## Building - Windows
+Each preset configures, builds and runs the unit tests. The programs land in `Bin`, next to
+`Data`, named for the platform and configuration (`FyleriaMain_linux_x86_64_release`).
 
-To build in debug mode:
+### Linux
+
+Needs Ninja, a C++17 compiler, and the GTK, WebKitGTK and libdw development packages. On
+Ubuntu:
 
 ```bash
-python Setup.py -v --configuration debug --buildtype vs2022 all
+sudo apt install cmake ninja-build g++ pkg-config binutils-dev libdw-dev libgtk-3-dev libwebkit2gtk-4.1-dev
 ```
-
-To build in release mode:
 
 ```bash
-python Setup.py -v --configuration release --buildtype vs2022 all
+cmake --workflow --preset linux-debug
+cmake --workflow --preset linux-release
 ```
 
-## Project Generator
+### Windows
 
-The Setup.py script can setup libraries/tools and create/run build scripts.
+Needs Visual Studio 2022 with the C++ workload. From any shell:
 
-Available options:
+```bash
+cmake --workflow --preset windows-debug
+cmake --workflow --preset windows-release
+```
 
-- all (do everything)
-- setup_libs (setup all libs)
-- setup_c_libs (setup only c libs)
-- setup_cpp_libs (setup only c++ libs)
-- setup_py_libs (setup only python libs)
-- setup_js_libs (setup only javascript libs)
-- setup_tools (setup tools)
-- create_project (create project files)
-- build_project (build project files)
-
-Force setup steps (regardless of autodetection):
-
-- --force_32 (Force 32-bit configuration)
-- --force_64 (Force 64-bit configuration)
-- --force_linux (Force Linux configuration)
-- --force_macosx (Force MacOSX configuration)
-- --force_windows (Force Windows configuration)
-- --force_wsl (Force Windows Subsystem for Linux configuration)
-- --force_cygwin (Force Cygwin configuration)
-- --force_mingw (Force MinGW configuration)
-
-Configuration (--configuration):
-
-- release
-- debug (default)
-
-Build type (--buildtype):
-
-- gmake
-- gmake (default)
-- codelite
-- vs2005
-- vs2008
-- vs2010
-- vs2012
-- vs2013
-- vs2015
-- vs2017
-- vs2019
-- vs2022
-- xcode4
-
-Verbose (-v, --verbose)
+To work in Visual Studio, open the generated `Build/windows/Fyleria.sln`, or open the folder
+and pick a preset.
 
 ## Third Party Libraries
 

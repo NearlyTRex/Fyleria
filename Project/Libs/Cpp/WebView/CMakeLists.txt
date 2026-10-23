@@ -1,0 +1,12 @@
+# Header-only: the engine uses the C++ class, which the headers only provide
+# when the library isn't built separately (no WEBVIEW_STATIC)
+add_library(WebView INTERFACE)
+target_include_directories(WebView INTERFACE orig/core/include)
+if(WIN32)
+    target_include_directories(WebView INTERFACE extra/webview2/build/native/include)
+    target_link_libraries(WebView INTERFACE advapi32 ole32 shell32 shlwapi user32 version)
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(WEBKIT REQUIRED IMPORTED_TARGET gtk+-3.0 webkit2gtk-4.1 javascriptcoregtk-4.1)
+    target_link_libraries(WebView INTERFACE PkgConfig::WEBKIT)
+endif()

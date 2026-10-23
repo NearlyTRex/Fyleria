@@ -33,20 +33,16 @@ jobs:
         include:
           - os: ubuntu-latest
             platform: linux
-            buildtype: gmake
-            python: python3
           - os: windows-latest
             platform: windows
-            buildtype: vs2022
-            python: python
     with:
       runs-on: ${{ matrix.os }}
       submodules: "true"
       # Skipped on Windows by the library.
-      apt-packages: binutils-dev libdw-dev libgtk-3-dev libwebkit2gtk-4.1-dev
-      msvc: ${{ matrix.os == 'windows-latest' }}
-      build-command: ${{ matrix.python }} Setup.py -v --configuration ${{ matrix.mode }} --buildtype ${{ matrix.buildtype }} all
-      test-command: ./Bin/FyleriaTest_${{ matrix.platform }}_x86_64_${{ matrix.mode }}
+      apt-packages: ninja-build binutils-dev libdw-dev libgtk-3-dev libwebkit2gtk-4.1-dev
+      ccache: ${{ matrix.os == 'ubuntu-latest' }}
+      # Configures, builds and runs the tests.
+      build-command: cmake --workflow --preset ${{ matrix.platform }}-${{ matrix.mode }}
       artifact: Fyleria-${{ matrix.platform }}-x86_64-${{ matrix.mode }}
       artifact-path: |
         Bin/FyleriaMain_${{ matrix.platform }}_x86_64_${{ matrix.mode }}*

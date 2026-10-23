@@ -1,0 +1,7 @@
+add_library(FantasyName STATIC orig/c++/namegen.cc)
+target_compile_features(FantasyName PRIVATE cxx_std_20)
+target_include_directories(FantasyName PUBLIC orig/c++)
+target_compile_definitions(FantasyName PUBLIC HAVE_CXX14)
+if(WIN32)
+    target_compile_definitions(FantasyName PRIVATE _CRT_SECURE_NO_WARNINGS)
+endif()

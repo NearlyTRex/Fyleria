@@ -1,0 +1,5 @@
+#ifndef _GECKO_UTILITY_VERSION_H_
+#define _GECKO_UTILITY_VERSION_H_
+char const* GetVersionStringShort();
+char const* GetVersionStringLong();
+#endif

@@ -55,11 +55,9 @@ __pycache__
 
 # Folders
 Bin
+Build
 Data/Logs
 Data/Saves
-Project/Build_*
-Project/Fyleria/Utility/Version.h
-Project/Fyleria/Utility/Version.cpp
 Project/Libs/C/Zlib/orig
 Project/Libs/Cpp/Backward/orig
 Project/Libs/Cpp/BetterEnums/orig
@@ -79,9 +77,6 @@ Project/Libs/JavaScript/jQueryTerminal/orig
 Project/Libs/JavaScript/Phaser/orig
 Project/Libs/JavaScript/Polyfill/orig
 Project/Libs/JavaScript/Screenfull/orig
-Project/Libs/Python/PyJSMin/orig
-Project/Programs/Premake/bin
-Project/Programs/Premake/orig
 
 # Program
 FyleriaMain_*
