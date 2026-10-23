@@ -1,0 +1,2 @@
+add_library(ObjectThreadsafe INTERFACE)
+target_include_directories(ObjectThreadsafe INTERFACE orig)

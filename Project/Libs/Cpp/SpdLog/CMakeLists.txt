@@ -1,0 +1,5 @@
+file(GLOB_RECURSE SPDLOG_SOURCES CONFIGURE_DEPENDS orig/src/*.cpp)
+add_library(SpdLog STATIC ${SPDLOG_SOURCES})
+target_compile_features(SpdLog PRIVATE cxx_std_20)
+target_include_directories(SpdLog PUBLIC orig/include)
+target_compile_definitions(SpdLog PUBLIC SPDLOG_COMPILED_LIB)

@@ -1,0 +1,8 @@
+add_library(Backward INTERFACE)
+target_include_directories(Backward INTERFACE orig)
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(LIBDW REQUIRED IMPORTED_TARGET libdw)
+    target_compile_definitions(Backward INTERFACE BACKWARD_HAS_DW=1 BACKWARD_HAS_UNWIND=1)
+    target_link_libraries(Backward INTERFACE PkgConfig::LIBDW)
+endif()

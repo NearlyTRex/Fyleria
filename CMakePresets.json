@@ -1,0 +1,99 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "linux",
+      "displayName": "Linux",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/Build/linux",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "windows",
+      "displayName": "Windows",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/Build/windows",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "linux-debug", "configurePreset": "linux", "configuration": "Debug" },
+    { "name": "linux-release", "configurePreset": "linux", "configuration": "Release" },
+    { "name": "windows-debug", "configurePreset": "windows", "configuration": "Debug" },
+    { "name": "windows-release", "configurePreset": "windows", "configuration": "Release" }
+  ],
+  "testPresets": [
+    {
+      "name": "linux-debug",
+      "configurePreset": "linux",
+      "configuration": "Debug",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "linux-release",
+      "configurePreset": "linux",
+      "configuration": "Release",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "windows-debug",
+      "configurePreset": "windows",
+      "configuration": "Debug",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "windows-release",
+      "configurePreset": "windows",
+      "configuration": "Release",
+      "output": { "outputOnFailure": true }
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "linux-debug",
+      "steps": [
+        { "type": "configure", "name": "linux" },
+        { "type": "build", "name": "linux-debug" },
+        { "type": "test", "name": "linux-debug" }
+      ]
+    },
+    {
+      "name": "linux-release",
+      "steps": [
+        { "type": "configure", "name": "linux" },
+        { "type": "build", "name": "linux-release" },
+        { "type": "test", "name": "linux-release" }
+      ]
+    },
+    {
+      "name": "windows-debug",
+      "steps": [
+        { "type": "configure", "name": "windows" },
+        { "type": "build", "name": "windows-debug" },
+        { "type": "test", "name": "windows-debug" }
+      ]
+    },
+    {
+      "name": "windows-release",
+      "steps": [
+        { "type": "configure", "name": "windows" },
+        { "type": "build", "name": "windows-release" },
+        { "type": "test", "name": "windows-release" }
+      ]
+    }
+  ]
+}
