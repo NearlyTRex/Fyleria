@@ -16,6 +16,8 @@ filter "configurations:Debug*"
 filter "configurations:Release*"
     optimize "Full"
     targetsuffix(GetTargetReleaseSuffix())
+filter "toolset:msc*"
+    buildoptions { "/utf-8" }
 
 -- FyleriaMain
 project "FyleriaMain"

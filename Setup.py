@@ -86,8 +86,9 @@ def main():
             Project.SetupProject(project, "Project/Programs", system_info, program_options)
     if do_create_project or do_all:
         Project.CreateProject(system_info, program_options)
-    if do_build_project or do_all:
+    if do_build_project:
         Project.CreateProject(system_info, program_options)
+    if do_build_project or do_all:
         Project.BuildProject(system_info, program_options)
 ###########################################################################
 main()

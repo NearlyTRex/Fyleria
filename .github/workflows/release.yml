@@ -42,7 +42,7 @@ jobs:
         include:
           - os: ubuntu-latest
             platform: linux
-            buildtype: gmake2
+            buildtype: gmake
             python: python3
           - os: windows-latest
             platform: windows
