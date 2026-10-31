@@ -16,13 +16,13 @@ concurrency:
 jobs:
   lint:
     name: Lint
-    uses: NearlyTRex/Workflows/.github/workflows/lint.yml@9e1d569f0f334c38fc2f24cc45a9428b86afb623 # v0.2.20
+    uses: NearlyTRex/Workflows/.github/workflows/lint.yml@32d5879909bb8344868510909ec6476ed6d49afd # v0.2.23
     permissions:
       contents: read
 
   build:
     name: Build (${{ matrix.platform }}, ${{ matrix.mode }})
-    uses: NearlyTRex/Workflows/.github/workflows/cpp-build.yml@9e1d569f0f334c38fc2f24cc45a9428b86afb623 # v0.2.20
+    uses: NearlyTRex/Workflows/.github/workflows/cpp-build.yml@32d5879909bb8344868510909ec6476ed6d49afd # v0.2.23
     permissions:
       contents: read
     strategy:
